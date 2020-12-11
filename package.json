@@ -10,6 +10,7 @@
   },
   "version": "0.1.0",
   "devDependencies": {
+    "markdownlint-cli": "^0.25.0",
     "standard": "^16.0.2",
     "webpack-dev-server": "^3.11.0"
   }

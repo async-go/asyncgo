@@ -31,3 +31,18 @@ jobs:
         run: bin/yarn install --cache-folder vendor/yarn
       - name: Run standard
         run: bin/yarn exec standard
+  markdownlint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/cache@v1
+        name: Cache yarn dependencies
+        with:
+          path: vendor/yarn
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+      - name: Install node dependencies
+        run: bin/yarn install --cache-folder vendor/yarn
+      - name: Run markdownlint
+        run: bin/yarn exec markdownlint "*.md"
