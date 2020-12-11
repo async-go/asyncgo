@@ -46,3 +46,10 @@ jobs:
         run: bin/yarn install --cache-folder vendor/yarn
       - name: Run markdownlint
         run: bin/yarn exec markdownlint "*.md"
+  vale:
+    runs-on: ubuntu-latest
+    container: jdkato/vale:v2.3.3
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run vale
+        run: vale "*.md"
