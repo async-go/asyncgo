@@ -19,6 +19,24 @@ jobs:
         run: bundle install --without development production --jobs 4 --retry 3 --path vendor/bundle
       - name: Run rubocop
         run: bundle exec rubocop
+  haml-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-ruby@v1
+        with:
+          ruby-version: '2.7.2'
+      - uses: actions/cache@v1
+        name: Cache bundler dependencies
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gem-
+      - name: Install bundler dependencies
+        run: bundle install --without development production --jobs 4 --retry 3 --path vendor/bundle
+      - name: Run haml-lint
+        run: bundle exec haml-lint
   standard:
     runs-on: ubuntu-latest
     steps:

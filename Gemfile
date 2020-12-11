@@ -14,6 +14,9 @@ gem 'sqlite3', '~> 1.4' # Use sqlite3 as the database for Active Record
 gem 'turbolinks', '~> 5' # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'webpacker', '~> 5.0' # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 
+# Other
+gem 'hamlit', '~> 2.13.0'
+
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.7'
 # Use Redis adapter to run Action Cable in production
@@ -35,6 +38,9 @@ group :development do
   gem 'rubocop', '~> 1.6.1', require: false
   gem 'rubocop-performance', '~> 1.9.0', require: false
   gem 'rubocop-rails', '~> 2.9.0', require: false
+  ## Haml linter
+  gem 'haml_lint', '~> 0.36.0', require: false
+  # Other
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'web-console', '>= 4.1.0'
   # Display performance information such as SQL time and flame graphs for each request in your browser.
