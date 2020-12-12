@@ -33,10 +33,12 @@ group :development, :test do
   gem 'rubocop', '~> 1.6.1', require: false
   gem 'rubocop-performance', '~> 1.9.0', require: false
   gem 'rubocop-rails', '~> 2.9.0', require: false
+  gem 'rubocop-rspec', '~> 2.0.1', require: false
   ## Haml linter
   gem 'haml_lint', '~> 0.36.0', require: false
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'rspec-rails', '~> 4.0.1' # rspec testing
 end
 
 group :development do
