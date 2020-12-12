@@ -3,5 +3,6 @@
 class Comment < ApplicationRecord
   validates :body, presence: { allow_blank: false }
 
+  belongs_to :user
   belongs_to :topic
 end
