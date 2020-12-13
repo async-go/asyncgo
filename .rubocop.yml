@@ -16,5 +16,8 @@ Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
 
+RSpec/ExampleLength:
+  Max: 10
+
 Style/Documentation:
   Enabled: false

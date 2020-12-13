@@ -27,7 +27,34 @@ jobs:
       - name: Install bundler dependencies
         run: bundle install --without development production --jobs 4 --retry 3 --path vendor/bundle
       - name: Run rspec
-        run: bundle exec rspec
+        run: bundle exec rspec --tag ~type:system
+  rspec-system:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-ruby@v1
+        with:
+          ruby-version: '2.7.2'
+      - uses: actions/cache@v2
+        name: Cache yarn dependencies
+        with:
+          path: vendor/yarn
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+      - uses: actions/cache@v2
+        name: Cache bundler dependencies
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gem-
+      - name: Install node dependencies
+        run: bin/yarn install --production true --cache-folder vendor/yarn
+      - name: Install bundler dependencies
+        run: bundle install --without development production --jobs 4 --retry 3 --path vendor/bundle
+      - name: Run rspec system specs
+        run: bundle exec rspec --tag type:system
   rubocop:
     runs-on: ubuntu-latest
     steps:
