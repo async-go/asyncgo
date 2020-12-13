@@ -9,5 +9,10 @@ Rails.application.routes.draw do
       resources :comments, only: %i[new create]
     end
   end
-  resources :teams, only: [:edit]
+
+  resources :teams, only: %i[edit update] do
+    scope module: :teams do
+      resources :users, only: %i[create destroy]
+    end
+  end
 end

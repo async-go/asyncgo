@@ -31,6 +31,8 @@
           %li.nav-item= link_to 'Topics', topics_path,
             class: class_names('nav-link', active: current_page?(topics_path))
         %ul.navbar-nav.me-2
+          %li.nav-item= link_to 'Team', edit_team_path(1),
+            class: class_names('nav-link', active: current_page?(edit_team_path(1)))
           %li.nav-item= link_to 'Sign in', '', class: 'nav-link'
     %main.container.mt-4{ role: 'main' }
       .sticky-top

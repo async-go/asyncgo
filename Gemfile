@@ -15,7 +15,7 @@ gem 'turbolinks', '~> 5' # Turbolinks makes navigating your web application fast
 gem 'webpacker', '~> 5.0' # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 
 # Other
-gem 'hamlit', '~> 2.13.0'
+gem 'hamlit', '~> 2.13.0' # Templating language
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.7'
@@ -36,30 +36,26 @@ group :development, :test do
   gem 'rubocop-rspec', '~> 2.0.1', require: false
   ## Haml linter
   gem 'haml_lint', '~> 0.36.0', require: false
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  # Other
+  gem 'byebug', platforms: %i[mri mingw x64_mingw] # Debugger console by calling 'byebug' anywhere in code
   gem 'rspec-rails', '~> 4.0.1' # rspec testing
-  gem 'spring', '~> 2.1.1'
+  gem 'spring', '~> 2.1.1' # Speeds up development by keeping application running in the background - https://github.com/rails/spring
 end
 
 group :development do
   # Other
-  # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
-  gem 'web-console', '>= 4.1.0'
+  gem 'listen', '~> 3.3' # Listen for filestystem file changes
+  gem 'web-console', '>= 4.1.0' # Interactive console on exception pages and in code by calling 'console'
   # Display performance information such as SQL time and flame graphs for each request in your browser.
   # Can be configured to work on production as well see: https://github.com/MiniProfiler/rack-mini-profiler/blob/master/README.md
-  gem 'listen', '~> 3.3'
   gem 'rack-mini-profiler', '~> 2.0'
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 end
 
 group :test do
-  # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '>= 3.26'
+  gem 'capybara', '>= 3.26' # Support for Capybara system testing
   gem 'selenium-webdriver'
-  # Easy installation and use of web drivers to run system tests with browsers
-  gem 'shoulda-matchers', '~> 4.4.1'
-  gem 'webdrivers'
+  gem 'shoulda-matchers', '~> 4.4.1' # Additional rspec matchers
+  gem 'webdrivers' # Easy installation and use of web drivers for system tests
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
