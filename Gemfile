@@ -53,6 +53,8 @@ end
 
 group :test do
   gem 'capybara', '>= 3.26' # Support for Capybara system testing
+  gem 'factory_bot_rails', '~> 6.1.0' # Factories for generating AR objects in specs
+  gem 'faker', '~> 2.15.1' # Fake data for use in specs
   gem 'selenium-webdriver'
   gem 'shoulda-matchers', '~> 4.4.1' # Additional rspec matchers
   gem 'webdrivers' # Easy installation and use of web drivers for system tests

@@ -3,6 +3,12 @@
 = link_to 'All Topics', topics_path
 
 = form_with(model: @topic, local: true) do |form|
+  - if @topic.errors.any?
+    %div
+      %h2 #{pluralize(@topic.errors.count, 'error')} prohibited this topic from being saved:
+    %ul
+      - @topic.errors.full_messages.each do |message|
+        %li= message
   .form-group
     = form.label :title
     = form.text_field :title, class: 'form-control'

@@ -3,6 +3,12 @@
 = link_to 'All Comments', topic_path(@topic)
 
 = form_with(model: @comment, url: [@topic, @comment], local: true) do |form|
+  - if @comment.errors.any?
+    %div
+      %h2 #{pluralize(@comment.errors.count, 'error')} prohibited this comment from being saved:
+    %ul
+      - @comment.errors.full_messages.each do |message|
+        %li= message
   .form-group
     = form.label :body
     = form.text_field :body, class: 'form-control'

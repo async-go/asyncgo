@@ -8,11 +8,15 @@ module Topics
     end
 
     def create
-      @comment = Topic.find(params[:topic_id]).comments.build(comment_params.merge(user: User.first))
+      @topic = Topic.find(params[:topic_id])
+      @comment = @topic.comments.build(comment_params.merge(user: User.first))
 
-      @comment.save
-
-      redirect_to topic_path(@comment.topic)
+      if @comment.save
+        redirect_to topic_path(@comment.topic),
+                    flash: { success: 'Comment was successfully created.' }
+      else
+        render :new
+      end
     end
 
     private

@@ -12,5 +12,9 @@ AllCops:
     - 'docs/styles/**/*'
   NewCops: enable
 
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+
 Style/Documentation:
   Enabled: false

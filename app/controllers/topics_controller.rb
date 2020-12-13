@@ -16,9 +16,12 @@ class TopicsController < ApplicationController
   def create
     @topic = Topic.new(topic_params.merge(user: User.first))
 
-    @topic.save
-
-    redirect_to topic_path(@topic)
+    if @topic.save
+      redirect_to topic_path(@topic),
+                  flash: { success: 'Topic was successfully created.' }
+    else
+      render :new
+    end
   end
 
   private
