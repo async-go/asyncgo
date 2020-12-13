@@ -1,6 +1,6 @@
 %h1 Topics
 
-%table
+%table.table
   %thead
     %tr
       %th{ scope: 'col' } Name
@@ -12,4 +12,4 @@
           %a{ href: topic_path(topic) }= topic.title
         %td= topic.user.username
 
-= link_to 'New Topic', new_topic_path
+= link_to 'New Topic', new_topic_path, class: 'btn btn-primary'

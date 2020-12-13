@@ -8,13 +8,42 @@
       content: 'width=device-width, initial-scale=1, shrink-to-fit=no' }
     = csrf_meta_tags
     = csp_meta_tag
+    %link{ rel: 'stylesheet',
+      href: 'https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css',
+      integrity: 'sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1',
+      crossorigin: 'anonymous' }
 
     = stylesheet_link_tag 'application', media: 'all',
       'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
 
   %body
-    = yield
+    %nav.navbar.navbar-expand-lg.navbar-light.bg-light.rounded
+      %a.navbar-brand{ href: root_path }
+        = image_tag('', class: 'me-2')
+        %span AsyncGo
+      %button.navbar-toggler{ type: 'button', 'data-toggle' => 'collapse',
+        'data-target' => '#navbar-content', 'aria-controls' => 'navbar-content',
+        'aria-expanded' => 'false', 'aria-label' => 'Toggle navigation' }
+        %span.navbar-toggler-icon
+      .collapse.navbar-collapse#navbar-content
+        %ul.navbar-nav.me-auto
+          %li.nav-item= link_to 'Topics', topics_path,
+            class: class_names('nav-link', active: current_page?(topics_path))
+        %ul.navbar-nav.me-2
+          %li.nav-item= link_to 'Sign in', '', class: 'nav-link'
+    %main.container.mt-4{ role: 'main' }
+      .sticky-top
+        - if flash.any?
+          - flash.each do |type, message|
+            .alert.alert-dismissible.fade.show{ class: "alert-#{type}", role: 'alert' }
+              %span= message
+              %button.close{ 'data-dismiss' => 'alert' }
+                %span{ 'aria-hidden' => 'true' } &times;
+      = yield
   %footer.container
     %hr
     %p © AsyncGo Ltd #{Time.now.utc.year}
+    %script{ src: 'https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js',
+      integrity: 'sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj',
+      crossorigin: 'anonymous', type: 'text/javascript' }

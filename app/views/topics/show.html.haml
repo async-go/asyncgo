@@ -2,7 +2,7 @@
 
 = link_to 'All Topics', topics_path
 
-%table
+%table.table
   %thead
     %tr
       %th{ scope: 'col' } Comment
@@ -11,4 +11,4 @@
       %tr
         %td= comment.body
 
-= link_to 'New Comment', new_topic_comment_path(@topic)
+= link_to 'New Comment', new_topic_comment_path(@topic), class: 'btn btn-primary'

@@ -18,7 +18,7 @@ module Topics
     private
 
     def comment_params
-      params.permit(:body)
+      params.require(:comment).permit(:body)
     end
   end
 end

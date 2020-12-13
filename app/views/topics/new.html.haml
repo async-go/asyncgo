@@ -1,6 +1,10 @@
 %h1 New Topic
 
+= link_to 'All Topics', topics_path
+
 = form_with(model: @topic, local: true) do |form|
-  = form.label :title
-  = form.text_field :title
-  = form.submit 'Submit'
+  .form-group
+    = form.label :title
+    = form.text_field :title, class: 'form-control'
+
+  = form.submit 'Submit', class: 'btn btn-primary'
