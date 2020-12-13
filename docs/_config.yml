@@ -1,0 +1,4 @@
+title: AsyncGo Documentation
+exclude:
+  - styles/
+theme: minima
