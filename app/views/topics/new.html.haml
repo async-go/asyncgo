@@ -1,0 +1,6 @@
+%h1 New Topic
+
+= form_with(model: @topic, local: true) do |form|
+  = form.label :title
+  = form.text_field :title
+  = form.submit 'Submit'

@@ -1,0 +1,14 @@
+%h1= @topic.title
+
+= link_to 'All Topics', topics_path
+
+%table
+  %thead
+    %tr
+      %th{ scope: 'col' } Comment
+  %tbody
+    - @topic.comments.each do |comment|
+      %tr
+        %td= comment.body
+
+= link_to 'New Comment', new_topic_comment_path(@topic)

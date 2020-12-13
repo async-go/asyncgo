@@ -1,0 +1,6 @@
+%h1 New Comment
+
+= form_with(url: topic_comments_path(@topic), local: true) do |form|
+  = form.label :body
+  = form.text_field :body
+  = form.submit 'Submit'

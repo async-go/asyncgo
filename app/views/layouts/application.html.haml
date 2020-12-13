@@ -1,8 +1,11 @@
 !!! 5
-%html
+%html{ lang: 'en' }
   %head
     %title AsyncGo
-    %meta{ name: 'viewport', content: 'width=device-width,initial-scale=1' }
+    %meta{ content: 'text/html; charset=UTF-8', 'http-equiv': 'Content-Type' }
+    %meta{ charset: 'utf-8' }
+    %meta{ name: 'viewport',
+      content: 'width=device-width, initial-scale=1, shrink-to-fit=no' }
     = csrf_meta_tags
     = csp_meta_tag
 
@@ -12,3 +15,6 @@
 
   %body
     = yield
+  %footer.container
+    %hr
+    %p © AsyncGo Ltd #{Time.now.utc.year}

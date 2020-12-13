@@ -1,0 +1,15 @@
+%h1 Topics
+
+%table
+  %thead
+    %tr
+      %th{ scope: 'col' } Name
+      %th{ scope: 'col' } Creator
+  %tbody
+    - @topics.each do |topic|
+      %tr
+        %td
+          %a{ href: topic_path(topic) }= topic.title
+        %td= topic.user.username
+
+= link_to 'New Topic', new_topic_path
