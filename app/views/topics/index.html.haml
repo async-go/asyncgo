@@ -10,6 +10,6 @@
       %tr
         %td
           %a{ href: topic_path(topic) }= topic.title
-        %td= topic.user.username
+        %td= topic.user.email
 
 = link_to 'New Topic', new_topic_path, class: 'btn btn-primary'

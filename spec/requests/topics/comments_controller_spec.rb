@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
+require './spec/support/sign_in_out_request_helpers'
+
 RSpec.describe Topics::CommentsController, type: :request do
+  include SignInOutRequestHelpers
+
   let(:topic) { FactoryBot.create(:topic) }
 
   describe 'GET new' do
@@ -16,6 +20,10 @@ RSpec.describe Topics::CommentsController, type: :request do
   describe 'POST create' do
     subject(:post_create) do
       post "/topics/#{topic.id}/comments", params: { topic_id: topic.id, comment: { body: body } }
+    end
+
+    before do
+      sign_in(FactoryBot.create(:user))
     end
 
     context 'when comment is valid' do

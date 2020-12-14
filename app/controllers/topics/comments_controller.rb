@@ -9,7 +9,7 @@ module Topics
 
     def create
       @topic = Topic.find(params[:topic_id])
-      @comment = @topic.comments.build(comment_params.merge(user: User.first))
+      @comment = @topic.comments.build(comment_params.merge(user: current_user))
 
       if @comment.save
         redirect_to topic_path(@comment.topic),

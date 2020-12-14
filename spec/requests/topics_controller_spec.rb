@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
+require './spec/support/sign_in_out_request_helpers'
+
 RSpec.describe TopicsController, type: :request do
+  include SignInOutRequestHelpers
+
   describe 'GET index' do
     subject(:get_index) { get '/topics' }
 
@@ -39,7 +43,7 @@ RSpec.describe TopicsController, type: :request do
     end
 
     before do
-      FactoryBot.create(:user)
+      sign_in(FactoryBot.create(:user))
     end
 
     context 'when topic is valid' do

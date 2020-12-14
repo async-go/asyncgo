@@ -8,7 +8,7 @@
       class: 'row row-cols-1 row-cols-lg-2 g-3' do |add_user_form|
       .col
         = add_user_form.select :user_id,
-          options_for_select(User.where(team_id: nil).pluck(:username, :id)),
+          options_for_select(User.where(team_id: nil).pluck(:email, :id)),
           { include_blank: 'Select user' }, required: true, class: 'form-select', id: 'add-user'
       .col
         = add_user_form.submit 'Add User', class: 'btn btn-primary'
@@ -18,5 +18,5 @@
     %p.lead Click to remove.
     .list-group.list-group-horizontal-lg
       - @team.users.each do |user|
-        = link_to "Remove #{user.username}", team_user_path(@team, user), method: :delete,
+        = link_to "Remove #{user.email}", team_user_path(@team, user), method: :delete,
           class: 'list-group-item list-group-item-action text-center'

@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
+require './spec/support/sign_in_out_system_helpers'
+
 RSpec.describe 'Topics', type: :system do
+  include SignInOutSystemHelpers
+
   it 'shows all topics' do
     topics = FactoryBot.create_list(:topic, 2)
     visit '/topics'
@@ -11,9 +15,10 @@ RSpec.describe 'Topics', type: :system do
   end
 
   it 'allows the user to create a topic' do
-    FactoryBot.create(:user)
+    visit '/'
+    sign_in_user
 
-    visit '/topics'
+    click_link 'Topics'
 
     click_link 'New Topic'
 
@@ -24,9 +29,12 @@ RSpec.describe 'Topics', type: :system do
   end
 
   it 'allows the user to leave comments on topic' do
+    visit '/'
+
+    sign_in_user
     topic = FactoryBot.create(:topic)
 
-    visit '/topics'
+    click_link 'Topics'
 
     click_link topic.title
 

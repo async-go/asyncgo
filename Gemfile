@@ -16,6 +16,7 @@ gem 'webpacker', '~> 5.0' # Transpile app-like JavaScript. Read more: https://gi
 
 # Other
 gem 'hamlit', '~> 2.13.0' # Templating language
+gem 'omniauth-google-oauth2', '~> 0.8.0'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.7'
@@ -38,6 +39,7 @@ group :development, :test do
   gem 'haml_lint', '~> 0.36.0', require: false
   # Other
   gem 'byebug', platforms: %i[mri mingw x64_mingw] # Debugger console by calling 'byebug' anywhere in code
+  gem 'dotenv-rails', '~> 2.7.6'
   gem 'rspec-rails', '~> 4.0.1' # rspec testing
   gem 'spring', '~> 2.1.1' # Speeds up development by keeping application running in the background - https://github.com/rails/spring
 end

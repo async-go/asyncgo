@@ -4,6 +4,11 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root to: 'home#index'
 
+  # OmniAuth routing
+  get 'auth/google_oauth2/callback', to: 'omniauth_callbacks#google_oauth2'
+  get 'auth/failure', to: redirect('/')
+  delete :sign_out, to: 'sessions#destroy'
+
   resources :topics, only: %i[index show new create] do
     scope module: :topics do
       resources :comments, only: %i[new create]
