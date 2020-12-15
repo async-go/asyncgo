@@ -2,11 +2,13 @@
 
 ## Requirements
 
-- Ruby 2.7.2
-- Yarn 1.22.5
+- ruby 2.7.2 (see `.ruby-version`)
+  - bundler 2.1.4
+- yarn 1.22.10
 
 ## Start the development server
 
 1. Run `bundle install`
-1. Run `yarn`
-1. Run `bin/rails bin/rails db:migrate RAILS_ENV=development`
+1. Run `bin/yarn install`
+1. Run `bin/rails db:migrate`
+1. Run `bin/rails server`
