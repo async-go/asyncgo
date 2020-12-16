@@ -8,10 +8,10 @@ RSpec.describe Topics::CommentsController, type: :request do
   let(:topic) { FactoryBot.create(:topic) }
 
   describe 'GET new' do
-    subject(:get_edit) { get "/topics/#{topic.id}/comments/new" }
+    subject(:get_new) { get "/topics/#{topic.id}/comments/new" }
 
     it 'renders the new page' do
-      get_edit
+      get_new
 
       expect(response.body).to include('New Comment')
     end

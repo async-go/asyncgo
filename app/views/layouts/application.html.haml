@@ -31,9 +31,13 @@
           %li.nav-item= link_to 'Topics', topics_path,
             class: class_names('nav-link', active: current_page?(topics_path))
         %ul.navbar-nav.me-2
-          %li.nav-item= link_to 'Team', edit_team_path(1),
-            class: class_names('nav-link', active: current_page?(edit_team_path(1)))
           - if current_user
+            - if current_user.team_id
+              %li.nav-item= link_to 'Team', edit_team_path(current_user.team_id),
+                class: class_names('nav-link', active: current_page?(edit_team_path(current_user.team_id)))
+            - else
+              %li.nav-item= link_to 'Create Team', new_team_path,
+                class: class_names('nav-link', active: current_page?(new_team_path))
             %li.nav-item= link_to 'Sign out', sign_out_path, method: :delete, class: 'nav-link'
           - else
             %li.nav-item= link_to 'Sign in', '/auth/google_oauth2', class: 'nav-link'

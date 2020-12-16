@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :teams, only: %i[edit update] do
+  resources :teams, only: %i[edit new create] do
     scope module: :teams do
       resources :users, only: %i[create destroy]
     end
