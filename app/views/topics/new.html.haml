@@ -2,15 +2,18 @@
 
 = link_to 'All Topics', topics_path
 
-= form_with(model: @topic, local: true) do |form|
+= form_with(model: @topic, local: true,
+  class: 'row row-cols-1 row-cols-lg-auto g-3') do |form|
   - if @topic.errors.any?
     %div
       %h2 #{pluralize(@topic.errors.count, 'error')} prohibited this topic from being saved:
     %ul
       - @topic.errors.full_messages.each do |message|
         %li= message
-  .form-group
-    = form.label :title
-    = form.text_field :title, class: 'form-control'
+  .col
+    .input-group
+      .input-group-text Title
+      = form.text_field :title, class: 'form-control'
 
-  = form.submit 'Submit', class: 'btn btn-primary'
+  .col
+    = form.submit 'Submit', class: 'btn btn-primary'

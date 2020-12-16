@@ -2,15 +2,18 @@
 
 = link_to 'All Comments', topic_path(@topic)
 
-= form_with(model: @comment, url: [@topic, @comment], local: true) do |form|
+= form_with(model: @comment, url: [@topic, @comment], local: true,
+  class: 'row row-cols-1 row-cols-lg-auto g-3') do |form|
   - if @comment.errors.any?
     %div
       %h2 #{pluralize(@comment.errors.count, 'error')} prohibited this comment from being saved:
     %ul
       - @comment.errors.full_messages.each do |message|
         %li= message
-  .form-group
-    = form.label :body
-    = form.text_field :body, class: 'form-control'
+  .col
+    .input-group
+      .input-group-text Body
+      = form.text_field :body, class: 'form-control'
 
-  = form.submit 'Submit', class: 'btn btn-primary'
+  .col
+    = form.submit 'Submit', class: 'btn btn-primary'

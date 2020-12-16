@@ -4,8 +4,8 @@
   .my-3
     %h3 Users outside Team
     %p.lead Select user and click button to add.
-    = form_with url: team_users_path(@team), method: :post,
-      class: 'row row-cols-1 row-cols-lg-2 g-3' do |add_user_form|
+    = form_with(url: team_users_path(@team), method: :post,
+      class: 'row row-cols-1 row-cols-lg-2 g-3') do |add_user_form|
       .col
         = add_user_form.select :user_id,
           options_for_select(User.where(team_id: nil).pluck(:email, :id)),
@@ -16,7 +16,8 @@
   .my-3
     %h3 Users in Team
     %p.lead Click to remove.
-    .list-group.list-group-horizontal-lg
+    .list-group.list-group-horizontal-lg.row.row-cols-1.row-cols-lg-2
       - @team.users.each do |user|
-        = link_to "Remove #{user.email}", team_user_path(@team, user), method: :delete,
-          class: 'list-group-item list-group-item-action text-center'
+        .col
+          = link_to "Remove #{user.email}", team_user_path(@team, user), method: :delete,
+            class: 'list-group-item list-group-item-action text-center'

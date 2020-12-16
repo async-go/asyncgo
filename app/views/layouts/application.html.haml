@@ -18,29 +18,31 @@
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
 
   %body
-    %nav.navbar.navbar-expand-lg.navbar-light.bg-light.rounded
-      %a.navbar-brand.ms-3{ href: root_path }
-        = image_tag('navbar-logo.png', alt: 'AsyncGo')
-        %span AsyncGo
-      %button.navbar-toggler{ type: 'button', 'data-toggle' => 'collapse',
-        'data-target' => '#navbar-content', 'aria-controls' => 'navbar-content',
-        'aria-expanded' => 'false', 'aria-label' => 'Toggle navigation' }
-        %span.navbar-toggler-icon
-      .collapse.navbar-collapse#navbar-content
-        %ul.navbar-nav.me-auto
-          %li.nav-item= link_to 'Topics', topics_path,
-            class: class_names('nav-link', active: current_page?(topics_path))
-        %ul.navbar-nav.me-2
-          - if current_user
-            - if current_user.team_id
-              %li.nav-item= link_to 'Team', edit_team_path(current_user.team_id),
-                class: class_names('nav-link', active: current_page?(edit_team_path(current_user.team_id)))
+    %nav.navbar.navbar-expand-lg.navbar-light.bg-light
+      .container-fluid
+        %a.navbar-brand{ href: root_path }
+          = image_tag('navbar-logo.png', alt: 'AsyncGo')
+          %span AsyncGo
+        %button.navbar-toggler{ type: 'button', 'data-bs-toggle' => 'collapse',
+          'data-bs-target' => '#navbar-content', 'aria-controls' => 'navbar-content',
+          'aria-expanded' => 'false', 'aria-label' => 'Toggle navigation' }
+          %span.navbar-toggler-icon
+        .collapse.navbar-collapse#navbar-content
+          %ul.navbar-nav.me-auto
+            %li.nav-item= link_to 'Topics', topics_path,
+              class: class_names('nav-link', active: current_page?(topics_path))
+          %ul.navbar-nav.me-2
+            - if current_user
+              - if current_user.team_id
+                %li.nav-item= link_to 'Team', edit_team_path(current_user.team_id),
+                  class: class_names('nav-link',
+                  active: current_page?(edit_team_path(current_user.team_id)))
+              - else
+                %li.nav-item= link_to 'Create Team', new_team_path,
+                  class: class_names('nav-link', active: current_page?(new_team_path))
+              %li.nav-item= link_to 'Sign out', sign_out_path, method: :delete, class: 'nav-link'
             - else
-              %li.nav-item= link_to 'Create Team', new_team_path,
-                class: class_names('nav-link', active: current_page?(new_team_path))
-            %li.nav-item= link_to 'Sign out', sign_out_path, method: :delete, class: 'nav-link'
-          - else
-            %li.nav-item= link_to 'Sign in', '/auth/google_oauth2', class: 'nav-link'
+              %li.nav-item= link_to 'Sign in', '/auth/google_oauth2', class: 'nav-link'
     %main.container.mt-4{ role: 'main' }
       .sticky-top
         - if flash.any?

@@ -1,14 +1,17 @@
 %h1 New Team
 
-= form_with(model: @team, local: true) do |form|
+= form_with(model: @team, local: true,
+  class: 'row row-cols-1 row-cols-lg-auto g-3') do |form|
   - if @team.errors.any?
     %div
       %h2 #{pluralize(@team.errors.count, 'error')} prohibited this team from being saved:
     %ul
       - @team.errors.full_messages.each do |message|
         %li= message
-  .form-group
-    = form.label :name
-    = form.text_field :name, class: 'form-control'
+  .col
+    .input-group
+      .input-group-text Name
+      = form.text_field :name, class: 'form-control'
 
-  = form.submit 'Submit', class: 'btn btn-primary'
+  .col
+    = form.submit 'Submit', class: 'btn btn-primary'
