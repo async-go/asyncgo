@@ -23,3 +23,7 @@ main > .sticky-top {
   width: 2.5rem;
   height: 2.5rem;
 }
+
+.navbar-logo {
+  padding: 2px;
+}
