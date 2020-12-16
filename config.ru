@@ -6,6 +6,3 @@ require_relative 'config/environment'
 
 run Rails.application
 Rails.application.load_server
-
-# Move profiler to right to not overlap logo
-Rack::MiniProfiler.config.position = 'right'
