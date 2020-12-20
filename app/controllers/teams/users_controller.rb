@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 module Teams
-  class UsersController < ApplicationController
+  class UsersController < Teams::ApplicationController
     def create
-      @team = Team.find(params[:team_id])
+      @team = team
       Pundit.authorize(current_user, @team, :create?, policy_class: Teams::UserPolicy)
 
       @team.users << User.find(params[:user_id])
@@ -13,7 +13,7 @@ module Teams
     end
 
     def destroy
-      @team = Team.find(params[:team_id])
+      @team = team
       @user = User.find(params[:id])
       Pundit.authorize(current_user, @team, :destroy?, policy_class: Teams::UserPolicy)
 

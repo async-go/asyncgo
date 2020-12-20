@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-class TeamsController < ApplicationController
+class TeamsController < Teams::ApplicationController
   def edit
-    @team = Team.find(params[:id])
+    @team = team
     Pundit.authorize(current_user, @team, :edit?)
   end
 

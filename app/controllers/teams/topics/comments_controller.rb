@@ -2,14 +2,14 @@
 
 module Teams
   module Topics
-    class CommentsController < ApplicationController
+    class CommentsController < Teams::Topics::ApplicationController
       def new
-        @comment = Team.find(params[:team_id]).topics.find(params[:topic_id]).comments.build
+        @comment = topic.comments.build
         Pundit.authorize(current_user, @comment, :new?, policy_class: Teams::Topics::CommentPolicy)
       end
 
-      def create # rubocop:disable Metrics/AbcSize
-        @comment = Team.find(params[:team_id]).topics.find(params[:topic_id]).comments.build(comment_params)
+      def create
+        @comment = topic.comments.build(comment_params)
         Pundit.authorize(current_user, @comment, :create?, policy_class: Teams::Topics::CommentPolicy)
 
         if @comment.save
