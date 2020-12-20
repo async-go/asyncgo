@@ -9,7 +9,7 @@ module Teams
 
     def destroy?
       user &&
-        record == user.team
+        record.team == user.team
     end
   end
 end

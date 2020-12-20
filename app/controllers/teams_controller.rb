@@ -1,19 +1,21 @@
 # frozen_string_literal: true
 
 class TeamsController < Teams::ApplicationController
+  include Pundit
+
   def edit
     @team = team
-    Pundit.authorize(current_user, @team, :edit?)
+    authorize(@team)
   end
 
   def new
     @team = Team.new
-    Pundit.authorize(current_user, @team, :new?)
+    authorize(@team)
   end
 
   def create
     @team = Team.new(team_params)
-    Pundit.authorize(current_user, @team, :create?)
+    authorize(@team)
 
     if @team.save
       @team.users << current_user

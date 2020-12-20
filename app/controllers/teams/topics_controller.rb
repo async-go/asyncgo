@@ -2,24 +2,26 @@
 
 module Teams
   class TopicsController < Teams::Topics::ApplicationController
+    include Pundit
+
     def index
+      authorize(team, policy_class: Teams::TopicPolicy)
       @topics = team.topics
-      Pundit.authorize(current_user, team, :index?, policy_class: Teams::TopicPolicy)
     end
 
     def show
       @topic = topic
-      Pundit.authorize(current_user, @topic, :show?, policy_class: Teams::TopicPolicy)
+      authorize([:teams, @topic])
     end
 
     def new
       @topic = team.topics.build
-      Pundit.authorize(current_user, @topic, :new?, policy_class: Teams::TopicPolicy)
+      authorize([:teams, @topic])
     end
 
     def create
       @topic = team.topics.build(topic_params)
-      Pundit.authorize(current_user, @topic, :create?, policy_class: Teams::TopicPolicy)
+      authorize([:teams, @topic])
 
       if @topic.save
         redirect_to team_topic_path(@topic.team, @topic),

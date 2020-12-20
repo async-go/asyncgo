@@ -2,22 +2,25 @@
 
 module Teams
   class UsersController < Teams::ApplicationController
+    include Pundit
+
     def create
       @team = team
-      Pundit.authorize(current_user, @team, :create?, policy_class: Teams::UserPolicy)
+      authorize(@team, policy_class: Teams::UserPolicy)
 
-      @team.users << User.find(params[:user_id])
+      user = User.find(params[:user_id])
+      @team.users << user
 
       redirect_to edit_team_path(@team),
                   flash: { success: 'User was successfully added to the team.' }
     end
 
     def destroy
-      @team = team
-      @user = User.find(params[:id])
-      Pundit.authorize(current_user, @team, :destroy?, policy_class: Teams::UserPolicy)
+      user = User.find(params[:id])
+      authorize([:teams, user])
 
-      @team.users.delete(@user)
+      @team = team
+      @team.users.delete(user)
 
       redirect_to edit_team_path(@team),
                   flash: { success: 'User was successfully removed from the team.' }

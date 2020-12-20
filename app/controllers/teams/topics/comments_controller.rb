@@ -3,14 +3,16 @@
 module Teams
   module Topics
     class CommentsController < Teams::Topics::ApplicationController
+      include Pundit
+
       def new
         @comment = topic.comments.build
-        Pundit.authorize(current_user, @comment, :new?, policy_class: Teams::Topics::CommentPolicy)
+        authorize([:teams, :topics, @comment])
       end
 
       def create
         @comment = topic.comments.build(comment_params)
-        Pundit.authorize(current_user, @comment, :create?, policy_class: Teams::Topics::CommentPolicy)
+        authorize([:teams, :topics, @comment])
 
         if @comment.save
           redirect_to team_topic_path(@comment.topic.team, @comment.topic),
