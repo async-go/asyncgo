@@ -9,15 +9,15 @@ Rails.application.routes.draw do
   get 'auth/failure', to: redirect('/')
   delete :sign_out, to: 'sessions#destroy'
 
-  resources :topics, only: %i[index show new create] do
-    scope module: :topics do
-      resources :comments, only: %i[new create]
-    end
-  end
-
   resources :teams, only: %i[edit new create] do
     scope module: :teams do
       resources :users, only: %i[create destroy]
+
+      resources :topics, only: %i[index show new create] do
+        scope module: :topics do
+          resources :comments, only: %i[new create]
+        end
+      end
     end
   end
 end

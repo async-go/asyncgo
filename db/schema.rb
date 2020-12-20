@@ -31,8 +31,10 @@ ActiveRecord::Schema.define(version: 2020_12_12_232508) do
   create_table "topics", force: :cascade do |t|
     t.string "title", null: false
     t.integer "user_id", null: false
+    t.integer "team_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["team_id"], name: "index_topics_on_team_id"
     t.index ["user_id"], name: "index_topics_on_user_id"
   end
 

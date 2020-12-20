@@ -20,9 +20,13 @@ RSpec.describe 'Teams', type: :system do
   it 'allows the user to add other users to the team' do
     team = FactoryBot.create(:team)
     user = FactoryBot.create(:user)
-    visit "/teams/#{team.id}/edit"
+    other_user = FactoryBot.create(:user)
+    team.users << user
+    visit '/'
+    sign_in_user(user)
+    click_link 'Team'
 
-    select user.email, from: 'add-user'
+    select other_user.email, from: 'add-user'
     click_button 'Add User'
 
     expect(page).to have_link("Remove #{user.email}")
@@ -31,12 +35,15 @@ RSpec.describe 'Teams', type: :system do
   it 'allows the user to remove users from the team' do
     team = FactoryBot.create(:team)
     user = FactoryBot.create(:user)
+    other_user = FactoryBot.create(:user)
     team.users << user
+    team.users << other_user
+    visit '/'
+    sign_in_user(user)
+    click_link 'Team'
 
-    visit "/teams/#{team.id}/edit"
+    click_link "Remove #{other_user.email}"
 
-    click_link "Remove #{user.email}"
-
-    expect(page).to have_select('add-user', with_options: [user.email])
+    expect(page).to have_select('add-user', with_options: [other_user.email])
   end
 end

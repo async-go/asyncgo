@@ -29,8 +29,10 @@
           %span.navbar-toggler-icon
         .collapse.navbar-collapse#navbar-content
           %ul.navbar-nav.me-auto
-            %li.nav-item= link_to 'Topics', topics_path,
-              class: class_names('nav-link', active: current_page?(topics_path))
+            - if current_user&.team
+              %li.nav-item= link_to 'Topics', team_topics_path(current_user.team),
+                class: class_names('nav-link',
+                                   active: current_page?(team_topics_path(current_user.team)))
           %ul.navbar-nav.me-2
             - if current_user
               - if current_user.team_id

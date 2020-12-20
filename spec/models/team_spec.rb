@@ -7,5 +7,6 @@ RSpec.describe Team, type: :model do
 
   describe 'Relations' do
     it { is_expected.to have_many(:users).dependent(:nullify) }
+    it { is_expected.to have_many(:topics).dependent(:destroy) }
   end
 end

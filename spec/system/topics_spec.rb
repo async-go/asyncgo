@@ -6,8 +6,14 @@ RSpec.describe 'Topics', type: :system do
   include SignInOutSystemHelpers
 
   it 'shows all topics' do
-    topics = FactoryBot.create_list(:topic, 2)
-    visit '/topics'
+    team = FactoryBot.create(:team)
+    topics = FactoryBot.create_list(:topic, 2, team: team)
+    user = FactoryBot.create(:user)
+    team.users << user
+
+    visit '/'
+    sign_in_user(user)
+    click_link 'Topics'
 
     topics.each do |topic|
       expect(page).to have_link(topic.title)
@@ -15,11 +21,13 @@ RSpec.describe 'Topics', type: :system do
   end
 
   it 'allows the user to create a topic' do
+    team = FactoryBot.create(:team)
+    user = FactoryBot.create(:user)
+    team.users << user
+
     visit '/'
-    sign_in_user
-
+    sign_in_user(user)
     click_link 'Topics'
-
     click_link 'New Topic'
 
     fill_in 'topic[title]', with: 'Sample title'
@@ -29,15 +37,15 @@ RSpec.describe 'Topics', type: :system do
   end
 
   it 'allows the user to leave comments on topic' do
+    team = FactoryBot.create(:team)
+    user = FactoryBot.create(:user)
+    topic = FactoryBot.create(:topic, team: team)
+    team.users << user
+
     visit '/'
-
-    sign_in_user
-    topic = FactoryBot.create(:topic)
-
+    sign_in_user(user)
     click_link 'Topics'
-
     click_link topic.title
-
     click_link 'New Comment'
 
     fill_in 'comment[body]', with: 'Sample content'

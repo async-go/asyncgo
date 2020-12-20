@@ -1,6 +1,6 @@
 %h1= @topic.title
 
-= link_to 'All Topics', topics_path
+= link_to 'All Topics', team_topics_path(@topic.team)
 
 %table.table
   %thead
@@ -11,4 +11,4 @@
       %tr
         %td= comment.body
 
-= link_to 'New Comment', new_topic_comment_path(@topic), class: 'btn btn-primary'
+= link_to 'New Comment', new_team_topic_comment_path(@topic.team, @topic), class: 'btn btn-primary'

@@ -7,6 +7,7 @@ RSpec.describe Topic, type: :model do
 
   describe 'Relations' do
     it { is_expected.to belong_to(:user) }
+    it { is_expected.to belong_to(:team) }
     it { is_expected.to have_many(:comments).dependent(:destroy) }
   end
 end

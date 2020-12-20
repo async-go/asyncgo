@@ -17,7 +17,11 @@ Metrics/BlockLength:
     - 'spec/**/*'
 
 RSpec/ExampleLength:
-  Max: 10
+  Exclude:
+    - 'spec/system/**/*'
+
+RSpec/NestedGroups:
+  Max: 5
 
 Style/Documentation:
   Enabled: false

@@ -4,6 +4,8 @@ module Teams
   class UsersController < ApplicationController
     def create
       @team = Team.find(params[:team_id])
+      Pundit.authorize(current_user, @team, :create?, policy_class: Teams::UserPolicy)
+
       @team.users << User.find(params[:user_id])
 
       redirect_to edit_team_path(@team),
@@ -13,6 +15,8 @@ module Teams
     def destroy
       @team = Team.find(params[:team_id])
       @user = User.find(params[:id])
+      Pundit.authorize(current_user, @team, :destroy?, policy_class: Teams::UserPolicy)
+
       @team.users.delete(@user)
 
       redirect_to edit_team_path(@team),
