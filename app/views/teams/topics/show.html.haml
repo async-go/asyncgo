@@ -6,9 +6,11 @@
   %thead
     %tr
       %th{ scope: 'col' } Comment
+      %th{ scope: 'col' } Creator
   %tbody
     - @topic.comments.each do |comment|
       %tr
         %td= comment.body
+        %td= comment.user.email
 
 = link_to 'New Comment', new_team_topic_comment_path(@topic.team, @topic), class: 'btn btn-primary'
