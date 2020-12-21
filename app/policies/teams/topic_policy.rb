@@ -21,5 +21,10 @@ module Teams
       user &&
         record.team == user.team
     end
+
+    def update?
+      user &&
+        record.team == user.team
+    end
   end
 end

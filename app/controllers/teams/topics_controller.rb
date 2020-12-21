@@ -20,7 +20,7 @@ module Teams
     end
 
     def create
-      @topic = team.topics.build(topic_params)
+      @topic = team.topics.build(create_params)
       authorize([:teams, @topic])
 
       if @topic.save
@@ -31,10 +31,26 @@ module Teams
       end
     end
 
+    def update
+      @topic = topic
+      authorize([:teams, @topic])
+
+      if @topic.update(update_params)
+        redirect_to team_topic_path(@topic.team, @topic),
+                    flash: { success: 'Topic was successfully updated.' }
+      else
+        render :show
+      end
+    end
+
     private
 
-    def topic_params
+    def create_params
       params.require(:topic).permit(:title, :description, :user_id)
+    end
+
+    def update_params
+      params.require(:topic).permit(:decision)
     end
   end
 end

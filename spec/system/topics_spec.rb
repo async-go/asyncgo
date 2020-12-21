@@ -54,4 +54,21 @@ RSpec.describe 'Topics', type: :system do
 
     expect(page).to have_text('Sample content')
   end
+
+  it 'allows the user to summarize a decision on the topic' do
+    team = FactoryBot.create(:team)
+    user = FactoryBot.create(:user)
+    topic = FactoryBot.create(:topic, team: team)
+    team.users << user
+
+    visit '/'
+    sign_in_user(user)
+    click_link 'Topics'
+    click_link topic.title
+
+    fill_in 'topic[decision]', with: 'Sample decision'
+    click_button 'Submit'
+
+    expect(page).to have_text('Sample decision')
+  end
 end

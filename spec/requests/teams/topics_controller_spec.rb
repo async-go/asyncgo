@@ -177,4 +177,74 @@ RSpec.describe Teams::TopicsController, type: :request do
       include_examples 'unauthorized user examples', 'You are not authorized.'
     end
   end
+
+  describe 'PATCH update' do
+    subject(:patch_update) do
+      patch "/teams/#{topic.team.id}/topics/#{topic.id}",
+            params: { topic: { decision: decision } }
+    end
+
+    let(:topic) { FactoryBot.create(:topic) }
+
+    context 'when user is authenticated' do
+      let(:user) { FactoryBot.create(:user) }
+
+      before do
+        sign_in(user)
+      end
+
+      context 'when user is authorized' do
+        before do
+          topic.team.users << user
+        end
+
+        context 'when decision is valid' do
+          let(:decision) { 'This is a topic decision.' }
+
+          it 'updates the topic' do
+            expect { patch_update }.to change { topic.reload.decision }.from(nil).to(decision)
+          end
+
+          it 'sets the flash' do
+            patch_update
+
+            expect(controller.flash[:success]).to eq('Topic was successfully updated.')
+          end
+
+          it 'redirects to topic' do
+            patch_update
+
+            expect(response).to redirect_to(team_topic_path(topic.team, Topic.last.id))
+          end
+        end
+
+        context 'when decision is not valid' do
+          let(:decision) { '' }
+
+          it 'does not update the topic' do
+            expect { patch_update }.not_to change { topic.reload.decision }.from(nil)
+          end
+
+          it 'shows the error' do
+            patch_update
+
+            expect(response.body).to include('Decision can&#39;t be blank')
+          end
+        end
+      end
+
+      context 'when user is not authorized' do
+        let(:decision) { nil }
+
+        include_examples 'unauthorized user examples', 'You are not authorized.'
+      end
+    end
+
+    context 'when user is not authenticated' do
+      let(:user) { nil }
+      let(:decision) { nil }
+
+      include_examples 'unauthorized user examples', 'You are not authorized.'
+    end
+  end
 end

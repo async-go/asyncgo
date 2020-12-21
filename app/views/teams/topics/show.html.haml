@@ -2,6 +2,8 @@
 
 = link_to 'All Topics', team_topics_path(@topic.team)
 
+%p= @topic.description
+
 %table.table
   %thead
     %tr
@@ -13,4 +15,25 @@
         %td= comment.body
         %td= comment.user.email
 
-= link_to 'New Comment', new_team_topic_comment_path(@topic.team, @topic), class: 'btn btn-primary'
+
+- if @topic.decision
+  %p= @topic.decision
+- else
+  = link_to 'New Comment', new_team_topic_comment_path(@topic.team, @topic),
+    class: 'btn btn-primary'
+
+= form_with(model: @topic, url: [@topic.team, @topic], local: true,
+  class: 'row row-cols-2 row-cols-lg-auto g-3 mt-2') do |form|
+  - if @topic.errors.any?
+    %div
+      %h2 #{pluralize(@topic.errors.count, 'error')} prohibited this topic from being saved:
+    %ul
+      - @topic.errors.full_messages.each do |message|
+        %li= message
+  .col
+    .input-group
+      .input-group-text Decision
+      = form.text_field :decision, class: 'form-control'
+
+  .col
+    = form.submit 'Submit', class: 'btn btn-primary'

@@ -5,11 +5,13 @@
     %tr
       %th{ scope: 'col' } Name
       %th{ scope: 'col' } Creator
+      %th{ scope: 'col' } Decision
   %tbody
     - @topics.each do |topic|
       %tr
         %td
           %a{ href: team_topic_path(current_user.team, topic) }= topic.title
         %td= topic.user.email
+        %td= topic.decision
 
 = link_to 'New Topic', new_team_topic_path(current_user.team), class: 'btn btn-primary'
