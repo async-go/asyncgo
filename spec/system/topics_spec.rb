@@ -31,6 +31,7 @@ RSpec.describe 'Topics', type: :system do
     click_link 'New Topic'
 
     fill_in 'topic[title]', with: 'Sample title'
+    fill_in 'topic[description]', with: 'Sample topic content'
     click_button 'Submit'
 
     expect(page).to have_text('Sample title')

@@ -15,6 +15,10 @@
     .input-group
       .input-group-text Title
       = form.text_field :title, class: 'form-control'
-
   .col
     = form.submit 'Submit', class: 'btn btn-primary'
+
+  .input-group
+    .input-group-text Description
+    = form.text_area :description, class: 'form-control'
+

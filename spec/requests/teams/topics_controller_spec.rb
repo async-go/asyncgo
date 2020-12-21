@@ -110,7 +110,8 @@ RSpec.describe Teams::TopicsController, type: :request do
 
   describe 'POST create' do
     subject(:post_create) do
-      post "/teams/#{team.id}/topics", params: { topic: { title: title, user_id: user&.id } }
+      post "/teams/#{team.id}/topics",
+           params: { topic: { title: title, description: 'Test topic.', user_id: user&.id } }
     end
 
     let(:team) { FactoryBot.create(:team) }

@@ -3,6 +3,7 @@
 RSpec.describe Topic, type: :model do
   describe 'Validations' do
     it { is_expected.to validate_presence_of(:title) }
+    it { is_expected.to validate_presence_of(:description) }
   end
 
   describe 'Relations' do
