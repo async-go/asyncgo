@@ -5,4 +5,3 @@ source 'https://rubygems.org'
 ruby '2.7.2'
 
 gem 'github-pages', group: :jekyll_plugins
-gem 'web-theme', '~> 0.1.0', git: 'git@github.com:async-go/web-theme.git', ref: 'main'

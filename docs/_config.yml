@@ -2,8 +2,7 @@ title: AsyncGo Documentation
 url: 'https://docs.asyncgo.com'
 exclude:
   - styles/
-theme: web-theme
-remote_theme: asyncgo/web-theme
+remote_theme: https://github.com/async-go/web-theme@main
 markdown: kramdown
 sass:
     style: compressed

@@ -1,11 +1,3 @@
-GIT
-  remote: git@github.com:async-go/web-theme.git
-  revision: e30cdd0df954d59bef759f1a2ee279b169cac891
-  ref: main
-  specs:
-    web-theme (0.1.0)
-      jekyll (~> 3.9)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -264,7 +256,6 @@ PLATFORMS
 
 DEPENDENCIES
   github-pages
-  web-theme (~> 0.1.0)!
 
 RUBY VERSION
    ruby 2.7.2p137
