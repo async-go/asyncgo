@@ -8,7 +8,7 @@ module Teams
       @team = team
       authorize(@team, policy_class: Teams::UserPolicy)
 
-      user = User.find(params[:user_id])
+      user = User.find_or_create_by(email: params[:user_email])
       @team.users << user
 
       redirect_to edit_team_path(@team),

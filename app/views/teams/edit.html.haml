@@ -7,8 +7,8 @@
     = form_with(url: team_users_path(@team), method: :post,
       class: 'row row-cols-1 row-cols-lg-2 g-3') do |add_user_form|
       .col
-        = add_user_form.select :user_id,
-          options_for_select(User.where(team_id: nil).pluck(:email, :id)),
+        = add_user_form.select :user_email,
+          options_for_select(User.where(team_id: nil).pluck(:email)),
           { include_blank: 'Select user' }, required: true, class: 'form-select', id: 'add-user'
       .col
         = add_user_form.submit 'Add User', class: 'btn btn-primary'

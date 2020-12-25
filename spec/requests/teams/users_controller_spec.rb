@@ -9,7 +9,7 @@ RSpec.describe Teams::UsersController, type: :request do
   let(:team) { FactoryBot.create(:team) }
 
   describe 'POST create' do
-    subject(:post_create) { post "/teams/#{team.id}/users", params: { user_id: user.id } }
+    subject(:post_create) { post "/teams/#{team.id}/users", params: { user_email: user.email } }
 
     let(:user) { FactoryBot.create(:user) }
 
