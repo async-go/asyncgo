@@ -1,4 +1,7 @@
 ---
+layout: default-no-splash
+title: 'AsyncGo Documentation'
+description: User and developer documentation for AsyncGo can be found at this link.
 ---
 
 Welcome to the documenation page for AsyncGo. If you're looking for our main site you can find it at [asyncgo.com](https://asyncgo.com).

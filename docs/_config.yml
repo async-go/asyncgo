@@ -1,4 +1,11 @@
 title: AsyncGo Documentation
+url: 'https://docs.asyncgo.com'
 exclude:
   - styles/
-theme: minima
+theme: web-theme
+markdown: kramdown
+sass:
+    style: compressed
+plugins:
+  - jekyll-sitemap
+  - sass
