@@ -5,12 +5,12 @@
     "@rails/actioncable": "^6.0.0",
     "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",
-    "@rails/webpacker": "5.2.1",
+    "@rails/webpacker": "6.0.0-pre.1",
     "turbolinks": "^5.2.0"
   },
   "version": "0.1.0",
   "devDependencies": {
-    "markdownlint-cli": "^0.25.0",
+    "markdownlint-cli": "^0.26.0",
     "standard": "^16.0.2",
     "webpack-dev-server": "^3.11.0"
   }
