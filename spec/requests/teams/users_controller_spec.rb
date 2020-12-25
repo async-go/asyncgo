@@ -9,9 +9,7 @@ RSpec.describe Teams::UsersController, type: :request do
   let(:team) { FactoryBot.create(:team) }
 
   describe 'POST create' do
-    subject(:post_create) { post "/teams/#{team.id}/users", params: { user_email: user.email } }
-
-    let(:user) { FactoryBot.create(:user) }
+    subject(:post_create) { post "/teams/#{team.id}/users", params: { user: { email: email } } }
 
     context 'when user is authenticated' do
       let(:browsing_user) { FactoryBot.create(:user) }
@@ -25,9 +23,38 @@ RSpec.describe Teams::UsersController, type: :request do
           team.users << browsing_user
         end
 
-        context 'when user does not belong to other team' do
+        context 'when user is registered' do
+          let(:user) { FactoryBot.create(:user) }
+          let(:email) { user.email }
+
           it 'adds the user to the team' do
             expect { post_create }.to change { user.reload.team_id }.from(nil).to(team.id)
+          end
+
+          it 'sets the flash' do
+            post_create
+
+            expect(controller.flash[:success]).to eq('User was successfully added to the team.')
+          end
+
+          it 'redirects to edit team path' do
+            post_create
+
+            expect(response).to redirect_to(edit_team_path(team))
+          end
+        end
+
+        context 'when user is not registered' do
+          let(:email) { 'test@example.com' }
+
+          it 'creates the user' do
+            expect { post_create }.to change(User, :count).from(1).to(2)
+          end
+
+          it 'adds the new user to the team' do
+            post_create
+
+            expect(User.last.team_id).to eq(team.id)
           end
 
           it 'sets the flash' do
@@ -45,11 +72,15 @@ RSpec.describe Teams::UsersController, type: :request do
       end
 
       context 'when user is not authorized' do
+        let(:email) { 'test@example.com' }
+
         include_examples 'unauthorized user examples', 'You are not authorized.'
       end
     end
 
     context 'when user is not authenticated' do
+      let(:email) { 'test@example.com' }
+
       include_examples 'unauthorized user examples', 'You are not authorized.'
     end
   end

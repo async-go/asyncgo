@@ -8,7 +8,7 @@ module Teams
       @team = team
       authorize(@team, policy_class: Teams::UserPolicy)
 
-      user = User.find_or_create_by(email: params[:user_email])
+      user = User.find_or_create_by(create_params)
       @team.users << user
 
       redirect_to edit_team_path(@team),
@@ -24,6 +24,12 @@ module Teams
 
       redirect_to edit_team_path(@team),
                   flash: { success: 'User was successfully removed from the team.' }
+    end
+
+    private
+
+    def create_params
+      params.require(:user).permit(:email)
     end
   end
 end

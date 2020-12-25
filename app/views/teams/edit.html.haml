@@ -4,7 +4,7 @@
   .my-3
     %h3 Users outside Team
     %p.lead Select user and click button to add.
-    = form_with(url: team_users_path(@team), method: :post,
+    = form_with(model: User, url: [@team, :users],
       class: 'row row-cols-1 row-cols-lg-2 g-3') do |add_user_form|
       .col
         = add_user_form.select :user_email,
@@ -14,9 +14,24 @@
         = add_user_form.submit 'Add User', class: 'btn btn-primary'
 
   .my-3
+    %h3 Invite users
+    %p.lead Invite users to join your team.
+    = form_with(model: User, url: [@team, :users],
+      class: 'row row-cols-1 row-cols-lg-2 g-3') do |invite_user_form|
+      .col
+        .input-group
+          .input-group-text Email
+          = invite_user_form.text_field :email, class: 'form-control'
+      .col
+        = invite_user_form.submit 'Invite User', class: 'btn btn-primary'
+
+%hr
+
+.row.row-cols-1.row-cols-lg-4
+  .my-3
     %h3 Users in Team
     %p.lead Click to remove.
-    .list-group.list-group-horizontal-lg.row.row-cols-1.row-cols-lg-2
+    .list-group.list-group-horizontal-lg
       - @team.users.each do |user|
         .col
           = link_to "Remove #{user.email}", team_user_path(@team, user), method: :delete,

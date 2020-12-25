@@ -32,6 +32,20 @@ RSpec.describe 'Teams', type: :system do
     expect(page).to have_link("Remove #{user.email}")
   end
 
+  it 'allows the user to invite users to the team' do
+    team = FactoryBot.create(:team)
+    user = FactoryBot.create(:user)
+    team.users << user
+    visit '/'
+    sign_in_user(user)
+    click_link 'Team'
+
+    fill_in 'user[email]', with: 'test@example.com'
+    click_button 'Invite User'
+
+    expect(page).to have_link('Remove test@example.com')
+  end
+
   it 'allows the user to remove users from the team' do
     team = FactoryBot.create(:team)
     user = FactoryBot.create(:user)
