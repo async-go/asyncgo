@@ -2,7 +2,7 @@
 
 ## Requirements
 
-- ruby 2.7.2 (see `.ruby-version`)
+- ruby 3.0.0 (see `.ruby-version`)
   - bundler 2.1.4
 - yarn 1.22.10
 
