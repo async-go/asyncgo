@@ -3,6 +3,7 @@ url: 'https://docs.asyncgo.com'
 exclude:
   - styles/
 theme: web-theme
+remote_theme: asyncgo/web-theme
 markdown: kramdown
 sass:
     style: compressed
