@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
-  validates :email, presence: { allow_blank: false }
+  validates :email, presence: { allow_blank: false }, uniqueness: true
 
   belongs_to :team, optional: true
 
