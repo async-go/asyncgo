@@ -14,6 +14,7 @@ AllCops:
 
 Metrics/BlockLength:
   Exclude:
+    - 'config/environments/**/*'
     - 'spec/**/*'
 
 RSpec/ExampleLength:

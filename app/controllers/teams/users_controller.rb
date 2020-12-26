@@ -10,6 +10,7 @@ module Teams
 
       user = User.find_or_create_by(create_params)
       @team.users << user
+      UserMailer.with(user: user).welcome_email.deliver_later
 
       redirect_to edit_team_path(@team),
                   flash: { success: 'User was successfully added to the team.' }

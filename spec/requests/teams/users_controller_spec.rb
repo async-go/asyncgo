@@ -31,6 +31,12 @@ RSpec.describe Teams::UsersController, type: :request do
             expect { post_create }.to change { user.reload.team_id }.from(nil).to(team.id)
           end
 
+          it 'enqueues welcome email' do
+            expect { post_create }.to have_enqueued_mail(UserMailer, :welcome_email).with(
+              a_hash_including(params: { user: user })
+            ).on_queue(:default)
+          end
+
           it 'sets the flash' do
             post_create
 
@@ -55,6 +61,12 @@ RSpec.describe Teams::UsersController, type: :request do
             post_create
 
             expect(User.last.team_id).to eq(team.id)
+          end
+
+          it 'enqueues welcome email' do
+            expect { post_create }.to have_enqueued_mail(UserMailer, :welcome_email).with(
+              a_hash_including(params: { user: instance_of(User) })
+            ).on_queue(:default)
           end
 
           it 'sets the flash' do

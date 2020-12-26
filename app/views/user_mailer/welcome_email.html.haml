@@ -1,0 +1,9 @@
+%h1 Welcome to AsyncGo.com, #{@user.email}
+%p
+  You have been invited to join #{@user.team.name} at AsyncGo.com,
+  your email is: #{@user.email}.
+  %br
+%p
+  To login to the site, just follow this link:
+  %a{ href: 'https://asyncgo.com' } login
+%p Thanks for joining and have a great day!
