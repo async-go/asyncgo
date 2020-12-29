@@ -1,21 +1,27 @@
 ---
 layout: default-no-splash
 title: 'AsyncGo Documentation'
-description: User and developer documentation for AsyncGo can be found at this link.
+description: Learn how to use AsyncGo
 ---
 
-## What is Async?
+## Before you Start
 
-Async is a way of working, useful for remote, colocated, or hybrid companies, where collaboration is done via a digital workspace
-rather than in syncronous meetings/discussions. This gives the flexibility for any team member to choose
-their own workday based on when they like to focus or have other commitments.
+If you aren't sure what async working is, check out our [resources on what it means to work asynchronously](/async.html).
 
-Async can also be used even when you are in a single location, allowing for better use of your in-person time together than spent
-in meetings.
+## Important Concepts
 
-### Async Working Resources
+AsyncGo is oriented around temporary **topics** that are created, typically from a pre-existing meeting or issue, that can
+represent any discussion topic that needs to be had.
 
-Here are some good places to learn more about async work:
+When a topic is created, it is configured with a description, participants, and an end date/time.
 
-- [What is Async? Understanding How to Collaborate Remotely and Solve Zoom Fatigue](https://www.hrexchangenetwork.com/employee-engagement/columns/what-is-async-understanding-how-to-collaborate-remotely-and-solve-zoom-fatigue)
-- [GitLab's Async Work Handbook](https://about.gitlab.com/company/culture/all-remote/asynchronous/)
+## Creating Topics
+
+From the topic list, simply click on "New Topic" to create a topic. You will be prompted to enter a description and can also
+invite participants.
+
+Topic descriptions set the table for the conversation to be had, and are very important.
+
+Topic descriptions also support markdown in order to include descriptive elements such as images, checklists, and more.
+See our [markdown reference](markdown.html) for more details.
+
