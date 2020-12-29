@@ -4,7 +4,7 @@ title: 'AsyncGo Documentation: Async Working'
 description: Learn how to use async to improve how your team collaborates
 ---
 
-## What is Async Working?
+## What is Async?
 
 Async is a way of working, useful for remote, colocated, or hybrid companies, where collaboration is done via a digital workspace
 rather than in syncronous meetings/discussions. This gives the flexibility for any team member to choose
