@@ -11,7 +11,6 @@ gem 'puma', '~> 5.0' # Use Puma as the app server
 gem 'pundit', '~> 2.1.0' # Authorization via OO and plain Ruby classes
 gem 'rails', '~> 6.1.0'
 gem 'sass-rails', '>= 6' # Use SCSS for stylesheets
-gem 'sqlite3', '~> 1.4' # Use sqlite3 as the database for Active Record
 gem 'turbolinks', '~> 5' # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'webpacker', '~> 5.0' # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 
@@ -43,6 +42,7 @@ group :development, :test do
   gem 'dotenv-rails', '~> 2.7.6'
   gem 'rspec-rails', '~> 4.0.1' # rspec testing
   gem 'spring', '~> 2.1.1' # Speeds up development by keeping application running in the background - https://github.com/rails/spring
+  gem 'sqlite3', '~> 1.4' # Use sqlite3 as the database for Active Record
 end
 
 group :development do
@@ -61,6 +61,10 @@ group :test do
   gem 'selenium-webdriver'
   gem 'shoulda-matchers', '~> 4.4.1' # Additional rspec matchers
   gem 'webdrivers' # Easy installation and use of web drivers for system tests
+end
+
+group :production do
+  gem 'pg', '~> 1.2.3' # Use pg as the database for Active Record
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
