@@ -3,7 +3,7 @@
 = link_to 'All Topics', team_topics_path(@topic.team)
 
 = form_with(model: @topic, url: [@topic.team, @topic], local: true,
-  class: 'row row-cols-1 row-cols-lg-auto g-3') do |form|
+  class: 'row row-cols-1 row-cols-lg-3 g-3') do |form|
   - if @topic.errors.any?
     %div
       %h2 #{pluralize(@topic.errors.count, 'error')} prohibited this topic from being saved:
@@ -14,11 +14,11 @@
   .col
     .input-group
       .input-group-text Title
-      = form.text_field :title, class: 'form-control'
+      = form.text_field :title, required: true, class: 'form-control'
   .col
     = form.submit 'Submit', class: 'btn btn-primary'
 
   .input-group
     .input-group-text Description
-    = form.text_area :description, class: 'form-control'
+    = form.text_area :description, required: true, class: 'form-control'
 

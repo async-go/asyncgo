@@ -2,8 +2,8 @@
 
 = link_to 'All Comments', team_topic_path(@comment.topic.team, @comment.topic)
 
-= form_with(model: @comment, url: [@comment.topic.team, @comment.topic, @comment], local: true,
-  class: 'row row-cols-1 row-cols-lg-auto g-3') do |form|
+= form_with(model: @comment, url: [@comment.topic.team, @comment.topic, @comment],
+  local: true) do |form|
   - if @comment.errors.any?
     %div
       %h2 #{pluralize(@comment.errors.count, 'error')} prohibited this comment from being saved:
@@ -11,10 +11,8 @@
       - @comment.errors.full_messages.each do |message|
         %li= message
   = form.hidden_field :user_id, value: current_user.id
-  .col
-    .input-group
-      .input-group-text Body
-      = form.text_field :body, class: 'form-control'
+  .input-group.mb-2
+    .input-group-text Body
+    = form.text_area :body, required: true, class: 'form-control'
 
-  .col
-    = form.submit 'Submit', class: 'btn btn-primary'
+  = form.submit 'Submit', class: 'btn btn-primary'
