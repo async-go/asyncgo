@@ -16,24 +16,30 @@
         %td= comment.user.email
 
 
-- if @topic.decision
+- if @topic.decision.present?
   %p= @topic.decision
+
+  = form_with(model: @topic, url: [@topic.team, @topic], local: true,
+    class: 'row row-cols-2 row-cols-lg-auto g-3 mt-2') do |form|
+    = form.hidden_field :decision, value: nil, class: 'form-control'
+    .col
+      = form.submit 'Clear Decision', class: 'btn btn-primary'
 - else
   = link_to 'New Comment', new_team_topic_comment_path(@topic.team, @topic),
     class: 'btn btn-primary'
 
-= form_with(model: @topic, url: [@topic.team, @topic], local: true,
-  class: 'row row-cols-2 row-cols-lg-auto g-3 mt-2') do |form|
-  - if @topic.errors.any?
-    %div
-      %h2 #{pluralize(@topic.errors.count, 'error')} prohibited this topic from being saved:
-    %ul
-      - @topic.errors.full_messages.each do |message|
-        %li= message
-  .col
-    .input-group
-      .input-group-text Decision
-      = form.text_field :decision, class: 'form-control'
+  = form_with(model: @topic, url: [@topic.team, @topic], local: true,
+    class: 'row row-cols-2 row-cols-lg-auto g-3 mt-2') do |form|
+    - if @topic.errors.any?
+      %div
+        %h2 #{pluralize(@topic.errors.count, 'error')} prohibited this topic from being saved:
+      %ul
+        - @topic.errors.full_messages.each do |message|
+          %li= message
+    .col
+      .input-group
+        .input-group-text Decision
+        = form.text_field :decision, class: 'form-control'
 
-  .col
-    = form.submit 'Submit', class: 'btn btn-primary'
+    .col
+      = form.submit 'Submit', class: 'btn btn-primary'
