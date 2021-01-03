@@ -1,7 +1,9 @@
 %h1= @topic.title
 
 = link_to 'All Topics', team_topics_path(@topic.team)
-= link_to 'Edit Topic', edit_team_topic_path(@topic.team, @topic)
+
+- if @topic.decision.nil?
+  = link_to 'Edit Topic', edit_team_topic_path(@topic.team, @topic)
 
 %p= @topic.description
 
@@ -10,13 +12,15 @@
     %tr
       %th{ scope: 'col' } Comment
       %th{ scope: 'col' } Creator
-      %th{ scope: 'col' } Edit
+      - if @topic.decision.nil?
+        %th{ scope: 'col' } Edit
   %tbody
     - @topic.comments.each do |comment|
       %tr
         %td= comment.body
         %td= comment.user.email
-        %td= link_to 'Edit Comment', edit_team_topic_comment_path(@topic.team, @topic, comment)
+        - if @topic.decision.nil?
+          %td= link_to 'Edit Comment', edit_team_topic_comment_path(@topic.team, @topic, comment)
 
 - if @topic.decision.present?
   %p= @topic.decision
