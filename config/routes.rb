@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 
       resources :topics, only: %i[index show new edit create update] do
         scope module: :topics do
-          resources :comments, only: %i[new create]
+          resources :comments, only: %i[new edit create update]
         end
       end
     end

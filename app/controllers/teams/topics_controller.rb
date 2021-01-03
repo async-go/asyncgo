@@ -56,7 +56,7 @@ module Teams
 
     def update_params
       params.require(:topic).permit(:title, :description, :decision).dup.tap do |original_params|
-        original_params[:decision] = nil if original_params[:decision]&.empty?
+        original_params[:decision] = nil if original_params[:decision] && original_params[:decision].empty?
       end
     end
   end

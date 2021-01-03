@@ -55,7 +55,7 @@ RSpec.describe 'Topics', type: :system do
     expect(page).to have_text('This is an update')
   end
 
-  it 'allows the user to leave comments on topic' do
+  it 'allows the user to leave comments on the topic' do
     team = FactoryBot.create(:team)
     user = FactoryBot.create(:user)
     topic = FactoryBot.create(:topic, team: team)
@@ -71,6 +71,25 @@ RSpec.describe 'Topics', type: :system do
     click_button 'Submit'
 
     expect(page).to have_text('Sample content')
+  end
+
+  it 'allows the user to update a comment on the topic' do
+    team = FactoryBot.create(:team)
+    user = FactoryBot.create(:user)
+    topic = FactoryBot.create(:topic, team: team)
+    FactoryBot.create(:comment, topic: topic, user: user)
+    team.users << user
+
+    visit '/'
+    sign_in_user(user)
+    click_link 'Topics'
+    click_link topic.title
+    click_link 'Edit Comment'
+
+    fill_in 'comment[body]', with: 'Updated content'
+    click_button 'Submit'
+
+    expect(page).to have_text('Updated content')
   end
 
   it 'allows the user to summarize a decision on the topic' do

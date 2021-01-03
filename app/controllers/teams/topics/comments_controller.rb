@@ -10,8 +10,13 @@ module Teams
         authorize([:teams, :topics, @comment])
       end
 
+      def edit
+        @comment = comment
+        authorize([:teams, :topics, @comment])
+      end
+
       def create
-        @comment = topic.comments.build(comment_params)
+        @comment = topic.comments.build(create_params)
         authorize([:teams, :topics, @comment])
 
         if @comment.save
@@ -22,10 +27,30 @@ module Teams
         end
       end
 
+      def update
+        @comment = comment
+        authorize([:teams, :topics, @comment])
+
+        if @comment.update(update_params)
+          redirect_to team_topic_path(@comment.topic.team, @comment.topic),
+                      flash: { success: 'Comment was successfully updated.' }
+        else
+          render :edit
+        end
+      end
+
       private
 
-      def comment_params
+      def create_params
         params.require(:comment).permit(:body, :user_id)
+      end
+
+      def update_params
+        params.require(:comment).permit(:body)
+      end
+
+      def comment
+        @comment ||= topic.comments.find(params[:comment_id] || params[:id])
       end
     end
   end
