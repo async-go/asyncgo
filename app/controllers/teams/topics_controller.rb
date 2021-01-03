@@ -51,13 +51,22 @@ module Teams
     private
 
     def create_params
-      params.require(:topic).permit(:title, :description, :user_id)
+      params.require(:topic).permit(:title, :description, :user_id).dup.tap do |original_params|
+        if original_params[:description].present?
+          original_params[:description_html] =
+            parse_markdown(original_params[:description])
+        end
+      end
     end
 
     def update_params
       params.require(:topic).permit(:title, :description, :decision).dup.tap do |original_params|
         original_params[:decision] = nil if original_params[:decision] && original_params[:decision].empty?
       end
+    end
+
+    def parse_markdown(markdown)
+      CommonMarker.render_html(markdown, :DEFAULT, %i[tasklist tagfilter])
     end
   end
 end

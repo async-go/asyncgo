@@ -3,7 +3,7 @@
 = link_to 'All Topics', team_topics_path(@topic.team)
 = link_to 'Edit Topic', edit_team_topic_path(@topic.team, @topic)
 
-%p= @topic.description
+= @topic.description_html.html_safe
 
 %table.table
   %thead
