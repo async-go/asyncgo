@@ -64,9 +64,5 @@ module Teams
         original_params[:decision] = nil if original_params[:decision] && original_params[:decision].empty?
       end
     end
-
-    def parse_markdown(markdown)
-      CommonMarker.render_html(markdown, :DEFAULT, %i[tasklist tagfilter])
-    end
   end
 end

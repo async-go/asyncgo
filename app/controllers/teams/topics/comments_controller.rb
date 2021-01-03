@@ -42,7 +42,9 @@ module Teams
       private
 
       def create_params
-        params.require(:comment).permit(:body, :user_id)
+        params.require(:comment).permit(:body, :user_id).dup.tap do |original_params|
+          original_params[:body_html] = parse_markdown(original_params[:body]) if original_params[:body]
+        end
       end
 
       def update_params
