@@ -1,6 +1,7 @@
 %h1= @topic.title
 
 = link_to 'All Topics', team_topics_path(@topic.team)
+= link_to 'Edit Topic', edit_team_topic_path(@topic.team, @topic)
 
 %p= @topic.description
 

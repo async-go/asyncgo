@@ -108,6 +108,41 @@ RSpec.describe Teams::TopicsController, type: :request do
     end
   end
 
+  describe 'GET edit' do
+    subject(:get_edit) { get "/teams/#{team.id}/topics/#{topic.id}/edit" }
+
+    let(:team) { FactoryBot.create(:team) }
+    let(:topic) { FactoryBot.create(:topic, team: team) }
+
+    context 'when user is authenticated' do
+      let(:user) { FactoryBot.create(:user) }
+
+      before do
+        sign_in(user)
+      end
+
+      context 'when user is authorized' do
+        before do
+          team.users << user
+        end
+
+        it 'renders the edit page' do
+          get_edit
+
+          expect(response.body).to include('Edit Topic')
+        end
+      end
+
+      context 'when user is not authorized' do
+        include_examples 'unauthorized user examples', 'You are not authorized.'
+      end
+    end
+
+    context 'when user is not authenticated' do
+      include_examples 'unauthorized user examples', 'You are not authorized.'
+    end
+  end
+
   describe 'POST create' do
     subject(:post_create) do
       post "/teams/#{team.id}/topics",

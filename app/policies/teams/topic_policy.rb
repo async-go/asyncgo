@@ -17,6 +17,11 @@ module Teams
         record.team == user.team
     end
 
+    def edit?
+      user &&
+        record.team == user.team
+    end
+
     def create?
       user &&
         record.team == user.team

@@ -37,6 +37,24 @@ RSpec.describe 'Topics', type: :system do
     expect(page).to have_text('Sample title')
   end
 
+  it 'allows the user to edit a topic' do
+    team = FactoryBot.create(:team)
+    user = FactoryBot.create(:user)
+    topic = FactoryBot.create(:topic, team: team)
+    team.users << user
+
+    visit '/'
+    sign_in_user(user)
+    click_link 'Topics'
+    click_link topic.title
+    click_link 'Edit Topic'
+
+    fill_in 'topic[description]', with: 'This is an update'
+    click_button 'Submit'
+
+    expect(page).to have_text('This is an update')
+  end
+
   it 'allows the user to leave comments on topic' do
     team = FactoryBot.create(:team)
     user = FactoryBot.create(:user)

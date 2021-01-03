@@ -19,6 +19,11 @@ module Teams
       authorize([:teams, @topic])
     end
 
+    def edit
+      @topic = topic
+      authorize([:teams, @topic])
+    end
+
     def create
       @topic = team.topics.build(create_params)
       authorize([:teams, @topic])
@@ -50,8 +55,8 @@ module Teams
     end
 
     def update_params
-      params.require(:topic).permit(:decision).dup.tap do |original_params|
-        original_params[:decision] = nil if original_params[:decision].empty?
+      params.require(:topic).permit(:title, :description, :decision).dup.tap do |original_params|
+        original_params[:decision] = nil if original_params[:decision]&.empty?
       end
     end
   end
