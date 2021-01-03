@@ -15,6 +15,7 @@ gem 'turbolinks', '~> 5' # Turbolinks makes navigating your web application fast
 gem 'webpacker', '~> 5.0' # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 
 # Other
+gem 'commonmarker', '0.21.0' # GitHub Flavored Markdown renderer
 gem 'hamlit', '~> 2.13.0' # Templating language
 gem 'omniauth-google-oauth2', '~> 0.8.0'
 

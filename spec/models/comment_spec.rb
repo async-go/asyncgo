@@ -3,6 +3,7 @@
 RSpec.describe Comment, type: :model do
   describe 'Validations' do
     it { is_expected.to validate_presence_of(:body) }
+    it { is_expected.to validate_presence_of(:body_html) }
   end
 
   describe 'Relations' do

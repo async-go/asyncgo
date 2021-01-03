@@ -13,7 +13,8 @@
 ActiveRecord::Schema.define(version: 2020_12_12_232508) do
 
   create_table "comments", force: :cascade do |t|
-    t.string "body", null: false
+    t.text "body", null: false
+    t.text "body_html", null: false
     t.integer "topic_id", null: false
     t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -30,8 +31,9 @@ ActiveRecord::Schema.define(version: 2020_12_12_232508) do
 
   create_table "topics", force: :cascade do |t|
     t.string "title", null: false
-    t.string "description", null: false
-    t.string "decision"
+    t.text "description", null: false
+    t.text "description_html", null: false
+    t.text "decision"
     t.integer "user_id", null: false
     t.integer "team_id", null: false
     t.datetime "created_at", precision: 6, null: false

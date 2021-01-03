@@ -21,6 +21,10 @@ RSpec/ExampleLength:
   Exclude:
     - 'spec/system/**/*'
 
+RSpec/MultipleExpectations:
+  Exclude:
+    - 'spec/system/**/*'
+
 RSpec/NestedGroups:
   Max: 5
 
