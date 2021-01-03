@@ -108,4 +108,40 @@ RSpec.describe 'Topics', type: :system do
 
     expect(page).to have_text('Sample decision')
   end
+
+  it 'allows using markdown for topic description' do
+    team = FactoryBot.create(:team)
+    user = FactoryBot.create(:user)
+    team.users << user
+
+    visit '/'
+    sign_in_user(user)
+    click_link 'Topics'
+    click_link 'New Topic'
+
+    fill_in 'topic[title]', with: 'Sample title'
+    fill_in 'topic[description]', with: '__Sample topic content__'
+    click_button 'Submit'
+
+    expect(page).to have_text('Sample title')
+    expect(page.body).to include('<strong>Sample topic content</strong>')
+  end
+
+  it 'allows using markdown for comment body' do
+    team = FactoryBot.create(:team)
+    user = FactoryBot.create(:user)
+    topic = FactoryBot.create(:topic, team: team)
+    team.users << user
+
+    visit '/'
+    sign_in_user(user)
+    click_link 'Topics'
+    click_link topic.title
+    click_link 'New Comment'
+
+    fill_in 'comment[body]', with: '__Sample content__'
+    click_button 'Submit'
+
+    expect(page.body).to include('<strong>Sample content</strong>')
+  end
 end
