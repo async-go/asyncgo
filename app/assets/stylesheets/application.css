@@ -23,3 +23,11 @@ main > .sticky-bottom {
   width: 2.5rem;
   height: 2.5rem;
 }
+
+.footer {
+  position:fixed;
+  height:2em;
+  bottom:0px;
+  max-width:100%;
+  text-align: right;
+}
