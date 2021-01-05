@@ -14,7 +14,7 @@
  *= require_self
  */
 
-main > .sticky-top {
+main > .sticky-bottom {
   min-height: 5rem;
   top: 1rem;
 }
