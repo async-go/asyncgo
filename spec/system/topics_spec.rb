@@ -32,7 +32,7 @@ RSpec.describe 'Topics', type: :system do
 
     fill_in 'topic[title]', with: 'Sample title'
     fill_in 'topic[description]', with: 'Sample topic content'
-    click_button 'Submit'
+    click_button 'Create Topic'
 
     expect(page).to have_text('Sample title')
   end
@@ -50,7 +50,7 @@ RSpec.describe 'Topics', type: :system do
     click_link 'Edit Topic'
 
     fill_in 'topic[description]', with: 'This is an update'
-    click_button 'Submit'
+    click_button 'Update Topic'
 
     expect(page).to have_text('This is an update')
   end
@@ -68,7 +68,7 @@ RSpec.describe 'Topics', type: :system do
     click_link 'New Comment'
 
     fill_in 'comment[body]', with: 'Sample content'
-    click_button 'Submit'
+    click_button 'Create Comment'
 
     expect(page).to have_text('Sample content')
   end
@@ -87,7 +87,7 @@ RSpec.describe 'Topics', type: :system do
     click_link 'Edit Comment'
 
     fill_in 'comment[body]', with: 'Updated content'
-    click_button 'Submit'
+    click_button 'Update Comment'
 
     expect(page).to have_text('Updated content')
   end
@@ -121,7 +121,7 @@ RSpec.describe 'Topics', type: :system do
 
     fill_in 'topic[title]', with: 'Sample title'
     fill_in 'topic[description]', with: '__Sample topic content__'
-    click_button 'Submit'
+    click_button 'Create Topic'
 
     expect(page).to have_text('Sample title')
     expect(page.body).to include('<strong>Sample topic content</strong>')
@@ -140,7 +140,7 @@ RSpec.describe 'Topics', type: :system do
     click_link 'New Comment'
 
     fill_in 'comment[body]', with: '__Sample content__'
-    click_button 'Submit'
+    click_button 'Create Comment'
 
     expect(page.body).to include('<strong>Sample content</strong>')
   end
