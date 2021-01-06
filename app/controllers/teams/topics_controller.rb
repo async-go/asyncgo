@@ -6,7 +6,8 @@ module Teams
 
     def index
       authorize(team, policy_class: Teams::TopicPolicy)
-      @topics = team.topics
+      @active_topics = team.topics.where(decision: nil)
+      @closed_topics = team.topics.where.not(decision: nil)
     end
 
     def show

@@ -1,51 +1,51 @@
-%h1= @topic.title
+%h1 Team: #{@team.name}
 
-= link_to 'All Topics', team_topics_path(@topic.team)
+.row.my-5
+  %h2= @topic.title
+  = link_to 'Back to All Topics', team_topics_path(@topic.team)
+  - if @topic.decision.nil?
+    = link_to 'Edit Topic', edit_team_topic_path(@topic.team, @topic)
+  = @topic.description_html.html_safe # rubocop:disable Rails/OutputSafety
 
-- if @topic.decision.nil?
-  = link_to 'Edit Topic', edit_team_topic_path(@topic.team, @topic)
-
-= @topic.description_html.html_safe # rubocop:disable Rails/OutputSafety
-
-%table.table
-  %thead
-    %tr
-      %th{ scope: 'col' } Comment
-      %th{ scope: 'col' } Creator
-      - if @topic.decision.nil?
-        %th{ scope: 'col' } Edit
-  %tbody
-    - @topic.comments.each do |comment|
+  %table.table.table-borderless.table-hover
+    %thead.table-light
       %tr
-        %td= comment.body_html.html_safe # rubocop:disable Rails/OutputSafety
-        %td= comment.user.email
+        %th{ scope: 'col' } Comment
+        %th{ scope: 'col' } Creator
         - if @topic.decision.nil?
-          %td= link_to 'Edit Comment', edit_team_topic_comment_path(@topic.team, @topic, comment)
+          %th{ scope: 'col' } Edit
+    %tbody
+      - @topic.comments.each do |comment|
+        %tr
+          %td= comment.body_html.html_safe # rubocop:disable Rails/OutputSafety
+          %td= comment.user.email
+          - if @topic.decision.nil?
+            %td= link_to 'Edit Comment', edit_team_topic_comment_path(@topic.team, @topic, comment)
 
-- if @topic.decision.present?
-  %p= @topic.decision
+  - if @topic.decision.present?
+    %p= @topic.decision
 
-  = form_with(model: @topic, url: [@topic.team, @topic], local: true,
-    class: 'row row-cols-2 row-cols-lg-auto g-3 mt-2') do |form|
-    = form.hidden_field :decision, value: nil, class: 'form-control'
-    .col
-      = form.submit 'Clear Decision', class: 'btn btn-primary'
-- else
-  = link_to 'New Comment', new_team_topic_comment_path(@topic.team, @topic),
-    class: 'btn btn-primary'
+    = form_with(model: @topic, url: [@topic.team, @topic], local: true,
+      class: 'row row-cols-2 row-cols-lg-auto g-3 mt-2') do |form|
+      = form.hidden_field :decision, value: nil, class: 'form-control'
+      .col
+        = form.submit 'Clear Decision', class: 'btn btn-primary'
+  - else
+    = link_to 'New Comment', new_team_topic_comment_path(@topic.team, @topic),
+      class: 'btn btn-primary'
 
-  = form_with(model: @topic, url: [@topic.team, @topic], local: true,
-    class: 'row row-cols-2 row-cols-lg-2 g-3 mt-2') do |form|
-    - if @topic.errors.any?
-      %div
-        %h2 #{pluralize(@topic.errors.count, 'error')} prohibited this topic from being saved:
-      %ul
-        - @topic.errors.full_messages.each do |message|
-          %li= message
-    .col
-      .input-group
-        .input-group-text Decision
-        = form.text_field :decision, required: true, class: 'form-control'
+    = form_with(model: @topic, url: [@topic.team, @topic], local: true,
+      class: 'row row-cols-2 row-cols-lg-2 g-3 mt-2') do |form|
+      - if @topic.errors.any?
+        %div
+          %h2 #{pluralize(@topic.errors.count, 'error')} prohibited this topic from being saved:
+        %ul
+          - @topic.errors.full_messages.each do |message|
+            %li= message
+      .col
+        .input-group
+          .input-group-text Decision
+          = form.text_field :decision, required: true, class: 'form-control'
 
-    .col
-      = form.submit 'Submit', class: 'btn btn-primary'
+      .col
+        = form.submit 'Submit', class: 'btn btn-primary'

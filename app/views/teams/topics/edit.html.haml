@@ -1,23 +1,23 @@
-%h1 Edit Topic
+%h1 Team: #{@team.name}
 
-= link_to 'Back to Topic', team_topic_path(@topic.team, @topic)
+.row.my-5
+  %h2= @topic.title
 
-= form_with(model: @topic, url: [@topic.team, @topic], local: true,
-  class: 'row row-cols-1 row-cols-lg-3 g-3') do |form|
-  - if @topic.errors.any?
-    %div
-      %h2 #{pluralize(@topic.errors.count, 'error')} prohibited this topic from being saved:
-    %ul
+  = link_to 'Back to Topic', team_topic_path(@topic.team, @topic)
+
+  .my-4
+    %ul.list-group
       - @topic.errors.full_messages.each do |message|
-        %li= message
-  .col
-    .input-group
-      .input-group-text Title
-      = form.text_field :title, required: true, class: 'form-control'
-  .col
-    = form.submit 'Submit', class: 'btn btn-primary'
+        %li.list-group-item.list-group-item-danger= message
 
-  .input-group
-    .input-group-text Description
-    = form.text_area :description, required: true, class: 'form-control'
+  = form_with(model: @topic, url: [@topic.team, @topic], local: true) do |form|
+    .mb-3
+      .input-group
+        .input-group-text Title
+        = form.text_field :title, required: true, class: 'form-control'
+    .mb-3
+      .input-group
+        .input-group-text Description
+        = form.text_area :description, required: true, class: 'form-control'
 
+    = form.submit 'Edit Topic', class: 'btn btn-primary'
