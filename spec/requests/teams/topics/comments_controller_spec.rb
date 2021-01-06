@@ -8,38 +8,6 @@ RSpec.describe Teams::Topics::CommentsController, type: :request do
 
   let(:topic) { FactoryBot.create(:topic) }
 
-  describe 'GET new' do
-    subject(:get_new) { get "/teams/#{topic.team.id}/topics/#{topic.id}/comments/new" }
-
-    context 'when user is authenticated' do
-      let(:user) { FactoryBot.create(:user) }
-
-      before do
-        sign_in(user)
-      end
-
-      context 'when user is authorized' do
-        before do
-          topic.team.users << user
-        end
-
-        it 'renders the new page' do
-          get_new
-
-          expect(response.body).to include('Create Comment')
-        end
-      end
-
-      context 'when user is not authorized' do
-        include_examples 'unauthorized user examples', 'You are not authorized.'
-      end
-    end
-
-    context 'when user is not authenticated' do
-      include_examples 'unauthorized user examples', 'You are not authorized.'
-    end
-  end
-
   describe 'GET edit' do
     subject(:get_edit) { get "/teams/#{topic.team.id}/topics/#{topic.id}/comments/#{comment.id}/edit" }
 
@@ -119,10 +87,16 @@ RSpec.describe Teams::Topics::CommentsController, type: :request do
             expect { post_create }.not_to change(Comment, :count).from(0)
           end
 
-          it 'shows the error' do
+          it 'sets the flash' do
             post_create
 
-            expect(response.body).to include('Body can&#39;t be blank')
+            expect(controller.flash[:danger]).to eq("Body can't be blank, Body html can't be blank")
+          end
+
+          it 'redirects to topic' do
+            post_create
+
+            expect(response).to redirect_to(team_topic_path(topic.team, topic))
           end
         end
       end

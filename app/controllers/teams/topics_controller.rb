@@ -45,7 +45,7 @@ module Teams
         redirect_to team_topic_path(@topic.team, @topic),
                     flash: { success: 'Topic was successfully updated.' }
       else
-        render :show
+        render :edit
       end
     end
 
