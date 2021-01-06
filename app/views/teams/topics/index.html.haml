@@ -15,9 +15,12 @@
             %a{ href: team_topic_path(current_user.team, topic) }= topic.title
           %td= topic.user.email
           %td= topic.created_at.strftime('%b %e')
-
-  = link_to 'New Topic', new_team_topic_path(current_user.team),
-    class: 'btn btn-primary col-6 mx-auto'
+      %tr
+        %td
+        %td
+          = link_to 'New Topic', new_team_topic_path(current_user.team),
+            class: 'btn btn-primary col-6 mx-auto'
+        %td
 
 .row.mb-5
   %h2 Closed Topics

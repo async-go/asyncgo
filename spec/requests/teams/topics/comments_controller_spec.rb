@@ -26,7 +26,7 @@ RSpec.describe Teams::Topics::CommentsController, type: :request do
         it 'renders the new page' do
           get_new
 
-          expect(response.body).to include('New Comment')
+          expect(response.body).to include('Create Comment')
         end
       end
 
@@ -58,10 +58,10 @@ RSpec.describe Teams::Topics::CommentsController, type: :request do
           comment.update!(user: user)
         end
 
-        it 'renders the new page' do
+        it 'renders the edit page' do
           get_edit
 
-          expect(response.body).to include('Edit Comment')
+          expect(response.body).to include('Update Comment')
         end
       end
 
