@@ -34,5 +34,7 @@
 
   .col-4
     %h3 Decision
-    %p= @topic.decision
-    = link_to 'Edit Decision', edit_team_topic_path(@topic.team, @topic), class: 'btn btn-primary'
+    = form_with(model: @topic, url: [@topic.team, @topic], local: true) do |form|
+      .input-group.mb-3
+        = form.text_area :decision, class: 'form-control'
+      = form.submit 'Update Decision', class: 'btn btn-primary'
