@@ -19,5 +19,9 @@
       .input-group
         .input-group-text Description
         = form.text_area :description, required: true, class: 'form-control'
+    .mb-3
+      .input-group
+        .input-group-text Decision
+        = form.text_area :decision, class: 'form-control'
 
     = form.submit 'Update Topic', class: 'btn btn-primary'
