@@ -10,7 +10,7 @@ module Teams
       end
 
       def parse_markdown(markdown)
-        CommonMarker.render_html(markdown, :DEFAULT, %i[tasklist tagfilter])
+        CommonMarker.render_html(markdown, :DEFAULT, %i[tasklist tagfilter autolink])
       end
     end
   end
