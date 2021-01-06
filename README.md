@@ -17,7 +17,7 @@
 
 To set-up OAuth locally:
 
-1. Go to https://console.cloud.google.com/
+1. Go to [Google Cloud Console](https://console.cloud.google.com/)
 2. Go to "APIs & Services" -> "Credentials"
 3. Click on the AsyncGo OAuth client
 4. Copy the Client ID and Client Secret
@@ -27,9 +27,12 @@ To set-up OAuth locally:
 
 Here's what a `.env` file looks like
 
-```
+```cfg
 GOOGLE_CLIENT_ID=[REDACTED]
 GOOGLE_CLIENT_SECRET=[REDACTED]
 ```
 
-The Google Client ID and Client Secret should be used instead of `[REDACTED]`. Please don't save the Client ID or Client Secret anywhere online or locally other than in the `.env` file. For reference purposes, you need to be a member of the AsyncGo Google Cloud project to be able to access this.
+The Google Client ID and Client Secret should be used instead of `[REDACTED]`.
+Please don't save the Client ID or Client Secret anywhere online or locally other
+than in the `.env` file. For reference purposes, you need to be a member of the
+AsyncGo Google Cloud project to be able to access this.
