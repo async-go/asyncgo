@@ -2,36 +2,8 @@
 
 .row.my-5
   %h2 Active Topics
-  %table.table.table-borderless.table-hover
-    %thead.table-light
-      %tr
-        %th{ scope: 'col' } Name
-        %th{ scope: 'col' } Creator
-        %th{ scope: 'col' } Opened
-    %tbody
-      - @active_topics.each do |topic|
-        %tr
-          %td
-            %a{ href: team_topic_path(current_user.team, topic) }= topic.title
-          %td= topic.user.email
-          %td= topic.created_at.strftime('%b %e')
-      %tr
-        %td{ colspan: '3' }
-          = link_to 'New Topic', new_team_topic_path(current_user.team),
-            class: 'btn btn-primary'
+  = render partial: 'topics', locals: { topic_collection: @active_topics, new_form: true }
 
-.row.mb-5
+.row
   %h2 Closed Topics
-  %table.table.table-borderless.table-hover
-    %thead.table-light
-      %tr
-        %th{ scope: 'col' } Name
-        %th{ scope: 'col' } Creator
-        %th{ scope: 'col' } Opened
-    %tbody
-      - @closed_topics.each do |topic|
-        %tr
-          %td
-            %a{ href: team_topic_path(current_user.team, topic) }= topic.title
-          %td= topic.user.email
-          %td= topic.created_at
+  = render partial: 'topics', locals: { topic_collection: @closed_topics, new_form: false }
