@@ -5,11 +5,6 @@ module Teams
     class CommentsController < Teams::Topics::ApplicationController
       include Pundit
 
-      def new
-        @comment = topic.comments.build
-        authorize([:teams, :topics, @comment])
-      end
-
       def edit
         @comment = comment
         authorize([:teams, :topics, @comment])
@@ -19,12 +14,14 @@ module Teams
         @comment = topic.comments.build(comment_params)
         authorize([:teams, :topics, @comment])
 
-        if @comment.save
-          redirect_to team_topic_path(@comment.topic.team, @comment.topic),
-                      flash: { success: 'Comment was successfully created.' }
-        else
-          render :new
-        end
+        comment_flash = if @comment.save
+                          { success: 'Comment was successfully created.' }
+
+                        else
+                          { danger: @comment.errors.full_messages.join(', ') }
+                        end
+
+        redirect_to team_topic_path(@comment.topic.team, @comment.topic), flash: comment_flash
       end
 
       def update

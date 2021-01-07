@@ -6,7 +6,8 @@ module Teams
 
     def index
       authorize(team, policy_class: Teams::TopicPolicy)
-      @topics = team.topics
+      @active_topics = team.topics.where(decision: nil)
+      @closed_topics = team.topics.where.not(decision: nil)
     end
 
     def show
@@ -44,7 +45,7 @@ module Teams
         redirect_to team_topic_path(@topic.team, @topic),
                     flash: { success: 'Topic was successfully updated.' }
       else
-        render :show
+        render :edit
       end
     end
 

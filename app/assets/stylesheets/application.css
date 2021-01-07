@@ -14,11 +14,6 @@
  *= require_self
  */
 
-main > .sticky-bottom {
-  min-height: 5rem;
-  top: 1rem;
-}
-
 .navbar-brand img {
   width: 2.5rem;
   height: 2.5rem;

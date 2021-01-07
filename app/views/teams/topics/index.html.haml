@@ -1,17 +1,9 @@
-%h1 Topics
+%h1 Team: #{@team.name}
 
-%table.table
-  %thead
-    %tr
-      %th{ scope: 'col' } Name
-      %th{ scope: 'col' } Creator
-      %th{ scope: 'col' } Decision
-  %tbody
-    - @topics.each do |topic|
-      %tr
-        %td
-          %a{ href: team_topic_path(current_user.team, topic) }= topic.title
-        %td= topic.user.email
-        %td= topic.decision
+.row.my-5
+  %h2 Active Topics
+  = render partial: 'topics', locals: { topic_collection: @active_topics, new_form: true }
 
-= link_to 'New Topic', new_team_topic_path(current_user.team), class: 'btn btn-primary'
+.row
+  %h2 Closed Topics
+  = render partial: 'topics', locals: { topic_collection: @closed_topics, new_form: false }

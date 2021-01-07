@@ -12,7 +12,7 @@ RSpec.describe 'Teams', type: :system do
     click_link 'Create Team'
 
     fill_in 'team[name]', with: 'Team name'
-    click_button 'Submit'
+    click_button 'Create Team'
 
     expect(page).to have_text('Team name')
   end

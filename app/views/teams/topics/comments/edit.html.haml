@@ -1,17 +1,17 @@
-%h1 Edit Comment
+%h1 Team: #{@team.name}
 
-= link_to 'Back to Topic', team_topic_path(@comment.topic.team, @comment.topic)
+.row.my-5
+  %h2= @topic.title
 
-= form_with(model: @comment, url: [@comment.topic.team, @comment.topic, @comment],
-  local: true) do |form|
-  - if @comment.errors.any?
-    %div
-      %h2 #{pluralize(@comment.errors.count, 'error')} prohibited this comment from being saved:
-    %ul
-      - @comment.errors.full_messages.each do |message|
-        %li= message
-  .input-group.mb-2
-    .input-group-text Body
-    = form.text_area :body, required: true, class: 'form-control'
+  = link_to 'Back to Topic', team_topic_path(@comment.topic.team, @comment.topic)
 
-  = form.submit 'Submit', class: 'btn btn-primary'
+  = render partial: 'shared/form_errors', locals: { model: @comment }
+
+  = form_with(model: @comment, url: [@comment.topic.team, @comment.topic, @comment],
+    local: true) do |form|
+    .mb-3
+      .input-group
+        .input-group-text Body
+        = form.text_area :body, required: true, class: 'form-control'
+
+    = form.submit 'Update Comment', class: 'btn btn-primary'
