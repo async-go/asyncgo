@@ -5,10 +5,7 @@
 
   = link_to 'Back to All Topics', team_topics_path(@topic.team)
 
-  .my-4
-    %ul.list-group
-      - @topic.errors.full_messages.each do |message|
-        %li.list-group-item.list-group-item-danger= message
+  = render partial: 'shared/form_errors', locals: { model: @topic }
 
   = form_with(model: @topic, url: [@topic.team, @topic], local: true) do |form|
     = form.hidden_field :user_id, value: current_user.id

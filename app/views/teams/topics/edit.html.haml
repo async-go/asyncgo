@@ -5,10 +5,7 @@
 
   = link_to 'Back to Topic', team_topic_path(@topic.team, @topic)
 
-  .my-4
-    %ul.list-group
-      - @topic.errors.full_messages.each do |message|
-        %li.list-group-item.list-group-item-danger= message
+  = render partial: 'shared/form_errors', locals: { model: @topic }
 
   = form_with(model: @topic, url: [@topic.team, @topic], local: true) do |form|
     .mb-3

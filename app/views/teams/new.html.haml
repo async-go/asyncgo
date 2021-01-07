@@ -1,9 +1,6 @@
 %h1 New Team
 
-.my-4
-  %ul.list-group
-    - @team.errors.full_messages.each do |message|
-      %li.list-group-item.list-group-item-danger= message
+= render partial: 'shared/form_errors', locals: { model: @team }
 
 = form_with(model: @team, local: true) do |form|
   .mb-3
