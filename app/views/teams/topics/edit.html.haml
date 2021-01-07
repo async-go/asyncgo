@@ -6,15 +6,4 @@
   = link_to 'Back to Topic', team_topic_path(@topic.team, @topic)
 
   = render partial: 'shared/form_errors', locals: { model: @topic }
-
-  = form_with(model: @topic, url: [@topic.team, @topic], local: true) do |form|
-    .mb-3
-      .input-group
-        .input-group-text Title
-        = form.text_field :title, required: true, class: 'form-control'
-    .mb-3
-      .input-group
-        .input-group-text Description
-        = form.text_area :description, required: true, class: 'form-control'
-
-    = form.submit 'Update Topic', class: 'btn btn-primary'
+  = render partial: 'topic_form', locals: { topic: @topic, user_field: false }

@@ -1,0 +1,14 @@
+- submit_action = topic.persisted? ? 'Update Topic' : 'Create Topic'
+= form_with(model: topic, url: [topic.team, topic], local: true) do |form|
+  - if user_field
+    = form.hidden_field :user_id, value: current_user.id
+  .mb-3
+    .input-group
+      .input-group-text Title
+      = form.text_field :title, required: true, class: 'form-control'
+  .mb-3
+    .input-group
+      .input-group-text Description
+      = form.text_area :description, required: true, class: 'form-control'
+
+  = form.submit submit_action, class: 'btn btn-primary'

@@ -6,16 +6,4 @@
   = link_to 'Back to All Topics', team_topics_path(@topic.team)
 
   = render partial: 'shared/form_errors', locals: { model: @topic }
-
-  = form_with(model: @topic, url: [@topic.team, @topic], local: true) do |form|
-    = form.hidden_field :user_id, value: current_user.id
-    .mb-3
-      .input-group
-        .input-group-text Title
-        = form.text_field :title, required: true, class: 'form-control'
-    .mb-3
-      .input-group
-        .input-group-text Description
-        = form.text_area :description, required: true, class: 'form-control'
-
-    = form.submit 'Create Topic', class: 'btn btn-primary'
+  = render partial: 'topic_form', locals: { topic: @topic, user_field: true }
