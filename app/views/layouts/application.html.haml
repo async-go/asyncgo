@@ -21,7 +21,7 @@
   %body
     %nav.navbar.navbar-expand-lg.navbar-light.bg-light
       .container-fluid
-        %a.navbar-brand.pe-2{ href: root_path }
+        %a.navbar-brand{ href: root_path }
           = image_tag('logo.svg', alt: 'AsyncGo')
           %span AsyncGo
         %button.navbar-toggler{ type: 'button', 'data-bs-toggle' => 'collapse',
@@ -29,32 +29,27 @@
           'aria-expanded' => 'false', 'aria-label' => 'Toggle navigation' }
           %span.navbar-toggler-icon
         .collapse.navbar-collapse#navbar-content
-          %ul.navbar-nav.me-auto
-            - if current_user&.team
-              %li
-                %span.p-2.border-1.rounded.bg-secondary.text-white
-                  Active Team: #{current_user.team.name}
+          - if current_user&.team_id
+            %span.badge.bg-secondary.fs-6.me-auto
+              Active Team: #{current_user.team.name}
           %ul.navbar-nav.me-2
-            - if current_user&.team
-              %li.nav-item= link_to 'Topics', team_topics_path(current_user.team),
-                class: class_names('nav-link',
-                                   active: current_page?(team_topics_path(current_user.team)))
-
+            %li.nav-item= link_to 'Docs', 'https://docs.asyncgo.com', class: 'nav-link',
+              target: :_blank, rel: :noopener
             - if current_user
               - if current_user.team_id
+                %li.nav-item= link_to 'Topics', team_topics_path(current_user.team),
+                  class: class_names('nav-link',
+                    active: current_page?(team_topics_path(current_user.team)))
                 %li.nav-item= link_to 'Admin', edit_team_path(current_user.team_id),
                   class: class_names('nav-link',
                   active: current_page?(edit_team_path(current_user.team_id)))
               - else
                 %li.nav-item= link_to 'Create Team', new_team_path,
                   class: class_names('nav-link', active: current_page?(new_team_path))
-              %li.nav-item= link_to('Docs', 'https://docs.asyncgo.com',
-                class: class_names('nav-link'))
               %li.nav-item= link_to 'Sign out', sign_out_path, method: :delete, class: 'nav-link'
             - else
-              %li.nav-item= link_to('Docs', 'https://docs.asyncgo.com',
-                class: class_names('nav-link'))
               %li.nav-item= link_to 'Sign in', '/auth/google_oauth2', class: 'nav-link'
+
     %main.container.mt-4{ role: 'main' }
       .sticky-top.mt-2
         - if flash.any?
