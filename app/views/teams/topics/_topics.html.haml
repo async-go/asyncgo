@@ -3,7 +3,7 @@
     %tr
       %th{ scope: 'col' } Name
       %th{ scope: 'col' } Creator
-      - if topic_collection[0].decision 
+      - if topic_collection[0].decision
         %th{ scope: 'col' } Outcome
       - else
         %th{ scope: 'col' } Opened
@@ -13,11 +13,11 @@
         %td
           %a{ href: team_topic_path(current_user.team, topic) }= topic.title
         %td= topic.user.email
-        - if topic.decision 
-          %td= topic.decision   
+        - if topic.decision
+          %td= topic.decision
         - else
-          %td= topic.created_at.strftime('%b %e')   
-        
+          %td= topic.created_at.strftime('%b %e')
+
     - if new_form
       %tr
         %td{ colspan: '3' }
