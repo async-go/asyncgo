@@ -19,27 +19,6 @@
   height: 2.5rem;
 }
 
-.commentlist td {
-  padding-right: 1em;
-}
-
 .alert {
   margin-top: 1em;
-}
-
-.topiclist td {
-  padding-right: 1em;
-}
-
-.nav-info {
-  border-radius: 10px;  
-  background-color: lightblue;
-  padding-top: 6px;
-  padding-bottom: 6px;
-  padding-left: 6px;
-  padding-right: 6px;
-}
-
-.navbar-brand {
-  padding-right: 1.5rem;
 }
