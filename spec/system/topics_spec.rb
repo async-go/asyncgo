@@ -104,9 +104,9 @@ RSpec.describe 'Topics', type: :system do
     click_link topic.title
     click_link 'Edit Comment'
 
-    fill_in 'comment[body]', with: 'Updated content'
+    find(:fillable_field, 'comment[body]').send_keys('This is updated content')
     click_button 'Update Comment'
 
-    expect(page).to have_text('Updated content')
+    expect(page).to have_text('This is updated content')
   end
 end
