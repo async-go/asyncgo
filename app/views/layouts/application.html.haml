@@ -37,6 +37,8 @@
               %li.nav-item= link_to 'Topics', team_topics_path(current_user.team),
                 class: class_names('nav-link',
                                    active: current_page?(team_topics_path(current_user.team)))
+            %li.nav-item= link_to('Docs', 'https://docs.asyncgo.com',
+              class: class_names('nav-link'))
             - if current_user
               - if current_user.team_id
                 %li.nav-item= link_to 'Admin', edit_team_path(current_user.team_id),
