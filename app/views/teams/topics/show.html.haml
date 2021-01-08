@@ -16,9 +16,10 @@
             .col-lg-7
               %p= comment.body_html.html_safe # rubocop:disable Rails/OutputSafety
             .col-lg-3
-              %p= comment.user.email
+              %span= comment.user.email
             .col-lg-2
-              %p= link_to 'Edit Comment', edit_team_topic_comment_path(@topic.team, @topic, comment)
+              %span= link_to 'Edit Comment',
+                edit_team_topic_comment_path(@topic.team, @topic, comment)
       - if @topic.decision.nil?
         %li.list-group-item
           = form_with(model: Comment.new, url: [@topic.team, @topic, Comment.new],
