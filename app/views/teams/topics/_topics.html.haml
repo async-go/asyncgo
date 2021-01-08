@@ -1,9 +1,9 @@
-%table.table.table-borderless.table-hover.topiclist
+%table.table.table-borderless.table-hover
   %thead.table-light
     %tr
-      %th{ width: '100%', scope: 'col' } Name
-      %th{ scope: 'col' } Creator
-      %th{ scope: 'col' } Opened
+      %th.col-8{ scope: 'col' } Name
+      %th.col-2{ scope: 'col' } Creator
+      %th.col-2{ scope: 'col' } Opened
   %tbody
     - topic_collection.each do |topic|
       %tr

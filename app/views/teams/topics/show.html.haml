@@ -9,12 +9,12 @@
   .col-8
     = @topic.description_html.html_safe # rubocop:disable Rails/OutputSafety
 
-    %table.table.table-borderless.table-hover.commentlist
+    %table.table.table-borderless.table-hover
       %thead.table-light
         %tr
-          %th{ width: '100%', scope: 'col' } Comment
-          %th{ scope: 'col' } Creator
-          %th{ scope: 'col' } Edit
+          %th.col-8{ scope: 'col' } Comment
+          %th.col-2{ scope: 'col' } Creator
+          %th.col-2{ scope: 'col' } Edit
       %tbody
         - @topic.comments.each do |comment|
           %tr
