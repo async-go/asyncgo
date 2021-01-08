@@ -32,7 +32,7 @@
           - if current_user&.team_id
             %span.badge.bg-secondary.fs-6.me-auto
               Active Team: #{current_user.team.name}
-          %ul.navbar-nav.me-2
+          %ul.navbar-nav.ms-auto.me-2
             %li.nav-item= link_to 'Docs', 'https://docs.asyncgo.com', class: 'nav-link',
               target: :_blank, rel: :noopener
             - if current_user

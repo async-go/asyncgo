@@ -257,7 +257,7 @@ RSpec.describe Teams::TopicsController, type: :request do
           let(:decision) { '' }
 
           before do
-            topic.update!(decision: 'Sample decision')
+            topic.update!(decision: 'Sample decision', decision_html: '<strong>Sample decision</strong>')
           end
 
           it 'updates the topic' do

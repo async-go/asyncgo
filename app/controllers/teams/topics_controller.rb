@@ -53,16 +53,18 @@ module Teams
 
     def topic_params
       params.require(:topic).permit(:title, :description, :decision, :user_id).dup.tap do |original_params|
-        original_params[:decision] = nil if original_params[:decision] && original_params[:decision].empty?
-
         if original_params[:description].present?
           original_params[:description_html] =
             parse_markdown(original_params[:description])
         end
 
-        if original_params[:decision].present?
-          original_params[:decision_html] =
-            parse_markdown(original_params[:decision])
+        if original_params[:decision]
+          if original_params[:decision].empty?
+            original_params[:decision] = nil
+          else
+            original_params[:decision_html] =
+              parse_markdown(original_params[:decision])
+          end
         end
       end
     end
