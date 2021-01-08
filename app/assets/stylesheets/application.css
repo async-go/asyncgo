@@ -19,6 +19,10 @@
   height: 2.5rem;
 }
 
+.commentlist td {
+  padding-right: 1em;
+}
+
 .alert {
   margin-top: 1em;
 }
