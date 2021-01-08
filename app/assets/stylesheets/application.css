@@ -26,3 +26,7 @@
 .alert {
   margin-top: 1em;
 }
+
+.topiclist td {
+  padding-right: 1em;
+}
