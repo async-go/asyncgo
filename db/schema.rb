@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 2020_12_12_232508) do
     t.text "description", null: false
     t.text "description_html", null: false
     t.text "decision"
+    t.text "decision_html"
     t.integer "user_id", null: false
     t.integer "team_id", null: false
     t.datetime "created_at", precision: 6, null: false

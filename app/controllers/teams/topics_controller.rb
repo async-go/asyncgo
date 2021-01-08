@@ -59,6 +59,11 @@ module Teams
           original_params[:description_html] =
             parse_markdown(original_params[:description])
         end
+
+        if original_params[:decision].present?
+          original_params[:decision_html] =
+            parse_markdown(original_params[:decision])
+        end
       end
     end
   end
