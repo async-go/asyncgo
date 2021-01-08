@@ -233,7 +233,7 @@ RSpec.describe Teams::TopicsController, type: :request do
           topic.team.users << user
         end
 
-        context 'when decision is a sentence' do
+        context 'when topic is valid' do
           let(:decision) { 'This is a topic decision.' }
 
           it 'updates the topic' do
@@ -253,31 +253,7 @@ RSpec.describe Teams::TopicsController, type: :request do
           end
         end
 
-        context 'when decision is empty' do
-          let(:decision) { '' }
-
-          before do
-            topic.update!(decision: 'Sample decision')
-          end
-
-          it 'updates the topic' do
-            expect { patch_update }.to change { topic.reload.decision }.to(nil)
-          end
-
-          it 'sets the flash' do
-            patch_update
-
-            expect(controller.flash[:success]).to eq('Topic was successfully updated.')
-          end
-
-          it 'redirects to topic' do
-            patch_update
-
-            expect(response).to redirect_to(team_topic_path(topic.team, Topic.last.id))
-          end
-        end
-
-        context 'when decision is blank' do
+        context 'when topic is not valid' do
           let(:decision) { '   ' }
 
           it 'does not update the topic' do

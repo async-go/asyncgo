@@ -29,7 +29,7 @@ module Teams
       @topic = team.topics.build(topic_params)
       authorize([:teams, @topic])
 
-      if @topic.save
+      if TopicUpdater.new(@topic, topic_params).call
         redirect_to team_topic_path(@topic.team, @topic),
                     flash: { success: 'Topic was successfully created.' }
       else
@@ -41,7 +41,9 @@ module Teams
       @topic = topic
       authorize([:teams, @topic])
 
-      if @topic.update(topic_params)
+      update_result = TopicUpdater.new(@topic, topic_params).call
+
+      if update_result
         redirect_to team_topic_path(@topic.team, @topic),
                     flash: { success: 'Topic was successfully updated.' }
       else
@@ -52,14 +54,7 @@ module Teams
     private
 
     def topic_params
-      params.require(:topic).permit(:title, :description, :decision, :user_id).dup.tap do |original_params|
-        original_params[:decision] = nil if original_params[:decision] && original_params[:decision].empty?
-
-        if original_params[:description].present?
-          original_params[:description_html] =
-            parse_markdown(original_params[:description])
-        end
-      end
+      params.require(:topic).permit(:title, :description, :decision, :user_id)
     end
   end
 end
