@@ -5,30 +5,9 @@
   = link_to 'Back to All Topics', team_topics_path(@topic.team)
   = link_to 'Edit Topic', edit_team_topic_path(@topic.team, @topic)
 
-.row
+.row.mb-5
   .col-lg-8
     = @topic.description_html.html_safe # rubocop:disable Rails/OutputSafety
-
-    %ul.list-group
-      - @topic.comments.each do |comment|
-        %li.list-group-item
-          .row
-            .col-lg-7
-              %p= comment.body_html.html_safe # rubocop:disable Rails/OutputSafety
-            .col-lg-3
-              %span= comment.user.email
-            .col-lg-2
-              %span= link_to 'Edit Comment',
-                edit_team_topic_comment_path(@topic.team, @topic, comment)
-      - if @topic.decision.nil?
-        %li.list-group-item
-          = form_with(model: Comment.new, url: [@topic.team, @topic, Comment.new],
-            local: true, class: 'row g-3') do |form|
-            = form.hidden_field :user_id, value: current_user.id
-            .col-lg-9
-              = form.text_field :body, required: true, class: 'form-control'
-            .col-lg-3
-              = form.submit 'Create Comment', class: 'btn btn-primary'
 
   .col-lg-4
     %h3 Decision
@@ -36,3 +15,25 @@
       .input-group.mb-3
         = form.text_area :decision, class: 'form-control'
       = form.submit 'Update Decision', class: 'btn btn-primary'
+
+.row
+  %ul.list-group.list-group-flush
+    - @topic.comments.each do |comment|
+      %li.list-group-item
+        .row
+          .col-lg-7
+            %p= comment.body_html.html_safe # rubocop:disable Rails/OutputSafety
+          .col-lg-3
+            %span= comment.user.email
+          .col-lg-2
+            %span= link_to 'Edit Comment',
+              edit_team_topic_comment_path(@topic.team, @topic, comment)
+    - if @topic.decision.nil?
+      %li.list-group-item
+        = form_with(model: Comment.new, url: [@topic.team, @topic, Comment.new],
+          local: true, class: 'row g-3') do |form|
+          = form.hidden_field :user_id, value: current_user.id
+          .col-lg-10
+            = form.text_field :body, required: true, class: 'form-control'
+          .col-lg-2
+            = form.submit 'Create Comment', class: 'btn btn-primary'
