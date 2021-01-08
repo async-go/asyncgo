@@ -47,11 +47,11 @@
                 %li.nav-item= link_to 'Create Team', new_team_path,
                   class: class_names('nav-link', active: current_page?(new_team_path))
               %li.nav-item= link_to('Docs', 'https://docs.asyncgo.com',
-                class: class_names('nav-link'))                  
+                class: class_names('nav-link'))
               %li.nav-item= link_to 'Sign out', sign_out_path, method: :delete, class: 'nav-link'
             - else
               %li.nav-item= link_to('Docs', 'https://docs.asyncgo.com',
-                class: class_names('nav-link'))            
+                class: class_names('nav-link'))
               %li.nav-item= link_to 'Sign in', '/auth/google_oauth2', class: 'nav-link'
     %main.container.mt-4{ role: 'main' }
       .sticky-top.mt-2
