@@ -31,13 +31,15 @@
         .collapse.navbar-collapse#navbar-content
           %ul.navbar-nav.me-auto
             - if current_user&.team
+              %li.nav-info Active Team: #{current_user.team.name}
+          %ul.navbar-nav.me-2
+            - if current_user&.team
               %li.nav-item= link_to 'Topics', team_topics_path(current_user.team),
                 class: class_names('nav-link',
                                    active: current_page?(team_topics_path(current_user.team)))
-          %ul.navbar-nav.me-2
             - if current_user
               - if current_user.team_id
-                %li.nav-item= link_to 'Team', edit_team_path(current_user.team_id),
+                %li.nav-item= link_to 'Admin', edit_team_path(current_user.team_id),
                   class: class_names('nav-link',
                   active: current_page?(edit_team_path(current_user.team_id)))
               - else
