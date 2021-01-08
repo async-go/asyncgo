@@ -1,38 +1,38 @@
 %h1 Team: #{@team.name}
 
-.row.row-cols-1.row-cols-lg-2.mt-5
-  .my-3
+.row.mt-3
+  .col-lg-6.my-3
     %h3 Users outside Team
     %p.lead Select user and click button to add.
     = form_with(model: User, url: [@team, :users],
-      class: 'row row-cols-1 row-cols-lg-2 g-3') do |add_user_form|
-      .col
+      class: 'row g-3') do |add_user_form|
+      .col-lg-8
         = add_user_form.select :user_email,
           options_for_select(User.where(team_id: nil).pluck(:email)),
           { include_blank: 'Select user' }, required: true, class: 'form-select', id: 'add-user'
-      .col
+      .col-lg-4
         = add_user_form.submit 'Add User', class: 'btn btn-primary'
 
-  .my-3
+  .col.lg-6.my-3
     %h3 Invite users
     %p.lead Invite users to join your team.
     = form_with(model: User, url: [@team, :users],
-      class: 'row row-cols-1 row-cols-lg-2 g-3') do |invite_user_form|
-      .col
+      class: 'row g-3') do |invite_user_form|
+      .col-lg-8
         .input-group
           .input-group-text Email
           = invite_user_form.text_field :email, class: 'form-control'
-      .col
+      .col-lg-4
         = invite_user_form.submit 'Invite User', class: 'btn btn-primary'
 
 %hr
 
-.row.row-cols-1.row-cols-lg-4
-  .my-3
+.row
+  .col-lg-12
     %h3 Users in Team
     %p.lead Click to remove.
     .list-group.list-group-horizontal-lg
       - @team.users.each do |user|
-        .col
+        .col-lg-3
           = link_to "Remove #{user.email}", team_user_path(@team, user), method: :delete,
             class: 'list-group-item list-group-item-action text-center'

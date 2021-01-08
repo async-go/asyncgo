@@ -5,34 +5,36 @@
   = link_to 'Back to All Topics', team_topics_path(@topic.team)
   = link_to 'Edit Topic', edit_team_topic_path(@topic.team, @topic)
 
-.row.row-cols-1.row-cols-lg-12
-  .col-8
+.row
+  .col-lg-8
     = @topic.description_html.html_safe # rubocop:disable Rails/OutputSafety
 
-    %table.table.table-borderless.table-hover
-      %thead.table-light
-        %tr
-          %th.col-8{ scope: 'col' } Comment
-          %th.col-2{ scope: 'col' } Creator
-          %th.col-2{ scope: 'col' } Edit
-      %tbody
-        - @topic.comments.each do |comment|
+    .table-responsive
+      %table.table.table-borderless.table-hover
+        %thead.table-light
           %tr
-            %td= comment.body_html.html_safe # rubocop:disable Rails/OutputSafety
-            %td= comment.user.email
-            %td= link_to 'Edit Comment', edit_team_topic_comment_path(@topic.team, @topic, comment)
-        - if @topic.decision.nil?
-          %tr
-            %td{ colspan: 3 }
-              = form_with(model: Comment.new, url: [@topic.team, @topic, Comment.new],
-                local: true, class: 'row row-cols-lg-12 g-3') do |form|
-                = form.hidden_field :user_id, value: current_user.id
-                .col-9
-                  = form.text_field :body, required: true, class: 'form-control'
-                .col-3
-                  = form.submit 'Create Comment', class: 'btn btn-primary'
+            %th.col-8{ scope: 'col' } Comment
+            %th.col-2{ scope: 'col' } Creator
+            %th.col-2{ scope: 'col' } Edit
+        %tbody
+          - @topic.comments.each do |comment|
+            %tr
+              %td= comment.body_html.html_safe # rubocop:disable Rails/OutputSafety
+              %td= comment.user.email
+              %td= link_to 'Edit Comment',
+                edit_team_topic_comment_path(@topic.team, @topic, comment)
+          - if @topic.decision.nil?
+            %tr
+              %td{ colspan: 3 }
+                = form_with(model: Comment.new, url: [@topic.team, @topic, Comment.new],
+                  local: true, class: 'row g-3') do |form|
+                  = form.hidden_field :user_id, value: current_user.id
+                  .col-lg-9
+                    = form.text_field :body, required: true, class: 'form-control'
+                  .col-lg-3
+                    = form.submit 'Create Comment', class: 'btn btn-primary'
 
-  .col-4
+  .col-lg-4
     %h3 Decision
     = form_with(model: @topic, url: [@topic.team, @topic], local: true) do |form|
       .input-group.mb-3
