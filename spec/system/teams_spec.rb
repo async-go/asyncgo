@@ -24,7 +24,7 @@ RSpec.describe 'Teams', type: :system do
     team.users << user
     visit '/'
     sign_in_user(user)
-    click_link 'Team'
+    click_link 'Admin'
 
     select other_user.email, from: 'add-user'
     click_button 'Add User'
@@ -38,7 +38,7 @@ RSpec.describe 'Teams', type: :system do
     team.users << user
     visit '/'
     sign_in_user(user)
-    click_link 'Team'
+    click_link 'Admin'
 
     fill_in 'user[email]', with: 'test@example.com'
     click_button 'Invite User'
@@ -54,7 +54,7 @@ RSpec.describe 'Teams', type: :system do
     team.users << other_user
     visit '/'
     sign_in_user(user)
-    click_link 'Team'
+    click_link 'Admin'
 
     click_link "Remove #{other_user.email}"
 
