@@ -32,7 +32,8 @@
           %ul.navbar-nav.me-auto
             - if current_user&.team
               %li
-                %span.p-2.border-1.rounded.bg-secondary.text-white Active Team: #{current_user.team.name}
+                %span.p-2.border-1.rounded.bg-secondary.text-white
+                  Active Team: #{current_user.team.name}
           %ul.navbar-nav.me-2
             - if current_user&.team
               %li.nav-item= link_to 'Topics', team_topics_path(current_user.team),
