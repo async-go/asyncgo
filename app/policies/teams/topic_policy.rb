@@ -19,7 +19,8 @@ module Teams
 
     def edit?
       user &&
-        record.team == user.team
+        record.team == user.team &&
+        record.active?
     end
 
     def create?

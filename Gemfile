@@ -9,14 +9,14 @@ ruby '3.0.0'
 gem 'bootsnap', '>= 1.4.4', require: false # Reduces boot times through caching; required in config/boot.rb
 gem 'puma', '~> 5.0' # Use Puma as the app server
 gem 'pundit', '~> 2.1.0' # Authorization via OO and plain Ruby classes
-gem 'rails', '~> 6.1.0'
+gem 'rails', '~> 6.1.1'
 gem 'sass-rails', '>= 6' # Use SCSS for stylesheets
 gem 'turbolinks', '~> 5' # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'webpacker', '~> 5.0' # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 
 # Other
 gem 'commonmarker', '0.21.0' # GitHub Flavored Markdown renderer
-gem 'hamlit', '~> 2.13.0' # Templating language
+gem 'hamlit', '~> 2.14.1' # Templating language
 gem 'omniauth-google-oauth2', '~> 0.8.0'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -32,12 +32,12 @@ gem 'omniauth-google-oauth2', '~> 0.8.0'
 group :development, :test do
   # Linters
   ## Ruby linter
-  gem 'rubocop', '~> 1.7.0', require: false
+  gem 'rubocop', '~> 1.8.0', require: false
   gem 'rubocop-performance', '~> 1.9.0', require: false
   gem 'rubocop-rails', '~> 2.9.0', require: false
   gem 'rubocop-rspec', '~> 2.1.0', require: false
   ## Haml linter
-  gem 'haml_lint', '~> 0.36.0', require: false
+  gem 'haml_lint', '~> 0.37.0', require: false
   # Other
   gem 'byebug', platforms: %i[mri mingw x64_mingw] # Debugger console by calling 'byebug' anywhere in code
   gem 'dotenv-rails', '~> 2.7.6'

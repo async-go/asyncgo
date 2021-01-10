@@ -5,9 +5,9 @@
     %h3 Users outside Team
     %p.lead Select user and click button to add.
     = form_with(model: User, url: [@team, :users],
-      class: 'row g-3') do |add_user_form|
+      local: true, class: 'row g-3') do |add_user_form|
       .col-lg-8
-        = add_user_form.select :user_email,
+        = add_user_form.select :email,
           options_for_select(User.where(team_id: nil).pluck(:email)),
           { include_blank: 'Select user' }, required: true, class: 'form-select', id: 'add-user'
       .col-lg-4
@@ -17,7 +17,7 @@
     %h3 Invite users
     %p.lead Invite users to join your team.
     = form_with(model: User, url: [@team, :users],
-      class: 'row g-3') do |invite_user_form|
+      local: true, class: 'row g-3') do |invite_user_form|
       .col-lg-8
         .input-group
           .input-group-text Email
@@ -34,5 +34,5 @@
     .list-group.list-group-horizontal-lg
       - @team.users.each do |user|
         .col-lg-3
-          = link_to "Remove #{user.email}", team_user_path(@team, user), method: :delete,
-            class: 'list-group-item list-group-item-action text-center'
+          = link_to "Remove #{user.email}", team_user_path(@team, user),
+            method: :delete, class: 'list-group-item list-group-item-action text-center'

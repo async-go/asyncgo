@@ -5,25 +5,27 @@ module Teams
     include Pundit
 
     def create
-      @team = team
-      authorize(@team, policy_class: Teams::UserPolicy)
+      authorize(team, policy_class: Teams::UserPolicy)
 
-      user = User.find_or_create_by(create_params)
-      @team.users << user
-      UserMailer.with(user: user).welcome_email.deliver_later
+      user = User.find_or_initialize_by(create_params)
+      team.users << user
 
-      redirect_to edit_team_path(@team),
-                  flash: { success: 'User was successfully added to the team.' }
+      if user.persisted?
+        user_flash = { success: 'User was successfully added to the team.' }
+        send_welcome_email(user)
+      else
+        user_flash = { danger: user.errors.full_messages.join(', ') }
+      end
+
+      redirect_to edit_team_path(team), flash: user_flash
     end
 
     def destroy
-      user = User.find(params[:id])
+      user = team.users.find(params[:id])
       authorize([:teams, user])
 
-      @team = team
-      @team.users.delete(user)
-
-      redirect_to edit_team_path(@team),
+      team.users.delete(user)
+      redirect_to edit_team_path(team),
                   flash: { success: 'User was successfully removed from the team.' }
     end
 
@@ -31,6 +33,10 @@ module Teams
 
     def create_params
       params.require(:user).permit(:email)
+    end
+
+    def send_welcome_email(user)
+      UserMailer.with(user: user).welcome_email.deliver_later
     end
   end
 end

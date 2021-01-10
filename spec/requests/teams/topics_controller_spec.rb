@@ -126,10 +126,24 @@ RSpec.describe Teams::TopicsController, type: :request do
           team.users << user
         end
 
-        it 'renders the edit page' do
-          get_edit
+        context 'when topic is active' do
+          before do
+            topic.update!(status: :active)
+          end
 
-          expect(response.body).to include('Update Topic')
+          it 'renders the edit page' do
+            get_edit
+
+            expect(response.body).to include('Update Topic')
+          end
+        end
+
+        context 'when topic is closed' do
+          before do
+            topic.update!(status: :closed)
+          end
+
+          include_examples 'unauthorized user examples', 'You are not authorized.'
         end
       end
 

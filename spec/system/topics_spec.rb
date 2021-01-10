@@ -109,4 +109,21 @@ RSpec.describe 'Topics', type: :system do
 
     expect(page).to have_text('This is updated content')
   end
+
+  it 'allows the user to close and open the topic' do
+    team = FactoryBot.create(:team)
+    user = FactoryBot.create(:user)
+    topic = FactoryBot.create(:topic, team: team)
+    FactoryBot.create(:comment, topic: topic, user: user)
+    team.users << user
+
+    visit '/'
+    sign_in_user(user)
+    click_link 'Topics'
+    click_link topic.title
+    click_button 'Close Topic'
+    click_button 'Open Topic'
+
+    expect(page).to have_button('Close Topic')
+  end
 end
