@@ -247,54 +247,38 @@ RSpec.describe Teams::TopicsController, type: :request do
           topic.team.users << user
         end
 
-        context 'when topic is active' do
-          before do
-            topic.update!(status: :active)
+        context 'when topic is valid' do
+          let(:decision) { 'This is a topic decision.' }
+
+          it 'updates the topic' do
+            expect { patch_update }.to change { topic.reload.decision }.from(nil).to(decision)
           end
 
-          context 'when topic is valid' do
-            let(:decision) { 'This is a topic decision.' }
+          it 'sets the flash' do
+            patch_update
 
-            it 'updates the topic' do
-              expect { patch_update }.to change { topic.reload.decision }.from(nil).to(decision)
-            end
-
-            it 'sets the flash' do
-              patch_update
-
-              expect(controller.flash[:success]).to eq('Topic was successfully updated.')
-            end
-
-            it 'redirects to topic' do
-              patch_update
-
-              expect(response).to redirect_to(team_topic_path(topic.team, Topic.last.id))
-            end
+            expect(controller.flash[:success]).to eq('Topic was successfully updated.')
           end
 
-          context 'when topic is not valid' do
-            let(:decision) { '   ' }
+          it 'redirects to topic' do
+            patch_update
 
-            it 'does not update the topic' do
-              expect { patch_update }.not_to change { topic.reload.decision }.from(nil)
-            end
-
-            it 'shows the error' do
-              patch_update
-
-              expect(response.body).to include('Decision can&#39;t be blank')
-            end
+            expect(response).to redirect_to(team_topic_path(topic.team, Topic.last.id))
           end
         end
 
-        context 'when topic is closed' do
-          let(:decision) { 'This is a sentence.' }
+        context 'when topic is not valid' do
+          let(:decision) { '   ' }
 
-          before do
-            topic.update!(status: :closed)
+          it 'does not update the topic' do
+            expect { patch_update }.not_to change { topic.reload.decision }.from(nil)
           end
 
-          include_examples 'unauthorized user examples', 'You are not authorized.'
+          it 'shows the error' do
+            patch_update
+
+            expect(response.body).to include('Decision can&#39;t be blank')
+          end
         end
       end
 

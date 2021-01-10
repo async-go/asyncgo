@@ -30,8 +30,7 @@ module Teams
 
     def update?
       user &&
-        record.team == user.team &&
-        record.active?
+        record.team == user.team
     end
   end
 end

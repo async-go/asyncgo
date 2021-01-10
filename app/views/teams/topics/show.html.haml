@@ -3,6 +3,13 @@
   = link_to 'Back to All Topics', team_topics_path(@topic.team)
   - if @topic.active?
     = link_to 'Edit Topic', edit_team_topic_path(@topic.team, @topic)
+    = form_with(model: @topic, url: [@topic.team, @topic], local: true) do |form|
+      = form.hidden_field :status, value: :closed
+      = form.submit 'Close Topic', class: 'btn btn-primary'
+  - else
+    = form_with(model: @topic, url: [@topic.team, @topic], local: true) do |form|
+      = form.hidden_field :status, value: :active
+      = form.submit 'Open Topic', class: 'btn btn-primary'
 
 .row.mb-5
   .col-lg-8

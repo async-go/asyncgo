@@ -54,7 +54,7 @@ module Teams
     private
 
     def topic_params
-      params.require(:topic).permit(:title, :description, :decision, :user_id)
+      params.require(:topic).permit(:title, :description, :decision, :status, :user_id)
     end
   end
 end
