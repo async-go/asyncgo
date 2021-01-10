@@ -10,4 +10,6 @@ class Topic < ApplicationRecord
   belongs_to :user
   belongs_to :team
   has_many :comments, dependent: :destroy
+
+  enum status: { active: 0, closed: 1 }
 end
