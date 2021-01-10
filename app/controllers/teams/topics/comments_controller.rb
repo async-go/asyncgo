@@ -11,17 +11,17 @@ module Teams
       end
 
       def create
-        @comment = topic.comments.build(comment_params)
-        authorize([:teams, :topics, @comment])
+        comment = topic.comments.build(comment_params)
+        authorize([:teams, :topics, comment])
 
-        comment_flash = if CommentUpdater.new(@comment, comment_params).call
+        comment_flash = if CommentUpdater.new(comment, comment_params).call
                           { success: 'Comment was successfully created.' }
 
                         else
-                          { danger: @comment.errors.full_messages.join(', ') }
+                          { danger: comment.errors.full_messages.join(', ') }
                         end
 
-        redirect_to team_topic_path(@comment.topic.team, @comment.topic), flash: comment_flash
+        redirect_to team_topic_path(comment.topic.team, comment.topic), flash: comment_flash
       end
 
       def update

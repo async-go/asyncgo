@@ -34,8 +34,5 @@
     .list-group.list-group-horizontal-lg
       - @team.users.each do |user|
         .col-lg-3
-          = form_with(model: user, url: [@team, user],
-            method: :delete, local: true) do |remove_user_form|
-            = remove_user_form.hidden_field :id
-            = remove_user_form.submit "Remove #{user.email}",
-              class: 'list-group-item list-group-item-action text-center'
+          = link_to "Remove #{user.email}", team_user_path(@team, user),
+            method: :delete, class: 'list-group-item list-group-item-action text-center'
