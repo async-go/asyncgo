@@ -29,7 +29,7 @@ RSpec.describe 'Teams', type: :system do
     select other_user.email, from: 'add-user'
     click_button 'Add User'
 
-    expect(page).to have_link("Remove #{user.email}")
+    expect(page).to have_button("Remove #{user.email}")
   end
 
   it 'allows the user to invite users to the team' do
@@ -43,7 +43,7 @@ RSpec.describe 'Teams', type: :system do
     fill_in 'user[email]', with: 'test@example.com'
     click_button 'Invite User'
 
-    expect(page).to have_link('Remove test@example.com')
+    expect(page).to have_button('Remove test@example.com')
   end
 
   it 'allows the user to remove users from the team' do
@@ -56,7 +56,7 @@ RSpec.describe 'Teams', type: :system do
     sign_in_user(user)
     click_link 'Admin'
 
-    click_link "Remove #{other_user.email}"
+    click_button "Remove #{other_user.email}"
 
     expect(page).to have_select('add-user', with_options: [other_user.email])
   end

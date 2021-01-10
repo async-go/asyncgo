@@ -8,29 +8,33 @@ module Teams
       @team = team
       authorize(@team, policy_class: Teams::UserPolicy)
 
-      user = User.find_or_create_by(create_params)
+      user = User.find_or_create_by(user_params)
       @team.users << user
-      UserMailer.with(user: user).welcome_email.deliver_later
 
-      redirect_to edit_team_path(@team),
-                  flash: { success: 'User was successfully added to the team.' }
+      if user.persisted?
+        user_flash = { success: 'User was successfully added to the team.' }
+        UserMailer.with(user: user).welcome_email.deliver_later
+      else
+        user_flash = { danger: user.errors.full_messages.join(', ') }
+      end
+
+      redirect_to edit_team_path(@team), flash: user_flash
     end
 
     def destroy
-      user = User.find(params[:id])
+      @team = team
+      user = @team.users.find_by(user_params)
       authorize([:teams, user])
 
-      @team = team
       @team.users.delete(user)
-
       redirect_to edit_team_path(@team),
                   flash: { success: 'User was successfully removed from the team.' }
     end
 
     private
 
-    def create_params
-      params.require(:user).permit(:email)
+    def user_params
+      params.require(:user).permit(:id, :email)
     end
   end
 end
