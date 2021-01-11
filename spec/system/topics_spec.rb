@@ -121,9 +121,9 @@ RSpec.describe 'Topics', type: :system do
     sign_in_user(user)
     click_link 'Topics'
     click_link topic.title
-    click_button 'Close Topic'
-    click_button 'Open Topic'
+    click_button 'Resolve Topic'
+    click_button 'Reopen Topic'
 
-    expect(page).to have_button('Close Topic')
+    expect(page).to have_button('Resolve Topic')
   end
 end

@@ -1,25 +1,36 @@
-.row.my-5
+.row-mb-1
   %h2= @topic.title
-  = link_to 'Back to All Topics', team_topics_path(@topic.team)
-  - if @topic.active?
-    = link_to 'Edit Topic', edit_team_topic_path(@topic.team, @topic)
-    = form_with(model: @topic, url: [@topic.team, @topic], local: true) do |form|
-      = form.hidden_field :status, value: :closed
-      = form.submit 'Close Topic', class: 'btn btn-primary'
-  - else
-    = form_with(model: @topic, url: [@topic.team, @topic], local: true) do |form|
-      = form.hidden_field :status, value: :active
-      = form.submit 'Open Topic', class: 'btn btn-primary'
 
-.row.mb-5
+.row.mb-0
   .col-lg-8
-    = @topic.description_html.html_safe # rubocop:disable Rails/OutputSafety
+    %h6 Description
 
   .col-lg-4
-    %h3 Decision
-    %p= @topic.decision_html&.html_safe # rubocop:disable Rails/OutputSafety
     - if @topic.active?
-      = link_to 'Edit Decision', edit_team_topic_path(@topic.team, @topic)
+      %h6 Decision (Work in Progress)
+    - else
+      %h6 Decision
+
+.row.mb-1
+  .col-lg-8
+    %p= @topic.description_html.html_safe # rubocop:disable Rails/OutputSafety
+    - if @topic.active?
+      = link_to 'Edit Topic Description/Title', edit_team_topic_path(@topic.team, @topic)
+
+  .col-lg-4
+    - if @topic.active?
+      %p= @topic.decision_html&.html_safe # rubocop:disable Rails/OutputSafety
+      %p
+        = link_to 'Edit Decision', edit_team_topic_path(@topic.team, @topic)
+        = form_with(model: @topic, url: [@topic.team, @topic], local: true) do |form|
+          = form.hidden_field :status, value: :closed
+          = form.submit 'Resolve Topic', class: 'btn btn-primary'
+    - else
+      %p= @topic.decision_html&.html_safe # rubocop:disable Rails/OutputSafety
+      %p
+        = form_with(model: @topic, url: [@topic.team, @topic], local: true) do |form|
+          = form.hidden_field :status, value: :active
+          = form.submit 'Reopen Topic', class: 'btn btn-primary'
 
 .row
   %ul.list-group.list-group-flush
