@@ -10,6 +10,6 @@
     .mb-3
       .input-group
         .input-group-text Body
-        = form.text_area :body, required: true, class: 'form-control'
+        = form.text_area :body, rows: '4', required: true, class: 'form-control'
 
     = form.submit 'Update Comment', class: 'btn btn-primary'
