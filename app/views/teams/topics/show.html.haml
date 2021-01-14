@@ -31,14 +31,16 @@
         = form_with(model: @topic, url: [@topic.team, @topic], local: true) do |form|
           = form.hidden_field :status, value: :active
           = form.submit 'Reopen Topic', class: 'btn btn-primary'
-
+.row
+  .col
+    %hr
 .row
   %ul.list-group.list-group-flush
     - @topic.comments.each do |comment|
       %li.list-group-item
         .row
           .col-lg-7
-            %p= comment.body_html.html_safe # rubocop:disable Rails/OutputSafety
+            %span= comment.body_html.html_safe # rubocop:disable Rails/OutputSafety
           .col-lg-3
             %span= comment.user.email
           .col-lg-2
