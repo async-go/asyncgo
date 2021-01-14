@@ -7,9 +7,9 @@
     = form.text_field :title, required: true, class: 'form-control'
   .input-group.mb-3
     .input-group-text Description
-    = form.text_area :description, required: true, class: 'form-control'
+    = form.text_area :description, rows: '8', required: true, class: 'form-control'
   .input-group.mb-3
     .input-group-text Decision
-    = form.text_area :decision, class: 'form-control'
+    = form.text_area :decision, rows: '8', class: 'form-control'
 
   = form.submit submit_action, class: 'btn btn-primary'
