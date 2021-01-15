@@ -6,6 +6,6 @@ description: Learn how to use AsyncGo
 
 ## Sections
 
-- [Getting Started](gettingstarted.html): Getting started with AsyncGo, and what is async working and why it is important?
+- [Getting Started](gettingstarted.html): Getting started with AsyncGo; what is async working and why it is important?
 - [Working with Topics](topics.html): Topics are a very important concept in AsyncGo
 - [Administration](administration.html): Working with teams and users 
