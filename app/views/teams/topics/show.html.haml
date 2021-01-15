@@ -1,23 +1,19 @@
 .row-mb-1
   %h2= @topic.title
 
-.row.mb-0
+.row
   .col-lg-8
     %h6 Description
-
-  .col-lg-4
-    - if @topic.active?
-      %h6 Decision (Work in Progress)
-    - else
-      %h6 Decision
-
-.row.mb-1
-  .col-lg-8
     %p= @topic.description_html.html_safe # rubocop:disable Rails/OutputSafety
     - if @topic.active?
       = link_to 'Edit Topic Description/Title', edit_team_topic_path(@topic.team, @topic)
 
   .col-lg-4
+    %h6
+      Decision
+      - if @topic.active?
+        (Work in Progress)
+
     - if @topic.active?
       %p= @topic.decision_html&.html_safe # rubocop:disable Rails/OutputSafety
       %p
@@ -31,9 +27,9 @@
         = form_with(model: @topic, url: [@topic.team, @topic], local: true) do |form|
           = form.hidden_field :status, value: :active
           = form.submit 'Reopen Topic', class: 'btn btn-primary'
-.row
-  .col
-    %hr
+
+%hr
+
 .row
   %ul.list-group.list-group-flush
     - @topic.comments.each do |comment|
@@ -56,6 +52,3 @@
             = form.text_area :body, rows: '4', required: true, class: 'form-control'
           .col-lg-2
             = form.submit 'Create Comment', class: 'btn btn-primary'
-.row
-  %p
-    %br
