@@ -1,5 +1,5 @@
 ---
-layout: default-no-splash
+layout: default
 title: 'AsyncGo Documentation: Async Working'
 description: Learn how to use async to improve how your team collaborates
 ---

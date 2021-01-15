@@ -1,5 +1,5 @@
 ---
-layout: default-no-splash
+layout: default
 title: 'AsyncGo Documentation: Getting Started'
 description: Basic Concepts
 ---

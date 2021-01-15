@@ -1,5 +1,5 @@
 ---
-layout: default-no-splash
+layout: default
 title: 'AsyncGo Documentation: Markdown'
 description: Learn how to use markdown to make rich descriptions in topics
 ---
