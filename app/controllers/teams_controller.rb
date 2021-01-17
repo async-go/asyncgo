@@ -26,6 +26,12 @@ class TeamsController < Teams::ApplicationController
     end
   end
 
+  def support
+    authorize(team)
+
+    SupportMailer.with(user: current_user, body: params[:body]).support_email.deliver_later
+  end
+
   private
 
   def team_params

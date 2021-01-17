@@ -10,9 +10,10 @@ Rails.application.routes.draw do
   delete :sign_out, to: 'sessions#destroy'
 
   resources :teams, only: %i[edit new create] do
+    post :support
+
     scope module: :teams do
       resources :users, only: %i[create destroy]
-
       resources :topics, only: %i[index show new edit create update] do
         scope module: :topics do
           resources :comments, only: %i[edit create update]
