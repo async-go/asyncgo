@@ -18,6 +18,7 @@ gem 'webpacker', '~> 5.0' # Transpile app-like JavaScript. Read more: https://gi
 gem 'commonmarker', '0.21.0' # GitHub Flavored Markdown renderer
 gem 'hamlit', '~> 2.14.1' # Templating language
 gem 'omniauth-google-oauth2', '~> 0.8.0'
+gem 'omniauth-rails_csrf_protection', '~> 1.0.0'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.7'
@@ -60,7 +61,7 @@ group :test do
   gem 'factory_bot_rails', '~> 6.1.0' # Factories for generating AR objects in specs
   gem 'faker', '~> 2.15.1' # Fake data for use in specs
   gem 'selenium-webdriver'
-  gem 'shoulda-matchers', '~> 4.4.1' # Additional rspec matchers
+  gem 'shoulda-matchers', '~> 4.5.0' # Additional rspec matchers
   gem 'webdrivers' # Easy installation and use of web drivers for system tests
 end
 

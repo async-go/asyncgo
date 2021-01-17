@@ -3,7 +3,7 @@
 RSpec.describe OmniauthCallbacksController, type: :request do
   describe 'POST google_oauth2' do
     subject(:post_google_oauth2) do
-      get '/auth/google_oauth2'
+      post '/auth/google_oauth2'
       follow_redirect!
     end
 
