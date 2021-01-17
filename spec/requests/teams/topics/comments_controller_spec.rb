@@ -78,6 +78,12 @@ RSpec.describe Teams::Topics::CommentsController, type: :request do
 
             expect(response).to redirect_to(team_topic_path(topic.team, topic))
           end
+
+          it 'subscribes the user to the topic' do
+            post_create
+
+            expect(user.subscribed_topics).to contain_exactly(topic)
+          end
         end
 
         context 'when comment is not valid' do
@@ -97,6 +103,12 @@ RSpec.describe Teams::Topics::CommentsController, type: :request do
             post_create
 
             expect(response).to redirect_to(team_topic_path(topic.team, topic))
+          end
+
+          it 'does not subscribe user to the topic' do
+            post_create
+
+            expect(user.subscribed_topics).to be_empty
           end
         end
       end
@@ -151,6 +163,12 @@ RSpec.describe Teams::Topics::CommentsController, type: :request do
 
             expect(response).to redirect_to(team_topic_path(topic.team, topic))
           end
+
+          it 'does not subscribe user to the topic' do
+            patch_update
+
+            expect(user.subscribed_topics).to be_empty
+          end
         end
 
         context 'when comment is not valid' do
@@ -164,6 +182,12 @@ RSpec.describe Teams::Topics::CommentsController, type: :request do
             patch_update
 
             expect(response.body).to include('Body can&#39;t be blank')
+          end
+
+          it 'does not subscribe user to the topic' do
+            patch_update
+
+            expect(user.subscribed_topics).to be_empty
           end
         end
       end
