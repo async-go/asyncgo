@@ -29,7 +29,13 @@ class TeamsController < Teams::ApplicationController
   def support
     authorize(team)
 
-    SupportMailer.with(user: current_user, body: params[:body]).support_email.deliver_later
+    support_flash = if SupportMailer.with(user: current_user, body: params[:body]).support_email.deliver_later
+                      { success: 'Support request was successfully sent.' }
+                    else
+                      { danger: 'Support request was not sent.' }
+                    end
+
+    redirect_to edit_team_path(team), flash: support_flash
   end
 
   private

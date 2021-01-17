@@ -1,0 +1,21 @@
+# frozen_string_literal: true
+
+RSpec.describe SupportMailer, type: :mailer do
+  let(:user) { FactoryBot.create(:user, :team) }
+  let(:body) { 'Sample body contents' }
+  let(:mail) { described_class.with(user: user, body: body).support_email }
+
+  describe '#welcome_email' do
+    it 'renders the headers' do
+      expect(mail).to have_attributes(
+        subject: "Support request: #{user.team.name}",
+        from: [user.email],
+        to: ['support@asyncgo.com']
+      )
+    end
+
+    it 'renders the body' do
+      expect(mail.body.encoded).to include(body)
+    end
+  end
+end
