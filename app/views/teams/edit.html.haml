@@ -36,3 +36,15 @@
         .col-lg-3
           = link_to "Remove #{user.email}", team_user_path(@team, user),
             method: :delete, class: 'list-group-item list-group-item-action text-center'
+
+%hr
+
+.row
+  .col-lg-12
+    %h3 Support Form
+    %p.lead Use this form to contact support.
+    = form_with(url: team_support_path(@team), local: true, class: 'g-3') do |support_form|
+      .input-group.mb-3
+        .input-group-text Body
+        = support_form.text_area :body, rows: 4, class: 'form-control'
+      = support_form.submit 'Send Email', class: 'btn btn-primary'

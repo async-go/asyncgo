@@ -60,4 +60,20 @@ RSpec.describe 'Teams', type: :system do
 
     expect(page).to have_select('add-user', with_options: [other_user.email])
   end
+
+  it 'allows the user to send a support email' do
+    team = FactoryBot.create(:team)
+    user = FactoryBot.create(:user)
+    other_user = FactoryBot.create(:user)
+    team.users << user
+    team.users << other_user
+    visit '/'
+    sign_in_user(user)
+    click_link 'Admin'
+
+    fill_in 'body', with: 'Hello world'
+    click_button 'Send Email'
+
+    expect(page).to have_text('Support request was successfully sent.')
+  end
 end

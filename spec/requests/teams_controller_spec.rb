@@ -109,4 +109,52 @@ RSpec.describe TeamsController, type: :request do
       include_examples 'unauthorized user examples', 'You are not authorized.'
     end
   end
+
+  describe 'POST support' do
+    subject(:post_support) do
+      post "/teams/#{team.id}/support", params: { body: 'test' }
+    end
+
+    let(:team) { FactoryBot.create(:team) }
+
+    context 'when user is authenticated' do
+      let(:user) { FactoryBot.create(:user) }
+
+      before do
+        sign_in(user)
+      end
+
+      context 'when user is authorized' do
+        before do
+          team.users << user
+        end
+
+        it 'enqueues support email' do
+          expect { post_support }.to have_enqueued_mail(SupportMailer, :support_email).with(
+            a_hash_including(params: { user: user, body: 'test' })
+          ).on_queue(:default)
+        end
+
+        it 'sets the flash' do
+          post_support
+
+          expect(controller.flash[:success]).to eq('Support request was successfully sent.')
+        end
+
+        it 'redirects to edit team path' do
+          post_support
+
+          expect(response).to redirect_to(edit_team_path(team))
+        end
+      end
+
+      context 'when user is not authorized' do
+        include_examples 'unauthorized user examples', 'You are not authorized.'
+      end
+    end
+
+    context 'when user is not authenticated' do
+      include_examples 'unauthorized user examples', 'You are not authorized.'
+    end
+  end
 end

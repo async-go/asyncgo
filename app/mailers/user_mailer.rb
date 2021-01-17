@@ -5,7 +5,6 @@ class UserMailer < ApplicationMailer
 
   def welcome_email
     @user = params[:user]
-    @team = params[:team]
     mail(to: @user.email, subject: 'Welcome to AsyncGo')
   end
 end

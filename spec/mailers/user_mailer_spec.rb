@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
 RSpec.describe UserMailer, type: :mailer do
-  let(:team) { FactoryBot.create(:team) }
-  let(:user) { FactoryBot.create(:user, team: team) }
-  let(:mail) { described_class.with(user: user, team: team).welcome_email }
+  let(:user) { FactoryBot.create(:user, :team) }
+  let(:mail) { described_class.with(user: user).welcome_email }
 
   describe '#welcome_email' do
     it 'renders the headers' do

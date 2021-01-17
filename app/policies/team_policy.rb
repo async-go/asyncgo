@@ -13,4 +13,9 @@ class TeamPolicy < ApplicationPolicy
   def create?
     user
   end
+
+  def support?
+    user &&
+      record == user.team
+  end
 end
