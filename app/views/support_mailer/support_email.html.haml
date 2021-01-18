@@ -1,2 +1,8 @@
-%h2 Support request: #{@user.team.name}
+%h2 Request Info
+%ul
+  %li From: #{@user.email}
+  %li Team Name: #{@user.team.name}
+  %li Team ID: #{@user.team.id}
+
+%h2 Request Content
 %p= @body
