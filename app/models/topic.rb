@@ -10,6 +10,8 @@ class Topic < ApplicationRecord
   belongs_to :user
   belongs_to :team
   has_many :comments, dependent: :destroy
+  has_many :subscriptions, dependent: :destroy
+  has_many :subscribed_users, through: :subscriptions, source: :user
 
   enum status: { active: 0, closed: 1 }
 end

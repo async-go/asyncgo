@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_10_163036) do
+ActiveRecord::Schema.define(version: 2021_01_17_195615) do
 
   create_table "comments", force: :cascade do |t|
     t.text "body", null: false
@@ -21,6 +21,16 @@ ActiveRecord::Schema.define(version: 2021_01_10_163036) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["topic_id"], name: "index_comments_on_topic_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "subscriptions", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "topic_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["topic_id"], name: "index_subscriptions_on_topic_id"
+    t.index ["user_id", "topic_id"], name: "index_subscriptions_on_user_id_and_topic_id", unique: true
+    t.index ["user_id"], name: "index_subscriptions_on_user_id"
   end
 
   create_table "teams", force: :cascade do |t|

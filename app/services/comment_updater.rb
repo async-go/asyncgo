@@ -3,15 +3,21 @@
 class CommentUpdater < ApplicationService
   attr_reader :comment, :update_params
 
-  def initialize(comment, update_params)
+  def initialize(user, comment, update_params)
     super()
 
+    @user = user
     @comment = comment
     @update_params = update_params
   end
 
   def call
-    @comment.update(process_params(update_params))
+    new_comment = @comment.new_record?
+    @comment.update(process_params(update_params)).tap do |result|
+      next unless result && new_comment
+
+      @comment.topic.subscriptions.create(user: @user)
+    end
   end
 
   private

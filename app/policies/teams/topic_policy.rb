@@ -32,5 +32,10 @@ module Teams
       user &&
         record.team == user.team
     end
+
+    def subscribe?
+      user &&
+        record.team == user.team
+    end
   end
 end

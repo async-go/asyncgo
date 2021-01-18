@@ -5,6 +5,13 @@
   .col-lg-8
     %h6 Description
     %p= @topic.description_html.html_safe # rubocop:disable Rails/OutputSafety
+    = form_with(url: team_topic_subscribe_path(@topic.team, @topic),
+      local: true) do |subscription_form|
+      .form-check.form-switch
+        = subscription_form.check_box :subscribed, class: 'form-check-input',
+          checked: current_user.subscribed_topics.exists?(id: @topic.id)
+        = subscription_form.label :subscribed, class: 'form-check-label'
+      = subscription_form.submit 'Update Subscription', class: 'btn btn-primary'
     - if @topic.active?
       = link_to 'Edit Topic Description/Title', edit_team_topic_path(@topic.team, @topic)
 

@@ -14,7 +14,7 @@ module Teams
         comment = topic.comments.build(comment_params)
         authorize([:teams, :topics, comment])
 
-        comment_flash = if CommentUpdater.new(comment, comment_params).call
+        comment_flash = if update_comment(comment, comment_params)
                           { success: 'Comment was successfully created.' }
 
                         else
@@ -28,7 +28,7 @@ module Teams
         @comment = comment
         authorize([:teams, :topics, @comment])
 
-        if CommentUpdater.new(@comment, comment_params).call
+        if update_comment(@comment, comment_params)
           redirect_to team_topic_path(@comment.topic.team, @comment.topic),
                       flash: { success: 'Comment was successfully updated.' }
         else
@@ -44,6 +44,10 @@ module Teams
 
       def comment
         @comment ||= topic.comments.find(params[:comment_id] || params[:id])
+      end
+
+      def update_comment(comment, comment_params)
+        CommentUpdater.new(current_user, comment, comment_params).call
       end
     end
   end
