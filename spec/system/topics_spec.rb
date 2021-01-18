@@ -66,7 +66,7 @@ RSpec.describe 'Topics', type: :system do
     sign_in_user(user)
     click_link 'Topics'
     click_link topic.title
-    click_link 'Edit Decision'
+    click_link 'Edit Outcome'
 
     fill_in 'topic[decision]', with: '__Sample decision__'
     click_button 'Update Topic'

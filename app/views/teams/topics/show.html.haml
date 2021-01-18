@@ -10,14 +10,14 @@
 
   .col-lg-4
     %h6
-      Decision
+      Outcome
       - if @topic.active?
         (Work in Progress)
 
     - if @topic.active?
       %p= @topic.decision_html&.html_safe # rubocop:disable Rails/OutputSafety
       %p
-        = link_to 'Edit Decision', edit_team_topic_path(@topic.team, @topic)
+        = link_to 'Edit Outcome', edit_team_topic_path(@topic.team, @topic)
         = form_with(model: @topic, url: [@topic.team, @topic], local: true) do |form|
           = form.hidden_field :status, value: :closed
           = form.submit 'Resolve Topic', class: 'btn btn-primary'
