@@ -66,7 +66,7 @@ module Teams
     private
 
     def topic_params
-      params.require(:topic).permit(:title, :description, :decision, :status, :user_id)
+      params.require(:topic).permit(:title, :description, :outcome, :status, :user_id)
     end
 
     def update_user_subscription

@@ -56,7 +56,7 @@ RSpec.describe 'Topics', type: :system do
     expect(page).to have_text('This is an update')
   end
 
-  it 'allows the user to summarize a decision on the topic using markdown' do
+  it 'allows the user to summarize a outcome on the topic using markdown' do
     team = FactoryBot.create(:team)
     user = FactoryBot.create(:user)
     topic = FactoryBot.create(:topic, team: team)
@@ -68,10 +68,10 @@ RSpec.describe 'Topics', type: :system do
     click_link topic.title
     click_link 'Edit Outcome'
 
-    fill_in 'topic[decision]', with: '__Sample decision__'
+    fill_in 'topic[outcome]', with: '__Sample outcome__'
     click_button 'Update Topic'
 
-    expect(page.body).to include('<strong>Sample decision</strong>')
+    expect(page.body).to include('<strong>Sample outcome</strong>')
   end
 
   it 'allows the user to leave comments on the topic using markdown' do

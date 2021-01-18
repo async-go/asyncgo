@@ -25,7 +25,7 @@ class TopicUpdater < ApplicationService
   def process_params(original_params)
     original_params.tap do |params|
       processed_params = process_description(params)
-      process_decision(processed_params)
+      process_outcome(processed_params)
     end
   end
 
@@ -37,15 +37,15 @@ class TopicUpdater < ApplicationService
     end
   end
 
-  def process_decision(original_params)
+  def process_outcome(original_params)
     original_params.tap do |params|
-      return params if params[:decision].nil?
+      return params if params[:outcome].nil?
 
-      if params[:decision].empty?
-        params[:decision] = nil
-        params[:decision_html] = nil
-      elsif params[:decision].present?
-        params[:decision_html] = parse_markdown(params[:decision])
+      if params[:outcome].empty?
+        params[:outcome] = nil
+        params[:outcome_html] = nil
+      elsif params[:outcome].present?
+        params[:outcome_html] = parse_markdown(params[:outcome])
       end
     end
   end

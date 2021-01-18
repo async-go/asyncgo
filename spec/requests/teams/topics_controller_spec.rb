@@ -242,7 +242,7 @@ RSpec.describe Teams::TopicsController, type: :request do
   describe 'PATCH update' do
     subject(:patch_update) do
       patch "/teams/#{topic.team.id}/topics/#{topic.id}",
-            params: { topic: { decision: decision } }
+            params: { topic: { outcome: outcome } }
     end
 
     let(:topic) { FactoryBot.create(:topic) }
@@ -260,10 +260,10 @@ RSpec.describe Teams::TopicsController, type: :request do
         end
 
         context 'when topic is valid' do
-          let(:decision) { 'This is a topic decision.' }
+          let(:outcome) { 'This is a topic outcome.' }
 
           it 'updates the topic' do
-            expect { patch_update }.to change { topic.reload.decision }.from(nil).to(decision)
+            expect { patch_update }.to change { topic.reload.outcome }.from(nil).to(outcome)
           end
 
           it 'sets the flash' do
@@ -286,16 +286,16 @@ RSpec.describe Teams::TopicsController, type: :request do
         end
 
         context 'when topic is not valid' do
-          let(:decision) { '   ' }
+          let(:outcome) { '   ' }
 
           it 'does not update the topic' do
-            expect { patch_update }.not_to change { topic.reload.decision }.from(nil)
+            expect { patch_update }.not_to change { topic.reload.outcome }.from(nil)
           end
 
           it 'shows the error' do
             patch_update
 
-            expect(response.body).to include('Decision can&#39;t be blank')
+            expect(response.body).to include('Outcome can&#39;t be blank')
           end
 
           it 'does not subscribe user to the topic' do
@@ -307,7 +307,7 @@ RSpec.describe Teams::TopicsController, type: :request do
       end
 
       context 'when user is not authorized' do
-        let(:decision) { nil }
+        let(:outcome) { nil }
 
         include_examples 'unauthorized user examples', 'You are not authorized.'
       end
@@ -315,7 +315,7 @@ RSpec.describe Teams::TopicsController, type: :request do
 
     context 'when user is not authenticated' do
       let(:user) { nil }
-      let(:decision) { nil }
+      let(:outcome) { nil }
 
       include_examples 'unauthorized user examples', 'You are not authorized.'
     end

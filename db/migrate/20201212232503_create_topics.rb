@@ -6,8 +6,8 @@ class CreateTopics < ActiveRecord::Migration[6.1]
       t.string :title, null: false
       t.text :description, null: false
       t.text :description_html, null: false
-      t.text :decision, null: true
-      t.text :decision_html, null: true
+      t.text :outcome, null: true
+      t.text :outcome_html, null: true
       t.references :user, null: false
       t.references :team, null: false
 

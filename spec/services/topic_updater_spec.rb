@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe TopicUpdater, type: :service do
-  let(:service) { described_class.new(user, topic, { description: description, decision: decision }) }
+  let(:service) { described_class.new(user, topic, { description: description, outcome: outcome }) }
   let(:user) { FactoryBot.create(:user) }
 
   describe '#call' do
@@ -9,7 +9,7 @@ RSpec.describe TopicUpdater, type: :service do
 
     context 'when topic is being created' do
       let(:topic) { FactoryBot.build(:topic) }
-      let(:decision) { nil }
+      let(:outcome) { nil }
 
       context 'when parameters are valid' do
         let(:description) { '__bold__' }
@@ -34,23 +34,23 @@ RSpec.describe TopicUpdater, type: :service do
           expect(user.subscribed_topics).to contain_exactly(topic)
         end
 
-        context 'when decision is not empty' do
-          let(:decision) { '__bold__' }
+        context 'when outcome is not empty' do
+          let(:outcome) { '__bold__' }
 
-          it 'parses the decision markdown' do
-            expect { call }.to change(topic, :decision_html).to("<p><strong>bold</strong></p>\n")
+          it 'parses the outcome markdown' do
+            expect { call }.to change(topic, :outcome_html).to("<p><strong>bold</strong></p>\n")
           end
         end
 
-        context 'when decision is empty' do
-          let(:decision) { '' }
+        context 'when outcome is empty' do
+          let(:outcome) { '' }
 
           before do
-            topic.update!(decision: 'bold', decision_html: '<p><strong>bold</strong></p>')
+            topic.update!(outcome: 'bold', outcome_html: '<p><strong>bold</strong></p>')
           end
 
-          it 'parses the decision markdown' do
-            expect { call }.to change(topic, :decision).to(nil)
+          it 'parses the outcome markdown' do
+            expect { call }.to change(topic, :outcome).to(nil)
           end
         end
       end
@@ -74,7 +74,7 @@ RSpec.describe TopicUpdater, type: :service do
 
     context 'when topic is being updated' do
       let(:topic) { FactoryBot.create(:topic) }
-      let(:decision) { nil }
+      let(:outcome) { nil }
 
       context 'when parameters are valid' do
         let(:description) { '__bold__' }
@@ -89,23 +89,23 @@ RSpec.describe TopicUpdater, type: :service do
           expect(user.subscribed_topics).to be_empty
         end
 
-        context 'when decision is not empty' do
-          let(:decision) { '__bold__' }
+        context 'when outcome is not empty' do
+          let(:outcome) { '__bold__' }
 
-          it 'parses the decision markdown' do
-            expect { call }.to change(topic, :decision_html).to("<p><strong>bold</strong></p>\n")
+          it 'parses the outcome markdown' do
+            expect { call }.to change(topic, :outcome_html).to("<p><strong>bold</strong></p>\n")
           end
         end
 
-        context 'when decision is empty' do
-          let(:decision) { '' }
+        context 'when outcome is empty' do
+          let(:outcome) { '' }
 
           before do
-            topic.update!(decision: 'bold', decision_html: '<p><strong>bold</strong></p>')
+            topic.update!(outcome: 'bold', outcome_html: '<p><strong>bold</strong></p>')
           end
 
-          it 'parses the decision markdown' do
-            expect { call }.to change(topic, :decision).to(nil)
+          it 'parses the outcome markdown' do
+            expect { call }.to change(topic, :outcome).to(nil)
           end
         end
       end
