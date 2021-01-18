@@ -320,4 +320,89 @@ RSpec.describe Teams::TopicsController, type: :request do
       include_examples 'unauthorized user examples', 'You are not authorized.'
     end
   end
+
+  # rubocop:disable RSpec/NestedGroups
+  describe 'POST subscribe' do
+    subject(:post_subscribe) do
+      post "/teams/#{topic.team.id}/topics/#{topic.id}/subscribe",
+           params: { subscribed: subscribed }
+    end
+
+    let(:topic) { FactoryBot.create(:topic) }
+
+    context 'when user is authenticated' do
+      let(:user) { FactoryBot.create(:user) }
+
+      before do
+        sign_in(user)
+      end
+
+      context 'when user is authorized' do
+        before do
+          topic.team.users << user
+        end
+
+        context 'when user is subscribed' do
+          before do
+            user.subscribed_topics << topic
+          end
+
+          context 'when subscription is checked' do
+            let(:subscribed) { '1' }
+
+            it 'does not unsubscribe the user' do
+              post_subscribe
+
+              expect(user.subscribed_topics.reload).to contain_exactly(topic)
+            end
+          end
+
+          context 'when subscription is not checked' do
+            let(:subscribed) { '0' }
+
+            it 'unsubscribes the user' do
+              post_subscribe
+
+              expect(user.subscribed_topics.reload).to be_empty
+            end
+          end
+        end
+
+        context 'when user is not subscribed' do
+          context 'when subscription is checked' do
+            let(:subscribed) { '1' }
+
+            it 'subscribes the user' do
+              post_subscribe
+
+              expect(user.subscribed_topics.reload).to contain_exactly(topic)
+            end
+          end
+
+          context 'when subscription is not checked' do
+            let(:subscribed) { '0' }
+
+            it 'does not subscribe the user' do
+              post_subscribe
+
+              expect(user.subscribed_topics.reload).to be_empty
+            end
+          end
+        end
+      end
+
+      context 'when user is not authorized' do
+        let(:subscribed) { nil }
+
+        include_examples 'unauthorized user examples', 'You are not authorized.'
+      end
+    end
+
+    context 'when user is not authenticated' do
+      let(:subscribed) { nil }
+
+      include_examples 'unauthorized user examples', 'You are not authorized.'
+    end
+  end
+  # rubocop:enable RSpec/NestedGroups
 end

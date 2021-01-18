@@ -51,10 +51,32 @@ module Teams
       end
     end
 
+    def subscribe
+      authorize([:teams, topic])
+
+      subscribe_flash = if update_user_subscription
+                          { success: 'User subscription status was successfully changed.' }
+                        else
+                          { danger: 'There was an error while changing the subscription status.' }
+                        end
+
+      redirect_to team_topic_path(topic.team, topic), flash: subscribe_flash
+    end
+
     private
 
     def topic_params
       params.require(:topic).permit(:title, :description, :decision, :status, :user_id)
+    end
+
+    def update_user_subscription
+      subscription = current_user.subscriptions.find_or_initialize_by(topic_id: topic.id)
+
+      if params[:subscribed] == '1' && subscription.new_record?
+        subscription.save
+      elsif params[:subscribed] == '0' && subscription.persisted?
+        subscription.destroy
+      end
     end
   end
 end

@@ -126,4 +126,25 @@ RSpec.describe 'Topics', type: :system do
 
     expect(page).to have_button('Resolve Topic')
   end
+
+  it 'allows the user to subscribe and unsubscribe from the topic' do
+    team = FactoryBot.create(:team)
+    user = FactoryBot.create(:user)
+    topic = FactoryBot.create(:topic, team: team)
+    FactoryBot.create(:comment, topic: topic, user: user)
+    team.users << user
+
+    visit '/'
+    sign_in_user(user)
+    click_link 'Topics'
+    click_link topic.title
+
+    expect(page).to have_unchecked_field('subscribed')
+    check 'subscribed'
+    click_button 'Update Subscription'
+    expect(page).to have_checked_field('subscribed')
+    uncheck 'subscribed'
+    click_button 'Update Subscription'
+    expect(page).to have_unchecked_field('subscribed')
+  end
 end
