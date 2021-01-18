@@ -1,10 +1,19 @@
 %h2 Welcome to AsyncGo
-%br
+
+%p.lead
+  - if current_user&.team_id.present?
+    You're all set! Feel free to hop into the topics list! =>
+    = link_to 'Team Topics', team_topics_path(current_user.team)
+  - elsif current_user
+    Woohoo, you're signed in. The next step is to either get invited to a team or create one. =>
+    = link_to 'Create New Team', new_team_path
+  - else
+    Hi - the first step is to sign in.
+
 %p
   Documentation is available on our #{link_to('docs site', 'https://docs.asyncgo.com')}
   and general product information can be found on our
   #{link_to('home page', 'https://asyncgo.com')}.
-
 %p
   Cookie consent policy (and choices), privacy policy, and terms of use can be found on our
   #{link_to('main website', 'https://asyncgo.com/policies.html')}. These policies are for use of
