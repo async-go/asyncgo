@@ -17,5 +17,9 @@ RSpec.describe SupportMailer, type: :mailer do
     it 'renders the body' do
       expect(mail.body.encoded).to include(body)
     end
+
+    it 'shows the team id' do
+      expect(mail.body.encoded).to include("Team ID: #{user.team.id}")
+    end
   end
 end
