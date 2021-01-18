@@ -3,15 +3,21 @@
 class TopicUpdater < ApplicationService
   attr_reader :topic, :update_params
 
-  def initialize(topic, update_params)
+  def initialize(user, topic, update_params)
     super()
 
+    @user = user
     @topic = topic
     @update_params = update_params
   end
 
   def call
-    @topic.update(process_params(update_params))
+    new_topic = @topic.new_record?
+    @topic.update(process_params(update_params)).tap do |result|
+      next unless result && new_topic
+
+      @topic.subscriptions.create(user: @user)
+    end
   end
 
   private

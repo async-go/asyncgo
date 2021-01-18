@@ -29,7 +29,7 @@ module Teams
       @topic = team.topics.build(topic_params)
       authorize([:teams, @topic])
 
-      if TopicUpdater.new(@topic, topic_params).call
+      if TopicUpdater.new(current_user, @topic, topic_params).call
         redirect_to team_topic_path(@topic.team, @topic),
                     flash: { success: 'Topic was successfully created.' }
       else
@@ -41,7 +41,7 @@ module Teams
       @topic = topic
       authorize([:teams, @topic])
 
-      update_result = TopicUpdater.new(@topic, topic_params).call
+      update_result = TopicUpdater.new(current_user, @topic, topic_params).call
 
       if update_result
         redirect_to team_topic_path(@topic.team, @topic),

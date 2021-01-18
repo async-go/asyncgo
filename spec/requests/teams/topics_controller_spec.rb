@@ -195,6 +195,12 @@ RSpec.describe Teams::TopicsController, type: :request do
 
             expect(response).to redirect_to(team_topic_path(team, Topic.last.id))
           end
+
+          it 'subscribes the user to the topic' do
+            post_create
+
+            expect(user.subscribed_topics).to contain_exactly(Topic.last)
+          end
         end
 
         context 'when topic is not valid' do
@@ -208,6 +214,12 @@ RSpec.describe Teams::TopicsController, type: :request do
             post_create
 
             expect(response.body).to include('Title can&#39;t be blank')
+          end
+
+          it 'does not subscribe user to the topic' do
+            post_create
+
+            expect(user.subscribed_topics).to be_empty
           end
         end
       end
@@ -265,6 +277,12 @@ RSpec.describe Teams::TopicsController, type: :request do
 
             expect(response).to redirect_to(team_topic_path(topic.team, Topic.last.id))
           end
+
+          it 'does not subscribe user to the topic' do
+            patch_update
+
+            expect(user.subscribed_topics).to be_empty
+          end
         end
 
         context 'when topic is not valid' do
@@ -278,6 +296,12 @@ RSpec.describe Teams::TopicsController, type: :request do
             patch_update
 
             expect(response.body).to include('Decision can&#39;t be blank')
+          end
+
+          it 'does not subscribe user to the topic' do
+            patch_update
+
+            expect(user.subscribed_topics).to be_empty
           end
         end
       end
