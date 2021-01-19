@@ -17,6 +17,7 @@ gem 'webpacker', '~> 5.0' # Transpile app-like JavaScript. Read more: https://gi
 # Other
 gem 'commonmarker', '0.21.0' # GitHub Flavored Markdown renderer
 gem 'hamlit', '~> 2.14.1' # Templating language
+gem 'omniauth-github', '~> 2.0.0'
 gem 'omniauth-google-oauth2', '~> 0.8.0'
 gem 'omniauth-rails_csrf_protection', '~> 1.0.0'
 
@@ -71,5 +72,3 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
-
-gem 'omniauth-github', '~> 2.0'
