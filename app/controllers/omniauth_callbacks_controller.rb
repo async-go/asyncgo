@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class OmniauthCallbacksController < ApplicationController
-
   def google_oauth2
     handle_auth
   end
