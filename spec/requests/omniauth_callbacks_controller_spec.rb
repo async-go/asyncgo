@@ -64,9 +64,7 @@ RSpec.describe OmniauthCallbacksController, type: :request do
       end
     end
   end
-end
 
-RSpec.describe OmniauthCallbacksController, type: :request do
   describe 'POST github' do
     subject(:post_github) do
       post '/auth/github'
