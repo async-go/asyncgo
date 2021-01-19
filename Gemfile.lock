@@ -152,6 +152,9 @@ GEM
       hashie (>= 3.4.6)
       rack (>= 1.6.2, < 3)
       rack-protection
+    omniauth-github (2.0.0)
+      omniauth (~> 2.0)
+      omniauth-oauth2 (~> 1.7.1)
     omniauth-google-oauth2 (0.8.1)
       jwt (>= 2.0)
       oauth2 (~> 1.1)
@@ -328,6 +331,7 @@ DEPENDENCIES
   haml_lint (~> 0.37.0)
   hamlit (~> 2.14.1)
   listen (~> 3.3)
+  omniauth-github (~> 2.0)
   omniauth-google-oauth2 (~> 0.8.0)
   omniauth-rails_csrf_protection (~> 1.0.0)
   pg (~> 1.2.3)

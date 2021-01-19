@@ -47,8 +47,19 @@
                   class: class_names('nav-link', active: current_page?(new_team_path))
               %li.nav-item= link_to 'Sign out', sign_out_path, method: :delete, class: 'nav-link'
             - else
-              %li.nav-item= button_to 'Sign in', '/auth/google_oauth2',
-                class: 'nav-link border-0 bg-transparent'
+              %li.nav-item.dropdown
+                %a.nav-link.dropdown-toggle{
+                  'href': '#',
+                  'id': 'signinMenu',
+                  'role': 'button',
+                  'data-toggle': 'dropdown',
+                  'aria-haspopup': 'true',
+                  'aria-expanded': 'false' } Sign In
+                %div.dropdown-menu{
+                  'aria-labelledby': 'signinMenu'
+                }
+                  %a.dropdown-item= button_to 'GitHub', '/auth/github'                      
+                  %a.dropdown-item= button_to 'Google', '/auth/google_oauth2'
 
     %main.container.mt-4{ role: 'main' }
       .sticky-top.mt-2

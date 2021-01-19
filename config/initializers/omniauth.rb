@@ -5,4 +5,5 @@ Rails.application.config.middleware.use OmniAuth::Builder do
            {
              prompt: 'select_account'
            }
+  provider :github, ENV['GITHUB_KEY'], ENV['GITHUB_SECRET'], scope: "user:email"
 end
