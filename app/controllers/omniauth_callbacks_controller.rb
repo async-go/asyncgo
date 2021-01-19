@@ -1,6 +1,17 @@
 # frozen_string_literal: true
 
 class OmniauthCallbacksController < ApplicationController
+
+  def google_oauth2
+    handle_auth
+  end
+
+  def github
+    handle_auth
+  end
+
+  private
+
   def handle_auth
     user = User.from_omniauth(request.env['omniauth.auth'])
 
@@ -13,11 +24,4 @@ class OmniauthCallbacksController < ApplicationController
 
     redirect_to root_path
   end
-
-  def google_oauth2
-    handle_auth
-  end
-
-  def github
-    handle_auth
 end
