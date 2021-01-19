@@ -55,11 +55,11 @@
                   'aria-haspopup': 'true',
                   'aria-expanded': 'false' }
                   Sign in
-                .dropdown-menu{ 'aria-labelledby': 'signinDropdown' }
-                  %a.dropdown-item= button_to 'Google', '/auth/google_oauth2',
-                    class: 'nav-link border-0 bg-transparent'
-                  %a.dropdown-item= button_to 'GitHub', '/auth/github',
-                    class: 'nav-link border-0 bg-transparent'
+                %ul.dropdown-menu{ 'aria-labelledby': 'signinDropdown' }
+                  %li= button_to 'Google', '/auth/google_oauth2',
+                    class: 'dropdown-item'
+                  %li= button_to 'GitHub', '/auth/github',
+                    class: 'dropdown-item'
 
     %main.container.mt-4{ role: 'main' }
       .sticky-top.mt-2
