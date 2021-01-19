@@ -57,8 +57,10 @@
                   'aria-expanded': 'false'}
                   Sign In Using
                 %div.dropdown-menu{ 'aria-labelledby': 'navbarDropdown' }
-                  %a.dropdown-item{ 'href': '/auth/github' } GitHub
-                  %a.dropdown-item{ 'href': '/auth/google_oauth2' } Google
+                  %a.dropdown-item= button_to 'Google', '/auth/google_oauth2',
+                    class: 'nav-link border-0 bg-transparent'
+                  %a.dropdown-item= button_to 'GitHub', '/auth/github',
+                    class: 'nav-link border-0 bg-transparent'
 
     %main.container.mt-4{ role: 'main' }
       .sticky-top.mt-2
