@@ -10,7 +10,8 @@ RSpec.describe 'Authentication', type: :system do
 
     OmniAuth.config.add_mock(:google_oauth2,
                              info: { email: 'test@example.com' })
-    click_button('Sign in', class: 'nav-link')
+    click_link('Sign in', class: 'nav-link')
+    click_button('Google', class: 'dropdown-item')
     expect(page).to have_link('Sign out')
   end
 
@@ -20,6 +21,6 @@ RSpec.describe 'Authentication', type: :system do
     sign_in_user
 
     click_link('Sign out')
-    expect(page).to have_button('Sign in')
+    expect(page).to have_link('Sign in')
   end
 end

@@ -2,6 +2,16 @@
 
 class OmniauthCallbacksController < ApplicationController
   def google_oauth2
+    handle_auth
+  end
+
+  def github
+    handle_auth
+  end
+
+  private
+
+  def handle_auth
     user = User.from_omniauth(request.env['omniauth.auth'])
 
     if user.persisted?
