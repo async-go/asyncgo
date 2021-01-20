@@ -5,6 +5,7 @@
 - ruby 3.0.0 (see `.ruby-version`)
   - bundler 2.1.4
 - yarn 1.22.10
+- chrome (for headless rspec tests)
 
 ## Start the development server
 
