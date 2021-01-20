@@ -1,8 +1,11 @@
-%h1 Welcome to AsyncGo.com, #{@user.email}
+%h1 Welcome to AsyncGo!
 %p
-  You have been invited to join #{@user.team.name} at AsyncGo.com,
-  your email is: #{@user.email}.
+  You have been invited to join team "#{@user.team.name}" on AsyncGo.
 %p
-  To login to the site, just follow this link:
-  %a{ href: 'https://app.asyncgo.com' } login
+  To sign in, just follow
+  %a{ href: 'https://app.asyncgo.com' } this link
+  and use an OAuth account connected with #{@user.email}.
+  Documentation is available on our
+  %a{ href: 'https://app.asyncgo.com' } docs site
+  \.
 %p Thanks for joining and have a great day!

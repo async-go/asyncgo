@@ -14,7 +14,7 @@ RSpec.describe UserMailer, type: :mailer do
     end
 
     it 'renders the body' do
-      expect(mail.body.encoded).to include('Welcome to AsyncGo.com')
+      expect(mail.body.encoded).to include('You have been invited')
     end
   end
 end
