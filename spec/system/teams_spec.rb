@@ -43,7 +43,7 @@ RSpec.describe 'Teams', type: :system do
 
     click_link "Remove #{other_user.email}"
 
-    expect(page).not_to have_link("Remove #{other_user.email}")    
+    expect(page).not_to have_link("Remove #{other_user.email}")
   end
 
   it 'allows the user to send a support email' do
