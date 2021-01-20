@@ -77,10 +77,13 @@
               %span= message
               %button.btn-close{ 'data-bs-dismiss' => 'alert', 'aira-lable' => 'close' }
       = yield
-    = render partial: 'shared/footer.html'
+    = render partial: 'shared/footer'
     -# haml-lint:disable LineLength
     = javascript_include_tag 'https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js',
       integrity: 'sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj',
+      crossorigin: 'anonymous',
+      type: 'text/javascript'
+    = javascript_include_tag 'https://kit.fontawesome.com/55ce2d2ceb.js',
       crossorigin: 'anonymous',
       type: 'text/javascript'
     -# haml-lint:disable LineLength
