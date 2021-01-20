@@ -1,19 +1,7 @@
 %h2 Configuration for #{@team.name}
 
 .row.mt-3
-  .col-lg-6.my-3
-    %h3 Users outside Team
-    %p.lead Select user and click button to add.
-    = form_with(model: User, url: [@team, :users],
-      local: true, class: 'row g-3') do |add_user_form|
-      .col-lg-8
-        = add_user_form.select :email,
-          options_for_select(User.where(team_id: nil).pluck(:email)),
-          { include_blank: 'Select user' }, required: true, class: 'form-select', id: 'add-user'
-      .col-lg-4
-        = add_user_form.submit 'Add User', class: 'btn btn-primary'
-
-  .col.lg-6.my-3
+  .col.lg-12.my-3
     %h3 Invite users
     %p.lead Invite users to join your team.
     = form_with(model: User, url: [@team, :users],
