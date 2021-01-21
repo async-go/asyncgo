@@ -1,48 +1,55 @@
 .row-mb-1
-  %h2= @topic.title
+  %h2
+    %strong= @topic.title
 
 .row
-  .col-lg-8
-    %h6 Description
+  .col-lg-8.border
+    %h6.pt-2.text-secondary Description
     %p= @topic.description_html.html_safe # rubocop:disable Rails/OutputSafety
-    = form_with(url: team_topic_subscribe_path(@topic.team, @topic),
-      local: true) do |subscription_form|
-      .form-check.form-switch
-        = subscription_form.check_box :subscribed, class: 'form-check-input',
-          checked: current_user.subscribed_topics.exists?(id: @topic.id)
-        = subscription_form.label :subscribed, class: 'form-check-label'
-      = subscription_form.submit 'Update Subscription', class: 'btn btn-primary'
-    - if @topic.active?
-      = link_to 'Edit Topic Description/Title', edit_team_topic_path(@topic.team, @topic)
 
-  .col-lg-4
-    %h6
+  .col-lg-4.border
+    %h6.pt-2.text-secondary
       Outcome
       - if @topic.active?
         (Work in Progress)
-
-    - if @topic.active?
       %p= @topic.outcome_html&.html_safe # rubocop:disable Rails/OutputSafety
+
+.row
+  .col-lg-8
+    - if @topic.active?
+      = link_to 'Edit Topic Description/Title/Outcome', edit_team_topic_path(@topic.team, @topic)
+
+  .col-lg-2
+    - if @topic.active?
       %p
-        = link_to 'Edit Outcome', edit_team_topic_path(@topic.team, @topic)
         = form_with(model: @topic, url: [@topic.team, @topic], local: true) do |form|
           = form.hidden_field :status, value: :closed
           = form.submit 'Resolve Topic', class: 'btn btn-primary'
     - else
-      %p= @topic.outcome_html&.html_safe # rubocop:disable Rails/OutputSafety
       %p
         = form_with(model: @topic, url: [@topic.team, @topic], local: true) do |form|
           = form.hidden_field :status, value: :active
           = form.submit 'Reopen Topic', class: 'btn btn-primary'
+
+  .col-lg-2
+    %p
+      = form_with(url: team_topic_subscribe_path(@topic.team, @topic),
+                  local: true) do |subscription_form|
+        - if current_user.subscribed_topics.exists?(id: @topic.id)
+          = subscription_form.hidden_field :subscribed, value: 0
+          = subscription_form.submit 'Unwatch Topic', class: 'btn btn-primary'
+        - else
+          = subscription_form.hidden_field :subscribed, value: 1
+          = subscription_form.submit 'Watch Topic', class: 'btn btn-primary'
 
 .row.border-top.mb-2
   %ul.list-group.list-group-flush
     - @topic.comments.each do |comment|
       %li.list-group-item
         .row
-          .col-lg-7
+          .col-lg-8
             %p= comment.body_html.html_safe # rubocop:disable Rails/OutputSafety
-          .col-lg-3
+          .col-lg-2
             %span= comment.user.email
           .col-lg-2
             - if @topic.active? && policy([:teams, :topics, comment]).edit?

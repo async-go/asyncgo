@@ -66,7 +66,7 @@ RSpec.describe 'Topics', type: :system do
     sign_in_user(user)
     click_link 'Topics'
     click_link topic.title
-    click_link 'Edit Outcome'
+    click_link 'Edit Topic Description/Title/Outcome'
 
     fill_in 'topic[outcome]', with: '__Sample outcome__'
     click_button 'Update Topic'
@@ -139,12 +139,10 @@ RSpec.describe 'Topics', type: :system do
     click_link 'Topics'
     click_link topic.title
 
-    expect(page).to have_unchecked_field('subscribed')
-    check 'subscribed'
-    click_button 'Update Subscription'
-    expect(page).to have_checked_field('subscribed')
-    uncheck 'subscribed'
-    click_button 'Update Subscription'
-    expect(page).to have_unchecked_field('subscribed')
+    expect(page).to have_button('Watch Topic')
+    click_button 'Watch Topic'
+    expect(page).to have_button('Unwatch Topic')
+    click_button 'Unwatch Topic'
+    expect(page).to have_button('Watch Topic')
   end
 end
