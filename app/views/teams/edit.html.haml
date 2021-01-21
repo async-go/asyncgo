@@ -6,11 +6,15 @@
     %p.lead Invite users to join your team.
     = form_with(model: User, url: [@team, :users],
       local: true, class: 'row g-3') do |invite_user_form|
-      .col-lg-8
+      .col-lg-5
         .input-group
           .input-group-text Email
           = invite_user_form.text_field :email, class: 'form-control'
-      .col-lg-4
+      .col-lg-5
+        .input-group
+          .input-group-text Name
+          = invite_user_form.text_field :name, class: 'form-control'          
+      .col-lg-2
         = invite_user_form.submit 'Invite User', class: 'btn btn-primary'
 
 %hr
@@ -22,7 +26,7 @@
     .list-group.list-group-horizontal-lg
       - @team.users.each do |user|
         .col-lg-3
-          = link_to "Remove #{user.email}", team_user_path(@team, user),
+          = link_to "#{user.email} (#{user.name})", team_user_path(@team, user),
             method: :delete, class: 'list-group-item list-group-item-action text-center'
 
 %hr

@@ -26,9 +26,10 @@ RSpec.describe 'Teams', type: :system do
     click_link 'Admin'
 
     fill_in 'user[email]', with: 'test@example.com'
+    fill_in 'user[name]', with: 'Test Person'
     click_button 'Invite User'
 
-    expect(page).to have_link('Remove test@example.com')
+    expect(page).to have_link('test@example.com ()')
   end
 
   it 'allows the user to remove users from the team' do
@@ -41,9 +42,9 @@ RSpec.describe 'Teams', type: :system do
     sign_in_user(user)
     click_link 'Admin'
 
-    click_link "Remove #{other_user.email}"
+    click_link "#{other_user.email} (#{other_user.name})"
 
-    expect(page).not_to have_link("Remove #{other_user.email}")
+    expect(page).not_to have_link("#{other_user.email} (#{other_user.name}")
   end
 
   it 'allows the user to send a support email' do

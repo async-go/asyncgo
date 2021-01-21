@@ -6,6 +6,7 @@ RSpec.describe User, type: :model do
       FactoryBot.create(:user)
     end
 
+    it { is_expected.to validate_presence_of(:name) }
     it { is_expected.to validate_presence_of(:email) }
     it { is_expected.to validate_uniqueness_of(:email) }
   end
@@ -25,13 +26,14 @@ RSpec.describe User, type: :model do
       {
         provider: 'google_oauth2',
         info: {
-          email: 'john@example.com'
+          email: 'john@example.com',
+          name: 'John Sample'
         }
       }
     end
 
     context 'when a user exists' do
-      let!(:user) { FactoryBot.create(:user, email: 'john@example.com') }
+      let!(:user) { FactoryBot.create(:user, email: 'john@example.com', name: 'John Sample') }
 
       it 'does not create user' do
         expect { from_omniauth }.not_to change(described_class, :count).from(1)
@@ -48,7 +50,7 @@ RSpec.describe User, type: :model do
       end
 
       it 'returns new user' do
-        expect(from_omniauth).to have_attributes(email: 'john@example.com')
+        expect(from_omniauth).to have_attributes(email: 'john@example.com', name: 'John Sample')
       end
     end
   end

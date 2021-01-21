@@ -32,7 +32,7 @@ module Teams
     private
 
     def create_params
-      params.require(:user).permit(:email)
+      params.require(:user).permit(:email, :name)
     end
 
     def send_welcome_email(user)

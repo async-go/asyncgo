@@ -5,7 +5,8 @@
         .col-lg-7
           = link_to topic.title, team_topic_path(current_user.team, topic)
         .col-lg-3
-          %span= topic.user.email
+          %span
+            = link_to topic.user.name, "mailto:#{topic.user.email}"
         .col-lg-2
           %span= topic.created_at.strftime('%b %e')
   - if new_form

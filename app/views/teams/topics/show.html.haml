@@ -43,7 +43,8 @@
           .col-lg-7
             %p= comment.body_html.html_safe # rubocop:disable Rails/OutputSafety
           .col-lg-3
-            %span= comment.user.email
+            %span
+              = link_to comment.user.name, "mailto:#{comment.user.email}"
           .col-lg-2
             - if @topic.active? && policy([:teams, :topics, comment]).edit?
               %span= link_to 'Edit Comment',

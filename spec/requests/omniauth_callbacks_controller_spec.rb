@@ -11,7 +11,8 @@ RSpec.describe OmniauthCallbacksController, type: :request do
       {
         provider: 'google_oauth2',
         info: {
-          email: 'john@example.com'
+          email: 'john@example.com',
+          name: 'John Sample'
         }
       }
     end
@@ -44,7 +45,7 @@ RSpec.describe OmniauthCallbacksController, type: :request do
 
     context 'when the user exists' do
       before do
-        FactoryBot.create(:user, email: 'john@example.com')
+        FactoryBot.create(:user, email: 'john@example.com', name: 'John Sample')
       end
 
       it 'signs the user in' do
@@ -75,7 +76,9 @@ RSpec.describe OmniauthCallbacksController, type: :request do
       {
         provider: 'github',
         info: {
-          email: 'john@example.com'
+          email: 'john@example.com',
+          name: 'John Sample'
+
         }
       }
     end
@@ -108,7 +111,7 @@ RSpec.describe OmniauthCallbacksController, type: :request do
 
     context 'when the user exists' do
       before do
-        FactoryBot.create(:user, email: 'john@example.com')
+        FactoryBot.create(:user, email: 'john@example.com', name: 'John Sample')
       end
 
       it 'signs the user in' do
