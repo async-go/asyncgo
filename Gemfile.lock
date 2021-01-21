@@ -323,7 +323,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootsnap (>= 1.4.4)
-  brakeman (~> 4.10)
+  brakeman (~> 4.10.1)
   byebug
   capybara (>= 3.26)
   commonmarker (= 0.21.0)
