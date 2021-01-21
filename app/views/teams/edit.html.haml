@@ -20,13 +20,10 @@
     %h3 Users in Team
     %p.lead Click to remove. If you want to remove yourself, have a team member do it for you.
     .list-group.list-group-horizontal-lg
-      - @team.users.each do |user|
+      - @team.users.where.not(email: current_user.email).each do |user|
         .col-lg-3
-          - if current_user.email == user.email
-            %p.list-group-item.text-center= user.email
-          - else
-            = link_to "Remove #{user.email}", team_user_path(@team, user),
-              method: :delete, class: 'list-group-item list-group-item-action text-center'
+          = link_to "Remove #{user.email}", team_user_path(@team, user),
+            method: :delete, class: 'list-group-item list-group-item-action text-center'
 
 %hr
 
