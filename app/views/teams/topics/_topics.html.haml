@@ -1,5 +1,5 @@
 %ul.list-group.list-group-flush
-  - if topic_collection.count.positive?
+  - if topic_collection.present?
     - topic_collection.each do |topic|
       %li.list-group-item
         .row
@@ -10,7 +10,8 @@
           .col-lg-2
             %span= topic.created_at.strftime('%b %e')
   - else
-    %p= help_if_empty
+    %li.list-group-item
+      %p= empty_state_text
   - if new_form
     %li.list-group-item
       = link_to 'New Topic', new_team_topic_path(current_user.team), class: 'btn btn-primary'
