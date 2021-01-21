@@ -1,11 +1,11 @@
 .row.my-5
   %h2 Active Topics
   = render partial: 'topics', locals: { topic_collection: @active_topics,
-                                        new_form: true,
-                                        help_if_empty: 'Welcome to your new team! Try creating a new topic to get started.' }
+    new_form: true,
+    help_if_empty: 'Welcome to your new team! Try creating a new topic to get started.' }
 
 .row
   %h2 Closed Topics
   = render partial: 'topics', locals: { topic_collection: @closed_topics,
-                                        new_form: false,
-                                        help_if_empty: 'Once you have resolved some topics they will appear here.' }
+    new_form: false,
+    help_if_empty: 'Once you have resolved some topics they will appear here.' }

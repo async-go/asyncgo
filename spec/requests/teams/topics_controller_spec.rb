@@ -31,8 +31,22 @@ RSpec.describe Teams::TopicsController, type: :request do
 
         it 'shows the helper text' do
           get_index
-          
+
           expect(response.body).to include('Welcome to your new team!')
+        end
+      end
+
+      context 'when topic is active' do
+        let(:topic) { FactoryBot.create(:topic, team: team) }
+
+        before do
+          topic.update!(status: :active)
+        end
+
+        it 'renders the index page' do
+          get_index
+
+          expect(response.body).not_to include('Welcome to your new team!')
         end
       end
 
@@ -43,39 +57,6 @@ RSpec.describe Teams::TopicsController, type: :request do
 
     context 'when user is not authenticated' do
       include_examples 'unauthorized user examples', 'You are not authorized.'
-    end
-  end
-
-  describe 'GET index' do
-    subject(:get_index) { get "/teams/#{team.id}/topics" }
-
-    let(:team) { FactoryBot.create(:team) }
-    let(:topic) { FactoryBot.create(:topic, team: team) }
-
-    context 'when user is authenticated' do
-      let(:user) { FactoryBot.create(:user) }
-
-      before do
-        sign_in(user)
-      end
-
-      context 'when user is authorized' do
-        before do
-          team.users << user
-        end
-
-        context 'when topic is active' do
-          before do
-            topic.update!(status: :active)
-          end
-
-          it 'renders the index page' do
-            get_index
-
-            expect(response.body).to_not include('Welcome to your new team!')
-          end
-        end
-      end
     end
   end
 

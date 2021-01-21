@@ -1,5 +1,5 @@
 %ul.list-group.list-group-flush
-  - if topic_collection.count > 0
+  - if topic_collection.count.positive?
     - topic_collection.each do |topic|
       %li.list-group-item
         .row
