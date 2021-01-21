@@ -55,6 +55,24 @@ jobs:
         run: bundle install --without development production --jobs 4 --retry 3 --path vendor/bundle
       - name: Run rspec system specs
         run: bundle exec rspec --tag type:system
+  brakeman:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.0.0'
+      - uses: actions/cache@v2
+        name: Cache bundler dependencies
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gem-
+      - name: Install bundler dependencies
+        run: bundle install --without development production --jobs 4 --retry 3 --path vendor/bundle
+      - name: Run brakeman
+        run: bundle exec brakeman
   rubocop:
     runs-on: ubuntu-latest
     steps:
