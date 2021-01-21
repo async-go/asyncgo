@@ -4,43 +4,40 @@
 
 .row
   .col-lg-8.border
-    %h6.pt-2.text-secondary Description
+    %h6.mt-2.text-secondary Description
     %p= @topic.description_html.html_safe # rubocop:disable Rails/OutputSafety
 
   .col-lg-4.border
-    %h6.pt-2.text-secondary
+    %h6.mt-2.text-secondary
       Outcome
       - if @topic.active?
         (Work in Progress)
       %p= @topic.outcome_html&.html_safe # rubocop:disable Rails/OutputSafety
 
 .row
-  .col-lg-8
+  .col-lg-8.my-3
     - if @topic.active?
       = link_to 'Edit Topic Description/Title/Outcome', edit_team_topic_path(@topic.team, @topic)
 
-  .col-lg-2
+  .col-lg-2.my-3
     - if @topic.active?
-      %p
-        = form_with(model: @topic, url: [@topic.team, @topic], local: true) do |form|
-          = form.hidden_field :status, value: :closed
-          = form.submit 'Resolve Topic', class: 'btn btn-primary'
+      = form_with(model: @topic, url: [@topic.team, @topic], local: true) do |form|
+        = form.hidden_field :status, value: :closed
+        = form.submit 'Resolve Topic', class: 'btn btn-primary'
     - else
-      %p
-        = form_with(model: @topic, url: [@topic.team, @topic], local: true) do |form|
-          = form.hidden_field :status, value: :active
-          = form.submit 'Reopen Topic', class: 'btn btn-primary'
+      = form_with(model: @topic, url: [@topic.team, @topic], local: true) do |form|
+        = form.hidden_field :status, value: :active
+        = form.submit 'Reopen Topic', class: 'btn btn-primary'
 
-  .col-lg-2
-    %p
-      = form_with(url: team_topic_subscribe_path(@topic.team, @topic),
-                  local: true) do |subscription_form|
-        - if current_user.subscribed_topics.exists?(id: @topic.id)
-          = subscription_form.hidden_field :subscribed, value: 0
-          = subscription_form.submit 'Unwatch Topic', class: 'btn btn-primary'
-        - else
-          = subscription_form.hidden_field :subscribed, value: 1
-          = subscription_form.submit 'Watch Topic', class: 'btn btn-primary'
+  .col-lg-2.my-3
+    = form_with(url: team_topic_subscribe_path(@topic.team, @topic),
+                local: true) do |subscription_form|
+      - if current_user.subscribed_topics.exists?(id: @topic.id)
+        = subscription_form.hidden_field :subscribed, value: 0
+        = subscription_form.submit 'Unwatch Topic', class: 'btn btn-primary'
+      - else
+        = subscription_form.hidden_field :subscribed, value: 1
+        = subscription_form.submit 'Watch Topic', class: 'btn btn-primary'
 
 .row.border-top.mb-2
   %ul.list-group.list-group-flush
