@@ -23,7 +23,7 @@
       - @team.users.each do |user|
         .col-lg-3
           - if current_user.email == user.email
-            %p.list-group-item.text-center= "#{user.email}"
+            %p.list-group-item.text-center= user.email
           - else
             = link_to "Remove #{user.email}", team_user_path(@team, user),
               method: :delete, class: 'list-group-item list-group-item-action text-center'
