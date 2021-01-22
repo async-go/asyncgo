@@ -11,7 +11,14 @@
         .col-lg-2.lead
           Due
 
-    - topic_collection.sort { |a, b| b.days_remaining && a.days_remaining ? a <=> b : a ? -1 : 1 }.each do |topic|
+    - sorted_collection = topic_collection.sort do |a, b|
+    -   if b.days_remaining && a.days_remaining
+    -     a <=> b : a ? -1
+    -   else
+    -     1
+    -   end
+
+    - sorted_collection.each do |topic|
       %li.list-group-item
         .row
           .col-lg-7
