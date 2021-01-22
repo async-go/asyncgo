@@ -29,7 +29,7 @@ RSpec.describe 'Teams', type: :system do
     fill_in 'user[name]', with: 'Test Person'
     click_button 'Invite User'
 
-    expect(page).to have_link('test@example.com ()')
+    expect(page).to have_link('test@example.com (Test Person)')
   end
 
   it 'allows the user to remove users from the team' do

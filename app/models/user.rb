@@ -12,6 +12,6 @@ class User < ApplicationRecord
   has_many :subscribed_topics, through: :subscriptions, source: :topic
 
   def self.from_omniauth(access_token)
-    User.where(email: access_token.info['email'], name: access_token.info['name']).first_or_create
+    User.where(email: access_token.info['email']).first_or_create
   end
 end
