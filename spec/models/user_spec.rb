@@ -6,7 +6,6 @@ RSpec.describe User, type: :model do
       FactoryBot.create(:user)
     end
 
-    it { is_expected.to validate_presence_of(:name) }
     it { is_expected.to validate_presence_of(:email) }
     it { is_expected.to validate_uniqueness_of(:email) }
   end
@@ -50,7 +49,7 @@ RSpec.describe User, type: :model do
       end
 
       it 'returns new user' do
-        expect(from_omniauth).to have_attributes(email: 'john@example.com', name: 'John Sample')
+        expect(from_omniauth).to have_attributes(email: 'john@example.com')
       end
     end
   end
