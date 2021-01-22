@@ -1,14 +1,17 @@
 %ul.list-group.list-group-flush
-  - topic_collection.each do |topic|
-    %li.list-group-item
-      .row
-        .col-lg-7
-          = link_to topic.title, team_topic_path(current_user.team, topic)
-        .col-lg-3
-          %span
+  - if topic_collection.present?
+    - topic_collection.each do |topic|
+      %li.list-group-item
+        .row
+          .col-lg-7
+            = link_to topic.title, team_topic_path(current_user.team, topic)
+          .col-lg-3
             = link_to topic.user.name, "mailto:#{topic.user.email}"
-        .col-lg-2
-          %span= topic.created_at.strftime('%b %e')
+          .col-lg-2
+            %span= topic.created_at.strftime('%b %e')
+  - else
+    %li.list-group-item
+      %p= empty_state_text
   - if new_form
     %li.list-group-item
       = link_to 'New Topic', new_team_topic_path(current_user.team), class: 'btn btn-primary'

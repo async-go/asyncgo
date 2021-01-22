@@ -122,20 +122,42 @@ RSpec.describe Teams::UsersController, type: :request do
           team.users << browsing_user
         end
 
-        it 'removes the user from the team' do
-          expect { delete_destroy }.to change { user.reload.team_id }.from(team.id).to(nil)
+        context 'when not removing self' do
+          it 'removes the user from the team' do
+            expect { delete_destroy }.to change { user.reload.team_id }.from(team.id).to(nil)
+          end
+
+          it 'sets the flash' do
+            delete_destroy
+
+            expect(controller.flash[:success]).to eq('User was successfully removed from the team.')
+          end
+
+          it 'redirects back' do
+            delete_destroy
+
+            expect(response).to redirect_to(edit_team_path(team))
+          end
         end
 
-        it 'sets the flash' do
-          delete_destroy
+        context 'when removing self' do
+          let(:user) { browsing_user }
 
-          expect(controller.flash[:success]).to eq('User was successfully removed from the team.')
-        end
+          it 'does not remove self from team' do
+            expect { delete_destroy }.not_to change { user.reload.team_id }.from(team.id)
+          end
 
-        it 'redirects back' do
-          delete_destroy
+          it 'sets the flash' do
+            delete_destroy
 
-          expect(response).to redirect_to(edit_team_path(team))
+            expect(controller.flash[:warning]).to eq('You are not authorized.')
+          end
+
+          it 'redirects back (to root)' do
+            delete_destroy
+
+            expect(response).to redirect_to(root_path)
+          end
         end
       end
 

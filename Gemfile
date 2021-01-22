@@ -58,6 +58,7 @@ group :development do
 end
 
 group :test do
+  gem 'brakeman', '~> 4.10.1'
   gem 'capybara', '>= 3.26' # Support for Capybara system testing
   gem 'factory_bot_rails', '~> 6.1.0' # Factories for generating AR objects in specs
   gem 'faker', '~> 2.15.1' # Fake data for use in specs
