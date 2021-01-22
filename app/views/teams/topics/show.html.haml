@@ -45,7 +45,7 @@
       %li.list-group-item
         .row
           .col-lg-8
-            %p= comment.body_html.html_safe # rubocop:disable Rails/OutputSafety
+            %span= comment.body_html.html_safe # rubocop:disable Rails/OutputSafety
           .col-lg-2
             %span
               = link_to comment.user.name, "mailto:#{comment.user.email}"
