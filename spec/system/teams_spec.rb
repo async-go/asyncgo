@@ -41,9 +41,9 @@ RSpec.describe 'Teams', type: :system do
     sign_in_user(user)
     click_link 'Admin'
 
-    click_link "#{other_user.email}"
+    click_link other_user.email.to_s
 
-    expect(page).not_to have_link("#{other_user.email}")
+    expect(page).not_to have_link(other_user.email.to_s)
   end
 
   it 'allows the user to send a support email' do
