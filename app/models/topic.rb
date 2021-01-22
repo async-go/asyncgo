@@ -6,6 +6,7 @@ class Topic < ApplicationRecord
   validates :description_html, presence: true
   validates :outcome, presence: { allow_blank: false, allow_empty: false, allow_nil: true }
   validates :outcome_html, presence: { if: :outcome? }
+  validates :due, presence: { allow_nil: true }
 
   belongs_to :user
   belongs_to :team
@@ -14,4 +15,8 @@ class Topic < ApplicationRecord
   has_many :subscribed_users, through: :subscriptions, source: :user
 
   enum status: { active: 0, closed: 1 }
+
+  def days_remaining
+    ((Time.now.utc.to_date - due.to_date) * -1).to_i if due.present?
+  end
 end

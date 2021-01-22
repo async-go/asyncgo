@@ -48,7 +48,7 @@ RSpec.describe 'Topics', type: :system do
     sign_in_user(user)
     click_link 'Topics'
     click_link topic.title
-    click_link 'Edit Topic'
+    click_link 'Edit Topic Context'
 
     fill_in 'topic[description]', with: 'This is an update'
     click_button 'Update Topic'
@@ -66,7 +66,7 @@ RSpec.describe 'Topics', type: :system do
     sign_in_user(user)
     click_link 'Topics'
     click_link topic.title
-    click_link 'Edit Topic Description/Title/Outcome'
+    click_link 'Edit Topic Context'
 
     fill_in 'topic[outcome]', with: '__Sample outcome__'
     click_button 'Update Topic'

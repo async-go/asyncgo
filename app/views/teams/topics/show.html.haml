@@ -2,6 +2,16 @@
   %h2
     %strong= @topic.title
 
+- if @topic.due.present?
+  .row-mb-1
+    %h6
+      Due:
+      = @topic.due.to_date
+      - if @topic.days_remaining.negative?
+        %span (#{pluralize(@topic.days_remaining.abs, 'day')} overdue)
+      - else
+        %span (#{pluralize(@topic.days_remaining, 'day')} remaining)
+
 .row
   .col-lg-8.border
     %h6.mt-2.text-secondary.small Description
@@ -17,7 +27,8 @@
 .row
   .col-lg-8.my-3.small
     - if @topic.active?
-      = link_to 'Edit Topic Description/Title/Outcome', edit_team_topic_path(@topic.team, @topic)
+      = link_to 'Edit Topic Context', edit_team_topic_path(@topic.team, @topic)
+      (due date, title, description, outcome)
 
   .col-lg-2.my-3
     - if @topic.active?

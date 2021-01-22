@@ -1,14 +1,36 @@
 %ul.list-group.list-group-flush
   - if topic_collection.present?
-    - topic_collection.each do |topic|
+    %li.list-group-item
+      .row
+        .col-lg-7.lead
+          Title
+        .col-lg-2.lead
+          Author
+        .col-lg-1.lead
+          Created
+        .col-lg-2.lead
+          Due
+
+    - topic_collection.sort { |a, b| b.days_remaining && a.days_remaining ? a <=> b : a ? -1 : 1 }.each do |topic|
       %li.list-group-item
         .row
           .col-lg-7
             = link_to topic.title, team_topic_path(current_user.team, topic)
           .col-lg-3
             = link_to topic.user.printable_name, "mailto:#{topic.user.email}"
-          .col-lg-2
+          .col-lg-1
             %span= topic.created_at.strftime('%b %e')
+          .col-lg-2
+            - if topic.active?
+              - if topic.due?
+                - if topic.days_remaining.negative?
+                  %span #{pluralize(topic.days_remaining.abs, 'day')} overdue
+                - else
+                  %span #{pluralize(topic.days_remaining, 'day')} remaining
+              - else
+                No due date
+            - else
+              Resolved
   - else
     %li.list-group-item
       %p= empty_state_text
