@@ -6,4 +6,6 @@ class Comment < ApplicationRecord
 
   belongs_to :user
   belongs_to :topic
+
+  has_many :notifications, as: :target, dependent: :destroy
 end
