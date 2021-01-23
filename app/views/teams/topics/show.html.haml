@@ -45,7 +45,7 @@
       %li.list-group-item
         .row
           .col-lg-8
-            %p= comment.body_html.html_safe # rubocop:disable Rails/OutputSafety
+            %div= comment.body_html.html_safe # rubocop:disable Rails/OutputSafety
           .col-lg-2
             %span= comment.user.email
           .col-lg-2
