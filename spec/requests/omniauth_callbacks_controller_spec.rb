@@ -32,6 +32,12 @@ RSpec.describe OmniauthCallbacksController, type: :request do
         expect(controller.send(:current_user)).not_to eq(nil)
       end
 
+      it 'updates the users name' do
+        post_google_oauth2
+
+        expect(:current_user.name).to eq('John Sample')
+      end
+
       it 'sets the flash' do
         post_google_oauth2
 
@@ -52,6 +58,12 @@ RSpec.describe OmniauthCallbacksController, type: :request do
         post_google_oauth2
 
         expect(controller.send(:current_user)).not_to eq(nil)
+      end
+
+      it 'updates the users name' do
+        post_google_oauth2
+
+        expect(:current_user.name).to eq('John Sample')
       end
 
       it 'sets the flash' do
