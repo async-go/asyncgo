@@ -8,7 +8,7 @@ RSpec.describe TopicUpdater, type: :service do
     subject(:call) { service.call }
 
     context 'when topic is being created' do
-      let(:topic) { FactoryBot.build(:topic) }
+      let(:topic) { FactoryBot.build(:topic, user: user) }
       let(:outcome) { nil }
 
       context 'when parameters are valid' do
@@ -32,6 +32,10 @@ RSpec.describe TopicUpdater, type: :service do
           call
 
           expect(user.subscribed_topics).to contain_exactly(topic)
+        end
+
+        it 'does not create a notification' do
+          expect { call }.not_to change(Notification, :count).from(0)
         end
 
         context 'when outcome is not empty' do
@@ -69,12 +73,20 @@ RSpec.describe TopicUpdater, type: :service do
 
           expect(user.subscribed_topics).to be_empty
         end
+
+        it 'does not create a notification' do
+          expect { call }.not_to change(Notification, :count).from(0)
+        end
       end
     end
 
     context 'when topic is being updated' do
-      let(:topic) { FactoryBot.create(:topic) }
+      let(:topic) { FactoryBot.create(:topic, user: user) }
       let(:outcome) { nil }
+
+      before do
+        topic.subscribed_users << FactoryBot.create(:user)
+      end
 
       context 'when parameters are valid' do
         let(:description) { '__bold__' }
@@ -87,6 +99,14 @@ RSpec.describe TopicUpdater, type: :service do
           call
 
           expect(user.subscribed_topics).to be_empty
+        end
+
+        it 'creates a notification' do
+          expect { call }.to change(Notification, :count).from(0).to(1)
+        end
+
+        it 'does not create notification for update author' do
+          expect { call }.not_to change { user.reload.notifications.count }.from(0)
         end
 
         context 'when outcome is not empty' do
@@ -121,6 +141,10 @@ RSpec.describe TopicUpdater, type: :service do
           call
 
           expect(user.subscribed_topics).to be_empty
+        end
+
+        it 'does not create a notification' do
+          expect { call }.not_to change(Notification, :count).from(0)
         end
       end
     end
