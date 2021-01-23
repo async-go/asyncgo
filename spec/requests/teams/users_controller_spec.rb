@@ -26,7 +26,6 @@ RSpec.describe Teams::UsersController, type: :request do
         context 'when user is registered' do
           let(:user) { FactoryBot.create(:user) }
           let(:email) { user.email }
-          let(:name) { user.name }
 
           it 'adds the user to the team' do
             expect { post_create }.to change { user.reload.team_id }.from(nil).to(team.id)
@@ -53,7 +52,6 @@ RSpec.describe Teams::UsersController, type: :request do
 
         context 'when user is not registered' do
           let(:email) { 'test@example.com' }
-          let(:name) { 'Test Person' }
 
           it 'creates the user' do
             expect { post_create }.to change(User, :count).from(1).to(2)
@@ -87,7 +85,6 @@ RSpec.describe Teams::UsersController, type: :request do
 
       context 'when user is not authorized' do
         let(:email) { 'test@example.com' }
-        let(:name) { 'Test Person' }
 
         include_examples 'unauthorized user examples', 'You are not authorized.'
       end
@@ -95,7 +92,6 @@ RSpec.describe Teams::UsersController, type: :request do
 
     context 'when user is not authenticated' do
       let(:email) { 'test@example.com' }
-      let(:name) { 'Test Person' }
 
       include_examples 'unauthorized user examples', 'You are not authorized.'
     end

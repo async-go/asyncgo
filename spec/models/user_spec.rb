@@ -32,7 +32,7 @@ RSpec.describe User, type: :model do
     end
 
     context 'when a user exists' do
-      let!(:user) { FactoryBot.create(:user, email: 'john@example.com', name: 'John Sample') }
+      let!(:user) { FactoryBot.create(:user, email: 'john@example.com') }
 
       it 'does not create user' do
         expect { from_omniauth }.not_to change(described_class, :count).from(1)

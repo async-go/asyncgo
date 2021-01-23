@@ -22,7 +22,7 @@
     .list-group.list-group-horizontal-lg
       - @team.users.where.not(email: current_user.email).each do |user|
         .col-lg-3
-          = link_to user.email.to_s, team_user_path(@team, user),
+          = link_to user.email, team_user_path(@team, user),
             method: :delete, class: 'list-group-item list-group-item-action text-center'
 
 %hr

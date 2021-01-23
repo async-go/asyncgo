@@ -45,7 +45,7 @@ RSpec.describe OmniauthCallbacksController, type: :request do
 
     context 'when the user exists' do
       before do
-        FactoryBot.create(:user, email: 'john@example.com', name: 'John Sample')
+        FactoryBot.create(:user, email: 'john@example.com')
       end
 
       it 'signs the user in' do
@@ -111,7 +111,7 @@ RSpec.describe OmniauthCallbacksController, type: :request do
 
     context 'when the user exists' do
       before do
-        FactoryBot.create(:user, email: 'john@example.com', name: 'John Sample')
+        FactoryBot.create(:user, email: 'john@example.com')
       end
 
       it 'signs the user in' do
