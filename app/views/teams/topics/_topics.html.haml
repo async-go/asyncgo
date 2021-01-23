@@ -11,11 +11,8 @@
         .col-lg-2.lead
           Due
 
-    :ruby
-      sorted_collection = topic_collection.sort { |a, b| 
-        b.days_remaining && a.days_remaining ? a <=> b : a ? -1 : 1 }
-
-    - sorted_collection.each do |topic|
+    - sort = topic_collection.sort_by { |a| a.due.presence || Time.zone.today + 1000.years }
+    - sort.each do |topic|
       %li.list-group-item
         .row
           .col-lg-7
@@ -37,7 +34,8 @@
               Resolved
   - else
     %li.list-group-item
-      %p= empty_state_text
+    %p= empty_state_text
+
   - if new_form
     %li.list-group-item
       = link_to 'New Topic', new_team_topic_path(current_user.team), class: 'btn btn-primary'
