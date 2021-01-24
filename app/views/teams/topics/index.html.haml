@@ -5,7 +5,7 @@
     empty_state_text: 'Active topics will appear here. Try creating a new topic to get started.' }
 
 .row
-  %h2 Resolved Topics
+  %h2 Closed Topics
   = render partial: 'topics', locals: { topic_collection: @closed_topics,
     new_form: false,
     empty_state_text: 'Once you have closed some topics they will appear here.' }
