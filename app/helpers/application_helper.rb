@@ -5,7 +5,7 @@ module ApplicationHelper
     if topic.active?
       if topic.due_date.present?
         if topic.days_remaining.negative?
-          "#{pluralize(topic.days_remaining.abs, 'day')} overdue"
+          "Overdue by #{pluralize(topic.days_remaining.abs, 'day')}"
         else
           "#{pluralize(topic.days_remaining, 'day')} remaining"
         end
@@ -13,7 +13,7 @@ module ApplicationHelper
         'No due date set'
       end
     else
-      'Already resolved'
+      'Closed'
     end
   end
 end
