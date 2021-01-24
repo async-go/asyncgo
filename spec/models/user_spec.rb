@@ -73,4 +73,20 @@ RSpec.describe User, type: :model do
       it { is_expected.to eq(user.name) }
     end
   end
+
+  describe '#gravatar_url' do
+    subject(:gravatar_url) { user.gravatar_url }
+
+    let(:user) { FactoryBot.build(:user) }
+
+    context 'when gravatar url is generated' do
+      before do
+        user.email = 'test@test.com'
+      end
+
+      it { is_expected.to eq('https://www.gravatar.com/avatar/b642b4217b34b1e8d3bd915fc65c4452') }
+    end
+
+  end
+
 end
