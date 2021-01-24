@@ -2,14 +2,18 @@
 
 module ApplicationHelper
   def printable_due_date(topic)
-    if topic.due_date.present?
-      if topic.days_remaining.negative?
-        "#{pluralize(topic.days_remaining.abs, 'day')} overdue"
+    if topic.active?
+      if topic.due_date.present?
+        if topic.days_remaining.negative?
+          "#{pluralize(topic.days_remaining.abs, 'day')} overdue"
+        else
+          "#{pluralize(topic.days_remaining, 'day')} remaining"
+        end
       else
-        "#{pluralize(topic.days_remaining, 'day')} remaining"
+        'No due date set'
       end
     else
-      'No due date set'
+      'Already resolved'
     end
   end
 end
