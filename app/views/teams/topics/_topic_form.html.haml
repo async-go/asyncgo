@@ -12,7 +12,7 @@
     .input-group-text Outcome
     = form.text_area :outcome, rows: '8', class: 'form-control'
   .input-group.mb-3
-    .input-group-text Due
-    = form.date_field :due, class: 'form-control'
+    .input-group-text Due Date (Optional)
+    = form.date_field :due_date, class: 'form-control'
 
   = form.submit submit_action, class: 'btn btn-primary'

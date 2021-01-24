@@ -9,9 +9,9 @@
         .col-lg-1.lead
           Created
         .col-lg-2.lead
-          Due
+          Due Date
 
-    - sort = topic_collection.sort_by { |a| a.due.presence || Time.zone.today + 1000.years }
+    - sort = topic_collection.sort_by { |a| a.due_date.presence || Time.zone.today + 1000.years }
     - sort.each do |topic|
       %li.list-group-item
         .row
@@ -23,7 +23,7 @@
             %span= topic.created_at.strftime('%b %e')
           .col-lg-2
             - if topic.active?
-              - if topic.due?
+              - if topic.due_date?
                 - if topic.days_remaining.negative?
                   %span #{pluralize(topic.days_remaining.abs, 'day')} overdue
                 - else

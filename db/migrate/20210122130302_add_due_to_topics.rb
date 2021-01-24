@@ -2,6 +2,6 @@
 
 class AddDueToTopics < ActiveRecord::Migration[6.1]
   def change
-    add_column :topics, :due, :date
+    add_column :topics, :due_date, :date
   end
 end
