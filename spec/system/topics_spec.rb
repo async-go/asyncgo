@@ -86,7 +86,7 @@ RSpec.describe 'Topics', type: :system do
     click_link topic.title
 
     fill_in 'comment[body]', with: '__Sample content__'
-    click_button 'Create Comment'
+    click_button 'Add Comment'
 
     expect(page.body).to include('<strong>Sample content</strong>')
   end

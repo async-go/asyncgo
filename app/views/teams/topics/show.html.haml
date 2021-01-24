@@ -4,18 +4,18 @@
 
 .row
   .col-lg-8.border
-    %h6.mt-2.text-secondary Description
+    %h6.mt-2.text-secondary.small Description
     %p= @topic.description_html.html_safe # rubocop:disable Rails/OutputSafety
 
   .col-lg-4.border
-    %h6.mt-2.text-secondary
+    %h6.mt-2.text-secondary.small
       Outcome
       - if @topic.active?
         (Work in Progress)
-      %p= @topic.outcome_html&.html_safe # rubocop:disable Rails/OutputSafety
+    %p= @topic.outcome_html&.html_safe # rubocop:disable Rails/OutputSafety
 
 .row
-  .col-lg-8.my-3
+  .col-lg-8.my-3.small
     - if @topic.active?
       = link_to 'Edit Topic Description/Title/Outcome', edit_team_topic_path(@topic.team, @topic)
 
@@ -23,7 +23,7 @@
     - if @topic.active?
       = form_with(model: @topic, url: [@topic.team, @topic], local: true) do |form|
         = form.hidden_field :status, value: :closed
-        = form.submit 'Resolve Topic', class: 'btn btn-primary'
+        = form.submit 'Resolve Topic', class: 'btn btn-success'
     - else
       = form_with(model: @topic, url: [@topic.team, @topic], local: true) do |form|
         = form.hidden_field :status, value: :active
@@ -34,30 +34,32 @@
                 local: true) do |subscription_form|
       - if current_user.subscribed_topics.exists?(id: @topic.id)
         = subscription_form.hidden_field :subscribed, value: 0
-        = subscription_form.submit 'Unwatch Topic', class: 'btn btn-primary'
+        = subscription_form.submit 'Unwatch Topic', class: 'btn btn-secondary'
       - else
         = subscription_form.hidden_field :subscribed, value: 1
-        = subscription_form.submit 'Watch Topic', class: 'btn btn-primary'
+        = subscription_form.submit 'Watch Topic', class: 'btn btn-secondary'
 
-.row.border-top.mb-2
+%h5.mt-2 Comments
+.row
   %ul.list-group.list-group-flush
     - @topic.comments.each do |comment|
-      %li.list-group-item
+      %li.list-group-item.mt-2
         .row
-          .col-lg-8
+          .col-lg-9
             %div= comment.body_html.html_safe # rubocop:disable Rails/OutputSafety
+            - if @topic.active? && policy([:teams, :topics, comment]).edit?
+              %span.small= link_to 'Edit Comment',
+                edit_team_topic_comment_path(@topic.team, @topic, comment)
           .col-lg-2
             %span= comment.user.email
-          .col-lg-2
-            - if @topic.active? && policy([:teams, :topics, comment]).edit?
-              %span= link_to 'Edit Comment',
-                edit_team_topic_comment_path(@topic.team, @topic, comment)
+          .col-lg-1
+            %span= comment.created_at.strftime('%b %e')
     - if @topic.active?
       %li.list-group-item
         = form_with(model: Comment.new, url: [@topic.team, @topic, Comment.new],
           local: true, class: 'row g-3') do |form|
           = form.hidden_field :user_id, value: current_user.id
-          .col-lg-10
+          .row.mt-3
             = form.text_area :body, rows: '4', required: true, class: 'form-control'
-          .col-lg-2
-            = form.submit 'Create Comment', class: 'btn btn-primary'
+          .row
+            = form.submit 'Add Comment', class: 'btn btn-primary'
