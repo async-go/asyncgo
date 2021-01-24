@@ -106,6 +106,12 @@ RSpec.describe OmniauthCallbacksController, type: :request do
         expect(controller.send(:current_user)).not_to eq(nil)
       end
 
+      it 'updates the users name' do
+        post_github
+
+        expect(User.last.name).to eq('John Sample')
+      end
+
       it 'sets the flash' do
         post_github
 
@@ -118,14 +124,16 @@ RSpec.describe OmniauthCallbacksController, type: :request do
     end
 
     context 'when the user exists' do
-      before do
-        FactoryBot.create(:user, email: 'john@example.com')
-      end
+      let!(:user) { FactoryBot.create(:user, email: 'john@example.com') }
 
       it 'signs the user in' do
         post_github
 
         expect(controller.send(:current_user)).not_to eq(nil)
+      end
+
+      it 'updates the users name' do
+        expect { post_github }.to change { user.reload.name }.from(nil).to('John Sample')
       end
 
       it 'sets the flash' do
