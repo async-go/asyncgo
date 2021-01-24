@@ -6,12 +6,12 @@ module TopicHelper
 
     if topic.active?
       if topic.due_date < Time.now.utc
-        "#{distance_of_time_in_words(topic.due_date, Time.now.utc)} ago"
+        "Due #{distance_of_time_in_words(topic.due_date, Time.now.utc)} ago"
       else
-        "#{distance_of_time_in_words(Time.now.utc, topic.due_date)} remaining"
+        "Due in #{distance_of_time_in_words(Time.now.utc, topic.due_date)}"
       end
     else
-      topic.due_date.strftime('%b %-d')
+      "Due #{topic.due_date.strftime('%b %-d')}"
     end
   end
 end

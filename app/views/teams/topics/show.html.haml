@@ -3,7 +3,7 @@
     %strong= @topic.title
 
 .row-mb-1
-  %p.small
+  %p.text-secondary
     = printable_due_date(@topic)
 .row
   .col-lg-8.border
@@ -43,22 +43,20 @@
         = subscription_form.hidden_field :subscribed, value: 1
         = subscription_form.submit 'Watch Topic', class: 'btn btn-secondary'
 
-%h5.mt-2 Comments
+%h5.mt-2.border-bottom Comments
 .row
   %ul.list-group.list-group-flush
     - @topic.comments.each do |comment|
-      %li.list-group-item.mt-2
+      %li.list-group-item.mb-2
         .row
+          .col-lg-3
+            %p= link_to comment.user.printable_name, "mailto:#{comment.user.email}"
+            %p.text-secondary Commented on #{comment.created_at.strftime('%b %e')}
           .col-lg-9
             %div= comment.body_html.html_safe # rubocop:disable Rails/OutputSafety
             - if @topic.active? && policy([:teams, :topics, comment]).edit?
               %span.small= link_to 'Edit Comment',
                 edit_team_topic_comment_path(@topic.team, @topic, comment)
-          .col-lg-2
-            %span
-              = link_to comment.user.printable_name, "mailto:#{comment.user.email}"
-          .col-lg-1
-            %span= comment.created_at.strftime('%b %e')
     - if @topic.active?
       %li.list-group-item
         = form_with(model: Comment.new, url: [@topic.team, @topic, Comment.new],
