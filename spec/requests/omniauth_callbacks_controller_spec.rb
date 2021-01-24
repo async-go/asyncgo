@@ -35,7 +35,7 @@ RSpec.describe OmniauthCallbacksController, type: :request do
       it 'updates the users name' do
         post_google_oauth2
 
-        expect(:current_user.name).to eq('John Sample')
+        expect(User.last.name).to eq('John Sample')
       end
 
       it 'sets the flash' do
@@ -50,20 +50,16 @@ RSpec.describe OmniauthCallbacksController, type: :request do
     end
 
     context 'when the user exists' do
-      before do
-        FactoryBot.create(:user, email: 'john@example.com')
-      end
+      let!(:user) { FactoryBot.create(:user, email: 'john@example.com') }
 
       it 'signs the user in' do
         post_google_oauth2
 
-        expect(controller.send(:current_user)).not_to eq(nil)
+        expect(controller.send(:current_user)).to eq(user)
       end
 
       it 'updates the users name' do
-        post_google_oauth2
-
-        expect(:current_user.name).to eq('John Sample')
+        expect { post_google_oauth2 }.to change { user.reload.name }.from(nil).to('John Sample')
       end
 
       it 'sets the flash' do

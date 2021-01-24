@@ -3,9 +3,13 @@
 FactoryBot.define do
   factory :user do
     email { Faker::Internet.email }
-    name { Faker::Name.name }
+
     trait :team do
       team
+    end
+
+    trait :name do
+      name { Faker::Name.name }
     end
   end
 end
