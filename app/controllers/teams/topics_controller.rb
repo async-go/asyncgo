@@ -6,8 +6,8 @@ module Teams
 
     def index
       authorize(team, policy_class: Teams::TopicPolicy)
-      @active_topics = team.topics.active
-      @closed_topics = team.topics.closed
+      @active_topics = team.topics.active.sort_by { |a| a.due_date.presence || Time.zone.today + 1000.years }
+      @closed_topics = team.topics.closed.sort_by { |a| a.due_date.presence || Time.zone.today + 1000.years }
     end
 
     def show
