@@ -52,7 +52,7 @@
                 edit_team_topic_comment_path(@topic.team, @topic, comment)
           .col-lg-2
             %span
-              = link_to printable_name(comment.user), "mailto:#{comment.user.email}"
+              = link_to comment.user.printable_name, "mailto:#{comment.user.email}"
           .col-lg-1
             %span= comment.created_at.strftime('%b %e')
     - if @topic.active?

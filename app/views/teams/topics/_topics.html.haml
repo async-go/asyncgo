@@ -6,7 +6,7 @@
           .col-lg-7
             = link_to topic.title, team_topic_path(current_user.team, topic)
           .col-lg-3
-            = link_to printable_name(topic.user), "mailto:#{topic.user.email}"
+            = link_to topic.user.printable_name, "mailto:#{topic.user.email}"
           .col-lg-2
             %span= topic.created_at.strftime('%b %e')
   - else

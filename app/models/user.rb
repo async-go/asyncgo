@@ -16,4 +16,8 @@ class User < ApplicationRecord
       user.update!(name: access_token.info['name'])
     end
   end
+
+  def printable_name
+    name || email
+  end
 end
