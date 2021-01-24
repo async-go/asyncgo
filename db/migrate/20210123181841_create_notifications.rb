@@ -8,6 +8,7 @@ class CreateNotifications < ActiveRecord::Migration[6.1]
       t.references :target, polymorphic: true, null: false
 
       t.integer :action, null: false
+      t.date :read_at
 
       t.timestamps
     end

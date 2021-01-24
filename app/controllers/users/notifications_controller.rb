@@ -7,20 +7,31 @@ module Users
     def show
       authorize([:users, notification])
 
-      redirect_target = case notification.target_type
-                        when 'Comment'
-                          notification.target.topic
-                        when 'Topic'
-                          notification.target
-                        end
+      if notification.update(read_at: Time.now.utc)
+        redirect_object = redirect_target(notification)
+        redirect_path = team_topic_path(redirect_object.team, redirect_object)
+        redirect_flash = nil
+      else
+        redirect_path = root_path
+        redirect_flash = { danger: 'Notification could not be marked as read.' }
+      end
 
-      redirect_to team_topic_path(redirect_target.team, redirect_target)
+      redirect_to redirect_path, flash: redirect_flash
     end
 
     private
 
     def notification
       @notification ||= Notification.find(params[:id])
+    end
+
+    def redirect_target(notification)
+      case notification.target_type
+      when 'Comment'
+        notification.target.topic
+      when 'Topic'
+        notification.target
+      end
     end
   end
 end

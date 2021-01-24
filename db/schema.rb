@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 2021_01_23_181841) do
     t.string "target_type", null: false
     t.integer "target_id", null: false
     t.integer "action", null: false
+    t.date "read_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["actor_id"], name: "index_notifications_on_actor_id"

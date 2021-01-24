@@ -33,6 +33,10 @@ RSpec.describe Users::NotificationsController, type: :request do
 
             expect(response).to redirect_to(team_topic_path(topic.team, topic))
           end
+
+          it 'marks notification as read' do
+            expect { get_show }.to change { notification.reload.read_at }.from(nil)
+          end
         end
 
         context 'when target is comment' do
@@ -44,6 +48,10 @@ RSpec.describe Users::NotificationsController, type: :request do
             get_show
 
             expect(response).to redirect_to(team_topic_path(topic.team, topic))
+          end
+
+          it 'marks notification as read' do
+            expect { get_show }.to change { notification.reload.read_at }.from(nil)
           end
         end
       end

@@ -2,7 +2,7 @@
 
 module ApplicationHelper
   def notifications
-    Notification.where(user: current_user)
+    Notification.where(user: current_user, read_at: nil)
   end
 
   def notification_text(notification)
