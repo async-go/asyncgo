@@ -9,7 +9,7 @@ RSpec.describe TopicHelper, type: :helper do
     let(:topic) { FactoryBot.build(:topic) }
 
     context 'when topic does not have due date' do
-      it { is_expected.to eq("No due date") }
+      it { is_expected.to eq('No due date') }
     end
 
     context 'when topic has due date and is active' do
