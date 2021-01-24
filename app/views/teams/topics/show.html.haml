@@ -55,8 +55,9 @@
               %span.small= link_to 'Edit Comment',
                 edit_team_topic_comment_path(@topic.team, @topic, comment)
           .col-lg-2
-            %span
+            %span.gravatar
               = link_to comment.user.printable_name, "mailto:#{comment.user.email}"
+              = image_tag "#{comment.user.gravatar_url}?s=20&d=retro"
           .col-lg-1
             %span= comment.created_at.strftime('%b %e')
     - if @topic.active?

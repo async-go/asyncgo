@@ -21,3 +21,11 @@
 main {
   margin-bottom: 6rem;
 }
+
+.gravatar img {
+  height: 20px;
+  width: 20px;
+  border-radius: 15%;
+  border: 1px solid black;
+  margin-left: .5em;
+}
