@@ -6,8 +6,8 @@ module Teams
 
     def index
       authorize(team, policy_class: Teams::TopicPolicy)
-      @active_topics = team.topics.active
-      @closed_topics = team.topics.closed
+      @active_topics = team.topics.active.order(:due_date)
+      @closed_topics = team.topics.closed.order(:due_date)
     end
 
     def show
@@ -66,7 +66,7 @@ module Teams
     private
 
     def topic_params
-      params.require(:topic).permit(:title, :description, :outcome, :status, :user_id)
+      params.require(:topic).permit(:title, :description, :outcome, :due_date, :status, :user_id)
     end
 
     def update_user_subscription
