@@ -55,4 +55,22 @@ RSpec.describe User, type: :model do
       end
     end
   end
+
+  describe '#printable_name' do
+    subject(:printable_name) { user.printable_name }
+
+    let(:user) { FactoryBot.build(:user) }
+
+    context 'when user does not have name' do
+      it { is_expected.to eq(user.email) }
+    end
+
+    context 'when user has name' do
+      before do
+        user.name = 'John Doe'
+      end
+
+      it { is_expected.to eq(user.name) }
+    end
+  end
 end
