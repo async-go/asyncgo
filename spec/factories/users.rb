@@ -7,5 +7,9 @@ FactoryBot.define do
     trait :team do
       team
     end
+
+    trait :name do
+      name { Faker::Name.name }
+    end
   end
 end

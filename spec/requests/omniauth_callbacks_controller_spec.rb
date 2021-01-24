@@ -11,7 +11,8 @@ RSpec.describe OmniauthCallbacksController, type: :request do
       {
         provider: 'google_oauth2',
         info: {
-          email: 'john@example.com'
+          email: 'john@example.com',
+          name: 'John Sample'
         }
       }
     end
@@ -31,6 +32,12 @@ RSpec.describe OmniauthCallbacksController, type: :request do
         expect(controller.send(:current_user)).not_to eq(nil)
       end
 
+      it 'updates the users name' do
+        post_google_oauth2
+
+        expect(User.last.name).to eq('John Sample')
+      end
+
       it 'sets the flash' do
         post_google_oauth2
 
@@ -43,14 +50,16 @@ RSpec.describe OmniauthCallbacksController, type: :request do
     end
 
     context 'when the user exists' do
-      before do
-        FactoryBot.create(:user, email: 'john@example.com')
-      end
+      let!(:user) { FactoryBot.create(:user, email: 'john@example.com') }
 
       it 'signs the user in' do
         post_google_oauth2
 
-        expect(controller.send(:current_user)).not_to eq(nil)
+        expect(controller.send(:current_user)).to eq(user)
+      end
+
+      it 'updates the users name' do
+        expect { post_google_oauth2 }.to change { user.reload.name }.from(nil).to('John Sample')
       end
 
       it 'sets the flash' do
@@ -75,7 +84,9 @@ RSpec.describe OmniauthCallbacksController, type: :request do
       {
         provider: 'github',
         info: {
-          email: 'john@example.com'
+          email: 'john@example.com',
+          name: 'John Sample'
+
         }
       }
     end
@@ -95,6 +106,12 @@ RSpec.describe OmniauthCallbacksController, type: :request do
         expect(controller.send(:current_user)).not_to eq(nil)
       end
 
+      it 'updates the users name' do
+        post_github
+
+        expect(User.last.name).to eq('John Sample')
+      end
+
       it 'sets the flash' do
         post_github
 
@@ -107,14 +124,16 @@ RSpec.describe OmniauthCallbacksController, type: :request do
     end
 
     context 'when the user exists' do
-      before do
-        FactoryBot.create(:user, email: 'john@example.com')
-      end
+      let!(:user) { FactoryBot.create(:user, email: 'john@example.com') }
 
       it 'signs the user in' do
         post_github
 
         expect(controller.send(:current_user)).not_to eq(nil)
+      end
+
+      it 'updates the users name' do
+        expect { post_github }.to change { user.reload.name }.from(nil).to('John Sample')
       end
 
       it 'sets the flash' do

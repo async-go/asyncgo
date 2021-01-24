@@ -3,7 +3,8 @@
 module SignInOutRequestHelpers
   def sign_in(user)
     OmniAuth.config.add_mock(:google_oauth2,
-                             info: { email: user.email })
+                             info: { email: user.email,
+                                     name: user.name })
     post '/auth/google_oauth2'
     # This is a redirect to the callback controller
     follow_redirect!
