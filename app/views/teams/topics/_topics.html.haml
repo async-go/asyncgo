@@ -16,12 +16,12 @@
         .row
           .col-lg-7
             = link_to topic.title, team_topic_path(current_user.team, topic)
-          .col-lg-3
+          .col-lg-2
             = link_to topic.user.printable_name, "mailto:#{topic.user.email}"
           .col-lg-1
             %span= topic.created_at.strftime('%b %e')
           .col-lg-2
-            = printable_due_date(topic)
+            %span= printable_due_date(topic)
   - else
     %li.list-group-item
       %p= empty_state_text

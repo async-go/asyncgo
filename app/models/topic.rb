@@ -14,8 +14,4 @@ class Topic < ApplicationRecord
   has_many :subscribed_users, through: :subscriptions, source: :user
 
   enum status: { active: 0, closed: 1 }
-
-  def days_remaining
-    ((Time.now.utc.to_date - due_date.to_date) * -1).to_i if due_date.present?
-  end
 end
