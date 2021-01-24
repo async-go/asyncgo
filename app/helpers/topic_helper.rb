@@ -2,7 +2,7 @@
 
 module TopicHelper
   def printable_due_date(topic)
-    return unless topic.due_date?
+    return 'No due date' unless topic.due_date?
 
     if topic.active?
       if topic.due_date < Time.now.utc
