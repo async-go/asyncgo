@@ -2,16 +2,10 @@
   %h2
     %strong= @topic.title
 
-- if @topic.due_date.present?
-  .row-mb-1
-    %h6
-      Due:
-      = @topic.due_date.to_date
-      - if @topic.days_remaining.negative?
-        %span (#{pluralize(@topic.days_remaining.abs, 'day')} overdue)
-      - else
-        %span (#{pluralize(@topic.days_remaining, 'day')} remaining)
-
+.row-mb-1
+  %p.small
+    Due:
+    = printable_due_date(@topic)
 .row
   .col-lg-8.border
     %h6.mt-2.text-secondary.small Description

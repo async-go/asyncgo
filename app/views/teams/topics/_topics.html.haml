@@ -1,14 +1,14 @@
 %ul.list-group.list-group-flush
   - if topic_collection.present?
     %li.list-group-item
-      .row
-        .col-lg-7.lead
+      .row.small
+        .col-lg-7
           Title
-        .col-lg-2.lead
+        .col-lg-2
           Author
-        .col-lg-1.lead
+        .col-lg-1
           Created
-        .col-lg-2.lead
+        .col-lg-2
           Due Date
 
     - sort = topic_collection.sort_by { |a| a.due_date.presence || Time.zone.today + 1000.years }
@@ -23,13 +23,7 @@
             %span= topic.created_at.strftime('%b %e')
           .col-lg-2
             - if topic.active?
-              - if topic.due_date?
-                - if topic.days_remaining.negative?
-                  %span #{pluralize(topic.days_remaining.abs, 'day')} overdue
-                - else
-                  %span #{pluralize(topic.days_remaining, 'day')} remaining
-              - else
-                No due date
+              = printable_due_date(topic)
             - else
               Resolved
   - else
