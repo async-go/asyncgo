@@ -10,6 +10,12 @@ Rails.application.routes.draw do
   get 'auth/failure', to: redirect('/')
   delete :sign_out, to: 'sessions#destroy'
 
+  resources :users, only: :none do
+    scope module: :users do
+      resources :notifications, only: :show
+    end
+  end
+
   resources :teams, only: %i[edit new create] do
     post :support
 

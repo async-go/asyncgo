@@ -18,6 +18,7 @@ RSpec.describe User, type: :model do
     it { is_expected.to have_many(:topics).dependent(:destroy) }
     it { is_expected.to have_many(:subscriptions).dependent(:destroy) }
     it { is_expected.to have_many(:subscribed_topics) }
+    it { is_expected.to have_many(:notifications).inverse_of(:user) }
   end
 
   describe '.from_omniauth' do
