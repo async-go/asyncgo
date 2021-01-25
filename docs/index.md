@@ -64,7 +64,7 @@ You can also apply some initial structure to the outcome, indicating the format 
 looking for in the end. That can also help focus the team and ensure they understand what you
 are asking for.
 
-If you are the kind of person who likes to lay things out with words, you can always record audio
+If you are the kind of person who likes to lay things out with spoken words, you can always record audio
 or video and [embed it](#video) into the description, outcome, or a comment. Note that embedded videos
 are not auto-transcribed, so are not searchable.
 
