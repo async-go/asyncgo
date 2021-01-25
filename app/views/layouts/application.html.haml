@@ -33,13 +33,13 @@
             %span.navbar-toggler-icon
           .collapse.navbar-collapse#navbar-content
             - if current_user&.team_id
-              %span.badge.bg-secondary.fs-6
+              %span.badge.bg-secondary.fs-6.mb-2.mx-3
                 Active Team: #{current_user.team.name}
-              .ms-3.me-auto.dropdown
+              .me-auto.dropdown.mb-2.mx-3
                 .badge.bg-secondary.fs-6.dropdown-toggle{ 'id': 'notificationDropdown',
                   'role': 'button', 'data-bs-toggle': 'dropdown',
                   'aria-haspopup': 'true', 'aria-expanded': 'false' }
-                  Notifications: #{notifications.count}
+                  🔔 #{notifications.count}
                 %ul.dropdown-menu{ 'aria-labelledby': 'notificationDropdown' }
                   - notifications.each do |notification|
                     %li= link_to notification_text(notification),
