@@ -26,5 +26,6 @@ main {
   height: 1.5rem;
   width: 1.5rem;
   border-radius: .25rem;
-  border: 1px solid black;
+  border: 1px solid #333;
+  margin-right: 0.5rem;
 }
