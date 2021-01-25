@@ -22,10 +22,9 @@ main {
   margin-bottom: 6rem;
 }
 
-.gravatar img {
-  height: 20px;
-  width: 20px;
-  border-radius: 15%;
+.gravatar-img {
+  height: 1.5rem;
+  width: 1.5rem;
+  border-radius: .25rem;
   border: 1px solid black;
-  margin-left: .5em;
 }

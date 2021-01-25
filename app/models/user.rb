@@ -17,15 +17,17 @@ class User < ApplicationRecord
     end
   end
 
-  def email_hash
-    Digest::MD5.hexdigest(email.strip.downcase)
-  end
-
   def gravatar_url
     "https://www.gravatar.com/avatar/#{email_hash}"
   end
 
   def printable_name
     name || email
+  end
+
+  private
+
+  def email_hash
+    Digest::MD5.hexdigest(email.strip.downcase)
   end
 end
