@@ -24,88 +24,25 @@ RSpec.describe TopicUpdater, type: :service do
           expect(topic).to be_persisted
         end
 
-        it 'parses the description markdown' do
-          expect { call }.to change(topic, :description_html).to("<p><strong>bold</strong></p>\n")
-        end
-
         it 'subscribes the user to the topic' do
           call
 
           expect(user.subscribed_topics).to contain_exactly(topic)
         end
 
-        context 'when outcome is not empty' do
-          let(:outcome) { '__bold__' }
+        context 'when parameters are not valid' do
+          let(:description) { nil }
 
-          it 'parses the outcome markdown' do
-            expect { call }.to change(topic, :outcome_html).to("<p><strong>bold</strong></p>\n")
-          end
-        end
+          it 'does not create the topic' do
+            call
 
-        context 'when outcome is empty' do
-          let(:outcome) { '' }
-
-          before do
-            topic.update!(outcome: 'bold', outcome_html: '<p><strong>bold</strong></p>')
+            expect(topic).not_to be_persisted
           end
 
-          it 'parses the outcome markdown' do
-            expect { call }.to change(topic, :outcome).to(nil)
-          end
-        end
-      end
+          it 'does not subscribe user to the topic' do
+            call
 
-      context 'when parameters are not valid' do
-        let(:description) { nil }
-
-        it 'does not create the topic' do
-          call
-
-          expect(topic).not_to be_persisted
-        end
-
-        it 'does not subscribe user to the topic' do
-          call
-
-          expect(user.subscribed_topics).to be_empty
-        end
-      end
-    end
-
-    context 'when topic is being updated' do
-      let(:topic) { FactoryBot.create(:topic) }
-      let(:outcome) { nil }
-
-      context 'when parameters are valid' do
-        let(:description) { '__bold__' }
-
-        it 'parses the description markdown' do
-          expect { call }.to change(topic, :description_html).to("<p><strong>bold</strong></p>\n")
-        end
-
-        it 'does not subscribe user to the topic' do
-          call
-
-          expect(user.subscribed_topics).to be_empty
-        end
-
-        context 'when outcome is not empty' do
-          let(:outcome) { '__bold__' }
-
-          it 'parses the outcome markdown' do
-            expect { call }.to change(topic, :outcome_html).to("<p><strong>bold</strong></p>\n")
-          end
-        end
-
-        context 'when outcome is empty' do
-          let(:outcome) { '' }
-
-          before do
-            topic.update!(outcome: 'bold', outcome_html: '<p><strong>bold</strong></p>')
-          end
-
-          it 'parses the outcome markdown' do
-            expect { call }.to change(topic, :outcome).to(nil)
+            expect(user.subscribed_topics).to be_empty
           end
         end
       end
@@ -114,7 +51,7 @@ RSpec.describe TopicUpdater, type: :service do
         let(:description) { nil }
 
         it 'does not update the topic' do
-          expect { call }.not_to change(topic, :description_html)
+          expect { call }.not_to change(topic, :description)
         end
 
         it 'does not subscribe user to the topic' do

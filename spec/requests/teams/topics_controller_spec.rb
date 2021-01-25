@@ -263,7 +263,7 @@ RSpec.describe Teams::TopicsController, type: :request do
           let(:outcome) { 'This is a topic outcome.' }
 
           it 'updates the topic' do
-            expect { patch_update }.to change { topic.reload.outcome }.from(nil).to(outcome)
+            expect { patch_update }.to change { topic.reload.outcome.to_plain_text }.from('').to(outcome)
           end
 
           it 'sets the flash' do
@@ -289,7 +289,7 @@ RSpec.describe Teams::TopicsController, type: :request do
           let(:outcome) { '   ' }
 
           it 'does not update the topic' do
-            expect { patch_update }.not_to change { topic.reload.outcome }.from(nil)
+            expect { patch_update }.not_to change { topic.reload.outcome.body }.from(nil)
           end
 
           it 'shows the error' do

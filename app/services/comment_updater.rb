@@ -31,8 +31,6 @@ class CommentUpdater < ApplicationService
   def process_body(original_params)
     original_params.tap do |params|
       break if params[:body].nil?
-
-      params[:body_html] = parse_markdown(params[:body])
     end
   end
 end

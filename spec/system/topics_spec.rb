@@ -20,24 +20,6 @@ RSpec.describe 'Topics', type: :system do
     end
   end
 
-  it 'allows the user to create a topic using markdown' do
-    team = FactoryBot.create(:team)
-    user = FactoryBot.create(:user)
-    team.users << user
-
-    visit '/'
-    sign_in_user(user)
-    click_link 'Topics'
-    click_link 'New Topic'
-
-    fill_in 'topic[title]', with: 'Sample title'
-    fill_in 'topic[description]', with: '__Sample topic content__'
-    click_button 'Create Topic'
-
-    expect(page).to have_text('Sample title')
-    expect(page.body).to include('<strong>Sample topic content</strong>')
-  end
-
   it 'allows the user to edit a topic' do
     team = FactoryBot.create(:team)
     user = FactoryBot.create(:user)
@@ -50,45 +32,10 @@ RSpec.describe 'Topics', type: :system do
     click_link topic.title
     click_link 'Edit Topic Context'
 
-    fill_in 'topic[description]', with: 'This is an update'
+    find('trix-editor#topic_description').click.set('This is updated content')
     click_button 'Update Topic'
 
-    expect(page).to have_text('This is an update')
-  end
-
-  it 'allows the user to summarize a outcome on the topic using markdown' do
-    team = FactoryBot.create(:team)
-    user = FactoryBot.create(:user)
-    topic = FactoryBot.create(:topic, team: team)
-    team.users << user
-
-    visit '/'
-    sign_in_user(user)
-    click_link 'Topics'
-    click_link topic.title
-    click_link 'Edit Topic Context'
-
-    fill_in 'topic[outcome]', with: '__Sample outcome__'
-    click_button 'Update Topic'
-
-    expect(page.body).to include('<strong>Sample outcome</strong>')
-  end
-
-  it 'allows the user to leave comments on the topic using markdown' do
-    team = FactoryBot.create(:team)
-    user = FactoryBot.create(:user)
-    topic = FactoryBot.create(:topic, team: team)
-    team.users << user
-
-    visit '/'
-    sign_in_user(user)
-    click_link 'Topics'
-    click_link topic.title
-
-    fill_in 'comment[body]', with: '__Sample content__'
-    click_button 'Add Comment'
-
-    expect(page.body).to include('<strong>Sample content</strong>')
+    expect(page).to have_text('This is updated content')
   end
 
   it 'allows the user to update a comment on the topic' do
@@ -104,7 +51,7 @@ RSpec.describe 'Topics', type: :system do
     click_link topic.title
     click_link 'Edit Comment'
 
-    find(:fillable_field, 'comment[body]').send_keys('This is updated content')
+    find('trix-editor#comment_body').click.set('This is updated content')
     click_button 'Update Comment'
 
     expect(page).to have_text('This is updated content')

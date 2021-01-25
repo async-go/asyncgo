@@ -96,7 +96,7 @@ RSpec.describe Teams::Topics::CommentsController, type: :request do
           it 'sets the flash' do
             post_create
 
-            expect(controller.flash[:danger]).to eq("Body can't be blank, Body html can't be blank")
+            expect(controller.flash[:danger]).to eq("Body can't be blank")
           end
 
           it 'redirects to topic' do
@@ -149,7 +149,7 @@ RSpec.describe Teams::Topics::CommentsController, type: :request do
           let(:body) { 'Updated body.' }
 
           it 'updates the comment' do
-            expect { patch_update }.to change { comment.reload.body }.to('Updated body.')
+            expect { patch_update }.to change { comment.reload.body.to_plain_text }.to('Updated body.')
           end
 
           it 'sets the flash' do

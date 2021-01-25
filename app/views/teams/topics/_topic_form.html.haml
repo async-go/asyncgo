@@ -7,10 +7,10 @@
     = form.text_field :title, required: true, class: 'form-control'
   .input-group.mb-3
     .input-group-text Description
-    = form.text_area :description, rows: '8', required: true, class: 'form-control'
+    = form.rich_text_area :description, required: true, class: 'form-control'
   .input-group.mb-3
     .input-group-text Outcome
-    = form.text_area :outcome, rows: '8', class: 'form-control'
+    = form.rich_text_area :outcome, class: 'form-control'
   .input-group.mb-3
     .input-group-text Due Date (Optional)
     = form.date_field :due_date, class: 'form-control'

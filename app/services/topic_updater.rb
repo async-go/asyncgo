@@ -32,8 +32,6 @@ class TopicUpdater < ApplicationService
   def process_description(original_params)
     original_params.tap do |params|
       return params if params[:description].nil?
-
-      params[:description_html] = parse_markdown(params[:description])
     end
   end
 
@@ -41,12 +39,7 @@ class TopicUpdater < ApplicationService
     original_params.tap do |params|
       return params if params[:outcome].nil?
 
-      if params[:outcome].empty?
-        params[:outcome] = nil
-        params[:outcome_html] = nil
-      elsif params[:outcome].present?
-        params[:outcome_html] = parse_markdown(params[:outcome])
-      end
+      params[:outcome] = nil if params[:outcome].empty?
     end
   end
 end
