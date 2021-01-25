@@ -86,19 +86,33 @@ If something is urgent and needed right away, it's best to reach out to the pers
 
 AsyncGo is oriented around temporary **topics** that are created, typically from a pre-existing meeting or issue, that can
 represent any discussion topic that needs to be had. A topic is meant to exist for a short period of time during which
-everyone contributes their thoughts. At the end the discussion is resolved and the final outcomes and/or decisions are recorded.
+everyone contributes their thoughts.
+
+At the end the discussion is resolved and the final outcomes and/or decisions are recorded.
 
 ### The Topic List
 
 When you log in you'll see a list of open topics. From here you can click on any of the available topics
 to participate.
 
-From the topic list you can also click on "New Topic" to create a topic. You will be prompted to enter a description and a title.
-Topic descriptions set the table for the conversation to be had and are very important. We recommend including a list of key points
-to discuss, which can be marked off as you go, and potentially an embedded video recording to help set the context.
+### Creating Topics
+
+From the topic list click on "New Topic" to create a topic. You will be prompted to enter a description and a title.
+Topic descriptions set the table for the conversation to be had and are very important. You can use [markdown](markdown.html)
+to enter richer content than plain text; we recommend including a checklist of key points to discuss, which can be marked
+off as you go, and potentially an embedded video recording to help set the context.
 
 Topics can also have a due date set, which will be made visible to everyone looking at the topic index. This can be a
 great way to communicate when you need something by, and help everyone prioritize the topics they engage with.
+
+### Collaborating on Topics
+
+Once the topic is set up you can share it with everyone who you want to participate. Everyone can collaborate async as
+you go, discussing the topic at hand until you reach your outcome.
+
+### Resolving Topics
+
+Now that your topic is complete you can mark it as resolved. This will freeze further edits.
 
 ---
 
@@ -116,6 +130,45 @@ From the Teams page you are able to add and remove users. A few important notes:
 - An individual user, as defined by one email address, may only be a member of one team
 
 ---
+
+## Markdown
+
+AsyncGo uses [GFM markdown](https://github.github.com/gfm/) for rich content, and supports all tags listed in their documentation.
+There are a few common keywords used to support discussions which are highlighted here.
+
+### Checklists
+
+It's very helpful to use checklists to define the set of things you're going to discuss, and then you can mark them
+off as you go. Checklists are entered as follows:
+
+```
+- [ ] An unchecked checkbox
+- [x] A checked checkbox
+```
+
+### Links
+
+Links can be added as follows:
+
+```
+[Link description](https://www.google.com)
+```
+
+### Images
+
+Images are added similarly:
+
+```
+![foo](/url "https://www.google.com/with-my-image.png")
+```
+
+### Videos
+
+Adding videos is done by adding images with links. Since it's not possible to embed the video directly, you show the video thumbnail instead as an image and then link to the video. With YouTube for example you would replace `VIDEO_ID` below with the actual video ID:
+
+```
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/VIDEO_ID/0.jpg)](https://www.youtube.com/watch?v=VIDEO_ID)
+```
 
 ## User Settings
 
