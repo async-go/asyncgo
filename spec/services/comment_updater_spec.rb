@@ -76,8 +76,8 @@ RSpec.describe CommentUpdater, type: :service do
           expect(comment.user.subscribed_topics).to be_empty
         end
 
-        it 'creates a notification' do
-          expect { call }.to change(Notification, :count).from(0).to(1)
+        it 'does not create a notification' do
+          expect { call }.not_to change(Notification, :count).from(0)
         end
 
         it 'does not create a notification for comment author' do

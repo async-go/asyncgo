@@ -14,13 +14,9 @@ class CommentUpdater < ApplicationService
   def call
     new_comment = @comment.new_record?
     @comment.update(process_params(update_params)).tap do |result|
-      next unless result
+      next unless result && new_comment
 
-      action = new_comment ? :created : :updated
-      create_notification(action)
-
-      next unless new_comment
-
+      create_notification
       @comment.topic.subscriptions.create(user: @user)
     end
   end
@@ -39,12 +35,12 @@ class CommentUpdater < ApplicationService
     end
   end
 
-  def create_notification(action)
+  def create_notification
     subscriber_ids = @comment.topic.subscribed_users.pluck(:id)
     subscriber_ids.each do |subscriber_id|
       next if subscriber_id == @user.id
 
-      @comment.notifications.create(actor: @user, user_id: subscriber_id, action: action)
+      @comment.notifications.create(actor: @user, user_id: subscriber_id, action: :created)
     end
   end
 end

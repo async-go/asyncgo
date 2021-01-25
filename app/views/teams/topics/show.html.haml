@@ -52,9 +52,11 @@
     - @topic.comments.each do |comment|
       %li.list-group-item.mb-2
         .row
-          .col-lg-3
-            %p= link_to comment.user.printable_name, "mailto:#{comment.user.email}"
-            %p.text-secondary Commented on #{comment.created_at.strftime('%b %e')}
+          .col-lg-2
+            = link_to comment.user.printable_name, "mailto:#{comment.user.email}"
+            = image_tag "#{comment.user.gravatar_url}?s=20&d=retro", class: 'ms-1 gravatar-img'
+          .col-lg-1
+            %span= comment.created_at.strftime('%b %e')
           .col-lg-9
             %div= comment.body
             - if @topic.active? && policy([:teams, :topics, comment]).edit?
