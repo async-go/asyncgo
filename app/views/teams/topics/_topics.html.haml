@@ -1,12 +1,12 @@
 %ul.list-group.list-group-flush
   - if topic_collection.present?
-    %li.list-group-item
+    %li.list-group-item.d-none.d-lg-block
       .row.small
-        .col-lg-7
+        .col-lg-6
           Title
         .col-lg-2
           Author
-        .col-lg-1
+        .col-lg-2
           Created
         .col-lg-2
           Due Date
@@ -14,14 +14,14 @@
     - topic_collection.each do |topic|
       %li.list-group-item
         .row
-          .col-lg-7
+          .col-lg-6
             = link_to topic.title, team_topic_path(current_user.team, topic)
           .col-lg-2.gravatar
             = link_to topic.user.printable_name, "mailto:#{topic.user.email}"
             = image_tag "#{topic.user.gravatar_url}?s=20&d=retro"
-          .col-lg-1
-            %span= topic.created_at.strftime('%b %e')
-          .col-lg-2
+          .col-lg-2.text-secondary
+            %span Created #{topic.created_at.strftime('%b %e')}
+          .col-lg-2.text-secondary
             %span= printable_due_date(topic)
   - else
     %li.list-group-item

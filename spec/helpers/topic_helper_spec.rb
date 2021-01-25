@@ -9,7 +9,7 @@ RSpec.describe TopicHelper, type: :helper do
     let(:topic) { FactoryBot.build(:topic) }
 
     context 'when topic does not have due date' do
-      it { is_expected.to eq(nil) }
+      it { is_expected.to eq('No due date') }
     end
 
     context 'when topic has due date and is active' do
@@ -27,7 +27,7 @@ RSpec.describe TopicHelper, type: :helper do
           travel_back
         end
 
-        it { is_expected.to eq('1 day ago') }
+        it { is_expected.to eq('Due 1 day ago') }
       end
 
       context 'when topic is not overdue' do
@@ -39,7 +39,7 @@ RSpec.describe TopicHelper, type: :helper do
           travel_back
         end
 
-        it { is_expected.to eq('2 days remaining') }
+        it { is_expected.to eq('Due in 2 days') }
       end
     end
 
@@ -49,7 +49,7 @@ RSpec.describe TopicHelper, type: :helper do
         topic.status = :closed
       end
 
-      it { is_expected.to eq('Jan 1') }
+      it { is_expected.to eq('Due Jan 1') }
     end
   end
 end
