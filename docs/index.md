@@ -65,7 +65,7 @@ looking for in the end. That can also help focus the team and ensure they unders
 are asking for.
 
 If you are the kind of person who likes to lay things out with spoken words, you can always record audio
-or video and [embed it](#video) into the description, outcome, or a comment. Note that embedded videos
+or video and link to it from the description, outcome, or a comment. Note that videos
 are not auto-transcribed, so are not searchable.
 
 ### Notifications
