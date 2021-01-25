@@ -111,6 +111,4 @@ ActiveRecord::Schema.define(version: 2021_01_25_144306) do
     t.index ["team_id"], name: "index_users_on_team_id"
   end
 
-  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
 end
