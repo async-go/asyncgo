@@ -169,3 +169,9 @@ Adding videos is done by adding images with links. Since it's not possible to em
 ```
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/VIDEO_ID/0.jpg)](https://www.youtube.com/watch?v=VIDEO_ID)
 ```
+
+## User Settings
+
+### Icon
+
+AsyncGo shows your avatar from [Gravatar](https://www.gravatar.com). You can update your picture there and it will automatically be reflected here.
