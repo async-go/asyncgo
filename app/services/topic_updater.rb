@@ -14,9 +14,13 @@ class TopicUpdater < ApplicationService
   def call
     new_topic = @topic.new_record?
     @topic.update(process_params(update_params)).tap do |result|
-      next unless result && new_topic
+      next unless result
 
-      @topic.subscriptions.create(user: @user)
+      if new_topic
+        @topic.subscriptions.create(user: @user)
+      else
+        create_notification
+      end
     end
   end
 
@@ -40,6 +44,15 @@ class TopicUpdater < ApplicationService
       return params if params[:outcome].nil?
 
       params[:outcome] = nil if params[:outcome].empty?
+    end
+  end
+
+  def create_notification
+    subscriber_ids = @topic.subscribed_users.pluck(:id)
+    subscriber_ids.each do |subscriber_id|
+      next if subscriber_id == @user.id
+
+      @topic.notifications.create(actor: @user, user_id: subscriber_id, action: :updated)
     end
   end
 end

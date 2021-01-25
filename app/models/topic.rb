@@ -13,6 +13,7 @@ class Topic < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :subscriptions, dependent: :destroy
   has_many :subscribed_users, through: :subscriptions, source: :user
+  has_many :notifications, as: :target, dependent: :destroy
 
   enum status: { active: 0, closed: 1 }
 end

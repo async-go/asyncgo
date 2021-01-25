@@ -63,9 +63,8 @@
     - if @topic.active?
       %li.list-group-item
         = form_with(model: Comment.new, url: [@topic.team, @topic, Comment.new],
-          local: true, class: 'row g-3') do |form|
+          local: true, class: 'g-3') do |form|
           = form.hidden_field :user_id, value: current_user.id
-          .row.mt-3
+          .mb-3
             = form.rich_text_area :body, required: true, class: 'form-control'
-          .row
-            = form.submit 'Add Comment', class: 'btn btn-primary'
+          = form.submit 'Add Comment', class: 'btn btn-primary'

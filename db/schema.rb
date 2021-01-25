@@ -59,6 +59,20 @@ ActiveRecord::Schema.define(version: 2021_01_25_144306) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
+  create_table "notifications", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "actor_id", null: false
+    t.string "target_type", null: false
+    t.integer "target_id", null: false
+    t.integer "action", null: false
+    t.date "read_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["actor_id"], name: "index_notifications_on_actor_id"
+    t.index ["target_type", "target_id"], name: "index_notifications_on_target"
+    t.index ["user_id"], name: "index_notifications_on_user_id"
+  end
+
   create_table "subscriptions", force: :cascade do |t|
     t.integer "user_id"
     t.integer "topic_id"

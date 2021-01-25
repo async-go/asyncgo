@@ -33,8 +33,18 @@
             %span.navbar-toggler-icon
           .collapse.navbar-collapse#navbar-content
             - if current_user&.team_id
-              %span.badge.bg-secondary.fs-6.me-auto
+              %span.badge.bg-secondary.fs-6
                 Active Team: #{current_user.team.name}
+              .ms-3.me-auto.dropdown
+                .badge.bg-secondary.fs-6.dropdown-toggle{ 'id': 'notificationDropdown',
+                  'role': 'button', 'data-bs-toggle': 'dropdown',
+                  'aria-haspopup': 'true', 'aria-expanded': 'false' }
+                  Notifications: #{notifications.count}
+                %ul.dropdown-menu{ 'aria-labelledby': 'notificationDropdown' }
+                  - notifications.each do |notification|
+                    %li= link_to notification_text(notification),
+                      user_notification_path(notification.user, notification),
+                      class: 'dropdown-item'
             %ul.navbar-nav.ms-auto.me-2
               %li.nav-item= link_to 'Docs', 'https://docs.asyncgo.com', class: 'nav-link',
                 target: :_blank, rel: :noopener
@@ -53,17 +63,12 @@
               - else
                 %li.nav-item.dropdown
                   %a.nav-link.dropdown-toggle{ 'href': '#',
-                    'id': 'signinDropdown',
-                    'role': 'button',
-                    'data-bs-toggle': 'dropdown',
-                    'aria-haspopup': 'true',
-                    'aria-expanded': 'false' }
+                    'id': 'signinDropdown', 'role': 'button', 'data-bs-toggle': 'dropdown',
+                    'aria-haspopup': 'true', 'aria-expanded': 'false' }
                     Sign in
                   %ul.dropdown-menu{ 'aria-labelledby': 'signinDropdown' }
-                    %li= button_to 'Google', '/auth/google_oauth2',
-                      class: 'dropdown-item'
-                    %li= button_to 'GitHub', '/auth/github',
-                      class: 'dropdown-item'
+                    %li= button_to 'Google', '/auth/google_oauth2', class: 'dropdown-item'
+                    %li= button_to 'GitHub', '/auth/github', class: 'dropdown-item'
     %main.container.mt-4{ role: 'main' }
       .sticky-top.mt-2
         - if flash.any?
@@ -76,8 +81,7 @@
       .container
         .row
           .col-8.small
-            %text-muted.d-block
-              &copy;2021 AsyncGo
+            .text-muted.d-block &copy;2021 AsyncGo
             = link_to 'Terms of Use / Privacy Policy', 'https://asyncgo.com/policies.html',
               target: :_blank, rel: :noopener
           .col-4

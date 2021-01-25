@@ -8,8 +8,7 @@
   = form_with(model: @comment, url: [@comment.topic.team, @comment.topic, @comment],
     local: true) do |form|
     .mb-3
-      .input-group
-        .input-group-text Body
-        = form.rich_text_area :body, required: true, class: 'form-control'
+      = form.label :body
+      = form.rich_text_area :body, required: true, class: 'form-control'
 
     = form.submit 'Update Comment', class: 'btn btn-primary'

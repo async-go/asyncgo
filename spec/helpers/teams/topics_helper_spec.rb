@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe TopicHelper, type: :helper do
+RSpec.describe Teams::TopicsHelper, type: :helper do
   include ActiveSupport::Testing::TimeHelpers
 
   describe '#printable_due_date' do
