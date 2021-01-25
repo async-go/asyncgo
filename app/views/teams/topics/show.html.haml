@@ -15,7 +15,10 @@
       Outcome
       - if @topic.active?
         (Work in Progress)
-    %div= @topic.outcome_html&.html_safe # rubocop:disable Rails/OutputSafety
+    - if @topic.outcome_html.blank?
+      %p Content has not been started yet.
+    - else
+      %div= @topic.outcome_html&.html_safe # rubocop:disable Rails/OutputSafety
 
 .row
   .col-lg-8.my-3.small
