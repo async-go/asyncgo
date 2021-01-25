@@ -102,6 +102,9 @@ Topic descriptions set the table for the conversation to be had and are very imp
 to enter richer content than plain text; we recommend including a checklist of key points to discuss, which can be marked
 off as you go, and potentially an embedded video recording to help set the context.
 
+Topics can also have a due date set, which will be made visible to everyone looking at the topic index. This can be a
+great way to communicate when you need something by, and help everyone prioritize the topics they engage with.
+
 ### Collaborating on Topics
 
 Once the topic is set up you can share it with everyone who you want to participate. Everyone can collaborate async as
