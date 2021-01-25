@@ -53,7 +53,7 @@
       %li.list-group-item.mb-2
         .row
           .col-lg-2
-            = image_tag "#{comment.user.gravatar_url}?s=20&d=retro", class: 'ms-1 gravatar-img'
+            = image_tag "#{comment.user.gravatar_url}?s=20&d=retro", class: 'me-1 gravatar-img'
             = link_to comment.user.printable_name, "mailto:#{comment.user.email}"
           .col-lg-1
             %span= comment.created_at.strftime('%b %e')
