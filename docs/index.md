@@ -35,7 +35,7 @@ Here are some good places to learn more about async work:
 
 ## Getting the most out of AsyncGo
 
-AsyncGo was designed from the start for asynchronous work, which means we intentionally do not hound you for updates.
+AsyncGo was designed for asynchronous work, which means we intentionally do not hound you for updates.
 You won't find phone notifications, loud indicators in the app, constant email reminders, or anything
 like that. Instead, the application is designed to be interacted with on your own schedule.
 
