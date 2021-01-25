@@ -2,17 +2,17 @@
 = form_with(model: topic, url: [topic.team, topic], local: true) do |form|
   - if user_field
     = form.hidden_field :user_id, value: current_user.id
-  .input-group.mb-3
-    .input-group-text Title
+  .mb-3
+    = form.label :title
     = form.text_field :title, required: true, class: 'form-control'
-  .input-group.mb-3
-    .input-group-text Description
-    = form.text_area :description, rows: '8', required: true, class: 'form-control'
-  .input-group.mb-3
-    .input-group-text Outcome
-    = form.text_area :outcome, rows: '8', class: 'form-control'
-  .input-group.mb-3
-    .input-group-text Due Date (Optional)
+  .mb-3
+    = form.label :description
+    = form.text_area :description, rows: '6', required: true, class: 'form-control'
+  .mb-3
+    = form.label :outcome
+    = form.text_area :outcome, rows: '6', class: 'form-control'
+  .mb-3
+    = form.label :due_date
     = form.date_field :due_date, class: 'form-control'
 
   = form.submit submit_action, class: 'btn btn-primary'

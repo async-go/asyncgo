@@ -5,13 +5,14 @@
     %h3 Invite users
     %p.lead Invite users to join your team.
     = form_with(model: User, url: [@team, :users],
-      local: true, class: 'row g-3') do |invite_user_form|
-      .col-lg-10
-        .input-group
-          .input-group-text Email
-          = invite_user_form.text_field :email, class: 'form-control'
-      .col-lg-2
-        = invite_user_form.submit 'Invite User', class: 'btn btn-primary'
+      local: true, class: 'g-3') do |invite_user_form|
+      .row
+        .col-lg-10
+          .input-group
+            .input-group-text Email
+            = invite_user_form.text_field :email, class: 'form-control'
+        .col-lg-2
+          = invite_user_form.submit 'Invite User', class: 'btn btn-primary'
 
 %hr
 
@@ -35,4 +36,5 @@
       .input-group.mb-3
         .input-group-text Body
         = support_form.text_area :body, rows: 4, class: 'form-control'
+
       = support_form.submit 'Send Email', class: 'btn btn-primary'
