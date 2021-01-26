@@ -1,1 +1,1 @@
-require("@github/markdown-toolbar-element");
+require('@github/markdown-toolbar-element')
