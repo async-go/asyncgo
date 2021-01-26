@@ -12,13 +12,13 @@
     .mb-3
       %h5 Comment Body
       = form.text_area :body, hidden: true, rows: '4', required: true, class: 'form-control'
-      #comment_editor
+      #comment-editor
     = form.submit 'Update Comment', class: 'btn btn-primary'
 
 :javascript
   // Attach editor to textarea
   const editor = new Editor({
-    el: document.querySelector('#comment_editor'),
+    el: document.querySelector('#comment-editor'),
     height: '300px',
     initialEditType: 'markdown',
     initialValue: document.getElementById('comment_body').value,
