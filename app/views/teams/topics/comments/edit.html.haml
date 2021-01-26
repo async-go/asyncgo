@@ -1,3 +1,5 @@
+= javascript_pack_tag 'editor', 'data-turbolinks-track': 'reload'
+
 .row.my-5
   %h2= @topic.title
 
@@ -5,20 +7,26 @@
 
   = render partial: 'shared/form_errors', locals: { model: @comment }
 
-  = form_with(model: @comment, url: [@comment.topic.team, @comment.topic, @comment],
+  = form_with(model: @comment, id: 'form', url: [@comment.topic.team, @comment.topic, @comment],
     local: true) do |form|
     .mb-3
-      = form.label :body
-      #editor
-        = form.text_area :body, rows: '4', required: true, class: 'form-control'        
-
+      = form.text_area :body, hidden: true, rows: '4', required: true, class: 'form-control'
+      #comment_editor
+                
     = form.submit 'Update Comment', class: 'btn btn-primary'
 
 :javascript
+  // Attach editor to textarea
   const editor = new Editor({
-    el: document.querySelector('#comment_body'),
-    height: '500px',
+    el: document.querySelector('#comment_editor'),
+    height: '300px',
     initialEditType: 'markdown',
-    previewStyle: 'vertical'
+    initialValue: document.getElementById('comment_body').value,
+    previewStyle: 'tab'
   });
-  editor.getHtml();
+  function updateTextArea() {
+    document.getElementById('comment_body').value = editor.getMarkdown()
+  }
+  // Populates the textarea with the editor content before submitting
+  const form = document.getElementById('form');
+  form.addEventListener('submit', updateTextArea);
