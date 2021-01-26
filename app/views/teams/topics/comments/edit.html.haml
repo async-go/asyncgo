@@ -7,8 +7,11 @@
 
   = form_with(model: @comment, url: [@comment.topic.team, @comment.topic, @comment],
     local: true) do |form|
+    .mb-1
+      = render partial: 'shared/toolbar_elements', locals: { text_area_name: 'comment_body' }
     .mb-3
-      = form.label :body
       = form.text_area :body, rows: '4', required: true, class: 'form-control'
 
     = form.submit 'Update Comment', class: 'btn btn-primary'
+
+= javascript_pack_tag 'markdown-toolbar', 'data-turbolinks-track': 'reload'

@@ -2,17 +2,25 @@
 = form_with(model: topic, url: [topic.team, topic], local: true) do |form|
   - if user_field
     = form.hidden_field :user_id, value: current_user.id
-  .mb-3
+  .mb-1
     = form.label :title
+  .mb-3
     = form.text_field :title, required: true, class: 'form-control'
-  .mb-3
+  .mb-1
     = form.label :description
+  .mb-1
+    = render partial: 'shared/toolbar_elements', locals: { text_area_name: 'topic_description' }
+  .mb-3
     = form.text_area :description, rows: '6', required: true, class: 'form-control'
-  .mb-3
+  .mb-1
     = form.label :outcome
-    = form.text_area :outcome, rows: '6', class: 'form-control'
+  .mb-1
+    = render partial: 'shared/toolbar_elements', locals: { text_area_name: 'topic_outcome' }
   .mb-3
+    = form.text_area :outcome, rows: '6', class: 'form-control'
+  .mb-1
     = form.label :due_date
+  .mb-3
     = form.date_field :due_date, class: 'form-control'
 
   = form.submit submit_action, class: 'btn btn-primary'

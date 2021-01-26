@@ -5,3 +5,5 @@
 
   = render partial: 'shared/form_errors', locals: { model: @topic }
   = render partial: 'topic_form', locals: { topic: @topic, user_field: false }
+
+= javascript_pack_tag 'markdown-toolbar', 'data-turbolinks-track': 'reload'
