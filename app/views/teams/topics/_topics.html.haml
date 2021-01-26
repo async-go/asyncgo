@@ -16,8 +16,8 @@
         .row
           .col-lg-6
             = link_to topic.title, team_topic_path(current_user.team, topic)
-            - notifications.each do |notification|
-              = '🔔' if topic == notification.target.topic
+            - if notifications.exists?(target: topic)
+              %i.fas.fa-bell
           .col-lg-2
             = image_tag "#{topic.user.gravatar_url}?s=20&d=retro", class: 'me-1 gravatar-img'
             = link_to topic.user.printable_name, "mailto:#{topic.user.email}"
