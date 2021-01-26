@@ -14,10 +14,10 @@ RSpec.describe 'Notifications', type: :system do
     visit '/'
     sign_in_user(user)
 
-    expect(page).to have_text('Notifications: 1')
+    expect(find('#notificationDropdown')).to have_text('1')
     find('.dropdown-toggle.badge').click
     click_link 'John Doe updated an topic'
-    expect(page).to have_text('Notifications: 0')
+    expect(find('#notificationDropdown')).to have_text('0')
     expect(page).to have_text(topic.title)
   end
 
@@ -27,7 +27,7 @@ RSpec.describe 'Notifications', type: :system do
 
     visit '/'
     sign_in_user(user)
-    expect(page).to have_text('Notifications: 0')
+    expect(find('#notificationDropdown')).to have_text('0')
     click_link 'Topics'
     click_link 'New Topic'
     fill_in 'topic[title]', with: 'Sample topic'
@@ -45,6 +45,6 @@ RSpec.describe 'Notifications', type: :system do
 
     click_link 'Sign out'
     sign_in_user(user)
-    expect(page).to have_text('Notifications: 1')
+    expect(find('#notificationDropdown')).to have_text('1')
   end
 end
