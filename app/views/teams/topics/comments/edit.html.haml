@@ -9,6 +9,16 @@
     local: true) do |form|
     .mb-3
       = form.label :body
-      = form.text_area :body, rows: '4', required: true, class: 'form-control'
+      .editor
+        = form.text_area :body, rows: '4', required: true, class: 'form-control'        
 
     = form.submit 'Update Comment', class: 'btn btn-primary'
+
+:javascript
+  const editor = new Editor({
+    el: document.querySelector('#editor'),
+    height: '500px',
+    initialEditType: 'markdown',
+    previewStyle: 'vertical'
+  });
+  editor.getHtml();

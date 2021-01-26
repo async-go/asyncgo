@@ -12,6 +12,10 @@
  *
  *= require_tree .
  *= require_self
+
+*= require codemirror/lib/codemirror.css
+*= require @toast-ui/editor/dist/toastui-editor.css
+
  */
 
 .navbar-brand img {
