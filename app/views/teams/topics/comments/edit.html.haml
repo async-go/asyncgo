@@ -10,6 +10,7 @@
   = form_with(model: @comment, id: 'form', url: [@comment.topic.team, @comment.topic, @comment],
     local: true) do |form|
     .mb-3
+      %h5 Comment Body
       = form.text_area :body, hidden: true, rows: '4', required: true, class: 'form-control'
       #comment_editor
                 
