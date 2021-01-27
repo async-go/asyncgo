@@ -93,7 +93,7 @@ RSpec.describe TopicUpdater, type: :service do
     end
 
     context 'when topic is being updated' do
-      let(:topic) { FactoryBot.create(:topic) }
+      let(:topic) { FactoryBot.create(:topic, user: user) }
       let(:outcome) { nil }
 
       before do
