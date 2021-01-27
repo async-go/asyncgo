@@ -34,8 +34,13 @@ RSpec.describe TopicUpdater, type: :service do
           expect(user.subscribed_topics).to contain_exactly(topic)
         end
 
-        it 'does not create a notification' do
-          expect { call }.not_to change(Notification, :count).from(0)
+        it 'does not create a notification for topic creator' do
+          expect { call }.not_to change { user.reload.notifications.count }.from(0)
+        end
+
+
+        it 'creates a notification' do
+          expect { call }.to change(Notification, :count).from(0).to(1)
         end
 
         context 'when outcome is not empty' do
@@ -105,7 +110,7 @@ RSpec.describe TopicUpdater, type: :service do
           expect { call }.to change(Notification, :count).from(0).to(1)
         end
 
-        it 'does not create notification for update author' do
+        it 'does not create a notification for update author' do
           expect { call }.not_to change { user.reload.notifications.count }.from(0)
         end
 
