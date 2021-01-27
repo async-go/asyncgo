@@ -68,6 +68,7 @@ class TopicUpdater < ApplicationService
     team_ids = @topic.team.users.pluck(:id)
     team_ids.each do |subscriber_id|
       next if subscriber_id == @user.id
+
       @topic.notifications.create(actor: @user, user_id: subscriber_id, action: :created)
     end
   end

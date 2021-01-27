@@ -38,7 +38,6 @@ RSpec.describe TopicUpdater, type: :service do
           expect { call }.not_to change { user.reload.notifications.count }.from(0)
         end
 
-
         it 'creates a notification' do
           expect { call }.to change(Notification, :count).from(0).to(1)
         end
