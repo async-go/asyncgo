@@ -18,6 +18,10 @@
   width: 3rem;
 }
 
+.navbar {
+  height: 5rem;
+}
+
 main {
   margin-bottom: 6rem;
 }
