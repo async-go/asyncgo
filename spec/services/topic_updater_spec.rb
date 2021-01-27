@@ -3,12 +3,13 @@
 RSpec.describe TopicUpdater, type: :service do
   let(:service) { described_class.new(user, topic, { description: description, outcome: outcome }) }
   let(:user) { FactoryBot.create(:user) }
+  let(:team) { FactoryBot.create(:team) }
 
   describe '#call' do
     subject(:call) { service.call }
 
     context 'when topic is being created' do
-      let(:topic) { FactoryBot.create(:topic) }  
+      let(:topic) { FactoryBot.build(:topic, user: user, team: team) }
       let(:outcome) { nil }
 
       context 'when parameters are valid' do
@@ -37,9 +38,16 @@ RSpec.describe TopicUpdater, type: :service do
         it 'does not create a notification for topic creator' do
           expect { call }.not_to change { user.reload.notifications.count }.from(0)
         end
-       
-        it 'creates a notification' do
-          expect { call }.to change(Notification, :count).from(0).to(1)
+
+        context 'someone is subscribed' do
+          let(:other_user) { FactoryBot.create(:user) }
+          before do
+            topic.subscribed_users << other_user
+          end
+
+          it 'creates a notification' do
+            expect { call }.to change { other_user.reload.notifications.count }.from(0)
+          end
         end
 
         context 'when outcome is not empty' do
