@@ -8,7 +8,7 @@ RSpec.describe TopicUpdater, type: :service do
     subject(:call) { service.call }
 
     context 'when topic is being created' do
-      let(:topic) { FactoryBot.build(:topic, user: user) }
+      let(:topic) { FactoryBot.create(:topic) }  
       let(:outcome) { nil }
 
       context 'when parameters are valid' do
@@ -37,7 +37,7 @@ RSpec.describe TopicUpdater, type: :service do
         it 'does not create a notification for topic creator' do
           expect { call }.not_to change { user.reload.notifications.count }.from(0)
         end
-
+       
         it 'creates a notification' do
           expect { call }.to change(Notification, :count).from(0).to(1)
         end
@@ -85,7 +85,7 @@ RSpec.describe TopicUpdater, type: :service do
     end
 
     context 'when topic is being updated' do
-      let(:topic) { FactoryBot.create(:topic, user: user) }
+      let(:topic) { FactoryBot.create(:topic) }
       let(:outcome) { nil }
 
       before do
