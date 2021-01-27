@@ -1,4 +1,5 @@
-%markdown-toolbar{ for: text_area_name }
+- text_area_id = "markdown_#{name}"
+%markdown-toolbar{ for: text_area_id }
   %md-bold
     %i.border.border-1.rounded.p-1{ class: 'fas fa-bold' }
   %md-header
@@ -17,3 +18,4 @@
     %i.border.border-1.rounded.p-1{ class: 'fas fa-list-ol' }
   %md-task-list
     %i.border.border-1.rounded.p-1{ class: 'fas fa-tasks' }
+= form.text_area name, id: text_area_id, **options

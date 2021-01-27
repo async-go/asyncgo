@@ -8,6 +8,8 @@ import Turbolinks from 'turbolinks'
 import * as ActiveStorage from '@rails/activestorage'
 import 'channels'
 
+import '@github/markdown-toolbar-element'
+
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
