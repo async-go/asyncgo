@@ -1,15 +1,19 @@
 ---
-layout: default
+layout: docs
 title: 'AsyncGo Documentation'
 description: Learn how to use AsyncGo
 ---
 
 ## Introduction
 
-Welcome to AsyncGo, a meeting replacement tool that helps you:
+Welcome to AsyncGo! AsyncGo helps your team communicate flexibly and without
+the interruptions caused by meetings and chat:
 
-- Replace meetings with a collaborative discussion workspace
-- Manage ongoing topics with your team in a shared agenda that everyone can contribute to
+- Your **topic board** becomes the "office water cooler" to find out what's being discussed.
+- **Timeboxed discussions** help everyone know what to focus on next.
+- Embedded **facilitation tools** helps everyone get to great results quickly.
+- **Structured context** and **outcomes** ensure discussions begin and end with clarity.
+- Use meeting time for **human connection**. Try a coffee chat instead!
 
 Table of Contents
 
