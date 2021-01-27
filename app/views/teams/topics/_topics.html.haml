@@ -16,6 +16,8 @@
         .row
           .col-lg-6
             = link_to topic.title, team_topic_path(current_user.team, topic)
+            - if current_user.subscribed_topics.exists?(id: topic.id)
+              %i.fas.fa-star
             - if notifications.exists?(target: topic)
               %i.fas.fa-bell
           .col-lg-2
