@@ -19,7 +19,7 @@
 }
 
 .navbar {
-  height: 5rem;
+  min-height: 5rem;
 }
 
 main {
