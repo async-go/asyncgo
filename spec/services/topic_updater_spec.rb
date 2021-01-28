@@ -1,14 +1,16 @@
 # frozen_string_literal: true
 
 RSpec.describe TopicUpdater, type: :service do
-  let(:service) { described_class.new(user, topic, { description: description, outcome: outcome }) }
-  let(:user) { FactoryBot.create(:user) }
+  let(:user) { FactoryBot.create(:user, :team) }
+  let(:other_user) { FactoryBot.create(:user, team: user.team) }
 
   describe '#call' do
-    subject(:call) { service.call }
+    subject(:call) do
+      described_class.new(user, topic, { description: description, outcome: outcome }).call
+    end
 
     context 'when topic is being created' do
-      let(:topic) { FactoryBot.build(:topic, user: user) }
+      let(:topic) { FactoryBot.build(:topic, user: user, team: user.team) }
       let(:outcome) { nil }
 
       context 'when parameters are valid' do
@@ -34,8 +36,12 @@ RSpec.describe TopicUpdater, type: :service do
           expect(user.subscribed_topics).to contain_exactly(topic)
         end
 
-        it 'does not create a notification' do
-          expect { call }.not_to change(Notification, :count).from(0)
+        it 'does not create a notification for topic creator' do
+          expect { call }.not_to change { user.reload.notifications.count }.from(0)
+        end
+
+        it 'creates a notification for team members' do
+          expect { call }.to change { other_user.reload.notifications.count }.from(0).to(1)
         end
 
         context 'when outcome is not empty' do
@@ -81,7 +87,7 @@ RSpec.describe TopicUpdater, type: :service do
     end
 
     context 'when topic is being updated' do
-      let(:topic) { FactoryBot.create(:topic, user: user) }
+      let(:topic) { FactoryBot.create(:topic, user: user, team: user.team) }
       let(:outcome) { nil }
 
       before do
@@ -105,8 +111,12 @@ RSpec.describe TopicUpdater, type: :service do
           expect { call }.to change(Notification, :count).from(0).to(1)
         end
 
-        it 'does not create notification for update author' do
+        it 'does not create a notification for update author' do
           expect { call }.not_to change { user.reload.notifications.count }.from(0)
+        end
+
+        it 'does not create a notification for team members' do
+          expect { call }.not_to change { other_user.reload.notifications.count }.from(0)
         end
 
         context 'when outcome is not empty' do
