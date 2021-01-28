@@ -2,15 +2,10 @@
   %h2
     %strong= @topic.title
 
-.row
-  .col-2
-    %p.text-secondary
-      = printable_due_date(@topic)
-  .col-2
-    %p.text-secondary
-      - if notifications.exists?(target: @topic)
-        %i.fas.fa-bell
-        (clear)
+.row.mb-1
+  %p.text-secondary
+    = printable_due_date(@topic)
+
 .row
   .col-lg-8.border
     %h6.mt-2.text-secondary.small Description
