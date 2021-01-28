@@ -18,9 +18,9 @@ class TopicUpdater < ApplicationService
 
       if new_topic
         @topic.subscriptions.create(user: @user)
-        new_create_notification
+        notify_users!(@topic.team.users, :created)
       else
-        new_update_notification
+        notify_users!(@topic.subscribed_users, :updated)
       end
     end
   end
@@ -55,21 +55,11 @@ class TopicUpdater < ApplicationService
     end
   end
 
-  def new_update_notification
-    subscriber_ids = @topic.subscribed_users.pluck(:id)
-    subscriber_ids.each do |subscriber_id|
-      next if subscriber_id == @user.id
+  def notify_users!(users, action)
+    users.pluck(:id).each do |target_user_id|
+      next if target_user_id == @user.id
 
-      @topic.notifications.create(actor: @user, user_id: subscriber_id, action: :updated)
-    end
-  end
-
-  def new_create_notification
-    team_ids = @topic.team.users.pluck(:id)
-    team_ids.each do |subscriber_id|
-      next if subscriber_id == @user.id
-
-      @topic.notifications.create(actor: @user, user_id: subscriber_id, action: :created)
+      @topic.notifications.create(actor: @user, user_id: target_user_id, action: action)
     end
   end
 end
