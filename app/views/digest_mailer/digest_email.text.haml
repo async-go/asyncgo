@@ -2,4 +2,6 @@ Here's your AsyncGo Digest
 ===============================================
 
 - @notifications.each do |notification|
-  = notification
+  = notification_text(notification)
+  = user_notification_url(notification.user, notification)
+  \
