@@ -28,6 +28,10 @@ class User < ApplicationRecord
     name || email
   end
 
+  def send_digest_email(_content)
+    DigestMailer.with(user: self, notifications: notifications).digest_email.deliver_later
+  end
+
   private
 
   def email_hash
