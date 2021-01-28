@@ -3,16 +3,18 @@
   - if user_field
     = form.hidden_field :user_id, value: current_user.id
   .mb-3
-    = form.label :title
+    = form.label :title, class: 'mb-1'
     = form.text_field :title, required: true, class: 'form-control'
   .mb-3
-    = form.label :description
-    = form.text_area :description, rows: '6', required: true, class: 'form-control'
+    = form.label :description, class: 'mb-1'
+    = render partial: 'shared/markdown_text_area', locals: { form: form, name: :description,
+      options: { rows: '6', required: true, class: 'form-control' } }
   .mb-3
-    = form.label :outcome
-    = form.text_area :outcome, rows: '6', class: 'form-control'
+    = form.label :outcome, class: 'mb-1'
+    = render partial: 'shared/markdown_text_area', locals: { form: form, name: :outcome,
+      options: { rows: '6', class: 'form-control' } }
   .mb-3
-    = form.label :due_date
+    = form.label :due_date, class: 'mb-1'
     = form.date_field :due_date, class: 'form-control'
 
   = form.submit submit_action, class: 'btn btn-primary'

@@ -18,6 +18,10 @@
   width: 3rem;
 }
 
+.navbar {
+  min-height: 5rem;
+}
+
 main {
   margin-bottom: 6rem;
 }
@@ -27,12 +31,4 @@ main {
   width: 1.5rem;
   border-radius: .25rem;
   border: 1px solid #333;
-}
-
-.fa-bell {
-  color: orange;
-}
-
-.fa-star {
-  color: silver;
 }

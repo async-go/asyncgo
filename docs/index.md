@@ -1,15 +1,19 @@
 ---
-layout: default
+layout: docs
 title: 'AsyncGo Documentation'
 description: Learn how to use AsyncGo
 ---
 
 ## Introduction
 
-Welcome to AsyncGo, a meeting replacement tool that helps you:
+Welcome to AsyncGo! AsyncGo helps your team communicate flexibly and without
+the interruptions caused by meetings and chat:
 
-- Replace meetings with a collaborative discussion workspace
-- Manage ongoing topics with your team in a shared agenda that everyone can contribute to
+- Your **topic board** becomes the "office water cooler" to find out what's being discussed.
+- **Timeboxed discussions** help everyone know what to focus on next.
+- Embedded **facilitation tools** helps everyone get to great results quickly.
+- **Structured context** and **outcomes** ensure discussions begin and end with clarity.
+- Use meeting time for **human connection**. Try a coffee chat instead!
 
 Table of Contents
 
@@ -23,7 +27,7 @@ Table of Contents
 The first step to getting the most out of AsyncGo is to familiarize yourself with async working.
 
 Async is a way of working, useful for remote, colocated, or hybrid companies, where collaboration is done via a digital workspace
-rather than in syncronous meetings/discussions. This gives the flexibility for any team member to choose
+rather than in synchronous meetings/discussions. This gives the flexibility for any team member to choose
 their own workday based on when they like to focus or have other commitments.
 
 Here are some good places to learn more about async work:
@@ -35,12 +39,13 @@ Here are some good places to learn more about async work:
 
 ## Getting the most out of AsyncGo
 
-AsyncGo was designed for asynchronous work, which means we intentionally do not hound you for updates.
+AsyncGo was designed for asynchronous work, which means the app will not hound you for updates.
 You won't find phone notifications, loud indicators in the app, constant email reminders, or anything
-like that. Instead, the application is designed to be interacted with on your own schedule.
+like that. Instead, the application is designed to be interacted with on your own schedule, with
+gentle reminders on a slower cadence.
 
-This can be initiall hard to adjust to if you're used to interrupt-driven, realtime work, but once
-you're used to it it's quite easy. There are just a few key concepts to understand:
+This can be initially hard to adjust to if you're used to interrupt-driven, realtime work, but once
+you're used to it, it's quite easy. There are just a few key concepts to understand:
 
 ### Timeboxing
 
@@ -71,7 +76,7 @@ are not auto-transcribed, so are not searchable.
 ### Notifications
 
 The primary way to be notified about what's going on in AsyncGo is via digest notifications. These
-are meant to be reviewed a couple times per day, at your convenience, and highlight what's new since
+are meant to be reviewed a couple of times per day, at your convenience, and highlight what's new since
 your last visit, as well as any items that are coming due soon.
 
 In this way you aren't constantly being interrupted to respond to the latest reply in a conversation
@@ -174,4 +179,4 @@ Adding videos is done by adding images with links. Since it's not possible to em
 
 ### Icon
 
-AsyncGo shows your avatar from [Gravatar](https://www.gravatar.com). You can update your picture there and it will automatically be reflected here.
+AsyncGo shows your avatar from [Gravatar](https://www.gravatar.com). You can update your picture there, and it will automatically be reflected here.

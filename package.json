@@ -2,6 +2,7 @@
   "name": "asyncgo",
   "private": true,
   "dependencies": {
+    "@github/markdown-toolbar-element": "^1.3.2",
     "@rails/actioncable": "^6.1.1",
     "@rails/activestorage": "^6.1.1",
     "@rails/ujs": "^6.1.1",
