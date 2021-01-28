@@ -32,7 +32,7 @@
             'aria-expanded' => 'false', 'aria-label' => 'Toggle navigation' }
             %span.navbar-toggler-icon
           .collapse.navbar-collapse#navbar-content
-            - if current_user&.team_id
+            - if current_user&.team
               %span.badge.bg-secondary.fs-6
                 Active Team: #{current_user.team.name}
               .ms-3.me-auto.dropdown
@@ -51,7 +51,7 @@
               %li.nav-item= link_to 'Docs', 'https://docs.asyncgo.com', class: 'nav-link',
                 target: :_blank, rel: :noopener
               - if current_user
-                - if current_user.team_id
+                - if current_user.team
                   %li.nav-item= active_link_to 'Topics', team_topics_path(current_user.team),
                     'nav-link'
                   %li.nav-item= active_link_to 'Admin', edit_team_path(current_user.team_id),

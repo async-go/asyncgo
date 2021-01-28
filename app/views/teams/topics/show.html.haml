@@ -39,7 +39,7 @@
   .col-lg-2.my-3
     = form_with(url: team_topic_subscribe_path(@topic.team, @topic),
                 local: true) do |subscription_form|
-      - if current_user.subscribed_topics.exists?(id: @topic.id)
+      - if user_subscribed?(@topic)
         = subscription_form.hidden_field :subscribed, value: 0
         = subscription_form.submit 'Unwatch Topic', class: 'btn btn-secondary'
       - else
