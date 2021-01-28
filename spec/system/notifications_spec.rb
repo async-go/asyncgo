@@ -47,4 +47,19 @@ RSpec.describe 'Notifications', type: :system do
     sign_in_user(user)
     expect(find('#notificationDropdown')).to have_text('1')
   end
+
+  it 'allows user to clear all notifications' do
+    user = FactoryBot.create(:user, :team)
+    actor = FactoryBot.create(:user, name: 'John Doe', team: user.team)
+    topic = FactoryBot.create(:topic, user: user, team: user.team)
+    FactoryBot.create(:notification, user: user, actor: actor, target: topic)
+
+    visit '/'
+    sign_in_user(user)
+
+    expect(find('#notificationDropdown')).to have_text('1')
+    find('.dropdown-toggle.badge').click
+    click_link '(clear)'
+    expect(find('#notificationDropdown')).to have_text('0')
+  end
 end

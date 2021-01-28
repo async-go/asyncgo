@@ -65,4 +65,32 @@ RSpec.describe Users::NotificationsController, type: :request do
       include_examples 'unauthorized user examples', 'You are not authorized.'
     end
   end
+
+  describe 'POST clear' do
+    subject(:post_clear) { post "/users/#{user.id}/notifications/clear" }
+
+    let(:user) { FactoryBot.create(:user) }
+
+    before do
+      FactoryBot.create(:notification, user: user)
+    end
+
+    context 'when user is authenticated' do
+      before do
+        sign_in(user)
+      end
+
+      it 'clears users notifications' do
+        expect { post_clear }.to change { user.reload.notifications.where(read_at: nil).count }.from(1).to(0)
+      end
+
+      it 'redirects back (to root)' do
+        expect(post_clear).to redirect_to(root_path)
+      end
+    end
+
+    context 'when user is not authenticated' do
+      include_examples 'unauthorized user examples', 'You are not authorized.'
+    end
+  end
 end
