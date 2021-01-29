@@ -9,8 +9,7 @@
     = csp_meta_tag
     -# haml-lint:disable LineLength
     = stylesheet_link_tag 'https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css',
-      integrity: 'sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1',
-      crossorigin: 'anonymous'
+      integrity: 'sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1', crossorigin: 'anonymous'
     -# haml-lint:enable LineLength
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'https://consent.cookiebot.com/uc.js',
@@ -33,8 +32,7 @@
             %span.navbar-toggler-icon
           .collapse.navbar-collapse#navbar-content
             - if current_user&.team
-              %span.badge.bg-secondary.fs-6
-                Active Team: #{current_user.team.name}
+              %span.badge.bg-secondary.fs-6 Active Team: #{current_user.team.name}
               .ms-3.me-auto.dropdown
                 .badge.bg-secondary.fs-6.dropdown-toggle{ 'id': 'notificationDropdown',
                   'role': 'button', 'data-bs-toggle': 'dropdown',
@@ -42,13 +40,15 @@
                   %span
                     %i.fas.fa-bell.text-warning
                     = notifications.count
-                %ul.dropdown-menu{ 'aria-labelledby': 'notificationDropdown' }
-                  - notifications.each do |notification|
-                    %li= link_to notification_text(notification),
-                      user_notification_path(notification.user, notification),
-                      class: 'dropdown-item'
-                  %li= link_to '(clear)', clear_user_notifications_path(current_user),
-                    method: :post, class: 'dropdown-item'
+                - if notifications.count.positive?
+                  %ul.dropdown-menu{ 'aria-labelledby': 'notificationDropdown' }
+                    - notifications.each do |notification|
+                      %li= link_to notification_text(notification),
+                        user_notification_path(notification.user, notification),
+                        class: 'dropdown-item'
+                      %li= link_to '✅ Clear all notifications',
+                        clear_user_notifications_path(current_user),
+                        method: :post, class: 'dropdown-item'
             %ul.navbar-nav.ms-auto.me-2
               %li.nav-item= link_to 'Docs', 'https://docs.asyncgo.com', class: 'nav-link',
                 target: :_blank, rel: :noopener
