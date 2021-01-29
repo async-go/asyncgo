@@ -11,7 +11,7 @@ module Teams
       end
 
       def create
-        comment = topic.comments.build(comment_params)
+        comment = topic.comments.build(create_params)
         authorize([:teams, :topics, comment])
 
         comment_flash = if update_comment(comment, comment_params)
@@ -39,7 +39,11 @@ module Teams
       private
 
       def comment_params
-        params.require(:comment).permit(:body, :user_id)
+        params.require(:comment).permit(:body)
+      end
+
+      def create_params
+        comment_params.merge(user: current_user)
       end
 
       def comment

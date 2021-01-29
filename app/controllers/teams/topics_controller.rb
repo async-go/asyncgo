@@ -26,7 +26,8 @@ module Teams
     end
 
     def create
-      @topic = team.topics.build(topic_params)
+      create_params = topic_params.merge(user: current_user)
+      @topic = team.topics.build(create_params)
       authorize([:teams, @topic])
 
       if TopicUpdater.new(current_user, @topic, topic_params).call
@@ -66,7 +67,7 @@ module Teams
     private
 
     def topic_params
-      params.require(:topic).permit(:title, :description, :outcome, :due_date, :status, :user_id)
+      params.require(:topic).permit(:title, :description, :outcome, :due_date, :status)
     end
 
     def update_user_subscription
