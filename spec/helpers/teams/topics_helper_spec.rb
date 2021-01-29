@@ -39,7 +39,7 @@ RSpec.describe Teams::TopicsHelper, type: :helper do
 
     context 'when topic has due date and is active' do
       before do
-        topic.due_date = Time.utc(2020, 1, 1).end_of_day
+        topic.due_date = Time.utc(2020, 1, 1)
         topic.status = :active
       end
 
