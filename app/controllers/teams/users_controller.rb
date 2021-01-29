@@ -8,15 +8,8 @@ module Teams
       authorize(team, policy_class: Teams::UserPolicy)
 
       user = User.find_or_initialize_by(create_params)
-      team.users << user
 
-      if user.persisted?
-        user_flash = { success: 'User was successfully added to the team.' }
-        send_welcome_email(user)
-      else
-        user_flash = { danger: user.errors.full_messages.join(', ') }
-      end
-
+      user_flash = add_user_to_team(team, user)
       redirect_to edit_team_path(team), flash: user_flash
     end
 
@@ -37,6 +30,16 @@ module Teams
 
     def send_welcome_email(user)
       UserMailer.with(user: user).welcome_email.deliver_later
+    end
+
+    def add_user_to_team(team, user)
+      if user.team
+        { danger: 'User already belongs to a team.' }
+      else
+        team.users << user
+        send_welcome_email(user)
+        { success: 'User was successfully added to the team.' }
+      end
     end
   end
 end
