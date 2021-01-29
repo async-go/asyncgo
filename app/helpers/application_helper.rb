@@ -6,7 +6,14 @@ module ApplicationHelper
   end
 
   def notification_text(notification)
-    "#{notification.actor.printable_name} #{notification.action} an #{notification.target.class.to_s.downcase}"
+    case notification.target
+    when Comment
+      "#{notification.actor.printable_name} #{notification.action} a \
+comment in the topic \"#{notification.target.topic.title}\""
+    when Topic
+      "#{notification.actor.printable_name} #{notification.action} the \
+topic \"#{notification.target.title}\""
+    end
   end
 
   def active_link_to(text, path, class_names)
