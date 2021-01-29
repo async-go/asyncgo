@@ -8,11 +8,14 @@ module ApplicationHelper
   def notification_text(notification)
     case notification.target
     when Comment
-      "#{notification.actor.printable_name} #{notification.action} a \
-comment in the topic \"#{notification.target.topic.title}\""
+      <<-NOTIFICATION_TEXT.squish
+        #{notification.actor.printable_name}
+        #{notification.action}
+        a comment in the topic
+        #{notification.target.topic.title}
+      NOTIFICATION_TEXT
     when Topic
-      "#{notification.actor.printable_name} #{notification.action} the \
-topic \"#{notification.target.title}\""
+      "#{notification.actor.printable_name} #{notification.action} the topic #{notification.target.title}"
     end
   end
 
