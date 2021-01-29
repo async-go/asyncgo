@@ -28,11 +28,11 @@
                       %li= link_to notification_text(notification),
                         user_notification_path(notification.user, notification),
                         class: 'dropdown-item'
-                      %li
-                        = link_to clear_user_notifications_path(current_user),
-                          method: :post, class: 'dropdown-item' do
-                          %i.fas.fa-check-double
-                          %span Clear all notifications
+                    %li
+                      = link_to clear_user_notifications_path(current_user),
+                        method: :post, class: 'dropdown-item' do
+                        %i.fas.fa-check-double
+                        %span Clear all notifications
                   - else
                     No notifications
             %ul.navbar-nav.ms-auto.me-2
