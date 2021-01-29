@@ -1,0 +1,18 @@
+%title AsyncGo
+%meta{ content: 'text/html; charset=UTF-8', 'http-equiv': 'Content-Type' }
+%meta{ charset: 'utf-8' }
+%meta{ name: 'viewport', content: 'width=device-width, initial-scale=1, shrink-to-fit=no' }
+= csrf_meta_tags
+= csp_meta_tag
+-# haml-lint:disable LineLength
+= stylesheet_link_tag 'https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css',
+    integrity: 'sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1', crossorigin: 'anonymous'
+-# haml-lint:enable LineLength
+= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+= javascript_include_tag 'https://consent.cookiebot.com/uc.js',
+    id: 'cookiebot', type: 'text/javascript', 'data-blockingmode': 'auto',
+    'data-cbid': '7e1bb1be-facd-4cd1-aef0-b0198b0ec955'
+= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+= javascript_include_tag 'https://kit.fontawesome.com/55ce2d2ceb.js',
+    crossorigin: 'anonymous', type: 'text/javascript'
+= favicon_link_tag image_path('logo.svg')
