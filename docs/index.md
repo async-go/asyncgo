@@ -57,6 +57,10 @@ interested in.
 This lets everyone manage their own time to decide what they want to focus on at any given point,
 while having the confidence that they won't miss out.
 
+Note that due dates are at the end of the chosen day. If you want something to be due at end of day
+Monday, then you should choose Monday as the date. If, instead, you want it to be due at midnight on
+Sunday, you should choose Sunday instead.
+
 ### Clear Communication
 
 Because you aren't meeting as a team and kicking things off with a general Q&A session, at least

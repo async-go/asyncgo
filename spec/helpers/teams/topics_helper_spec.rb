@@ -52,7 +52,7 @@ RSpec.describe Teams::TopicsHelper, type: :helper do
           travel_back
         end
 
-        it { is_expected.to eq('Due 1 day ago') }
+        it { is_expected.to eq('Due less than a minute ago') }
       end
 
       context 'when topic is not overdue' do
@@ -64,7 +64,7 @@ RSpec.describe Teams::TopicsHelper, type: :helper do
           travel_back
         end
 
-        it { is_expected.to eq('Due in 2 days') }
+        it { is_expected.to eq('Due in 3 days') }
       end
     end
 
