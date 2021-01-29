@@ -25,6 +25,6 @@ RSpec.describe ApplicationHelper, type: :helper do
 
     let(:notification) { FactoryBot.create(:notification) }
 
-    it { is_expected.to eq("#{notification.actor.printable_name} updated a topic") }
+    it { is_expected.to eq("#{notification.actor.printable_name} updated the topic \"#{notification.target.title}\"") }
   end
 end
