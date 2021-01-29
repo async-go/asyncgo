@@ -2,15 +2,15 @@
 
 RSpec.describe DigestMailer, type: :mailer do
   let(:user) { FactoryBot.create(:user, :team) }
-  let(:notification) { FactoryBot.create(:notification) }
-  let(:mail) { described_class.with(user: user, notifications: [notification]).digest_email }
+  let!(:notification) { FactoryBot.create(:notification, user: user) }
+  let(:mail) { described_class.with(user: user).digest_email }
 
   describe '#digest_email' do
     it 'renders the headers' do
       expect(mail).to have_attributes(
         subject: 'Your AsyncGo Digest',
-        to: [user.email],
-        from: ['notifications@asyncgo.com']
+        from: ['notifications@asyncgo.com'],
+        to: [user.email]
       )
     end
 

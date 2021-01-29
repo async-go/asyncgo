@@ -28,8 +28,8 @@ class User < ApplicationRecord
     name || email
   end
 
-  def send_digest_email(_content)
-    DigestMailer.with(user: self, notifications: notifications).digest_email.deliver_later
+  def send_digest_email
+    DigestMailer.with(user: self).digest_email.deliver_later
   end
 
   private

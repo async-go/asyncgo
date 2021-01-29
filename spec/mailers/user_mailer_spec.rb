@@ -8,8 +8,8 @@ RSpec.describe UserMailer, type: :mailer do
     it 'renders the headers' do
       expect(mail).to have_attributes(
         subject: 'Welcome to AsyncGo',
-        to: [user.email],
-        from: ['notifications@asyncgo.com']
+        from: ['notifications@asyncgo.com'],
+        to: [user.email]
       )
     end
 

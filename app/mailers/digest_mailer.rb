@@ -5,8 +5,7 @@ class DigestMailer < ApplicationMailer
   default from: 'notifications@asyncgo.com'
 
   def digest_email
-    @user = params[:user]
-    @notifications = params[:notifications]
-    mail(to: @user.email, subject: 'Your AsyncGo Digest', notifications: @notifications)
+    @notifications = params[:user].notifications
+    mail(to: params[:user].email, subject: 'Your AsyncGo Digest', notifications: @notifications)
   end
 end
