@@ -67,7 +67,6 @@
       %li.list-group-item
         = form_with(model: Comment.new, url: [@topic.team, @topic, Comment.new],
           local: true, class: 'g-3') do |form|
-          = form.hidden_field :user_id, value: current_user.id
           .mb-3
             = render partial: 'shared/markdown_text_area', locals: { form: form, name: :body,
               options: { rows: '4', required: true, class: 'form-control' } }

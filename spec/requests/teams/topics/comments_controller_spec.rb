@@ -45,7 +45,7 @@ RSpec.describe Teams::Topics::CommentsController, type: :request do
 
   describe 'POST create' do
     subject(:post_create) do
-      post "/teams/#{topic.team.id}/topics/#{topic.id}/comments", params: { comment: { body: body, user_id: user&.id } }
+      post "/teams/#{topic.team.id}/topics/#{topic.id}/comments", params: { comment: { body: body } }
     end
 
     context 'when user is authenticated' do
