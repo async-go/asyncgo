@@ -1,0 +1,3 @@
+- Dont send user id back in form
+- Prevent hijacking users from team
+- Add pagination

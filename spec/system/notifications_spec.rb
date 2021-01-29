@@ -16,7 +16,7 @@ RSpec.describe 'Notifications', type: :system do
 
     expect(find('#notificationDropdown')).to have_text('1')
     find('.dropdown-toggle.badge').click
-    click_link "John Doe updated the topic \"#{topic.title}\""
+    click_link "John Doe updated the topic #{topic.title}"
     expect(find('#notificationDropdown')).to have_text('0')
     expect(page).to have_text(topic.title)
   end
@@ -59,7 +59,7 @@ RSpec.describe 'Notifications', type: :system do
 
     expect(find('#notificationDropdown')).to have_text('1')
     find('.dropdown-toggle.badge').click
-    click_link '✅ Clear all notifications'
+    click_link 'Clear all notifications'
     expect(find('#notificationDropdown')).to have_text('0')
   end
 end
