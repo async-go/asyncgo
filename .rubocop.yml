@@ -15,6 +15,7 @@ AllCops:
 Metrics/BlockLength:
   Exclude:
     - 'config/environments/**/*'
+    - 'config/routes.rb'
     - 'spec/**/*'
 
 RSpec/ExampleLength:

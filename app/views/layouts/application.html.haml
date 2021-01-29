@@ -47,6 +47,8 @@
                     %li= link_to notification_text(notification),
                       user_notification_path(notification.user, notification),
                       class: 'dropdown-item'
+                  %li= link_to '(clear)', clear_user_notifications_path(current_user),
+                    method: :post, class: 'dropdown-item'
             %ul.navbar-nav.ms-auto.me-2
               %li.nav-item= link_to 'Docs', 'https://docs.asyncgo.com', class: 'nav-link',
                 target: :_blank, rel: :noopener

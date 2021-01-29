@@ -12,7 +12,11 @@ Rails.application.routes.draw do
 
   resources :users, only: :none do
     scope module: :users do
-      resources :notifications, only: :show
+      resources :notifications, only: :show do
+        collection do
+          post :clear
+        end
+      end
     end
   end
 
