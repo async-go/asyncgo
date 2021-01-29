@@ -2,9 +2,10 @@
   %h2
     %strong= @topic.title
 
-.row-mb-1
+.row.mb-1
   %p.text-secondary
     = printable_due_date(@topic)
+
 .row
   .col-lg-8.border
     %h6.mt-2.text-secondary.small Description
@@ -39,7 +40,7 @@
   .col-lg-2.my-3
     = form_with(url: team_topic_subscribe_path(@topic.team, @topic),
                 local: true) do |subscription_form|
-      - if current_user.subscribed_topics.exists?(id: @topic.id)
+      - if user_subscribed?(@topic)
         = subscription_form.hidden_field :subscribed, value: 0
         = subscription_form.submit 'Unwatch Topic', class: 'btn btn-secondary'
       - else
@@ -68,5 +69,6 @@
           local: true, class: 'g-3') do |form|
           = form.hidden_field :user_id, value: current_user.id
           .mb-3
-            = form.text_area :body, rows: '4', required: true, class: 'form-control'
+            = render partial: 'shared/markdown_text_area', locals: { form: form, name: :body,
+              options: { rows: '4', required: true, class: 'form-control' } }
           = form.submit 'Add Comment', class: 'btn btn-primary'

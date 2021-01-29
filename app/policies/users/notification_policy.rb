@@ -6,5 +6,9 @@ module Users
       user &&
         record.user == user
     end
+
+    def clear?
+      user
+    end
   end
 end

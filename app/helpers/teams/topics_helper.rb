@@ -2,6 +2,10 @@
 
 module Teams
   module TopicsHelper
+    def user_subscribed?(topic)
+      current_user.subscribed_topics.exists?(id: topic.id)
+    end
+
     def printable_due_date(topic)
       return 'No due date' unless topic.due_date?
 

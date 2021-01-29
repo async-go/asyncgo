@@ -19,6 +19,14 @@ module Users
       redirect_to redirect_path, flash: redirect_flash
     end
 
+    def clear
+      authorize([:users, Notification])
+
+      current_user.notifications.update(read_at: Time.now.utc)
+
+      redirect_back fallback_location: root_path
+    end
+
     private
 
     def notification

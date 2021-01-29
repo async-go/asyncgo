@@ -3,6 +3,31 @@
 RSpec.describe Teams::TopicsHelper, type: :helper do
   include ActiveSupport::Testing::TimeHelpers
 
+  describe '#user_subscribed?' do
+    subject(:user_subscribed?) { helper.user_subscribed?(topic) }
+
+    let(:topic) { FactoryBot.create(:topic) }
+    let(:current_user) { FactoryBot.create(:user, team: topic.team) }
+
+    before do
+      without_partial_double_verification do
+        allow(helper).to receive(:current_user).and_return(current_user)
+      end
+    end
+
+    context 'when user is subscribed' do
+      before do
+        current_user.subscribed_topics << topic
+      end
+
+      it { is_expected.to eq(true) }
+    end
+
+    context 'when user is not subscribed' do
+      it { is_expected.to eq(false) }
+    end
+  end
+
   describe '#printable_due_date' do
     subject(:printable_due_date) { helper.printable_due_date(topic) }
 
