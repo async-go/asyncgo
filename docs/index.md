@@ -134,6 +134,21 @@ new topic in AsyncGo and link to it from your channel.
 Realtime chat is great for the things it's good at, which is quick clarifying questions and short
 interactions, so try to save it for that. Avoid it for deeper thought.
 
+### How to tell you've got it right
+
+You shouldn't worry about this too much, the benefit will be felt by everyone once you make the change.
+That said, some good practical measurements are:
+
+- How much time is spent in meetings per week
+- Uninterrupted focus blocks and duration per day
+- Reduced messages in chat
+
+If these measures aren't improving, it's time to look at where the interruptions are coming from.
+If they are coming from other teams, you could consider including the high-contact ones into
+AsyncGo as well, then work together on creating focus time together. In most companies there
+are just a few sources of interruptions that, when dealt with, reduce the total interruptions
+dramatically.
+
 ---
 
 ## Topics
