@@ -14,6 +14,9 @@
  *= require_self
  */
 
+// Custom bootstrap variables must be set or imported *before* bootstrap.
+@import 'bootstrap/scss/bootstrap';
+
 .navbar-brand img {
   width: 3rem;
 }
@@ -33,7 +36,8 @@ main {
   border: 1px solid #333;
 }
 
-
-.notification-dropdown.dropdown > .dropdown-menu > li > a {
-  white-space: normal; 
+@include media-breakpoint-up(lg) {
+  .notification-dropdown .dropdown-menu {
+    width: 25rem;
+  }
 }

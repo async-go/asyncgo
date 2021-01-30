@@ -3,10 +3,12 @@
   "private": true,
   "dependencies": {
     "@github/markdown-toolbar-element": "^1.3.2",
+    "@popperjs/core": "^2.6.0",
     "@rails/actioncable": "^6.1.1",
     "@rails/activestorage": "^6.1.1",
     "@rails/ujs": "^6.1.1",
     "@rails/webpacker": "5.2.1",
+    "bootstrap": "^5.0.0-beta1",
     "turbolinks": "^5.2.0"
   },
   "version": "0.1.0",
