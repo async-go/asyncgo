@@ -37,7 +37,7 @@ Here are some good places to learn more about async work:
 
 ---
 
-## Getting the most out of AsyncGo
+## Key Concepts
 
 AsyncGo was designed for asynchronous work, which means the app will not hound you for updates.
 You won't find phone notifications, loud indicators in the app, constant email reminders, or anything
@@ -77,7 +77,7 @@ If you are the kind of person who likes to lay things out with spoken words, you
 or video and [embed it](#video) into the description, outcome, or a comment. Note that embedded videos
 are not auto-transcribed, so are not searchable.
 
-### Notifications
+### Slower-Paced Notifications
 
 The primary way to be notified about what's going on in AsyncGo is via digest notifications. These
 are meant to be reviewed a couple of times per day, at your convenience, and highlight what's new since
@@ -87,7 +87,72 @@ In this way you aren't constantly being interrupted to respond to the latest rep
 thread, like you might be in a regular chat application. Also, since your collaborators aren't expecting
 immediate replies, it helps everyone be in the right mindset.
 
-If something is urgent and needed right away, it's best to reach out to the person directly.
+This may feel like you're slowing down overall, but it just isn't the case. By working on several
+topics simultaneously, rather than serially as you would in meetings, you actually get more done.
+While it's true that any individual item may take slightly longer, the overall productivity is
+much higher. In any case, if something is urgent and needed right away, it's always possible to
+reach out to the person directly.. but this should be saved for real urgent situations, because
+whenever you do this you're impacting the team's async flow.
+
+---
+
+## Practical Usage
+
+AsyncGo is designed to make it easy to get up and running with your team. It doesn't require getting
+rid of any of the other tools you use, though you may decide to do so later, and it doesn't require
+changing any of the behaviors of anyone outside your team.
+
+Within your team, there are three main applications that adopting AsyncGo will change your usage of.
+
+### Reducing usage of video conferencing (Zoom, Teams, etc.) and meetings
+
+The first and most fundamental - don't schedule that meeting that you're considering having, especially
+if the meeting is within your own team. Instead, open up a new topic and place the meeting agenda there.
+
+If you're including someone from outside of your team, then you have a decision to make. If you think
+the person is up for participating then you can always invite them to your team. From that point on
+they will be able to participate as a normal user.
+
+With all your free time that you've freed up from meetings, consider scheduling a coffee chat or two
+with someone that you'd like to have a more free-form, human conversation with. It's a much better
+use of your time than work meetings where everyone is staring at documents or quietly working on
+something else in the background.
+
+### Replacing ongoing discussion agendas (Google Docs, Notion, etc.)
+
+With AsyncGo, you also don't need a register of topics that are in discussion. A lot of companies use a
+Google Doc for this, with a long list of topics that they keep coming back to and/or archive off for
+later reference. Instead, use the topic list in AsyncGo itself to keep track of all the various things
+you're discussing.
+
+One of the most powerful features of AsyncGo is how the complete list of discussion topics is right there
+for anyone to see, and they can choose to participate at any time if they have something to contribute.
+
+### Reducing usage of chat (Slack, IRC, etc.)
+
+Chat is an insidious one. It almost feels async, but anyone who has felt overwhelmed at the pace of
+threads happening in chat will attest to the fact that it's more realtime than they'd let you believe.
+To get the most out of AsyncGo, whenever there's a deeper topic that you want to give time for people
+to reflect on and participate at their convenience, don't start a Slack discussion. Instead create a
+new topic in AsyncGo and link to it from your channel.
+
+Realtime chat is great for the things it's good at, which is quick clarifying questions and short
+interactions, so try to save it for that. Avoid it for deeper thought.
+
+### How to tell you've got it right
+
+You shouldn't worry about this too much, the benefit will be felt by everyone once you make the change.
+That said, some good practical measurements are:
+
+- How much time is spent in meetings per week
+- Uninterrupted focus blocks and duration per day
+- Reduced messages in chat
+
+If these measures aren't improving, it's time to look at where the interruptions are coming from.
+If they are coming from other teams, you could consider including the high-contact ones into
+AsyncGo as well, then work together on creating focus time together. In most companies there
+are just a few sources of interruptions that, when dealt with, reduce the total interruptions
+dramatically.
 
 ---
 
@@ -181,6 +246,6 @@ Adding videos is done by adding images with links. Since it's not possible to em
 
 ## User Settings
 
-### Icon
+### Avatar
 
 AsyncGo shows your avatar from [Gravatar](https://www.gravatar.com). You can update your picture there, and it will automatically be reflected here.
