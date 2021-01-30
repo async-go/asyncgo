@@ -1,6 +1,20 @@
 !!! 5
 %html{ lang: 'en' }
-  = render 'layouts/head'
+  %head
+    %title AsyncGo
+    %meta{ content: 'text/html; charset=UTF-8', 'http-equiv': 'Content-Type' }
+    %meta{ charset: 'utf-8' }
+    %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1, shrink-to-fit=no' }
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'https://consent.cookiebot.com/uc.js',
+        id: 'cookiebot', type: 'text/javascript', 'data-blockingmode': 'auto',
+        'data-cbid': '7e1bb1be-facd-4cd1-aef0-b0198b0ec955'
+    = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'https://kit.fontawesome.com/55ce2d2ceb.js',
+        crossorigin: 'anonymous', type: 'text/javascript'
+    = favicon_link_tag image_path('logo.svg')
   %body
     %header.sticky-top.px-2.bg-white.border-bottom.shadow-lg.mb-5
       %nav.navbar.navbar-expand-lg.navbar-light
@@ -15,19 +29,19 @@
           .collapse.navbar-collapse#navbar-content
             - if current_user&.team
               %span.badge.bg-secondary.fs-6 Active Team: #{current_user.team.name}
-              .ms-3.me-auto.dropdown
+              .my-2.my-lg-0.ms-lg-3.me-auto.dropdown.notification-dropdown
                 .badge.bg-secondary.fs-6.dropdown-toggle{ 'id': 'notificationDropdown',
                   'role': 'button', 'data-bs-toggle': 'dropdown',
                   'aria-haspopup': 'true', 'aria-expanded': 'false' }
                   %span
                     %i.fas.fa-bell.text-warning
                     = notifications.count
-                %ul.dropdown-menu{ 'aria-labelledby': 'notificationDropdown' }
+                %ul.dropdown-menu.overflow-scroll.p-2{ 'aria-labelledby': 'notificationDropdown' }
                   - if notifications.exists?
                     - notifications.each do |notification|
                       %li= link_to notification_text(notification),
                         user_notification_path(notification.user, notification),
-                        class: 'dropdown-item'
+                        class: 'dropdown-item text-wrap'
                     %li
                       = link_to clear_user_notifications_path(current_user),
                         method: :post, class: 'dropdown-item' do
@@ -79,8 +93,3 @@
                 %i.fab.fa-1x.fa-youtube
               = link_to 'https://www.linkedin.com/company/asyncgo/', class: 'link-secondary' do
                 %i.fab.fa-1x.fa-linkedin
-    -# haml-lint:disable LineLength
-    = javascript_include_tag 'https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js',
-      integrity: 'sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj',
-      crossorigin: 'anonymous', type: 'text/javascript'
-    -# haml-lint:disable LineLength
