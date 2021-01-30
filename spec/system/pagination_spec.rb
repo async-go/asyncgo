@@ -7,7 +7,7 @@ RSpec.describe 'Pagination', type: :system do
 
   it 'paginates active topics' do
     user = FactoryBot.create(:user, :team)
-    topics = FactoryBot.create_list(:topic, 21, user: user, team: user.team)
+    topics = FactoryBot.create_list(:topic, 25, user: user, team: user.team)
 
     visit '/'
     sign_in_user(user)
@@ -23,7 +23,7 @@ RSpec.describe 'Pagination', type: :system do
 
   it 'paginates closed topics' do
     user = FactoryBot.create(:user, :team)
-    topics = FactoryBot.create_list(:topic, 21, user: user, team: user.team, status: :closed)
+    topics = FactoryBot.create_list(:topic, 25, user: user, team: user.team, status: :closed)
 
     visit '/'
     sign_in_user(user)
@@ -40,7 +40,7 @@ RSpec.describe 'Pagination', type: :system do
   it 'paginates topic comments' do
     user = FactoryBot.create(:user, :team)
     topic = FactoryBot.create(:topic, user: user, team: user.team)
-    comments = FactoryBot.create_list(:comment, 21, topic: topic, user: user)
+    comments = FactoryBot.create_list(:comment, 25, topic: topic, user: user)
 
     visit '/'
     sign_in_user(user)
@@ -57,7 +57,7 @@ RSpec.describe 'Pagination', type: :system do
 
   it 'paginates user members' do
     user = FactoryBot.create(:user, :team)
-    team_members = FactoryBot.create_list(:user, 21, team: user.team)
+    team_members = FactoryBot.create_list(:user, 25, team: user.team)
 
     visit '/'
     sign_in_user(user)
