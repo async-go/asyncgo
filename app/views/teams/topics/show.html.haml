@@ -48,9 +48,10 @@
         = subscription_form.submit 'Watch Topic', class: 'btn btn-secondary'
 
 %h5.mt-2.border-bottom Comments
+
 .row
   %ul.list-group.list-group-flush
-    - @topic.comments.each do |comment|
+    - @topic_comments.each do |comment|
       %li.list-group-item.mb-2
         .row
           .col-lg-2
@@ -71,3 +72,5 @@
             = render partial: 'shared/markdown_text_area', locals: { form: form, name: :body,
               options: { rows: '4', required: true, class: 'form-control' } }
           = form.submit 'Add Comment', class: 'btn btn-primary'
+.row
+  != pagy_bootstrap_nav(@pagy)

@@ -14,6 +14,8 @@ module Teams
     def show
       @topic = topic
       authorize([:teams, @topic])
+
+      @pagy, @topic_comments = pagy(@topic.comments)
     end
 
     def new
