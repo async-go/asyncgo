@@ -14,9 +14,9 @@
             %span.navbar-toggler-icon
           .collapse.navbar-collapse#navbar-content
             - if current_user&.team
-              %span.badge.bg-secondary.fs-6 Active Team: #{current_user.team.name}
-              .ms-3.me-auto.dropdown
-                .badge.bg-secondary.fs-6.dropdown-toggle{ 'id': 'notificationDropdown',
+              %span.badge.bg-secondary.fs-6.m-2 Active Team: #{current_user.team.name}
+              .dropdown.notification-dropdown
+                .badge.bg-secondary.fs-6.m-2.dropdown-toggle{ 'id': 'notificationDropdown',
                   'role': 'button', 'data-bs-toggle': 'dropdown',
                   'aria-haspopup': 'true', 'aria-expanded': 'false' }
                   %span

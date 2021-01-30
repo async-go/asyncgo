@@ -32,3 +32,8 @@ main {
   border-radius: .25rem;
   border: 1px solid #333;
 }
+
+
+.notification-dropdown.dropdown > .dropdown-menu > li > a {
+  white-space: normal; 
+}
