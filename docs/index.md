@@ -87,7 +87,12 @@ In this way you aren't constantly being interrupted to respond to the latest rep
 thread, like you might be in a regular chat application. Also, since your collaborators aren't expecting
 immediate replies, it helps everyone be in the right mindset.
 
-If something is urgent and needed right away, it's best to reach out to the person directly.
+This may feel like you're slowing down overall, but it just isn't the case. By working on several
+topics simultaneously, rather than serially as you would in meetings, you actually get more done.
+While it's true that any individual item may take slightly longer, the overall productivity is
+much higher. In any case, if something is urgent and needed right away, it's always possible to
+reach out to the person directly.. but this should be saved for real urgent situations, because
+whenever you do this you're impacting the team's async flow.
 
 ---
 
