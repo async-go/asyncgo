@@ -1,6 +1,4 @@
 %ul.list-group.list-group-flush
-  -# Load the collection into memory
-  - topic_collection.eager_load!
   - if topic_collection.present?
     %li.list-group-item.d-none.d-lg-block
       .row.small

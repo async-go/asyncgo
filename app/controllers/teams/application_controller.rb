@@ -5,7 +5,7 @@ module Teams
     protected
 
     def team
-      @team ||= current_user.team
+      @team ||= Team.find(params[:team_id] || params[:id])
     end
   end
 end
