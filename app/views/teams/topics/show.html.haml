@@ -9,7 +9,7 @@
 .row
   .col-lg-8.border
     %h6.mt-2.text-secondary.small Description
-    %div= @topic.description_html.html_safe # rubocop:disable Rails/OutputSafety
+    %div!= @topic.description_html
 
   .col-lg-4.border
     %h6.mt-2.text-secondary.small
@@ -19,7 +19,7 @@
     - if @topic.outcome_html.blank?
       %p Content has not been started yet.
     - else
-      %div= @topic.outcome_html&.html_safe # rubocop:disable Rails/OutputSafety
+      %div!= @topic.outcome_html
 
 .row
   .col-lg-8.my-3.small
@@ -59,7 +59,7 @@
           .col-lg-1
             %span= comment.created_at.strftime('%b %e')
           .col-lg-9
-            %div= comment.body_html.html_safe # rubocop:disable Rails/OutputSafety
+            %div!= comment.body_html
             - if @topic.active? && policy([:teams, :topics, comment]).edit?
               %span.small= link_to 'Edit Comment',
                 edit_team_topic_comment_path(@topic.team, @topic, comment)
