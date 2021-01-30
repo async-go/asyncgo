@@ -107,7 +107,7 @@ RSpec.describe 'Topics', type: :system do
     find(:fillable_field, 'comment[body]').send_keys('This is updated content')
     click_button 'Update Comment'
 
-    expect(page).to have_text('This is updated content')
+    expect(page).to have_text('This is updated content', wait: 3)
   end
 
   it 'allows the user to close and open the topic' do
