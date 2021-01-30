@@ -59,7 +59,9 @@ RSpec.describe 'Notifications', type: :system do
 
     expect(find('#notificationDropdown')).to have_text('1')
     find('.dropdown-toggle.badge').click
-    click_link 'Clear all notifications'
+    # The alert sometimes renders on top of the dropdown in Capybara for some
+    # reason
+    page.execute_script('arguments[0].click();', find(:link, 'Clear all notifications'))
     expect(find('#notificationDropdown')).to have_text('0')
   end
 end
