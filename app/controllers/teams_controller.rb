@@ -1,11 +1,14 @@
 # frozen_string_literal: true
 
 class TeamsController < Teams::ApplicationController
+  include Pagy::Backend
   include Pundit
 
   def edit
     @team = team
     authorize(@team)
+
+    @pagy, @team_members = pagy(team.users.where.not(email: current_user.email))
   end
 
   def new
