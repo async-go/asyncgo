@@ -59,7 +59,8 @@ RSpec.describe 'Notifications', type: :system do
 
     expect(find('#notificationDropdown')).to have_text('1')
     find('.dropdown-toggle.badge').click
-    click_link 'Clear all notifications'
+    # This is required to allow enough time for the dropdown to show
+    click_link('Clear all notifications', wait: 5)
     expect(find('#notificationDropdown')).to have_text('0')
   end
 end
