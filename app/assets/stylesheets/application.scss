@@ -36,6 +36,10 @@ main {
   border: 1px solid #333;
 }
 
+.notification-dropdown .dropdown-menu {
+  max-height: 20rem;
+}
+
 @include media-breakpoint-up(lg) {
   .notification-dropdown .dropdown-menu {
     width: 25rem;

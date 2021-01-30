@@ -36,7 +36,7 @@
                   %span
                     %i.fas.fa-bell.text-warning
                     = notifications.count
-                %ul.dropdown-menu.p-2{ 'aria-labelledby': 'notificationDropdown' }
+                %ul.dropdown-menu.overflow-scroll.p-2{ 'aria-labelledby': 'notificationDropdown' }
                   - if notifications.exists?
                     - notifications.each do |notification|
                       %li= link_to notification_text(notification),
