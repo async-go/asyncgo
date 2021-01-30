@@ -8,6 +8,7 @@ RSpec.describe Teams::UsersController, type: :request do
 
   let(:team) { FactoryBot.create(:team) }
 
+  # rubocop:disable RSpec/NestedGroups
   describe 'POST create' do
     subject(:post_create) { post "/teams/#{team.id}/users", params: { user: { email: email } } }
 
@@ -27,26 +28,56 @@ RSpec.describe Teams::UsersController, type: :request do
           let(:user) { FactoryBot.create(:user) }
           let(:email) { user.email }
 
-          it 'adds the user to the team' do
-            expect { post_create }.to change { user.reload.team_id }.from(nil).to(team.id)
+          context 'when user does not belong to a team' do
+            it 'adds the user to the team' do
+              expect { post_create }.to change { user.reload.team_id }.from(nil).to(team.id)
+            end
+
+            it 'enqueues welcome email' do
+              expect { post_create }.to have_enqueued_mail(UserMailer, :welcome_email).with(
+                a_hash_including(params: { user: user })
+              ).on_queue(:default)
+            end
+
+            it 'sets the flash' do
+              post_create
+
+              expect(controller.flash[:success]).to eq('User was successfully added to the team.')
+            end
+
+            it 'redirects to edit team path' do
+              post_create
+
+              expect(response).to redirect_to(edit_team_path(team))
+            end
           end
 
-          it 'enqueues welcome email' do
-            expect { post_create }.to have_enqueued_mail(UserMailer, :welcome_email).with(
-              a_hash_including(params: { user: user })
-            ).on_queue(:default)
-          end
+          context 'when user belongs to a team' do
+            before do
+              user.update!(team: FactoryBot.create(:team))
+            end
 
-          it 'sets the flash' do
-            post_create
+            it 'does not add user to the team' do
+              expect { post_create }.not_to(change { user.reload.team_id })
+            end
 
-            expect(controller.flash[:success]).to eq('User was successfully added to the team.')
-          end
+            it 'does not enqueue welcome email' do
+              expect { post_create }.not_to have_enqueued_mail(UserMailer, :welcome_email).with(
+                a_hash_including(params: { user: user })
+              ).on_queue(:default)
+            end
 
-          it 'redirects to edit team path' do
-            post_create
+            it 'sets the flash' do
+              post_create
 
-            expect(response).to redirect_to(edit_team_path(team))
+              expect(controller.flash[:danger]).to eq('User already belongs to a team.')
+            end
+
+            it 'redirects to edit team path' do
+              post_create
+
+              expect(response).to redirect_to(edit_team_path(team))
+            end
           end
         end
 
@@ -96,6 +127,7 @@ RSpec.describe Teams::UsersController, type: :request do
       include_examples 'unauthorized user examples', 'You are not authorized.'
     end
   end
+  # rubocop:enable RSpec/NestedGroups
 
   describe 'DELETE destroy' do
     subject(:delete_destroy) { delete "/teams/#{team.id}/users/#{user.id}" }

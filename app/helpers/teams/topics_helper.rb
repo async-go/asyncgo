@@ -10,13 +10,19 @@ module Teams
       return 'No due date' unless topic.due_date?
 
       if topic.active?
-        if topic.due_date < Time.now.utc
-          "Due #{distance_of_time_in_words(topic.due_date, Time.now.utc)} ago"
-        else
-          "Due in #{distance_of_time_in_words(Time.now.utc, topic.due_date)}"
-        end
+        active_topic_due_date(topic)
       else
         "Due #{topic.due_date.strftime('%b %-d')}"
+      end
+    end
+
+    private
+
+    def active_topic_due_date(topic)
+      if topic.due_date.end_of_day < Time.now.utc
+        "Due #{distance_of_time_in_words(topic.due_date.end_of_day, Time.now.utc)} ago"
+      else
+        "Due in #{distance_of_time_in_words(Time.now.utc, topic.due_date.end_of_day)}"
       end
     end
   end
