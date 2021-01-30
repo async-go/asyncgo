@@ -101,6 +101,8 @@ GEM
       ruby2_keywords
     faraday-net_http (1.0.1)
     ffi (1.14.2)
+    font-awesome-sass (5.15.1)
+      sassc (>= 1.11)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     haml (5.2.1)
@@ -330,6 +332,7 @@ DEPENDENCIES
   dotenv-rails (~> 2.7.6)
   factory_bot_rails (~> 6.1.0)
   faker (~> 2.15.1)
+  font-awesome-sass (~> 5.15.1)
   haml_lint (~> 0.37.0)
   hamlit (~> 2.14.1)
   listen (~> 3.3)

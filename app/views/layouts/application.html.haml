@@ -12,8 +12,6 @@
         id: 'cookiebot', type: 'text/javascript', 'data-blockingmode': 'auto',
         'data-cbid': '7e1bb1be-facd-4cd1-aef0-b0198b0ec955'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
-    = javascript_include_tag 'https://kit.fontawesome.com/55ce2d2ceb.js',
-        crossorigin: 'anonymous', type: 'text/javascript'
     = favicon_link_tag image_path('logo.svg')
   %body
     %header.sticky-top.px-2.bg-white.border-bottom.shadow-lg.mb-5
@@ -34,7 +32,7 @@
                   'role': 'button', 'data-bs-toggle': 'dropdown',
                   'aria-haspopup': 'true', 'aria-expanded': 'false' }
                   %span
-                    %i.fas.fa-bell.text-warning
+                    = icon('fas', 'bell', class: 'text-warning')
                     = unread_notifications.count
                 %ul.dropdown-menu.overflow-scroll.p-2{ 'aria-labelledby': 'notificationDropdown' }
                   - if unread_notifications.exists?
@@ -45,7 +43,7 @@
                     %li
                       = link_to clear_user_notifications_path(current_user),
                         method: :post, class: 'dropdown-item' do
-                        %i.fas.fa-check-double
+                        = icon('fas', 'check-double')
                         %span Clear all notifications
                   - else
                     No notifications
@@ -87,9 +85,9 @@
           .col-4
             .d-flex.justify-content-end.align-items-center.gap-2.h-100
               = link_to 'https://twitter.com/async_go', class: 'link-secondary' do
-                %i.fab.fa-1x.fa-twitter
+                = icon('fab', 'twitter', class: 'fa-1x')
               = link_to 'https://www.youtube.com/channel/UCxkERUsycwg2r1piCepu4Xw',
                 class: 'link-secondary' do
-                %i.fab.fa-1x.fa-youtube
+                = icon('fab', 'youtube', class: 'fa-1x')
               = link_to 'https://www.linkedin.com/company/asyncgo/', class: 'link-secondary' do
-                %i.fab.fa-1x.fa-linkedin
+                = icon('fab', 'linkedin', class: 'fa-1x')

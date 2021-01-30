@@ -16,6 +16,7 @@ gem 'webpacker', '~> 5.0' # Transpile app-like JavaScript. Read more: https://gi
 
 # Other
 gem 'commonmarker', '0.21.0' # GitHub Flavored Markdown renderer
+gem 'font-awesome-sass', '~> 5.15.1'
 gem 'hamlit', '~> 2.14.1' # Templating language
 gem 'omniauth-github', '~> 2.0.0'
 gem 'omniauth-google-oauth2', '~> 0.8.0'
