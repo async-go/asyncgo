@@ -28,17 +28,18 @@
             - if current_user&.team
               %span.badge.bg-secondary.fs-6 Active Team: #{current_user.team.name}
               .my-2.my-lg-0.ms-lg-3.me-auto.dropdown.notification-dropdown
+                - notification_count = unread_notifications.count
                 .badge.bg-secondary.fs-6.dropdown-toggle{ id: 'notificationDropdown',
                   role: 'button', 'data-bs-toggle': 'dropdown',
                   'aria-haspopup': 'true', 'aria-expanded': 'false' }
                   %span
                     = icon('fas', 'bell', class: 'text-warning')
-                    = unread_notifications.count
+                    = notification_count
                 %ul.dropdown-menu.overflow-scroll.p-2{ 'aria-labelledby': 'notificationDropdown' }
-                  - if unread_notifications.exists?
+                  - if notification_count.positive?
                     - unread_notifications.each do |notification|
                       %li= link_to notification_text(notification),
-                        user_notification_path(notification.user, notification),
+                        user_notification_path(current_user.id, notification),
                         class: 'dropdown-item text-wrap'
                     %li
                       = link_to clear_user_notifications_path(current_user),
