@@ -2,12 +2,13 @@
 
 module Teams
   class TopicsController < Teams::Topics::ApplicationController
+    include Pagy::Backend
     include Pundit
 
     def index
       authorize(team, policy_class: Teams::TopicPolicy)
-      @active_topics = team.topics.active.order(:due_date)
-      @closed_topics = team.topics.closed.order(:due_date)
+      @pagy_active_topics, @active_topics = pagy(team.topics.active.order(:due_date))
+      @pagy_closed_topics, @closed_topics = pagy(team.topics.closed.order(:due_date))
     end
 
     def show
