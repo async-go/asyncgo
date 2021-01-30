@@ -21,6 +21,7 @@ gem 'hamlit', '~> 2.14.1' # Templating language
 gem 'omniauth-github', '~> 2.0.0'
 gem 'omniauth-google-oauth2', '~> 0.8.0'
 gem 'omniauth-rails_csrf_protection', '~> 1.0.0'
+gem 'pagy', '~> 3.10.0' # pagination
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.7'
