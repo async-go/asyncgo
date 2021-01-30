@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module ApplicationHelper
-  def notifications
+  def unread_notifications
     Notification.where(user: current_user, read_at: nil)
   end
 

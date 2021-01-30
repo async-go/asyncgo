@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 RSpec.describe ApplicationHelper, type: :helper do
-  describe '#notifications' do
-    subject(:notifications) { helper.notifications }
+  describe '#unread_notifications' do
+    subject(:unread_notifications) { helper.unread_notifications }
 
     let(:current_user) { FactoryBot.create(:user) }
     let(:user_notification) { FactoryBot.create(:notification, user: current_user) }
@@ -16,7 +16,7 @@ RSpec.describe ApplicationHelper, type: :helper do
     end
 
     it 'returns users notifications' do
-      expect(notifications).to contain_exactly(user_notification)
+      expect(unread_notifications).to contain_exactly(user_notification)
     end
   end
 
