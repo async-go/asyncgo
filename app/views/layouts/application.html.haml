@@ -28,8 +28,8 @@
             - if current_user&.team
               %span.badge.bg-secondary.fs-6 Active Team: #{current_user.team.name}
               .my-2.my-lg-0.ms-lg-3.me-auto.dropdown.notification-dropdown
-                .badge.bg-secondary.fs-6.dropdown-toggle{ 'id': 'notificationDropdown',
-                  'role': 'button', 'data-bs-toggle': 'dropdown',
+                .badge.bg-secondary.fs-6.dropdown-toggle{ id: 'notificationDropdown',
+                  role: 'button', 'data-bs-toggle': 'dropdown',
                   'aria-haspopup': 'true', 'aria-expanded': 'false' }
                   %span
                     = icon('fas', 'bell', class: 'text-warning')
@@ -61,9 +61,9 @@
                 %li.nav-item= link_to 'Sign out', sign_out_path, method: :delete, class: 'nav-link'
               - else
                 %li.nav-item.dropdown
-                  %a.nav-link.dropdown-toggle{ 'href': '#',
-                    'id': 'signinDropdown', 'role': 'button', 'data-bs-toggle': 'dropdown',
-                    'aria-haspopup': 'true', 'aria-expanded': 'false' } Sign in
+                  %a.nav-link.dropdown-toggle{ href: '#', id: 'signinDropdown', role: 'button',
+                    'data-bs-toggle': 'dropdown', 'aria-haspopup': 'true',
+                    'aria-expanded': 'false' } Sign in
                   %ul.dropdown-menu{ 'aria-labelledby': 'signinDropdown' }
                     %li= button_to 'Google', '/auth/google_oauth2', class: 'dropdown-item'
                     %li= button_to 'GitHub', '/auth/github', class: 'dropdown-item'
