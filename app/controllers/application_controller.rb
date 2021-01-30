@@ -12,12 +12,13 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    return unless session[:user_id]
-
-    user = User.find_by(id: session[:user_id])
-    session[:user_id] = nil unless user
-
-    @current_user ||= user
+    @current_user ||= begin
+      if session[:user_id]
+        User.find_by(id: session[:user_id]).tap do |user|
+          session[:user_id] = nil unless user
+        end
+      end
+    end
   end
   helper_method :current_user
 end
