@@ -2,6 +2,8 @@
 
 module Teams
   module TopicsHelper
+    include ::Pagy::Frontend
+
     def user_subscribed?(topic)
       current_user.subscribed_topics.exists?(id: topic.id)
     end
