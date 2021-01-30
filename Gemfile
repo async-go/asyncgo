@@ -15,7 +15,7 @@ gem 'turbolinks', '~> 5' # Turbolinks makes navigating your web application fast
 gem 'webpacker', '~> 5.0' # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 
 # Other
-gem 'commonmarker', '0.21.0' # GitHub Flavored Markdown renderer
+gem 'commonmarker', '~> 0.21.0' # GitHub Flavored Markdown renderer
 gem 'font-awesome-sass', '~> 5.15.1'
 gem 'hamlit', '~> 2.14.1' # Templating language
 gem 'omniauth-github', '~> 2.0.0'
@@ -35,7 +35,7 @@ gem 'omniauth-rails_csrf_protection', '~> 1.0.0'
 group :development, :test do
   # Linters
   ## Ruby linter
-  gem 'rubocop', '~> 1.8.0', require: false
+  gem 'rubocop', '~> 1.9.0', require: false
   gem 'rubocop-performance', '~> 1.9.0', require: false
   gem 'rubocop-rails', '~> 2.9.0', require: false
   gem 'rubocop-rspec', '~> 2.1.0', require: false
@@ -59,7 +59,7 @@ group :development do
 end
 
 group :test do
-  gem 'brakeman', '~> 4.10.1'
+  gem 'brakeman', '~> 5.0.0'
   gem 'capybara', '>= 3.26' # Support for Capybara system testing
   gem 'factory_bot_rails', '~> 6.1.0' # Factories for generating AR objects in specs
   gem 'faker', '~> 2.15.1' # Fake data for use in specs
