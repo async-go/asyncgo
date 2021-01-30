@@ -8,11 +8,11 @@ module Teams
     def index
       authorize(team, policy_class: Teams::TopicPolicy)
       @pagy_active_topics, @active_topics = pagy(
-        team.topics.active.order(:due_date),
+        team.topics.active.order(:due_date).includes(:user, :subscribed_users),
         page_param: 'active_page'
       )
       @pagy_closed_topics, @closed_topics = pagy(
-        team.topics.closed.order(:due_date),
+        team.topics.closed.order(:due_date).includes(:user, :subscribed_users),
         page_param: 'closed_page'
       )
     end

@@ -2,7 +2,7 @@
 
 module ApplicationHelper
   def unread_notifications
-    Notification.where(user: current_user, read_at: nil).includes(:actor, :target)
+    @unread_notifications ||= Notification.where(user: current_user, read_at: nil).includes(:actor, :target)
   end
 
   def notification_text(notification)

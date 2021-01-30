@@ -28,7 +28,7 @@
             - if current_user&.team
               %span.badge.bg-secondary.fs-6 Active Team: #{current_user.team.name}
               .my-2.my-lg-0.ms-lg-3.me-auto.dropdown.notification-dropdown
-                - notification_count = unread_notifications.count
+                - notification_count = unread_notifications.length
                 .badge.bg-secondary.fs-6.dropdown-toggle{ id: 'notificationDropdown',
                   role: 'button', 'data-bs-toggle': 'dropdown',
                   'aria-haspopup': 'true', 'aria-expanded': 'false' }
