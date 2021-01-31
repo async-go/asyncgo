@@ -59,4 +59,4 @@ GITHUB_CLIENT_SECRET=[REDACTED]
 
 ### Rake tasks
 
-- `rake send_digest_emails` emails a list of unread notifications to every user in every team.
+- `rake send_digest_emails` emails a list of unread notifications to every user
