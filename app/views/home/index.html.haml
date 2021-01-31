@@ -2,12 +2,8 @@
 
 %p.lead
   - if current_user
-    - if current_user.team
-      You're all set! Feel free to hop into the topics list! =>
-      = link_to 'Team Topics', team_topics_path(current_user.team)
-    - else
-      Woohoo, you're signed in. The next step is to either get invited to a team or create one. =>
-      = link_to 'Create New Team', new_team_path
+    Woohoo, you're signed in. The next step is to either get invited to a team or create one. =>
+    = link_to 'Create New Team', new_team_path
   - else
     Hi - the first step is to sign in.
 %p.m-4
