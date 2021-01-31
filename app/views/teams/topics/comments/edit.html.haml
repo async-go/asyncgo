@@ -1,7 +1,7 @@
 .row.my-5
   %h2= @topic.title
 
-  = link_to 'Back to Topic', team_topic_path(@comment.topic.team, @comment.topic)
+  = link_to 'Back', :back
 
   = render partial: 'shared/form_errors', locals: { model: @comment }
 

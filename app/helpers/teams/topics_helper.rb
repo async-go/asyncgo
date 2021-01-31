@@ -5,7 +5,7 @@ module Teams
     include ::Pagy::Frontend
 
     def user_subscribed?(topic)
-      current_user.subscribed_topics.exists?(id: topic.id)
+      topic.subscribed_users.include?(current_user)
     end
 
     def printable_due_date(topic)
