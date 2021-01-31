@@ -1,10 +1,6 @@
 # frozen_string_literal: true
 
 module ApplicationHelper
-  def unread_notifications
-    Notification.where(user: current_user, read_at: nil)
-  end
-
   def notification_text(notification)
     case notification.target
     when Comment

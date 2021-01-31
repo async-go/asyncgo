@@ -8,20 +8,20 @@ module Teams
     def index
       authorize(team, policy_class: Teams::TopicPolicy)
       @pagy_active_topics, @active_topics = pagy(
-        team.topics.active.order(:due_date),
-        page_param: 'active_page'
+        team.topics.active.order(:due_date), page_param: 'active_page'
       )
       @pagy_closed_topics, @closed_topics = pagy(
-        team.topics.closed.order(:due_date),
-        page_param: 'closed_page'
+        team.topics.closed.order(:due_date), page_param: 'closed_page'
       )
+      @active_topics = preload_topics(@active_topics)
+      @closed_topics = preload_topics(@closed_topics)
     end
 
     def show
       @topic = topic
       authorize([:teams, @topic])
 
-      @pagy, @topic_comments = pagy(@topic.comments)
+      @pagy, @topic_comments = pagy(@topic.comments.includes(:user))
     end
 
     def new
@@ -87,6 +87,10 @@ module Teams
       elsif params[:subscribed] == '0' && subscription.persisted?
         subscription.destroy
       end
+    end
+
+    def preload_topics(scope)
+      scope.includes(:user, :subscribed_users).to_a
     end
   end
 end
