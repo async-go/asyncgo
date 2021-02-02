@@ -10,6 +10,9 @@
 
 jason = User.create({ id: 0, name: 'Jason Yavorska', email: 'jason@asyncgo.com' })
 matija = User.create({ id: 1, name: 'Matija Cupic', email: 'matija@asyncgo.com' })
+bob = User.create({ id: 2, name: 'Bob Tester', email: 'testdata-bob@asyncgo.com' })
+larry = User.create({ id: 3, name: 'Larry Sample', email: 'testdata-larry@asyncgo.com' })
+
 asyncgo = Team.create({ id: 0, name: 'AsyncGo', users: [jason, matija] })
 
 # rubocop:disable Metrics/MethodLength
@@ -29,54 +32,75 @@ end
 # rubocop:enable Metrics/MethodLength
 
 topic = create_topic({  id: 0,
-                        user: jason,
+                        user: bob,
                         team: asyncgo,
                         title: 'Daily standup',
                         description: '- Hello',
                         due_date: Time.zone.today })
 
 comment = Comment.create({ id: 0,
-                           user: matija,
+                           user: larry,
                            topic: topic,
                            body: 'No update from me today',
                            body_html: 'No update from me today' })
 
+topic.subscribed_users << jason
+topic.subscribed_users << matija
+
 Notification.create({ id: 0,
                       user: jason,
-                      actor: matija,
+                      actor: larry,
                       action: :created,
                       target: comment })
 
+Notification.create({ id: 1,
+                      user: jason,
+                      actor: larry,
+                      action: :created,
+                      target: topic })
+
+Notification.create({ id: 2,
+                      user: matija,
+                      actor: larry,
+                      action: :created,
+                      target: comment })
+
+Notification.create({ id: 3,
+                      user: matija,
+                      actor: larry,
+                      action: :created,
+                      target: topic })
+
 create_topic({ id: 1,
-               user: matija,
+               user: bob,
                team: asyncgo,
                title: 'Lets discuss our next marketing campaign',
                description: '- Hello',
                due_date: Time.zone.today + 5 })
 
 create_topic({ id: 2,
-               user: matija,
+               user: larry,
                team: asyncgo,
                title: 'Competitive analysis vs. our top competitor',
                description: '- Hello',
                due_date: Time.zone.today - 2 })
 
 create_topic({ id: 3,
-               user: jason,
+               user: bob,
                team: asyncgo,
                title: 'Discuss possible next big features',
                description: '- Hello',
                due_date: Time.zone.today + 4 })
 
 create_topic({ id: 4,
-               user: matija,
+               user: larry,
                team: asyncgo,
                title: 'Feedback on our latest demo',
                description: '- Hello',
                due_date: Time.zone.today })
 
 create_topic({ id: 5,
-               user: matija,
+               user: bob,
                team: asyncgo,
                title: 'Review general customer feedback so far',
                description: '- Hello',
