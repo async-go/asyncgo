@@ -4,6 +4,7 @@ module Teams
   class TopicsController < Teams::Topics::ApplicationController
     include Pagy::Backend
     include Pundit
+    include TopicsHelper
 
     def index
       authorize(team, policy_class: Teams::TopicPolicy)
@@ -51,7 +52,14 @@ module Teams
       @topic = topic
       authorize([:teams, @topic])
 
-      update_result = TopicUpdater.new(current_user, @topic, topic_params).call
+      if topic_params['checksum'] != topic_state_checksum(@topic)
+        redirect_to team_topic_path(@topic.team, @topic),
+                    flash: { danger: 'We are sorry, someone else updated the topic
+                                      before you did. Your changes were not saved.' }
+        return
+      end
+
+      update_result = TopicUpdater.new(current_user, @topic, topic_params.except(:checksum)).call
 
       if update_result
         redirect_to team_topic_path(@topic.team, @topic),
@@ -76,7 +84,7 @@ module Teams
     private
 
     def topic_params
-      params.require(:topic).permit(:title, :description, :outcome, :due_date, :status)
+      params.require(:topic).permit(:title, :description, :outcome, :due_date, :status, :checksum)
     end
 
     def update_user_subscription

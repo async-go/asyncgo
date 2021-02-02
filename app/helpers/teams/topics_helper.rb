@@ -18,6 +18,10 @@ module Teams
       end
     end
 
+    def topic_state_checksum(topic)
+      Digest::MD5.hexdigest(topic.inspect)
+    end
+
     private
 
     def active_topic_due_date(topic)
