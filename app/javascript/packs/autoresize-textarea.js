@@ -1,3 +1,5 @@
+/* global Event */
+
 function addAutoResize () {
   document.querySelectorAll('.autoresize').forEach(function (element) {
     element.style.boxSizing = 'border-box'
