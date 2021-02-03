@@ -3,6 +3,36 @@
 RSpec.describe Teams::TopicsHelper, type: :helper do
   include ActiveSupport::Testing::TimeHelpers
 
+  describe 'topic_has_notification?' do
+    subject(:topic_has_notification?) { helper.topic_has_notification?(notifications, topic) }
+
+    let(:topic) { FactoryBot.create(:topic) }
+    let(:user) { FactoryBot.create(:user, team: topic.team) }
+    let(:actor) { FactoryBot.create(:user, team: topic.team) }
+    let(:comment) { FactoryBot.create(:comment, user: user, topic: topic) }
+    let(:notifications) { [] }
+
+    context 'when user/topic has no notification' do
+      it { is_expected.to eq(false) }
+    end
+
+    context 'when user/topic has a topic notification' do
+      before do
+        notifications << FactoryBot.create(:notification, user: user, actor: actor, target: topic)
+      end
+
+      it { is_expected.to eq(true) }
+    end
+
+    context 'when user/topic has a comment notification' do
+      before do
+        notifications << FactoryBot.create(:notification, user: user, actor: actor, target: comment)
+      end
+
+      it { is_expected.to eq(true) }
+    end
+  end
+
   describe '#user_subscribed?' do
     subject(:user_subscribed?) { helper.user_subscribed?(topic) }
 
