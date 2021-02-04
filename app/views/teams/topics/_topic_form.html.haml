@@ -11,8 +11,9 @@
     = form.label :outcome, class: 'mb-1'
     = render partial: 'shared/markdown_text_area', locals: { form: form, name: :outcome,
       options: { rows: '6', class: 'form-control' } }
-  .mb-3.col-sm-5.col-md-3
-    = form.label :due_date, class: 'mb-1'
-    = form.date_field :due_date, class: 'form-control'
+  .row
+    .col-lg-4.mb-3
+      = form.label :due_date, class: 'mb-1'
+      = form.date_field :due_date, class: 'form-control'
 
   = form.submit submit_action, class: 'btn btn-primary'
