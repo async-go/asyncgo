@@ -75,3 +75,6 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+
+gem "quarantine", "~> 1.0"
+gem "rspec-retry", "~> 0.6.2"
