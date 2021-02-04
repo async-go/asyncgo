@@ -8,100 +8,52 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-jason = User.create({ id: 0, name: 'Jason Yavorska', email: 'jason@asyncgo.com' })
-matija = User.create({ id: 1, name: 'Matija Cupic', email: 'matija@asyncgo.com' })
-bob = User.create({ id: 2, name: 'Bob Tester', email: 'testdata-bob@asyncgo.com' })
-larry = User.create({ id: 3, name: 'Larry Sample', email: 'testdata-larry@asyncgo.com' })
+# Team
+asyncgo = Team.create(name: 'AsyncGo')
 
-asyncgo = Team.create({ id: 0, name: 'AsyncGo', users: [jason, matija] })
+# Users
+jason = User.create(name: 'Jason Yavorska', email: 'jason@asyncgo.com', team: asyncgo)
+matija = User.create(name: 'Matija Cupic', email: 'matija@asyncgo.com', team: asyncgo)
+bob = User.create(name: 'Bob Tester', email: 'testdata-bob@asyncgo.com')
+larry = User.create(name: 'Larry Sample', email: 'testdata-larry@asyncgo.com')
 
-# rubocop:disable Metrics/MethodLength
-def create_topic(options = {})
-  description_html = CommonMarker.render_html(options.fetch(:description), :DEFAULT, %i[tasklist tagfilter autolink])
-  topic = Topic.create({ id: options.fetch(:id),
-                         user_id: options.fetch(:user).id,
-                         subscribed_users: [options.fetch(:user)],
-                         team_id: options.fetch(:team).id,
-                         title: options.fetch(:title),
-                         description: options.fetch(:description),
-                         description_html: description_html,
-                         due_date: options.fetch(:due_date) })
-  options.fetch(:team).topics << topic
-  topic
-end
-# rubocop:enable Metrics/MethodLength
+# Topic
+topic = Topic.create(
+  user: bob, team: asyncgo, title: 'Daily standup', due_date: Time.zone.today,
+  description: '- Hello', description_html: '<ul><li>Hello</li></ul>'
+)
 
-topic = create_topic({  id: 0,
-                        user: bob,
-                        team: asyncgo,
-                        title: 'Daily standup',
-                        description: '- Hello',
-                        due_date: Time.zone.today })
+# Comment
+comment = Comment.create(
+  user: larry, topic: topic, body: 'No update from me today', body_html: 'No update from me today'
+)
 
-comment = Comment.create({ id: 0,
-                           user: larry,
-                           topic: topic,
-                           body: 'No update from me today',
-                           body_html: 'No update from me today' })
+# Subscriptions
+Subscription.create(topic: topic, user: jason)
+Subscription.create(topic: topic, user: matija)
 
-topic.subscribed_users << jason
-topic.subscribed_users << matija
+# Notifications
+Notification.create(user: jason, actor: larry, action: :created, target: comment)
+Notification.create(user: jason, actor: larry, action: :created, target: topic)
+Notification.create(user: matija, actor: larry, action: :created, target: comment)
+Notification.create(user: matija, actor: larry, action: :updated, target: topic)
 
-Notification.create({ id: 0,
-                      user: jason,
-                      actor: larry,
-                      action: :created,
-                      target: comment })
-
-Notification.create({ id: 1,
-                      user: jason,
-                      actor: larry,
-                      action: :created,
-                      target: topic })
-
-Notification.create({ id: 2,
-                      user: matija,
-                      actor: larry,
-                      action: :created,
-                      target: comment })
-
-Notification.create({ id: 3,
-                      user: matija,
-                      actor: larry,
-                      action: :created,
-                      target: topic })
-
-create_topic({ id: 1,
-               user: bob,
-               team: asyncgo,
-               title: 'Lets discuss our next marketing campaign',
-               description: '- Hello',
-               due_date: Time.zone.today + 5 })
-
-create_topic({ id: 2,
-               user: larry,
-               team: asyncgo,
-               title: 'Competitive analysis vs. our top competitor',
-               description: '- Hello',
-               due_date: Time.zone.today - 2 })
-
-create_topic({ id: 3,
-               user: bob,
-               team: asyncgo,
-               title: 'Discuss possible next big features',
-               description: '- Hello',
-               due_date: Time.zone.today + 4 })
-
-create_topic({ id: 4,
-               user: larry,
-               team: asyncgo,
-               title: 'Feedback on our latest demo',
-               description: '- Hello',
-               due_date: Time.zone.today })
-
-create_topic({ id: 5,
-               user: bob,
-               team: asyncgo,
-               title: 'Review general customer feedback so far',
-               description: '- Hello',
-               due_date: nil })
+# Topics
+Topic.create(user: bob, team: asyncgo, title: 'Lets discuss our next marketing campaign',
+             description: '- Hello', description_html: '<ul><li>Hello</li></ul>',
+             due_date: Time.zone.today + 5)
+Topic.create(user: larry, team: asyncgo, title: 'Competitive analysis vs. our top competitor',
+             description: '- Hello', description_html: '<ul><li>Hello</li></ul>',
+             outcome: 'We are the best', outcome_html: '<p>We are the best</p>',
+             due_date: Time.zone.today - 2)
+Topic.create(user: bob, team: asyncgo, title: 'Discuss possible next big features',
+             description: '- Hello', description_html: '<ul><li>Hello</li></ul>',
+             due_date: Time.zone.today + 4)
+Topic.create(user: larry, team: asyncgo, title: 'Feedback on our latest demo',
+             description: '- Hello', description_html: '<ul><li>Hello</li></ul>',
+             outcome: 'Action items', outcome_html: '<p>Action items</p>',
+             due_date: Time.zone.today)
+Topic.create(user: bob, team: asyncgo, title: 'Review general customer feedback so far',
+             description: '- Hello', description_html: '<ul><li>Hello</li></ul>',
+             outcome: 'All good so far', decision_html: '<p>All good so far</p>',
+             due_date: nil)
