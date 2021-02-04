@@ -64,10 +64,10 @@ group :test do
   gem 'capybara', '>= 3.26' # Support for Capybara system testing
   gem 'factory_bot_rails', '~> 6.1.0' # Factories for generating AR objects in specs
   gem 'faker', '~> 2.15.1' # Fake data for use in specs
+  gem 'rspec-retry', '~> 0.6.2' # Retry flaky tests
   gem 'selenium-webdriver'
   gem 'shoulda-matchers', '~> 4.5.0' # Additional rspec matchers
   gem 'webdrivers' # Easy installation and use of web drivers for system tests
-  gem 'rspec-retry', '~> 0.6.2' # Retry flaky tests
 end
 
 group :production do
