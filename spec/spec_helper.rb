@@ -98,8 +98,7 @@ RSpec.configure do |config|
 
   config.verbose_retry = true
 
-  config.around(:each) do |ex|
+  config.around do |ex|
     ex.run_with_retry(retry: 3)
   end
-
 end
