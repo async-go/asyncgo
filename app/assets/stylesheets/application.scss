@@ -14,6 +14,11 @@
  *= require_self
  */
 
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
+
+$theme-colors: map-merge($theme-colors, ("faded": $gray-400));
+
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import 'bootstrap/scss/bootstrap';
 @import 'font-awesome-sprockets';
