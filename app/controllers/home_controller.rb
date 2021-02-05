@@ -2,6 +2,6 @@
 
 class HomeController < ApplicationController
   def index
-    redirect_to team_topics_path(current_user) if current_user
+    redirect_to team_topics_path(current_user) if current_user && current_user.team
   end
 end
