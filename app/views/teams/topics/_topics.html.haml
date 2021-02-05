@@ -17,7 +17,7 @@
           .col-lg-6
             = link_to topic.title, team_topic_path(current_user.team, topic)
             - if user_subscribed?(topic)
-              = icon('fas', 'star', class: 'text-info')
+              = icon('fas', 'star', class: 'text-secondary')
               -# It's cheaper to check this in memory than it is to query the
                 database for every single topic. We expect an user to have a
                 couple dozen notifications at the most.
