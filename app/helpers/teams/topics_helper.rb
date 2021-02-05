@@ -19,11 +19,10 @@ module Teams
     end
 
     def topic_has_notification?(notifications, topic)
-      result = notifications.find do |notification|
-        notification.target == topic ||
-          (notification.target.instance_of?(Comment) && notification.target.topic == topic)
+      notifications.find do |notification|
+        return true if notification.target == topic || notification.target.topic == topic
       end
-      result.present?
+      false
     end
 
     private
