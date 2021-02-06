@@ -93,4 +93,9 @@ RSpec.configure do |config|
   # test failures related to randomization by passing the same `--seed` value
   # as the one that triggered the failure.
   Kernel.srand config.seed
+
+  # Retry feature tests a couple times
+  config.around :each, type: :feature do |ex|
+    ex.run_with_retry(retry: 3)
+  end
 end
