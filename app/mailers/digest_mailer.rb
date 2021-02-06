@@ -5,8 +5,7 @@ class DigestMailer < ApplicationMailer
   default from: 'notifications@asyncgo.com'
 
   def digest_email
-    @notifications = Notification.where(user: params[:user], read_at: nil)
-    return unless @notifications
+    @notifications = params[:user].notifications.where(read_at: nil)
 
     mail(to: params[:user].email, subject: 'Your AsyncGo Digest', notifications: @notifications)
   end
