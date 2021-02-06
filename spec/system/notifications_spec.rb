@@ -30,7 +30,7 @@ RSpec.describe 'Notifications', type: :system do
     expect(find('#notificationDropdown')).to have_text('0')
     click_link 'Topics'
     click_link 'New Topic'
-    fill_in 'topic_title', with: 'Sample topic'
+    fill_in 'topic[title]', with: 'Sample topic'
     fill_in 'markdown_description', with: 'Sample topic description'
     click_button 'Create Topic'
 
