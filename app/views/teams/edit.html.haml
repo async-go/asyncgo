@@ -9,7 +9,8 @@
       .row
         .col-lg-10
           .input-group
-            .input-group-text Email
+            .input-group-text
+              = label(:user, :email)
             = invite_user_form.text_field :email, class: 'form-control'
         .col-lg-2
           = invite_user_form.submit 'Invite User', class: 'btn btn-primary'
@@ -35,9 +36,11 @@
   .col-lg-12
     %h3 Support/Feedback Form
     %p.lead Use this form to contact support and/or provide product feedback.
-    = form_with(url: team_support_path(@team), local: true, class: 'g-3') do |support_form|
+    = form_with(model: Team, url: team_support_path(@team),
+      local: true, class: 'g-3') do |support_form|
       .input-group.mb-3
-        .input-group-text Body
+        .input-group-text
+          = label(:team, :body)
         = support_form.text_area :body, rows: 4, class: 'form-control'
 
       = support_form.submit 'Send Email', class: 'btn btn-primary'

@@ -18,4 +18,10 @@ module ApplicationHelper
   def active_link_to(text, path, class_names)
     link_to text, path, class: class_names(class_names, active: current_page?(path))
   end
+
+  def assistive_icon(source, icon, title, class: nil)
+    icon = icon(source, icon, class: binding.local_variable_get(:class))
+    span = tag.span(title, class: 'sr-only')
+    icon + span
+  end
 end

@@ -32,7 +32,7 @@
                   role: 'button', 'data-bs-toggle': 'dropdown',
                   'aria-haspopup': 'true', 'aria-expanded': 'false' }
                   %span
-                    = icon('fas', 'bell', class: 'text-warning')
+                    = assistive_icon('fas', 'bell', 'Has notification', class: 'text-warning')
                     = unread_notifications.length
                 %ul.dropdown-menu.overflow-scroll.p-2{ 'aria-labelledby': 'notificationDropdown' }
                   - if unread_notifications.present?
@@ -43,7 +43,7 @@
                     %li
                       = link_to clear_user_notifications_path(current_user),
                         method: :post, class: 'dropdown-item' do
-                        = icon('fas', 'check-double')
+                        = assistive_icon('fas', 'check-double', '')
                         %span Clear all notifications
                   - else
                     No notifications
@@ -73,7 +73,7 @@
           - flash.each do |type, message|
             .alert.alert-dismissible.fade.show{ class: "alert-#{type}", role: 'alert' }
               %span= message
-              %button.btn-close{ 'data-bs-dismiss' => 'alert', 'aira-lable' => 'close' }
+              %button.btn-close{ 'data-bs-dismiss' => 'alert', 'aria-label' => 'close' }
       = yield
     %footer.fixed-bottom.py-2.bg-light.border-top.border-3
       .container
@@ -85,9 +85,9 @@
           .col-4
             .d-flex.justify-content-end.align-items-center.gap-2.h-100
               = link_to 'https://twitter.com/async_go', class: 'link-secondary' do
-                = icon('fab', 'twitter', class: 'fa-1x')
+                = assistive_icon('fab', 'twitter', 'Twitter', class: 'fa-1x')
               = link_to 'https://www.youtube.com/channel/UCxkERUsycwg2r1piCepu4Xw',
                 class: 'link-secondary' do
-                = icon('fab', 'youtube', class: 'fa-1x')
+                = assistive_icon('fab', 'youtube', 'YouTube', class: 'fa-1x')
               = link_to 'https://www.linkedin.com/company/asyncgo/', class: 'link-secondary' do
-                = icon('fab', 'linkedin', class: 'fa-1x')
+                = assistive_icon('fab', 'linkedin', 'LinkedIn', class: 'fa-1x')

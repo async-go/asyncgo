@@ -17,14 +17,15 @@
           .col-lg-6
             = link_to topic.title, team_topic_path(current_user.team, topic)
             - if user_subscribed?(topic)
-              = icon('fas', 'star', class: 'text-faded')
+              = assistive_icon('fas', 'star', 'Is Watched', class: 'text-faded')
               -# It's cheaper to check this in memory than it is to query the
                 database for every single topic. We expect an user to have a
                 couple dozen notifications at the most.
             - if topic_has_notification?(unread_notifications, topic)
-              = icon('fas', 'bell', class: 'text-warning')
+              = assistive_icon('fas', 'bell', 'Has Notification', class: 'text-warning')
           .col-lg-2
-            = image_tag "#{topic.user.gravatar_url}?s=20&d=retro", class: 'me-1 gravatar-img'
+            = image_tag "#{topic.user.gravatar_url}?s=20&d=retro",
+              class: 'me-1 gravatar-img', alt: ''
             = link_to topic.user.printable_name, "mailto:#{topic.user.email}"
           .col-lg-2.text-secondary
             %span Created #{topic.created_at.strftime('%b %e')}
