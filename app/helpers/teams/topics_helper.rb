@@ -19,10 +19,10 @@ module Teams
     end
 
     def topic_has_notification?(notifications, topic)
-      notifications.find do |notification|
-        return true if notification.target == topic || notification.target.topic == topic
+      notifications.any? do |notification|
+        notification.target == topic ||
+          notification.target_type == 'Comment' && notification.target.topic == topic
       end
-      false
     end
 
     private

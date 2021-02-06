@@ -4,32 +4,45 @@ RSpec.describe Teams::TopicsHelper, type: :helper do
   include ActiveSupport::Testing::TimeHelpers
 
   describe 'topic_has_notification?' do
-    subject(:topic_has_notification?) { helper.topic_has_notification?(notifications, topic) }
+    subject(:topic_has_notification?) { helper.topic_has_notification?(notifications, target) }
 
-    let(:topic) { FactoryBot.create(:topic) }
-    let(:user) { FactoryBot.create(:user, team: topic.team) }
-    let(:actor) { FactoryBot.create(:user, team: topic.team) }
-    let(:comment) { FactoryBot.create(:comment, user: user, topic: topic) }
-    let(:notifications) { [] }
+    let(:user) { FactoryBot.create(:user, :team) }
+    let(:unrelated_notification) { FactoryBot.create(:notification, user: user) }
 
-    context 'when user/topic has no notification' do
-      it { is_expected.to eq(false) }
-    end
+    context 'when target is topic' do
+      let(:target) { FactoryBot.create(:topic, user: user, team: user.team) }
 
-    context 'when user/topic has a topic notification' do
-      before do
-        notifications << FactoryBot.create(:notification, user: user, actor: actor, target: topic)
+      context 'when there are no notifications' do
+        let(:notifications) { [unrelated_notification] }
+
+        it { is_expected.to eq(false) }
       end
 
-      it { is_expected.to eq(true) }
+      context 'when there are notifications' do
+        let(:notifications) do
+          [unrelated_notification, FactoryBot.create(:notification, user: user, target: target)]
+        end
+
+        it { is_expected.to eq(true) }
+      end
     end
 
-    context 'when user/topic has a comment notification' do
-      before do
-        notifications << FactoryBot.create(:notification, user: user, actor: actor, target: comment)
+    context 'when target is comment' do
+      let(:target) { FactoryBot.create(:comment, user: user) }
+
+      context 'when there are no notifications' do
+        let(:notifications) { [unrelated_notification] }
+
+        it { is_expected.to eq(false) }
       end
 
-      it { is_expected.to eq(true) }
+      context 'when there are notifications' do
+        let(:notifications) do
+          [unrelated_notification, FactoryBot.create(:notification, user: user, target: target)]
+        end
+
+        it { is_expected.to eq(true) }
+      end
     end
   end
 
