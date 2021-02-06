@@ -56,3 +56,7 @@ Here's what a `.env` file looks like
 GITHUB_CLIENT_ID=[REDACTED]
 GITHUB_CLIENT_SECRET=[REDACTED]
 ```
+
+### Rake tasks
+
+- `rake send_digest_emails` emails a list of unread notifications to every user
