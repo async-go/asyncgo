@@ -13,6 +13,7 @@ RSpec.describe 'Topics', type: :system do
 
     visit '/'
     sign_in_user(user)
+    click_link 'Topics'
 
     topics.each do |topic|
       expect(page).to have_link(topic.title)
