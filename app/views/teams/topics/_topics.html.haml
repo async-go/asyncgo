@@ -21,7 +21,7 @@
               -# It's cheaper to check this in memory than it is to query the
                 database for every single topic. We expect an user to have a
                 couple dozen notifications at the most.
-            - if unread_notifications.find { |notification| notification.target == topic }
+            - if topic_has_notification?(unread_notifications, topic)
               = icon('fas', 'bell', class: 'text-warning')
           .col-lg-2
             = image_tag "#{topic.user.gravatar_url}?s=20&d=retro", class: 'me-1 gravatar-img'
