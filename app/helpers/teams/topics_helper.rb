@@ -18,6 +18,13 @@ module Teams
       end
     end
 
+    def topic_has_notification?(notifications, topic)
+      notifications.any? do |notification|
+        notification.target == topic ||
+          notification.target_type == 'Comment' && notification.target.topic == topic
+      end
+    end
+
     private
 
     def active_topic_due_date(topic)
