@@ -4,10 +4,4 @@
   = link_to 'Back', :back
 
   = render partial: 'shared/form_errors', locals: { model: @comment }
-
-  = form_with(model: @comment, url: [@comment.topic.team, @comment.topic, @comment],
-    local: true) do |form|
-    .mb-3
-      = render partial: 'shared/markdown_text_area', locals: { form: form, name: :body,
-        options: { rows: '4', required: true, class: 'form-control text-area-autoresize' } }
-    = form.submit 'Update Comment', class: 'btn btn-primary'
+  = render partial: 'comment_form', locals: { comment: @comment }
