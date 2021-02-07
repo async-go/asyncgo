@@ -31,6 +31,29 @@
   color: $gray-400;
 }
 
+.text-logo {
+  color: #203864;
+}
+
+.bg-logo {
+  color: #203864;
+}
+
+.btn-primary {
+  background-color: #203864;
+  border-color: #182a4d;
+}
+
+.btn-primary:hover {
+  background-color: #182a4d;
+  border-color: #182a4d;
+}
+
+.page-item.active .page-link {
+  background-color: #203864;
+  border-color: #182a4d; 
+}
+
 main {
   margin-bottom: 6rem;
 }
