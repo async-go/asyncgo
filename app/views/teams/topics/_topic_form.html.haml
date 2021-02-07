@@ -6,12 +6,12 @@
     = form.text_field :title, required: true, class: 'form-control'
   .mb-3
     .mb-1
-      = label 'markdown', :description
+      = form.label :description
     = render partial: 'shared/markdown_text_area', locals: { form: form, name: :description,
       options: { rows: '6', required: true, class: 'form-control text-area-autoresize' } }
   .mb-3
     .mb-1
-      = label 'markdown', :outcome
+      = form.label :outcome
     = render partial: 'shared/markdown_text_area', locals: { form: form, name: :outcome,
       options: { rows: '6', class: 'form-control text-area-autoresize' } }
   .row
