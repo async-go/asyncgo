@@ -56,7 +56,7 @@ RSpec.describe 'Teams', type: :system do
     sign_in_user(user)
     click_link 'Admin'
 
-    fill_in 'team_body', with: 'Hello world'
+    fill_in 'body', with: 'Hello world'
     click_button 'Send Email'
 
     expect(page).to have_text('Support request was successfully sent.')
