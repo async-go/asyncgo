@@ -43,7 +43,7 @@
                     %li
                       = link_to clear_user_notifications_path(current_user),
                         method: :post, class: 'dropdown-item' do
-                        = assistive_icon('fas', 'check-double', '')
+                        = icon('fas', 'check-double', 'aria-hidden': 'true')
                         %span Clear all notifications
                   - else
                     No notifications
