@@ -20,6 +20,6 @@ module ApplicationHelper
   end
 
   def assistive_icon(source, icon, title, classname: nil)
-    icon(source, icon, class: classname) + tag.span(title: title, class: 'visually-hidden')
+    icon(source, icon, class: classname) + tag.span(title, class: 'visually-hidden')
   end
 end
