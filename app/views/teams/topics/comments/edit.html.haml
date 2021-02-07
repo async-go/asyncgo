@@ -9,5 +9,5 @@
     local: true) do |form|
     .mb-3
       = render partial: 'shared/markdown_text_area', locals: { form: form, name: :body,
-        options: { rows: '4', required: true, class: 'form-control autoresize' } }
+        options: { rows: '4', required: true, class: 'form-control text-area-autoresize' } }
     = form.submit 'Update Comment', class: 'btn btn-primary'

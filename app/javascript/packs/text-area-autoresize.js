@@ -1,4 +1,4 @@
-document.querySelectorAll('.autoresize').forEach(function (element) {
+document.querySelectorAll('.text-area-autoresize').forEach(function (element) {
   element.style.boxSizing = 'border-box'
   const offset = element.offsetHeight - element.clientHeight
   element.style.height = element.scrollHeight + offset + 'px'
@@ -6,6 +6,6 @@ document.querySelectorAll('.autoresize').forEach(function (element) {
     event.target.style.height = 'auto'
     event.target.style.height = event.target.scrollHeight + offset + 'px'
   })
-  element.removeAttribute('autoresize')
+  element.removeAttribute('text-area-autoresize')
   element.dispatchEvent(new Event('input'))
 })

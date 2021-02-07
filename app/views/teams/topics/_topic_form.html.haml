@@ -6,11 +6,11 @@
   .mb-3
     = form.label :description, class: 'mb-1'
     = render partial: 'shared/markdown_text_area', locals: { form: form, name: :description,
-      options: { rows: '6', required: true, class: 'form-control autoresize' } }
+      options: { rows: '6', required: true, class: 'form-control text-area-autoresize' } }
   .mb-3
     = form.label :outcome, class: 'mb-1'
     = render partial: 'shared/markdown_text_area', locals: { form: form, name: :outcome,
-      options: { rows: '6', class: 'form-control autoresize' } }
+      options: { rows: '6', class: 'form-control text-area-autoresize' } }
   .row
     .col-lg-4.mb-3
       = form.label :due_date, class: 'mb-1'
@@ -19,4 +19,4 @@
   = form.submit submit_action, class: 'btn btn-primary'
 
 = content_for :page_specific_javascripts do
-  = javascript_pack_tag 'autoresize-textarea'
+  = javascript_pack_tag 'text-area-autoresize'
