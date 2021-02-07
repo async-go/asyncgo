@@ -14,6 +14,8 @@
  *= require_self
  */
 
+$primary: #203864;
+
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import 'bootstrap/scss/bootstrap';
 @import 'font-awesome-sprockets';
@@ -29,29 +31,6 @@
 
 .text-faded {
   color: $gray-400;
-}
-
-.text-logo {
-  color: #203864;
-}
-
-.bg-logo {
-  color: #203864;
-}
-
-.btn-primary {
-  background-color: #203864;
-  border-color: #182a4d;
-}
-
-.btn-primary:hover {
-  background-color: #182a4d;
-  border-color: #182a4d;
-}
-
-.page-item.active .page-link {
-  background-color: #203864;
-  border-color: #182a4d; 
 }
 
 main {
