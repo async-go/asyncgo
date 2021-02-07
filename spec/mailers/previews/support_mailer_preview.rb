@@ -2,10 +2,10 @@
 
 class SupportMailerPreview < ActionMailer::Preview
   def support_email
-    user = User.new(email: 'test@example.com')
-    user.team = Team.new(name: 'example team')
+    team = Team.new(id: 1, name: 'example team')
+    user = User.new(email: 'test@example.com', team: team)
     body = 'Sample body'
 
-    UserMailer.with(user: user, body: body).welcome_email
+    SupportMailer.with(user: user, body: body).support_email
   end
 end
