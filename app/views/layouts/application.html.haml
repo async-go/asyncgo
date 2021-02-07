@@ -19,7 +19,7 @@
       %nav.navbar.navbar-expand-lg.navbar-light
         .container-fluid
           = link_to root_path, class: 'navbar-brand pe-4 border-2' do
-            = image_tag('logo.svg', alt: 'AsyncGo', class: 'img-fluid')
+            = image_tag('logo.svg', alt: 'AsyncGo logo', class: 'img-fluid')
             %span AsyncGo
           %button.navbar-toggler.border-0{ type: 'button', 'data-bs-toggle' => 'collapse',
             'data-bs-target' => '#navbar-content', 'aria-controls' => 'navbar-content',
@@ -80,7 +80,7 @@
       .container
         .row
           .col-8.small
-            .text-muted.d-block &copy;2021 AsyncGo
+            .d-block &copy;2021 AsyncGo
             = link_to 'Terms of Use / Privacy Policy', 'https://asyncgo.com/policies.html',
               target: :_blank, rel: :noopener
           .col-4

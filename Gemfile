@@ -60,6 +60,7 @@ group :development do
 end
 
 group :test do
+  gem 'axe-core-rspec', '~> 4.1.0' # rspec accessibility matcher
   gem 'brakeman', '~> 5.0.0'
   gem 'capybara', '>= 3.26' # Support for Capybara system testing
   gem 'factory_bot_rails', '~> 6.1.0' # Factories for generating AR objects in specs
