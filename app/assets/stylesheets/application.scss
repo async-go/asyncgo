@@ -19,16 +19,6 @@
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
 
-// sr-only is used for items needed for a screen reader, but shouldn't be displayed otherwise
-.sr-only {
-  position:absolute;
-  left:-10000px;
-  top:auto;
-  width:1px;
-  height:1px;
-  overflow:hidden;
-}
-
 .navbar-brand img {
   width: 3rem;
 }

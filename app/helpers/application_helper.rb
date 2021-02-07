@@ -21,7 +21,7 @@ module ApplicationHelper
 
   def assistive_icon(source, icon, title, class: nil)
     icon = icon(source, icon, class: binding.local_variable_get(:class))
-    span = tag.span(title, class: 'sr-only')
+    span = tag.span(title, class: 'visually-hidden')
     icon + span
   end
 end
