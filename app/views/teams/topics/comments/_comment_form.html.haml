@@ -1,6 +1,8 @@
 - submit_action = comment.persisted? ? 'Update Comment' : 'Create Comment'
 = form_with(model: comment, url: [comment.topic.team, comment.topic, comment],
   local: true) do |form|
+  .mb-1.visually-hidden
+    = form.label nil, :body
   .mb-3
     = render partial: 'shared/markdown_text_area', locals: { form: form, name: :body,
       options: { rows: '4', required: true, class: 'form-control text-area-autoresize' } }
@@ -9,3 +11,4 @@
 = content_for :page_specific_javascripts do
   = javascript_pack_tag 'text-area-autoresize'
   = javascript_pack_tag 'markdown-toolbar-element'
+  
