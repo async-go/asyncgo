@@ -5,7 +5,8 @@
 = form_with(model: @team, local: true) do |form|
   .mb-3
     .input-group
-      .input-group-text Name
+      .input-group-text
+        = form.label :name
       = form.text_field :name, class: 'form-control'
 
   = form.submit 'Create Team', class: 'btn btn-primary'

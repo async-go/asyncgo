@@ -1,4 +1,4 @@
-%h2 Configuration for #{@team.name}
+%h1 Configuration for #{@team.name}
 
 .row.mt-3
   .col.lg-12.my-3
@@ -9,7 +9,8 @@
       .row
         .col-lg-10
           .input-group
-            .input-group-text Email
+            .input-group-text
+              = invite_user_form.label :email
             = invite_user_form.text_field :email, class: 'form-control'
         .col-lg-2
           = invite_user_form.submit 'Invite User', class: 'btn btn-primary'
@@ -37,7 +38,8 @@
     %p.lead Use this form to contact support and/or provide product feedback.
     = form_with(url: team_support_path(@team), local: true, class: 'g-3') do |support_form|
       .input-group.mb-3
-        .input-group-text Body
+        .input-group-text
+          = support_form.label :body
         = support_form.text_area :body, rows: 4, class: 'form-control'
 
       = support_form.submit 'Send Email', class: 'btn btn-primary'

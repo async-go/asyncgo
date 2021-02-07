@@ -1,21 +1,20 @@
-- text_area_id = "markdown_#{name}"
-%markdown-toolbar{ for: text_area_id }
+%markdown-toolbar{ for: "#{form.object_name}_#{name}" }
   %md-bold
-    %i.border.border-1.rounded.p-1{ class: 'fas fa-bold' }
+    = assistive_icon('fas', 'bold', 'Bold', classname: 'border border-1 rounded p-1')
   %md-header
-    %i.border.border-1.rounded.p-1{ class: 'fas fa-heading' }
+    = assistive_icon('fas', 'heading', 'Heading', classname: 'border border-1 rounded p-1')
   %md-italic
-    %i.border.border-1.rounded.p-1{ class: 'fas fa-italic' }
+    = assistive_icon('fas', 'italic', 'Italic', classname: 'border border-1 rounded p-1')
   %md-quote
-    %i.border.border-1.rounded.p-1{ class: 'fas fa-quote-right' }
+    = assistive_icon('fas', 'quote-right', 'Quote right', classname: 'border border-1 rounded p-1')
   %md-code
-    %i.border.border-1.rounded.p-1{ class: 'fas fa-code' }
+    = assistive_icon('fas', 'code', 'Code', classname: 'border border-1 rounded p-1')
   %md-link
-    %i.border.border-1.rounded.p-1{ class: 'fas fa-link' }
+    = assistive_icon('fas', 'link', 'Link', classname: 'border border-1 rounded p-1')
   %md-unordered-list
-    %i.border.border-1.rounded.p-1{ class: 'fas fa-list-ul' }
+    = assistive_icon('fas', 'list-ul', 'Unordered list', classname: 'border border-1 rounded p-1')
   %md-ordered-list
-    %i.border.border-1.rounded.p-1{ class: 'fas fa-list-ol' }
+    = assistive_icon('fas', 'list-ol', 'Ordered list', classname: 'border border-1 rounded p-1')
   %md-task-list
-    %i.border.border-1.rounded.p-1{ class: 'fas fa-tasks' }
-= form.text_area name, id: text_area_id, **options
+    = assistive_icon('fas', 'tasks', 'Tasks', classname: 'border border-1 rounded p-1')
+= form.text_area name, **options
