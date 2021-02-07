@@ -2,22 +2,22 @@
 = form_with(model: topic, url: [topic.team, topic], local: true) do |form|
   .mb-3
     .mb-1
-      = label :topic, :title
+      = form.label :topic, :title
     = form.text_field :title, required: true, class: 'form-control'
   .mb-3
     .mb-1
-      = label 'markdown', :description
+      = form.label 'markdown', :description
     = render partial: 'shared/markdown_text_area', locals: { form: form, name: :description,
       options: { rows: '6', required: true, class: 'form-control' } }
   .mb-3
     .mb-1
-      = label 'markdown', :outcome
+      = form.label 'markdown', :outcome
     = render partial: 'shared/markdown_text_area', locals: { form: form, name: :outcome,
       options: { rows: '6', class: 'form-control' } }
   .row
     .col-lg-4.mb-3
       .mb-1
-        = label :topic, :due_date
+        = form.label :topic, :due_date
       = form.date_field :due_date, class: 'form-control'
 
   = form.submit submit_action, class: 'btn btn-primary'
