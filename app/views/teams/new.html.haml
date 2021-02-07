@@ -6,7 +6,7 @@
   .mb-3
     .input-group
       .input-group-text
-        = form.label(:team, :name)
+        = form.label :name
       = form.text_field :name, class: 'form-control'
 
   = form.submit 'Create Team', class: 'btn btn-primary'
