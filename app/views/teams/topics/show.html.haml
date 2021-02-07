@@ -67,13 +67,7 @@
                 edit_team_topic_comment_path(@topic.team, @topic, comment)
     - if @topic.active?
       %li.list-group-item
-        = form_with(model: Comment.new, url: [@topic.team, @topic, Comment.new],
-          local: true, class: 'g-3') do |form|
-          .mb-1.visually-hidden
-            = form.label 'markdown', :body
-          .mb-3
-            = render partial: 'shared/markdown_text_area', locals: { form: form, name: :body,
-              options: { rows: '4', required: true, class: 'form-control' } }
-          = form.submit 'Add Comment', class: 'btn btn-primary'
+        = render partial: 'teams/topics/comments/comment_form',
+          locals: { comment: @topic.comments.build }
 .row.mt-3
   != pagy_bootstrap_nav(@pagy)

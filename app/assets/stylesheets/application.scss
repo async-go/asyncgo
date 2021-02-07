@@ -42,6 +42,12 @@ main {
   border: 1px solid #333;
 }
 
+.text-area-autoresize {
+  box-sizing: border-box;
+  overflow: hidden;
+  resize: none;
+}
+
 .notification-dropdown .dropdown-menu {
   max-height: 20rem;
 }
