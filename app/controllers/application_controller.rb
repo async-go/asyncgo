@@ -22,8 +22,12 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user
 
-  def unread_notifications
-    @unread_notifications ||= Notification.where(user: current_user, read_at: nil).includes(:actor, :target).to_a
+  def unread_unique_notifications
+    @unread_unique_notifications ||= Notification
+                                     .where(user: current_user, read_at: nil)
+                                     .includes(:actor, :target)
+                                     .to_a
+                                     .uniq { |n| n.target && n.actor && n.action && n.user }
   end
-  helper_method :unread_notifications
+  helper_method :unread_unique_notifications
 end
