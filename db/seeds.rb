@@ -55,5 +55,5 @@ Topic.create(user: larry, team: asyncgo, title: 'Feedback on our latest demo',
              due_date: Time.zone.today)
 Topic.create(user: bob, team: asyncgo, title: 'Review general customer feedback so far',
              description: '- Hello', description_html: '<ul><li>Hello</li></ul>',
-             outcome: 'All good so far', decision_html: '<p>All good so far</p>',
+             outcome: 'All good so far', outcome_html: '<p>All good so far</p>',
              due_date: nil)
