@@ -4,14 +4,15 @@ module ApplicationHelper
   def notification_text(notification)
     case notification.target
     when Comment
-      <<-NOTIFICATION_TEXT.squish
-        #{notification.actor.printable_name}
-        #{notification.action}
-        a comment in the topic
-        #{notification.target.topic.title}
-      NOTIFICATION_TEXT
+      # rubocop:disable Layout/LineLength
+      "#{notification.actor.printable_name} #{notification.action} a comment in the topic #{notification.target.topic.title}"
+      # rubocop:enable Layout/LineLength
     when Topic
-      "#{notification.actor.printable_name} #{notification.action} the topic #{notification.target.title}"
+      if notification.expiring?
+        "The topic #{notification.target.title} is due in less than one day."
+      else
+        "#{notification.actor.printable_name} #{notification.action} the topic #{notification.target.title}"
+      end
     end
   end
 

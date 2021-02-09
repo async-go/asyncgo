@@ -8,3 +8,13 @@ task send_digest_emails: :environment do
     DigestMailer.with(user: user).digest_email.deliver_later
   end
 end
+
+desc 'Creates a notification for topics with <1 day remaining'
+task create_notification_due: :environment do
+  puts 'Starting'
+  Topic.where(status: :active).find_each do |topic|
+    topic.subscribed_users.find_each do |user|
+      topic.notifications.create(actor: topic.user, user_id: user, action: :expiring)
+    end
+  end
+end

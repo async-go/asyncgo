@@ -13,5 +13,5 @@ RSpec.describe Notification, type: :model do
     it { is_expected.to belong_to(:target) }
   end
 
-  it { is_expected.to define_enum_for(:action).with_values(%i[created updated]) }
+  it { is_expected.to define_enum_for(:action).with_values(%i[created updated expiring]) }
 end
