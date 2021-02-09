@@ -58,8 +58,8 @@ RSpec.describe Teams::TopicsController, type: :request do
         end
 
         it 'renders the show page' do
-          get_show
           sleep 15
+          get_show
           expect(response.body).to include(topic.title)
         end
       end
