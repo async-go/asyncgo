@@ -86,7 +86,7 @@ RSpec.describe 'Topics', type: :system do
     sign_in_user(user)
     click_link 'Topics'
     click_link topic.title
-    sleep 15
+    sleep 30
     fill_in 'comment[body]', with: '__Sample content__'
     click_button 'Create Comment'
 
