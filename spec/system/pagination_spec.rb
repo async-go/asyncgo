@@ -18,7 +18,7 @@ RSpec.describe 'Pagination', type: :system do
     # This is required because the fixed footer intercepts the click to the link
     # at the bottom of the page
     page.execute_script('arguments[0].click();', find(:link, '2'))
-    sleep 15
+    sleep 30
     expect(page).to have_text(topics.last.title)
   end
 

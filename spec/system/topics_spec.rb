@@ -104,7 +104,7 @@ RSpec.describe 'Topics', type: :system do
     sign_in_user(user)
     click_link 'Topics'
     click_link topic.title
-    sleep 15
+    sleep 30
     click_link 'Edit Comment'
     sleep 15
     find(:fillable_field, 'comment[body]').send_keys('This is updated content')
