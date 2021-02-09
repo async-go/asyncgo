@@ -97,13 +97,13 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 
-  # Retry feature tests a couple times with 1 second delay
+  # Retry feature tests a couple times with 15 second delay
   config.verbose_retry = true
-  config.default_sleep_interval = 1
+  config.default_sleep_interval = 15
 
   # show which exception failed the example
   config.display_try_failure_messages = true
   config.around :each, type: :system do |ex|
-    ex.run_with_retry(retry: 3)
+    ex.run_with_retry(retry: 5)
   end
 end
