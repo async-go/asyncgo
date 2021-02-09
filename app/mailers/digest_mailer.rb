@@ -7,6 +7,7 @@ class DigestMailer < ApplicationMailer
   def digest_email
     @notifications = params[:notifications]
     @user = params[:user]
+
     mail(to: @user.email, subject: 'Your AsyncGo Digest', notifications: @notifications)
   end
 end
