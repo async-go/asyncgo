@@ -29,7 +29,7 @@ RSpec.describe 'Topics', type: :system do
     sign_in_user(user)
     click_link 'Topics'
     click_link 'New Topic'
-
+    sleep 15
     fill_in 'topic[title]', with: 'Sample title'
     fill_in 'topic[description]', with: '__Sample topic content__'
     click_button 'Create Topic'
@@ -48,6 +48,7 @@ RSpec.describe 'Topics', type: :system do
     sign_in_user(user)
     click_link 'Topics'
     click_link topic.title
+    sleep 15
     click_link 'Edit Topic Context'
 
     fill_in 'topic[description]', with: 'This is an update'
@@ -66,6 +67,7 @@ RSpec.describe 'Topics', type: :system do
     sign_in_user(user)
     click_link 'Topics'
     click_link topic.title
+    sleep 15
     click_link 'Edit Topic Context'
 
     fill_in 'topic[outcome]', with: '__Sample outcome__'
@@ -84,7 +86,7 @@ RSpec.describe 'Topics', type: :system do
     sign_in_user(user)
     click_link 'Topics'
     click_link topic.title
-
+    sleep 15
     fill_in 'comment[body]', with: '__Sample content__'
     click_button 'Create Comment'
 
@@ -102,8 +104,9 @@ RSpec.describe 'Topics', type: :system do
     sign_in_user(user)
     click_link 'Topics'
     click_link topic.title
+    sleep 15
     click_link 'Edit Comment'
-
+    sleep 15
     find(:fillable_field, 'comment[body]').send_keys('This is updated content')
     click_button 'Update Comment'
 
@@ -121,6 +124,7 @@ RSpec.describe 'Topics', type: :system do
     sign_in_user(user)
     click_link 'Topics'
     click_link topic.title
+    sleep 15
     click_button 'Resolve Topic'
     click_button 'Reopen Topic'
 

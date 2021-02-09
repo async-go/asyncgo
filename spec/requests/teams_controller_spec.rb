@@ -25,7 +25,7 @@ RSpec.describe TeamsController, type: :request do
 
         it 'renders the edit page' do
           get_edit
-
+          sleep 15
           expect(response.body).to include(team.name)
         end
       end
