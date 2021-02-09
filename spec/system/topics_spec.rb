@@ -48,7 +48,7 @@ RSpec.describe 'Topics', type: :system do
     sign_in_user(user)
     click_link 'Topics'
     click_link topic.title
-    sleep 15
+    sleep 30
     click_link 'Edit Topic Context'
 
     fill_in 'topic[description]', with: 'This is an update'
