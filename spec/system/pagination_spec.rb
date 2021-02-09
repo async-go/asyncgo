@@ -30,7 +30,7 @@ RSpec.describe 'Pagination', type: :system do
     sign_in_user(user)
 
     click_link 'Topics'
-    sleep 15
+    sleep 30
     expect(page).not_to have_text(topics.last.title)
     # This is required because the fixed footer intercepts the click to the link
     # at the bottom of the page
