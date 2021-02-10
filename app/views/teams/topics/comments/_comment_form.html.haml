@@ -9,5 +9,5 @@
   = form.submit submit_action, class: 'btn btn-primary'
 
 = content_for :page_specific_javascripts do
-  = javascript_pack_tag 'text-area-autoresize', defer: true
+  = javascript_pack_tag 'text-area-autoresize', defer: true, 'data-turbolinks': false
   = javascript_pack_tag 'markdown-toolbar-element', defer: true
