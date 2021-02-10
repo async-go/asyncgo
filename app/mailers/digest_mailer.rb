@@ -16,8 +16,6 @@ class DigestMailer < ApplicationMailer
   private
 
   def prevent_delivery_if_no_notifications
-    if @notifications.count == 0
-      mail.perform_deliveries = false
-    end
-  end  
+    mail.perform_deliveries = false if @notifications.count.zero?
+  end
 end
