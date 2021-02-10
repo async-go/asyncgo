@@ -5,6 +5,6 @@ task send_digest_emails: :environment do
   puts 'Starting'
   User.find_each do |user|
     puts "Sending notifications for #{user.email}"
-    DigestMailer.with(user: user).digest_email.deliver_later
+    DigestMailer.with(user: user).digest_email.deliver_now
   end
 end
