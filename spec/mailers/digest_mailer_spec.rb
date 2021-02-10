@@ -7,20 +7,8 @@ RSpec.describe DigestMailer, type: :mailer do
     subject(:digest_email) { described_class.with(user: user).digest_email }
 
     context 'when there are no notifications' do
-      it 'renders the headers' do
-        expect(digest_email).to have_attributes(
-          subject: 'Your AsyncGo Digest',
-          from: ['notifications@asyncgo.com'],
-          to: [user.email]
-        )
-      end
-
-      it 'renders the body' do
-        expect(digest_email.body.encoded).to include("Here's your AsyncGo Digest")
-      end
-
-      it 'does not have any notifications' do
-        expect(digest_email.body.encoded).to include('No new notifications.')
+      it 'does not generate an email' do
+        expect(digest_email.perform_deliveries).to eq(false)
       end
     end
 
