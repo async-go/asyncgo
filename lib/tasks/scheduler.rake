@@ -5,7 +5,6 @@ task send_digest_emails: :environment do
   puts 'Starting'
   User.find_each do |user|
     notifications = user.notifications.where(read_at: nil)
-
     next if notifications.empty?
 
     puts "Sending #{notifications.count} notifications for #{user.email}"
