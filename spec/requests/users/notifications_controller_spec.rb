@@ -6,6 +6,7 @@ require './spec/support/unauthorized_user_examples'
 RSpec.describe Users::NotificationsController, type: :request do
   include SignInOutRequestHelpers
 
+  # rubocop:disable RSpec/NestedGroups
   describe 'GET show' do
     subject(:get_show) { get "/users/#{user.id}/notifications/#{notification.id}" }
 
@@ -28,14 +29,36 @@ RSpec.describe Users::NotificationsController, type: :request do
             notification.update!(target: topic)
           end
 
-          it 'redirects to target topic' do
-            get_show
+          context 'when there are no duplicate notifications' do
+            it 'redirects to target topic' do
+              get_show
 
-            expect(response).to redirect_to(team_topic_path(topic.team, topic))
+              expect(response).to redirect_to(team_topic_path(topic.team, topic))
+            end
+
+            it 'marks notification as read' do
+              expect { get_show }.to change { notification.reload.read_at }.from(nil)
+            end
           end
 
-          it 'marks notification as read' do
-            expect { get_show }.to change { notification.reload.read_at }.from(nil)
+          context 'when there are duplicate notifications' do
+            let(:duplicate_notification) do
+              FactoryBot.create(:notification, notification.slice(:user, :actor, :action, :target))
+            end
+
+            it 'redirects to target topic' do
+              get_show
+
+              expect(response).to redirect_to(team_topic_path(topic.team, topic))
+            end
+
+            it 'marks notification as read' do
+              expect { get_show }.to change { notification.reload.read_at }.from(nil)
+            end
+
+            it 'marks duplicate notifications as read' do
+              expect { get_show }.to change { duplicate_notification.reload.read_at }.from(nil)
+            end
           end
         end
 
@@ -44,14 +67,36 @@ RSpec.describe Users::NotificationsController, type: :request do
             notification.update!(target: FactoryBot.create(:comment, topic: topic))
           end
 
-          it 'redirects to target comment topic' do
-            get_show
+          context 'when there are no duplicate notifications' do
+            it 'redirects to target comment topic' do
+              get_show
 
-            expect(response).to redirect_to(team_topic_path(topic.team, topic))
+              expect(response).to redirect_to(team_topic_path(topic.team, topic))
+            end
+
+            it 'marks notification as read' do
+              expect { get_show }.to change { notification.reload.read_at }.from(nil)
+            end
           end
 
-          it 'marks notification as read' do
-            expect { get_show }.to change { notification.reload.read_at }.from(nil)
+          context 'when there are duplicate notifications' do
+            let(:duplicate_notification) do
+              FactoryBot.create(:notification, notification.slice(:user, :actor, :action, :target))
+            end
+
+            it 'redirects to target comment topic' do
+              get_show
+
+              expect(response).to redirect_to(team_topic_path(topic.team, topic))
+            end
+
+            it 'marks notification as read' do
+              expect { get_show }.to change { notification.reload.read_at }.from(nil)
+            end
+
+            it 'marks duplicate notifications as read' do
+              expect { get_show }.to change { duplicate_notification.reload.read_at }.from(nil)
+            end
           end
         end
       end
@@ -65,6 +110,7 @@ RSpec.describe Users::NotificationsController, type: :request do
       include_examples 'unauthorized user examples', 'You are not authorized.'
     end
   end
+  # rubocop:enable RSpec/NestedGroups
 
   describe 'POST clear' do
     subject(:post_clear) { post "/users/#{user.id}/notifications/clear" }
