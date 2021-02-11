@@ -56,6 +56,9 @@
             = image_tag "#{comment.user.gravatar_url}?s=20&d=retro",
               class: 'me-1 gravatar-img', alt: ''
             = link_to comment.user.printable_name, "mailto:#{comment.user.email}"
+            %ul
+              - comment.votes.each do |vote|
+                %li= "#{vote.emoji} #{vote.user.name}"
           .col-lg-1
             %span= comment.created_at.strftime('%b %e')
           .col-lg-9
@@ -63,9 +66,6 @@
             - if @topic.active? && policy([:teams, :topics, comment]).edit?
               %span.small= link_to 'Edit Comment',
                 edit_team_topic_comment_path(@topic.team, @topic, comment)
-        .row
-          - comment.votes.each do |vote|
-            = vote.emoji
     - if @topic.active?
       %li.list-group-item
         = render partial: 'teams/topics/comments/comment_form',
