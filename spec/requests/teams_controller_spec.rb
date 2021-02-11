@@ -26,7 +26,7 @@ RSpec.describe TeamsController, type: :request do
         it 'renders the edit page' do
           get_edit
 
-          expect(response.body).to include(team.name)
+          expect(response.body).to include(CGI.escapeHTML(team.name))
         end
       end
 
