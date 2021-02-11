@@ -37,9 +37,21 @@
     %h3 Support/Feedback Form
     %p.lead Use this form to contact support and/or provide product feedback.
     = form_with(url: team_support_path(@team), local: true, class: 'g-3') do |support_form|
-      .input-group.mb-3
+      .input-group
         .input-group-text
           = support_form.label :body
         = support_form.text_area :body, rows: 4, class: 'form-control'
 
-      = support_form.submit 'Send Email', class: 'btn btn-primary'
+      = support_form.submit 'Send Email', class: 'btn btn-primary mt-3'
+
+%hr
+
+.row.mt-3
+  %h3 Usage Information
+  = link_to 'Cookie consent and disclosure', 'https://asyncgo.com/policies.html#cookies',
+    target: :_blank, rel: :noopener
+  = link_to 'Privacy policy', 'https://asyncgo.com/policies.html#privacy',
+    target: :_blank, rel: :noopener
+  = link_to 'Terms & conditions', 'https://asyncgo.com/policies.html#terms',
+    target: :_blank, rel: :noopener
+  .d-block.mt-3 AsyncGo is &copy;2021 AsyncGo Inc.
