@@ -1,14 +1,6 @@
 # frozen_string_literal: true
 
 module ApplicationHelper
-  def unread_unique_notifications(user)
-    unread_unique_notifications ||= Notification
-      .where(user: user, read_at: nil)
-      .includes(:actor, :target)
-      .to_a
-      .uniq { |n| n.target && n.actor && n.action && n.user }
-  end
-
   def notification_text(notification)
     case notification.target
     when Comment
