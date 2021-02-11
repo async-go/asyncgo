@@ -21,23 +21,6 @@ RSpec.describe 'Notifications', type: :system do
     expect(page).to have_text(topic.title)
   end
 
-  it 'allows for sending a notification of coming due date' do
-    user = FactoryBot.create(:user, :team)
-    actor = FactoryBot.create(:user, name: 'John Doe', team: user.team)
-    topic = FactoryBot.create(:topic, user: user, team: user.team)
-
-    FactoryBot.create(:notification, user: user, actor: actor, target: topic, action: 2)
-
-    visit '/'
-    sign_in_user(user)
-
-    expect(find('#notificationDropdown')).to have_text('1')
-    find('.dropdown-toggle.badge').click
-    click_link("The topic #{topic.title} is due in less than one day.")
-    expect(find('#notificationDropdown')).to have_text('0')
-    expect(page).to have_text(topic.title)
-  end
-
   it 'creates notifications when other user comments on subscribed topic' do
     user = FactoryBot.create(:user, :team)
     actor = FactoryBot.create(:user, name: 'John Doe', team: user.team)
