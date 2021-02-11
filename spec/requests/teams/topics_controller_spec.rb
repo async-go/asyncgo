@@ -60,7 +60,7 @@ RSpec.describe Teams::TopicsController, type: :request do
         it 'renders the show page' do
           get_show
 
-          expect(response.body).to include(topic.title)
+          expect(response.body).to include(CGI.escapeHTML(topic.title))
         end
       end
 
