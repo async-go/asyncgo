@@ -13,7 +13,7 @@ desc 'Creates a notification for topics with <1 day remaining'
 task create_notification_due: :environment do
   puts 'Starting'
   Topic.where(status: :active).find_each do |topic|
-    if topic.due_date != nil && Date.today + 1 > topic.due_date && Date.today <= topic.due_date
+    if !topic.due_date.nil? && Time.zone.today + 1 > topic.due_date && Time.zone.today <= topic.due_date
       puts "Creating due notifications for #{topic.title} (due #{topic.due_date})"
       topic.subscribed_users.find_each do |user|
         topic.notifications.create(actor: topic.user, user_id: user, action: :expiring)
