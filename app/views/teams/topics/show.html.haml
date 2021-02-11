@@ -58,7 +58,7 @@
             = link_to comment.user.printable_name, "mailto:#{comment.user.email}"
             %ul
               - comment.votes.each do |vote|
-                %li= "#{vote.emoji} #{vote.user.name}"
+                %li "#{vote.emoji} #{vote.user.name}"
           .col-lg-1
             %span= comment.created_at.strftime('%b %e')
           .col-lg-9
