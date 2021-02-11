@@ -19,19 +19,8 @@ ActiveRecord::Schema.define(version: 2021_02_11_103354) do
     t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "votes_id"
     t.index ["topic_id"], name: "index_comments_on_topic_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
-    t.index ["votes_id"], name: "index_comments_on_votes_id"
-  end
-
-  create_table "emojis", force: :cascade do |t|
-    t.string "name"
-    t.string "character"
-    t.integer "vote_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["vote_id"], name: "index_emojis_on_vote_id"
   end
 
   create_table "notifications", force: :cascade do |t|
@@ -92,18 +81,17 @@ ActiveRecord::Schema.define(version: 2021_02_11_103354) do
 
   create_table "votes", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "emoji_id"
     t.integer "comment_id"
+    t.string "emoji", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "comments_id"
     t.index ["comment_id"], name: "index_votes_on_comment_id"
-    t.index ["emoji_id"], name: "index_votes_on_emoji_id"
+    t.index ["comments_id"], name: "index_votes_on_comments_id"
     t.index ["user_id"], name: "index_votes_on_user_id"
   end
 
-  add_foreign_key "comments", "votes", column: "votes_id"
-  add_foreign_key "emojis", "votes"
   add_foreign_key "votes", "comments"
-  add_foreign_key "votes", "emojis"
+  add_foreign_key "votes", "comments", column: "comments_id"
   add_foreign_key "votes", "users"
 end

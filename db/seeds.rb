@@ -8,10 +8,6 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-# Emojis
-thumbsup = Emoji.find_or_create_by(name: 'thumbsup', character: '👍')
-Emoji.find_or_create_by(name: 'thumbsdown', character: '👎')
-
 # Team
 asyncgo = Team.create(name: 'AsyncGo')
 
@@ -33,7 +29,7 @@ comment = Comment.create(
 )
 
 # Comment Votes
-upvote = Vote.create(id: 0, user: jason, emoji: thumbsup)
+upvote = Vote.create(id: 0, user: jason, emoji: '👍')
 comment.votes << upvote
 
 # Subscriptions

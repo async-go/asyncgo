@@ -65,7 +65,7 @@
                 edit_team_topic_comment_path(@topic.team, @topic, comment)
         .row
           - comment.votes.each do |vote|
-            = vote.emoji.character
+            = vote.emoji
     - if @topic.active?
       %li.list-group-item
         = render partial: 'teams/topics/comments/comment_form',
