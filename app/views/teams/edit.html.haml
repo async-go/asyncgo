@@ -37,9 +37,9 @@
     %h3 Support/Feedback Form
     %p.lead Use this form to contact support and/or provide product feedback.
     = form_with(url: team_support_path(@team), local: true, class: 'g-3') do |support_form|
-      .input-group
+      .input-group.mb-3
         .input-group-text
           = support_form.label :body
         = support_form.text_area :body, rows: 4, class: 'form-control'
 
-      = support_form.submit 'Send Email', class: 'btn btn-primary mt-3'
+      = support_form.submit 'Send Email', class: 'btn btn-primary'
