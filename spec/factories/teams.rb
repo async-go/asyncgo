@@ -2,6 +2,6 @@
 
 FactoryBot.define do
   factory :team do
-    name { Faker::Company.name.gsub(/[^0-9A-Za-z]/, '') }
+    name { Faker::Company.name }
   end
 end
