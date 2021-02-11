@@ -10,7 +10,7 @@
 
 # Emojis
 thumbsup = Emoji.find_or_create_by(name: 'thumbsup', character: '👍')
-thumbsdown = Emoji.find_or_create_by(name: 'thumbsdown', character: '👎')
+Emoji.find_or_create_by(name: 'thumbsdown', character: '👎')
 
 # Team
 asyncgo = Team.create(name: 'AsyncGo')
