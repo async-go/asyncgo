@@ -7,7 +7,7 @@ module Users
     def show
       authorize([:users, notification])
 
-      if notification.update(read_at: Time.now.utc)
+      if notification_group.update(read_at: Time.now.utc)
         redirect_object = redirect_target(notification)
         redirect_path = team_topic_path(redirect_object.team, redirect_object)
         redirect_flash = nil
@@ -31,6 +31,13 @@ module Users
 
     def notification
       @notification ||= Notification.find(params[:id])
+    end
+
+    def notification_group
+      Notification.where(
+        user: notification.user, actor: notification.actor,
+        target: notification.target, action: notification.action
+      )
     end
 
     def redirect_target(notification)
