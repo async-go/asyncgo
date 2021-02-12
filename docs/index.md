@@ -100,7 +100,7 @@ A common question from managers working with remote teams for the first time is 
 your team members are really working, or how to tell if they are taking the opportunity of being away from the
 office to avoid work. 
 
-The reality is that most people increase rather than decrease the amount of hours worked and
+The reality is that most people increase rather than decrease the amount of
 work done when moving to remote, since the lines between personal and work life become blurred.
 As a manager you'll be better off spending your time helping your team establish these
 boundaries in order to avoid burn out and ensure everyone is well rested and at their best.
