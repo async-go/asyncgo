@@ -97,7 +97,7 @@ whenever you do this you're impacting the team's async flow.
 ## Monitoring throughput and productivity
 
 A common question from managers working with remote teams for the first time is how to know if
-your team members are really working, or if they are taking the opportunity of not being in the
+your team members are really working, or how to tell if they are taking the opportunity of being away from the
 office to avoid work. 
 
 The reality is that most people increase rather than decrease the amount of hours worked and
