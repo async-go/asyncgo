@@ -113,7 +113,8 @@ and employee who needs help, and isn't something that a metric here would help. 
 interested in this topic you can read our [blog post on how to think about productivity for remote teams](https://asyncgo.com/blog/leadership/2020/02/05/measuring-remote-productivity.html)
 
 Because of this, we don't plan to have metrics in AsyncGo about individual performance. Instead,
-we will add metrics that speak to overall team activity.
+we will add metrics that speak to overall team activity and collaboration. You can expect to see these in an
+upcoming release, in the meantime we'd love your feedback on what you're looking for.
 
 ---
 
