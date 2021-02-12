@@ -12,10 +12,10 @@
 asyncgo = Team.create(name: 'AsyncGo')
 
 # Users
-jason = User.create(id: 0, name: 'Jason Yavorska', email: 'jason@asyncgo.com', team: asyncgo)
-matija = User.create(id: 1, name: 'Matija Cupic', email: 'matija@asyncgo.com', team: asyncgo)
-bob = User.create(id: 2, name: 'Bob Tester', email: 'testdata-bob@asyncgo.com')
-larry = User.create(id: 3, name: 'Larry Sample', email: 'testdata-larry@asyncgo.com')
+jason = User.create(name: 'Jason Yavorska', email: 'jason@asyncgo.com', team: asyncgo)
+matija = User.create(name: 'Matija Cupic', email: 'matija@asyncgo.com', team: asyncgo)
+bob = User.create(name: 'Bob Tester', email: 'testdata-bob@asyncgo.com')
+larry = User.create(name: 'Larry Sample', email: 'testdata-larry@asyncgo.com')
 
 # Topic
 topic = Topic.create(
@@ -23,14 +23,16 @@ topic = Topic.create(
   description: '- Hello', description_html: '<ul><li>Hello</li></ul>'
 )
 
+# Topic Votes
+Vote.create(user: jason, votable: topic, emoji: 'dog')
+
 # Comment
 comment = Comment.create(
   user: larry, topic: topic, body: 'No update from me today', body_html: 'No update from me today'
 )
 
 # Comment Votes
-upvote = Vote.create(id: 0, user: jason, emoji: '👍')
-comment.votes << upvote
+Vote.create(user: jason, votable: comment, emoji: 'cat')
 
 # Subscriptions
 Subscription.create(topic: topic, user: jason)

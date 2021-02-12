@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class Vote < ApplicationRecord
-  validates :emoji, presence: { allow_blank: false }
+  validates :emoji, presence: true
 
   belongs_to :user
-  belongs_to :comment
+  belongs_to :votable, polymorphic: true
 end

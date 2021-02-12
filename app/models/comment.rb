@@ -8,5 +8,5 @@ class Comment < ApplicationRecord
   belongs_to :topic
 
   has_many :notifications, as: :target, dependent: :destroy
-  has_many :votes, dependent: :destroy
+  has_many :votes, as: :votable, dependent: :destroy
 end

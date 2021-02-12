@@ -14,6 +14,7 @@ RSpec.describe Topic, type: :model do
     it { is_expected.to have_many(:subscriptions).dependent(:destroy) }
     it { is_expected.to have_many(:subscribed_users) }
     it { is_expected.to have_many(:notifications) }
+    it { is_expected.to have_many(:votes) }
   end
 
   it { is_expected.to define_enum_for(:status).with_values(%i[active closed]) }
