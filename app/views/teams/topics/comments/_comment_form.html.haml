@@ -5,9 +5,8 @@
     = form.label :body
   .mb-3
     = render partial: 'shared/markdown_text_area', locals: { form: form, name: :body,
-      options: { rows: '4', required: true, class: 'form-control text-area-autoresize' } }
+      options: { rows: '12', required: true, class: 'form-control' } }
   = form.submit submit_action, class: 'btn btn-primary'
 
 = content_for :page_specific_javascripts do
-  = javascript_pack_tag 'text-area-autoresize', defer: true
   = javascript_pack_tag 'markdown-toolbar-element', defer: true
