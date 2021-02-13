@@ -30,6 +30,7 @@ Rails.application.routes.draw do
 
         scope module: :topics do
           resources :comments, only: %i[edit create update]
+          resources :votes, only: %i[create destroy]
         end
       end
     end
