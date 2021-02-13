@@ -22,7 +22,7 @@ module Teams
       authorize([:teams, @topic])
 
       @pagy, @topic_comments = pagy(@topic.comments.includes(:user))
-      @topic_comments = @topic_comments.includes(:user).to_a
+      @topic_comments = @topic_comments.includes(:user)
     end
 
     def new
@@ -91,7 +91,7 @@ module Teams
     end
 
     def preload_topics(scope)
-      scope.includes(:user, :subscribed_users).to_a
+      scope.includes(:user, :subscribed_users)
     end
   end
 end

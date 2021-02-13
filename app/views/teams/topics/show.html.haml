@@ -22,9 +22,7 @@
 .row
   .col-lg-4.my-3
     %ul.list-group.list-group-horizontal
-      - @topic.votes.group(:emoji).size.each do |emoji_group|
-        %li.list-group-item= emoji_group_text(*emoji_group)
-
+      = render partial: 'vote_list_group', locals: { votable: @topic }
   .col-lg-4.my-3.small
     - if @topic.active?
       = link_to 'Edit Topic Context', edit_team_topic_path(@topic.team, @topic)
@@ -69,9 +67,7 @@
               %span.small= link_to 'Edit Comment',
                 edit_team_topic_comment_path(@topic.team, @topic, comment)
         .row.my-3
-          %ul.list-group.list-group-horizontal
-            - comment.votes.group(:emoji).size.each do |emoji_group|
-              %li.list-group-item= emoji_group_text(*emoji_group)
+          = render partial: 'vote_list_group', locals: { votable: comment }
     - if @topic.active?
       %li.list-group-item
         = render partial: 'teams/topics/comments/comment_form',

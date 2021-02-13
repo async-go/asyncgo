@@ -69,7 +69,7 @@
                     %li= button_to 'Google', '/auth/google_oauth2', class: 'dropdown-item'
                     %li= button_to 'GitHub', '/auth/github', class: 'dropdown-item'
     %main.container.mt-4.mb-3{ role: 'main' }
-      .sticky-top.mt-2
+      .mt-2
         - if flash.any?
           - flash.each do |type, message|
             .alert.alert-dismissible.fade.show{ class: "alert-#{type}", role: 'alert' }
