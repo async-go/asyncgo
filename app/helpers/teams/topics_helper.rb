@@ -29,6 +29,10 @@ module Teams
       "#{Emoji.find_by_alias(emoji_name).raw} #{count}" # rubocop:disable Rails/DynamicFindBy
     end
 
+    def all_votes_in_topic
+      current_user.votes.where(votable: topic.comments)
+    end
+
     private
 
     def active_topic_due_date(topic)

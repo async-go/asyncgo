@@ -13,6 +13,7 @@ class User < ApplicationRecord
   has_many :subscribed_topics, through: :subscriptions, source: :topic
 
   has_many :notifications, dependent: :destroy, inverse_of: :user
+  has_many :votes, dependent: :destroy
 
   def self.from_omniauth(access_token)
     User.where(email: access_token.info['email']).first_or_create.tap do |user|

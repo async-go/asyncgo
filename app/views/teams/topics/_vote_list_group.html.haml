@@ -1,7 +1,7 @@
 %ul.list-group.list-group-horizontal
-  - votable.votes.group(:emoji).size.each do |emoji_name, count|
-    - content = emoji_group_text(emoji_name, count)
-    - vote = votable.votes.find_by(user: current_user, emoji: emoji_name)
+  - votable.votes.group_by(&:emoji).each do |emoji_name, votes|
+    - content = emoji_group_text(emoji_name, votes.count)
+    - user_vote = votes.find { |vote| vote.user == current_user }
 
     :ruby
       form_path = case votable
@@ -11,8 +11,8 @@
                     [votable.topic.team, votable.topic, votable]
                   end
 
-    - if vote
-      = form_with(model: vote, url: form_path.push(vote), local: true,
+    - if user_vote
+      = form_with(model: user_vote, url: form_path.push(user_vote), local: true,
         method: :delete) do |remove_vote_form|
         = remove_vote_form.hidden_field :id
         = remove_vote_form.submit content, class: 'list-group-item list-group-item-action active'

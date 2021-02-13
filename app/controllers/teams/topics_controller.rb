@@ -21,8 +21,8 @@ module Teams
       @topic = topic
       authorize([:teams, @topic])
 
-      @pagy, @topic_comments = pagy(@topic.comments.includes(:user))
-      @topic_comments = @topic_comments.includes(:user)
+      @pagy, @topic_comments = pagy(@topic.comments)
+      @topic_comments = @topic_comments.includes(:user, votes: :user)
     end
 
     def new
