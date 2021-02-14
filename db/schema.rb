@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_23_181841) do
+ActiveRecord::Schema.define(version: 2021_02_11_101554) do
 
   create_table "comments", force: :cascade do |t|
     t.text "body", null: false
@@ -79,4 +79,16 @@ ActiveRecord::Schema.define(version: 2021_01_23_181841) do
     t.index ["team_id"], name: "index_users_on_team_id"
   end
 
+  create_table "votes", force: :cascade do |t|
+    t.string "emoji", null: false
+    t.integer "user_id", null: false
+    t.string "votable_type", null: false
+    t.integer "votable_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_votes_on_user_id"
+    t.index ["votable_type", "votable_id"], name: "index_votes_on_votable"
+  end
+
+  add_foreign_key "votes", "users"
 end

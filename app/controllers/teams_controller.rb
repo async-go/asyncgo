@@ -9,7 +9,6 @@ class TeamsController < Teams::ApplicationController
     authorize(@team)
 
     @pagy, @team_members = pagy(team.users.where.not(email: current_user.email))
-    @team_members = @team_members.to_a
   end
 
   def new

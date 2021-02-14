@@ -20,7 +20,10 @@
       %div!= @topic.outcome_html
 
 .row
-  .col-lg-8.my-3.small
+  .col-lg-4.my-3
+    %ul.list-group.list-group-horizontal
+      = render partial: 'vote_list_group', locals: { votable: @topic }
+  .col-lg-4.my-3.small
     - if @topic.active?
       = link_to 'Edit Topic Context', edit_team_topic_path(@topic.team, @topic)
       (due date, title, description, outcome)
@@ -63,6 +66,8 @@
             - if @topic.active? && policy([:teams, :topics, comment]).edit?
               %span.small= link_to 'Edit Comment',
                 edit_team_topic_comment_path(@topic.team, @topic, comment)
+        .row.my-3
+          = render partial: 'vote_list_group', locals: { votable: comment }
     - if @topic.active?
       %li.list-group-item
         = render partial: 'teams/topics/comments/comment_form',

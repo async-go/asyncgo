@@ -206,9 +206,21 @@ great way to communicate when you need something by, and help everyone prioritiz
 Once the topic is set up you can share it with everyone who you want to participate. Everyone can collaborate async as
 you go, discussing the topic at hand until you reach your outcome.
 
+### Voting in Topics
+
+You can vote on any comment inside of a topic by adding whatever emoji you like. Good examples are thumbs ups and thumbs
+down, to indicate approval or disapproval, but you can be creative and show your support in lots of different ways. One
+bit of advice - if you disapprove, follow up on your emoji with another comment to explain why.
+
+You can also use emojis to do more complex votes with multiple options. In this case, use a different emoji for each
+option in the vote.
+
 ### Resolving Topics
 
 Now that your topic is complete you can mark it as resolved. This will freeze further edits.
+
+A good idea for confirming everyone is onboard with the final outcome is to add a comment asking everyone if they
+are ready to finalize the outcome. They can then add thumbs up emojis to indicate their active support.
 
 ---
 

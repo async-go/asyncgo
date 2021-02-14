@@ -132,11 +132,7 @@ RSpec.describe Teams::UsersController, type: :request do
   describe 'DELETE destroy' do
     subject(:delete_destroy) { delete "/teams/#{team.id}/users/#{user.id}" }
 
-    let(:user) { FactoryBot.create(:user) }
-
-    before do
-      team.users << user
-    end
+    let(:user) { FactoryBot.create(:user, team: team) }
 
     context 'when user is authenticated' do
       let(:browsing_user) { FactoryBot.create(:user) }

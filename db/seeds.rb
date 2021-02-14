@@ -23,10 +23,16 @@ topic = Topic.create(
   description: '- Hello', description_html: '<ul><li>Hello</li></ul>'
 )
 
+# Topic Votes
+Vote.create(user: jason, votable: topic, emoji: 'thumbsup')
+
 # Comment
 comment = Comment.create(
   user: larry, topic: topic, body: 'No update from me today', body_html: 'No update from me today'
 )
+
+# Comment Votes
+Vote.create(user: jason, votable: comment, emoji: 'thumbsdown')
 
 # Subscriptions
 Subscription.create(topic: topic, user: jason)
