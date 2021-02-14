@@ -24,7 +24,7 @@ topic = Topic.create(
 )
 
 # Topic Votes
-Vote.create(user: jason, votable: topic, emoji: 'dog')
+Vote.create(user: jason, votable: topic, emoji: 'thumbsup')
 
 # Comment
 comment = Comment.create(
@@ -32,7 +32,7 @@ comment = Comment.create(
 )
 
 # Comment Votes
-Vote.create(user: jason, votable: comment, emoji: 'cat')
+Vote.create(user: jason, votable: comment, emoji: 'thumbsdown')
 
 # Subscriptions
 Subscription.create(topic: topic, user: jason)
