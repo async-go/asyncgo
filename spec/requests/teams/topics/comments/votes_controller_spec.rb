@@ -91,7 +91,7 @@ RSpec.describe Teams::Topics::Comments::VotesController, type: :request do
     let(:vote) { FactoryBot.create(:vote, votable: comment) }
 
     context 'when user is authenticated' do
-      let(:browsing_user) { FactoryBot.create(:user) }
+      let(:browsing_user) { FactoryBot.create(:user, team: comment.topic.team) }
 
       before do
         sign_in(browsing_user)

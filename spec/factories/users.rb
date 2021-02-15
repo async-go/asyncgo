@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :user do
+  factory :user, aliases: [:actor] do
     email { Faker::Internet.email }
 
     trait :team do

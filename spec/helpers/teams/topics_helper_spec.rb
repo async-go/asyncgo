@@ -17,7 +17,7 @@ RSpec.describe Teams::TopicsHelper, type: :helper do
 
     context 'when user is subscribed' do
       before do
-        current_user.subscribed_topics << topic
+        topic.subscribed_users << current_user
       end
 
       it { is_expected.to eq(true) }

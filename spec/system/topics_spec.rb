@@ -6,10 +6,8 @@ RSpec.describe 'Topics', type: :system do
   include SignInOutSystemHelpers
 
   it 'shows all topics' do
-    team = FactoryBot.create(:team)
-    topics = FactoryBot.create_list(:topic, 2, team: team)
-    user = FactoryBot.create(:user)
-    team.users << user
+    user = FactoryBot.create(:user, :team)
+    topics = FactoryBot.create_list(:topic, 2, team: user.team)
 
     visit '/'
     sign_in_user(user)
@@ -21,12 +19,8 @@ RSpec.describe 'Topics', type: :system do
   end
 
   it 'allows the user to create a topic using markdown' do
-    team = FactoryBot.create(:team)
-    user = FactoryBot.create(:user)
-    team.users << user
-
     visit '/'
-    sign_in_user(user)
+    sign_in_user(FactoryBot.create(:user, :team))
     click_link 'Topics'
     click_link 'New Topic'
 
@@ -39,10 +33,8 @@ RSpec.describe 'Topics', type: :system do
   end
 
   it 'allows the user to edit a topic' do
-    team = FactoryBot.create(:team)
-    user = FactoryBot.create(:user)
-    topic = FactoryBot.create(:topic, team: team)
-    team.users << user
+    user = FactoryBot.create(:user, :team)
+    topic = FactoryBot.create(:topic, team: user.team)
 
     visit '/'
     sign_in_user(user)
@@ -57,10 +49,8 @@ RSpec.describe 'Topics', type: :system do
   end
 
   it 'allows the user to summarize a outcome on the topic using markdown' do
-    team = FactoryBot.create(:team)
-    user = FactoryBot.create(:user)
-    topic = FactoryBot.create(:topic, team: team)
-    team.users << user
+    user = FactoryBot.create(:user, :team)
+    topic = FactoryBot.create(:topic, team: user.team)
 
     visit '/'
     sign_in_user(user)
@@ -75,10 +65,8 @@ RSpec.describe 'Topics', type: :system do
   end
 
   it 'allows the user to leave comments on the topic using markdown' do
-    team = FactoryBot.create(:team)
-    user = FactoryBot.create(:user)
-    topic = FactoryBot.create(:topic, team: team)
-    team.users << user
+    user = FactoryBot.create(:user, :team)
+    topic = FactoryBot.create(:topic, team: user.team)
 
     visit '/'
     sign_in_user(user)
@@ -92,11 +80,9 @@ RSpec.describe 'Topics', type: :system do
   end
 
   it 'allows the user to update a comment on the topic' do
-    team = FactoryBot.create(:team)
-    user = FactoryBot.create(:user)
-    topic = FactoryBot.create(:topic, team: team)
+    user = FactoryBot.create(:user, :team)
+    topic = FactoryBot.create(:topic, team: user.team)
     FactoryBot.create(:comment, topic: topic, user: user)
-    team.users << user
 
     visit '/'
     sign_in_user(user)
@@ -111,11 +97,9 @@ RSpec.describe 'Topics', type: :system do
   end
 
   it 'allows the user to close and open the topic' do
-    team = FactoryBot.create(:team)
-    user = FactoryBot.create(:user)
-    topic = FactoryBot.create(:topic, team: team)
+    user = FactoryBot.create(:user, :team)
+    topic = FactoryBot.create(:topic, team: user.team)
     FactoryBot.create(:comment, topic: topic, user: user)
-    team.users << user
 
     visit '/'
     sign_in_user(user)
@@ -128,11 +112,9 @@ RSpec.describe 'Topics', type: :system do
   end
 
   it 'allows the user to subscribe and unsubscribe from the topic' do
-    team = FactoryBot.create(:team)
-    user = FactoryBot.create(:user)
-    topic = FactoryBot.create(:topic, team: team)
+    user = FactoryBot.create(:user, :team)
+    topic = FactoryBot.create(:topic, team: user.team)
     FactoryBot.create(:comment, topic: topic, user: user)
-    team.users << user
 
     visit '/'
     sign_in_user(user)

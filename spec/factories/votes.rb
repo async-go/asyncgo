@@ -4,7 +4,7 @@ FactoryBot.define do
   factory :vote do
     emoji { Emoji.all.sample.aliases.sample }
 
-    user
-    association :votable, factory: :topic
+    association :user, :team
+    votable { association :votable, team: user.team }
   end
 end

@@ -14,11 +14,10 @@ RSpec.describe Teams::Topics::CommentsController, type: :request do
     let(:comment) { FactoryBot.create(:comment, topic: topic) }
 
     context 'when user is authenticated' do
-      let(:user) { FactoryBot.create(:user) }
+      let(:user) { FactoryBot.create(:user, team: topic.team) }
 
       before do
         sign_in(user)
-        topic.team.users << user
       end
 
       context 'when user is authorized' do
@@ -133,11 +132,10 @@ RSpec.describe Teams::Topics::CommentsController, type: :request do
     let(:comment) { FactoryBot.create(:comment, topic: topic) }
 
     context 'when user is authenticated' do
-      let(:user) { FactoryBot.create(:user) }
+      let(:user) { FactoryBot.create(:user, team: topic.team) }
 
       before do
         sign_in(user)
-        topic.team.users << user
       end
 
       context 'when user is authorized' do

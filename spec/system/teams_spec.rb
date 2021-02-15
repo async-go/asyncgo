@@ -18,11 +18,8 @@ RSpec.describe 'Teams', type: :system do
   end
 
   it 'allows the user to invite users to the team' do
-    team = FactoryBot.create(:team)
-    user = FactoryBot.create(:user)
-    team.users << user
     visit '/'
-    sign_in_user(user)
+    sign_in_user(FactoryBot.create(:user, :team))
     click_link 'Admin'
 
     fill_in 'user[email]', with: 'test@example.com'
@@ -32,11 +29,9 @@ RSpec.describe 'Teams', type: :system do
   end
 
   it 'allows the user to remove users from the team' do
-    team = FactoryBot.create(:team)
-    user = FactoryBot.create(:user)
-    other_user = FactoryBot.create(:user)
-    team.users << user
-    team.users << other_user
+    user = FactoryBot.create(:user, :team)
+    other_user = FactoryBot.create(:user, team: user.team)
+
     visit '/'
     sign_in_user(user)
     click_link 'Admin'
@@ -47,13 +42,8 @@ RSpec.describe 'Teams', type: :system do
   end
 
   it 'allows the user to send a support email' do
-    team = FactoryBot.create(:team)
-    user = FactoryBot.create(:user)
-    other_user = FactoryBot.create(:user)
-    team.users << user
-    team.users << other_user
     visit '/'
-    sign_in_user(user)
+    sign_in_user(FactoryBot.create(:user, :team))
     click_link 'Admin'
 
     fill_in 'body', with: 'Hello world'
