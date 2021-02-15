@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_11_101554) do
+ActiveRecord::Schema.define(version: 2021_02_15_114128) do
 
   create_table "comments", force: :cascade do |t|
     t.text "body", null: false
@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(version: 2021_02_11_101554) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
+    t.boolean "wants_digests", default: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["team_id"], name: "index_users_on_team_id"
   end

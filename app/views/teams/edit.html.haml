@@ -43,3 +43,20 @@
         = support_form.text_area :body, rows: 4, class: 'form-control'
 
       = support_form.submit 'Send Email', class: 'btn btn-primary'
+
+.row
+  .col-lg-12
+    %h3 Digest Notifications
+    %p.lead
+      Would you like to receive a daily digest email about open notifications?
+      Note that setting impacts all teams.
+    - if current_user.wants_digests
+      %p Currently subscribed: Yes
+    - else
+      %p Currently subscribed: No
+    = form_with(url: team_user_toggle_digests_path(current_user, @team),
+      action: 'toggle_digests', id: current_user.id) do |toggle_digests_form|
+      .input-group.mb-3
+        = toggle_digests_form.submit 'Toggle notification status',
+          class: 'list-group-item list-group-item-action active'
+%hr

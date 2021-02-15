@@ -22,6 +22,17 @@ module Teams
                   flash: { success: 'User was successfully removed from the team.' }
     end
 
+    def toggle_digests
+      user = team.users.find(params[:user_id])
+      authorize([:teams, user])
+
+      user.wants_digests = !user.wants_digests
+      user.save
+
+      redirect_to edit_team_path(@team),
+                  flash: { success: 'Successfully toggled digest preference.' }
+    end
+
     private
 
     def create_params

@@ -3,6 +3,7 @@
 class User < ApplicationRecord
   validates :email, presence: { allow_blank: false }, uniqueness: true
   validates :name, presence: { allow_blank: false, allow_empty: false, allow_nil: true }
+  validates :wants_digests, presence: { allow_blank: true, allow_empty: true }
 
   belongs_to :team, optional: true
 

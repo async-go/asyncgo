@@ -12,5 +12,10 @@ module Teams
         record.team == user.team &&
         record != user
     end
+
+    def toggle_digests?
+      user &&
+        record.team == user.team
+    end
   end
 end
