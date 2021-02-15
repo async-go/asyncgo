@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Users
-  class NotificationsController < ApplicationController
+  class NotificationsController < ::Users::ApplicationController
     include Pundit
 
     def show

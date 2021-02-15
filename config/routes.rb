@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get 'auth/failure', to: redirect('/')
   delete :sign_out, to: 'sessions#destroy'
 
-  resources :users, only: :none do
+  resources :users, only: :edit do
     scope module: :users do
       resources :notifications, only: :show do
         collection do

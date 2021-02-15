@@ -16,7 +16,7 @@ class User < ApplicationRecord
   has_many :notifications, dependent: :destroy, inverse_of: :user
   has_many :votes, dependent: :destroy
 
-  has_one :user_preference
+  has_one :user_preference, dependent: :destroy
 
   def self.from_omniauth(access_token)
     User.where(email: access_token.info['email']).first_or_initialize.tap do |user|

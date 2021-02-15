@@ -59,6 +59,7 @@
                     'nav-link'
                 - else
                   %li.nav-item= active_link_to 'Create Team', new_team_path, 'nav-link'
+                %li.nav-item= active_link_to 'Profile', edit_user_path(current_user), 'nav-link'
                 %li.nav-item= link_to 'Sign out', sign_out_path, method: :delete, class: 'nav-link'
               - else
                 %li.nav-item.dropdown

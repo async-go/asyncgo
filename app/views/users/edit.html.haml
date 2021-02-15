@@ -1,0 +1,14 @@
+%h1= @user.printable_name
+
+.row
+  .col-lg-12
+    %h3 Digest Notifications
+    %p.lead
+      Would you like to receive a daily digest email about open notifications?
+    - if current_user.user_preference.digest_enabled?
+      %p Currently subscribed: Yes
+    - else
+      %p Currently subscribed: No
+    = form_with(url: 'https://example.com') do |toggle_digests_form|
+      .input-group.mb-3
+        = toggle_digests_form.submit 'Toggle notification status', class: 'btn btn-primary'
