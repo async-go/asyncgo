@@ -7,7 +7,9 @@ module Teams
     def create
       authorize(team, policy_class: Teams::UserPolicy)
 
-      user = User.find_or_initialize_by(create_params)
+      user = User.find_or_initialize_by(create_params).tap do |target_user|
+        target_user.user_preference ||= target_user.build_user_preference
+      end
 
       user_flash = add_user_to_team(team, user)
       redirect_to edit_team_path(team), flash: user_flash
@@ -20,17 +22,6 @@ module Teams
       team.users.delete(user)
       redirect_to edit_team_path(team),
                   flash: { success: 'User was successfully removed from the team.' }
-    end
-
-    def toggle_digests
-      user = team.users.find(params[:user_id])
-      authorize([:teams, user])
-
-      user.wants_digests = !user.wants_digests
-      user.save
-
-      redirect_to edit_team_path(@team),
-                  flash: { success: 'Successfully toggled digest preference.' }
     end
 
     private

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_15_114128) do
+ActiveRecord::Schema.define(version: 2021_02_15_173618) do
 
   create_table "comments", force: :cascade do |t|
     t.text "body", null: false
@@ -69,13 +69,20 @@ ActiveRecord::Schema.define(version: 2021_02_15_114128) do
     t.index ["user_id"], name: "index_topics_on_user_id"
   end
 
+  create_table "user_preferences", force: :cascade do |t|
+    t.boolean "digest_enabled", default: false, null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_user_preferences_on_user_id", unique: true
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
     t.integer "team_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
-    t.boolean "wants_digests", default: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["team_id"], name: "index_users_on_team_id"
   end
@@ -91,5 +98,6 @@ ActiveRecord::Schema.define(version: 2021_02_15_114128) do
     t.index ["votable_type", "votable_id"], name: "index_votes_on_votable"
   end
 
+  add_foreign_key "user_preferences", "users"
   add_foreign_key "votes", "users"
 end

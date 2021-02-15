@@ -4,10 +4,7 @@ desc 'Sends a digest email containing active notifications to all users'
 task send_digest_emails: :environment do
   puts 'Starting send_digest_emails'
   User.find_each do |user|
-    next unless user.wants_digests
-
     notifications = user.notifications.where(read_at: nil)
-
     next if notifications.empty?
 
     puts "Sending #{notifications.count} notifications for #{user.email}"
