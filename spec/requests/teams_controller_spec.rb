@@ -157,4 +157,51 @@ RSpec.describe TeamsController, type: :request do
       include_examples 'unauthorized user examples', 'You are not authorized.'
     end
   end
+
+  describe 'POST toggle_digests' do
+    subject(:post_toggle_digests) do
+      post "/teams/#{team.id}/users/#{user.id}/toggle_digests"
+    end
+
+    let(:team) { FactoryBot.create(:team) }
+    let(:user) { FactoryBot.create(:user) }
+
+    context 'when user is authenticated' do
+
+      before do
+        sign_in(user)
+      end
+
+      context 'when user is authorized' do
+        before do
+          team.users << user
+        end
+
+        it 'toggles the user notification preference' do
+          post_toggle_digests
+          
+          expect(user.wants_digests).to eq(false)
+        end
+
+        it 'sets the flash' do
+          post_toggle_digests
+
+          expect(controller.flash[:success]).to eq('Successfully toggled digest preference.')
+        end
+
+        it 'redirects to edit team path' do
+          post_toggle_digests
+
+          expect(response).to redirect_to(edit_team_path(team))
+        end
+      end
+
+      context 'when user is not authorized' do
+        include_examples 'unauthorized user examples', 'You are not authorized.'
+      end
+    end
+    context 'when user is not authenticated' do
+      include_examples 'unauthorized user examples', 'You are not authorized.'
+    end    
+  end
 end

@@ -8,6 +8,10 @@ FactoryBot.define do
       team
     end
 
+    trait :wants_digests do
+      true
+    end
+
     trait :name do
       name { Faker::Name.name }
     end
