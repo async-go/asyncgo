@@ -1,17 +1,16 @@
 # frozen_string_literal: true
 
 RSpec.describe DigestMailer, type: :mailer do
-  let(:user) { FactoryBot.create(:user, :team) }
-  let!(:notification) { FactoryBot.create(:notification, user: user) }
+  let(:notification) { FactoryBot.create(:notification) }
 
   describe '#digest_email' do
-    subject(:digest_email) { described_class.with(user: user, notifications: [notification]).digest_email }
+    subject(:digest_email) { described_class.with(user: notification.user, notifications: [notification]).digest_email }
 
     it 'renders the headers' do
       expect(digest_email).to have_attributes(
         subject: 'Your AsyncGo Digest',
         from: ['notifications@asyncgo.com'],
-        to: [user.email]
+        to: [notification.user.email]
       )
     end
 

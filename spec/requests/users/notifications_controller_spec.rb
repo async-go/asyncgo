@@ -115,7 +115,7 @@ RSpec.describe Users::NotificationsController, type: :request do
   describe 'POST clear' do
     subject(:post_clear) { post "/users/#{user.id}/notifications/clear" }
 
-    let(:user) { FactoryBot.create(:user) }
+    let(:user) { FactoryBot.create(:user, :team) }
 
     before do
       FactoryBot.create(:notification, user: user)

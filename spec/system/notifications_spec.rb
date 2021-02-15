@@ -7,18 +7,16 @@ RSpec.describe 'Notifications', type: :system do
 
   it 'allows user to read a notification' do
     user = FactoryBot.create(:user, :team)
-    actor = FactoryBot.create(:user, name: 'John Doe', team: user.team)
-    topic = FactoryBot.create(:topic, user: user, team: user.team)
-    FactoryBot.create(:notification, user: user, actor: actor, target: topic)
+    notification = FactoryBot.create(:notification, user: user)
 
     visit '/'
     sign_in_user(user)
 
     expect(find('#notificationDropdown')).to have_text('1')
     find('.dropdown-toggle.badge').click
-    click_link "John Doe updated the topic #{topic.title}"
+    click_link "#{notification.actor.printable_name} updated the topic #{notification.target.title}"
     expect(find('#notificationDropdown')).to have_text('0')
-    expect(page).to have_text(topic.title)
+    expect(page).to have_text(notification.target.title)
   end
 
   it 'creates notifications when other user comments on subscribed topic' do
@@ -50,9 +48,7 @@ RSpec.describe 'Notifications', type: :system do
 
   it 'allows user to clear all notifications' do
     user = FactoryBot.create(:user, :team)
-    actor = FactoryBot.create(:user, name: 'John Doe', team: user.team)
-    topic = FactoryBot.create(:topic, user: user, team: user.team)
-    FactoryBot.create(:notification, user: user, actor: actor, target: topic)
+    FactoryBot.create(:notification, user: user)
 
     visit '/'
     sign_in_user(user)

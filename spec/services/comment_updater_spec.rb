@@ -39,7 +39,7 @@ RSpec.describe CommentUpdater, type: :service do
         end
 
         it 'creates a notification' do
-          expect { call }.to change(Notification, :count).from(0).to(1)
+          expect { call }.to change(Notification, :count).from(0).to(2)
         end
 
         it 'does not create a notification for comment author' do
