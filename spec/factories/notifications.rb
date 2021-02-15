@@ -2,10 +2,10 @@
 
 FactoryBot.define do
   factory :notification do
-    user
+    association :user, :team
     action { :updated }
 
-    association :actor, factory: :user
-    association :target, factory: :topic
+    actor { association :actor, team: user.team }
+    target { association :target, team: user.team }
   end
 end
