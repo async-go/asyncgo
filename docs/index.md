@@ -254,6 +254,33 @@ off as you go. Checklists are entered as follows:
 - [x] A checked checkbox
 ```
 
+### Bullet Lists
+
+You can create bulleted lists using the following format:
+
+```
+- Unordered item 1
+- Unordered item 2
+
+1. Item 1
+2. Item 2
+```
+
+Sub-bullets are also possible, in that case you should use two or four spaces to indicate the next level of indent. You
+can also mix and match bullet types in this way.
+
+```
+- Unordered item 1
+- Unordered item 2
+  1. Sub-item 1
+  2. Sub-item 2
+- Unordered item 3
+  - Sub-item 1
+    - Sub-sub item 1
+    - Sub-sub item 2
+  - Sub-item 2
+```    
+
 ### Links
 
 Links can be added as follows:
