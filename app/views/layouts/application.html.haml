@@ -30,10 +30,11 @@
               %span.badge.bg-secondary.fs-6 Active Team: #{current_user.team.name}
               .my-2.my-lg-0.ms-lg-3.me-auto.dropdown.notification-dropdown
                 %span.badge.bg-secondary.fs-6.ml-3
-                  = link_to "/users/#{current_user.id}/notifications", class: 'text-decoration-none' do
+                  = link_to "/users/#{current_user.id}/notifications",
+                    class: 'text-decoration-none' do
                     = assistive_icon('fas', 'bell', 'Has notification', classname: 'text-warning')
                     %span.text-white= unique_unread_notifications.length
-                
+
             %ul.navbar-nav.ms-auto.me-2
               %li.nav-item= link_to 'Docs', 'https://docs.asyncgo.com', class: 'nav-link',
                 target: :_blank, rel: :noopener
