@@ -22,6 +22,30 @@ Table of Contents
 
 ---
 
+## What are the basics?
+
+AsyncGo is a discussion tool meant to be used by teams. Each team gets a topic
+board that has all the important discussions that are happening for that team.
+Anyone can create a [topic](#topics) at any time, and we encourage you to set
+a [due date](#timeboxing) on every item since the topic list is sorted by what's
+coming due. It's also important to write a good description, and pre-format
+the outcome so that everyone knows the information needed coming into the
+discussion, and what exactly the expected outcome is. You might also want to
+define expected actions to occur during the discussion (you can place these
+in the description), or actions to occur after the decision is done (you can
+place these in the space for the outcome.) Checklists using markdown are a good
+way to list these.
+
+Within a topic everyone can collaborate on an outcome together by using
+comments and votes to iterate towards the result you're looking for.
+
+Once done, someone should ensure that the outcome is updated with the final
+results, and then close the topic. It's archived forever so you can always
+reference it.
+
+These are the fundamentals, but please read on for more tips and tricks on
+how to get the most out of AsyncGo.
+
 ## Async Working
 
 The first step to getting the most out of AsyncGo is to familiarize yourself with async working.
