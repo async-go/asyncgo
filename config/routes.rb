@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   resources :users, only: :edit do
     scope module: :users do
       resource :preference, only: :update
-      resources :notifications, only: :show do
+      resources :notifications, only: %i[show index] do
         collection do
           post :clear
         end
