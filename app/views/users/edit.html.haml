@@ -6,9 +6,13 @@
     %p.lead
       Would you like to receive a daily digest email about open notifications?
     - if current_user.user_preference.digest_enabled?
+      - toggle_value = false
       %p Currently subscribed: Yes
     - else
+      - toggle_value = true
       %p Currently subscribed: No
-    = form_with(url: 'https://example.com') do |toggle_digests_form|
+    = form_with(model: @user.user_preference,
+      url: [@user, :user_preference]) do |toggle_digests_form|
+      = toggle_digests_form.hidden_field :digest_enabled, value: toggle_value
       .input-group.mb-3
         = toggle_digests_form.submit 'Toggle notification status', class: 'btn btn-primary'

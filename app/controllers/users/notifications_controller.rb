@@ -20,7 +20,7 @@ module Users
     end
 
     def clear
-      authorize([:users, Notification])
+      authorize(user, policy_class: Users::NotificationPolicy)
 
       current_user.notifications.update(read_at: Time.now.utc)
 
