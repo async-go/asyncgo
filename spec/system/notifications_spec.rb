@@ -9,8 +9,10 @@ RSpec.describe 'Notifications', type: :system do
     user = FactoryBot.create(:user, :team)
     notification = FactoryBot.create(:notification, user: user)
 
-    visit "/users/#{user.id}/notifications"
+    visit "/"
     sign_in_user(user)
+
+    click_link 'notification_link'
 
     expect(find('#notificationCount')).to have_text('1')
     click_link "#{notification.actor.printable_name} updated the topic #{notification.target.title}"
@@ -48,8 +50,10 @@ RSpec.describe 'Notifications', type: :system do
   it 'allows user to clear all notifications' do
     user = FactoryBot.create(:user, :team)
     FactoryBot.create(:notification, user: user)
-    visit "/users/#{user.id}/notifications"
+    visit "/"
     sign_in_user(user)
+
+    click_link 'notification_link'
 
     expect(find('#notificationCount')).to have_text('1')
     click_link 'Clear all notifications (all pages)'
