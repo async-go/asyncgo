@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe UserPreference, type: :model do
+RSpec.describe User::Preference, type: :model do
   describe 'Validations' do
     before do
       FactoryBot.create(:user)

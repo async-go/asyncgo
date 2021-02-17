@@ -3,7 +3,7 @@
 class User < ApplicationRecord
   validates :email, presence: { allow_blank: false }, uniqueness: true
   validates :name, presence: { allow_blank: false, allow_empty: false, allow_nil: true }
-  validates :user_preference, presence: true
+  validates :preference, presence: true
 
   belongs_to :team, optional: true
 
@@ -16,11 +16,11 @@ class User < ApplicationRecord
   has_many :notifications, dependent: :destroy, inverse_of: :user
   has_many :votes, dependent: :destroy
 
-  has_one :user_preference, dependent: :destroy
+  has_one :preference, dependent: :destroy, class_name: 'User::Preference'
 
   def self.from_omniauth(access_token)
     User.where(email: access_token.info['email']).first_or_initialize.tap do |user|
-      user.user_preference ||= user.build_user_preference
+      user.preference ||= user.build_preference
       user.name = access_token.info['name']
       user.save!
     end

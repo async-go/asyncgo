@@ -10,7 +10,7 @@ RSpec.describe User, type: :model do
     it { is_expected.to validate_uniqueness_of(:email) }
     it { is_expected.not_to allow_value('', ' ').for(:name) }
     it { is_expected.to allow_value(nil).for(:name) }
-    it { is_expected.to validate_presence_of(:user_preference) }
+    it { is_expected.to validate_presence_of(:preference) }
   end
 
   describe 'Relations' do
@@ -20,7 +20,7 @@ RSpec.describe User, type: :model do
     it { is_expected.to have_many(:subscriptions).dependent(:destroy) }
     it { is_expected.to have_many(:subscribed_topics) }
     it { is_expected.to have_many(:notifications).inverse_of(:user) }
-    it { is_expected.to have_one(:user_preference) }
+    it { is_expected.to have_one(:preference) }
   end
 
   describe '.from_omniauth' do
@@ -44,7 +44,7 @@ RSpec.describe User, type: :model do
       end
 
       it 'does not create user preference' do
-        expect { from_omniauth }.not_to change(UserPreference, :count).from(1)
+        expect { from_omniauth }.not_to change(User::Preference, :count).from(1)
       end
 
       it 'returns existing user' do
@@ -62,7 +62,7 @@ RSpec.describe User, type: :model do
       end
 
       it 'creates user preference' do
-        expect { from_omniauth }.to change(UserPreference, :count).from(0).to(1)
+        expect { from_omniauth }.to change(User::Preference, :count).from(0).to(1)
       end
 
       it 'returns new user' do

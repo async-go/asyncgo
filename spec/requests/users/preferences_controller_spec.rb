@@ -3,12 +3,12 @@
 require './spec/support/sign_in_out_request_helpers'
 require './spec/support/unauthorized_user_examples'
 
-RSpec.describe Users::UserPreferencesController, type: :request do
+RSpec.describe Users::PreferencesController, type: :request do
   include SignInOutRequestHelpers
 
   describe 'PATCH update' do
     subject(:patch_update) do
-      patch "/users/#{user.id}/user_preference", params: { user_preference: { digest_enabled: 'true' } }
+      patch "/users/#{user.id}/preference", params: { user_preference: { digest_enabled: 'true' } }
     end
 
     let(:user) { FactoryBot.create(:user) }
@@ -24,7 +24,7 @@ RSpec.describe Users::UserPreferencesController, type: :request do
         let(:browsing_user) { user }
 
         it 'updates the user preferences' do
-          expect { patch_update }.to change { user.user_preference.reload.digest_enabled }.from(false).to(true)
+          expect { patch_update }.to change { user.preference.reload.digest_enabled }.from(false).to(true)
         end
 
         it 'redirects to edit user' do

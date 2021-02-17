@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   resources :users, only: :edit do
     scope module: :users do
-      resource :user_preference, only: :update
+      resource :preference, only: :update
       resources :notifications, only: :show do
         collection do
           post :clear

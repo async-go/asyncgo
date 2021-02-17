@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Users
-  class UserPreferencePolicy < ApplicationPolicy
+  class PreferencePolicy < ApplicationPolicy
     def update?
       user &&
         record.user == user

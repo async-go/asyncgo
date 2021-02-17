@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
 module Users
-  class UserPreferencesController < ::Users::ApplicationController
+  class PreferencesController < ::Users::ApplicationController
     include Pundit
 
     def update
-      @user_preference = user.user_preference
-      authorize([:users, @user_preference])
+      @preference = user.preference
+      authorize(@preference, policy_class: Users::PreferencePolicy)
 
-      if @user_preference.update(user_preference_params)
-        redirect_to edit_user_path(@user_preference.user),
+      if @preference.update(preference_params)
+        redirect_to edit_user_path(@preference.user),
                     flash: { success: 'User preferences were successfully updated.' }
       else
         render 'users/edit'
@@ -18,7 +18,7 @@ module Users
 
     private
 
-    def user_preference_params
+    def preference_params
       params.require(:user_preference).permit(:digest_enabled)
     end
   end
