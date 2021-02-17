@@ -1,32 +1,23 @@
 ---
 layout: docs
-title: 'AsyncGo Documentation'
+title: "AsyncGo Documentation"
 description: Learn how to use AsyncGo
 ---
 
-## Introduction
+# AsyncGo Basics
 
 Welcome to AsyncGo! AsyncGo helps your team communicate flexibly and without
-the interruptions caused by meetings and chat:
+the interruptions caused by meetings and chat. This documentation site is broken
+out into a few areas. This page contains the basics and context you need to get
+up and running.
 
-- Your **topic board** becomes the "office water cooler" to find out what's being discussed.
-- **Timeboxed discussions** help everyone know what to focus on next.
-- Embedded **facilitation tools** helps everyone get to great results quickly.
-- **Structured context** and **outcomes** ensure discussions begin and end with clarity.
-- Use meeting time for **human connection**. Try a coffee chat instead!
-
-Table of Contents
-
-* TOC
-{:toc}
-
----
+{% include docs_nav.md %}
 
 ## What are the basics?
 
 AsyncGo is a discussion tool meant to be used by teams. Each team gets a topic
 board that has all the important discussions that are happening for that team.
-Anyone can create a [topic](#topics) at any time, and we encourage you to set
+Anyone can create a [topic](/topics) at any time, and we encourage you to set
 a [due date](#timeboxing) on every item since the topic list is sorted by what's
 coming due. It's also important to write a good description, and pre-format
 the outcome so that everyone knows the information needed coming into the
@@ -122,7 +113,7 @@ whenever you do this you're impacting the team's async flow.
 
 A common question from managers working with remote teams for the first time is how to know if
 your team members are really working, or how to tell if they are taking the opportunity of being away from the
-office to avoid work. 
+office to avoid work.
 
 The reality is that most people increase rather than decrease the amount of
 work done when moving to remote, since the lines between personal and work life can become blurred.
@@ -201,133 +192,6 @@ are just a few sources of interruptions that, when dealt with, reduce the total 
 dramatically.
 
 ---
-
-## Topics
-
-AsyncGo is oriented around temporary **topics** that are created, typically from a pre-existing meeting or issue, that can
-represent any discussion topic that needs to be had. A topic is meant to exist for a short period of time during which
-everyone contributes their thoughts.
-
-At the end the discussion is resolved and the final outcomes and/or decisions are recorded.
-
-### The Topic List
-
-When you log in you'll see a list of open topics. From here you can click on any of the available topics
-to participate.
-
-### Creating Topics
-
-From the topic list click on "New Topic" to create a topic. You will be prompted to enter a description and a title.
-Topic descriptions set the table for the conversation to be had and are very important. You can use [markdown](markdown.html)
-to enter richer content than plain text; we recommend including a checklist of key points to discuss, which can be marked
-off as you go, and potentially an embedded video recording to help set the context.
-
-Topics can also have a due date set, which will be made visible to everyone looking at the topic index. This can be a
-great way to communicate when you need something by, and help everyone prioritize the topics they engage with.
-
-### Collaborating on Topics
-
-Once the topic is set up you can share it with everyone who you want to participate. Everyone can collaborate async as
-you go, discussing the topic at hand until you reach your outcome.
-
-### Voting in Topics
-
-You can vote on any comment inside of a topic by adding whatever emoji you like. Good examples are thumbs ups and thumbs
-down, to indicate approval or disapproval, but you can be creative and show your support in lots of different ways. One
-bit of advice - if you disapprove, follow up on your emoji with another comment to explain why.
-
-You can also use emojis to do more complex votes with multiple options. In this case, use a different emoji for each
-option in the vote.
-
-### Resolving Topics
-
-Now that your topic is complete you can mark it as resolved. This will freeze further edits.
-
-A good idea for confirming everyone is onboard with the final outcome is to add a comment asking everyone if they
-are ready to finalize the outcome. They can then add thumbs up emojis to indicate their active support.
-
----
-
-## Teams
-
-Teams in AsyncGo represent one group of users who collaborate with each other. Teams are
-billed as one unit, based on the total number of members.
-
-### Managing Teams
-
-From the Teams page you are able to add and remove users. A few important notes:
-
-- Users must be individually invited from the Teams page
-- There are no limitations on domain name as to who can be invited to the team
-- An individual user, as defined by one email address, may only be a member of one team
-
----
-
-## Markdown
-
-AsyncGo uses [GFM markdown](https://github.github.com/gfm/) for rich content, and supports all tags listed in their documentation.
-There are a few common keywords used to support discussions which are highlighted here.
-
-### Checklists
-
-It's very helpful to use checklists to define the set of things you're going to discuss, and then you can mark them
-off as you go. Checklists are entered as follows:
-
-```
-- [ ] An unchecked checkbox
-- [x] A checked checkbox
-```
-
-### Bullet Lists
-
-You can create bulleted lists using the following format:
-
-```
-- Unordered item 1
-- Unordered item 2
-
-1. Item 1
-2. Item 2
-```
-
-Sub-bullets are also possible, in that case you should use two or four spaces to indicate the next level of indent. You
-can also mix and match bullet types in this way.
-
-```
-- Unordered item 1
-- Unordered item 2
-  1. Sub-item 1
-  2. Sub-item 2
-- Unordered item 3
-  - Sub-item 1
-    - Sub-sub item 1
-    - Sub-sub item 2
-  - Sub-item 2
-```    
-
-### Links
-
-Links can be added as follows:
-
-```
-[Link description](https://www.google.com)
-```
-
-### Images
-
-Images are added similarly:
-
-```
-![foo](/url "https://www.google.com/with-my-image.png")
-```
-
-### Videos
-
-Adding videos is done by adding images with links. Since it's not possible to embed the video directly, you show the video thumbnail instead as an image and then link to the video. With YouTube for example you would replace `VIDEO_ID` below with the actual video ID:
-
-```
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/VIDEO_ID/0.jpg)](https://www.youtube.com/watch?v=VIDEO_ID)
-```
 
 ## User Settings
 
