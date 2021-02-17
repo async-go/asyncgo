@@ -195,6 +195,10 @@ dramatically.
 
 ## User Settings
 
+### Avatar
+
+AsyncGo shows your avatar from [Gravatar](https://www.gravatar.com). You can update your picture there, and it will automatically be reflected here.
+
 ### Notifications
 
 If you are watching any topics (the watch button is available when viewing a topic), then
@@ -203,7 +207,3 @@ comments in a topic you are watching.
 
 Click on the notification bell at the top of any page and you can view all the open
 notifications you have. From here you can also clear all notifications.
-
-### Avatar
-
-AsyncGo shows your avatar from [Gravatar](https://www.gravatar.com). You can update your picture there, and it will automatically be reflected here.
