@@ -14,9 +14,9 @@ RSpec.describe 'Notifications', type: :system do
 
     click_link 'notification_link'
 
-    expect(find('#notification_count')).to have_text('1')
+    expect(find('#notification-count')).to have_text('1')
     click_link "#{notification.actor.printable_name} updated the topic #{notification.target.title}"
-    expect(find('#notification_count')).to have_text('0')
+    expect(find('#notification-count')).to have_text('0')
     expect(page).to have_text(notification.target.title)
   end
 
@@ -26,7 +26,7 @@ RSpec.describe 'Notifications', type: :system do
 
     visit '/'
     sign_in_user(user)
-    expect(find('#notification_count')).to have_text('0')
+    expect(find('#notification-count')).to have_text('0')
     click_link 'Topics'
     click_link 'New Topic'
     fill_in 'topic[title]', with: 'Sample topic'
@@ -44,7 +44,7 @@ RSpec.describe 'Notifications', type: :system do
 
     click_link 'Sign out'
     sign_in_user(user)
-    expect(find('#notification_count')).to have_text('1')
+    expect(find('#notification-count')).to have_text('1')
   end
 
   it 'allows user to clear all notifications' do
@@ -55,8 +55,8 @@ RSpec.describe 'Notifications', type: :system do
 
     click_link 'notification_link'
 
-    expect(find('#notification_count')).to have_text('1')
+    expect(find('#notification-count')).to have_text('1')
     click_link 'Clear all notifications (all pages)'
-    expect(find('#notification_count')).to have_text('0')
+    expect(find('#notification-count')).to have_text('0')
   end
 end
