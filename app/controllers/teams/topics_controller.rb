@@ -21,7 +21,7 @@ module Teams
       @topic = topic
       authorize([:teams, @topic])
 
-      @pagy, @topic_comments = pagy(@topic.comments)
+      @pagy, @topic_comments = pagy(@topic.comments.order(created_at: :desc))
       @topic_comments = @topic_comments.includes(:user, votes: :user)
     end
 
