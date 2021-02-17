@@ -50,6 +50,7 @@ RSpec.describe 'Notifications', type: :system do
   it 'allows user to clear all notifications' do
     user = FactoryBot.create(:user, :team)
     FactoryBot.create(:notification, user: user)
+
     visit '/'
     sign_in_user(user)
 
