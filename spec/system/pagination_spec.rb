@@ -61,9 +61,9 @@ RSpec.describe 'Pagination', type: :system do
     actor = FactoryBot.create(:user, :team)
     topic = FactoryBot.create(:topic, user: user, team: user.team)
     notifications = FactoryBot.create_list(:notification, 25, target: topic,
-      actor: actor, user: user, action: 1)
+                                                              actor: actor, user: user, action: 1)
 
-    visit "/"
+    visit '/'
     sign_in_user(user)
 
     click_link 'notification_link'

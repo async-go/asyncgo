@@ -29,12 +29,14 @@ class NotificationsController < ::Users::ApplicationController
 
   def index
     unread_notifications = unique_unread_notifications
-    if unique_unread_notifications != nil
-      @pagy_active_notifications, @active_notifications = pagy(
-        unique_unread_notifications,
-        page_param: 'active_page'
-      )
-    end
+
+    return if unread_notifications.nil?
+
+    @pagy_active_notifications, @active_notifications = pagy(
+      unread_notifications,
+      page_param: 'active_page'
+    )
+  end
   end
 
   private

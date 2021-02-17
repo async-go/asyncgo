@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
     @unique_unread_notifications ||= begin
       Notification
         .where(user: current_user, read_at: nil)
-        .select(:id, :user_id, :actor_id, :target_id, :target_type, :action, :created_at)        
+        .select(:id, :user_id, :actor_id, :target_id, :target_type, :action, :created_at)
         .distinct { |n| n.values_at(:target_id, :actor_id, :user_id, :action) }
         .order(created_at: :desc)
     end
