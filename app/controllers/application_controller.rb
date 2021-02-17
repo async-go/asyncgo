@@ -25,8 +25,10 @@ class ApplicationController < ActionController::Base
   def unique_unread_notifications
     @unique_unread_notifications ||= begin
       Notification
-        .where(user: current_user, read_at: nil).includes(:actor, :target)
-        .uniq { |n| n.values_at(:target_id, :actor_id, :user_id, :action) }
+        .where(user: current_user, read_at: nil)
+        .select(:id, :user_id, :actor_id, :target_id, :target_type, :action, :created_at)        
+        .distinct { |n| n.values_at(:target_id, :actor_id, :user_id, :action) }
+        .order(created_at: :desc)
     end
   end
   helper_method :unique_unread_notifications

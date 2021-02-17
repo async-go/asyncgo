@@ -9,13 +9,12 @@ RSpec.describe 'Notifications', type: :system do
     user = FactoryBot.create(:user, :team)
     notification = FactoryBot.create(:notification, user: user)
 
-    visit '/'
+    visit "/users/#{user.id}/notifications"
     sign_in_user(user)
 
-    expect(find('#notificationDropdown')).to have_text('1')
-    find('.dropdown-toggle.badge').click
+    expect(find('#notificationCount')).to have_text('1')
     click_link "#{notification.actor.printable_name} updated the topic #{notification.target.title}"
-    expect(find('#notificationDropdown')).to have_text('0')
+    expect(find('#notificationCount')).to have_text('0')
     expect(page).to have_text(notification.target.title)
   end
 
@@ -25,7 +24,7 @@ RSpec.describe 'Notifications', type: :system do
 
     visit '/'
     sign_in_user(user)
-    expect(find('#notificationDropdown')).to have_text('0')
+    expect(find('#notificationCount')).to have_text('0')
     click_link 'Topics'
     click_link 'New Topic'
     fill_in 'topic[title]', with: 'Sample topic'
@@ -43,21 +42,19 @@ RSpec.describe 'Notifications', type: :system do
 
     click_link 'Sign out'
     sign_in_user(user)
-    expect(find('#notificationDropdown')).to have_text('1')
+    expect(find('#notificationCount')).to have_text('1')
   end
 
   it 'allows user to clear all notifications' do
     user = FactoryBot.create(:user, :team)
     FactoryBot.create(:notification, user: user)
 
-    visit '/'
+    puts user.inspect
+    visit "/users/#{user.id}/notifications"
     sign_in_user(user)
 
-    expect(find('#notificationDropdown')).to have_text('1')
-    find('.dropdown-toggle.badge').click
-    # The alert sometimes renders on top of the dropdown in Capybara for some
-    # reason
-    page.execute_script('arguments[0].click();', find(:link, 'Clear all notifications'))
-    expect(find('#notificationDropdown')).to have_text('0')
+    expect(find('#notificationCount')).to have_text('1')
+    click_link 'Clear all notifications (all pages)'
+    expect(find('#notificationCount')).to have_text('0')
   end
 end

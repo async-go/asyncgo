@@ -29,7 +29,7 @@
             - if current_user&.team
               %span.badge.bg-secondary.fs-6 Active Team: #{current_user.team.name}
               .my-2.my-lg-0.ms-lg-3.me-auto.dropdown.notification-dropdown
-                %span.badge.bg-secondary.fs-6.ml-3
+                %span.badge.bg-secondary.fs-6.ml-3#notificationCount
                   = link_to "/users/#{current_user.id}/notifications",
                     class: 'text-decoration-none' do
                     = assistive_icon('fas', 'bell', 'Has notification', classname: 'text-warning')
