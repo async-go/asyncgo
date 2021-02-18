@@ -7,36 +7,56 @@ RSpec.describe 'Pagination', type: :system do
 
   it 'paginates active topics' do
     user = FactoryBot.create(:user, :team)
-    topics = FactoryBot.create_list(:topic, 25, user: user, team: user.team)
+    FactoryBot.create_list(
+      :topic, 30, user: user, team: user.team, status: :active,
+                  due_date: Date.new(2020, 1, 1)
+    )
+    FactoryBot.create(
+      :topic, user: user, team: user.team, status: :active,
+              due_date: Date.new(2021, 1, 1), title: 'thisisthelasttopic'
+    )
 
     visit '/'
     sign_in_user(user)
 
     click_link 'Topics'
 
-    expect(page).not_to have_text(topics.last.title)
+    expect(page).not_to have_text('thisisthelasttopic')
     click_link '2'
-    expect(page).to have_text(topics.last.title)
+    expect(page).to have_text('thisisthelasttopic')
   end
 
   it 'paginates closed topics' do
     user = FactoryBot.create(:user, :team)
-    topics = FactoryBot.create_list(:topic, 25, user: user, team: user.team, status: :closed)
+    FactoryBot.create_list(
+      :topic, 30, user: user, team: user.team, status: :closed,
+                  due_date: Date.new(2020, 1, 1)
+    )
+    FactoryBot.create(
+      :topic, user: user, team: user.team, status: :closed,
+              due_date: Date.new(2021, 1, 1), title: 'thisisthelasttopic'
+    )
 
     visit '/'
     sign_in_user(user)
 
     click_link 'Topics'
 
-    expect(page).not_to have_text(topics.last.title)
+    expect(page).not_to have_text('thisisthelasttopic')
     click_link '2'
-    expect(page).to have_text(topics.last.title)
+    expect(page).to have_text('thisisthelasttopic')
   end
 
   it 'paginates topic comments' do
     user = FactoryBot.create(:user, :team)
     topic = FactoryBot.create(:topic, user: user, team: user.team)
-    comments = FactoryBot.create_list(:comment, 25, topic: topic, user: user)
+    FactoryBot.create_list(
+      :comment, 25, topic: topic, user: user, created_at: Date.new(2020, 1, 1)
+    )
+    FactoryBot.create(
+      :comment, topic: topic, user: user, body: 'thisisthelastcomment',
+                created_at: Date.new(2021, 1, 1)
+    )
 
     visit '/'
     sign_in_user(user)
@@ -44,9 +64,9 @@ RSpec.describe 'Pagination', type: :system do
     click_link 'Topics'
     click_link topic.title
 
-    expect(page).not_to have_text(comments.last.body)
+    expect(page).not_to have_text('thisisthelastcomment')
     click_link 'Next'
-    expect(page).to have_text(comments.last.body)
+    expect(page).to have_text('thisisthelastcomment')
   end
 
   it 'paginates notifications' do
@@ -66,15 +86,21 @@ RSpec.describe 'Pagination', type: :system do
 
   it 'paginates user members' do
     user = FactoryBot.create(:user, :team)
-    team_members = FactoryBot.create_list(:user, 25, team: user.team)
+    FactoryBot.create_list(
+      :user, 25, team: user.team, created_at: Date.new(2020, 1, 1)
+    )
+    FactoryBot.create(
+      :user, team: user.team, email: 'thisisthelastuser@example.com',
+             created_at: Date.new(2021, 1, 1)
+    )
 
     visit '/'
     sign_in_user(user)
 
     click_link 'Admin'
 
-    expect(page).not_to have_text(team_members.last.email)
+    expect(page).not_to have_text('thisisthelastuser@example.com')
     click_link 'Next'
-    expect(page).to have_text(team_members.last.email)
+    expect(page).to have_text('thisisthelastuser@example.com')
   end
 end
