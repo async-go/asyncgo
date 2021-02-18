@@ -7,12 +7,12 @@ module Teams
 
       def edit
         @comment = comment
-        authorize([:teams, :topics, @comment])
+        authorize(@comment)
       end
 
       def create
         comment = topic.comments.build(create_params)
-        authorize([:teams, :topics, comment])
+        authorize(comment)
 
         comment_flash = if update_comment(comment, comment_params)
                           { success: 'Comment was successfully created.' }
@@ -26,7 +26,7 @@ module Teams
 
       def update
         @comment = comment
-        authorize([:teams, :topics, @comment])
+        authorize(@comment)
 
         if update_comment(@comment, comment_params)
           redirect_to team_topic_path(@comment.topic.team, @comment.topic),

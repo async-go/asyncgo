@@ -63,7 +63,7 @@
             %span= comment.created_at.strftime('%b %e')
           .col-lg-9
             %div!= comment.body_html
-            - if @topic.active? && policy([:teams, :topics, comment]).edit?
+            - if @topic.active? && policy(comment).edit?
               %span.small= link_to 'Edit Comment',
                 edit_team_topic_comment_path(@topic.team, @topic, comment)
         .row.my-3

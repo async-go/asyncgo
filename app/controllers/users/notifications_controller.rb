@@ -5,7 +5,7 @@ module Users
     include Pundit
 
     def show
-      authorize([:users, notification])
+      authorize(notification)
 
       if notification_group.update(read_at: Time.now.utc)
         redirect_object = redirect_target(notification)
@@ -20,9 +20,9 @@ module Users
     end
 
     def clear
-      authorize(user, policy_class: Users::NotificationPolicy)
+      authorize(user, policy_class: NotificationPolicy)
 
-      current_user.notifications.update(read_at: Time.now.utc)
+      user.notifications.update(read_at: Time.now.utc)
 
       redirect_back fallback_location: root_path
     end

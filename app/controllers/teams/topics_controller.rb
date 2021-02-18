@@ -6,7 +6,7 @@ module Teams
     include Pundit
 
     def index
-      authorize(team, policy_class: Teams::TopicPolicy)
+      authorize(team, policy_class: TopicPolicy)
       @pagy_active_topics, @active_topics = pagy(
         team.topics.active.order(:due_date), page_param: 'active_page'
       )
@@ -19,7 +19,7 @@ module Teams
 
     def show
       @topic = topic
-      authorize([:teams, @topic])
+      authorize(@topic)
 
       @pagy, @topic_comments = pagy(@topic.comments.order(:created_at))
       @topic_comments = @topic_comments.includes(:user, votes: :user)
@@ -27,18 +27,18 @@ module Teams
 
     def new
       @topic = team.topics.build
-      authorize([:teams, @topic])
+      authorize(@topic)
     end
 
     def edit
       @topic = topic
-      authorize([:teams, @topic])
+      authorize(@topic)
     end
 
     def create
       create_params = topic_params.merge(user: current_user)
       @topic = team.topics.build(create_params)
-      authorize([:teams, @topic])
+      authorize(@topic)
 
       if TopicUpdater.new(current_user, @topic, topic_params).call
         redirect_to team_topic_path(@topic.team, @topic),
@@ -50,7 +50,7 @@ module Teams
 
     def update
       @topic = topic
-      authorize([:teams, @topic])
+      authorize(@topic)
 
       update_result = TopicUpdater.new(current_user, @topic, topic_params).call
 
@@ -63,7 +63,7 @@ module Teams
     end
 
     def subscribe
-      authorize([:teams, topic])
+      authorize(topic)
 
       subscribe_flash = if update_user_subscription
                           { success: 'User subscription status was successfully changed.' }
