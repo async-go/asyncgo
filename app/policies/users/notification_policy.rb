@@ -8,7 +8,8 @@ module Users
     end
 
     def clear?
-      user
+      user &&
+        record == user
     end
   end
 end

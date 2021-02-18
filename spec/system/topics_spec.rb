@@ -48,7 +48,7 @@ RSpec.describe 'Topics', type: :system do
     expect(page).to have_text('This is an update')
   end
 
-  it 'allows the user to summarize a outcome on the topic using markdown' do
+  it 'allows the user to summarize an outcome using markdown' do
     user = FactoryBot.create(:user, :team)
     topic = FactoryBot.create(:topic, team: user.team)
 
@@ -64,42 +64,9 @@ RSpec.describe 'Topics', type: :system do
     expect(page.body).to include('<strong>Sample outcome</strong>')
   end
 
-  it 'allows the user to leave comments on the topic using markdown' do
-    user = FactoryBot.create(:user, :team)
-    topic = FactoryBot.create(:topic, team: user.team)
-
-    visit '/'
-    sign_in_user(user)
-    click_link 'Topics'
-    click_link topic.title
-
-    fill_in 'comment[body]', with: '__Sample content__'
-    click_button 'Create Comment'
-
-    expect(page.body).to include('<strong>Sample content</strong>')
-  end
-
-  it 'allows the user to update a comment on the topic' do
-    user = FactoryBot.create(:user, :team)
-    topic = FactoryBot.create(:topic, team: user.team)
-    FactoryBot.create(:comment, topic: topic, user: user)
-
-    visit '/'
-    sign_in_user(user)
-    click_link 'Topics'
-    click_link topic.title
-    click_link 'Edit Comment'
-
-    find(:fillable_field, 'comment[body]').send_keys('This is updated content')
-    click_button 'Update Comment'
-
-    expect(page).to have_text('This is updated content')
-  end
-
   it 'allows the user to close and open the topic' do
     user = FactoryBot.create(:user, :team)
     topic = FactoryBot.create(:topic, team: user.team)
-    FactoryBot.create(:comment, topic: topic, user: user)
 
     visit '/'
     sign_in_user(user)
@@ -114,7 +81,6 @@ RSpec.describe 'Topics', type: :system do
   it 'allows the user to subscribe and unsubscribe from the topic' do
     user = FactoryBot.create(:user, :team)
     topic = FactoryBot.create(:topic, team: user.team)
-    FactoryBot.create(:comment, topic: topic, user: user)
 
     visit '/'
     sign_in_user(user)
@@ -126,5 +92,82 @@ RSpec.describe 'Topics', type: :system do
     expect(page).to have_button('Unwatch Topic')
     click_button 'Unwatch Topic'
     expect(page).to have_button('Watch Topic')
+  end
+
+  it 'allows the user to vote on a topic' do
+    user = FactoryBot.create(:user, :team)
+    topic = FactoryBot.create(:topic, team: user.team)
+
+    visit '/'
+    sign_in_user(user)
+    click_link 'Topics'
+    click_link topic.title
+
+    emoji = Emoji.find_by_alias('thumbsup').raw # rubocop:disable Rails/DynamicFindBy
+    expect(page).to have_selector("input[type=submit][value='#{emoji} 0']")
+    find("input[type=submit][value='#{emoji} 0']").click
+    expect(page).to have_selector("input[type=submit][value='#{emoji} 1']")
+    find("input[type=submit][value='#{emoji} 1']").click
+    expect(page).to have_selector("input[type=submit][value='#{emoji} 0']")
+  end
+
+  it 'allows the user to leave comments using markdown' do
+    user = FactoryBot.create(:user, :team)
+    topic = FactoryBot.create(:topic, team: user.team)
+
+    visit '/'
+    sign_in_user(user)
+    click_link 'Topics'
+    click_link topic.title
+
+    fill_in 'comment[body]', with: '__Sample content__'
+    click_button 'Create Comment'
+
+    expect(page.body).to include('<strong>Sample content</strong>')
+  end
+
+  it 'allows the user to update a comment' do
+    user = FactoryBot.create(:user, :team)
+    comment = FactoryBot.create(:comment, user: user)
+
+    visit '/'
+    sign_in_user(user)
+    click_link 'Topics'
+    click_link comment.topic.title
+    click_link 'Edit Comment'
+
+    find(:fillable_field, 'comment[body]').send_keys('This is updated content')
+    click_button 'Update Comment'
+
+    expect(page).to have_text('This is updated content')
+  end
+
+  it 'allows the user to vote on comments' do
+    user = FactoryBot.create(:user, :team)
+    comment = FactoryBot.create(:comment, user: user)
+
+    visit '/'
+    sign_in_user(user)
+    click_link 'Topics'
+    click_link comment.topic.title
+
+    emoji = Emoji.find_by_alias('thumbsup').raw # rubocop:disable Rails/DynamicFindBy
+    upvote_path = team_topic_comment_votes_path(comment.topic.team, comment.topic, comment)
+    upvote_form = find("form[action='#{upvote_path}']", match: :first)
+    within(upvote_form) do
+      expect(page).to have_selector("input[type=submit][value='#{emoji} 0']")
+      find("input[type=submit][value='#{emoji} 0']").click
+    end
+
+    remove_upvote_path = "#{upvote_path}/1"
+    remove_upvote_form = find("form[action='#{remove_upvote_path}']", match: :first)
+    within(remove_upvote_form) do
+      expect(page).to have_selector("input[type=submit][value='#{emoji} 1']")
+      find("input[type=submit][value='#{emoji} 1']").click
+    end
+
+    within(upvote_form) do
+      expect(page).to have_selector("input[type=submit][value='#{emoji} 0']")
+    end
   end
 end

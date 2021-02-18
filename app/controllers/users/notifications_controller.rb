@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Users
-  class NotificationsController < ApplicationController
+  class NotificationsController < ::Users::ApplicationController
     include Pundit
 
     def show
@@ -20,7 +20,7 @@ module Users
     end
 
     def clear
-      authorize([:users, Notification])
+      authorize(user, policy_class: Users::NotificationPolicy)
 
       current_user.notifications.update(read_at: Time.now.utc)
 

@@ -11,5 +11,7 @@ FactoryBot.define do
     trait :name do
       name { Faker::Name.name }
     end
+
+    preference { User::Preference.new(user: instance) }
   end
 end
