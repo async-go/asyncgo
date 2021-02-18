@@ -25,6 +25,7 @@ class ApplicationController < ActionController::Base
   def unique_unread_notifications
     @unique_unread_notifications ||= begin
       Notification
+        .includes(:actor, :target, :user)
         .where(user: current_user, read_at: nil)
         .group(:target_id, :target_class, :actor_id, :user_id, :action)
     end

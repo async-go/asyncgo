@@ -23,7 +23,7 @@ RSpec.describe Teams::TopicsController, type: :request do
           team.users << user
         end
 
-        it 'renders the new page' do
+        it 'renders the index page' do
           get_index
 
           expect(response.body).to include('Topics')

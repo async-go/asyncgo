@@ -6,6 +6,38 @@ require './spec/support/unauthorized_user_examples'
 RSpec.describe Users::NotificationsController, type: :request do
   include SignInOutRequestHelpers
 
+  describe 'GET index' do
+    subject(:get_index) { get "/users/#{user.id}/notifications" }
+
+    let(:user) { FactoryBot.create(:user) }
+
+    context 'when user is authenticated' do
+      let(:browsing_user) { FactoryBot.create(:user) }
+
+      before do
+        sign_in(browsing_user)
+      end
+
+      context 'when user is authorized' do
+        let(:browsing_user) { user }
+
+        it 'renders the index page' do
+          get_index
+
+          expect(response.body).to include('No notifications')
+        end
+      end
+
+      context 'when user is not authorized' do
+        include_examples 'unauthorized user examples', 'You are not authorized.'
+      end
+    end
+
+    context 'when user is not authenticated' do
+      include_examples 'unauthorized user examples', 'You are not authorized.'
+    end
+  end
+
   # rubocop:disable RSpec/NestedGroups
   describe 'GET show' do
     subject(:get_show) { get "/users/#{user.id}/notifications/#{notification.id}" }
