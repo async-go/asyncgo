@@ -8,10 +8,10 @@ module Teams
     def index
       authorize(team, policy_class: TopicPolicy)
       @pagy_active_topics, @active_topics = pagy(
-        team.topics.active.order(:due_date), page_param: 'active_page'
+        team.topics.active.order('due_date DESC NULLS LAST'), page_param: 'active_page'
       )
       @pagy_closed_topics, @closed_topics = pagy(
-        team.topics.closed.order(:due_date), page_param: 'closed_page'
+        team.topics.closed.order('due_date DESC NULLS LAST'), page_param: 'closed_page'
       )
       @active_topics = preload_topics(@active_topics)
       @closed_topics = preload_topics(@closed_topics)
