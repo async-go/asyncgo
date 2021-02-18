@@ -6,11 +6,11 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '3.0.0'
 
 # Core
-gem 'bootsnap', '>= 1.4.4', require: false # Reduces boot times through caching; required in config/boot.rb
+gem 'bootsnap', '~> 1.7.2', require: false # Reduces boot times through caching; required in config/boot.rb
 gem 'pg', '~> 1.2.3' # Use pg as the database for Active Record
-gem 'puma', '~> 5.0' # Use Puma as the app server
+gem 'puma', '~> 5.2.1' # Use Puma as the app server
 gem 'pundit', '~> 2.1.0' # Authorization via OO and plain Ruby classes
-gem 'rails', '~> 6.1.1'
+gem 'rails', '~> 6.1.3'
 gem 'sass-rails', '>= 6' # Use SCSS for stylesheets
 gem 'turbolinks', '~> 5' # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'webpacker', '~> 5.0' # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
@@ -23,7 +23,7 @@ gem 'hamlit', '~> 2.14.1' # Templating language
 gem 'omniauth-github', '~> 2.0.0'
 gem 'omniauth-google-oauth2', '~> 0.8.0'
 gem 'omniauth-rails_csrf_protection', '~> 1.0.0'
-gem 'pagy', '~> 3.10.0' # pagination
+gem 'pagy', '~> 3.11.0' # pagination
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.7'
@@ -38,10 +38,10 @@ gem 'pagy', '~> 3.10.0' # pagination
 group :development, :test do
   # Linters
   ## Ruby linter
-  gem 'rubocop', '~> 1.9.0', require: false
+  gem 'rubocop', '~> 1.10.0', require: false
   gem 'rubocop-performance', '~> 1.9.0', require: false
   gem 'rubocop-rails', '~> 2.9.0', require: false
-  gem 'rubocop-rspec', '~> 2.1.0', require: false
+  gem 'rubocop-rspec', '~> 2.2.0', require: false
   ## Haml linter
   gem 'haml_lint', '~> 0.37.0', require: false
   # Other
@@ -65,7 +65,7 @@ group :test do
   gem 'brakeman', '~> 5.0.0'
   gem 'capybara', '>= 3.26' # Support for Capybara system testing
   gem 'factory_bot_rails', '~> 6.1.0' # Factories for generating AR objects in specs
-  gem 'faker', '~> 2.15.1' # Fake data for use in specs
+  gem 'faker', '~> 2.16.0' # Fake data for use in specs
   gem 'rspec-retry', '~> 0.6.2' # retry rspec tests
   gem 'selenium-webdriver'
   gem 'shoulda-matchers', '~> 4.5.0' # Additional rspec matchers
