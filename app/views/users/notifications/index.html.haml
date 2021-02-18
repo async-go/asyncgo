@@ -1,20 +1,21 @@
 %h1.visually-hidden Notifications
 
 .row
-  %ul
-    - if @active_notifications.present?
-      - @active_notifications.each do |notification|
-        %li.mt-3= link_to notification_text(notification),
-          user_notification_path(current_user, notification)
-        %span Created #{notification.created_at.strftime('%b %e')}
-    - else
-      No notifications
+  .col-lg-6
+    .list-group
+      - if @notifications.present?
+        - @notifications.each do |notification|
+          = link_to user_notification_path(current_user.id, notification),
+            class: 'list-group-item list-group-item-action' do
+            = notification_text(notification)
+            | Created #{notification.created_at.strftime('%b %e')}
+      - else
+        No notifications
 
-.row.mb-3
-  != pagy_bootstrap_nav(@pagy_active_notifications)
+.row.my-3
+  != pagy_bootstrap_nav(@pagy)
 
 .row
-  = link_to clear_user_notifications_path(current_user),
-    method: :post do
+  = link_to clear_user_notifications_path(current_user), method: :post do
     = icon('fas', 'check-double', 'aria-hidden': 'true')
     %span Clear all notifications (all pages)

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe ApplicationHelper, type: :helper do
+RSpec.describe Users::NotificationsHelper, type: :helper do
   describe '#notification_text' do
     subject(:notification_text) { helper.notification_text(notification) }
 
