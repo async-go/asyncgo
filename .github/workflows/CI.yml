@@ -57,11 +57,9 @@ jobs:
         run: bundle exec rspec --tag type:system
   brakeman:
     runs-on: ubuntu-latest
+    container: ruby:3.0.0-slim
     steps:
       - uses: actions/checkout@v2
-      - uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: '3.0.0'
       - uses: actions/cache@v2
         name: Cache bundler dependencies
         with:
@@ -75,11 +73,9 @@ jobs:
         run: bundle exec brakeman
   rubocop:
     runs-on: ubuntu-latest
+    container: ruby:3.0.0-slim
     steps:
       - uses: actions/checkout@v2
-      - uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: '3.0.0'
       - uses: actions/cache@v2
         name: Cache bundler dependencies
         with:
@@ -93,11 +89,9 @@ jobs:
         run: bundle exec rubocop
   haml-lint:
     runs-on: ubuntu-latest
+    container: ruby:3.0.0-slim
     steps:
       - uses: actions/checkout@v2
-      - uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: '3.0.0'
       - uses: actions/cache@v2
         name: Cache bundler dependencies
         with:
@@ -111,6 +105,7 @@ jobs:
         run: bundle exec haml-lint
   standard:
     runs-on: ubuntu-latest
+    container: node:current-buster
     steps:
       - uses: actions/checkout@v2
       - uses: actions/cache@v2
@@ -121,11 +116,12 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
       - name: Install node dependencies
-        run: bin/yarn install --cache-folder vendor/yarn
+        run: yarn install --cache-folder vendor/yarn
       - name: Run standard
-        run: bin/yarn exec standard
+        run: yarn exec standard
   markdownlint:
     runs-on: ubuntu-latest
+    container: node:current-buster
     steps:
       - uses: actions/checkout@v2
       - uses: actions/cache@v2
@@ -136,9 +132,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
       - name: Install node dependencies
-        run: bin/yarn install --cache-folder vendor/yarn
+        run: yarn install --cache-folder vendor/yarn
       - name: Run markdownlint
-        run: bin/yarn exec markdownlint "*.md"
+        run: yarn exec markdownlint "*.md"
   vale:
     runs-on: ubuntu-latest
     container: jdkato/vale:v2.3.3
