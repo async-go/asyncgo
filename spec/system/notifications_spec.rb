@@ -12,10 +12,11 @@ RSpec.describe 'Notifications', type: :system do
     visit '/'
     sign_in_user(user)
 
-    expect(find('#notificationDropdown')).to have_text('1')
-    find('.dropdown-toggle.badge').click
+    click_link 'Has notification 1'
+
+    expect(page).to have_link('Has notification 1')
     click_link "#{notification.actor.printable_name} updated the topic #{notification.target.title}"
-    expect(find('#notificationDropdown')).to have_text('0')
+    expect(page).to have_link('Has notification 0')
     expect(page).to have_text(notification.target.title)
   end
 
@@ -25,7 +26,8 @@ RSpec.describe 'Notifications', type: :system do
 
     visit '/'
     sign_in_user(user)
-    expect(find('#notificationDropdown')).to have_text('0')
+    expect(page).to have_link('Has notification 0')
+
     click_link 'Topics'
     click_link 'New Topic'
     fill_in 'topic[title]', with: 'Sample topic'
@@ -43,7 +45,7 @@ RSpec.describe 'Notifications', type: :system do
 
     click_link 'Sign out'
     sign_in_user(user)
-    expect(find('#notificationDropdown')).to have_text('1')
+    expect(page).to have_link('Has notification 1')
   end
 
   it 'allows user to clear all notifications' do
@@ -53,11 +55,10 @@ RSpec.describe 'Notifications', type: :system do
     visit '/'
     sign_in_user(user)
 
-    expect(find('#notificationDropdown')).to have_text('1')
-    find('.dropdown-toggle.badge').click
-    # The alert sometimes renders on top of the dropdown in Capybara for some
-    # reason
-    page.execute_script('arguments[0].click();', find(:link, 'Clear all notifications'))
-    expect(find('#notificationDropdown')).to have_text('0')
+    click_link 'Has notification 1'
+
+    expect(page).to have_link('Has notification 1')
+    click_link 'Clear all notifications (all pages)'
+    expect(page).to have_link('Has notification 0')
   end
 end

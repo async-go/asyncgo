@@ -12,10 +12,25 @@
 asyncgo = Team.create(name: 'AsyncGo')
 
 # Users
-jason = User.create(name: 'Jason Yavorska', email: 'jason@asyncgo.com', team: asyncgo)
-matija = User.create(name: 'Matija Cupic', email: 'matija@asyncgo.com', team: asyncgo)
-bob = User.create(name: 'Bob Tester', email: 'testdata-bob@asyncgo.com', team: asyncgo)
-User.create(name: 'Larry Sample', email: 'testdata-larry@asyncgo.com')
+jason = User.new(name: 'Jason Yavorska', email: 'jason@asyncgo.com', team: asyncgo).tap do |user_jason|
+  user_jason.preference = user_jason.build_preference
+  user_jason.save!
+end
+
+matija = User.new(name: 'Matija Cupic', email: 'matija@asyncgo.com', team: asyncgo).tap do |user_matija|
+  user_matija.preference = user_matija.build_preference
+  user_matija.save!
+end
+
+bob = User.new(name: 'Bob Tester', email: 'testdata-bob@asyncgo.com', team: asyncgo).tap do |user_bob|
+  user_bob.preference = user_bob.build_preference
+  user_bob.save!
+end
+
+User.new(name: 'Larry Sample', email: 'testdata-larry@asyncgo.com').tap do |user_larry|
+  user_larry.preference = user_larry.build_preference
+  user_larry.save!
+end
 
 # Topic
 topic = Topic.create(

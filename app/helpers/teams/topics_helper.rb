@@ -19,10 +19,7 @@ module Teams
     end
 
     def topic_has_notification?(notifications, topic)
-      notifications.any? do |notification|
-        notification.target == topic ||
-          notification.target_type == 'Comment' && notification.target.topic == topic
-      end
+      notifications.exists?(target: topic)
     end
 
     def emoji_group_text(emoji_name, count)

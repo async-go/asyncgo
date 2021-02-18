@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class DigestMailer < ApplicationMailer
-  helper ApplicationHelper
+  helper Users::NotificationsHelper
   default from: 'notifications@asyncgo.com'
 
   def digest_email

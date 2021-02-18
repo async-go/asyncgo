@@ -2,7 +2,12 @@
 
 module Users
   class NotificationsController < ::Users::ApplicationController
+    include Pagy::Backend
     include Pundit
+
+    def index
+      @pagy, @notifications = pagy(unique_unread_notifications)
+    end
 
     def show
       authorize(notification)

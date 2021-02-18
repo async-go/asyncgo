@@ -88,14 +88,16 @@ RSpec.describe Teams::TopicsHelper, type: :helper do
       let(:target) { FactoryBot.create(:topic, user: user, team: user.team) }
 
       context 'when there are no notifications' do
-        let(:notifications) { [unrelated_notification] }
+        let(:notifications) { Notification.where(id: unrelated_notification.id) }
 
         it { is_expected.to eq(false) }
       end
 
       context 'when there are notifications' do
         let(:notifications) do
-          [unrelated_notification, FactoryBot.create(:notification, user: user, target: target)]
+          Notification.where(
+            id: [unrelated_notification.id, FactoryBot.create(:notification, user: user, target: target).id]
+          )
         end
 
         it { is_expected.to eq(true) }
@@ -106,14 +108,16 @@ RSpec.describe Teams::TopicsHelper, type: :helper do
       let(:target) { FactoryBot.create(:comment, user: user) }
 
       context 'when there are no notifications' do
-        let(:notifications) { [unrelated_notification] }
+        let(:notifications) { Notification.where(id: unrelated_notification.id) }
 
         it { is_expected.to eq(false) }
       end
 
       context 'when there are notifications' do
         let(:notifications) do
-          [unrelated_notification, FactoryBot.create(:notification, user: user, target: target)]
+          Notification.where(
+            id: [unrelated_notification.id, FactoryBot.create(:notification, user: user, target: target).id]
+          )
         end
 
         it { is_expected.to eq(true) }
