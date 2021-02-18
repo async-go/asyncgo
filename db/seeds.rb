@@ -12,10 +12,10 @@
 asyncgo = Team.create(name: 'AsyncGo')
 
 # Users
-jason = User.create(id: 0, name: 'Jason Yavorska', email: 'jason@asyncgo.com', team: asyncgo)
-matija = User.create(id: 1, name: 'Matija Cupic', email: 'matija@asyncgo.com', team: asyncgo)
-bob = User.create(id: 2, name: 'Bob Tester', email: 'testdata-bob@asyncgo.com', team: asyncgo)
-alice = User.create(id: 3, name: 'Alice Sample', email: 'testdata-alice@asyncgo.com', team: asyncgo)
+jason = User.create(name: 'Jason Yavorska', email: 'jason@asyncgo.com', team: asyncgo, preference: User::Preference.create())
+matija = User.create(name: 'Matija Cupic', email: 'matija@asyncgo.com', team: asyncgo, preference: User::Preference.create())
+bob = User.create(name: 'Bob Tester', email: 'testdata-bob@asyncgo.com', team: asyncgo, preference: User::Preference.create())
+alice = User.create(name: 'Alice Sample', email: 'testdata-alice@asyncgo.com', team: asyncgo, preference: User::Preference.create())
 
 # Topic
 topic = Topic.create(
@@ -24,7 +24,7 @@ topic = Topic.create(
 )
 
 # Topic Votes
-#Vote.create(user: matija, votable: topic, emoji: 'thumbsup')
+#Vote.create(user: bob, votable: topic, emoji: 'thumbsup')
 
 # Comment
 comment = Comment.create(
