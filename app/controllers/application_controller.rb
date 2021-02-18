@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
       Notification
         .includes(:actor, :target, :user)
         .where(user: current_user, read_at: nil)
-        .group(:target_id, :target_class, :actor_id, :user_id, :action)
+        .group(:target_id, :target_type, :actor_id, :user_id, :action)
     end
   end
   helper_method :unique_unread_notifications
