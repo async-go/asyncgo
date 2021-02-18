@@ -24,11 +24,17 @@ class ApplicationController < ActionController::Base
 
   def unique_unread_notifications
     @unique_unread_notifications ||= begin
-      Notification
-        .includes(:actor, :target, :user)
-        .where(user: current_user, read_at: nil)
-        .group(:target_id, :target_type, :actor_id, :user_id, :action)
+      Notification.includes(:actor, :user, :target)
+                  .where(id: notification_grouping_subquery)
     end
   end
   helper_method :unique_unread_notifications
+
+  private
+
+  def notification_grouping_subquery
+    Notification
+      .where(user: current_user, read_at: nil)
+      .select('MAX(id)').group(:target_id, :target_type, :actor_id, :user_id, :action)
+  end
 end
