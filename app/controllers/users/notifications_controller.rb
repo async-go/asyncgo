@@ -6,6 +6,8 @@ module Users
     include Pundit
 
     def index
+      authorize(user, policy_class: NotificationPolicy)
+
       @pagy, @notifications = pagy(unique_unread_notifications)
     end
 
