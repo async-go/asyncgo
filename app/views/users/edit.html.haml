@@ -16,3 +16,9 @@
       = toggle_digests_form.hidden_field :digest_enabled, value: toggle_value
       .input-group.mb-3
         = toggle_digests_form.submit 'Toggle notification status', class: 'btn btn-primary'
+  .row
+    .col-lg-12
+      %h3 Usage Information
+      %p &copy;2021 AsyncGo
+      %p= link_to 'Terms of Use / Privacy Policy', 'https://asyncgo.com/policies.html',
+        target: :_blank, rel: :noopener
