@@ -46,21 +46,21 @@ Notification.create(user: matija, actor: alice, action: :updated, target: topic)
 
 
 # Topics
-Topic.create(user: bob, title: 'Lets discuss our next marketing campaign',
+Topic.create(user: bob, team: asyncgo, title: 'Lets discuss our next marketing campaign',
              description: '- Hello', description_html: '<ul><li>Hello</li></ul>',
              due_date: Time.zone.today + 5)
-Topic.create(user: alice, title: 'Competitive analysis vs. our top competitor',
+Topic.create(user: alice, team: asyncgo, title: 'Competitive analysis vs. our top competitor',
              description: '- Hello', description_html: '<ul><li>Hello</li></ul>',
              outcome: 'We are the best', outcome_html: '<p>We are the best</p>',
              due_date: Time.zone.today - 2)
-Topic.create(user: bob, title: 'Discuss possible next big features',
+Topic.create(user: bob, team: asyncgo, title: 'Discuss possible next big features',
              description: '- Hello', description_html: '<ul><li>Hello</li></ul>',
              due_date: Time.zone.today + 4)
-Topic.create(user: alice, title: 'Feedback on our latest demo',
+Topic.create(user: alice, team: asyncgo, title: 'Feedback on our latest demo',
              description: '- Hello', description_html: '<ul><li>Hello</li></ul>',
              outcome: 'Action items', outcome_html: '<p>Action items</p>',
              due_date: Time.zone.today)
-Topic.create(user: alice, title: 'Review general customer feedback so far',
+Topic.create(user: alice, team: asyncgo, title: 'Review general customer feedback so far',
              description: '- Hello', description_html: '<ul><li>Hello</li></ul>',
              outcome: 'All good so far', outcome_html: '<p>All good so far</p>',
              due_date: nil)
