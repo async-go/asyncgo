@@ -14,6 +14,8 @@ At the end the discussion is resolved and the final outcomes and/or decisions ar
 
 {% include docs_nav.md %}
 
+<img width=400 align=right border=1 class="mx-4" src="/assets/images/basicfunctions.png">
+
 ## The Topic List
 
 When you log in you'll see a list of open topics. From here you can click on any of the available topics
@@ -26,6 +28,10 @@ Topic descriptions set the table for the conversation to be had and are very imp
 to enter richer content than plain text; we recommend including a checklist of key points to discuss, which can be marked
 off as you go, and potentially an embedded video recording to help set the context.
 
+<img width=400 align=right border=1 class="mx-4" src="/assets/images/duedate.png">
+
+## Due Dates
+
 Topics can also have a due date set, which will be made visible to everyone looking at the topic index. This can be a
 great way to communicate when you need something by, and help everyone prioritize the topics they engage with.
 
@@ -34,6 +40,7 @@ great way to communicate when you need something by, and help everyone prioritiz
 Once the topic is set up you can share it with everyone who you want to participate. Everyone can collaborate async as
 you go, discussing the topic at hand until you reach your outcome.
 
+<img width=400 align=right border=1 class="mx-4" src="/assets/images/votes.png">
 ## Voting in Topics
 
 You can vote on any comment inside of a topic by adding whatever emoji you like. Good examples are thumbs ups and thumbs

@@ -11,6 +11,8 @@ There are a few common keywords used to support discussions which are highlighte
 
 {% include docs_nav.md %}
 
+<img width=400 align=right border=1 class="mx-4" src="/assets/images/markdown.png">
+
 ## Checklists
 
 It's very helpful to use checklists to define the set of things you're going to discuss, and then you can mark them
