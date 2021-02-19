@@ -3,6 +3,7 @@ on: push
 jobs:
   rspec:
     runs-on: ubuntu-latest
+    container: matteeyah/ruby-yarn:3.0.0-1.22.5
     services:
       postgres:
         image: postgres:13-alpine
@@ -15,16 +16,15 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
-        ports:
-          - 5432:5432
     steps:
-      - name: Install PostgreSQL client
-        run: sudo apt-get -yqq install libpq-dev
       - uses: actions/checkout@v2
-      - uses: ruby/setup-ruby@v1
+      - uses: actions/cache@v2
+        name: Cache bundler dependencies
         with:
-          ruby-version: '3.0.0'
-          bundler-cache: true
+          path: vendor/bundle
+          key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gem-
       - uses: actions/cache@v2
         name: Cache yarn dependencies
         with:
@@ -32,14 +32,17 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
+      - name: Install bundler dependencies
+        run: bundle install --without development production --jobs 4 --retry 3 --path vendor/bundle
       - name: Install node dependencies
         run: bin/yarn install --production true --cache-folder vendor/yarn
       - name: Run rspec
         run: bundle exec rspec --tag ~type:system
         env:
-          DATABASE_URL: postgres://postgres:postgres@localhost/asyncgo_test
+          DATABASE_URL: postgres://postgres:postgres@postgres/asyncgo_test
   rspec-system:
     runs-on: ubuntu-latest
+    container: matteeyah/ruby-yarn:3.0.0-1.22.5
     services:
       postgres:
         image: postgres:13-alpine
@@ -52,16 +55,15 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
-        ports:
-          - 5432:5432
     steps:
-      - name: Install PostgreSQL client
-        run: sudo apt-get -yqq install libpq-dev
       - uses: actions/checkout@v2
-      - uses: ruby/setup-ruby@v1
+      - uses: actions/cache@v2
+        name: Cache bundler dependencies
         with:
-          ruby-version: '3.0.0'
-          bundler-cache: true
+          path: vendor/bundle
+          key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gem-
       - uses: actions/cache@v2
         name: Cache yarn dependencies
         with:
@@ -69,12 +71,14 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
+      - name: Install bundler dependencies
+        run: bundle install --without development production --jobs 4 --retry 3 --path vendor/bundle
       - name: Install node dependencies
         run: bin/yarn install --production true --cache-folder vendor/yarn
       - name: Run rspec system specs
         run: bundle exec rspec --tag type:system
         env:
-          DATABASE_URL: postgres://postgres:postgres@localhost/asyncgo_test
+          DATABASE_URL: postgres://postgres:postgres@postgres/asyncgo_test
   brakeman:
     runs-on: ubuntu-latest
     container: ruby:3.0.0
