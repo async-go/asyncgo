@@ -7,11 +7,19 @@
 - yarn 1.22.10
 - chrome (for headless rspec tests)
 
+## Set up the development database
+
+1. Install PostgreSQL 13
+1. Create a passwordless postgresql superuser with a username that matches your
+system user (if it doesn't exist already)
+
 ## Start the development server
 
 1. Run `bundle install`
 1. Run `bin/yarn install`
-1. Run `bin/rails db:migrate`
+1. Run `bin/rails db:create`
+1. Run `bin/rails db:migrate` (you can also use `bin/rails db:seed` if you
+  want sample data loaded.)
 1. Run `bin/rails server`
 
 ## Configuring local auth

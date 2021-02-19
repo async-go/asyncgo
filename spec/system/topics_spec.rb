@@ -159,7 +159,7 @@ RSpec.describe 'Topics', type: :system do
       find("input[type=submit][value='#{emoji} 0']").click
     end
 
-    remove_upvote_path = "#{upvote_path}/1"
+    remove_upvote_path = "#{upvote_path}/#{comment.votes.last.id}"
     remove_upvote_form = find("form[action='#{remove_upvote_path}']", match: :first)
     within(remove_upvote_form) do
       expect(page).to have_selector("input[type=submit][value='#{emoji} 1']")
