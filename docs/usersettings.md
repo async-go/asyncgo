@@ -14,7 +14,7 @@ At the end the discussion is resolved and the final outcomes and/or decisions ar
 
 {% include docs_nav.md %}
 
-<img width=400 align=right border=1 class="mx-4" src="/assets/images/notifications.png">
+<img width=400 class="mx-4 border-1 float-end" src="/assets/images/notifications.png">
 
 ## Notifications
 
@@ -28,7 +28,7 @@ notifications you have. From here you can also clear all notifications.
 You can watch any topic from the view topic page, by clicking on the button
 to start watching.
 
-<img width=400 align=right border=1 class="mx-4" src="/assets/images/gravatar.png">
+<img width=400 class="mx-4 border-1 float-end" src="/assets/images/gravatar.png">
 
 ## Avatar
 

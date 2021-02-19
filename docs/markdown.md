@@ -11,7 +11,7 @@ There are a few common keywords used to support discussions which are highlighte
 
 {% include docs_nav.md %}
 
-<img width=400 align=right border=1 class="mx-4" src="/assets/images/markdown.png">
+<img width=400 class="mx-4 border-1 float-end" src="/assets/images/markdown.png">
 
 ## Checklists
 

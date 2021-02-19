@@ -13,7 +13,8 @@ up and running.
 
 {% include docs_nav.md %}
 
-<img width=400 align=right border=1 class="mx-4" src="/assets/images/basicfunctions.png">
+<img width=400 class="mx-4 border-1 float-end img-fluid" src="/assets/images/basicfunctions.png">
+
 ## What are the basics?
 
 AsyncGo is a discussion tool meant to replace chat and meetings. Each team gets a topic
