@@ -9,11 +9,9 @@
 
 ## Set up the development database
 
-1. Install postgresql
-1. Log in to psql: `sudo -u postgres psql`
-1. Add user to the database, with the username matching your computer login
-  username: `create user your_username with password null;`
-1. Make user a superuser (`alter user your_username with superuser;`)
+1. Install PostgreSQL 13
+1. Create a passwordless postgresql superuser with a username that matches your
+system user (if it doesn't exist already)
 
 ## Start the development server
 
