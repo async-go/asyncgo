@@ -56,6 +56,8 @@ jobs:
           --health-timeout 5s
           --health-retries 5
     steps:
+      - name: Install chrome
+        run: apt install --yes --quiet chromium
       - uses: actions/checkout@v2
       - uses: actions/cache@v2
         name: Cache bundler dependencies
