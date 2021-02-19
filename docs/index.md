@@ -13,9 +13,10 @@ up and running.
 
 {% include docs_nav.md %}
 
+<img width=400 align=right border=1 class="mx-4" src="/assets/images/basicfunctions.png">
 ## What are the basics?
 
-AsyncGo is a discussion tool meant to be used by teams. Each team gets a topic
+AsyncGo is a discussion tool meant to replace chat and meetings. Each team gets a topic
 board that has all the important discussions that are happening for that team.
 Anyone can create a [topic](/topics) at any time, and we encourage you to set
 a [due date](#timeboxing) on every item since the topic list is sorted by what's
@@ -190,20 +191,3 @@ If they are coming from other teams, you could consider including the high-conta
 AsyncGo as well, then work together on creating focus time together. In most companies there
 are just a few sources of interruptions that, when dealt with, reduce the total interruptions
 dramatically.
-
----
-
-## User Settings
-
-### Avatar
-
-AsyncGo shows your avatar from [Gravatar](https://www.gravatar.com). You can update your picture there, and it will automatically be reflected here.
-
-### Notifications
-
-If you are watching any topics (the watch button is available when viewing a topic), then
-notifications will start to appear in your notifications list whenever someone updates or
-comments in a topic you are watching.
-
-Click on the notification bell at the top of any page and you can view all the open
-notifications you have. From here you can also clear all notifications.
