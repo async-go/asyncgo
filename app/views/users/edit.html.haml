@@ -1,7 +1,7 @@
-%h1= @user.printable_name
+%h1.visually-hidden= @user.printable_name
 
 .row
-  .col-lg-12
+  .col-lg-12.mb-3
     %h3 Digest Notifications
     %p.lead
       Would you like to receive a daily digest email about open notifications?
@@ -17,8 +17,8 @@
       .input-group.mb-3
         = toggle_digests_form.submit 'Toggle notification status', class: 'btn btn-primary'
   .row
-    .col-lg-12
-      %h3 Usage Information
+    .col-lg-12.mb-3
+      %h3 About AsyncGo
       %p &copy;2021 AsyncGo
       %p= link_to 'Terms of Use / Privacy Policy', 'https://asyncgo.com/policies.html',
         target: :_blank, rel: :noopener
