@@ -1,18 +1,11 @@
 # frozen_string_literal: true
 
-require './spec/support/unauthenticated_user_examples'
 require './spec/support/sign_in_out_request_helpers'
 
-RSpec.shared_examples 'unauthorized user examples' do
+RSpec.shared_examples 'unauthenticated user examples' do
   include SignInOutRequestHelpers
 
-  include_examples 'unauthenticated user examples'
-
-  context 'when user is authenticated but not authorized' do
-    before do
-      sign_in(FactoryBot.create(:user))
-    end
-
+  context 'when user is not authenticated' do
     it 'sets the alert flash' do
       subject
       follow_redirect!

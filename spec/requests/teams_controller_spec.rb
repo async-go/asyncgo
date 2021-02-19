@@ -1,43 +1,26 @@
 # frozen_string_literal: true
 
-require './spec/support/sign_in_out_request_helpers'
 require './spec/support/unauthorized_user_examples'
 
 RSpec.describe TeamsController, type: :request do
-  include SignInOutRequestHelpers
-
   describe 'GET edit' do
     subject(:get_edit) { get "/teams/#{team.id}/edit" }
 
     let(:team) { FactoryBot.create(:team) }
 
-    context 'when user is authenticated' do
-      let(:user) { FactoryBot.create(:user) }
-
+    context 'when user is authorized' do
       before do
-        sign_in(user)
+        sign_in(FactoryBot.create(:user, team: team))
       end
 
-      context 'when user is authorized' do
-        before do
-          team.users << user
-        end
+      it 'renders the edit page' do
+        get_edit
 
-        it 'renders the edit page' do
-          get_edit
-
-          expect(response.body).to include(CGI.escapeHTML(team.name))
-        end
-      end
-
-      context 'when user is not authorized' do
-        include_examples 'unauthorized user examples', 'You are not authorized.'
+        expect(response.body).to include(CGI.escapeHTML(team.name))
       end
     end
 
-    context 'when user is not authenticated' do
-      include_examples 'unauthorized user examples', 'You are not authorized.'
-    end
+    include_examples 'unauthorized user examples'
   end
 
   describe 'GET new' do
@@ -55,9 +38,7 @@ RSpec.describe TeamsController, type: :request do
       end
     end
 
-    context 'when user is not authenticated' do
-      include_examples 'unauthorized user examples', 'You are not authorized.'
-    end
+    include_examples 'unauthenticated user examples'
   end
 
   describe 'POST create' do
@@ -105,9 +86,7 @@ RSpec.describe TeamsController, type: :request do
       end
     end
 
-    context 'when user is not authenticated' do
-      include_examples 'unauthorized user examples', 'You are not authorized.'
-    end
+    include_examples 'unauthenticated user examples'
   end
 
   describe 'POST support' do
@@ -117,44 +96,32 @@ RSpec.describe TeamsController, type: :request do
 
     let(:team) { FactoryBot.create(:team) }
 
-    context 'when user is authenticated' do
-      let(:user) { FactoryBot.create(:user) }
+    context 'when user is authorized' do
+      let(:user) { FactoryBot.create(:user, team: team) }
 
       before do
         sign_in(user)
       end
 
-      context 'when user is authorized' do
-        before do
-          team.users << user
-        end
-
-        it 'enqueues support email' do
-          expect { post_support }.to have_enqueued_mail(SupportMailer, :support_email).with(
-            a_hash_including(params: { user: user, body: 'test' })
-          ).on_queue(:default)
-        end
-
-        it 'sets the flash' do
-          post_support
-
-          expect(controller.flash[:success]).to eq('Support request was successfully sent.')
-        end
-
-        it 'redirects to edit team path' do
-          post_support
-
-          expect(response).to redirect_to(edit_team_path(team))
-        end
+      it 'enqueues support email' do
+        expect { post_support }.to have_enqueued_mail(SupportMailer, :support_email).with(
+          a_hash_including(params: { user: user, body: 'test' })
+        ).on_queue(:default)
       end
 
-      context 'when user is not authorized' do
-        include_examples 'unauthorized user examples', 'You are not authorized.'
+      it 'sets the flash' do
+        post_support
+
+        expect(controller.flash[:success]).to eq('Support request was successfully sent.')
+      end
+
+      it 'redirects to edit team path' do
+        post_support
+
+        expect(response).to redirect_to(edit_team_path(team))
       end
     end
 
-    context 'when user is not authenticated' do
-      include_examples 'unauthorized user examples', 'You are not authorized.'
-    end
+    include_examples 'unauthorized user examples'
   end
 end
