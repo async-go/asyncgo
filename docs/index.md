@@ -39,8 +39,6 @@ how to get the most out of AsyncGo.
 
 ![Overview Image](/assets/images/basicfunctions.png){:.img-fluid.border.border-secondary}
 
-
-
 ## Async Working
 
 The first step to getting the most out of AsyncGo is to familiarize yourself with async working.
