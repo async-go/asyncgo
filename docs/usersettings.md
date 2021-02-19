@@ -14,8 +14,6 @@ At the end the discussion is resolved and the final outcomes and/or decisions ar
 
 {% include docs_nav.md %}
 
-<img width=400 class="mx-4 border-1 float-end" src="/assets/images/notifications.png">
-
 ## Notifications
 
 If you are watching any topics then
@@ -28,8 +26,10 @@ notifications you have. From here you can also clear all notifications.
 You can watch any topic from the view topic page, by clicking on the button
 to start watching.
 
-<img width=400 class="mx-4 border-1 float-end" src="/assets/images/gravatar.png">
+![Notifications Image](/assets/images/notifications.png){:.img-fluid.border.border-secondary}
 
 ## Avatar
 
 AsyncGo shows your avatar from [Gravatar](https://www.gravatar.com). You can update your picture there, and it will automatically be reflected here.
+
+![Gravatar Image](/assets/images/gravatar.png){:.img-fluid.border.border-secondary}
