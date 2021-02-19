@@ -1,0 +1,3 @@
+FROM matteeyah/ruby-yarn:3.0.0-1.22.5
+
+RUN apt install --yes --quiet chromium=88.0.4324.146-1~deb10u1
