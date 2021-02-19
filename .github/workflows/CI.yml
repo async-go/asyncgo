@@ -42,7 +42,7 @@ jobs:
           DATABASE_URL: postgres://postgres:postgres@postgres/asyncgo_test
   rspec-system:
     runs-on: ubuntu-latest
-    container: matteeyah/ruby-yarn:3.0.0-1.22.5
+    container: matteeyah/ruby-yarn-chromium:3.0.0-1.22.5-88.0.4324.146
     services:
       postgres:
         image: postgres:13-alpine
@@ -56,8 +56,6 @@ jobs:
           --health-timeout 5s
           --health-retries 5
     steps:
-      - name: Install chrome
-        run: apt install --yes --quiet chromium
       - uses: actions/checkout@v2
       - uses: actions/cache@v2
         name: Cache bundler dependencies
