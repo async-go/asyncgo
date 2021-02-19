@@ -34,6 +34,8 @@ page here, which will help orient you if you haven't used the app yet:
 
 {% include docs_nav.md %}
 
+![Overview Image](/assets/images/basicfunctions.png){:.img-fluid.border.border-secondary}
+
 ## Async Working
 
 The first step to getting the most out of AsyncGo is to familiarize yourself with async working.
