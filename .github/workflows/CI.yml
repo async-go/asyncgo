@@ -77,7 +77,7 @@ jobs:
           DATABASE_URL: postgres://postgres:postgres@localhost/asyncgo_test
   brakeman:
     runs-on: ubuntu-latest
-    container: ruby:3.0.0-slim
+    container: ruby:3.0.0
     steps:
       - uses: actions/checkout@v2
       - uses: actions/cache@v2
@@ -93,7 +93,7 @@ jobs:
         run: bundle exec brakeman
   rubocop:
     runs-on: ubuntu-latest
-    container: ruby:3.0.0-slim
+    container: ruby:3.0.0
     steps:
       - uses: actions/checkout@v2
       - uses: actions/cache@v2
@@ -109,7 +109,7 @@ jobs:
         run: bundle exec rubocop
   haml-lint:
     runs-on: ubuntu-latest
-    container: ruby:3.0.0-slim
+    container: ruby:3.0.0
     steps:
       - uses: actions/checkout@v2
       - uses: actions/cache@v2
