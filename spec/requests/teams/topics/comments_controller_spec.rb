@@ -1,11 +1,8 @@
 # frozen_string_literal: true
 
-require './spec/support/sign_in_out_request_helpers'
 require './spec/support/unauthorized_user_examples'
 
 RSpec.describe Teams::Topics::CommentsController, type: :request do
-  include SignInOutRequestHelpers
-
   let(:topic) { FactoryBot.create(:topic) }
 
   describe 'GET edit' do
@@ -13,33 +10,19 @@ RSpec.describe Teams::Topics::CommentsController, type: :request do
 
     let(:comment) { FactoryBot.create(:comment, topic: topic) }
 
-    context 'when user is authenticated' do
-      let(:user) { FactoryBot.create(:user, team: topic.team) }
-
+    context 'when user is authorized' do
       before do
-        sign_in(user)
+        sign_in(comment.user)
       end
 
-      context 'when user is authorized' do
-        before do
-          comment.update!(user: user)
-        end
+      it 'renders the edit page' do
+        get_edit
 
-        it 'renders the edit page' do
-          get_edit
-
-          expect(response.body).to include('Update Comment')
-        end
-      end
-
-      context 'when user is not authorized' do
-        include_examples 'unauthorized user examples', 'You are not authorized.'
+        expect(response.body).to include('Update Comment')
       end
     end
 
-    context 'when user is not authenticated' do
-      include_examples 'unauthorized user examples', 'You are not authorized.'
-    end
+    include_examples 'unauthorized user examples'
   end
 
   describe 'POST create' do
@@ -47,81 +30,67 @@ RSpec.describe Teams::Topics::CommentsController, type: :request do
       post "/teams/#{topic.team.id}/topics/#{topic.id}/comments", params: { comment: { body: body } }
     end
 
-    context 'when user is authenticated' do
-      let(:user) { FactoryBot.create(:user) }
+    context 'when user is authorized' do
+      let(:user) { FactoryBot.create(:user, team: topic.team) }
 
       before do
         sign_in(user)
       end
 
-      context 'when user is authorized' do
-        before do
-          topic.team.users << user
+      context 'when comment is valid' do
+        let(:body) { 'Comment body.' }
+
+        it 'creates the comment' do
+          expect { post_create }.to change(Comment, :count).from(0).to(1)
         end
 
-        context 'when comment is valid' do
-          let(:body) { 'Comment body.' }
+        it 'sets the flash' do
+          post_create
 
-          it 'creates the comment' do
-            expect { post_create }.to change(Comment, :count).from(0).to(1)
-          end
-
-          it 'sets the flash' do
-            post_create
-
-            expect(controller.flash[:success]).to eq('Comment was successfully created.')
-          end
-
-          it 'redirects to topic' do
-            post_create
-
-            expect(response).to redirect_to(team_topic_path(topic.team, topic))
-          end
-
-          it 'subscribes the user to the topic' do
-            post_create
-
-            expect(user.subscribed_topics).to contain_exactly(topic)
-          end
+          expect(controller.flash[:success]).to eq('Comment was successfully created.')
         end
 
-        context 'when comment is not valid' do
-          let(:body) { '' }
+        it 'redirects to topic' do
+          post_create
 
-          it 'does not create the comment' do
-            expect { post_create }.not_to change(Comment, :count).from(0)
-          end
+          expect(response).to redirect_to(team_topic_path(topic.team, topic))
+        end
 
-          it 'sets the flash' do
-            post_create
+        it 'subscribes the user to the topic' do
+          post_create
 
-            expect(controller.flash[:danger]).to eq("Body can't be blank, Body html can't be blank")
-          end
-
-          it 'redirects to topic' do
-            post_create
-
-            expect(response).to redirect_to(team_topic_path(topic.team, topic))
-          end
-
-          it 'does not subscribe user to the topic' do
-            post_create
-
-            expect(user.subscribed_topics).to be_empty
-          end
+          expect(user.subscribed_topics).to contain_exactly(topic)
         end
       end
 
-      context 'when user is not authorized' do
-        include_examples 'unauthorized user examples', 'You are not authorized.'
+      context 'when comment is not valid' do
+        let(:body) { '' }
+
+        it 'does not create the comment' do
+          expect { post_create }.not_to change(Comment, :count).from(0)
+        end
+
+        it 'sets the flash' do
+          post_create
+
+          expect(controller.flash[:danger]).to eq("Body can't be blank, Body html can't be blank")
+        end
+
+        it 'redirects to topic' do
+          post_create
+
+          expect(response).to redirect_to(team_topic_path(topic.team, topic))
+        end
+
+        it 'does not subscribe user to the topic' do
+          post_create
+
+          expect(user.subscribed_topics).to be_empty
+        end
       end
     end
 
-    context 'when user is not authenticated' do
-      let(:user) { nil }
-
-      include_examples 'unauthorized user examples', 'You are not authorized.'
-    end
+    include_examples 'unauthorized user examples'
   end
 
   describe 'PATCH update' do
@@ -131,74 +100,58 @@ RSpec.describe Teams::Topics::CommentsController, type: :request do
 
     let(:comment) { FactoryBot.create(:comment, topic: topic) }
 
-    context 'when user is authenticated' do
-      let(:user) { FactoryBot.create(:user, team: topic.team) }
-
+    context 'when user is authorized' do
       before do
-        sign_in(user)
+        sign_in(comment.user)
       end
 
-      context 'when user is authorized' do
-        before do
-          comment.update!(user: user)
+      context 'when comment is valid' do
+        let(:body) { 'Updated body.' }
+
+        it 'updates the comment' do
+          expect { patch_update }.to change { comment.reload.body }.to('Updated body.')
         end
 
-        context 'when comment is valid' do
-          let(:body) { 'Updated body.' }
+        it 'sets the flash' do
+          patch_update
 
-          it 'updates the comment' do
-            expect { patch_update }.to change { comment.reload.body }.to('Updated body.')
-          end
-
-          it 'sets the flash' do
-            patch_update
-
-            expect(controller.flash[:success]).to eq('Comment was successfully updated.')
-          end
-
-          it 'redirects to topic' do
-            patch_update
-
-            expect(response).to redirect_to(team_topic_path(topic.team, topic))
-          end
-
-          it 'does not subscribe user to the topic' do
-            patch_update
-
-            expect(user.subscribed_topics).to be_empty
-          end
+          expect(controller.flash[:success]).to eq('Comment was successfully updated.')
         end
 
-        context 'when comment is not valid' do
-          let(:body) { '' }
+        it 'redirects to topic' do
+          patch_update
 
-          it 'does not update the comment' do
-            expect { patch_update }.not_to(change { comment.reload.body })
-          end
+          expect(response).to redirect_to(team_topic_path(topic.team, topic))
+        end
 
-          it 'shows the error' do
-            patch_update
+        it 'does not subscribe user to the topic' do
+          patch_update
 
-            expect(response.body).to include('Body can&#39;t be blank')
-          end
-
-          it 'does not subscribe user to the topic' do
-            patch_update
-
-            expect(user.subscribed_topics).to be_empty
-          end
+          expect(comment.user.subscribed_topics).to be_empty
         end
       end
 
-      context 'when user is not authorized' do
-        include_examples 'unauthorized user examples', 'You are not authorized.'
+      context 'when comment is not valid' do
+        let(:body) { '' }
+
+        it 'does not update the comment' do
+          expect { patch_update }.not_to(change { comment.reload.body })
+        end
+
+        it 'shows the error' do
+          patch_update
+
+          expect(response.body).to include('Body can&#39;t be blank')
+        end
+
+        it 'does not subscribe user to the topic' do
+          patch_update
+
+          expect(comment.user.subscribed_topics).to be_empty
+        end
       end
     end
 
-    context 'when user is not authenticated' do
-      let(:user) { nil }
-
-      include_examples 'unauthorized user examples', 'You are not authorized.'
-    end
+    include_examples 'unauthorized user examples'
   end
 end

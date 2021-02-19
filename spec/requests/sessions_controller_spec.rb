@@ -29,5 +29,17 @@ RSpec.describe SessionsController, type: :request do
         expect(delete_destroy).to redirect_to(root_path)
       end
     end
+
+    context 'when the user is not signed in' do
+      it 'sets the flash' do
+        delete_destroy
+
+        expect(controller.flash[:success]).to eq('You have been signed out.')
+      end
+
+      it 'redirects to root path' do
+        expect(delete_destroy).to redirect_to(root_path)
+      end
+    end
   end
 end
