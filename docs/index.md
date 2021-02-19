@@ -13,8 +13,6 @@ up and running.
 
 {% include docs_nav.md %}
 
-<img width=400 class="mx-4 border-1 float-end img-fluid" src="/assets/images/basicfunctions.png">
-
 ## What are the basics?
 
 AsyncGo is a discussion tool meant to replace chat and meetings. Each team gets a topic
@@ -38,6 +36,8 @@ reference it.
 
 These are the fundamentals, but please read on for more tips and tricks on
 how to get the most out of AsyncGo.
+
+![Overview Image](/assets/images/basicfunctions.png){:.img-fluid.border.border-secondary}
 
 ## Async Working
 
