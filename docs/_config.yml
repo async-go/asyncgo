@@ -12,12 +12,12 @@ plugins:
 navigation:
   - title: Home
     url: https://asyncgo.com/
+  - title: Docs
+    url: /
   - title: Blog
     url: https://asyncgo.com/blog
   - title: Hiring
     url: https://asyncgo.com/hiring
-  - title: Docs
-    url: /
   - title: Sign Up
     url: https://asyncgo.com/index#signup
 defaults:
