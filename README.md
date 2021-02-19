@@ -11,7 +11,8 @@
 
 1. Install postgresql
 1. Log in to psql: `sudo -u postgres psql`
-1. Add user to the database, with the username matching your computer login username: `create user your_username with password null;`
+1. Add user to the database, with the username matching your computer login
+  username: `create user your_username with password null;`
 1. Make user a superuser (`alter user your_username with superuser;`)
 
 ## Start the development server
@@ -19,7 +20,8 @@
 1. Run `bundle install`
 1. Run `bin/yarn install`
 1. Run `bin/rails db:create`
-1. Run `bin/rails db:migrate` (you can also use `bin/rails db:seed` if you want sample data loaded.)
+1. Run `bin/rails db:migrate` (you can also use `bin/rails db:seed` if you
+  want sample data loaded.)
 1. Run `bin/rails server`
 
 ## Configuring local auth
