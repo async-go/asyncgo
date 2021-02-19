@@ -136,6 +136,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/cache@v2
         name: Cache yarn dependencies
+        id: yarn-cache
         with:
           path: vendor/yarn
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
@@ -152,6 +153,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/cache@v2
         name: Cache yarn dependencies
+        id: yarn-cache
         with:
           path: vendor/yarn
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
