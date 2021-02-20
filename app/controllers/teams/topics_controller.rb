@@ -52,9 +52,7 @@ module Teams
       @topic = topic
       authorize(@topic)
 
-      update_result = TopicUpdater.new(current_user, @topic, topic_params).call
-
-      if update_result
+      if TopicUpdater.new(current_user, @topic, topic_params).call
         redirect_to team_topic_path(@topic.team, @topic),
                     flash: { success: 'Topic was successfully updated.' }
       else
@@ -77,7 +75,10 @@ module Teams
     private
 
     def topic_params
-      params.require(:topic).permit(:title, :description, :outcome, :due_date, :status)
+      params.require(:topic).permit(
+        :title, :description, :outcome, :due_date, :status,
+        :description_checksum, :outcome_checksum
+      )
     end
 
     def update_user_subscription

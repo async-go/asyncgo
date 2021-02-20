@@ -175,7 +175,7 @@ RSpec.describe Teams::TopicsController, type: :request do
   describe 'PATCH update' do
     subject(:patch_update) do
       patch "/teams/#{topic.team.id}/topics/#{topic.id}",
-            params: { topic: { outcome: outcome } }
+            params: { topic: params }
     end
 
     let(:topic) { FactoryBot.create(:topic) }
@@ -187,11 +187,14 @@ RSpec.describe Teams::TopicsController, type: :request do
         sign_in(user)
       end
 
-      context 'when topic is valid' do
-        let(:outcome) { 'This is a topic outcome.' }
+      context 'when param is valid' do
+        let(:params) do
+          { outcome: 'This is a topic outcome.',
+            outcome_checksum: Digest::MD5.hexdigest('') }
+        end
 
         it 'updates the topic' do
-          expect { patch_update }.to change { topic.reload.outcome }.from(nil).to(outcome)
+          expect { patch_update }.to change { topic.reload.outcome }.from(nil).to('This is a topic outcome.')
         end
 
         it 'sets the flash' do
@@ -213,8 +216,33 @@ RSpec.describe Teams::TopicsController, type: :request do
         end
       end
 
-      context 'when topic is not valid' do
-        let(:outcome) { '   ' }
+      context 'when param checksum is invalid' do
+        let(:params) do
+          { outcome: 'valid', outcome_checksum: Digest::MD5.hexdigest('notvalid') }
+        end
+
+        it 'does not update the topic' do
+          expect { patch_update }.not_to change { topic.reload.outcome }.from(nil)
+        end
+
+        it 'shows the error' do
+          patch_update
+
+          expect(response.body).to include('Outcome checksum does not match')
+        end
+
+        it 'does not subscribe user to the topic' do
+          patch_update
+
+          expect(user.subscribed_topics).to be_empty
+        end
+      end
+
+      context 'when param is not valid' do
+        let(:params) do
+          { outcome: '   ',
+            outcome_checksum: Digest::MD5.hexdigest('') }
+        end
 
         it 'does not update the topic' do
           expect { patch_update }.not_to change { topic.reload.outcome }.from(nil)
@@ -235,7 +263,10 @@ RSpec.describe Teams::TopicsController, type: :request do
     end
 
     include_examples 'unauthorized user examples' do
-      let(:outcome) { 'sample outcome' }
+      let(:params) do
+        { outcome: 'sample outcome',
+          outcome_checksum: Digest::MD5.hexdigest('') }
+      end
     end
   end
 

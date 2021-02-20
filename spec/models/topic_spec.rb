@@ -5,6 +5,74 @@ RSpec.describe Topic, type: :model do
     it { is_expected.to validate_presence_of(:title) }
     it { is_expected.to validate_presence_of(:description) }
     it { is_expected.to validate_presence_of(:description_html) }
+
+    describe '#validate_description_checksum' do
+      subject(:valid?) { topic.valid? }
+
+      let(:topic) { FactoryBot.create(:topic, description: 'old') }
+
+      before do
+        topic.description = 'new'
+      end
+
+      context 'when description checksum is not set' do
+        before do
+          topic.description_checksum = nil
+        end
+
+        it { is_expected.to eq(false) }
+      end
+
+      context 'when description checksum is valid' do
+        before do
+          topic.description_checksum = Digest::MD5.hexdigest('old')
+        end
+
+        it { is_expected.to eq(true) }
+      end
+
+      context 'when description checksum is not valid' do
+        before do
+          topic.description_checksum = Digest::MD5.hexdigest('notvalid')
+        end
+
+        it { is_expected.to eq(false) }
+      end
+    end
+
+    describe '#validate_outcome_checksum' do
+      subject(:valid?) { topic.valid? }
+
+      let(:topic) { FactoryBot.create(:topic, outcome: 'old') }
+
+      before do
+        topic.outcome = 'new'
+      end
+
+      context 'when description checksum is not set' do
+        before do
+          topic.outcome_checksum = nil
+        end
+
+        it { is_expected.to eq(false) }
+      end
+
+      context 'when description checksum is valid' do
+        before do
+          topic.outcome_checksum = Digest::MD5.hexdigest('old')
+        end
+
+        it { is_expected.to eq(true) }
+      end
+
+      context 'when description checksum is not valid' do
+        before do
+          topic.outcome_checksum = Digest::MD5.hexdigest('notvalid')
+        end
+
+        it { is_expected.to eq(false) }
+      end
+    end
   end
 
   describe 'Relations' do
