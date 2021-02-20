@@ -30,7 +30,7 @@ class Topic < ApplicationRecord
 
     errors.add(:description,
                'was changed by somebody else and you can no longer save. Open this same topic in a new tab and merge '\
-               'your changes manually (do not refresh this page or your changes will be lost.)')
+               'your changes manually (do not refresh or navigate away from this page or your changes will be lost.)')
   end
 
   def validate_outcome_checksum
@@ -38,6 +38,6 @@ class Topic < ApplicationRecord
 
     errors.add(:outcome,
                'was changed by somebody else and you can no longer save. Open this same topic in a new tab and merge '\
-               'your changes manually (do not refresh this page or your changes will be lost.)')
+               'your changes manually (do not refresh or navigate away from this page or your changes will be lost.)')
   end
 end

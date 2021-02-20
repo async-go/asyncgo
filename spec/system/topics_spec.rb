@@ -63,8 +63,7 @@ RSpec.describe 'Topics', type: :system do
                   description_checksum: Digest::MD5.hexdigest(topic.description))
     click_button 'Update Topic'
 
-    expect(page).to have_text('Description was changed by somebody else and you can no longer save. Open this same '\
-      'topic in a new tab and merge your changes manually (do not refresh this page or your changes will be lost.)')
+    expect(page).to have_text('Description was changed by somebody else and you can no longer save.')
   end
 
   it 'prevents overwriting topic updates for outcome' do
@@ -82,8 +81,7 @@ RSpec.describe 'Topics', type: :system do
                   outcome_checksum: Digest::MD5.hexdigest(topic.outcome))
     click_button 'Update Topic'
 
-    expect(page).to have_text('Outcome was changed by somebody else and you can no longer save. Open this same topic '\
-      'in a new tab and merge your changes manually (do not refresh this page or your changes will be lost.)')
+    expect(page).to have_text('Outcome was changed by somebody else and you can no longer save.')
   end
 
   it 'allows the user to summarize an outcome using markdown' do
