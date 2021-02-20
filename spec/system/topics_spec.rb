@@ -48,7 +48,7 @@ RSpec.describe 'Topics', type: :system do
     expect(page).to have_text('This is an update')
   end
 
-  it 'prevents overwriting topic updates' do
+  it 'prevents overwriting topic updates for description' do
     user = FactoryBot.create(:user, :team)
     topic = FactoryBot.create(:topic, team: user.team)
 
@@ -63,8 +63,26 @@ RSpec.describe 'Topics', type: :system do
                   description_checksum: Digest::MD5.hexdigest(topic.description))
     click_button 'Update Topic'
 
-    expect(page).to have_text('Description checksum does not match')
+    expect(page).to have_text('Description was changed by somebody else and you can no longer save. Open this same topic in a new tab and merge your changes manually (do not refresh this page or your changes will be lost.)')
   end
+
+  it 'prevents overwriting topic updates for outcome' do
+    user = FactoryBot.create(:user, :team)
+    topic = FactoryBot.create(:topic, team: user.team)
+
+    visit '/'
+    sign_in_user(user)
+    click_link 'Topics'
+    click_link topic.title
+    click_link 'Edit Topic Context'
+
+    fill_in 'topic[outcome]', with: 'This is an update'
+    topic.update!(outcome: 'This is an external update',
+                  outcome_checksum: Digest::MD5.hexdigest(topic.outcome))
+    click_button 'Update Topic'
+
+    expect(page).to have_text('Outcome was changed by somebody else and you can no longer save. Open this same topic in a new tab and merge your changes manually (do not refresh this page or your changes will be lost.)')
+  end  
 
   it 'allows the user to summarize an outcome using markdown' do
     user = FactoryBot.create(:user, :team)
