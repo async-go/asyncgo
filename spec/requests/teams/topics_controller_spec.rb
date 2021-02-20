@@ -228,7 +228,7 @@ RSpec.describe Teams::TopicsController, type: :request do
         it 'shows the error' do
           patch_update
 
-          expect(response.body).to include('Outcome was changed by somebody else and you can no longer save.')
+          expect(response.body).to include(Topic::CHECKSUM_ERROR_MESSAGE)
         end
 
         it 'does not subscribe user to the topic' do

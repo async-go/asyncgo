@@ -63,7 +63,7 @@ RSpec.describe 'Topics', type: :system do
                   description_checksum: Digest::MD5.hexdigest(topic.description))
     click_button 'Update Topic'
 
-    expect(page).to have_text('Description was changed by somebody else and you can no longer save.')
+    expect(page).to have_text("Description #{Topic::CHECKSUM_ERROR_MESSAGE}")
   end
 
   it 'prevents overwriting topic updates for outcome' do
@@ -78,10 +78,11 @@ RSpec.describe 'Topics', type: :system do
 
     fill_in 'topic[outcome]', with: 'This is an update'
     topic.update!(outcome: 'This is an external update',
-                  outcome_checksum: Digest::MD5.hexdigest(topic.outcome))
+                  outcome_html: '<p>This is an external update</p>',
+                  outcome_checksum: Digest::MD5.hexdigest(''))
     click_button 'Update Topic'
 
-    expect(page).to have_text('Outcome was changed by somebody else and you can no longer save.')
+    expect(page).to have_text("Outcome #{Topic::CHECKSUM_ERROR_MESSAGE}")
   end
 
   it 'allows the user to summarize an outcome using markdown' do

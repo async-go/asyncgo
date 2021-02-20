@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 
 class Topic < ApplicationRecord
+  CHECKSUM_ERROR_MESSAGE = <<-ERROR_TEXT.squish.freeze
+    was changed by somebody else and you can no longer save. Open this same
+    topic in a new tab and merge your changes manually (do not refresh or
+    navigate away from this page or your changes will be lost.)
+  ERROR_TEXT
+
   validates :title, presence: { allow_blank: false }
   validates :description, presence: { allow_blank: false }
   validates :description_html, presence: true
@@ -28,16 +34,12 @@ class Topic < ApplicationRecord
   def validate_description_checksum
     return if Digest::MD5.hexdigest(description_was.to_s) == description_checksum
 
-    errors.add(:description,
-               'was changed by somebody else and you can no longer save. Open this same topic in a new tab and merge '\
-               'your changes manually (do not refresh or navigate away from this page or your changes will be lost.)')
+    errors.add(:description, CHECKSUM_ERROR_MESSAGE)
   end
 
   def validate_outcome_checksum
     return if Digest::MD5.hexdigest(outcome_was.to_s) == outcome_checksum
 
-    errors.add(:outcome,
-               'was changed by somebody else and you can no longer save. Open this same topic in a new tab and merge '\
-               'your changes manually (do not refresh or navigate away from this page or your changes will be lost.)')
+    errors.add(:outcome, CHECKSUM_ERROR_MESSAGE)
   end
 end
