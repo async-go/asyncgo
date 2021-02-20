@@ -9,8 +9,8 @@ class Topic < ApplicationRecord
 
   attr_accessor :description_checksum, :outcome_checksum
 
-  validate :validate_description_checksum, if: proc { |topic| topic.description_checksum.present? }
-  validate :validate_outcome_checksum, if: proc { |topic| topic.outcome_checksum.present? }
+  validate :validate_description_checksum, on: :update, if: :description_changed?
+  validate :validate_outcome_checksum, on: :update, if: :outcome_changed?
 
   belongs_to :user
   belongs_to :team
@@ -28,12 +28,12 @@ class Topic < ApplicationRecord
   def validate_description_checksum
     return if Digest::MD5.hexdigest(description_was.to_s) == description_checksum
 
-    errors.add(:description, 'was changed')
+    errors.add(:description, 'checksum does not match')
   end
 
   def validate_outcome_checksum
     return if Digest::MD5.hexdigest(outcome_was.to_s) == outcome_checksum
 
-    errors.add(:description, 'was changed')
+    errors.add(:outcome, 'checksum does not match')
   end
 end

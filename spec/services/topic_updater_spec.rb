@@ -6,15 +6,14 @@ RSpec.describe TopicUpdater, type: :service do
 
   describe '#call' do
     subject(:call) do
-      described_class.new(user, topic, { description: description, outcome: outcome }).call
+      described_class.new(user, topic, params).call
     end
 
     context 'when topic is being created' do
       let(:topic) { FactoryBot.build(:topic, user: user, team: user.team) }
-      let(:outcome) { nil }
 
       context 'when parameters are valid' do
-        let(:description) { '__bold__' }
+        let(:params) { { description: '__bold__' } }
 
         it 'creates a topic' do
           expect { call }.to change(Topic, :count).from(0).to(1)
@@ -45,7 +44,7 @@ RSpec.describe TopicUpdater, type: :service do
         end
 
         context 'when outcome is not empty' do
-          let(:outcome) { '__bold__' }
+          let(:params) { { description: '__bold__', outcome: '__bold__' } }
 
           it 'parses the outcome markdown' do
             expect { call }.to change(topic, :outcome_html).to("<p><strong>bold</strong></p>\n")
@@ -53,7 +52,7 @@ RSpec.describe TopicUpdater, type: :service do
         end
 
         context 'when outcome is empty' do
-          let(:outcome) { '' }
+          let(:params) { { description: '__bold__', outcome: '' } }
 
           before do
             topic.update!(outcome: 'bold', outcome_html: '<p><strong>bold</strong></p>')
@@ -66,7 +65,7 @@ RSpec.describe TopicUpdater, type: :service do
       end
 
       context 'when parameters are not valid' do
-        let(:description) { nil }
+        let(:params) { { description: nil } }
 
         it 'does not create the topic' do
           call
@@ -88,14 +87,16 @@ RSpec.describe TopicUpdater, type: :service do
 
     context 'when topic is being updated' do
       let(:topic) { FactoryBot.create(:topic, team: user.team) }
-      let(:outcome) { nil }
 
       before do
         topic.subscribed_users << FactoryBot.create(:user)
       end
 
       context 'when parameters are valid' do
-        let(:description) { '__bold__' }
+        let(:params) do
+          { description: '__bold__',
+            description_checksum: Digest::MD5.hexdigest(topic.description) }
+        end
 
         it 'parses the description markdown' do
           expect { call }.to change(topic, :description_html).to("<p><strong>bold</strong></p>\n")
@@ -120,7 +121,10 @@ RSpec.describe TopicUpdater, type: :service do
         end
 
         context 'when outcome is not empty' do
-          let(:outcome) { '__bold__' }
+          let(:params) do
+            { outcome: '__bold__',
+              outcome_checksum: Digest::MD5.hexdigest('') }
+          end
 
           it 'parses the outcome markdown' do
             expect { call }.to change(topic, :outcome_html).to("<p><strong>bold</strong></p>\n")
@@ -128,10 +132,16 @@ RSpec.describe TopicUpdater, type: :service do
         end
 
         context 'when outcome is empty' do
-          let(:outcome) { '' }
+          let(:params) do
+            { outcome: '',
+              outcome_checksum: Digest::MD5.hexdigest('bold') }
+          end
 
           before do
-            topic.update!(outcome: 'bold', outcome_html: '<p><strong>bold</strong></p>')
+            topic.update!(
+              outcome: 'bold', outcome_html: '<p><strong>bold</strong></p>',
+              outcome_checksum: Digest::MD5.hexdigest('')
+            )
           end
 
           it 'parses the outcome markdown' do
@@ -141,7 +151,10 @@ RSpec.describe TopicUpdater, type: :service do
       end
 
       context 'when parameters are not valid' do
-        let(:description) { nil }
+        let(:params) do
+          { description: nil,
+            description_checksum: Digest::MD5.hexdigest(topic.description) }
+        end
 
         it 'does not update the topic' do
           expect { call }.not_to change(topic, :description_html)
