@@ -4,7 +4,6 @@ module Teams
   class TopicsController < Teams::Topics::ApplicationController
     include Pagy::Backend
     include Pundit
-    include ApplicationHelper
 
     def index
       authorize(team, policy_class: TopicPolicy)
@@ -53,16 +52,7 @@ module Teams
       @topic = topic
       authorize(@topic)
 
-      if checksums_ok?(params, topic)
-        redirect_to edit_team_topic_path(@topic.team, @topic),
-                    saved_description: params[:description],
-                    saved_outcome: params[:outcome],
-                    flash: { danger: 'Error saving because someone else updated the topic before you did. Your changes are below, but will need to be reapplied in a new tab.' }
-        return
-      end
-
-      update_result = TopicUpdater.new(current_user, @topic, topic_params).call
-      if update_result
+      if TopicUpdater.new(current_user, @topic, topic_params).call
         redirect_to team_topic_path(@topic.team, @topic),
                     flash: { success: 'Topic was successfully updated.' }
       else
@@ -85,13 +75,10 @@ module Teams
     private
 
     def topic_params
-      params.require(:topic).permit(:title, :description, :outcome, :due_date, :status, :description_checksum,
-                                    :outcome_checksum, :saved_description, :saved_outcome)
-    end
-
-    def checksums_ok?(params, topic)
-      (params[:outcome_checksum] == checksum(topic.outcome)) ||
-        (params[:description_checksum] == checksum(topic.description))
+      params.require(:topic).permit(
+        :title, :description, :outcome, :due_date, :status,
+        :description_checksum, :outcome_checksum
+      )
     end
 
     def update_user_subscription
