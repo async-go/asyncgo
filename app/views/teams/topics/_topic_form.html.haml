@@ -1,4 +1,6 @@
 - submit_action = topic.persisted? ? 'Update Topic' : 'Create Topic'
+%p= saved_description
+%p= saved_outcome
 = form_with(model: topic, url: [topic.team, topic], local: true) do |form|
   .mb-3
     .mb-1
