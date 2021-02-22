@@ -19,7 +19,7 @@ At the end the discussion is resolved and the final outcomes and/or decisions ar
 When you log in you'll see a list of open topics. From here you can click on any of the available topics
 to participate.
 
-![Topic List Image](/assets/images/basicfunctions.png){:.img-fluid.border.border-secondary}
+![Topic Lists](/assets/images/basicfunctions.png){:.img-fluid.w-50.border.border-secondary.glightbox}
 
 ## Creating Topics
 
@@ -33,7 +33,7 @@ off as you go, and potentially an embedded video recording to help set the conte
 Topics can also have a due date set, which will be made visible to everyone looking at the topic index. This can be a
 great way to communicate when you need something by, and help everyone prioritize the topics they engage with.
 
-![Due Date Image](/assets/images/duedate.png){:.img-fluid.border.border-secondary}
+![Due Dates](/assets/images/duedate.png){:.img-fluid.w-50.border.border-secondary.glightbox}
 
 ## Collaborating on Topics
 
@@ -49,7 +49,7 @@ bit of advice - if you disapprove, follow up on your emoji with another comment 
 You can also use emojis to do more complex votes with multiple options. In this case, use a different emoji for each
 option in the vote.
 
-![Voting Image](/assets/images/votes.png){:.img-fluid.border.border-secondary}
+![Voting](/assets/images/votes.png){:.img-fluid.w-50.border.border-secondary.glightbox}
 
 ## Resolving Topics
 
