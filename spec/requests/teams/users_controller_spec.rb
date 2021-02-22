@@ -5,6 +5,28 @@ require './spec/support/unauthorized_user_examples'
 RSpec.describe Teams::UsersController, type: :request do
   let(:team) { FactoryBot.create(:team) }
 
+  describe 'GET index' do
+    subject(:get_index) { get "/teams/#{team.id}/users.json" }
+
+    context 'when user is authorized' do
+      let(:user) { FactoryBot.create(:user, team: team) }
+
+      before do
+        sign_in(user)
+      end
+
+      it 'renders a json list of users' do
+        get_index
+
+        expect(JSON.parse(response.body)).to include(
+          a_hash_including('key' => user.printable_name, 'value' => user.email)
+        )
+      end
+    end
+
+    include_examples 'unauthorized user examples'
+  end
+
   describe 'POST create' do
     subject(:post_create) { post "/teams/#{team.id}/users", params: { user: { email: email } } }
 

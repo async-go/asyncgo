@@ -2,6 +2,11 @@
 
 module Teams
   class UserPolicy < ApplicationPolicy
+    def index?
+      user &&
+        record == user.team
+    end
+
     def create?
       user &&
         record == user.team

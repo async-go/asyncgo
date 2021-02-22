@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
     @current_user ||= begin
       if session[:user_id]
         User.find_by(id: session[:user_id]).tap do |user|
-          session[:user_id] = nil unless user
+          user ? gon.push(user_id: user.id, team_id: user.team_id) : session.delete(:user_id)
         end
       end
     end
