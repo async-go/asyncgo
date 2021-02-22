@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class TopicUpdater < ApplicationService
-  attr_reader :topic, :update_params
-
   def initialize(user, topic, update_params)
     super()
 
@@ -13,7 +11,7 @@ class TopicUpdater < ApplicationService
 
   def call
     new_topic = @topic.new_record?
-    @topic.update(process_params(update_params)).tap do |result|
+    @topic.update(processed_params).tap do |result|
       next unless result
 
       if new_topic
@@ -27,8 +25,8 @@ class TopicUpdater < ApplicationService
 
   private
 
-  def process_params(original_params)
-    original_params.tap do |params|
+  def processed_params
+    @update_params.tap do |params|
       processed_params = process_description(params)
       process_outcome(processed_params)
     end
@@ -38,7 +36,7 @@ class TopicUpdater < ApplicationService
     original_params.tap do |params|
       return params if params[:description].nil?
 
-      params[:description_html] = parse_markdown(params[:description])
+      params[:description_html] = MarkdownParser.new(@user, params[:description]).call
     end
   end
 
@@ -50,7 +48,7 @@ class TopicUpdater < ApplicationService
         params[:outcome] = nil
         params[:outcome_html] = nil
       elsif params[:outcome].present?
-        params[:outcome_html] = parse_markdown(params[:outcome])
+        params[:outcome_html] = MarkdownParser.new(@user, params[:outcome]).call
       end
     end
   end

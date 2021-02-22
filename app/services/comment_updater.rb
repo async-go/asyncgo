@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class CommentUpdater < ApplicationService
-  attr_reader :comment, :update_params
-
   def initialize(user, comment, update_params)
     super()
 
@@ -13,18 +11,18 @@ class CommentUpdater < ApplicationService
 
   def call
     new_comment = @comment.new_record?
-    @comment.update(process_params(update_params)).tap do |result|
+    @comment.update(processed_params).tap do |result|
       next unless result && new_comment
 
-      create_notification
+      notify_users!
       @comment.topic.subscriptions.create(user: @user)
     end
   end
 
   private
 
-  def process_params(original_params)
-    original_params.tap do |params|
+  def processed_params
+    @update_params.tap do |params|
       process_body(params)
     end
   end
@@ -33,11 +31,11 @@ class CommentUpdater < ApplicationService
     original_params.tap do |params|
       break if params[:body].nil?
 
-      params[:body_html] = parse_markdown(params[:body])
+      params[:body_html] = MarkdownParser.new(@user, params[:body]).call
     end
   end
 
-  def create_notification
+  def notify_users!
     subscriber_ids = @comment.topic.subscribed_users.pluck(:id)
     subscriber_ids.each do |subscriber_id|
       next if subscriber_id == @user.id

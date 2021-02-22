@@ -5,9 +5,7 @@ RSpec.describe TopicUpdater, type: :service do
   let(:other_user) { FactoryBot.create(:user, team: user.team) }
 
   describe '#call' do
-    subject(:call) do
-      described_class.new(user, topic, params).call
-    end
+    subject(:call) { described_class.new(user, topic, params).call }
 
     context 'when topic is being created' do
       let(:topic) { FactoryBot.build(:topic, user: user, team: user.team) }
