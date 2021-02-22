@@ -17,15 +17,15 @@ RSpec.describe MarkdownParser, type: :service do
       expect(call).to include('<strong>bold</strong>')
     end
 
-    it 'creates a notification for the mentioned user' do
-      expect { call }.to change { target_user.reload.notifications.count }.from(0).to(1)
+    it 'builds a notification for the mentioned user' do
+      expect { call }.to change { target.notifications.length }.from(0).to(1)
     end
 
     context 'when target user is self' do
       let(:target_user) { user }
 
       it 'does not create a notification for user' do
-        expect { call }.not_to change { target_user.reload.notifications.count }.from(0)
+        expect { call }.not_to change { target.notifications.length }.from(0)
       end
     end
   end
