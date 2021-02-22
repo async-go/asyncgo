@@ -14,7 +14,7 @@ module Teams
         comment = topic.comments.build(create_params)
         authorize(comment)
 
-        comment_flash = if update_comment(comment, comment_params)
+        comment_flash = if update_comment(comment, create_params)
                           { success: 'Comment was successfully created.' }
 
                         else

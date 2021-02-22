@@ -29,9 +29,9 @@ class CommentUpdater < ApplicationService
 
   def process_body(original_params)
     original_params.tap do |params|
-      break if params[:body].nil?
+      next if params[:body].nil?
 
-      params[:body_html] = MarkdownParser.new(@user, params[:body]).call
+      params[:body_html] = MarkdownParser.new(@user, params[:body], @comment).call
     end
   end
 

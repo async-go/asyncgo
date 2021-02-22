@@ -14,12 +14,11 @@ class TopicUpdater < ApplicationService
     @topic.update(processed_params).tap do |result|
       next unless result
 
-      if new_topic
-        @topic.subscriptions.create(user: @user)
-        notify_users!(@topic.team.users, :created)
-      else
-        notify_users!(@topic.subscribed_users, :updated)
-      end
+      users, action = new_topic ? [@topic.team.users, :created] : [@topic.subscribed_users, :updated]
+      notify_users!(users, action)
+      next unless new_topic
+
+      @topic.subscriptions.create(user: @user)
     end
   end
 
@@ -34,21 +33,21 @@ class TopicUpdater < ApplicationService
 
   def process_description(original_params)
     original_params.tap do |params|
-      return params if params[:description].nil?
+      next if params[:description].nil?
 
-      params[:description_html] = MarkdownParser.new(@user, params[:description]).call
+      params[:description_html] = MarkdownParser.new(@user, params[:description], @topic).call
     end
   end
 
   def process_outcome(original_params)
     original_params.tap do |params|
-      return params if params[:outcome].nil?
+      next if params[:outcome].nil?
 
       if params[:outcome].empty?
         params[:outcome] = nil
         params[:outcome_html] = nil
       elsif params[:outcome].present?
-        params[:outcome_html] = MarkdownParser.new(@user, params[:outcome]).call
+        params[:outcome_html] = MarkdownParser.new(@user, params[:outcome], @topic).call
       end
     end
   end
