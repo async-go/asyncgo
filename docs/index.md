@@ -74,7 +74,7 @@ Note that due dates are at the end of the chosen day. If you want something to b
 Monday, then you should choose Monday as the date. If, instead, you want it to be due at midnight on
 Sunday, you should choose Sunday instead.
 
-![Due Dates](/assets/images/duedate.png){:.img-fluid.w-75.border.border-secondary.glightbox}
+![Due Dates](/assets/images/duedate.png){:.img-fluid.w-50.border.border-secondary.glightbox}
 
 ### Clear Communication
 
