@@ -10,6 +10,13 @@ Welcome to AsyncGo!
 
 AsyncGo is a discussion tool meant to replace chat and meetings. Each team gets a topic
 board that has all the important discussions that are happening for that team.
+
+![Overview Image](/assets/images/basicfunctions.png){:.img-fluid.border.border-secondary}
+
+{% include docs_nav.md %}
+
+## Overall Flow
+
 Anyone can create a [topic](/topics) at any time, and we encourage you to set
 a [due date](#timeboxing) on every item since the topic list is sorted by what's
 coming due. It's also important to write a good description, and pre-format
@@ -26,17 +33,11 @@ Once done, someone should ensure that the outcome is updated with the final
 results, and then close the topic. It's archived forever so you can always
 reference it.
 
-These are the fundamentals, but please read on for more tips and tricks on
-how to get the most out of AsyncGo. You can see an overview of the home
-page here, which will help orient you if you haven't used the app yet:
-
-![Overview Image](/assets/images/basicfunctions.png){:.img-fluid.border.border-secondary}
-
-{% include docs_nav.md %}
+---
 
 ## Async Working
 
-The first step to getting the most out of AsyncGo is to familiarize yourself with async working.
+An important step to getting the most out of AsyncGo is to familiarize yourself with async working.
 
 Async is a way of working, useful for remote, colocated, or hybrid companies, where collaboration is done via a digital workspace
 rather than in synchronous meetings/discussions. This gives the flexibility for any team member to choose
