@@ -11,7 +11,7 @@ Welcome to AsyncGo!
 AsyncGo is a discussion tool meant to replace chat and meetings. Each team gets a topic
 board that has all the important discussions that are happening for that team.
 
-![Overview Image](/assets/images/basicfunctions.png){:.img-fluid.border.border-secondary}
+![Overview of AsyncGo](/assets/images/basicfunctions.png){:.img-fluid.w-50.border.border-secondary.glightbox}
 
 {% include docs_nav.md %}
 
@@ -74,7 +74,7 @@ Note that due dates are at the end of the chosen day. If you want something to b
 Monday, then you should choose Monday as the date. If, instead, you want it to be due at midnight on
 Sunday, you should choose Sunday instead.
 
-![Due Date Image](/assets/images/duedate.png){:.img-fluid.border.border-secondary}
+![Due Dates](/assets/images/duedate.png){:.img-fluid.w-75.border.border-secondary.glightbox}
 
 ### Clear Communication
 
@@ -109,7 +109,7 @@ much higher. In any case, if something is urgent and needed right away, it's alw
 reach out to the person directly.. but this should be saved for real urgent situations, because
 whenever you do this you're impacting the team's async flow.
 
-![Notifications Image](/assets/images/notifications.png){:.img-fluid.border.border-secondary}
+![Notifications](/assets/images/notifications.png){:.img-fluid.w-50.border.border-secondary.glightbox}
 
 ---
 
