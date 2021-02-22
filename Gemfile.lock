@@ -318,7 +318,6 @@ GEM
     thor (1.1.0)
     thread_safe (0.3.6)
     tilt (2.0.10)
-    tribute (3.6.0.0)
     turbolinks (5.2.1)
       turbolinks-source (~> 5.2)
     turbolinks-source (5.2.0)
@@ -390,7 +389,6 @@ DEPENDENCIES
   selenium-webdriver
   shoulda-matchers (~> 4.5.0)
   spring (~> 2.1.1)
-  tribute (~> 3.6)
   turbolinks (~> 5)
   tzinfo-data
   web-console (>= 4.1.0)
