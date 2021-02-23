@@ -22,8 +22,10 @@ class Topic < ApplicationRecord
   belongs_to :team
 
   has_many :comments, dependent: :destroy
+
   has_many :subscriptions, dependent: :destroy
   has_many :subscribed_users, through: :subscriptions, source: :user
+
   has_many :notifications, as: :target, dependent: :destroy
   has_many :votes, as: :votable, dependent: :destroy
 
