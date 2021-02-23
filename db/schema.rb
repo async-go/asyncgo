@@ -12,11 +12,14 @@
 
 ActiveRecord::Schema.define(version: 2021_02_15_173618) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "comments", force: :cascade do |t|
     t.text "body", null: false
     t.text "body_html", null: false
-    t.integer "topic_id", null: false
-    t.integer "user_id", null: false
+    t.bigint "topic_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["topic_id"], name: "index_comments_on_topic_id"
@@ -24,12 +27,12 @@ ActiveRecord::Schema.define(version: 2021_02_15_173618) do
   end
 
   create_table "notifications", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "actor_id", null: false
-    t.string "target_type", null: false
-    t.integer "target_id", null: false
     t.integer "action", null: false
     t.date "read_at"
+    t.bigint "user_id", null: false
+    t.bigint "actor_id", null: false
+    t.string "target_type", null: false
+    t.bigint "target_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["actor_id"], name: "index_notifications_on_actor_id"
@@ -38,8 +41,8 @@ ActiveRecord::Schema.define(version: 2021_02_15_173618) do
   end
 
   create_table "subscriptions", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "topic_id"
+    t.bigint "user_id", null: false
+    t.bigint "topic_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["topic_id"], name: "index_subscriptions_on_topic_id"
@@ -59,19 +62,19 @@ ActiveRecord::Schema.define(version: 2021_02_15_173618) do
     t.text "description_html", null: false
     t.text "outcome"
     t.text "outcome_html"
-    t.integer "user_id", null: false
-    t.integer "team_id", null: false
+    t.date "due_date"
+    t.integer "status", default: 0, null: false
+    t.bigint "user_id", null: false
+    t.bigint "team_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "status", default: 0, null: false
-    t.date "due_date"
     t.index ["team_id"], name: "index_topics_on_team_id"
     t.index ["user_id"], name: "index_topics_on_user_id"
   end
 
   create_table "user_preferences", force: :cascade do |t|
     t.boolean "digest_enabled", default: false, null: false
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_user_preferences_on_user_id", unique: true
@@ -79,25 +82,34 @@ ActiveRecord::Schema.define(version: 2021_02_15_173618) do
 
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
-    t.integer "team_id"
+    t.string "name"
+    t.bigint "team_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "name"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["team_id"], name: "index_users_on_team_id"
   end
 
   create_table "votes", force: :cascade do |t|
     t.string "emoji", null: false
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.string "votable_type", null: false
-    t.integer "votable_id", null: false
+    t.bigint "votable_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_votes_on_user_id"
     t.index ["votable_type", "votable_id"], name: "index_votes_on_votable"
   end
 
+  add_foreign_key "comments", "topics"
+  add_foreign_key "comments", "users"
+  add_foreign_key "notifications", "users"
+  add_foreign_key "notifications", "users", column: "actor_id"
+  add_foreign_key "subscriptions", "topics"
+  add_foreign_key "subscriptions", "users"
+  add_foreign_key "topics", "teams"
+  add_foreign_key "topics", "users"
   add_foreign_key "user_preferences", "users"
+  add_foreign_key "users", "teams"
   add_foreign_key "votes", "users"
 end
