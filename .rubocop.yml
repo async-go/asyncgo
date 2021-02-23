@@ -18,6 +18,10 @@ Metrics/BlockLength:
     - 'config/routes.rb'
     - 'spec/**/*'
 
+Metrics/MethodLength:
+  Exclude:
+    - 'db/migrate/*'
+
 RSpec/ExampleLength:
   Exclude:
     - 'spec/system/**/*'
