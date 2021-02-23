@@ -25,7 +25,7 @@ Rails.application.routes.draw do
     post :support
 
     scope module: :teams do
-      resources :users, only: %i[create destroy]
+      resources :users, only: %i[index create destroy]
       resources :topics, only: %i[index show new edit create update] do
         post :subscribe
 

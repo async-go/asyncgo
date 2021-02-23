@@ -7,6 +7,7 @@ ruby '3.0.0'
 
 # Core
 gem 'bootsnap', '~> 1.7.2', require: false # Reduces boot times through caching; required in config/boot.rb
+gem 'gon', '~> 6.4.0' # Pass variables from Rails to JS
 gem 'pg', '~> 1.2.3' # Use pg as the database for Active Record
 gem 'puma', '~> 5.2.1' # Use Puma as the app server
 gem 'pundit', '~> 2.1.0' # Authorization via OO and plain Ruby classes

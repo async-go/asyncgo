@@ -20,9 +20,28 @@ RSpec.describe 'Notifications', type: :system do
     expect(page).to have_text(notification.target.title)
   end
 
-  it 'creates notifications when other user comments on subscribed topic' do
+  it 'creates a notification when someone in team creates a topic' do
     user = FactoryBot.create(:user, :team)
-    actor = FactoryBot.create(:user, name: 'John Doe', team: user.team)
+    actor = FactoryBot.create(:user, team: user.team)
+
+    visit '/'
+    sign_in_user(actor)
+
+    click_link 'Topics'
+    click_link 'New Topic'
+    fill_in 'topic[title]', with: 'Sample topic'
+    fill_in 'topic[description]', with: 'Sample topic description'
+    click_button 'Create Topic'
+
+    click_link 'Sign out'
+    sign_in_user(user)
+
+    expect(page).to have_link('Has notification 1')
+  end
+
+  it 'creates a notification when other user comments on subscribed topic' do
+    user = FactoryBot.create(:user, :team)
+    actor = FactoryBot.create(:user, team: user.team)
 
     visit '/'
     sign_in_user(user)
@@ -46,6 +65,25 @@ RSpec.describe 'Notifications', type: :system do
     click_link 'Sign out'
     sign_in_user(user)
     expect(page).to have_link('Has notification 1')
+  end
+
+  it 'creates a notification when user gets mentioned' do
+    user = FactoryBot.create(:user, :team)
+    actor = FactoryBot.create(:user, team: user.team)
+
+    visit '/'
+    sign_in_user(actor)
+
+    click_link 'Topics'
+    click_link 'New Topic'
+    fill_in 'topic[title]', with: 'Sample topic'
+    fill_in 'topic[description]', with: "This is a test mention for @#{user.email}"
+    click_button 'Create Topic'
+
+    click_link 'Sign out'
+    sign_in_user(user)
+
+    expect(page).to have_link('Has notification 2')
   end
 
   it 'allows user to clear all notifications' do

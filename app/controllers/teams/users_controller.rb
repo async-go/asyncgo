@@ -4,6 +4,17 @@ module Teams
   class UsersController < Teams::ApplicationController
     include Pundit
 
+    def index
+      authorize(team, policy_class: Teams::UserPolicy)
+
+      respond_to do |format|
+        format.json do
+          users = team.users.map { |user| { key: user.printable_name, value: user.email } }
+          render json: users
+        end
+      end
+    end
+
     def create
       authorize(team, policy_class: Teams::UserPolicy)
 
