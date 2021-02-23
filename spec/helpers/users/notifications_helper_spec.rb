@@ -34,6 +34,18 @@ RSpec.describe Users::NotificationsHelper, type: :helper do
 
         it { is_expected.to eq("The topic #{notification.target.title} is due in less than one day.") }
       end
+
+      context 'when action is mentioned' do
+        before do
+          notification.update!(action: :mentioned)
+        end
+
+        it do
+          expect(notification_text).to eq(
+            "#{notification.actor.printable_name} mentioned you in the topic #{notification.target.title}"
+          )
+        end
+      end
     end
 
     context 'when target is comment' do
@@ -49,6 +61,22 @@ RSpec.describe Users::NotificationsHelper, type: :helper do
         it do
           expect(notification_text).to eq(
             "#{notification.actor.printable_name} created a comment in the topic #{notification.target.topic.title}"
+          )
+        end
+      end
+
+      context 'when action is mentioned' do
+        before do
+          notification.update!(action: :mentioned)
+        end
+
+        it do
+          expect(notification_text).to eq(
+            <<-NOTIFICATION_TEXT.squish
+          #{notification.actor.printable_name}
+          mentioned you in a comment in the topic
+          #{notification.target.topic.title}
+          NOTIFICATION_TEXT
           )
         end
       end

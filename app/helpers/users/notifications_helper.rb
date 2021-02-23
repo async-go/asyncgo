@@ -21,16 +21,27 @@ module Users
         "The topic #{notification.target.title} is due in less than one day."
       when 'created', 'updated'
         "#{notification.actor.printable_name} #{notification.action} the topic #{notification.target.title}"
+      when 'mentioned'
+        "#{notification.actor.printable_name} mentioned you in the topic #{notification.target.title}"
       end
     end
 
     def comment_notification_text(notification)
-      <<-NOTIFICATION_TEXT.squish
-      #{notification.actor.printable_name}
-      #{notification.action}
-      a comment in the topic
-      #{notification.target.topic.title}
-      NOTIFICATION_TEXT
+      case notification.action
+      when 'created', 'updated'
+        <<-NOTIFICATION_TEXT.squish
+        #{notification.actor.printable_name}
+        #{notification.action}
+        a comment in the topic
+        #{notification.target.topic.title}
+        NOTIFICATION_TEXT
+      when 'mentioned'
+        <<-NOTIFICATION_TEXT.squish
+        #{notification.actor.printable_name}
+        mentioned you in a comment in the topic
+        #{notification.target.topic.title}
+        NOTIFICATION_TEXT
+      end
     end
   end
 end
