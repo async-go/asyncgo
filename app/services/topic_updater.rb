@@ -11,7 +11,7 @@ class TopicUpdater < ApplicationService
 
   def call
     new_topic = @topic.new_record?
-    @topic.update(processed_params).tap do |result|
+    @topic.update(@update_params).tap do |result|
       next unless result
 
       users, action = new_topic ? [@topic.team.users, :created] : [@topic.subscribed_users, :updated]
@@ -23,34 +23,6 @@ class TopicUpdater < ApplicationService
   end
 
   private
-
-  def processed_params
-    @update_params.tap do |params|
-      processed_params = process_description(params)
-      process_outcome(processed_params)
-    end
-  end
-
-  def process_description(original_params)
-    original_params.tap do |params|
-      next if params[:description].nil?
-
-      params[:description_html] = MarkdownParser.new(@user, params[:description], @topic).call
-    end
-  end
-
-  def process_outcome(original_params)
-    original_params.tap do |params|
-      next if params[:outcome].nil?
-
-      if params[:outcome].empty?
-        params[:outcome] = nil
-        params[:outcome_html] = nil
-      elsif params[:outcome].present?
-        params[:outcome_html] = MarkdownParser.new(@user, params[:outcome], @topic).call
-      end
-    end
-  end
 
   def notify_users!(users, action)
     users.pluck(:id).each do |target_user_id|

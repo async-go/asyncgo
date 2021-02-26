@@ -7,17 +7,17 @@
 .row
   .col-lg-8.border
     %h6.mt-2.text-secondary.small Description
-    %div!= @topic.description_html
+    %div!= @topic.description
 
   .col-lg-4.border
     %h6.mt-2.text-secondary.small
       Outcome
       - if @topic.active?
         (Work in Progress)
-    - if @topic.outcome_html.blank?
+    - if @topic.outcome.blank?
       %p Content has not been started yet.
     - else
-      %div!= @topic.outcome_html
+      %div!= @topic.outcome
 
 .row
   .col-lg-4.my-3

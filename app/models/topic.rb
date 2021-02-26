@@ -9,9 +9,7 @@ class Topic < ApplicationRecord
 
   validates :title, presence: { allow_blank: false }
   validates :description, presence: { allow_blank: false }
-  validates :description_html, presence: true
   validates :outcome, presence: { allow_blank: false, allow_empty: false, allow_nil: true }
-  validates :outcome_html, presence: { if: :outcome? }
 
   attr_accessor :description_checksum, :outcome_checksum
 
@@ -20,6 +18,9 @@ class Topic < ApplicationRecord
 
   belongs_to :user
   belongs_to :team
+
+  has_rich_text :description  
+  has_rich_text :outcome
 
   has_many :comments, dependent: :destroy
 
