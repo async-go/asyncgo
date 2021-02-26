@@ -19,7 +19,7 @@ class Topic < ApplicationRecord
   belongs_to :user
   belongs_to :team
 
-  has_rich_text :description  
+  has_rich_text :description
   has_rich_text :outcome
 
   has_many :comments, dependent: :destroy
