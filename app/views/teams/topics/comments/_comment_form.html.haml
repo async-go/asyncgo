@@ -1,6 +1,5 @@
 - submit_action = comment.persisted? ? 'Update Comment' : 'Create Comment'
-= form_with(model: comment, url: [comment.topic.team, comment.topic, comment],
-  local: true) do |form|
+= form_with(model: comment, url: [comment.topic.team, comment.topic, comment]) do |form|
   .mb-1.visually-hidden
     = form.label :body
   .mb-3

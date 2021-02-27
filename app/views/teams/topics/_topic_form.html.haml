@@ -1,5 +1,5 @@
 - submit_action = topic.persisted? ? 'Update Topic' : 'Create Topic'
-= form_with(model: topic, url: [topic.team, topic], local: true) do |form|
+= form_with(model: topic, url: [topic.team, topic]) do |form|
   = form.hidden_field :description_checksum, value: string_checksum(topic.description)
   = form.hidden_field :outcome_checksum, value: string_checksum(topic.outcome)
   .mb-3

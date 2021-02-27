@@ -12,7 +12,7 @@ module Users
         redirect_to edit_user_path(@preference.user),
                     flash: { success: 'User preferences were successfully updated.' }
       else
-        render 'users/edit'
+        render 'users/edit', status: :unprocessable_entity
       end
     end
 

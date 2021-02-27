@@ -27,7 +27,7 @@ class TeamsController < Teams::ApplicationController
       redirect_to edit_team_path(@team),
                   flash: { success: 'Team was successfully created.' }
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 

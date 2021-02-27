@@ -44,7 +44,7 @@ module Teams
         redirect_to team_topic_path(@topic.team, @topic),
                     flash: { success: 'Topic was successfully created.' }
       else
-        render :new
+        render :new, status: :unprocessable_entity
       end
     end
 
@@ -56,7 +56,7 @@ module Teams
         redirect_to team_topic_path(@topic.team, @topic),
                     flash: { success: 'Topic was successfully updated.' }
       else
-        render :edit
+        render :edit, status: :unprocessable_entity
       end
     end
 

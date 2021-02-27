@@ -97,11 +97,13 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 
-  # Retry system tests 5 times
-  config.verbose_retry = true
-  # Show which exception failed the example
-  config.display_try_failure_messages = true
-  config.around :each, type: :system do |ex|
-    ex.run_with_retry(retry: 5)
+  if ENV['CI']
+    # Retry system tests 5 times
+    config.verbose_retry = true
+    # Show which exception failed the example
+    config.display_try_failure_messages = true
+    config.around :each, type: :system do |ex|
+      ex.run_with_retry(retry: 5)
+    end
   end
 end

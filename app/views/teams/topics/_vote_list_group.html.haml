@@ -30,11 +30,11 @@
                   end
 
     - if user_vote
-      = form_with(model: user_vote, url: form_path + [user_vote], local: true,
+      = form_with(model: user_vote, url: form_path + [user_vote],
         method: :delete) do |remove_vote_form|
         = remove_vote_form.hidden_field :id
         = remove_vote_form.submit content, class: 'list-group-item list-group-item-action active'
     - else
-      = form_with(model: Vote, url: form_path + [:votes], local: true) do |add_vote_form|
+      = form_with(model: Vote, url: form_path + [:votes]) do |add_vote_form|
         = add_vote_form.hidden_field :emoji, value: emoji_name
         = add_vote_form.submit content, class: 'list-group-item list-group-item-action'
