@@ -9,12 +9,12 @@
     = csrf_meta_tags
     = csp_meta_tag
     = Gon::Base.render_data(camel_case: true)
-    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload'
     = javascript_include_tag 'https://consent.cookiebot.com/uc.js',
         id: 'cookiebot', type: 'text/javascript', 'data-blockingmode': 'auto',
         'data-cbid': '7e1bb1be-facd-4cd1-aef0-b0198b0ec955'
     = yield :page_specific_javascripts
-    = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+    = javascript_pack_tag 'application', 'data-turbo-track': 'reload'
     = favicon_link_tag image_path('logo.svg')
   %body
     %header.sticky-top.px-2.bg-white.border-bottom.shadow-sm.mb-5
