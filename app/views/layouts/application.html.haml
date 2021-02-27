@@ -54,8 +54,10 @@
                     'data-bs-toggle': 'dropdown', 'aria-haspopup': 'true',
                     'aria-expanded': 'false' } Sign in
                   %ul.dropdown-menu{ 'aria-labelledby': 'signinDropdown' }
-                    %li= button_to 'Google', '/auth/google_oauth2', class: 'dropdown-item'
-                    %li= button_to 'GitHub', '/auth/github', class: 'dropdown-item'
+                    %li= button_to 'Google', '/auth/google_oauth2',
+                      'data-turbo': false, class: 'dropdown-item'
+                    %li= button_to 'GitHub', '/auth/github',
+                      'data-turbo': false, class: 'dropdown-item'
     %main.container.mt-4.mb-3{ role: 'main' }
       .mt-2
         - if flash.any?

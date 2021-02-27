@@ -32,7 +32,7 @@ module Teams
           redirect_to team_topic_path(@comment.topic.team, @comment.topic),
                       flash: { success: 'Comment was successfully updated.' }
         else
-          render :edit
+          render :edit, status: :unprocessable_entity
         end
       end
 

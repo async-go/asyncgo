@@ -17,7 +17,7 @@ RSpec.describe 'Comments', type: :system do
     fill_in 'comment[body]', with: '__Sample content__'
     click_button 'Create Comment'
 
-    expect(page.body).to include('<strong>Sample content</strong>')
+    expect(page).to have_selector('strong', text: 'Sample content')
   end
 
   it 'allows the user to update a comment' do
@@ -30,7 +30,10 @@ RSpec.describe 'Comments', type: :system do
     click_link comment.topic.title
     click_link 'Edit Comment'
 
-    find(:fillable_field, 'comment[body]').send_keys('This is updated content')
+    expect(page).to have_selector(
+      "form[action='#{team_topic_comment_path(comment.topic.team, comment.topic, comment)}']"
+    )
+    fill_in 'comment[body]', with: 'This is updated content'
     click_button 'Update Comment'
 
     expect(page).to have_text('This is updated content')
@@ -53,10 +56,10 @@ RSpec.describe 'Comments', type: :system do
       find("input[type=submit][value='#{emoji} 0']").click
     end
 
+    expect(page).to have_selector("input[type=submit][value='#{emoji} 1']")
     remove_upvote_path = "#{upvote_path}/#{comment.votes.last.id}"
     remove_upvote_form = find("form[action='#{remove_upvote_path}']", match: :first)
     within(remove_upvote_form) do
-      expect(page).to have_selector("input[type=submit][value='#{emoji} 1']")
       find("input[type=submit][value='#{emoji} 1']").click
     end
 

@@ -29,7 +29,7 @@ RSpec.describe 'Topics', type: :system do
     click_button 'Create Topic'
 
     expect(page).to have_text('Sample title')
-    expect(page.body).to include('<strong>Sample topic content</strong>')
+    expect(page).to have_selector('strong', text: 'Sample topic content')
   end
 
   it 'allows the user to edit a topic' do
@@ -98,7 +98,7 @@ RSpec.describe 'Topics', type: :system do
     fill_in 'topic[outcome]', with: '__Sample outcome__'
     click_button 'Update Topic'
 
-    expect(page.body).to include('<strong>Sample outcome</strong>')
+    expect(page).to have_selector('strong', text: 'Sample outcome')
   end
 
   it 'allows the user to close and open the topic' do
