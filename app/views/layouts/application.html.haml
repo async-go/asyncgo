@@ -10,11 +10,8 @@
     = csp_meta_tag
     = Gon::Base.render_data(camel_case: true)
     = stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload'
-    = javascript_include_tag 'https://consent.cookiebot.com/uc.js',
-        id: 'cookiebot', type: 'text/javascript', 'data-blockingmode': 'auto',
-        'data-cbid': '7e1bb1be-facd-4cd1-aef0-b0198b0ec955'
     = yield :page_specific_javascripts
-    = javascript_pack_tag 'application', 'data-turbo-track': 'reload'
+    = javascript_pack_tag 'application', 'data-turbo-track': 'reload', defer: true
     = favicon_link_tag image_path('logo.svg')
   %body
     %header.sticky-top.px-2.bg-white.border-bottom.shadow-sm.mb-5
@@ -59,8 +56,8 @@
                     %li= button_to 'GitHub', '/auth/github',
                       'data-turbo': false, class: 'dropdown-item'
     %main.container.mt-4.mb-3{ role: 'main' }
-      .mt-2
-        - if flash.any?
+      - if flash.any?
+        .mt-2
           - flash.each do |type, message|
             .alert.alert-dismissible.fade.show{ class: "alert-#{type}", role: 'alert' }
               %span= message
