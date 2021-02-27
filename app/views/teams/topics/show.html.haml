@@ -30,17 +30,16 @@
 
   .col-lg-2.my-3
     - if @topic.active?
-      = form_with(model: @topic, url: [@topic.team, @topic], local: true) do |form|
+      = form_with(model: @topic, url: [@topic.team, @topic]) do |form|
         = form.hidden_field :status, value: :closed
         = form.submit 'Resolve Topic', class: 'btn btn-success'
     - else
-      = form_with(model: @topic, url: [@topic.team, @topic], local: true) do |form|
+      = form_with(model: @topic, url: [@topic.team, @topic]) do |form|
         = form.hidden_field :status, value: :active
         = form.submit 'Reopen Topic', class: 'btn btn-primary'
 
   .col-lg-2.my-3
-    = form_with(url: team_topic_subscribe_path(@topic.team, @topic),
-                local: true) do |subscription_form|
+    = form_with(url: team_topic_subscribe_path(@topic.team, @topic)) do |subscription_form|
       - if user_subscribed?(@topic)
         = subscription_form.hidden_field :subscribed, value: 0
         = subscription_form.submit 'Unwatch Topic', class: 'btn btn-secondary'

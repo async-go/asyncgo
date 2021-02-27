@@ -4,8 +4,7 @@
   .col.lg-12.my-3
     %h3 Invite users
     %p.lead Invite users to join your team.
-    = form_with(model: User, url: [@team, :users],
-      local: true, class: 'g-3') do |invite_user_form|
+    = form_with(model: User, url: [@team, :users], class: 'g-3') do |invite_user_form|
       .row
         .col-lg-10
           .input-group
@@ -36,7 +35,7 @@
   .col-lg-12
     %h3 Support/Feedback Form
     %p.lead Use this form to contact support and/or provide product feedback.
-    = form_with(url: team_support_path(@team), local: true, class: 'g-3') do |support_form|
+    = form_with(url: team_support_path(@team), class: 'g-3') do |support_form|
       .input-group.mb-3
         .input-group-text
           = support_form.label :body
