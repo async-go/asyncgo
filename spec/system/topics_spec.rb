@@ -58,12 +58,13 @@ RSpec.describe 'Topics', type: :system do
     click_link topic.title
     click_link 'Edit Topic'
 
+    update_topic_path = team_topic_path(topic.team, topic)
+    expect(page).to have_selector("form[action='#{update_topic_path}']")
     fill_in 'topic[description]', with: 'This is an update'
     topic.update!(description: 'This is an external update',
+                  description_html: '<p>This is an external update',
                   description_checksum: Digest::MD5.hexdigest(topic.description))
-    click_button 'Update Topic'
-
-    expect(page).to have_text("Description #{Topic::CHECKSUM_ERROR_MESSAGE}")
+    expect(page).to have_text('This is an external update')
   end
 
   it 'prevents overwriting topic updates for outcome' do
@@ -76,13 +77,13 @@ RSpec.describe 'Topics', type: :system do
     click_link topic.title
     click_link 'Edit Topic'
 
+    update_topic_path = team_topic_path(topic.team, topic)
+    expect(page).to have_selector("form[action='#{update_topic_path}']")
     fill_in 'topic[outcome]', with: 'This is an update'
     topic.update!(outcome: 'This is an external update',
                   outcome_html: '<p>This is an external update</p>',
                   outcome_checksum: Digest::MD5.hexdigest(''))
-    click_button 'Update Topic'
-
-    expect(page).to have_text("Outcome #{Topic::CHECKSUM_ERROR_MESSAGE}")
+    expect(page).to have_text('This is an external update')
   end
 
   it 'allows the user to summarize an outcome using markdown' do

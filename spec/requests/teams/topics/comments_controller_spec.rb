@@ -8,6 +8,8 @@ RSpec.describe Teams::Topics::CommentsController, type: :request do
   describe 'GET index' do
     subject(:get_index) { get "/teams/#{topic.team.id}/topics/#{topic.id}/comments" }
 
+    let!(:comment) { FactoryBot.create(:comment, topic: topic, user: topic.user) }
+
     context 'when user is authorized' do
       before do
         sign_in(topic.user)
@@ -16,7 +18,7 @@ RSpec.describe Teams::Topics::CommentsController, type: :request do
       it 'renders the index page' do
         get_index
 
-        expect(response.body).to include('Comments')
+        expect(response.body).to include(comment.body)
       end
     end
 
@@ -109,7 +111,7 @@ RSpec.describe Teams::Topics::CommentsController, type: :request do
         it 'sets the flash' do
           post_create
 
-          expect(controller.flash[:danger]).to eq("Body can't be blank, Body html can't be blank")
+          expect(controller.flash[:danger]).to eq('There was an error while saving the comment.')
         end
 
         it 'redirects to topic' do
