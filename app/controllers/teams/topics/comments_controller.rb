@@ -3,6 +3,16 @@
 module Teams
   module Topics
     class CommentsController < Teams::Topics::ApplicationController
+      include Pagy::Backend
+
+      def index
+        authorize(topic, policy_class: CommentPolicy)
+        @topic = topic
+        @pagy, @comments = pagy(
+          topic.comments.includes(:user, votes: :user).order(:created_at)
+        )
+      end
+
       def new
         @comment = topic.comments.build
         authorize(@comment)

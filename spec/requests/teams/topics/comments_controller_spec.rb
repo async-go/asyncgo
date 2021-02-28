@@ -5,6 +5,24 @@ require './spec/support/unauthorized_user_examples'
 RSpec.describe Teams::Topics::CommentsController, type: :request do
   let(:topic) { FactoryBot.create(:topic) }
 
+  describe 'GET index' do
+    subject(:get_index) { get "/teams/#{topic.team.id}/topics/#{topic.id}/comments" }
+
+    context 'when user is authorized' do
+      before do
+        sign_in(topic.user)
+      end
+
+      it 'renders the index page' do
+        get_index
+
+        expect(response.body).to include('Comments')
+      end
+    end
+
+    include_examples 'unauthorized user examples'
+  end
+
   describe 'GET new' do
     subject(:get_new) { get "/teams/#{topic.team.id}/topics/#{topic.id}/comments/new" }
 

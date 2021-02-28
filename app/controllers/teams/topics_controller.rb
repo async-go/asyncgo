@@ -19,9 +19,6 @@ module Teams
     def show
       @topic = topic
       authorize(@topic)
-
-      @pagy, @topic_comments = pagy(@topic.comments.order(:created_at))
-      @topic_comments = @topic_comments.includes(:user, votes: :user)
     end
 
     def new
