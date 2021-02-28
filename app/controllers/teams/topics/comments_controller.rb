@@ -18,6 +18,11 @@ module Teams
         authorize(@comment)
       end
 
+      def show
+        @comment = comment
+        authorize(@comment)
+      end
+
       def edit
         @comment = comment
         authorize(@comment)
@@ -25,18 +30,20 @@ module Teams
 
       # rubocop:disable Metrics/MethodLength
       def create
-        comment = topic.comments.build(create_params)
+        @comment = topic.comments.build(create_params)
         authorize(comment)
 
-        comment_flash = if update_comment(comment, create_params)
-                          { success: 'Comment was successfully created.' }
-                        else
-                          { danger: 'There was an error while saving the comment.' }
-                        end
+        success = update_comment(@comment, create_params)
 
         respond_to do |format|
           format.turbo_stream
-          format.html { redirect_to team_topic_path(comment.topic.team, comment.topic), flash: comment_flash }
+          format.html do
+            if success
+              redirect_to comment_path(@comment), flash: { success: 'Comment was successfully created.' }
+            else
+              render :new, status: :unprocessable_entity
+            end
+          end
         end
       end
       # rubocop:enable Metrics/MethodLength
@@ -46,8 +53,7 @@ module Teams
         authorize(@comment)
 
         if update_comment(@comment, comment_params)
-          redirect_to team_topic_path(@comment.topic.team, @comment.topic),
-                      flash: { success: 'Comment was successfully updated.' }
+          redirect_to comment_path(@comment), flash: { success: 'Comment was successfully updated.' }
         else
           render :edit, status: :unprocessable_entity
         end
@@ -69,6 +75,10 @@ module Teams
 
       def update_comment(comment, comment_params)
         CommentUpdater.new(current_user, comment, comment_params).call
+      end
+
+      def comment_path(comment)
+        team_topic_comment_path(comment.topic.team, comment.topic, comment)
       end
     end
   end
