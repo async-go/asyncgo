@@ -8,13 +8,13 @@ ruby '3.0.0'
 # Core
 gem 'bootsnap', '~> 1.7.2', require: false # Reduces boot times through caching; required in config/boot.rb
 gem 'gon', '~> 6.4.0' # Pass variables from Rails to JS
+gem 'hotwire-rails', '~> 0.1.3' # HTML over the wire. Read more: https://hotwire.dev/
 gem 'pg', '~> 1.2.3' # Use pg as the database for Active Record
 gem 'puma', '~> 5.2.1' # Use Puma as the app server
 gem 'pundit', '~> 2.1.0' # Authorization via OO and plain Ruby classes
 gem 'rails', '~> 6.1.3'
 gem 'redis', '~> 4.2.5' # Use Redis adapter to run Action Cable in production
 gem 'sass-rails', '>= 6' # Use SCSS for stylesheets
-gem 'hotwire-rails', '~> 0.1.3' # HTML over the wire. Read more: https://hotwire.dev/
 gem 'webpacker', '~> 5.0' # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 
 # Other

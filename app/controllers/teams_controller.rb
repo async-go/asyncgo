@@ -2,7 +2,6 @@
 
 class TeamsController < Teams::ApplicationController
   include Pagy::Backend
-  include Pundit
 
   def edit
     @team = team

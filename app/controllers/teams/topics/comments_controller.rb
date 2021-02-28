@@ -3,8 +3,6 @@
 module Teams
   module Topics
     class CommentsController < Teams::Topics::ApplicationController
-      include Pundit
-
       def new
         @comment = topic.comments.build
         authorize(@comment)

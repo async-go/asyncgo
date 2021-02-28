@@ -3,8 +3,6 @@
 module Teams
   module Topics
     class VotesController < Teams::Topics::ApplicationController
-      include Pundit
-
       def create
         authorize(topic, policy_class: Teams::Topics::VotePolicy)
 

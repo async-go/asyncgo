@@ -4,8 +4,6 @@ module Teams
   module Topics
     module Comments
       class VotesController < Teams::Topics::Comments::ApplicationController
-        include Pundit
-
         def create
           authorize(comment, policy_class: Teams::Topics::Comments::VotePolicy)
 

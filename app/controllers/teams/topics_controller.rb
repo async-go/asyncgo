@@ -3,7 +3,6 @@
 module Teams
   class TopicsController < Teams::Topics::ApplicationController
     include Pagy::Backend
-    include Pundit
 
     def index
       authorize(team, policy_class: TopicPolicy)
