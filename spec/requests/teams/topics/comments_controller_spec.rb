@@ -5,6 +5,44 @@ require './spec/support/unauthorized_user_examples'
 RSpec.describe Teams::Topics::CommentsController, type: :request do
   let(:topic) { FactoryBot.create(:topic) }
 
+  describe 'GET index' do
+    subject(:get_index) { get "/teams/#{topic.team.id}/topics/#{topic.id}/comments" }
+
+    let!(:comment) { FactoryBot.create(:comment, topic: topic, user: topic.user) }
+
+    context 'when user is authorized' do
+      before do
+        sign_in(topic.user)
+      end
+
+      it 'renders the index page' do
+        get_index
+
+        expect(response.body).to include(comment.body)
+      end
+    end
+
+    include_examples 'unauthorized user examples'
+  end
+
+  describe 'GET new' do
+    subject(:get_new) { get "/teams/#{topic.team.id}/topics/#{topic.id}/comments/new" }
+
+    context 'when user is authorized' do
+      before do
+        sign_in(topic.user)
+      end
+
+      it 'renders the new page' do
+        get_new
+
+        expect(response.body).to include('Create Comment')
+      end
+    end
+
+    include_examples 'unauthorized user examples'
+  end
+
   describe 'GET edit' do
     subject(:get_edit) { get "/teams/#{topic.team.id}/topics/#{topic.id}/comments/#{comment.id}/edit" }
 
@@ -73,7 +111,7 @@ RSpec.describe Teams::Topics::CommentsController, type: :request do
         it 'sets the flash' do
           post_create
 
-          expect(controller.flash[:danger]).to eq("Body can't be blank, Body html can't be blank")
+          expect(controller.flash[:danger]).to eq('There was an error while saving the comment.')
         end
 
         it 'redirects to topic' do

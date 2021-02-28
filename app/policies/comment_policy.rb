@@ -1,9 +1,20 @@
 # frozen_string_literal: true
 
 class CommentPolicy < ApplicationPolicy
+  def index?
+    user &&
+      record.team == user.team
+  end
+
+  def new?
+    user &&
+      record.topic.team == user.team
+  end
+
   def edit?
     user &&
-      record.user == user
+      record.user == user &&
+      record.topic.active?
   end
 
   def create?

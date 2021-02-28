@@ -2,8 +2,6 @@
 
 module Teams
   class UsersController < Teams::ApplicationController
-    include Pundit
-
     def index
       authorize(team, policy_class: Teams::UserPolicy)
 

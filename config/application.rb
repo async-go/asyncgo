@@ -20,8 +20,5 @@ module Asyncgo
     #
     config.time_zone = 'UTC'
     # config.eager_load_paths << Rails.root.join("extras")
-
-    # Include only helpers that correspond to controller path and name
-    config.action_controller.include_all_helpers = false
   end
 end

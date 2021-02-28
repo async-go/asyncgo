@@ -2,8 +2,6 @@
 
 module Users
   class PreferencesController < ::Users::ApplicationController
-    include Pundit
-
     def update
       @preference = user.preference
       authorize(@preference, policy_class: Users::PreferencePolicy)

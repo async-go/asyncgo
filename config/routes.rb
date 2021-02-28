@@ -30,7 +30,7 @@ Rails.application.routes.draw do
         post :subscribe
 
         scope module: :topics do
-          resources :comments, only: %i[edit create update] do
+          resources :comments, only: %i[index new edit create update] do
             scope module: :comments do
               resources :votes, only: %i[create destroy]
             end

@@ -3,26 +3,43 @@
 module Teams
   module Topics
     class CommentsController < Teams::Topics::ApplicationController
-      include Pundit
+      include Pagy::Backend
+
+      def index
+        authorize(topic, policy_class: CommentPolicy)
+        @topic = topic
+        @pagy, @comments = pagy(
+          topic.comments.includes(:user, votes: :user).order(:created_at)
+        )
+      end
+
+      def new
+        @comment = topic.comments.build
+        authorize(@comment)
+      end
 
       def edit
         @comment = comment
         authorize(@comment)
       end
 
+      # rubocop:disable Metrics/MethodLength
       def create
         comment = topic.comments.build(create_params)
         authorize(comment)
 
         comment_flash = if update_comment(comment, create_params)
                           { success: 'Comment was successfully created.' }
-
                         else
-                          { danger: comment.errors.full_messages.join(', ') }
+                          { danger: 'There was an error while saving the comment.' }
                         end
 
-        redirect_to team_topic_path(comment.topic.team, comment.topic), flash: comment_flash
+        respond_to do |format|
+          format.turbo_stream
+          format.html { redirect_to team_topic_path(comment.topic.team, comment.topic), flash: comment_flash }
+        end
       end
+      # rubocop:enable Metrics/MethodLength
 
       def update
         @comment = comment

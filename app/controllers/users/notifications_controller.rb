@@ -3,7 +3,6 @@
 module Users
   class NotificationsController < ::Users::ApplicationController
     include Pagy::Backend
-    include Pundit
 
     def index
       authorize(user, policy_class: NotificationPolicy)

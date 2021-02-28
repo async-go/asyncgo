@@ -4,8 +4,6 @@ module Teams
   module Topics
     module Comments
       class VotesController < Teams::Topics::Comments::ApplicationController
-        include Pundit
-
         def create
           authorize(comment, policy_class: Teams::Topics::Comments::VotePolicy)
 
@@ -15,7 +13,7 @@ module Teams
                          { danger: 'There was an error while adding the vote.' }
                        end
 
-          redirect_to team_topic_path(comment.topic.team, comment.topic), flash: vote_flash
+          redirect_to team_topic_comments_path(comment.topic.team, comment.topic), flash: vote_flash
         end
 
         def destroy
@@ -23,7 +21,7 @@ module Teams
           authorize([:teams, :topics, :comments, vote])
 
           comment.votes.destroy(vote)
-          redirect_to team_topic_path(comment.topic.team, comment.topic),
+          redirect_to team_topic_comments_path(comment.topic.team, comment.topic),
                       flash: { success: 'Vote was successfully removed.' }
         end
 

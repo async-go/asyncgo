@@ -36,7 +36,7 @@ RSpec.describe Teams::Topics::Comments::VotesController, type: :request do
         end
 
         it 'redirects to topic page' do
-          expect(post_create).to redirect_to(team_topic_path(comment.topic.team, comment.topic))
+          expect(post_create).to redirect_to(team_topic_comments_path(comment.topic.team, comment.topic))
         end
       end
 
@@ -54,7 +54,7 @@ RSpec.describe Teams::Topics::Comments::VotesController, type: :request do
         end
 
         it 'redirects to topic page' do
-          expect(post_create).to redirect_to(team_topic_path(comment.topic.team, comment.topic))
+          expect(post_create).to redirect_to(team_topic_comments_path(comment.topic.team, comment.topic))
         end
       end
     end
@@ -87,7 +87,7 @@ RSpec.describe Teams::Topics::Comments::VotesController, type: :request do
       end
 
       it 'redirects to topic page' do
-        expect(delete_destroy).to redirect_to(team_topic_path(comment.topic.team, comment.topic))
+        expect(delete_destroy).to redirect_to(team_topic_comments_path(comment.topic.team, comment.topic))
       end
     end
 
