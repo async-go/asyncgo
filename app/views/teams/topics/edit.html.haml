@@ -3,5 +3,4 @@
 
   = link_to 'Back to Topic', team_topic_path(@topic.team, @topic)
 
-  = render partial: 'shared/form_errors', locals: { model: @topic }
   = render partial: 'topic_form', locals: { topic: @topic }
