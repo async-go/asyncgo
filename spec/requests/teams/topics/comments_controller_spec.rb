@@ -43,6 +43,26 @@ RSpec.describe Teams::Topics::CommentsController, type: :request do
     include_examples 'unauthorized user examples'
   end
 
+  describe 'GET show' do
+    subject(:get_show) { get "/teams/#{topic.team.id}/topics/#{topic.id}/comments/#{comment.id}" }
+
+    let(:comment) { FactoryBot.create(:comment, topic: topic) }
+
+    context 'when user is authorized' do
+      before do
+        sign_in(topic.user)
+      end
+
+      it 'renders the new page' do
+        get_show
+
+        expect(response.body).to include(comment.body)
+      end
+    end
+
+    include_examples 'unauthorized user examples'
+  end
+
   describe 'GET edit' do
     subject(:get_edit) { get "/teams/#{topic.team.id}/topics/#{topic.id}/comments/#{comment.id}/edit" }
 
@@ -88,10 +108,10 @@ RSpec.describe Teams::Topics::CommentsController, type: :request do
           expect(controller.flash[:success]).to eq('Comment was successfully created.')
         end
 
-        it 'redirects to topic' do
+        it 'redirects to comment' do
           post_create
 
-          expect(response).to redirect_to(team_topic_path(topic.team, topic))
+          expect(response).to redirect_to(team_topic_comment_path(topic.team, topic, Comment.last))
         end
 
         it 'subscribes the user to the topic' do
@@ -108,16 +128,10 @@ RSpec.describe Teams::Topics::CommentsController, type: :request do
           expect { post_create }.not_to change(Comment, :count).from(0)
         end
 
-        it 'sets the flash' do
+        it 'renders the errors' do
           post_create
 
-          expect(controller.flash[:danger]).to eq('There was an error while saving the comment.')
-        end
-
-        it 'redirects to topic' do
-          post_create
-
-          expect(response).to redirect_to(team_topic_path(topic.team, topic))
+          expect(response.body).to include('Body can&#39;t be blank')
         end
 
         it 'does not subscribe user to the topic' do
@@ -159,7 +173,7 @@ RSpec.describe Teams::Topics::CommentsController, type: :request do
         it 'redirects to topic' do
           patch_update
 
-          expect(response).to redirect_to(team_topic_path(topic.team, topic))
+          expect(response).to redirect_to(team_topic_comment_path(topic.team, topic, comment))
         end
 
         it 'does not subscribe user to the topic' do

@@ -13,7 +13,7 @@ module Teams
                          { danger: 'There was an error while adding the vote.' }
                        end
 
-          redirect_to team_topic_comments_path(comment.topic.team, comment.topic), flash: vote_flash
+          redirect_to comment_path(comment), flash: vote_flash
         end
 
         def destroy
@@ -21,11 +21,14 @@ module Teams
           authorize([:teams, :topics, :comments, vote])
 
           comment.votes.destroy(vote)
-          redirect_to team_topic_comments_path(comment.topic.team, comment.topic),
-                      flash: { success: 'Vote was successfully removed.' }
+          redirect_to comment_path(comment), flash: { success: 'Vote was successfully removed.' }
         end
 
         private
+
+        def comment_path(comment)
+          team_topic_comment_path(comment.topic.team, comment.topic, comment)
+        end
 
         def create_params
           params.require(:vote).permit(:emoji).merge(user: current_user, votable: comment)

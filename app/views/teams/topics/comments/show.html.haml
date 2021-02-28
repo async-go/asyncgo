@@ -1,0 +1,5 @@
+.row.my-5
+  %h1.visually-hidden= @topic.title
+
+  = turbo_frame_tag "comment_#{@comment.id}" do
+    = render partial: 'comment', locals: { comment: @comment }
