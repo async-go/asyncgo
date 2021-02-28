@@ -24,7 +24,10 @@ module Teams
                           { danger: comment.errors.full_messages.join(', ') }
                         end
 
-        redirect_to team_topic_path(comment.topic.team, comment.topic), flash: comment_flash
+        respond_to do |format|
+          format.turbo_stream
+          format.html { redirect_to team_topic_path(comment.topic.team, comment.topic), flash: comment_flash }
+        end
       end
 
       def update
