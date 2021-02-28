@@ -1,7 +1,7 @@
 .row.my-5
-  %h1= @topic.title
+  %h1.visually-hidden= @topic.title
 
-  = link_to 'Back', :back
-
-  = render partial: 'shared/form_errors', locals: { model: @comment }
-  = render partial: 'comment_form', locals: { comment: @comment }
+  = turbo_frame_tag "comment_#{@comment.id}" do
+    = render partial: 'comment_form', locals: { comment: @comment }
+    = link_to 'Back to Topic', team_topic_path(@comment.topic.team, @comment.topic),
+      class: 'btn btn-secondary my-3'
