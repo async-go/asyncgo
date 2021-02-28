@@ -5,6 +5,11 @@ module Teams
     class CommentsController < Teams::Topics::ApplicationController
       include Pundit
 
+      def new
+        @comment = topic.comments.build
+        authorize(@comment)
+      end
+
       def edit
         @comment = comment
         authorize(@comment)

@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 
 class CommentPolicy < ApplicationPolicy
+  def new?
+    user &&
+      record.topic.team == user.team
+  end
+
   def edit?
     user &&
       record.user == user
