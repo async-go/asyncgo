@@ -58,7 +58,7 @@
           = render partial: 'teams/topics/comments/comment', locals: { comment: comment }
     - if @topic.active?
       %li.list-group-item
-        = render partial: 'teams/topics/comments/comment_form',
-          locals: { comment: @topic.comments.build }
+        = turbo_frame_tag 'new_comment', src: new_team_topic_comment_path(@topic.team, @topic),
+          target: '_top'
 .row.mt-3
   != pagy_bootstrap_nav(@pagy)
