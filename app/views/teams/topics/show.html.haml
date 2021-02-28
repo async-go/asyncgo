@@ -24,7 +24,7 @@
     .col-lg-4.my-3
       %ul.list-group.list-group-horizontal
         = render partial: 'vote_list_group', locals: { votable: @topic }
-    .col-lg-4.my-3.small
+    .col-lg-4.my-3
       - if @topic.active?
         = link_to 'Edit Topic', edit_team_topic_path(@topic.team, @topic),
           class: 'btn btn-secondary'
@@ -54,20 +54,24 @@
   %ul.list-group.list-group-flush
     - @topic_comments.each do |comment|
       %li.list-group-item.mb-2
-        .row
-          .col-lg-2
-            = image_tag "#{comment.user.gravatar_url}?s=20&d=retro",
-              class: 'me-1 gravatar-img', alt: ''
-            = link_to comment.user.printable_name, "mailto:#{comment.user.email}"
-          .col-lg-1
-            %span= comment.created_at.strftime('%b %e')
-          .col-lg-9
-            %div!= comment.body_html
-            - if @topic.active? && policy(comment).edit?
-              %span.small= link_to 'Edit Comment',
-                edit_team_topic_comment_path(@topic.team, @topic, comment)
-        .row.my-3
-          = render partial: 'vote_list_group', locals: { votable: comment }
+        = turbo_frame_tag "comment_#{comment.id}" do
+          .row
+            .col-lg-2
+              = image_tag "#{comment.user.gravatar_url}?s=20&d=retro",
+                class: 'me-1 gravatar-img', alt: ''
+              = link_to comment.user.printable_name, "mailto:#{comment.user.email}"
+            .col-lg-1
+              %span= comment.created_at.strftime('%b %e')
+            .col-lg-9
+              %div!= comment.body_html
+          .row.my-3
+            .col-lg-2
+              = render partial: 'vote_list_group', locals: { votable: comment }
+            .col-lg-4
+              - if @topic.active? && policy(comment).edit?
+                = link_to 'Edit Comment',
+                  edit_team_topic_comment_path(@topic.team, @topic, comment),
+                  class: 'btn btn-secondary'
     - if @topic.active?
       %li.list-group-item
         = render partial: 'teams/topics/comments/comment_form',
