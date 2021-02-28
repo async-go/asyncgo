@@ -13,5 +13,5 @@
   .col-lg-4
     - if policy(comment).edit?
       = link_to 'Edit Comment',
-        edit_team_topic_comment_path(@topic.team, @topic, comment),
+        edit_team_topic_comment_path(comment.topic.team, comment.topic, comment),
         class: 'btn btn-secondary'
