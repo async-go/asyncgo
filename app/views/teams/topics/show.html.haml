@@ -55,23 +55,7 @@
     - @topic_comments.each do |comment|
       %li.list-group-item.mb-2
         = turbo_frame_tag "comment_#{comment.id}" do
-          .row
-            .col-lg-2
-              = image_tag "#{comment.user.gravatar_url}?s=20&d=retro",
-                class: 'me-1 gravatar-img', alt: ''
-              = link_to comment.user.printable_name, "mailto:#{comment.user.email}"
-            .col-lg-1
-              %span= comment.created_at.strftime('%b %e')
-            .col-lg-9
-              %div!= comment.body_html
-          .row.my-3
-            .col-lg-2
-              = render partial: 'vote_list_group', locals: { votable: comment }
-            .col-lg-4
-              - if @topic.active? && policy(comment).edit?
-                = link_to 'Edit Comment',
-                  edit_team_topic_comment_path(@topic.team, @topic, comment),
-                  class: 'btn btn-secondary'
+          = render partial: 'teams/topics/comments/comment', locals: { comment: comment }
     - if @topic.active?
       %li.list-group-item
         = render partial: 'teams/topics/comments/comment_form',
