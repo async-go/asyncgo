@@ -51,14 +51,13 @@
 %h5.mt-2.border-bottom Comments
 
 .row
-  %ul.list-group.list-group-flush
+  %ul.list-group.list-group-flush#comments
     - @topic_comments.each do |comment|
       %li.list-group-item.mb-2
         = turbo_frame_tag "comment_#{comment.id}" do
           = render partial: 'teams/topics/comments/comment', locals: { comment: comment }
-    - if @topic.active?
-      %li.list-group-item
-        = turbo_frame_tag 'new_comment', src: new_team_topic_comment_path(@topic.team, @topic),
-          target: '_top'
+  - if @topic.active?
+    = turbo_frame_tag 'new_comment', src: new_team_topic_comment_path(@topic.team, @topic),
+        target: '_top'
 .row.mt-3
   != pagy_bootstrap_nav(@pagy)
