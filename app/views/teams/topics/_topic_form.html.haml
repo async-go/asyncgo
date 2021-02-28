@@ -3,27 +3,29 @@
   = render partial: 'shared/form_errors', locals: { model: topic }
   = form.hidden_field :description_checksum, value: string_checksum(topic.description)
   = form.hidden_field :outcome_checksum, value: string_checksum(topic.outcome)
-  .mb-3
-    .mb-1
-      = form.label :title
-    = form.text_field :title, required: true, class: 'form-control'
-  .mb-3
-    .mb-1
-      = form.label :description
-    = render partial: 'shared/markdown_text_area', locals: { form: form, name: :description,
-      options: { rows: '20', required: true, class: 'form-control mentionable' } }
-  .mb-3
-    .mb-1
-      = form.label :outcome
-    = render partial: 'shared/markdown_text_area', locals: { form: form, name: :outcome,
-      options: { rows: '20', class: 'form-control mentionable' } }
   .row
-    .col-lg-4.mb-3
+    .mb-3
+      .mb-1
+        = form.label :title
+      = form.text_field :title, required: true, class: 'form-control'
+  .row
+    .col-lg-8
+      .mb-1
+        = form.label :description
+      = render partial: 'shared/markdown_text_area', locals: { form: form, name: :description,
+        options: { rows: '20', required: true, class: 'form-control mentionable' } }
+    .col-lg-4
+      .mb-1
+        = form.label :outcome
+      = render partial: 'shared/markdown_text_area', locals: { form: form, name: :outcome,
+        options: { rows: '20', class: 'form-control mentionable' } }
+  .row
+    .col-lg-4
       .mb-1
         = form.label :due_date
       = form.date_field :due_date, class: 'form-control'
-
-  = form.submit submit_action, class: 'btn btn-primary'
+    .col-lg-2.mt-auto
+      = form.submit submit_action, class: 'btn btn-primary'
 
 = content_for :page_specific_javascripts do
   = javascript_pack_tag 'markdown-toolbar-element', defer: true

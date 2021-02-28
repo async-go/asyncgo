@@ -40,7 +40,7 @@ RSpec.describe 'Topics', type: :system do
     sign_in_user(user)
     click_link 'Topics'
     click_link topic.title
-    click_link 'Edit Topic Context'
+    click_link 'Edit Topic'
 
     fill_in 'topic[description]', with: 'This is an update'
     click_button 'Update Topic'
@@ -56,7 +56,7 @@ RSpec.describe 'Topics', type: :system do
     sign_in_user(user)
     click_link 'Topics'
     click_link topic.title
-    click_link 'Edit Topic Context'
+    click_link 'Edit Topic'
 
     fill_in 'topic[description]', with: 'This is an update'
     topic.update!(description: 'This is an external update',
@@ -74,7 +74,7 @@ RSpec.describe 'Topics', type: :system do
     sign_in_user(user)
     click_link 'Topics'
     click_link topic.title
-    click_link 'Edit Topic Context'
+    click_link 'Edit Topic'
 
     fill_in 'topic[outcome]', with: 'This is an update'
     topic.update!(outcome: 'This is an external update',
@@ -93,7 +93,7 @@ RSpec.describe 'Topics', type: :system do
     sign_in_user(user)
     click_link 'Topics'
     click_link topic.title
-    click_link 'Edit Topic Context'
+    click_link 'Edit Topic'
 
     fill_in 'topic[outcome]', with: '__Sample outcome__'
     click_button 'Update Topic'
