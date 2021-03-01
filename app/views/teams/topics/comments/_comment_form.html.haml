@@ -6,7 +6,7 @@
     = form.label :body
   .mb-3
     = render partial: 'shared/markdown_text_area', locals: { form: form, name: :body,
-      options: { rows: '10', required: true, class: 'form-control mentionable' } }
+      options: { rows: '5', required: true, class: 'form-control mentionable' } }
   = form.submit submit_action, class: 'btn btn-primary'
 
 = content_for :page_specific_javascripts do
