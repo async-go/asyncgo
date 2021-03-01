@@ -12,8 +12,6 @@
     = Gon::Base.render_data(camel_case: true)
     = stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbo-track': 'reload', defer: true
-    = javascript_include_tag
-      'https://cdn.jsdelivr.net/npm/bootstrap-dark-5@0.1/dist/js/darkmode.min.js'
     = favicon_link_tag image_path('logo.svg')
   %body
     %header.px-2.bg-white.border-bottom.shadow-sm.mb-5
