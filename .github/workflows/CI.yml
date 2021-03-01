@@ -25,17 +25,20 @@ jobs:
           key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
           restore-keys: |
             ${{ runner.os }}-gem-
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
       - uses: actions/cache@v2
-        name: Cache yarn dependencies
+        id: yarn-cache
         with:
-          path: vendor/yarn
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
       - name: Install bundler dependencies
         run: bundle install --without development production --jobs 4 --retry 3 --path vendor/bundle
       - name: Install node dependencies
-        run: bin/yarn install --production true --cache-folder vendor/yarn
+        run: bin/yarn install
       - name: Run rspec
         run: bundle exec rspec --tag ~type:system
         env:
@@ -64,17 +67,20 @@ jobs:
           key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
           restore-keys: |
             ${{ runner.os }}-gem-
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
       - uses: actions/cache@v2
-        name: Cache yarn dependencies
+        id: yarn-cache
         with:
-          path: vendor/yarn
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
       - name: Install bundler dependencies
         run: bundle install --without development production --jobs 4 --retry 3 --path vendor/bundle
       - name: Install node dependencies
-        run: bin/yarn install --production true --cache-folder vendor/yarn
+        run: bin/yarn install
       - name: Run rspec system specs
         run: bundle exec rspec --tag type:system
         env:
@@ -132,32 +138,36 @@ jobs:
     container: node:current-buster
     steps:
       - uses: actions/checkout@v2
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
       - uses: actions/cache@v2
-        name: Cache yarn dependencies
         id: yarn-cache
         with:
-          path: vendor/yarn
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
       - name: Install node dependencies
-        run: yarn install --cache-folder vendor/yarn
+        run: yarn install
       - name: Run standard
-        run: yarn exec standard
+        run: yarn standard
   markdownlint:
     runs-on: ubuntu-latest
     container: node:current-buster
     steps:
       - uses: actions/checkout@v2
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
       - uses: actions/cache@v2
-        name: Cache yarn dependencies
         id: yarn-cache
         with:
-          path: vendor/yarn
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
       - name: Install node dependencies
-        run: yarn install --cache-folder vendor/yarn
+        run: yarn install
       - name: Run markdownlint
-        run: yarn exec markdownlint "*.md"
+        run: yarn markdownlint "*.md"
