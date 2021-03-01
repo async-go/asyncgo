@@ -34,10 +34,19 @@
 
 /public/packs
 /public/packs-test
+
+# Ignore .env file
+.env
+
+# Ignore yarn files
 /node_modules
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
-
-# Ignore .env file
-.env
+.yarn/*
+!.yarn/patches
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
