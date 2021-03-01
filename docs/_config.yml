@@ -1,11 +1,11 @@
 title: AsyncGo Documentation
-url: 'https://docs.asyncgo.com'
+url: "https://docs.asyncgo.com"
 exclude:
   - styles/
 remote_theme: https://github.com/async-go/web-theme@main
 markdown: kramdown
 sass:
-    style: compressed
+  style: compressed
 plugins:
   - jekyll-sitemap
   - sass
