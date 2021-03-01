@@ -26,7 +26,3 @@
       = form.date_field :due_date, class: 'form-control'
     .col-lg-2.mt-auto
       = form.submit submit_action, class: 'btn btn-primary'
-
-= content_for :page_specific_javascripts do
-  = javascript_pack_tag 'markdown-toolbar-element', defer: true
-  = javascript_pack_tag 'tribute', defer: true

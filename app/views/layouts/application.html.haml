@@ -10,7 +10,6 @@
     = csp_meta_tag
     = Gon::Base.render_data(camel_case: true)
     = stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload'
-    = yield :page_specific_javascripts
     = javascript_pack_tag 'application', 'data-turbo-track': 'reload', defer: true
     = favicon_link_tag image_path('logo.svg')
   %body
