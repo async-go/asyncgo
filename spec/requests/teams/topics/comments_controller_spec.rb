@@ -5,26 +5,6 @@ require './spec/support/unauthorized_user_examples'
 RSpec.describe Teams::Topics::CommentsController, type: :request do
   let(:topic) { FactoryBot.create(:topic) }
 
-  describe 'GET index' do
-    subject(:get_index) { get "/teams/#{topic.team.id}/topics/#{topic.id}/comments" }
-
-    let!(:comment) { FactoryBot.create(:comment, topic: topic, user: topic.user) }
-
-    context 'when user is authorized' do
-      before do
-        sign_in(topic.user)
-      end
-
-      it 'renders the index page' do
-        get_index
-
-        expect(response.body).to include(comment.body)
-      end
-    end
-
-    include_examples 'unauthorized user examples'
-  end
-
   describe 'GET new' do
     subject(:get_new) { get "/teams/#{topic.team.id}/topics/#{topic.id}/comments/new" }
 
@@ -33,30 +13,10 @@ RSpec.describe Teams::Topics::CommentsController, type: :request do
         sign_in(topic.user)
       end
 
-      it 'renders the new page' do
+      it 'renders the edit page' do
         get_new
 
         expect(response.body).to include('Create Comment')
-      end
-    end
-
-    include_examples 'unauthorized user examples'
-  end
-
-  describe 'GET show' do
-    subject(:get_show) { get "/teams/#{topic.team.id}/topics/#{topic.id}/comments/#{comment.id}" }
-
-    let(:comment) { FactoryBot.create(:comment, topic: topic) }
-
-    context 'when user is authorized' do
-      before do
-        sign_in(topic.user)
-      end
-
-      it 'renders the new page' do
-        get_show
-
-        expect(response.body).to include(comment.body)
       end
     end
 
@@ -102,16 +62,10 @@ RSpec.describe Teams::Topics::CommentsController, type: :request do
           expect { post_create }.to change(Comment, :count).from(0).to(1)
         end
 
-        it 'sets the flash' do
+        it 'redirects to topic' do
           post_create
 
-          expect(controller.flash[:success]).to eq('Comment was successfully created.')
-        end
-
-        it 'redirects to comment' do
-          post_create
-
-          expect(response).to redirect_to(team_topic_comment_path(topic.team, topic, Comment.last))
+          expect(response).to redirect_to(team_topic_path(topic.team, topic))
         end
 
         it 'subscribes the user to the topic' do
@@ -128,16 +82,16 @@ RSpec.describe Teams::Topics::CommentsController, type: :request do
           expect { post_create }.not_to change(Comment, :count).from(0)
         end
 
-        it 'renders the errors' do
-          post_create
-
-          expect(response.body).to include('Body can&#39;t be blank')
-        end
-
         it 'does not subscribe user to the topic' do
           post_create
 
           expect(user.subscribed_topics).to be_empty
+        end
+
+        it 'renders the errors' do
+          post_create
+
+          expect(response.body).to include('Body can&#39;t be blank')
         end
       end
     end
@@ -173,7 +127,7 @@ RSpec.describe Teams::Topics::CommentsController, type: :request do
         it 'redirects to topic' do
           patch_update
 
-          expect(response).to redirect_to(team_topic_comment_path(topic.team, topic, comment))
+          expect(response).to redirect_to(team_topic_path(topic.team, topic))
         end
 
         it 'does not subscribe user to the topic' do

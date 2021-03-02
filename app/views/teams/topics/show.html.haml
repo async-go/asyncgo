@@ -1,8 +1,14 @@
-= turbo_stream_from @topic
-
-= turbo_frame_tag "topic_#{@topic.id}" do
-  = render @topic
+= render @topic
 
 %h5.mt-2.border-bottom Comments
 
-= turbo_frame_tag 'topic_comments', src: team_topic_comments_path(@topic.team, @topic)
+.row
+  %ul.list-group.list-group-flush#comments
+    - @topic_comments.each do |comment|
+      %li.list-group-item.mb-2
+        = render partial: 'teams/topics/comments/comment', locals: { comment: comment }
+.row.mt-3
+  != pagy_bootstrap_nav(@pagy)
+
+  - if @topic.active?
+    = turbo_frame_tag 'new_comment', src: new_team_topic_comment_path(@topic.team, @topic)

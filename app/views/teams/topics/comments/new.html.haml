@@ -1,7 +1,7 @@
 .row.my-5
-  %h1.visually-hidden New Comment
+  %h1.visually-hidden= @topic.title
 
-  = turbo_frame_tag 'new_comment', target: '_top' do
+  = turbo_frame_tag 'new_comment' do
     = render partial: 'comment_form', locals: { comment: @comment }
     = link_to 'Back to Topic', team_topic_path(@comment.topic.team, @comment.topic),
       class: 'btn btn-secondary my-3'
