@@ -1,4 +1,4 @@
-= turbo_frame_tag "comment_#{comment.id}" do
+= turbo_frame_tag dom_id(comment) do
   .row
     .col-lg-2
       = image_tag "#{comment.user.gravatar_url}?s=20&d=retro",
