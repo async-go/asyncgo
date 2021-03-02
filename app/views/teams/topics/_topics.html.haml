@@ -1,16 +1,5 @@
 %ul.list-group.list-group-flush
   - if topic_collection.present?
-    %li.list-group-item.d-none.d-lg-block
-      .row.small
-        .col-lg-6
-          Title
-        .col-lg-2
-          Author
-        .col-lg-2
-          Created
-        .col-lg-2
-          Due Date
-
     - topic_collection.each do |topic|
       %li.list-group-item
         .row

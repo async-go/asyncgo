@@ -20,5 +20,8 @@ module Asyncgo
     #
     config.time_zone = 'UTC'
     # config.eager_load_paths << Rails.root.join("extras")
+
+    # Add bootstrap scss to sass load path
+    config.sass.load_paths << Rails.root.join('node_modules/bootstrap/scss')
   end
 end
