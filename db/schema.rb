@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_15_173618) do
+ActiveRecord::Schema.define(version: 2021_03_01_124935) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,7 +73,7 @@ ActiveRecord::Schema.define(version: 2021_02_15_173618) do
   end
 
   create_table "user_preferences", force: :cascade do |t|
-    t.boolean "digest_enabled", default: false, null: false
+    t.boolean "digest_enabled", default: true, null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -86,6 +86,7 @@ ActiveRecord::Schema.define(version: 2021_02_15_173618) do
     t.bigint "team_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.date "terms_accepted"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["team_id"], name: "index_users_on_team_id"
   end

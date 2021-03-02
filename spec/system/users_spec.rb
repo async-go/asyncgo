@@ -11,10 +11,10 @@ RSpec.describe 'Users', type: :system do
 
     click_link 'Profile'
 
-    expect(page).to have_text('Currently subscribed: No')
-    click_button 'Toggle notification status'
     expect(page).to have_text('Currently subscribed: Yes')
     click_button 'Toggle notification status'
     expect(page).to have_text('Currently subscribed: No')
+    click_button 'Toggle notification status'
+    expect(page).to have_text('Currently subscribed: Yes')
   end
 end

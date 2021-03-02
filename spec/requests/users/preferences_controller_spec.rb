@@ -5,7 +5,7 @@ require './spec/support/unauthorized_user_examples'
 RSpec.describe Users::PreferencesController, type: :request do
   describe 'PATCH update' do
     subject(:patch_update) do
-      patch "/users/#{user.id}/preference", params: { user_preference: { digest_enabled: 'true' } }
+      patch "/users/#{user.id}/preference", params: { user_preference: { digest_enabled: 'false' } }
     end
 
     let(:user) { FactoryBot.create(:user) }
@@ -16,7 +16,7 @@ RSpec.describe Users::PreferencesController, type: :request do
       end
 
       it 'updates the user preferences' do
-        expect { patch_update }.to change { user.preference.reload.digest_enabled }.from(false).to(true)
+        expect { patch_update }.to change { user.preference.reload.digest_enabled }.from(true).to(false)
       end
 
       it 'redirects to edit user' do
