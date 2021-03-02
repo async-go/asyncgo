@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     scope module: :teams do
       resources :users, only: %i[index create destroy]
       resources :topics, only: %i[index show new edit create update] do
+        patch :toggle
         post :subscribe
 
         scope module: :topics do

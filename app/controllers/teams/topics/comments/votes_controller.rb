@@ -8,18 +8,22 @@ module Teams
           target_comment = comment
           authorize(target_comment, policy_class: Teams::Topics::Comments::VotePolicy)
 
-          vote_flash = if Vote.create(create_params).valid?
-                         { success: 'Vote was successfully added.' }
-                       else
-                         { danger: 'There was an error while adding the vote.' }
-                       end
+          success = Vote.create(create_params).valid?
 
           respond_to do |format|
             format.turbo_stream do
               render turbo_stream: turbo_stream.replace(target_comment, partial: 'teams/topics/comments/comment',
                                                                         locals: { comment: target_comment })
             end
-            format.html { redirect_to topic_path(target_comment), flash: vote_flash }
+            format.html do
+              vote_flash = if success
+                             { success: 'Vote was successfully added.' }
+                           else
+                             { danger: 'There was an error while adding the vote.' }
+                           end
+
+              redirect_to topic_path(target_comment), flash: vote_flash
+            end
           end
         end
 

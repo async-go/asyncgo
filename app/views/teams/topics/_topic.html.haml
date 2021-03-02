@@ -30,7 +30,7 @@
           class: 'btn btn-secondary'
 
     .col-lg-2.my-3
-      = form_with(model: topic, url: [topic.team, topic],
+      = form_with(model: topic, url: team_topic_toggle_path(topic.team, topic),
         data: { 'turbo-frame': '_top' }) do |form|
         - if topic.active?
           = form.hidden_field :status, value: :closed

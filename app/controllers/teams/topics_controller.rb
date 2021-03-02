@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
 module Teams
-  class TopicsController < Teams::Topics::ApplicationController
+  class TopicsController < Teams::Topics::ApplicationController # rubocop:disable Metrics/ClassLength
     include Pagy::Backend
 
     def index
       authorize(team, policy_class: TopicPolicy)
+
       @pagy_active_topics, @active_topics = pagy(
         order_topics(team.topics.active), page_param: 'active_page'
       )
@@ -68,21 +69,39 @@ module Teams
       end
     end
 
-    def subscribe # rubocop:disable Metrics/MethodLength
-      authorize(topic)
+    def toggle
+      target_topic = topic
+      authorize(target_topic)
 
-      subscribe_flash = if update_user_subscription
-                          { success: 'User subscription status was successfully changed.' }
-                        else
-                          { danger: 'There was an error while changing the subscription status.' }
-                        end
+      toggle_flash = if update_topic(target_topic, topic_params)
+                       { success: 'Topic status was successfully changed.' }
+                     else
+                       { danger: 'Topic status could not be changed.' }
+                     end
+
+      redirect_to topic_path(target_topic), flash: toggle_flash
+    end
+
+    def subscribe # rubocop:disable Metrics/MethodLength
+      target_topic = topic
+      authorize(target_topic)
+
+      success = update_user_subscription(target_topic)
 
       respond_to do |format|
         format.turbo_stream do
-          render turbo_stream: turbo_stream.replace(@topic, partial: 'teams/topics/topic', locals: { topic: @topic })
+          render turbo_stream: turbo_stream.replace(target_topic, partial: 'teams/topics/topic',
+                                                                  locals: { topic: target_topic })
         end
 
-        format.html { redirect_to topic_path(@topic), flash: subscribe_flash }
+        format.html do
+          subscribe_flash = if success
+                              { success: 'User subscription status was successfully changed.' }
+                            else
+                              { danger: 'There was an error while changing the subscription status.' }
+                            end
+          redirect_to topic_path(target_topic), flash: subscribe_flash
+        end
       end
     end
 
@@ -99,7 +118,7 @@ module Teams
       topic_params.merge(user: current_user)
     end
 
-    def update_user_subscription
+    def update_user_subscription(topic)
       subscription = current_user.subscriptions.find_or_initialize_by(topic_id: topic.id)
 
       if params[:subscribed] == '1' && subscription.new_record?

@@ -270,6 +270,71 @@ RSpec.describe Teams::TopicsController, type: :request do
     end
   end
 
+  describe 'PATCH toggle' do
+    subject(:patch_toggle) do
+      patch "/teams/#{topic.team.id}/topics/#{topic.id}/toggle",
+            params: { topic: params }
+    end
+
+    let(:topic) { FactoryBot.create(:topic) }
+
+    context 'when user is authorized' do
+      let(:user) { FactoryBot.create(:user, team: topic.team) }
+
+      before do
+        sign_in(user)
+      end
+
+      context 'when topic is active' do
+        let(:params) { { status: 'closed' } }
+
+        before do
+          topic.update!(status: 'active')
+        end
+
+        it 'closes the topic' do
+          expect { patch_toggle }.to change { topic.reload.status }.from('active').to('closed')
+        end
+
+        it 'sets the flash' do
+          patch_toggle
+
+          expect(controller.flash[:success]).to eq('Topic status was successfully changed.')
+        end
+
+        it 'redirects to topic' do
+          expect(patch_toggle).to redirect_to(team_topic_path(topic.team, topic))
+        end
+      end
+
+      context 'when topic is closed' do
+        let(:params) { { status: 'active' } }
+
+        before do
+          topic.update!(status: 'closed')
+        end
+
+        it 'opens the topic' do
+          expect { patch_toggle }.to change { topic.reload.status }.from('closed').to('active')
+        end
+
+        it 'sets the flash' do
+          patch_toggle
+
+          expect(controller.flash[:success]).to eq('Topic status was successfully changed.')
+        end
+
+        it 'redirects to topic' do
+          expect(patch_toggle).to redirect_to(team_topic_path(topic.team, topic))
+        end
+      end
+    end
+
+    include_examples 'unauthorized user examples' do
+      let(:params) { { status: 'closed' } }
+    end
+  end
+
   describe 'POST subscribe' do
     subject(:post_subscribe) do
       post "/teams/#{topic.team.id}/topics/#{topic.id}/subscribe",
@@ -286,50 +351,26 @@ RSpec.describe Teams::TopicsController, type: :request do
       end
 
       context 'when user is subscribed' do
+        let(:subscribed) { '0' }
+
         before do
           user.subscribed_topics << topic
         end
 
-        context 'when subscription is checked' do
-          let(:subscribed) { '1' }
+        it 'unsubscribes the user' do
+          post_subscribe
 
-          it 'does not unsubscribe the user' do
-            post_subscribe
-
-            expect(user.subscribed_topics.reload).to contain_exactly(topic)
-          end
-        end
-
-        context 'when subscription is not checked' do
-          let(:subscribed) { '0' }
-
-          it 'unsubscribes the user' do
-            post_subscribe
-
-            expect(user.subscribed_topics.reload).to be_empty
-          end
+          expect(user.subscribed_topics.reload).to be_empty
         end
       end
 
       context 'when user is not subscribed' do
-        context 'when subscription is checked' do
-          let(:subscribed) { '1' }
+        let(:subscribed) { '1' }
 
-          it 'subscribes the user' do
-            post_subscribe
+        it 'subscribes the user' do
+          post_subscribe
 
-            expect(user.subscribed_topics.reload).to contain_exactly(topic)
-          end
-        end
-
-        context 'when subscription is not checked' do
-          let(:subscribed) { '0' }
-
-          it 'does not subscribe the user' do
-            post_subscribe
-
-            expect(user.subscribed_topics.reload).to be_empty
-          end
+          expect(user.subscribed_topics.reload).to contain_exactly(topic)
         end
       end
     end

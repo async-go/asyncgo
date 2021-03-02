@@ -36,4 +36,9 @@ class TopicPolicy < ApplicationPolicy
     user &&
       record.team == user.team
   end
+
+  def toggle?
+    user &&
+      record.team == user.team
+  end
 end

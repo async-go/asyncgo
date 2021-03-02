@@ -6,17 +6,21 @@ module Teams
       def create # rubocop:disable Metrics/MethodLength
         authorize(topic, policy_class: Teams::Topics::VotePolicy)
 
-        vote_flash = if Vote.create(create_params).valid?
-                       { success: 'Vote was successfully added.' }
-                     else
-                       { danger: 'There was an error while adding the vote.' }
-                     end
+        success = Vote.create(create_params).valid?
 
         respond_to do |format|
           format.turbo_stream do
             render turbo_stream: turbo_stream.replace(topic, partial: 'teams/topics/topic', locals: { topic: topic })
           end
-          format.html { redirect_to topic_path(topic), flash: vote_flash }
+          format.html do
+            vote_flash = if success
+                           { success: 'Vote was successfully added.' }
+                         else
+                           { danger: 'There was an error while adding the vote.' }
+                         end
+
+            redirect_to topic_path(topic), flash: vote_flash
+          end
         end
       end
 
