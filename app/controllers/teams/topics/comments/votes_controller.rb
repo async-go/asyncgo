@@ -4,8 +4,9 @@ module Teams
   module Topics
     module Comments
       class VotesController < Teams::Topics::Comments::ApplicationController
-        def create
-          authorize(comment, policy_class: Teams::Topics::Comments::VotePolicy)
+        def create # rubocop:disable Metrics/MethodLength
+          target_comment = comment
+          authorize(target_comment, policy_class: Teams::Topics::Comments::VotePolicy)
 
           vote_flash = if Vote.create(create_params).valid?
                          { success: 'Vote was successfully added.' }
@@ -13,25 +14,38 @@ module Teams
                          { danger: 'There was an error while adding the vote.' }
                        end
 
-          redirect_to comment_path(comment), flash: vote_flash
+          respond_to do |format|
+            format.turbo_stream do
+              render turbo_stream: turbo_stream.replace(target_comment, partial: 'teams/topics/comments/comment',
+                                                                        locals: { comment: target_comment })
+            end
+            format.html { redirect_to topic_path(target_comment), flash: vote_flash }
+          end
         end
 
-        def destroy
-          vote = comment.votes.find(params[:id])
+        def destroy # rubocop:disable Metrics/MethodLength
+          target_comment = comment
+          vote = target_comment.votes.find(params[:id])
           authorize([:teams, :topics, :comments, vote])
 
-          comment.votes.destroy(vote)
-          redirect_to comment_path(comment), flash: { success: 'Vote was successfully removed.' }
+          vote.destroy
+          respond_to do |format|
+            format.turbo_stream do
+              render turbo_stream: turbo_stream.replace(target_comment, partial: 'teams/topics/comments/comment',
+                                                                        locals: { comment: target_comment })
+            end
+            format.html { redirect_to topic_path(target_comment), flash: { success: 'Vote was successfully removed.' } }
+          end
         end
 
         private
 
-        def comment_path(comment)
-          team_topic_comment_path(comment.topic.team, comment.topic, comment)
-        end
-
         def create_params
           params.require(:vote).permit(:emoji).merge(user: current_user, votable: comment)
+        end
+
+        def topic_path(comment)
+          team_topic_path(comment.topic.team, comment.topic)
         end
       end
     end

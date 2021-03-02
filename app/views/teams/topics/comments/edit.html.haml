@@ -3,5 +3,5 @@
 
   = turbo_frame_tag "comment_#{@comment.id}" do
     = render partial: 'comment_form', locals: { comment: @comment }
-    = link_to 'Back to Topic', team_topic_comments_path(@comment.topic.team, @comment.topic),
+    = link_to 'Back to Topic', team_topic_path(@comment.topic.team, @comment.topic),
       class: 'btn btn-secondary my-3'

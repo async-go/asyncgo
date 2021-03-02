@@ -12,7 +12,12 @@ module Teams
                        { danger: 'There was an error while adding the vote.' }
                      end
 
-        redirect_to team_topic_path(topic.team, topic), flash: vote_flash
+        respond_to do |format|
+          format.turbo_stream do
+            render turbo_stream: turbo_stream.replace(topic, partial: 'teams/topics/topic', locals: { topic: topic })
+          end
+          format.html { redirect_to team_topic_path(topic.team, topic), flash: vote_flash }
+        end
       end
 
       def destroy
@@ -20,8 +25,16 @@ module Teams
         authorize([:teams, :topics, vote])
 
         topic.votes.destroy(vote)
-        redirect_to team_topic_path(topic.team, topic),
-                    flash: { success: 'Vote was successfully removed.' }
+
+        respond_to do |format|
+          format.turbo_stream do
+            render turbo_stream: turbo_stream.replace(topic, partial: 'teams/topics/topic', locals: { topic: topic })
+          end
+          format.html do
+            redirect_to team_topic_path(topic.team, topic),
+                        flash: { success: 'Vote was successfully removed.' }
+          end
+        end
       end
 
       private

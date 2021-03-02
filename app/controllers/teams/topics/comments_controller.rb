@@ -5,21 +5,8 @@ module Teams
     class CommentsController < Teams::Topics::ApplicationController
       include Pagy::Backend
 
-      def index
-        authorize(topic, policy_class: CommentPolicy)
-        @topic = topic
-        @pagy, @comments = pagy(
-          topic.comments.includes(:user, votes: :user).order(:created_at)
-        )
-      end
-
       def new
         @comment = topic.comments.build
-        authorize(@comment)
-      end
-
-      def show
-        @comment = comment
         authorize(@comment)
       end
 
@@ -28,32 +15,39 @@ module Teams
         authorize(@comment)
       end
 
-      # rubocop:disable Metrics/MethodLength
-      def create
+      def create # rubocop:disable Metrics/MethodLength
         @comment = topic.comments.build(create_params)
-        authorize(comment)
+        authorize(@comment)
 
-        success = update_comment(@comment, create_params)
-
-        respond_to do |format|
-          format.turbo_stream
-          format.html do
-            if success
-              redirect_to comment_path(@comment), flash: { success: 'Comment was successfully created.' }
-            else
-              render :new, status: :unprocessable_entity
+        if update_comment(@comment, create_params)
+          respond_to do |format|
+            format.turbo_stream do
+              render turbo_stream: turbo_stream.append(:comments, partial: 'teams/topics/comments/comment',
+                                                                  locals: { comment: @comment })
+            end
+            format.html do
+              redirect_to topic_path(@comment)
             end
           end
+        else
+          render :new, status: :unprocessable_entity
         end
       end
-      # rubocop:enable Metrics/MethodLength
 
-      def update
+      def update # rubocop:disable Metrics/MethodLength
         @comment = comment
         authorize(@comment)
 
         if update_comment(@comment, comment_params)
-          redirect_to comment_path(@comment), flash: { success: 'Comment was successfully updated.' }
+          respond_to do |format|
+            format.turbo_stream do
+              render turbo_stream: turbo_stream.replace(@comment, partial: 'teams/topics/comments/comment',
+                                                                  locals: { comment: @comment })
+            end
+            format.html do
+              redirect_to topic_path(@comment), flash: { success: 'Comment was successfully updated.' }
+            end
+          end
         else
           render :edit, status: :unprocessable_entity
         end
@@ -77,8 +71,8 @@ module Teams
         CommentUpdater.new(current_user, comment, comment_params).call
       end
 
-      def comment_path(comment)
-        team_topic_comment_path(comment.topic.team, comment.topic, comment)
+      def topic_path(comment)
+        team_topic_path(comment.topic.team, comment.topic)
       end
     end
   end
