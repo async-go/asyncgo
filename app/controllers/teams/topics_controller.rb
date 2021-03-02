@@ -16,14 +16,19 @@ module Teams
       @closed_topics = preload_topics(@closed_topics)
     end
 
-    def show
-      @topic = topic
-      authorize(@topic)
-    end
-
     def new
       @topic = team.topics.build
       authorize(@topic)
+    end
+
+    def show
+      @topic = topic
+      authorize(@topic)
+
+      @pagy, @topic_comments = pagy(
+        @topic.comments.order(created_at: :asc)
+        .includes(:user, topic: :team, votes: :user)
+      )
     end
 
     def edit
@@ -31,32 +36,39 @@ module Teams
       authorize(@topic)
     end
 
-    def create
-      create_params = topic_params.merge(user: current_user)
-      @topic = team.topics.build(create_params)
+    def create # rubocop:disable Metrics/MethodLength
+      @topic = team.topics.build
       authorize(@topic)
 
-      if TopicUpdater.new(current_user, @topic, topic_params).call
-        redirect_to team_topic_path(@topic.team, @topic),
-                    flash: { success: 'Topic was successfully created.' }
+      if update_topic(@topic, create_params)
+        respond_to do |format|
+          format.turbo_stream do
+            render turbo_stream: turbo_stream.replace(@topic, partial: 'teams/topics/topic', locals: { topic: @topic })
+          end
+          format.html { redirect_to topic_path(@topic), flash: { success: 'Topic was successfully created.' } }
+        end
       else
         render :new, status: :unprocessable_entity
       end
     end
 
-    def update
+    def update # rubocop:disable Metrics/MethodLength
       @topic = topic
       authorize(@topic)
 
-      if TopicUpdater.new(current_user, @topic, topic_params).call
-        redirect_to team_topic_path(@topic.team, @topic),
-                    flash: { success: 'Topic was successfully updated.' }
+      if update_topic(@topic, topic_params)
+        respond_to do |format|
+          format.turbo_stream do
+            render turbo_stream: turbo_stream.replace(@topic, partial: 'teams/topics/topic', locals: { topic: @topic })
+          end
+          format.html { redirect_to topic_path(@topic), flash: { success: 'Topic was successfully updated.' } }
+        end
       else
         render :edit, status: :unprocessable_entity
       end
     end
 
-    def subscribe
+    def subscribe # rubocop:disable Metrics/MethodLength
       authorize(topic)
 
       subscribe_flash = if update_user_subscription
@@ -65,7 +77,13 @@ module Teams
                           { danger: 'There was an error while changing the subscription status.' }
                         end
 
-      redirect_to team_topic_path(topic.team, topic), flash: subscribe_flash
+      respond_to do |format|
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.replace(@topic, partial: 'teams/topics/topic', locals: { topic: @topic })
+        end
+
+        format.html { redirect_to topic_path(@topic), flash: subscribe_flash }
+      end
     end
 
     private
@@ -75,6 +93,10 @@ module Teams
         :title, :description, :outcome, :due_date, :status,
         :description_checksum, :outcome_checksum
       )
+    end
+
+    def create_params
+      topic_params.merge(user: current_user)
     end
 
     def update_user_subscription
@@ -95,6 +117,14 @@ module Teams
 
     def preload_topics(scope)
       scope.includes(:user, :subscribed_users)
+    end
+
+    def update_topic(topic, topic_params)
+      TopicUpdater.new(current_user, topic, topic_params).call
+    end
+
+    def topic_path(topic)
+      team_topic_path(topic.team, topic)
     end
   end
 end

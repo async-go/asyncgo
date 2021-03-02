@@ -16,7 +16,7 @@ module Teams
       end
 
       def create # rubocop:disable Metrics/MethodLength
-        @comment = topic.comments.build(create_params)
+        @comment = topic.comments.build
         authorize(@comment)
 
         if update_comment(@comment, create_params)
