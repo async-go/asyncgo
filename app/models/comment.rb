@@ -9,7 +9,4 @@ class Comment < ApplicationRecord
 
   has_many :notifications, as: :target, dependent: :destroy
   has_many :votes, as: :votable, dependent: :destroy
-
-  after_create_commit -> { broadcast_append_later_to topic, partial: 'teams/topics/comments/comment' }
-  after_update_commit -> { broadcast_replace_later_to topic, partial: 'teams/topics/comments/comment' }
 end

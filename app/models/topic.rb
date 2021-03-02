@@ -31,8 +31,6 @@ class Topic < ApplicationRecord
 
   enum status: { active: 0, closed: 1 }
 
-  after_update_commit -> { broadcast_replace_later partial: 'teams/topics/topic' }
-
   private
 
   def validate_description_checksum
