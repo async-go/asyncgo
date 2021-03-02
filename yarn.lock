@@ -1247,9 +1247,9 @@ __metadata:
   linkType: hard
 
 "@popperjs/core@npm:^2.8.6":
-  version: 2.8.6
-  resolution: "@popperjs/core@npm:2.8.6"
-  checksum: 1e3259c2aa915dbd5721d7b056e71425fda5103b9c449448d3801a05a94ec0c19d88109a5ded98bfebc887c4151ef073b3074a0b638bc7c1ba71c554678374af
+  version: 2.9.0
+  resolution: "@popperjs/core@npm:2.9.0"
+  checksum: 9b4a2ae8906faf56f1612e2ded9f27cb3771c3684cf9be90f7527d41cf263584b385399be0a2a99eb89ff89788c37d18773d2c4a6b6a51db3d0f9c4c5a0839b9
   languageName: node
   linkType: hard
 
@@ -1276,9 +1276,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rails/webpacker@npm:^6.0.0-beta.5":
-  version: 6.0.0-pre.2
-  resolution: "@rails/webpacker@npm:6.0.0-pre.2"
+"@rails/webpacker@npm:6.0.0-beta.6":
+  version: 6.0.0-beta.6
+  resolution: "@rails/webpacker@npm:6.0.0-beta.6"
   dependencies:
     "@babel/core": ^7.12.9
     "@babel/plugin-proposal-class-properties": ^7.12.1
@@ -1301,7 +1301,7 @@ __metadata:
     webpack-cli: ^4.2.0
     webpack-merge: ^5.7.2
     webpack-sources: ^2.2.0
-  checksum: dd68015b96f53a18c24d51a37c87bd8ebc7a8904f1ad232c62f0594e5be4f8da8631c8c3c3f017b24d4e2f562b084604365a381b6352a14d02bd3609f5af1885
+  checksum: 3d6943be67188e24b058ab0379dd56b75349c951f8a6bc0bc1a8f006f33fe12f44c696158e8594a49f745eecbb855bf070392793fccd60abe92190207c7db030
   languageName: node
   linkType: hard
 
@@ -1971,7 +1971,7 @@ __metadata:
     "@rails/actioncable": ^6.1.3
     "@rails/activestorage": ^6.1.3
     "@rails/ujs": ^6.1.3
-    "@rails/webpacker": ^6.0.0-beta.5
+    "@rails/webpacker": 6.0.0-beta.6
     "@webpack-cli/serve": ^1.3.0
     bootstrap: ^5.0.0-beta2
     bootstrap-dark-5: ^0.1.2
@@ -2053,15 +2053,15 @@ __metadata:
   linkType: hard
 
 "babel-plugin-polyfill-corejs2@npm:^0.1.4":
-  version: 0.1.9
-  resolution: "babel-plugin-polyfill-corejs2@npm:0.1.9"
+  version: 0.1.10
+  resolution: "babel-plugin-polyfill-corejs2@npm:0.1.10"
   dependencies:
     "@babel/compat-data": ^7.13.0
     "@babel/helper-define-polyfill-provider": ^0.1.5
     semver: ^6.1.1
   peerDependencies:
     "@babel/core": ^7.0.0-0
-  checksum: 54bb83d6a6302be9c42b779fcff8d6c3204f0a73d345c7daa619bd8e7b08714b68644e7062b57dc8dcfb3b4e97cb1f4202bcff60dc1bbd2eb8d3487ac632ce99
+  checksum: b11a01d9d3a078de5f26eeef8216f29b104239eee3ae93767dccdff9df558d07d159a35941ce5d77d6c658b9017475922831a232f8e60d94056412ba6ef2692b
   languageName: node
   linkType: hard
 
