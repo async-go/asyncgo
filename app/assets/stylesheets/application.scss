@@ -21,8 +21,7 @@ $primary: #203864;
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
 
-@import 'tributejs/src/tribute.scss';
-@import 'bootstrap-dark-5/dist/css/bootstrap-dark';
+@import 'tributejs/src/tribute';
 
 .navbar-brand img {
   width: 3rem;

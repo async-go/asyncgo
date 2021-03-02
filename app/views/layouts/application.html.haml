@@ -11,6 +11,8 @@
     = csp_meta_tag
     = Gon::Base.render_data(camel_case: true)
     = stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload'
+    = stylesheet_link_tag 'dark', media: '(prefers-color-scheme: dark)',
+      'data-turbo-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbo-track': 'reload', defer: true
     = favicon_link_tag image_path('logo.svg')
   %body
