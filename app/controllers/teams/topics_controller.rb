@@ -37,17 +37,12 @@ module Teams
       authorize(@topic)
     end
 
-    def create # rubocop:disable Metrics/MethodLength
+    def create
       @topic = team.topics.build
       authorize(@topic)
 
       if update_topic(@topic, create_params)
-        respond_to do |format|
-          format.turbo_stream do
-            render turbo_stream: turbo_stream.replace(@topic, partial: 'teams/topics/topic', locals: { topic: @topic })
-          end
-          format.html { redirect_to topic_path(@topic), flash: { success: 'Topic was successfully created.' } }
-        end
+        redirect_to topic_path(@topic), flash: { success: 'Topic was successfully created.' }
       else
         render :new, status: :unprocessable_entity
       end
