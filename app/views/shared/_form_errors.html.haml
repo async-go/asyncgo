@@ -1,5 +1,6 @@
-- if model.errors.full_messages.count.positive?
+- model_errors = model.errors.full_messages
+- if model_errors.count.positive?
   .my-4
     %ul.list-group
-      - model.errors.full_messages.each do |message|
+      - model_errors.each do |message|
         %li.list-group-item.list-group-item-danger= message
