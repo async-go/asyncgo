@@ -1,4 +1,5 @@
-.my-4
-  %ul.list-group
-    - model.errors.full_messages.each do |message|
-      %li.list-group-item.list-group-item-danger= message
+- if model.errors.full_messages.count.positive?
+  .my-4
+    %ul.list-group
+      - model.errors.full_messages.each do |message|
+        %li.list-group-item.list-group-item-danger= message
