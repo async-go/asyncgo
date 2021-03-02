@@ -25,5 +25,4 @@
       %p= empty_state_text
 
   - if new_form
-    %li.list-group-item
-      = link_to 'New Topic', new_team_topic_path(current_user.team), class: 'btn btn-primary'
+    %span.ms-2= link_to 'New Topic', new_team_topic_path(current_user.team), class: 'btn btn-primary mt-3'
