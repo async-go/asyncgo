@@ -1,20 +1,22 @@
-%markdown-toolbar{ for: "#{form.object_name}_#{name}" }
-  %md-bold
-    = assistive_icon('fas', 'bold', 'Bold', classname: 'border border-1 rounded p-1')
-  %md-header
-    = assistive_icon('fas', 'heading', 'Heading', classname: 'border border-1 rounded p-1')
-  %md-italic
-    = assistive_icon('fas', 'italic', 'Italic', classname: 'border border-1 rounded p-1')
-  %md-quote
-    = assistive_icon('fas', 'quote-right', 'Quote right', classname: 'border border-1 rounded p-1')
-  %md-code
-    = assistive_icon('fas', 'code', 'Code', classname: 'border border-1 rounded p-1')
-  %md-link
-    = assistive_icon('fas', 'link', 'Link', classname: 'border border-1 rounded p-1')
-  %md-unordered-list
-    = assistive_icon('fas', 'list-ul', 'Unordered list', classname: 'border border-1 rounded p-1')
-  %md-ordered-list
-    = assistive_icon('fas', 'list-ol', 'Ordered list', classname: 'border border-1 rounded p-1')
-  %md-task-list
-    = assistive_icon('fas', 'tasks', 'Tasks', classname: 'border border-1 rounded p-1')
-= form.text_area name, **options
+.mb-1
+  %markdown-toolbar{ for: "#{form.object_name}_#{name}" }
+    %md-bold
+      = assistive_icon('fas', 'bold', 'Bold', classname: 'border border-1 rounded p-1')
+    %md-header
+      = assistive_icon('fas', 'heading', 'Heading', classname: 'border border-1 rounded p-1')
+    %md-italic
+      = assistive_icon('fas', 'italic', 'Italic', classname: 'border border-1 rounded p-1')
+    %md-quote
+      = assistive_icon('fas', 'quote-right', 'Quote right', classname: 'border border-1 rounded p-1')
+    %md-code
+      = assistive_icon('fas', 'code', 'Code', classname: 'border border-1 rounded p-1')
+    %md-link
+      = assistive_icon('fas', 'link', 'Link', classname: 'border border-1 rounded p-1')
+    %md-unordered-list
+      = assistive_icon('fas', 'list-ul', 'Unordered list', classname: 'border border-1 rounded p-1')
+    %md-ordered-list
+      = assistive_icon('fas', 'list-ol', 'Ordered list', classname: 'border border-1 rounded p-1')
+    %md-task-list
+      = assistive_icon('fas', 'tasks', 'Tasks', classname: 'border border-1 rounded p-1')
+.mb-2
+  = form.text_area name, **options

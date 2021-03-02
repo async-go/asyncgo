@@ -3,7 +3,7 @@
   = render partial: 'shared/form_errors', locals: { model: topic }
   = form.hidden_field :description_checksum, value: string_checksum(topic.description)
   = form.hidden_field :outcome_checksum, value: string_checksum(topic.outcome)
-  .row
+  .row.mt-2
     .mb-3
       .mb-1
         = form.label :title
