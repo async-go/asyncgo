@@ -1,15 +1,17 @@
 %h1 Welcome to AsyncGo
 
-%p.lead
-  - if current_user
-    Woohoo, you're signed in. The next step is to either get invited to a team or create one. =>
+- if current_user
+  %p.lead
+    You're signed in. The next step is to either get invited to a team or create one. =>
     = link_to 'Create New Team', new_team_path
-  - else
-    Hi - the first step is to sign in. You can do so using your
-    = link_to 'Google', '/auth/google_oauth2', method: 'post'
-    or
-    = link_to 'GitHub', '/auth/github', method: 'post'
-    account.
+- else
+  %p.lead
+    The first step is to sign in. You can do so using one of the following accounts:
+    = button_to 'Google', '/auth/google_oauth2',
+      'data-turbo': false, class: 'btn btn-primary mb-3'
+    = button_to 'GitHub', '/auth/github',
+      'data-turbo': false, class: 'btn btn-primary mb-3'
+
 %p.m-4
   = image_tag('happy_users.png', alt: 'Hello!', class: 'img-fluid')
 %p
