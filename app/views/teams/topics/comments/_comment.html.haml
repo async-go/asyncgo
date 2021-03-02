@@ -9,9 +9,9 @@
     .col-lg-9
       %div!= comment.body_html
   .row.my-3
-    .col-lg-2
+    .col-lg-2.mt-3
       = render partial: 'teams/topics/vote_list_group', locals: { votable: comment }
-    .col-lg-4
+    .col-lg-4.mt-3
       - if policy(comment).edit?
         = link_to 'Edit Comment',
           edit_team_topic_comment_path(comment.topic.team, comment.topic, comment),

@@ -21,15 +21,15 @@
         %div!= topic.outcome_html
 
   .row
-    .col-lg-4.my-3
+    .col-lg-4.mt-3
       %ul.list-group.list-group-horizontal
         = render partial: 'teams/topics/vote_list_group', locals: { votable: topic }
-    .col-lg-4.my-3
+    .col-lg-4.mt-3
       - if topic.active?
         = link_to 'Edit Topic', edit_team_topic_path(topic.team, topic),
           class: 'btn btn-secondary'
 
-    .col-lg-2.my-3
+    .col-lg-2.mt-3
       = form_with(model: topic, url: team_topic_toggle_path(topic.team, topic),
         data: { 'turbo-frame': '_top' }) do |form|
         - if topic.active?
@@ -39,7 +39,7 @@
           = form.hidden_field :status, value: :active
           = form.submit 'Reopen Topic', class: 'btn btn-primary'
 
-    .col-lg-2.my-3
+    .col-lg-2.mt-3
       = form_with(url: team_topic_subscribe_path(topic.team, topic)) do |subscription_form|
         - if user_subscribed?(topic)
           = subscription_form.hidden_field :subscribed, value: 0
