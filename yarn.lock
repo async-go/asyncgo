@@ -1276,9 +1276,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rails/webpacker@npm:^6.0.0-beta.5":
-  version: 6.0.0-pre.2
-  resolution: "@rails/webpacker@npm:6.0.0-pre.2"
+"@rails/webpacker@npm:next":
+  version: 6.0.0-beta.5
+  resolution: "@rails/webpacker@npm:6.0.0-beta.5"
   dependencies:
     "@babel/core": ^7.12.9
     "@babel/plugin-proposal-class-properties": ^7.12.1
@@ -1301,7 +1301,7 @@ __metadata:
     webpack-cli: ^4.2.0
     webpack-merge: ^5.7.2
     webpack-sources: ^2.2.0
-  checksum: dd68015b96f53a18c24d51a37c87bd8ebc7a8904f1ad232c62f0594e5be4f8da8631c8c3c3f017b24d4e2f562b084604365a381b6352a14d02bd3609f5af1885
+  checksum: c3af64517c80d500af60fa8ebaba5e831167cbcd76fe482a09b084231b1f6ae8a712bf3721d7863cd6e6f2553327380567dca99e10cc2c997fec9770a09837d1
   languageName: node
   linkType: hard
 
@@ -1971,7 +1971,7 @@ __metadata:
     "@rails/actioncable": ^6.1.3
     "@rails/activestorage": ^6.1.3
     "@rails/ujs": ^6.1.3
-    "@rails/webpacker": ^6.0.0-beta.5
+    "@rails/webpacker": next
     "@webpack-cli/serve": ^1.3.0
     bootstrap: ^5.0.0-beta2
     bootstrap-dark-5: ^0.1.2
