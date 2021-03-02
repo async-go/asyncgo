@@ -35,8 +35,8 @@ RSpec.describe Teams::Topics::Comments::VotesController, type: :request do
           expect(controller.flash[:success]).to eq('Vote was successfully added.')
         end
 
-        it 'redirects to comment page' do
-          expect(post_create).to redirect_to(team_topic_comment_path(comment.topic.team, comment.topic, comment))
+        it 'redirects to topic' do
+          expect(post_create).to redirect_to(team_topic_path(comment.topic.team, comment.topic))
         end
       end
 
@@ -53,8 +53,8 @@ RSpec.describe Teams::Topics::Comments::VotesController, type: :request do
           expect(controller.flash[:danger]).to eq('There was an error while adding the vote.')
         end
 
-        it 'redirects to comment page' do
-          expect(post_create).to redirect_to(team_topic_comment_path(comment.topic.team, comment.topic, comment))
+        it 'redirects to topic' do
+          expect(post_create).to redirect_to(team_topic_path(comment.topic.team, comment.topic))
         end
       end
     end
@@ -86,8 +86,8 @@ RSpec.describe Teams::Topics::Comments::VotesController, type: :request do
         expect(controller.flash[:success]).to eq('Vote was successfully removed.')
       end
 
-      it 'redirects to comment page' do
-        expect(delete_destroy).to redirect_to(team_topic_comment_path(comment.topic.team, comment.topic, comment))
+      it 'redirects to topic' do
+        expect(delete_destroy).to redirect_to(team_topic_path(comment.topic.team, comment.topic))
       end
     end
 

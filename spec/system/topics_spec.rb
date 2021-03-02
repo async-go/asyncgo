@@ -64,7 +64,9 @@ RSpec.describe 'Topics', type: :system do
     topic.update!(description: 'This is an external update',
                   description_html: '<p>This is an external update',
                   description_checksum: Digest::MD5.hexdigest(topic.description))
-    expect(page).to have_text('This is an external update')
+    click_button 'Update Topic'
+
+    expect(page).to have_text(Topic::CHECKSUM_ERROR_MESSAGE)
   end
 
   it 'prevents overwriting topic updates for outcome' do
@@ -83,7 +85,9 @@ RSpec.describe 'Topics', type: :system do
     topic.update!(outcome: 'This is an external update',
                   outcome_html: '<p>This is an external update</p>',
                   outcome_checksum: Digest::MD5.hexdigest(''))
-    expect(page).to have_text('This is an external update')
+    click_button 'Update Topic'
+
+    expect(page).to have_text(Topic::CHECKSUM_ERROR_MESSAGE)
   end
 
   it 'allows the user to summarize an outcome using markdown' do

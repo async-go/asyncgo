@@ -103,7 +103,7 @@ RSpec.configure do |config|
     # Show which exception failed the example
     config.display_try_failure_messages = true
     config.around :each, type: :system do |ex|
-      ex.run_with_retry(retry: 5)
+      ex.run_with_retry(retry: 3)
     end
   end
 end

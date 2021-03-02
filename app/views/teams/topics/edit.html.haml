@@ -1,6 +1,6 @@
 .row.my-5
   %h1.visually-hidden= @topic.title
 
-  = turbo_frame_tag "topic_#{@topic.id}" do
+  = turbo_frame_tag dom_id(@topic) do
     = render partial: 'topic_form', locals: { topic: @topic }
-    = link_to 'Back to Topic', team_topic_path(@topic.team, @topic), class: 'btn btn-secondary my-3'
+    = link_to 'Cancel Edit', team_topic_path(@topic.team, @topic), class: 'btn btn-secondary my-3'
