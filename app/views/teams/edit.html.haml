@@ -1,25 +1,25 @@
 %h1.visually-hidden Configuration for #{@team.name}
 
 .row.mt-3
-  .col.lg-12.my-3
+  .col.lg-12
     %h3 Invite users
     %p.lead Invite users to join your team.
     = form_with(model: User, url: [@team, :users], class: 'g-3') do |invite_user_form|
       .row
         .col-lg-10
           .input-group
-            .input-group-text
+            .input-group-text.mb-3
               = invite_user_form.label :email
-            = invite_user_form.text_field :email, class: 'form-control'
+            = invite_user_form.text_field :email, class: 'form-control mb-3'
         .col-lg-2
-          = invite_user_form.submit 'Invite User', class: 'btn btn-primary'
+          = invite_user_form.submit 'Invite User', class: 'btn btn-primary mb-3'
 
 %hr
 
 .row
   .col-lg-12
     %h3 Users in Team
-    %p.lead Click to remove. If you want to remove yourself, have a team member do it for you.
+    %p.lead Click to remove. If you want to remove yourself, have a team member do it for you or contact support below.
     .row
       .list-group.list-group-horizontal-lg
         - @team_members.each do |user|
