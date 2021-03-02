@@ -19,7 +19,9 @@
 .row
   .col-lg-12
     %h3 Users in Team
-    %p.lead Click to remove. If you want to remove yourself, have a team member do it for you or contact support below.
+    %p.lead
+      Click to remove. If you want to remove yourself, have a team member
+      do it for you or contact support below.
     .row
       .list-group.list-group-horizontal-lg
         - @team_members.each do |user|
