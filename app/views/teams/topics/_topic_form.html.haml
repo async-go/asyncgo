@@ -23,8 +23,9 @@
         data: { controller: 'attach-tribute', action: 'focus->attach-tribute#attach:once' } } }
   .row
     .col-lg-4
-      .mb-1
+      .mb-2
         = form.label :due_date
-      = form.date_field :due_date, class: 'form-control'
+      .mb-2
+        = form.date_field :due_date, class: 'form-control'
     .col-lg-2.mt-auto
       = form.submit submit_action, class: 'btn btn-primary'
