@@ -7,24 +7,24 @@
     .col-lg-1
       - if topic.active?
         = link_to 'Edit Topic', edit_team_topic_path(topic.team, topic),
-          class: 'btn btn-sm btn-secondary'
+          class: 'btn btn-secondary'
     .col-lg-1
       = form_with(url: team_topic_subscribe_path(topic.team, topic)) do |subscription_form|
         - if user_subscribed?(topic)
           = subscription_form.hidden_field :subscribed, value: 0
-          = subscription_form.submit 'Unwatch Topic', class: 'btn btn-sm btn-secondary'
+          = subscription_form.submit 'Unwatch Topic', class: 'btn btn-secondary'
         - else
           = subscription_form.hidden_field :subscribed, value: 1
-          = subscription_form.submit 'Watch Topic', class: 'btn btn-sm btn-secondary'
+          = subscription_form.submit 'Watch Topic', class: 'btn btn-secondary'
     .col-lg-1
       = form_with(model: topic, url: team_topic_toggle_path(topic.team, topic),
         data: { 'turbo-frame': '_top' }) do |form|
         - if topic.active?
           = form.hidden_field :status, value: :closed
-          = form.submit 'Resolve Topic', class: 'btn btn-sm btn-success'
+          = form.submit 'Resolve Topic', class: 'btn btn-success'
         - else
           = form.hidden_field :status, value: :active
-          = form.submit 'Reopen Topic', class: 'btn btn-sm btn-primary'
+          = form.submit 'Reopen Topic', class: 'btn btn-primary'
     .col-lg-1
       %ul.list-group.list-group-horizontal
         = render partial: 'teams/topics/vote_list_group', locals: { votable: topic }
