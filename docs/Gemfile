@@ -5,8 +5,8 @@ source 'https://rubygems.org'
 ruby '2.7.2'
 
 gem 'jekyll', '~> 3.9'
+gem 'jekyll-remote-theme', '~> 0.4.2'
 gem 'jekyll-sitemap', '~> 1.4'
-gem "jekyll-remote-theme", "~> 0.4.2"
 
 group :development, :test do
   gem 'mdl', '~> 0.11.0'
