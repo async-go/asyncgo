@@ -57,7 +57,7 @@
                       'data-turbo': false, class: 'dropdown-item'
                     %li= button_to 'GitHub', '/auth/github',
                       'data-turbo': false, class: 'dropdown-item'
-    %main.container.mt-4.mb-3{ role: 'main' }
+    %main.container-fluid.py-5.mt-4.mb-3{ role: 'main' }
       - if flash.any?
         .mt-2
           - flash.each do |type, message|
