@@ -14,7 +14,7 @@ navigation:
   - title: Home
     url: /
   - title: Docs
-    url: /docs
+    url: /docs/
   - title: Blog
     url: /blog
   - title: Hiring
