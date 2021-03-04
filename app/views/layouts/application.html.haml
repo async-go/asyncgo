@@ -35,8 +35,6 @@
                     = assistive_icon('fas', 'bell', 'Has notification', classname: 'text-warning')
                     %span.text-white= unique_unread_notifications.count
             %ul.navbar-nav.ms-auto.me-2
-              %li.nav-item= link_to 'Docs', 'https://asyncgo.com/docs', class: 'nav-link',
-                target: :_blank, rel: :noopener
               - if current_user
                 - if current_user.team
                   %li.nav-item= active_link_to 'Topics', team_topics_path(current_user.team),
@@ -57,6 +55,8 @@
                       'data-turbo': false, class: 'dropdown-item'
                     %li= button_to 'GitHub', '/auth/github',
                       'data-turbo': false, class: 'dropdown-item'
+              %li.nav-item= link_to 'Docs', 'https://asyncgo.com/docs', class: 'nav-link',
+                target: :_blank, rel: :noopener
     - container = current_user&.preference&.fluid_layout? ? 'container-fluid' : 'container'
     %main.ps-3.mt-4.mb-3{ role: 'main', class: container }
       - if flash.any?
