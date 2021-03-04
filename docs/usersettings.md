@@ -28,11 +28,11 @@ open notifications you have. From here you can also clear all notifications.
 You can watch any topic from the view topic page, by clicking on the button to
 start watching.
 
-![Notifications](/assets/images/notifications.png){:.img-fluid.w-50.border.border-secondary.glightbox}
+![Notifications](assets/images/notifications.png){:.img-fluid.w-50.border.border-secondary.glightbox}
 
 ## Avatar
 
 AsyncGo shows your avatar from [Gravatar](https://www.gravatar.com). You can
 update your picture there, and it will automatically be reflected here.
 
-![Gravatars](/assets/images/gravatar.png){:.img-fluid.w-50.border.border-secondary.glightbox}
+![Gravatars](assets/images/gravatar.png){:.img-fluid.w-50.border.border-secondary.glightbox}

@@ -21,7 +21,7 @@ are recorded.
 When you log in you'll see a list of open topics. From here you can click on any
 of the available topics to participate.
 
-![Topic Lists](/assets/images/basicfunctions.png){:.img-fluid.w-50.border.border-secondary.glightbox}
+![Topic Lists](assets/images/basicfunctions.png){:.img-fluid.w-50.border.border-secondary.glightbox}
 
 ## Creating Topics
 
@@ -38,7 +38,7 @@ Topics can also have a due date set, which will be made visible to everyone
 looking at the topic index. This can be a great way to communicate when you need
 something by, and help everyone prioritize the topics they engage with.
 
-![Due Dates](/assets/images/duedate.png){:.img-fluid.w-50.border.border-secondary.glightbox}
+![Due Dates](assets/images/duedate.png){:.img-fluid.w-50.border.border-secondary.glightbox}
 
 ## Collaborating on Topics
 
@@ -57,7 +57,7 @@ another comment to explain why.
 You can also use emojis to do more complex votes with multiple options. In this
 case, use a different emoji for each option in the vote.
 
-![Voting](/assets/images/votes.png){:.img-fluid.w-50.border.border-secondary.glightbox}
+![Voting](assets/images/votes.png){:.img-fluid.w-50.border.border-secondary.glightbox}
 
 ## Resolving Topics
 
