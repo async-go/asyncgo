@@ -1,5 +1,5 @@
 title: AsyncGo Documentation
-url: "https://docs.asyncgo.com"
+url: "https://asyncgo.com/docs"
 exclude:
   - styles/
 remote_theme: https://github.com/async-go/web-theme@main
@@ -12,15 +12,15 @@ plugins:
   - sass
 navigation:
   - title: Home
-    url: https://asyncgo.com/
-  - title: Docs
     url: /
+  - title: Docs
+    url: /docs
   - title: Blog
-    url: https://asyncgo.com/blog
+    url: /blog
   - title: Hiring
-    url: https://asyncgo.com/hiring
+    url: /hiring
   - title: Sign Up
-    url: https://asyncgo.com/index#signup
+    url: /index#signup
 defaults:
   - scope:
       path: ""
