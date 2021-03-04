@@ -3,10 +3,7 @@
 
   .row.mb-3
     .col-lg-2
-      - if topic.due_date && topic.due_date.end_of_day < Time.now.utc
-        %span.border.border-dark.rounded.p-1.bg-primary.text-white= printable_due_date(topic)
-      - else
-        %span.p-1.text-secondary= printable_due_date(topic)
+      = topic_due_date_span(topic)
 
   .row
     .col-lg-8.border
@@ -50,4 +47,3 @@
         - else
           = subscription_form.hidden_field :subscribed, value: 1
           = subscription_form.submit 'Watch Topic', class: 'btn btn-secondary'
-
