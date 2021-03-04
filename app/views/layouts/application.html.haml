@@ -35,7 +35,7 @@
                     = assistive_icon('fas', 'bell', 'Has notification', classname: 'text-warning')
                     %span.text-white= unique_unread_notifications.count
             %ul.navbar-nav.ms-auto.me-2
-              %li.nav-item= link_to 'Docs', 'https://docs.asyncgo.com', class: 'nav-link',
+              %li.nav-item= link_to 'Docs', 'https://asyncgo.com/docs', class: 'nav-link',
                 target: :_blank, rel: :noopener
               - if current_user
                 - if current_user.team
