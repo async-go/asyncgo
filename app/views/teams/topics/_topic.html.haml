@@ -1,14 +1,14 @@
 = turbo_frame_tag dom_id(topic) do
   .row
-    .col-lg-8.mt-3
-      %h1= topic.title
+    .col-lg-8
+      %h2= topic.title
       %p.text-secondary
         = printable_due_date(topic)
-    .col-lg-1.mt-3
+    .col-lg-1
       - if topic.active?
         = link_to 'Edit Topic', edit_team_topic_path(topic.team, topic),
           class: 'btn btn-sm btn-secondary'
-    .col-lg-1.mt-3
+    .col-lg-1
       = form_with(url: team_topic_subscribe_path(topic.team, topic)) do |subscription_form|
         - if user_subscribed?(topic)
           = subscription_form.hidden_field :subscribed, value: 0
@@ -16,7 +16,7 @@
         - else
           = subscription_form.hidden_field :subscribed, value: 1
           = subscription_form.submit 'Watch Topic', class: 'btn btn-sm btn-secondary'
-    .col-lg-1.mt-3
+    .col-lg-1
       = form_with(model: topic, url: team_topic_toggle_path(topic.team, topic),
         data: { 'turbo-frame': '_top' }) do |form|
         - if topic.active?
@@ -25,7 +25,7 @@
         - else
           = form.hidden_field :status, value: :active
           = form.submit 'Reopen Topic', class: 'btn btn-sm btn-primary'
-    .col-lg-1.mt-3
+    .col-lg-1
       %ul.list-group.list-group-horizontal
         = render partial: 'teams/topics/vote_list_group', locals: { votable: topic }
 
