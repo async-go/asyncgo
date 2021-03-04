@@ -28,7 +28,7 @@ RSpec.describe 'Comments', type: :system do
     sign_in_user(user)
     click_link 'Topics'
     click_link comment.topic.title
-    click_link 'Edit Comment'
+    click_link 'Edit'
 
     edit_comment_path = team_topic_comment_path(comment.topic.team, comment.topic, comment)
     edit_comment_form = find("form[action='#{edit_comment_path}']", match: :first)
