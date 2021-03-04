@@ -1,7 +1,8 @@
 name: CI
-on: push
-  paths-ignore:
-  - 'docs/**'
+on: 
+  push:
+    paths-ignore:
+    - 'docs/**'
 jobs:
   rspec:
     runs-on: ubuntu-latest
