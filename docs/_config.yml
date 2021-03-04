@@ -7,6 +7,7 @@ markdown: kramdown
 sass:
   style: compressed
 plugins:
+  - jekyll-remote-theme
   - jekyll-sitemap
   - sass
 navigation:
