@@ -19,7 +19,10 @@
           .col-lg-2
             %span Created #{topic.created_at.strftime('%b %e')}
           .col-lg-2
-            %span= printable_due_date(topic)
+            - if topic.due_date && topic.due_date.end_of_day < Time.now.utc
+              %span.text-warning= printable_due_date(topic)
+            - else
+              %span.text-secondary= printable_due_date(topic)
   - else
     %li.list-group-item
       %p= empty_state_text
