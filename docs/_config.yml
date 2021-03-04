@@ -1,5 +1,5 @@
 title: AsyncGo Documentation
-url: "https://asyncgo.com/docs"
+url: "https://asyncgo.com/docs/"
 exclude:
   - styles/
 remote_theme: https://github.com/async-go/web-theme@main
@@ -14,7 +14,7 @@ navigation:
   - title: Home
     url: /
   - title: Docs
-    url: /docs
+    url: /docs/
   - title: Blog
     url: /blog
   - title: Hiring
