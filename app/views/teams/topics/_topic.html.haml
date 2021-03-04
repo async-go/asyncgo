@@ -4,7 +4,7 @@
   .row.mb-3
     .col-lg-2
       - if topic.due_date && topic.due_date.end_of_day < Time.now.utc
-        %span.p-1.bg-info.text-dark= printable_due_date(topic)
+        %span.border.border-dark.rounded.p-1.bg-primary.text-white= printable_due_date(topic)
       - else
         %span.p-1.text-secondary= printable_due_date(topic)
 
