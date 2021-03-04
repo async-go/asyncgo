@@ -28,13 +28,14 @@ RSpec.describe Teams::TopicsHelper, type: :helper do
     end
   end
 
-  describe '#printable_due_date' do
-    subject(:printable_due_date) { helper.printable_due_date(topic) }
+  describe '#topic_due_date_span' do
+    subject(:topic_due_date_span) { helper.topic_due_date_span(topic) }
 
     let(:topic) { FactoryBot.build(:topic) }
 
     context 'when topic does not have due date' do
-      it { is_expected.to eq('No due date') }
+      it { is_expected.to have_text('No due date') }
+      it { is_expected.to match(/class=".*bg-success.*"/) }
     end
 
     context 'when topic has due date and is active' do
@@ -52,7 +53,8 @@ RSpec.describe Teams::TopicsHelper, type: :helper do
           travel_back
         end
 
-        it { is_expected.to eq('Due less than a minute ago') }
+        it { is_expected.to have_text('Due less than a minute ago') }
+        it { is_expected.to match(/class=".*bg-warning.*"/) }
       end
 
       context 'when topic is not overdue' do
@@ -64,7 +66,8 @@ RSpec.describe Teams::TopicsHelper, type: :helper do
           travel_back
         end
 
-        it { is_expected.to eq('Due in 3 days') }
+        it { is_expected.to have_text('Due in 3 days') }
+        it { is_expected.to match(/class=".*bg-success.*"/) }
       end
     end
 
@@ -74,7 +77,8 @@ RSpec.describe Teams::TopicsHelper, type: :helper do
         topic.status = :closed
       end
 
-      it { is_expected.to eq('Due Jan 1') }
+      it { is_expected.to have_text('Due Jan 1') }
+      it { is_expected.to match(/class=".*bg-warning.*"/) }
     end
   end
 

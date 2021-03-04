@@ -19,7 +19,7 @@
           .col-lg-2
             %span Created #{topic.created_at.strftime('%b %e')}
           .col-lg-2
-            %span= printable_due_date(topic)
+            = topic_due_date_span(topic)
   - else
     %li.list-group-item
       %p= empty_state_text

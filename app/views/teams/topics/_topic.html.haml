@@ -1,9 +1,9 @@
 = turbo_frame_tag dom_id(topic) do
   %h1= topic.title
 
-  .row.my-1
-    %p.text-secondary
-      = printable_due_date(topic)
+  .row.mb-3
+    .col-lg-2
+      = topic_due_date_span(topic)
 
   .row
     .col-lg-8.border
@@ -47,4 +47,3 @@
         - else
           = subscription_form.hidden_field :subscribed, value: 1
           = subscription_form.submit 'Watch Topic', class: 'btn btn-secondary'
-
