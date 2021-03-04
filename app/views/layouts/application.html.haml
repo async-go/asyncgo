@@ -16,7 +16,7 @@
     = javascript_pack_tag 'application', 'data-turbo-track': 'reload', defer: true
     = favicon_link_tag image_path('logo.svg')
   %body
-    %header.px-2.border-bottom.shadow-sm.mb-5
+    %header.px-2.border-bottom.shadow-sm.mb-2
       %nav.navbar.navbar-light.navbar-expand-lg
         .container-fluid
           = link_to root_path, class: 'navbar-brand pe-4 border-2' do
@@ -57,7 +57,7 @@
                       'data-turbo': false, class: 'dropdown-item'
                     %li= button_to 'GitHub', '/auth/github',
                       'data-turbo': false, class: 'dropdown-item'
-    %main.container-fluid.px-5.mt-4.mb-3{ role: 'main' }
+    %main.container-fluid.px-5.my-4{ role: 'main' }
       - if flash.any?
         .mt-2
           - flash.each do |type, message|
