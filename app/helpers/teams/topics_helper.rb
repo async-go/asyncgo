@@ -9,8 +9,8 @@ module Teams
     end
 
     def topic_due_date_span(topic)
-      background_color = topic_overdue?(topic) ? 'warning' : 'success'
-      classes = "rounded p-1 text-white bg-#{background_color}"
+      alert_style = topic_overdue?(topic) ? 'text-white bg-info' : nil
+      classes = "rounded p-1 #{alert_style}"
 
       tag.span(class: classes) do
         topic_due_date_text(topic)
