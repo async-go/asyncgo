@@ -17,7 +17,7 @@ module Users
     private
 
     def preference_params
-      params.require(:user_preference).permit(:digest_enabled)
+      params.require(:user_preference).permit(:digest_enabled, :widescreen_enabled)
     end
   end
 end

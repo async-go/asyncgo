@@ -16,6 +16,22 @@
       = toggle_digests_form.hidden_field :digest_enabled, value: toggle_value
       .input-group.mb-3
         = toggle_digests_form.submit 'Toggle notification status', class: 'btn btn-primary'
+.row
+  .col-lg-12.mb-3
+    %h3 Wide Screen Content
+    %p.lead
+      Do you prefer more narrow or wide content on the screen?
+    - if current_user.preference.widescreen_enabled?
+      - toggle_value = false
+      %p Current preference: Wide
+    - else
+      - toggle_value = true
+      %p Current preference: Narrow
+    = form_with(model: @user.preference,
+      url: [@user, :preference]) do |toggle_widescreen_form|
+      = toggle_widescreen_form.hidden_field :widescreen_enabled, value: toggle_value
+      .input-group.mb-3
+        = toggle_widescreen_form.submit 'Toggle widescreen preference', class: 'btn btn-primary'        
   .row
     .col-lg-12.mb-3
       %h3 About AsyncGo
