@@ -3,7 +3,7 @@
     .col-lg-8
       %h2= topic.title
       %p.text-secondary
-        = printable_due_date(topic)
+        = topic_due_date_span(topic)
     .col-lg-1
       - if topic.active?
         = link_to 'Edit Topic', edit_team_topic_path(topic.team, topic),
