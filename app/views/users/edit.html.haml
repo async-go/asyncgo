@@ -16,7 +16,7 @@
   .col-lg-12.mb-3
     %h3 Fluid Layout
     %p.lead
-      Do you prefer a fluid or a fixed layout on the screen?
+      Choose between fixed (max. 960px) and fluid (100%) application layout.
     - current_toggle_value = current_user.preference.fluid_layout?
     - preference = current_toggle_value ? 'Fluid' : 'Fixed'
     %p Current preference: #{preference}
