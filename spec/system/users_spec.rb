@@ -17,4 +17,17 @@ RSpec.describe 'Users', type: :system do
     click_button 'Toggle notification status'
     expect(page).to have_text('Currently subscribed: Yes')
   end
+
+  it 'allows the user to change layout preferences' do
+    visit '/'
+    sign_in_user
+
+    click_link 'Profile'
+
+    expect(page).to have_text('Current preference: Fixed')
+    click_button 'Toggle layout preference'
+    expect(page).to have_text('Current preference: Fluid')
+    click_button 'Toggle layout preference'
+    expect(page).to have_text('Current preference: Fixed')
+  end
 end
