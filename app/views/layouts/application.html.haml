@@ -65,7 +65,7 @@
               .alert.alert-dismissible.fade.show{ class: "alert-#{type}", role: 'alert' }
                 %span= message
                 %button.btn-close{ 'data-bs-dismiss' => 'alert', 'aria-label' => 'close' }
-        = yield      
+        = yield
     - else
       %main.container.mt-4.mb-3{ role: 'main' }
         - if flash.any?
@@ -74,7 +74,7 @@
               .alert.alert-dismissible.fade.show{ class: "alert-#{type}", role: 'alert' }
                 %span= message
                 %button.btn-close{ 'data-bs-dismiss' => 'alert', 'aria-label' => 'close' }
-        = yield      
+        = yield
 
 
 

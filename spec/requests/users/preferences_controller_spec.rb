@@ -5,7 +5,8 @@ require './spec/support/unauthorized_user_examples'
 RSpec.describe Users::PreferencesController, type: :request do
   describe 'PATCH update' do
     subject(:patch_update) do
-      patch "/users/#{user.id}/preference", params: { user_preference: { digest_enabled: 'false', widescreen_enabled: 'false' } }
+      patch "/users/#{user.id}/preference",
+            params: { user_preference: { digest_enabled: 'false', widescreen_enabled: 'false' } }
     end
 
     let(:user) { FactoryBot.create(:user) }
