@@ -58,7 +58,7 @@
                     %li= button_to 'GitHub', '/auth/github',
                       'data-turbo': false, class: 'dropdown-item'
     - container = current_user&.preference&.fluid_layout? ? 'container-fluid' : 'container'
-    %main.container-fluid.ps-3.mt-4.mb-3{ role: 'main', class: container }
+    %main.ps-3.mt-4.mb-3{ role: 'main', class: container }
       - if flash.any?
         .mt-2
           - flash.each do |type, message|
