@@ -1,4 +1,5 @@
-- submit_action = topic.persisted? ? 'Update Topic' : 'Create Topic'
+- submit_action = topic.persisted? ? 'Update' : 'Create'
+- submit_id = topic.persisted? ? 'updatetopicbutton' : 'createtopicbutton'
 = form_with(model: topic, url: [topic.team, topic]) do |form|
   = render partial: 'shared/form_errors', locals: { model: topic }
   = form.hidden_field :description_checksum, value: string_checksum(topic.description)
@@ -27,5 +28,6 @@
         = form.label :due_date
       .mb-2
         = form.date_field :due_date, class: 'form-control'
+  .row
     .col-lg-2.mt-auto
-      = form.submit submit_action, class: 'btn btn-primary'
+      = form.submit submit_action, class: 'btn btn-primary', id: submit_id

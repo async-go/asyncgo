@@ -3,5 +3,5 @@
 
   = turbo_frame_tag dom_id(@comment) do
     = render partial: 'comment_form', locals: { comment: @comment }
-    = link_to 'Back to Topic', team_topic_path(@comment.topic.team, @comment.topic),
+    = link_to 'Cancel', team_topic_path(@comment.topic.team, @comment.topic),
       class: 'btn btn-secondary my-3'

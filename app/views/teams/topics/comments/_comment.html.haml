@@ -10,8 +10,8 @@
       = render partial: 'teams/topics/vote_list_group', locals: { votable: comment }
     .col-lg-2
       - if policy(comment).edit?
-        = link_to 'Edit Comment',
+        = link_to 'Edit',
           edit_team_topic_comment_path(comment.topic.team, comment.topic, comment),
-          class: 'btn btn-secondary btn-sm'
+          class: 'btn btn-secondary btn-sm', id: 'editcommentbutton'
   .row.mt-3
     %div!= comment.body_html
