@@ -54,7 +54,7 @@ RSpec.describe Teams::TopicsHelper, type: :helper do
         end
 
         it { is_expected.to have_text('Due less than a minute ago') }
-        it { is_expected.to match(/class="rounded p-1 bg-info text-light"/) }
+        it { is_expected.to match(/class="rounded p-1 bg-info text-white"/) }
       end
 
       context 'when topic is not overdue' do
