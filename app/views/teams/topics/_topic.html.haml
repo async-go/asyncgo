@@ -34,16 +34,17 @@
         = render partial: 'teams/topics/vote_list_group', locals: { votable: topic }
 
   .row
-    .col-lg-8
+    .col-lg-8.border
       %h6.mt-2.text-secondary.small Description
-      .border.p-3!= topic.description_html
+      .p-3!= topic.description_html
 
-    .col-lg-4
+    .col-lg-4.border
       %h6.mt-2.text-secondary.small
         Outcome
         - if topic.active?
           (Work in Progress)
-      - if topic.outcome_html.blank?
-        .border.p-3 Content has not been started yet.
-      - else
-        .border.p-3!= topic.outcome_html
+      .p-3
+        - if topic.outcome_html.present?
+          Content has not been started yet.
+        - else
+          != topic.outcome_html
