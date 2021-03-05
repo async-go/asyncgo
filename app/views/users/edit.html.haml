@@ -5,17 +5,25 @@
     %h3 Digest Notifications
     %p.lead
       Would you like to receive a daily digest email about open notifications?
-    - if current_user.preference.digest_enabled?
-      - toggle_value = false
-      %p Currently subscribed: Yes
-    - else
-      - toggle_value = true
-      %p Currently subscribed: No
-    = form_with(model: @user.preference,
-      url: [@user, :preference]) do |toggle_digests_form|
-      = toggle_digests_form.hidden_field :digest_enabled, value: toggle_value
+    - current_toggle_value = current_user.preference.digest_enabled?
+    - preference = current_toggle_value ? 'Yes' : 'No'
+    %p Currently subscribed: #{preference}
+    = form_with(model: @user.preference, url: [@user, :preference]) do |toggle_digests_form|
+      = toggle_digests_form.hidden_field :digest_enabled, value: !current_toggle_value
       .input-group.mb-3
         = toggle_digests_form.submit 'Toggle notification status', class: 'btn btn-primary'
+.row
+  .col-lg-12.mb-3
+    %h3 Fluid Layout
+    %p.lead
+      Choose between fixed (max. 960px) and fluid (100%) application layout.
+    - current_toggle_value = current_user.preference.fluid_layout?
+    - preference = current_toggle_value ? 'Fluid' : 'Fixed'
+    %p Current preference: #{preference}
+    = form_with(model: @user.preference, url: [@user, :preference]) do |toggle_fluid_layout_form|
+      = toggle_fluid_layout_form.hidden_field :fluid_layout, value: !current_toggle_value
+      .input-group.mb-3
+        = toggle_fluid_layout_form.submit 'Toggle layout preference', class: 'btn btn-primary'
   .row
     .col-lg-12.mb-3
       %h3 About AsyncGo
