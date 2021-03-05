@@ -35,7 +35,7 @@ RSpec.describe Teams::TopicsHelper, type: :helper do
 
     context 'when topic does not have due date' do
       it { is_expected.to have_text('No due date') }
-      it { is_expected.to match(/class=".*bg-success.*"/) }
+      it { is_expected.not_to match(/class/) }
     end
 
     context 'when topic has due date and is active' do
@@ -54,7 +54,7 @@ RSpec.describe Teams::TopicsHelper, type: :helper do
         end
 
         it { is_expected.to have_text('Due less than a minute ago') }
-        it { is_expected.to match(/class=".*bg-warning.*"/) }
+        it { is_expected.to match(/class="rounded p-1 bg-info text-light"/) }
       end
 
       context 'when topic is not overdue' do
@@ -67,7 +67,7 @@ RSpec.describe Teams::TopicsHelper, type: :helper do
         end
 
         it { is_expected.to have_text('Due in 3 days') }
-        it { is_expected.to match(/class=".*bg-success.*"/) }
+        it { is_expected.not_to match(/class/) }
       end
     end
 
@@ -78,7 +78,7 @@ RSpec.describe Teams::TopicsHelper, type: :helper do
       end
 
       it { is_expected.to have_text('Due Jan 1') }
-      it { is_expected.to match(/class=".*bg-warning.*"/) }
+      it { is_expected.not_to match(/class/) }
     end
   end
 

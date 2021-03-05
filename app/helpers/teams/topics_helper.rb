@@ -9,10 +9,9 @@ module Teams
     end
 
     def topic_due_date_span(topic)
-      alert_style = topic_overdue?(topic) ? 'text-white bg-info' : nil
-      classes = "rounded p-1 #{alert_style}"
+      alert_style = topic_overdue?(topic) ? 'rounded p-1 bg-info text-light' : nil
 
-      tag.span(class: classes) do
+      tag.span(class: alert_style) do
         topic_due_date_text(topic)
       end
     end
@@ -50,6 +49,7 @@ module Teams
 
     def topic_overdue?(topic)
       return false unless topic.due_date?
+      return false unless topic.active?
 
       topic.due_date.end_of_day < Time.now.utc
     end
