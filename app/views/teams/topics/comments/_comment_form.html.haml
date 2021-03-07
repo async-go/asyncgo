@@ -1,5 +1,4 @@
 - submit_action = comment.persisted? ? 'Update' : 'Add Comment'
-- submit_id = comment.persisted? ? 'updatecommentbutton' : 'createcommentbutton'
 = form_with(model: comment, url: [comment.topic.team, comment.topic, comment],
   data: { controller: 'reset-form', action: 'turbo:submit-end->reset-form#reset' }) do |form|
   = render partial: 'shared/form_errors', locals: { model: comment }
@@ -9,4 +8,4 @@
     = render partial: 'shared/markdown_text_area', locals: { form: form, name: :body,
       options: { rows: '5', required: true, class: 'form-control',
       data: { controller: 'attach-tribute', action: 'focus->attach-tribute#attach:once' } } }
-  = form.submit submit_action, class: 'btn btn-primary', id: submit_id
+  = form.submit submit_action, class: 'btn btn-primary'

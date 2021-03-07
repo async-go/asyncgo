@@ -18,9 +18,9 @@ RSpec.describe 'Accessibility', type: :system do
     visit '/'
     sign_in_user(user)
     click_link 'Topics'
-    click_link 'newtopicbutton'
+    click_link 'New Topic'
 
-    expect(page).to have_button 'createtopicbutton'
+    expect(page).to have_button 'Create'
     expect(page).to be_axe_clean
   end
 end
