@@ -40,7 +40,4 @@
         - if topic.active?
           (Work in Progress)
       .p-3
-        - unless topic.outcome_html.present?
-          Content has not been started yet.
-        - else
-          != topic.outcome_html
+        != topic.outcome_html || 'Content has not been started yet'
