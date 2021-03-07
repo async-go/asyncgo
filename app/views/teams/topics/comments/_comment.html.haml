@@ -12,6 +12,6 @@
       - if policy(comment).edit?
         = link_to 'Edit',
           edit_team_topic_comment_path(comment.topic.team, comment.topic, comment),
-          class: 'btn btn-secondary btn-sm', id: 'editcommentbutton'
+          class: 'btn btn-secondary btn-sm'
   .row.mt-3
     %div!= comment.body_html
