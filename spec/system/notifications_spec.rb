@@ -51,7 +51,7 @@ RSpec.describe 'Notifications', type: :system do
     click_link 'New Topic'
     fill_in 'topic[title]', with: 'Sample topic'
     fill_in 'topic[description]', with: 'Sample topic description'
-    click_button 'Add Comment'
+    click_button 'Create'
 
     click_link 'Sign out'
     sign_in_user(actor)
