@@ -1,16 +1,16 @@
 = turbo_frame_tag dom_id(comment) do
   .row
-    .col-lg-2
+    .col-lg-2.mt-2
       = image_tag "#{comment.user.gravatar_url}?s=20&d=retro",
         class: 'me-1 gravatar-img', alt: ''
       = link_to comment.user.printable_name, "mailto:#{comment.user.email}"
-    .col-lg-1
+    .col-lg-1.mt-2
       %span= comment.created_at.strftime('%b %e')
-    .col-lg-2.ms-auto
+    .col-lg-2.ms-auto.mt-2
       = render partial: 'teams/topics/vote_list_group', locals: { votable: comment }
-    .col-lg-2
+    .col-lg-2.mt-2
       - if policy(comment).edit?
-        = link_to 'Edit Comment',
+        = link_to 'Edit',
           edit_team_topic_comment_path(comment.topic.team, comment.topic, comment),
           class: 'btn btn-secondary btn-sm'
   .row.mt-3

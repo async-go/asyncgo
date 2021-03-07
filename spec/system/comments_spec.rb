@@ -15,7 +15,7 @@ RSpec.describe 'Comments', type: :system do
     click_link topic.title
 
     fill_in 'comment[body]', with: '__Sample content__'
-    click_button 'Create Comment'
+    click_button 'Add Comment'
 
     expect(page).to have_selector('strong', text: 'Sample content')
   end
@@ -28,13 +28,13 @@ RSpec.describe 'Comments', type: :system do
     sign_in_user(user)
     click_link 'Topics'
     click_link comment.topic.title
-    click_link 'Edit Comment'
+    click_link 'Edit', href: edit_team_topic_comment_path(comment.topic.team, comment.topic, comment)
 
     edit_comment_path = team_topic_comment_path(comment.topic.team, comment.topic, comment)
     edit_comment_form = find("form[action='#{edit_comment_path}']", match: :first)
     within(edit_comment_form) do
       fill_in 'comment[body]', with: 'This is updated content'
-      click_button 'Update Comment'
+      click_button 'Update'
     end
 
     expect(page).to have_text('This is updated content')

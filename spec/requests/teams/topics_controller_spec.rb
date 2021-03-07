@@ -56,7 +56,7 @@ RSpec.describe Teams::TopicsController, type: :request do
       it 'renders the show page' do
         get_new
 
-        expect(response.body).to include('Create Topic')
+        expect(response.body).to include('Create')
       end
     end
 
@@ -81,7 +81,7 @@ RSpec.describe Teams::TopicsController, type: :request do
         it 'renders the edit page' do
           get_edit
 
-          expect(response.body).to include('Update Topic')
+          expect(response.body).to include('Update')
         end
       end
 

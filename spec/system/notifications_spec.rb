@@ -31,7 +31,7 @@ RSpec.describe 'Notifications', type: :system do
     click_link 'New Topic'
     fill_in 'topic[title]', with: 'Sample topic'
     fill_in 'topic[description]', with: 'Sample topic description'
-    click_button 'Create Topic'
+    click_button 'Create'
 
     click_link 'Sign out'
     sign_in_user(user)
@@ -51,7 +51,7 @@ RSpec.describe 'Notifications', type: :system do
     click_link 'New Topic'
     fill_in 'topic[title]', with: 'Sample topic'
     fill_in 'topic[description]', with: 'Sample topic description'
-    click_button 'Create Topic'
+    click_button 'Create'
 
     click_link 'Sign out'
     sign_in_user(actor)
@@ -60,7 +60,7 @@ RSpec.describe 'Notifications', type: :system do
     click_link 'Sample topic'
 
     fill_in 'comment[body]', with: '__Sample content__'
-    click_button 'Create Comment'
+    click_button 'Add Comment'
 
     click_link 'Sign out'
     sign_in_user(user)
@@ -78,7 +78,7 @@ RSpec.describe 'Notifications', type: :system do
     click_link 'New Topic'
     fill_in 'topic[title]', with: 'Sample topic'
     fill_in 'topic[description]', with: "This is a test mention for @#{user.email}"
-    click_button 'Create Topic'
+    click_button 'Create'
 
     click_link 'Sign out'
     sign_in_user(user)

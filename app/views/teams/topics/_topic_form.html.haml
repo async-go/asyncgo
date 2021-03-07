@@ -1,4 +1,4 @@
-- submit_action = topic.persisted? ? 'Update Topic' : 'Create Topic'
+- submit_action = topic.persisted? ? 'Update' : 'Create'
 = form_with(model: topic, url: [topic.team, topic]) do |form|
   = render partial: 'shared/form_errors', locals: { model: topic }
   = form.hidden_field :description_checksum, value: string_checksum(topic.description)
@@ -21,11 +21,9 @@
       = render partial: 'shared/markdown_text_area', locals: { form: form, name: :outcome,
         options: { rows: '20', class: 'form-control',
         data: { controller: 'attach-tribute', action: 'focus->attach-tribute#attach:once' } } }
-  .row
+  .row.align-items-end
     .col-lg-4
-      .mb-2
-        = form.label :due_date
-      .mb-2
-        = form.date_field :due_date, class: 'form-control'
-    .col-lg-2.mt-auto
+      = form.label :due_date
+      = form.date_field :due_date, class: 'form-control'
+    .col-lg-1
       = form.submit submit_action, class: 'btn btn-primary'

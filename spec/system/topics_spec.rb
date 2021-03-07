@@ -26,7 +26,7 @@ RSpec.describe 'Topics', type: :system do
 
     fill_in 'topic[title]', with: 'Sample title'
     fill_in 'topic[description]', with: '__Sample topic content__'
-    click_button 'Create Topic'
+    click_button 'Create'
 
     expect(page).to have_text('Sample title')
     expect(page).to have_selector('strong', text: 'Sample topic content')
@@ -40,10 +40,10 @@ RSpec.describe 'Topics', type: :system do
     sign_in_user(user)
     click_link 'Topics'
     click_link topic.title
-    click_link 'Edit Topic'
+    click_link 'Edit'
 
     fill_in 'topic[description]', with: 'This is an update'
-    click_button 'Update Topic'
+    click_button 'Update'
 
     expect(page).to have_text('This is an update')
   end
@@ -56,7 +56,7 @@ RSpec.describe 'Topics', type: :system do
     sign_in_user(user)
     click_link 'Topics'
     click_link topic.title
-    click_link 'Edit Topic'
+    click_link 'Edit'
 
     update_topic_path = team_topic_path(topic.team, topic)
     expect(page).to have_selector("form[action='#{update_topic_path}']")
@@ -64,7 +64,7 @@ RSpec.describe 'Topics', type: :system do
     topic.update!(description: 'This is an external update',
                   description_html: '<p>This is an external update',
                   description_checksum: Digest::MD5.hexdigest(topic.description))
-    click_button 'Update Topic'
+    click_button 'Update'
 
     expect(page).to have_text(Topic::CHECKSUM_ERROR_MESSAGE)
   end
@@ -77,7 +77,7 @@ RSpec.describe 'Topics', type: :system do
     sign_in_user(user)
     click_link 'Topics'
     click_link topic.title
-    click_link 'Edit Topic'
+    click_link 'Edit'
 
     update_topic_path = team_topic_path(topic.team, topic)
     expect(page).to have_selector("form[action='#{update_topic_path}']")
@@ -85,7 +85,7 @@ RSpec.describe 'Topics', type: :system do
     topic.update!(outcome: 'This is an external update',
                   outcome_html: '<p>This is an external update</p>',
                   outcome_checksum: Digest::MD5.hexdigest(''))
-    click_button 'Update Topic'
+    click_button 'Update'
 
     expect(page).to have_text(Topic::CHECKSUM_ERROR_MESSAGE)
   end
@@ -98,10 +98,10 @@ RSpec.describe 'Topics', type: :system do
     sign_in_user(user)
     click_link 'Topics'
     click_link topic.title
-    click_link 'Edit Topic'
+    click_link 'Edit'
 
     fill_in 'topic[outcome]', with: '__Sample outcome__'
-    click_button 'Update Topic'
+    click_button 'Update'
 
     expect(page).to have_selector('strong', text: 'Sample outcome')
   end
@@ -114,10 +114,10 @@ RSpec.describe 'Topics', type: :system do
     sign_in_user(user)
     click_link 'Topics'
     click_link topic.title
-    click_button 'Resolve Topic'
-    click_button 'Reopen Topic'
+    click_button 'Resolve'
+    click_button 'Reopen'
 
-    expect(page).to have_button('Resolve Topic')
+    expect(page).to have_button('Resolve')
   end
 
   it 'allows the user to subscribe and unsubscribe from the topic' do
@@ -129,11 +129,11 @@ RSpec.describe 'Topics', type: :system do
     click_link 'Topics'
     click_link topic.title
 
-    expect(page).to have_button('Watch Topic')
-    click_button 'Watch Topic'
-    expect(page).to have_button('Unwatch Topic')
-    click_button 'Unwatch Topic'
-    expect(page).to have_button('Watch Topic')
+    expect(page).to have_button('Watch')
+    click_button 'Watch'
+    expect(page).to have_button('Unwatch')
+    click_button 'Unwatch'
+    expect(page).to have_button('Watch')
   end
 
   it 'allows the user to vote on a topic' do
