@@ -9,7 +9,7 @@ RSpec.describe 'Pagination', type: :system do
     user = FactoryBot.create(:user, :team)
     FactoryBot.create_list(
       :topic, Pagy::VARS[:items], user: user, team: user.team, status: :active,
-                  due_date: Date.new(2020, 1, 1)
+                                  due_date: Date.new(2020, 1, 1)
     )
     FactoryBot.create(
       :topic, user: user, team: user.team, status: :active,
@@ -30,7 +30,7 @@ RSpec.describe 'Pagination', type: :system do
     user = FactoryBot.create(:user, :team)
     FactoryBot.create_list(
       :topic, Pagy::VARS[:items], user: user, team: user.team, status: :closed,
-                  due_date: Date.new(2020, 1, 1)
+                                  due_date: Date.new(2020, 1, 1)
     )
     FactoryBot.create(
       :topic, user: user, team: user.team, status: :closed,
