@@ -13,10 +13,8 @@
     = stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload'
     = stylesheet_link_tag 'dark', media: '(prefers-color-scheme: dark)',
       'data-turbo-track': 'reload'
-    = stylesheet_link_tag
-      'https://cdn.jsdelivr.net/npm/froala-editor@latest/css/froala_editor.pkgd.min.css'
-    = javascript_include_tag
-      'https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js'
+    = stylesheet_link_tag 'https://cdn.jsdelivr.net/npm/froala-editor@latest/css/froala_editor.pkgd.min.css'
+    = javascript_include_tag 'https://cdn.jsdelivr.net/npm/froala-editor@latest/js/froala_editor.pkgd.min.js'
     = javascript_pack_tag 'application', 'data-turbo-track': 'reload', defer: true
     = favicon_link_tag image_path('logo.svg')
   %body
