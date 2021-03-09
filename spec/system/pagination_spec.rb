@@ -8,7 +8,7 @@ RSpec.describe 'Pagination', type: :system do
   it 'paginates active topics' do
     user = FactoryBot.create(:user, :team)
     FactoryBot.create_list(
-      :topic, 30, user: user, team: user.team, status: :active,
+      :topic, Pagy::VARS[:items], user: user, team: user.team, status: :active,
                   due_date: Date.new(2020, 1, 1)
     )
     FactoryBot.create(
@@ -29,7 +29,7 @@ RSpec.describe 'Pagination', type: :system do
   it 'paginates closed topics' do
     user = FactoryBot.create(:user, :team)
     FactoryBot.create_list(
-      :topic, 30, user: user, team: user.team, status: :closed,
+      :topic, Pagy::VARS[:items], user: user, team: user.team, status: :closed,
                   due_date: Date.new(2020, 1, 1)
     )
     FactoryBot.create(
