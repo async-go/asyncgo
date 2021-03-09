@@ -1,6 +1,9 @@
 @import 'bootstrap-dark-5/scss/bootstrap-nightfall';
 
 @media (prefers-color-scheme: dark) {
+
+  @import 'froala-dark';
+
   .list-group-item {
     background-color: #181818;
   }
