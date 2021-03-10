@@ -8,8 +8,8 @@ RSpec.describe 'Pagination', type: :system do
   it 'paginates active topics' do
     user = FactoryBot.create(:user, :team)
     FactoryBot.create_list(
-      :topic, Pagy::VARS[:items], user: user, team: user.team, status: :active,
-                                  due_date: Date.new(2020, 1, 1)
+      :topic, 20, user: user, team: user.team, status: :active,
+                  due_date: Date.new(2020, 1, 1)
     )
     FactoryBot.create(
       :topic, user: user, team: user.team, status: :active,
@@ -29,8 +29,8 @@ RSpec.describe 'Pagination', type: :system do
   it 'paginates closed topics' do
     user = FactoryBot.create(:user, :team)
     FactoryBot.create_list(
-      :topic, Pagy::VARS[:items], user: user, team: user.team, status: :closed,
-                                  due_date: Date.new(2020, 1, 1)
+      :topic, 20, user: user, team: user.team, status: :closed,
+                  due_date: Date.new(2020, 1, 1)
     )
     FactoryBot.create(
       :topic, user: user, team: user.team, status: :closed,
@@ -51,7 +51,7 @@ RSpec.describe 'Pagination', type: :system do
     user = FactoryBot.create(:user, :team)
     topic = FactoryBot.create(:topic, user: user, team: user.team)
     FactoryBot.create_list(
-      :comment, 25, topic: topic, user: user, created_at: Date.new(2020, 1, 1)
+      :comment, 20, topic: topic, user: user, created_at: Date.new(2020, 1, 1)
     )
     FactoryBot.create(
       :comment, topic: topic, user: user, body: 'thisisthelastcomment',
@@ -87,7 +87,7 @@ RSpec.describe 'Pagination', type: :system do
   it 'paginates user members' do
     user = FactoryBot.create(:user, :team)
     FactoryBot.create_list(
-      :user, 25, team: user.team, created_at: Date.new(2020, 1, 1)
+      :user, 20, team: user.team, created_at: Date.new(2020, 1, 1)
     )
     FactoryBot.create(
       :user, team: user.team, email: 'thisisthelastuser@example.com',
