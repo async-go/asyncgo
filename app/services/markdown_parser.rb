@@ -29,7 +29,19 @@ class MarkdownParser < ApplicationService
   end
 
   def process_markdown(markdown)
-    CommonMarker.render_html(markdown, :DEFAULT, %i[tasklist tagfilter autolink])
+    CommonMarker.render_html(filters(markdown), :DEFAULT, %i[tasklist tagfilter autolink])
+  end
+
+  def filters(markdown)
+    baz_filter(bar_filter(markdown))
+  end
+
+  def bar_filter(markdown)
+    return markdown.gsub('foo','replaced')
+  end
+
+  def baz_filter(markdown)
+    return markdown.gsub('baz','replaced')
   end
 
   def notify_user!(target_user)
