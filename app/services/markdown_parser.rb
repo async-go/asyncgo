@@ -37,11 +37,11 @@ class MarkdownParser < ApplicationService
   end
 
   def bar_filter(markdown)
-    return markdown.gsub('foo','replaced')
+    markdown.gsub('foo', 'replaced')
   end
 
   def baz_filter(markdown)
-    return markdown.gsub('baz','replaced')
+    markdown.gsub('baz', 'replaced')
   end
 
   def notify_user!(target_user)
