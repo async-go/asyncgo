@@ -38,6 +38,9 @@
 # Ignore .env file
 .env
 
+# Vim .swap files
+.swp
+
 # Ignore yarn files
 /node_modules
 /yarn-error.log
