@@ -50,3 +50,7 @@ yarn-debug.log*
 !.yarn/sdks
 !.yarn/versions
 .pnp.*
+
+# Vim .swap files
+.swp
+
