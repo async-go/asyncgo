@@ -72,4 +72,4 @@ GITHUB_CLIENT_SECRET=[REDACTED]
 ## Blazer authentication
 
 Blazer uses hard-coded user authentication. It checks if the user email ends
-with '@asyncgo.com'.
+with `@asyncgo.com`.
