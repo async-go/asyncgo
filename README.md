@@ -71,5 +71,5 @@ GITHUB_CLIENT_SECRET=[REDACTED]
 
 ## Blazer authentication
 
-Blazer uses simple HTTP authentication. You need to set `BLAZER_USERNAME` and
-`BLAZER_PASSWORD` environment variables for it to work.
+Blazer uses hard-coded user authentication. It checks if the user email ends
+with '@asyncgo.com'.
