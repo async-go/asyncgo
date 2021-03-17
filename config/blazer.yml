@@ -6,7 +6,7 @@ data_sources:
 
     # statement timeout, in seconds
     # none by default
-    # timeout: 15
+    timeout: 15
 
     # caching settings
     # can greatly improve speed
@@ -19,7 +19,7 @@ data_sources:
     # wrap queries in a transaction for safety
     # not necessary if you use a read-only user
     # true by default
-    # use_transaction: false
+    use_transaction: true
 
     smart_variables:
       # zone_id: "SELECT id, name FROM zones ORDER BY name ASC"
@@ -36,22 +36,22 @@ data_sources:
 audit: true
 
 # change the time zone
-# time_zone: "Pacific Time (US & Canada)"
+time_zone: "UTC"
 
 # class name of the user model
-# user_class: User
+user_class: User
 
 # method name for the current user
-# user_method: current_user
+user_method: current_user
 
 # method name for the display name
-# user_name: name
+user_name: printable_name
 
 # custom before_action to use for auth
 # before_action_method: require_admin
 
 # email to send checks from
-# from_email: blazer@example.org
+from_email: blazer@app.asyncgo.com
 
 # webhook for Slack
 # slack_webhook_url: <%= ENV["BLAZER_SLACK_WEBHOOK_URL"] %>
