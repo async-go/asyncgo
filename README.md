@@ -65,6 +65,11 @@ GITHUB_CLIENT_ID=[REDACTED]
 GITHUB_CLIENT_SECRET=[REDACTED]
 ```
 
-### Rake tasks
+## Rake tasks
 
 - `rake send_digest_emails` emails a list of unread notifications to every user
+
+## Blazer authentication
+
+Blazer uses simple HTTP authentication. You need to set `BLAZER_USERNAME` and
+`BLAZER_PASSWORD` environment variables for it to work.
