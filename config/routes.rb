@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   get 'auth/failure', to: redirect('/')
   delete :sign_out, to: 'sessions#destroy'
 
+  mount Blazer::Engine, at: 'blazer'
+
   resources :users, only: :edit do
     scope module: :users do
       resource :preference, only: :update
