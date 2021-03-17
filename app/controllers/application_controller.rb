@@ -24,6 +24,13 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user
 
+  def authorize_blazer!
+    return if current_user&.email&.ends_with?('@asyncgo.com')
+
+    # This is required because the redirect happens from the Rails engine
+    redirect_to Rails.application.routes.url_helpers.root_path
+  end
+
   def unique_unread_notifications
     @unique_unread_notifications ||= begin
       Notification.includes(:actor, :user, :target)
