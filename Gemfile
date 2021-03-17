@@ -18,6 +18,7 @@ gem 'sass-rails', '>= 6' # Use SCSS for stylesheets
 gem 'webpacker', '6.0.0.beta.6 ' # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 
 # Other
+gem 'blazer', '~> 2.4.2' # Business Intelligence made easy
 gem 'commonmarker', '~> 0.21.0' # GitHub Flavored Markdown renderer
 gem 'font-awesome-sass', '~> 5.15.1'
 gem 'gemoji', '~> 3.0.1' # emoji helpers
