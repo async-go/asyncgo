@@ -24,6 +24,12 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user
 
+  def authorize_blazer!
+    return unless current_user
+
+    raise Pundit::NotAuthorizedError, 'must be logged in'
+  end
+
   def unique_unread_notifications
     @unique_unread_notifications ||= begin
       Notification.includes(:actor, :user, :target)
