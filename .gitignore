@@ -62,4 +62,6 @@ Sessionx.vim
 .netrwhist
 *~
 tags
+tags.lock
+tags.temp
 [._]*.un~
