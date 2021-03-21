@@ -34,7 +34,7 @@ end
 
 # Topic
 topic = Topic.create!(
-  user: alice, team: asyncgo, title: 'Daily standup', due_date: Time.zone.today,
+  user: alice, team: asyncgo, title: '☑️ Daily standup', due_date: Time.zone.today,
   description: '- Hello', description_html: '<ul><li>Hello</li></ul>'
 )
 
@@ -60,21 +60,21 @@ Notification.create!(user: matija, actor: bob, action: :updated, target: topic)
 Notification.create!(user: matija, actor: alice, action: :updated, target: topic)
 
 # Topics
-Topic.create!(user: bob, title: 'Lets discuss our next marketing campaign',
+Topic.create!(user: bob, title: '📰 Lets discuss our next marketing campaign',
               description: '- Hello', description_html: '<ul><li>Hello</li></ul>',
               team: asyncgo, due_date: Time.zone.today + 5)
-Topic.create!(user: bob, title: 'Competitive analysis vs. our top competitor',
+Topic.create!(user: bob, title: '📈 Competitive analysis vs. our top competitor',
               description: '- Hello', description_html: '<ul><li>Hello</li></ul>',
               outcome: 'We are the best', outcome_html: '<p>We are the best</p>',
               team: asyncgo, due_date: Time.zone.today - 2)
-Topic.create!(user: bob, title: 'Discuss possible next big features',
+Topic.create!(user: bob, title: '🏗️  Discuss possible next big features',
               description: '- Hello', description_html: '<ul><li>Hello</li></ul>',
               team: asyncgo, due_date: Time.zone.today + 4)
-Topic.create!(user: alice, title: 'Feedback on our latest demo',
+Topic.create!(user: alice, title: '👩 Feedback on our latest demo',
               description: '- Hello', description_html: '<ul><li>Hello</li></ul>',
               outcome: 'Action items', outcome_html: '<p>Action items</p>',
               team: asyncgo, due_date: Time.zone.today)
-Topic.create!(user: alice, title: 'Review general customer feedback so far',
+Topic.create!(user: alice, title: '🛍️  Review general customer feedback so far',
               description: '- Hello', description_html: '<ul><li>Hello</li></ul>',
               outcome: 'All good so far', outcome_html: '<p>All good so far</p>',
               team: asyncgo, due_date: nil)
