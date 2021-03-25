@@ -10,10 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_25_131211) do
+ActiveRecord::Schema.define(version: 2021_03_17_104058) do
 
   # These are extensions that must be enabled in order to support this database
-  enable_extension "citext"
   enable_extension "plpgsql"
 
   create_table "blazer_audits", force: :cascade do |t|
@@ -139,7 +138,7 @@ ActiveRecord::Schema.define(version: 2021_03_25_131211) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.citext "email", null: false
+    t.string "email", null: false
     t.string "name"
     t.bigint "team_id"
     t.datetime "created_at", precision: 6, null: false
