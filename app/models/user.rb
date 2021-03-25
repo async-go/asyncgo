@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
-  validates :email, presence: { allow_blank: false }, uniqueness: true
+  validates :email, presence: { allow_blank: false }, uniqueness: { case_sensitive: false }
   validates :name, presence: { allow_blank: false, allow_empty: false, allow_nil: true }
   validates :preference, presence: true
 
