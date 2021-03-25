@@ -3,12 +3,12 @@
 # Preview all emails at http://localhost:3000/rails/mailers/digest_mailer
 class DigestMailerPreview < ActionMailer::Preview
   def digest_email
-    team = Team.new(name: 'sample team')
+    team = Team.new(id: 1, name: 'sample team')
     user = User.new(id: 1, email: 'test@example.com', name: 'Bob Test', team: team)
-    actor = User.new(email: 'actor@example.com', name: 'Actor Sample', team: team)
-    topic = Topic.new(title: 'Test Topic', team: team, user: user)
-    Notification.new(id: 1, user: user, actor: actor, target: topic)
+    actor = User.new(id: 2, email: 'actor@example.com', name: 'Actor Sample', team: team)
+    topic = Topic.new(id: 1, title: 'Test Topic', team: team, user: user)
+    notifications = [Notification.new(id: 1, user: user, actor: actor, target: topic, action: 'created')]
 
-    DigestMailer.with(user: user).digest_email
+    DigestMailer.with(user: user, notifications: notifications).digest_email
   end
 end
