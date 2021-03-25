@@ -10,7 +10,8 @@
           .input-group
             .input-group-text.mb-3
               = invite_user_form.label :email
-            = invite_user_form.text_field :email, class: 'form-control mb-3'
+            = invite_user_form.text_field :email, required: true, pattern: '\S*',
+              class: 'form-control mb-3'
         .col-lg-2
           = invite_user_form.submit 'Invite User', class: 'btn btn-primary mb-3'
 

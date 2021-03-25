@@ -36,7 +36,7 @@ module Teams
     private
 
     def create_params
-      params.require(:user).permit(:email)
+      { email: params[:user][:email].downcase.strip }
     end
 
     def send_welcome_email(user)
