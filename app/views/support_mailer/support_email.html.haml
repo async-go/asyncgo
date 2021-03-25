@@ -1,6 +1,7 @@
 %h2 Request Info
 %ul
-  %li Team ID: #{@user.team.id}
+  %li Team ID: #{@user.team.id} (#{@user.team.name})
+  %li User ID: #{@user.id} (#{@user.name || @user.email})
 
 %h2 Request Content
 %p= @body
