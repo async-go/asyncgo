@@ -6,6 +6,10 @@ class SupportMailer < ApplicationMailer
   def support_email
     @user = params[:user]
     @body = params[:body]
-    mail(from: @user.email, subject: "Support request: #{@user.team.name}")
+    mail(
+      subject: "Support request: #{@user.team.name}",
+      from: @user.email,
+      reply_to: @user.email
+    )
   end
 end
