@@ -13,7 +13,6 @@
 ActiveRecord::Schema.define(version: 2021_03_26_064951) do
 
   # These are extensions that must be enabled in order to support this database
-  enable_extension "citext"
   enable_extension "plpgsql"
 
   create_table "blazer_audits", force: :cascade do |t|
