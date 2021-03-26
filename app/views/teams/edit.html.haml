@@ -1,6 +1,20 @@
 %h1.visually-hidden Configuration for #{@team.name}
 
 .row.mt-3
+  .col-lg-12
+    %h3 Team Message
+    %p.lead
+      Set a message that your team will see on the topics page. This can be used
+      to share priorities, important updates, or other notes that it is important
+      for the team to see.
+    = form_with(model: Team, url: edit_team_path) do |form|
+      = render partial: 'shared/markdown_text_area', locals: { form: form, name: :message,
+        options: { rows: '6', class: 'form-control' } }
+      = form.submit 'Save', class: 'btn btn-primary'
+
+%hr
+
+.row
   .col.lg-12
     %h3 Invite users
     %p.lead Invite users to join your team.
