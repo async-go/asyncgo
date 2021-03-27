@@ -5,12 +5,12 @@
     %h3 Name
     %p.lead
       This is the name that will be shown for your team.
-    = form_with(model: @team, url: [@team], class: 'g-3') do |form|
+    = form_with(model: @team, url: @team, class: 'g-3') do |form|
       .row.mt-2
         .mb-3
           .mb-1
             = form.label :name
-          = form.text_field :name, required: true, class: 'form-control', class: 'form-control mb-3'
+          = form.text_field :name, required: true, class: 'form-control mb-3'
           = form.submit 'Save', class: 'btn btn-primary mb-3'
 
 %hr
@@ -27,7 +27,7 @@
         .mb-3
           .mb-1
             = form.label :message
-          = form.text_field :message, required: true, class: 'form-control', class: 'form-control mb-3'
+          = form.text_field :message, required: true, class: 'form-control mb-3'
           = form.submit 'Save', class: 'btn btn-primary mb-3'
 
 %hr
