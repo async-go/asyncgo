@@ -111,7 +111,6 @@ ActiveRecord::Schema.define(version: 2021_03_26_064951) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "message"
-    t.string "message_html"
   end
 
   create_table "topics", force: :cascade do |t|

@@ -4,7 +4,6 @@ class AddMessageToTeam < ActiveRecord::Migration[6.1]
   def change
     change_table :teams, bulk: true do |t|
       t.string :message
-      t.string :message_html
     end
   end
 end

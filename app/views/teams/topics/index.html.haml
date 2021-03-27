@@ -11,7 +11,7 @@
 
 .row.mt-3
   %h2 Team Message
-  .p-3!= @team.message_html || 'No message is set for the team right now.'
+  .p-3!= @team.message || 'No message is set for the team right now.'
 
 .row.mt-3
   %h2 Closed Topics
