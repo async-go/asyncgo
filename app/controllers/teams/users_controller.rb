@@ -36,7 +36,7 @@ module Teams
     private
 
     def create_params
-      params.require(:user).permit(:email)
+      { email: params[:user][:email].downcase.strip }
     end
 
     def send_welcome_email(user)
@@ -44,7 +44,9 @@ module Teams
     end
 
     def add_user_to_team(team, user)
-      if user.team
+      if !user.valid?
+        { danger: "There was a problem adding the user to the team. #{user.errors.full_messages.join(', ')}." }
+      elsif user.team
         { danger: 'User already belongs to a team.' }
       else
         team.users << user

@@ -93,34 +93,62 @@ RSpec.describe Teams::UsersController, type: :request do
       end
 
       context 'when user is not registered' do
-        let(:email) { 'test@example.com' }
+        context 'when email is valid' do
+          let(:email) { 'test@example.com' }
 
-        it 'creates the user' do
-          expect { post_create }.to change(User, :count).from(1).to(2)
+          it 'creates the user' do
+            expect { post_create }.to change(User, :count).from(1).to(2)
+          end
+
+          it 'adds the new user to the team' do
+            post_create
+
+            expect(User.last.team_id).to eq(team.id)
+          end
+
+          it 'enqueues welcome email' do
+            expect { post_create }.to have_enqueued_mail(UserMailer, :welcome_email).with(
+              a_hash_including(params: { user: instance_of(User) })
+            ).on_queue(:default)
+          end
+
+          it 'sets the flash' do
+            post_create
+
+            expect(controller.flash[:success]).to eq('User was successfully added to the team.')
+          end
+
+          it 'redirects to edit team path' do
+            post_create
+
+            expect(response).to redirect_to(edit_team_path(team))
+          end
         end
 
-        it 'adds the new user to the team' do
-          post_create
+        context 'when email is not valid' do
+          let(:email) { 'invalidemail' }
 
-          expect(User.last.team_id).to eq(team.id)
-        end
+          it 'does not create the user' do
+            expect { post_create }.not_to change(User, :count).from(1)
+          end
 
-        it 'enqueues welcome email' do
-          expect { post_create }.to have_enqueued_mail(UserMailer, :welcome_email).with(
-            a_hash_including(params: { user: instance_of(User) })
-          ).on_queue(:default)
-        end
+          it 'does not enqueue welcome email' do
+            expect { post_create }.not_to have_enqueued_mail(UserMailer, :welcome_email)
+          end
 
-        it 'sets the flash' do
-          post_create
+          it 'sets the flash' do
+            post_create
 
-          expect(controller.flash[:success]).to eq('User was successfully added to the team.')
-        end
+            expect(controller.flash[:danger]).to eq(
+              'There was a problem adding the user to the team. Email is invalid.'
+            )
+          end
 
-        it 'redirects to edit team path' do
-          post_create
+          it 'redirects to edit team path' do
+            post_create
 
-          expect(response).to redirect_to(edit_team_path(team))
+            expect(response).to redirect_to(edit_team_path(team))
+          end
         end
       end
     end
