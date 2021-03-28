@@ -43,7 +43,6 @@ class TeamsController < Teams::ApplicationController
   end
 
   def update
-    puts "Authorizing for #{team.inspect}"
     authorize(team)
 
     if team.update(team_params)
