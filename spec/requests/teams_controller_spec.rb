@@ -53,7 +53,6 @@ RSpec.describe TeamsController, type: :request do
 
           expect(controller.flash[:success]).to eq('Team was successfully updated.')
         end
-
       end
     end
   end
