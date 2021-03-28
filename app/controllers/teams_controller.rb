@@ -42,9 +42,21 @@ class TeamsController < Teams::ApplicationController
     redirect_to edit_team_path(team), flash: support_flash
   end
 
+  def update
+    puts "Authorizing for #{team.inspect}"
+    authorize(team)
+
+    if team.update(team_params)
+      redirect_to edit_team_path(team),
+                  flash: { success: 'Team was successfully updated.' }
+    else
+      render 'team/edit', status: :unprocessable_entity
+    end
+  end
+
   private
 
   def team_params
-    params.require(:team).permit(:name)
+    params.require(:team).permit(:name, :message)
   end
 end
