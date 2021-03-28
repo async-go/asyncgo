@@ -12,11 +12,6 @@ module Teams
         record == user.team
     end
 
-    def update?
-      user &&
-        record == user.team
-    end
-
     def destroy?
       user &&
         record.team == user.team &&
