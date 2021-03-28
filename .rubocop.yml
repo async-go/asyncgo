@@ -8,8 +8,6 @@ inherit_mode:
     - Exclude
 
 AllCops:
-  Exclude:
-    - 'docs/styles/**/*'
   NewCops: enable
 
 Metrics/BlockLength:
