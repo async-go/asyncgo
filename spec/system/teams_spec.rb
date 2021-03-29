@@ -41,6 +41,34 @@ RSpec.describe 'Teams', type: :system do
     expect(page).not_to have_link(other_user.email)
   end
 
+  it 'allows the user to change the name' do
+    user = FactoryBot.create(:user, :team)
+
+    visit '/'
+    sign_in_user(user)
+    click_link 'Admin'
+
+    fill_in 'team[name]', with: 'New team name'
+    click_button 'Save Name'
+
+    expect(page).to have_text('New team name')
+  end
+
+  it 'allows the user to set a message' do
+    user = FactoryBot.create(:user, :team)
+
+    visit '/'
+    sign_in_user(user)
+    click_link 'Admin'
+
+    fill_in 'team[message]', with: 'New team message'
+    click_button 'Save Message'
+
+    click_link 'Topics'
+
+    expect(page).to have_text('New team message')
+  end
+
   it 'allows the user to send a support email' do
     visit '/'
     sign_in_user(FactoryBot.create(:user, :team))
