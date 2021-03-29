@@ -6,7 +6,8 @@
     = link_to 'Create New Team', new_team_path
 - else
   %p.lead
-    The first step is to sign in. You can do so using one of the following accounts:
+    AsyncGo is in early access, but you're welcome to sign in and check out what
+    we're building. You can do so using one of the following accounts:
     = button_to 'Google', '/auth/google_oauth2',
       'data-turbo': false, class: 'btn btn-primary mb-3'
     = button_to 'GitHub', '/auth/github',
