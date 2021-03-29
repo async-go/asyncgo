@@ -7,15 +7,22 @@
 - else
   %p.lead
     AsyncGo is in early access, but you're welcome to sign in and check out what
-    we're building. You can do so using one of the following accounts:
-    = button_to 'Google', '/auth/google_oauth2',
-      'data-turbo': false, class: 'btn btn-primary mb-3'
-    = button_to 'GitHub', '/auth/github',
-      'data-turbo': false, class: 'btn btn-primary mb-3'
+    we're building.
+  %p
+    Documentation is available on our #{link_to('docs site', 'https://asyncgo.com/docs')}
+    and general product information can be found on our
+    #{link_to('home page', 'https://asyncgo.com')}. You can also sign up for our
+    #{link_to('product info mailing list', 'https://asyncgo.com/#signup')}.
+  %p
+    You can sign in using one of the following account types:
+  .row
+    .col-lg-1.mt-3.mx-3
+      = button_to 'Google', '/auth/google_oauth2',
+        'data-turbo': false, class: 'btn btn-primary mb-3'
+    .col-lg-1.mt-3.mx-3
+      = button_to 'GitHub', '/auth/github',
+        'data-turbo': false, class: 'btn btn-primary mb-3'
+    .col-lg-10
 
-%p.m-4
+%p.mt-4
   = image_tag('happy_users.png', alt: 'Hello!', class: 'img-fluid')
-%p
-  Documentation is available on our #{link_to('docs site', 'https://asyncgo.com/docs')}
-  and general product information can be found on our
-  #{link_to('home page', 'https://asyncgo.com')}.
