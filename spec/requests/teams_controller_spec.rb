@@ -36,9 +36,7 @@ RSpec.describe TeamsController, type: :request do
       end
 
       context 'when params are provided' do
-        let(:params) do
-          { name: 'New team name', message: 'Hello' }
-        end
+        let(:params) { { name: 'New team name', message: 'Hello' } }
 
         it 'updates the name' do
           expect { patch_update }.to change { team.reload.name }.from(team.name).to('New team name')
@@ -54,6 +52,10 @@ RSpec.describe TeamsController, type: :request do
           expect(controller.flash[:success]).to eq('Team was successfully updated.')
         end
       end
+    end
+
+    include_examples 'unauthenticated user examples' do
+      let(:params) { { message: 'Hello' } }
     end
   end
 
