@@ -49,7 +49,7 @@ class TeamsController < Teams::ApplicationController
       redirect_to edit_team_path(team),
                   flash: { success: 'Team was successfully updated.' }
     else
-      render 'team/edit', status: :unprocessable_entity
+      render :edit, status: :unprocessable_entity
     end
   end
 
