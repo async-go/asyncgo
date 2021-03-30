@@ -23,6 +23,42 @@ RSpec.describe TeamsController, type: :request do
     include_examples 'unauthorized user examples'
   end
 
+  describe 'PATCH update' do
+    subject(:patch_update) do
+      patch "/teams/#{team.id}", params: { team: params }
+    end
+
+    let(:team) { FactoryBot.create(:team) }
+
+    context 'when user is authorized' do
+      before do
+        sign_in(FactoryBot.create(:user, team: team))
+      end
+
+      context 'when params are provided' do
+        let(:params) { { name: 'New team name', message: 'Hello' } }
+
+        it 'updates the name' do
+          expect { patch_update }.to change { team.reload.name }.from(team.name).to('New team name')
+        end
+
+        it 'updates the message' do
+          expect { patch_update }.to change { team.reload.message }.from(nil).to('Hello')
+        end
+
+        it 'sets the flash' do
+          patch_update
+
+          expect(controller.flash[:success]).to eq('Team was successfully updated.')
+        end
+      end
+    end
+
+    include_examples 'unauthenticated user examples' do
+      let(:params) { { message: 'Hello' } }
+    end
+  end
+
   describe 'GET new' do
     subject(:get_new) { get '/teams/new' }
 

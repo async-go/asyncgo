@@ -15,6 +15,7 @@ module Teams
       )
       @active_topics = preload_topics(@active_topics)
       @closed_topics = preload_topics(@closed_topics)
+      @team = team
     end
 
     def new

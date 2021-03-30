@@ -9,7 +9,11 @@
   .row.mt-3
     != pagy_bootstrap_nav(@pagy_active_topics)
 
-.row.mt-5
+.row.mt-3
+  %h2 Team Message
+  .p-3= @team.message || 'No message is set for the team right now.'
+
+.row.mt-3
   %h2 Closed Topics
   = render partial: 'topics', locals: { topic_collection: @closed_topics,
     new_form: false,

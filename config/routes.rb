@@ -23,7 +23,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :teams, only: %i[edit new create] do
+  resources :teams, only: %i[edit new create update] do
     post :support
 
     scope module: :teams do
