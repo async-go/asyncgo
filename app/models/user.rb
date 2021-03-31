@@ -21,7 +21,6 @@ class User < ApplicationRecord
   has_one :preference, class_name: 'User::Preference', dependent: :destroy
 
   def self.from_omniauth(access_token)
-    puts access_token.info.inspect
     User.where(email: access_token.info['email']).first_or_initialize.tap do |user|
       user.preference ||= user.build_preference
       user.name = access_token.info['name']
