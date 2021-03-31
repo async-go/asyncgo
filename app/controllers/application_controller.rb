@@ -18,6 +18,7 @@ class ApplicationController < ActionController::Base
       if session[:user_id]
         User.find_by(id: session[:user_id]).tap do |user|
           user ? gon.push(user_id: user.id, team_id: user.team_id) : session.delete(:user_id)
+        end
       end
     end
   end
