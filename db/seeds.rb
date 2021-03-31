@@ -75,37 +75,36 @@ Notification.create!(user: matija, actor: alice, action: :updated, target: topic
 
 # Topics
 topic = Topic.create!(user: bob, title: '📰 Lets discuss our next marketing campaign',
-              description: '- Hello', description_html: '<ul><li>Hello</li></ul>',
-              team: asyncgo, due_date: Time.zone.today + 5)
+                      description: '- Hello', description_html: '<ul><li>Hello</li></ul>',
+                      team: asyncgo, due_date: Time.zone.today + 5)
 Subscription.create!(topic: topic, user: jason)
 Subscription.create!(topic: topic, user: bob)
 
 topic = Topic.create!(user: bob, title: '📈 Competitive analysis vs. our top competitor',
-              description: '- Hello', description_html: '<ul><li>Hello</li></ul>',
-              outcome: 'We are the best', outcome_html: '<p>We are the best</p>',
-              team: asyncgo, due_date: Time.zone.today - 2)
+                      description: '- Hello', description_html: '<ul><li>Hello</li></ul>',
+                      outcome: 'We are the best', outcome_html: '<p>We are the best</p>',
+                      team: asyncgo, due_date: Time.zone.today - 2)
 Subscription.create!(topic: topic, user: carol)
 Subscription.create!(topic: topic, user: david)
 
 topic = Topic.create!(user: bob, title: '🏗️  Discuss possible next big features',
-              description: '- Hello', description_html: '<ul><li>Hello</li></ul>',
-              team: asyncgo, due_date: Time.zone.today + 4)
+                      description: '- Hello', description_html: '<ul><li>Hello</li></ul>',
+                      team: asyncgo, due_date: Time.zone.today + 4)
 Subscription.create!(topic: topic, user: matija)
 Subscription.create!(topic: topic, user: jason)
 Subscription.create!(topic: topic, user: bob)
 
 topic = Topic.create!(user: alice, title: '👩 Feedback on our latest demo',
-              description: '- Hello', description_html: '<ul><li>Hello</li></ul>',
-              outcome: 'Action items', outcome_html: '<p>Action items</p>',
-              team: asyncgo, due_date: Time.zone.today)
+                      description: '- Hello', description_html: '<ul><li>Hello</li></ul>',
+                      outcome: 'Action items', outcome_html: '<p>Action items</p>',
+                      team: asyncgo, due_date: Time.zone.today)
 Subscription.create!(topic: topic, user: bob)
 Subscription.create!(topic: topic, user: alice)
 Subscription.create!(topic: topic, user: carol)
 
 topic = Topic.create!(user: alice, title: '🛍️  Review general customer feedback so far',
-              description: '- Hello', description_html: '<ul><li>Hello</li></ul>',
-              outcome: 'All good so far', outcome_html: '<p>All good so far</p>',
-              team: asyncgo, due_date: nil)
+                      description: '- Hello', description_html: '<ul><li>Hello</li></ul>',
+                      outcome: 'All good so far', outcome_html: '<p>All good so far</p>',
+                      team: asyncgo, due_date: nil)
 Subscription.create!(topic: topic, user: carol)
 Subscription.create!(topic: topic, user: david)
-
