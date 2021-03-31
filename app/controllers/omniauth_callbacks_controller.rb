@@ -9,6 +9,10 @@ class OmniauthCallbacksController < ApplicationController
     handle_auth
   end
 
+  def slack
+    handle_auth
+  end
+
   private
 
   def handle_auth
