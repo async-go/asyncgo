@@ -2,7 +2,7 @@
   .row
     .col-lg-2.mt-2
       = image_tag "#{comment.user.gravatar_url}?s=20&d=retro",
-        class: 'me-1 gravatar-img', alt: ''
+        class: 'me-1 gravatar-img', title: comment.user.name, alt: ''
       = link_to comment.user.printable_name, "mailto:#{comment.user.email}"
     .col-lg-1.mt-2
       %span= comment.created_at.strftime('%b %e')
