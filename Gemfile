@@ -22,6 +22,7 @@ gem 'blazer', '~> 2.4.2' # Business Intelligence made easy
 gem 'commonmarker', '~> 0.21.0' # GitHub Flavored Markdown renderer
 gem 'font-awesome-sass', '~> 5.15.1'
 gem 'gemoji', '~> 3.0.1' # emoji helpers
+gem 'ginjo-omniauth-slack', '~> 2.5', require: 'omniauth-slack'
 gem 'hamlit', '~> 2.14.1' # Templating language
 gem 'omniauth-github', '~> 2.0.0'
 gem 'omniauth-google-oauth2', '~> 0.8.0'
@@ -75,5 +76,3 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
-
-gem 'ginjo-omniauth-slack', '~> 2.5', require: 'omniauth-slack'
