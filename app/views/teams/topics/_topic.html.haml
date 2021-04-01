@@ -19,6 +19,15 @@
     .col-lg-1.mt-2
       = form_with(model: topic, url: team_topic_toggle_path(topic.team, topic),
         data: { 'turbo-frame': '_top' }) do |form|
+        - if topic.closed?
+          = form.hidden_field :status, value: :pinned
+          = form.submit 'Pin', class: 'btn btn-secondary'
+        - elsif topic.pinned?
+          = form.hidden_field :status, value: :closed
+          = form.submit 'Unpin', class: 'btn btn-secondary'
+    .col-lg-1.mt-2
+      = form_with(model: topic, url: team_topic_toggle_path(topic.team, topic),
+        data: { 'turbo-frame': '_top' }) do |form|
         - if topic.active?
           = form.hidden_field :status, value: :closed
           = form.submit 'Resolve', class: 'btn btn-success'
