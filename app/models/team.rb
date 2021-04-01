@@ -5,5 +5,6 @@ class Team < ApplicationRecord
   validates :message, presence: { allow_blank: false, allow_empty: false, allow_nil: true }
 
   has_many :users, dependent: :nullify
+  has_many :owners, dependent: :nullify
   has_many :topics, dependent: :destroy
 end

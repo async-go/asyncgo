@@ -7,8 +7,12 @@ class TeamsController < Teams::ApplicationController
     @team = team
     authorize(@team)
 
-    @pagy, @team_members = pagy(
+    @pagy_members, @team_members = pagy(
       team.users.where.not(email: current_user.email).order(:created_at)
+    )
+
+    @pagy_owners, @team_owners = pagy(
+      team.owners.order(:created_at) || nil
     )
   end
 
@@ -22,6 +26,7 @@ class TeamsController < Teams::ApplicationController
     authorize(@team)
 
     if @team.save
+      @team.owners << current_user
       @team.users << current_user
       redirect_to edit_team_path(@team),
                   flash: { success: 'Team was successfully created.' }

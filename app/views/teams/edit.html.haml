@@ -57,11 +57,34 @@
           .col-lg-3
             = link_to user.email, team_user_path(@team, user),
               method: :delete, class: 'list-group-item list-group-item-action text-center'
-    - if @pagy.pages > 1
+    - if @pagy_membeers.pages > 1
       .row.mt-3
-        != pagy_bootstrap_nav(@pagy)
+        != pagy_bootstrap_nav(@pagy_members)
 
 %hr
+
+.row
+  .col-lg-12
+    %h3 Owners of Team
+    - if @team_owners.nil?
+      %p.lead
+        This team has no owner. Would you like to claim it?
+    - else
+      %p.lead
+        Click to remove. If you want to remove yourself, have a team member
+        do it for you or contact support below.
+      .row
+        .list-group.list-group-horizontal-lg
+          - @team_owners.each do |user|
+            .col-lg-3
+              = link_to user.email, team_user_path(@team, user),
+                method: :delete, class: 'list-group-item list-group-item-action text-center'
+      - if @pagy_owneers.pages > 1
+        .row.mt-3
+          != pagy_bootstrap_nav(@pagy_owners)
+
+%hr
+
 
 .row
   .col-lg-12
