@@ -12,6 +12,7 @@ class Topic < ApplicationRecord
   validates :description_html, presence: true
   validates :outcome, presence: { allow_blank: false, allow_empty: false, allow_nil: true }
   validates :outcome_html, presence: { if: :outcome? }
+  validates :pinned, presence: true
 
   attr_accessor :description_checksum, :outcome_checksum
 
