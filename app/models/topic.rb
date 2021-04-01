@@ -12,7 +12,6 @@ class Topic < ApplicationRecord
   validates :description_html, presence: true
   validates :outcome, presence: { allow_blank: false, allow_empty: false, allow_nil: true }
   validates :outcome_html, presence: { if: :outcome? }
-  validates :pinned, presence: true
 
   attr_accessor :description_checksum, :outcome_checksum
 
@@ -30,7 +29,7 @@ class Topic < ApplicationRecord
   has_many :notifications, as: :target, dependent: :destroy
   has_many :votes, as: :votable, dependent: :destroy
 
-  enum status: { active: 0, closed: 1 }
+  enum status: { active: 0, closed: 1, pinned: 2 }
 
   private
 
