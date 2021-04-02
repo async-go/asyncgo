@@ -1,6 +1,78 @@
 # frozen_string_literal: true
 
 RSpec.describe OmniauthCallbacksController, type: :request do
+  describe 'POST slack' do
+    subject(:post_slack) do
+      post '/auth/slack'
+      follow_redirect!
+    end
+
+    let(:auth_hash) do
+    {
+      user: {
+        name: 'Sonny Whether',
+        email: 'bobby@example.com'
+      }
+    }
+    end
+
+    before do
+      OmniAuth.config.add_mock(:slack, auth_hash)
+    end
+
+    context 'when user does not exist' do
+      it 'creates the user' do
+        expect { post_slack }.to change(User, :count).from(0).to(1)
+      end
+
+      it 'signs the user in' do
+        post_slack
+
+        expect(controller.send(:current_user)).not_to eq(nil)
+      end
+
+      it 'updates the users name' do
+        post_slack
+
+        expect(User.last.name).to eq('John Sample')
+      end
+
+      it 'sets the flash' do
+        post_slack
+
+        expect(controller.flash[:success]).to eq('User was successfully authenticated.')
+      end
+
+      it 'redirects to redirect_uri' do
+        expect(post_slack).to redirect_to(root_path)
+      end
+    end
+
+    context 'when the user exists' do
+      let!(:user) { FactoryBot.create(:user, email: 'john@example.com') }
+
+      it 'signs the user in' do
+        post_slack
+
+        expect(controller.send(:current_user)).to eq(user)
+      end
+
+      it 'updates the users name' do
+        expect { post_slack }.to change { user.reload.name }.from(nil).to('John Sample')
+      end
+
+      it 'sets the flash' do
+        post_slack
+
+        expect(controller.flash[:success]).to eq('User was successfully authenticated.')
+      end
+
+      it 'redirects to redirect_uri' do
+        expect(post_slack).to redirect_to(root_path)
+      end
+    end
+  end
+
   describe 'POST google_oauth2' do
     subject(:post_google_oauth2) do
       post '/auth/google_oauth2'
