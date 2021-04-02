@@ -22,21 +22,21 @@
           = link_to root_path, class: 'navbar-brand pe-4 border-2' do
             = image_tag('logo.svg', alt: 'AsyncGo logo', class: 'img-fluid')
             %span AsyncGo
+          - if current_user&.team
+            %span.badge.bg-secondary.fs-6.ms-auto.me-3
+              = link_to user_notifications_path(current_user), class: 'text-decoration-none' do
+                = assistive_icon('fas', 'bell', 'Has notification', classname: 'text-warning')
+                %span.text-white= unique_unread_notifications.count
           %button.navbar-toggler.border-0{ type: 'button', 'data-bs-toggle' => 'collapse',
             'data-bs-target' => '#navbar-content', 'aria-controls' => 'navbar-content',
             'aria-expanded' => 'false', 'aria-label' => 'Toggle navigation' }
             %span.navbar-toggler-icon
           .collapse.navbar-collapse#navbar-content
-            - if current_user&.team
-              %span.badge.bg-secondary.fs-6 Active Team: #{current_user.team.name}
-              .my-2.my-lg-0.ms-lg-3.me-auto.dropdown.notification-dropdown
-                %span.badge.bg-secondary.fs-6.ml-3
-                  = link_to user_notifications_path(current_user), class: 'text-decoration-none' do
-                    = assistive_icon('fas', 'bell', 'Has notification', classname: 'text-warning')
-                    %span.text-white= unique_unread_notifications.count
-            %ul.navbar-nav.ms-auto.me-2
+            %ul.navbar-nav.ms-auto
               - if current_user
                 - if current_user.team
+                  %li
+                    %span.badge.bg-secondary.fs-6.mt-2.me-4 Active Team: #{current_user.team.name}
                   %li.nav-item= active_link_to 'Topics', team_topics_path(current_user.team),
                     'nav-link'
                   %li.nav-item= active_link_to 'Admin', edit_team_path(current_user.team_id),
