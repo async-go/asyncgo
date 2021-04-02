@@ -13,12 +13,8 @@ module Teams
       @pagy_closed_topics, @closed_topics = pagy(
         order_topics(team.topics.closed), page_param: 'closed_page'
       )
-      @pagy_pinned_topics, @pinned_topics = pagy(
-        order_topics(team.topics.pinned), page_param: 'pinned_page'
-      )
       @active_topics = preload_topics(@active_topics)
       @closed_topics = preload_topics(@closed_topics)
-      @pinned_topics = preload_topics(@pinned_topics)
       @team = team
     end
 
