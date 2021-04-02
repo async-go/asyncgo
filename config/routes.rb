@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   # OmniAuth routing
   get 'auth/github/callback', to: 'omniauth_callbacks#github'
   get 'auth/google_oauth2/callback', to: 'omniauth_callbacks#google_oauth2'
+  get 'auth/slack/callback', to: 'omniauth_callbacks#slack'
   get 'auth/failure', to: redirect('/')
   delete :sign_out, to: 'sessions#destroy'
 

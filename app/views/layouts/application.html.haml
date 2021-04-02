@@ -55,6 +55,8 @@
                       'data-turbo': false, class: 'dropdown-item'
                     %li= button_to 'GitHub', '/auth/github',
                       'data-turbo': false, class: 'dropdown-item'
+                    %li= button_to 'Slack', '/auth/slack',
+                      'data-turbo': false, class: 'dropdown-item'
               %li.nav-item= link_to 'Docs', 'https://asyncgo.com/docs', class: 'nav-link',
                 target: :_blank, rel: :noopener
     - container = current_user&.preference&.fluid_layout? ? 'container-fluid' : 'container'
