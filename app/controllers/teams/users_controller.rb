@@ -43,6 +43,7 @@ module Teams
       UserMailer.with(user: user).welcome_email.deliver_later
     end
 
+    # rubocop:disable Metrics/MethodLength
     def add_user_to_team(team, user)
       if team.tier == 'free' && team.users.count > 5
         { danger: 'You have reached the maximum 5 users on the free plan.' }
@@ -56,5 +57,6 @@ module Teams
         { success: 'User was successfully added to the team.' }
       end
     end
+    # rubocop:enable Metrics/MethodLength
   end
 end
