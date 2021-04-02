@@ -52,7 +52,7 @@
       Click to remove. If you want to remove yourself, have a team member
       do it for you or contact support below.
     .row
-      .list-group.list-group-horizontal-lg
+      .list-group
         - @team_members.each do |user|
           .col-lg-3
             = link_to user.email, team_user_path(@team, user),
