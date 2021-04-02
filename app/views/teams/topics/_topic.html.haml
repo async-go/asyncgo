@@ -17,14 +17,14 @@
           = subscription_form.hidden_field :subscribed, value: 1
           = subscription_form.submit 'Watch', class: 'btn btn-secondary'
     .col-lg-1.mt-2
-      = form_with(model: topic, url: team_topic_toggle_path(topic.team, topic),
+      = form_with(model: topic, url: team_topic_pin_path(topic.team, topic),
         data: { 'turbo-frame': '_top' }) do |form|
-        - if topic.closed?
-          = form.hidden_field :status, value: :pinned
-          = form.submit 'Pin', class: 'btn btn-secondary'
-        - elsif topic.pinned?
-          = form.hidden_field :status, value: :closed
+        - if topic.pinned?
+          = form.hidden_field :pinned, value: 0
           = form.submit 'Unpin', class: 'btn btn-secondary'
+        - else
+          = form.hidden_field :pinned, value: 1
+          = form.submit 'Pin', class: 'btn btn-secondary'
     .col-lg-1.mt-2
       = form_with(model: topic, url: team_topic_toggle_path(topic.team, topic),
         data: { 'turbo-frame': '_top' }) do |form|

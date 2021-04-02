@@ -41,4 +41,9 @@ class TopicPolicy < ApplicationPolicy
     user &&
       record.team == user.team
   end
+
+  def pin?
+    user &&
+      record.team == user.team
+  end
 end
