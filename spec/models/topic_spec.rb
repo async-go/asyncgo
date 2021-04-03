@@ -5,7 +5,6 @@ RSpec.describe Topic, type: :model do
     it { is_expected.to validate_presence_of(:title) }
     it { is_expected.to validate_presence_of(:description) }
     it { is_expected.to validate_presence_of(:description_html) }
-    it { is_expected.to validate_presence_of(:pinned) }
 
     describe '#validate_description_checksum' do
       subject(:valid?) { topic.valid? }
