@@ -2,7 +2,6 @@ import { Controller } from 'stimulus'
 import Driver from 'driver.js/dist/driver.min.js'
 
 export default class extends Controller {
-
   connect () {
     console.log('Hello connect')
   }
