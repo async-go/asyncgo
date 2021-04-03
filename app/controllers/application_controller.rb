@@ -33,8 +33,7 @@ class ApplicationController < ActionController::Base
 
   def unique_unread_notifications
     @unique_unread_notifications ||= begin
-      Notification.includes(:actor, :user, :target)
-                  .where(id: notification_grouping_subquery)
+      Notification.includes(:actor, :user, :target).where(id: notification_grouping_subquery)
     end
   end
   helper_method :unique_unread_notifications
