@@ -63,6 +63,8 @@
     %main.ps-3.mt-4.mb-3{ role: 'main', class: container }
       %button.btn.btn-secondary{ data: { action: 'click->driverjs#demo' } }
         Tour
+      %span{ id: 'testelement' }
+        This is a test element not in the navbar
       - if flash.any?
         .mt-2
           - flash.each do |type, message|

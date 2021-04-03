@@ -10,11 +10,15 @@ export default class extends Controller {
     console.log('Hello demo')
     const driver = new Driver()
     driver.highlight({
-      element: '#notifications',
+      element: '#testelement',
       popover: {
-        title: 'Title',
-        description: 'Description'
+        title: 'Notifications',
+        description: 'This box shows you any notifications you might have. You can click on it to see them.'
       }
     })
+    if (driver.isActivated) {
+      console.log('Driver is active');
+    }
+    console.log(driver)
   }
 }
