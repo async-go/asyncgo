@@ -106,7 +106,8 @@ module Teams
     def topic_params
       params.require(:topic).permit(
         :title, :description, :outcome, :due_date, :status,
-        :description_checksum, :outcome_checksum, :pinned
+        :description_checksum, :outcome_checksum, :pinned,
+        :label_list
       )
     end
 
