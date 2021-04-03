@@ -15,7 +15,8 @@
       'data-turbo-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbo-track': 'reload', defer: true
     = favicon_link_tag image_path('logo.svg')
-  %body
+  %body{ data: { controller: 'driverjs',
+              action: 'focus->driverjs#demo:once' } }
     %header.px-2.border-bottom.shadow-sm.mb-2
       %nav.navbar.navbar-light.navbar-expand-lg
         .container-fluid
@@ -23,8 +24,7 @@
             = image_tag('logo.svg', alt: 'AsyncGo logo', class: 'img-fluid')
             %span AsyncGo
           - if current_user&.team
-            %span.badge.bg-secondary.fs-6.ms-auto.me-3#notification{ 'data-controller': 'driverjs',
-              'data-action': 'focus->driverjs#demo:once' }
+            %span.badge.bg-secondary.fs-6.ms-auto.me-3#notifications
               = link_to user_notifications_path(current_user), class: 'text-decoration-none' do
                 = assistive_icon('fas', 'bell', 'Has notification', classname: 'text-warning')
                 %span.text-white= unique_unread_notifications.count
