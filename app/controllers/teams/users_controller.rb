@@ -45,7 +45,7 @@ module Teams
 
     # rubocop:disable Metrics/MethodLength
     def add_user_to_team(team, user)
-      if team.tier == 'free' && team.users.count > 5
+      if team.users.count > 5
         { danger: 'You have reached the maximum 5 users on the free plan.' }
       elsif !user.valid?
         { danger: "There was a problem adding the user to the team. #{user.errors.full_messages.join(', ')}." }
