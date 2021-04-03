@@ -17,6 +17,5 @@ export default class extends Controller {
         description: 'Description'
       }
     })
-    driver.start()
   }
 }
