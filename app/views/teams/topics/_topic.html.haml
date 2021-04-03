@@ -49,7 +49,6 @@
       %p.text-secondary
         = topic_due_date_span(topic)
 
-
   .row
     .col-lg-8.border
       %h6.mt-2.text-secondary.small Description
@@ -62,3 +61,10 @@
           (Work in Progress)
       .p-3
         != topic.outcome_html || 'Content has not been started yet'
+  .row.mt-2
+    .col-lg-1.d-flex.align-items-center
+      %span.badge.bg-primary.fs-5 Labels
+    .col-lg-11
+      %ul.list-group.list-group-horizontal
+        - topic.label_list.each do |label|
+          %li.list-group-item= label

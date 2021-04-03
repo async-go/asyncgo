@@ -31,6 +31,8 @@ class Topic < ApplicationRecord
 
   enum status: { active: 0, closed: 1 }
 
+  acts_as_taggable_on :labels
+
   private
 
   def validate_description_checksum
