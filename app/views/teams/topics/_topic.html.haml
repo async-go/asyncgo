@@ -1,6 +1,6 @@
 = turbo_frame_tag dom_id(topic) do
   .row
-    .col-lg-8.mt-2
+    .col-lg-7.mt-2
       %h2= topic.title
     .col-lg-1.mt-2
       - if topic.active?
@@ -15,7 +15,7 @@
           = subscription_form.hidden_field :subscribed, value: 1
           = subscription_form.submit 'Watch', class: 'btn btn-secondary'
     .col-lg-1.mt-2
-      = form_with(model: topic, url: team_topic_pin_path(topic.team, topic),
+      = form_with(model: topic, url: team_topic_path(topic.team, topic),
         data: { 'turbo-frame': '_top' }) do |form|
         - if topic.pinned?
           = form.hidden_field :pinned, value: 0

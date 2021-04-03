@@ -102,19 +102,6 @@ module Teams
       end
     end
 
-    def pin
-      target_topic = topic
-      authorize(target_topic)
-
-      toggle_pin = if update_topic(target_topic, topic_params)
-                     { success: 'Topic pin state was successfully changed.' }
-                   else
-                     { danger: 'Topic pin state could not be changed.' }
-                   end
-
-      redirect_to topic_path(target_topic), flash: toggle_pin
-    end
-
     private
 
     def topic_params
