@@ -127,7 +127,7 @@ module Teams
 
     def order_topics(scope)
       scope
-        .order(Topic.arel_table[:pinned].eq(true))
+        .order(Topic.arel_table[:pinned].desc)
         .order(Topic.arel_table[:due_date].eq(nil))
         .order(Topic.arel_table[:due_date].asc)
     end
