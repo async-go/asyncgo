@@ -6,7 +6,7 @@ FactoryBot.define do
     description { Faker::Lorem.paragraph }
     description_html { CommonMarker.render_html(description) }
     outcome_html { CommonMarker.render_html(outcome.to_s).presence }
-    pinned { Faker::Boolean.boolean }
+    pinned { false }
 
     team
     user { association :user, team: team }
