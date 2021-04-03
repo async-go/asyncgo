@@ -2,8 +2,6 @@
   .row
     .col-lg-8.mt-2
       %h2= topic.title
-      %p.text-secondary
-        = topic_due_date_span(topic)
     .col-lg-1.mt-2
       - if topic.active?
         = link_to 'Edit', edit_team_topic_path(topic.team, topic),
@@ -37,6 +35,20 @@
     .col-lg-1.mt-2
       %ul.list-group.list-group-horizontal
         = render partial: 'teams/topics/vote_list_group', locals: { votable: topic }
+  .row.mt-1
+    .col-lg-8
+      = link_to image_tag("#{topic.user.gravatar_url}?s=20&d=retro",
+        class: 'gravatar-img mb-1 me-4',
+        alt: "#{topic.user.printable_name} (Creator)"),
+          "mailto:#{topic.user.email}"
+      - topic.subscribed_users.each do |participant|
+        = link_to image_tag("#{participant.gravatar_url}?s=20&d=retro",
+          class: 'gravatar-img mb-1', alt: participant.name),
+            "mailto:#{participant.email}"
+    .col-lg-4
+      %p.text-secondary
+        = topic_due_date_span(topic)
+
 
   .row
     .col-lg-8.border

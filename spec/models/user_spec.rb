@@ -28,17 +28,10 @@ RSpec.describe User, type: :model do
   end
 
   describe '.from_omniauth' do
-    subject(:from_omniauth) { described_class.from_omniauth(::Hashie::Mash.new(auth_hash)) }
+    subject(:from_omniauth) { described_class.from_omniauth(email, name) }
 
-    let(:auth_hash) do
-      {
-        provider: 'google_oauth2',
-        info: {
-          email: 'john@example.com',
-          name: 'John Sample'
-        }
-      }
-    end
+    let(:email) { 'john@example.com' }
+    let(:name) { 'John Sample' }
 
     context 'when a user exists' do
       let!(:user) { FactoryBot.create(:user, email: 'john@example.com') }
