@@ -110,7 +110,6 @@ ActiveRecord::Schema.define(version: 2021_03_29_090653) do
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "tier", default: 0
   end
 
   create_table "topics", force: :cascade do |t|
