@@ -6,7 +6,8 @@ export default class extends Controller {
     console.log('Hello connect')
   }
 
-  demo () {
+  demo (event) {
+    event.stopImmediatePropagation()
     console.log('Hello demo')
     const driver = new Driver()
 
