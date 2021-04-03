@@ -79,27 +79,26 @@ module Teams
       redirect_to topic_path(target_topic), flash: toggle_flash
     end
 
-    def subscribe # rubocop:disable Metrics/MethodLength
+    def subscribe
       target_topic = topic
       authorize(target_topic)
 
-      success = update_user_subscription(target_topic)
+      render_turbo_or_html(
+        target_topic,
+        update_user_subscription(target_topic),
+        'pinned / unpinned'
+      )
+    end
 
-      respond_to do |format|
-        format.turbo_stream do
-          render turbo_stream: turbo_stream.replace(target_topic, partial: 'teams/topics/topic',
-                                                                  locals: { topic: target_topic })
-        end
+    def pin
+      target_topic = topic
+      authorize(target_topic)
 
-        format.html do
-          subscribe_flash = if success
-                              { success: 'User subscription status was successfully changed.' }
-                            else
-                              { danger: 'There was an error while changing the subscription status.' }
-                            end
-          redirect_to topic_path(target_topic), flash: subscribe_flash
-        end
-      end
+      render_turbo_or_html(
+        target_topic,
+        update_topic(target_topic, topic_params),
+        'pinned / unpinned'
+      )
     end
 
     private
@@ -142,6 +141,24 @@ module Teams
 
     def topic_path(topic)
       team_topic_path(topic.team, topic)
+    end
+
+    def render_turbo_or_html(target_topic, success, flash_verb) # rubocop:disable Metrics/MethodLength
+      respond_to do |format|
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.replace(target_topic, partial: 'teams/topics/topic',
+                                                                  locals: { topic: target_topic })
+        end
+
+        format.html do
+          flash = if success
+                    { success: "Topic was successfully #{flash_verb}." }
+                  else
+                    { danger: "Topic could not be #{flash_verb}." }
+                  end
+          redirect_to topic_path(target_topic), flash: flash
+        end
+      end
     end
   end
 end
