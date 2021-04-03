@@ -1,19 +1,17 @@
 import { Controller } from 'stimulus'
 import Driver from 'driver.js/dist/driver.min.js'
 
-
 export default class extends Controller {
-
-  demo_notification () {
-      console.log('Hello');
-      const driver = new Driver();
-      driver.highlight({
-          element: '#notifications',
-          popover: {
-              title: 'Title',
-              description: 'Description',
-          }
-      });
-      driver.start();
+  demo () {
+    console.log('Hello')
+    const driver = new Driver()
+    driver.highlight({
+      element: '#notifications',
+      popover: {
+        title: 'Title',
+        description: 'Description'
+      }
+    })
+    driver.start()
   }
 }
