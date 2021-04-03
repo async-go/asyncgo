@@ -14,11 +14,13 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    @current_user ||= if session[:user_id]
-                        User.find_by(id: session[:user_id]).tap do |user|
-                          user ? gon.push(user_id: user.id, team_id: user.team_id) : session.delete(:user_id)
-                        end
-                      end
+    @current_user ||= begin
+      if session[:user_id]
+        User.find_by(id: session[:user_id]).tap do |user|
+          user ? gon.push(user_id: user.id, team_id: user.team_id) : session.delete(:user_id)
+        end
+      end
+    end
   end
   helper_method :current_user
 
@@ -30,8 +32,9 @@ class ApplicationController < ActionController::Base
   end
 
   def unique_unread_notifications
-    @unique_unread_notifications ||= Notification.includes(:actor, :user, :target)
-                                                 .where(id: notification_grouping_subquery)
+    @unique_unread_notifications ||= begin
+      Notification.includes(:actor, :user, :target).where(id: notification_grouping_subquery)
+    end
   end
   helper_method :unique_unread_notifications
 
