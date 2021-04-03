@@ -14,6 +14,11 @@ class TeamPolicy < ApplicationPolicy
     user
   end
 
+  def update?
+    user &&
+      record == user.team
+  end
+
   def support?
     user &&
       record == user.team

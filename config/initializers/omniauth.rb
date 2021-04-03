@@ -9,4 +9,8 @@ Rails.application.config.middleware.use OmniAuth::Builder do
            {
              scope: 'user:email'
            }
+  provider :slack, ENV['SLACK_CLIENT_ID'], ENV['SLACK_CLIENT_SECRET'],
+           {
+             user_scope: 'identity.basic,identity.email'
+           }
 end

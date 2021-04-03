@@ -15,6 +15,7 @@ module Teams
       )
       @active_topics = preload_topics(@active_topics)
       @closed_topics = preload_topics(@closed_topics)
+      @team = team
     end
 
     def new
@@ -25,6 +26,7 @@ module Teams
     def show
       @topic = topic
       authorize(@topic)
+      ActiveRecord::Associations::Preloader.new.preload(@topic, :subscribed_users)
 
       @pagy, @topic_comments = pagy(
         @topic.comments.order(created_at: :asc)
