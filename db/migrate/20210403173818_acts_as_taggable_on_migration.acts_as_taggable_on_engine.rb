@@ -26,10 +26,11 @@ class ActsAsTaggableOnMigration < ActiveRecord::Migration[6.1]
 
       t.datetime :created_at
 
-      t.index [:tag_id, :taggable_id, :taggable_type, :context, :tagger_id, :tagger_type], unique: true, name: 'taggings_idx'
-      t.index [:taggable_id, :taggable_type, :tagger_id, :context], name: 'taggings_idy'
-      t.index [:taggable_id, :taggable_type, :context], name: 'taggings_taggable_context_idx'
-      t.index [:tagger_id, :tagger_type]
+      t.index %i[tag_id taggable_id taggable_type context tagger_id tagger_type], unique: true,
+                                                                                  name: 'taggings_idx'
+      t.index %i[taggable_id taggable_type tagger_id context], name: 'taggings_idy'
+      t.index %i[taggable_id taggable_type context], name: 'taggings_taggable_context_idx'
+      t.index %i[tagger_id tagger_type]
     end
   end
 end
