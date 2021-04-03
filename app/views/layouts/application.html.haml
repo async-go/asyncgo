@@ -15,7 +15,7 @@
       'data-turbo-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbo-track': 'reload', defer: true
     = favicon_link_tag image_path('logo.svg')
-  %body{ data: { controller: 'driverjs' } }
+  %body
     %header.px-2.border-bottom.shadow-sm.mb-2
       %nav.navbar.navbar-light.navbar-expand-lg
         .container-fluid
@@ -61,10 +61,10 @@
                 target: :_blank, rel: :noopener
     - container = current_user&.preference&.fluid_layout? ? 'container-fluid' : 'container'
     %main.ps-3.mt-4.mb-3{ role: 'main', class: container }
-      %button.btn.btn-secondary{ data: { action: 'click->driverjs#demo' } }
+      %button.btn.btn-secondary{ data: { controller: 'driverjs', action: 'click->driverjs#demo' } }
         Tour
-      %span{ id: 'testelement' }
-        This is a test element not in the navbar
+      #testelement
+        %span This is a test element not in the navbar
       - if flash.any?
         .mt-2
           - flash.each do |type, message|
