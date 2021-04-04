@@ -32,12 +32,17 @@ class TopicPolicy < ApplicationPolicy
       record.team == user.team
   end
 
+  def toggle?
+    user &&
+      record.team == user.team
+  end
+
   def subscribe?
     user &&
       record.team == user.team
   end
 
-  def toggle?
+  def pin?
     user &&
       record.team == user.team
   end

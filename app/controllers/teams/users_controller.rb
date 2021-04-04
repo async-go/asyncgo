@@ -20,7 +20,7 @@ module Teams
         target_user.preference ||= target_user.build_preference
       end
 
-      user_flash = add_user_to_team(team, user)
+      user_flash = add_user_flash!(team, user)
       redirect_to edit_team_path(team), flash: user_flash
     end
 
@@ -43,16 +43,22 @@ module Teams
       UserMailer.with(user: user).welcome_email.deliver_later
     end
 
-    def add_user_to_team(team, user)
-      if !user.valid?
+    def add_user_flash!(team, user)
+      if team.users.count == 5
+        { danger: 'You have reached the maximum 5 users on the free plan.' }
+      elsif !user.valid?
         { danger: "There was a problem adding the user to the team. #{user.errors.full_messages.join(', ')}." }
       elsif user.team
         { danger: 'User already belongs to a team.' }
       else
-        team.users << user
-        send_welcome_email(user)
+        add_user_to_team!(team, user)
         { success: 'User was successfully added to the team.' }
       end
+    end
+
+    def add_user_to_team!(team, user)
+      team.users << user
+      send_welcome_email(user)
     end
   end
 end

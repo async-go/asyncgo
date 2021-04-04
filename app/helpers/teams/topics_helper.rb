@@ -17,6 +17,9 @@ module Teams
     end
 
     def topic_has_notification?(notifications, topic)
+      # It's cheaper to check this in memory than it is to query the
+      # database for every single topic. We expect an user to have a
+      # couple dozen notifications at the most.
       notifications.any? do |notification|
         notification.target == topic ||
           (notification.target_type == 'Comment' && notification.target.topic_id == topic.id)

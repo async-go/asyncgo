@@ -120,6 +120,20 @@ RSpec.describe 'Topics', type: :system do
     expect(page).to have_button('Resolve')
   end
 
+  it 'allows the user to pin and unpin the topic' do
+    user = FactoryBot.create(:user, :team)
+    topic = FactoryBot.create(:topic, team: user.team)
+
+    visit '/'
+    sign_in_user(user)
+    click_link 'Topics'
+    click_link topic.title
+    click_button 'Pin'
+    click_button 'Unpin'
+
+    expect(page).to have_button('Pin')
+  end
+
   it 'allows the user to subscribe and unsubscribe from the topic' do
     user = FactoryBot.create(:user, :team)
     topic = FactoryBot.create(:topic, team: user.team)
