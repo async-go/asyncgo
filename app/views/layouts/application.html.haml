@@ -27,6 +27,11 @@
               = link_to user_notifications_path(current_user), class: 'text-decoration-none' do
                 = assistive_icon('fas', 'bell', 'Has notification', classname: 'text-warning')
                 %span.text-white= unique_unread_notifications.count
+          - if controller.controller_name.in?(%w[topics home teams users])
+            %button.ms-3.btn.btn-sm.btn-secondary.me-3.d-none.d-lg-block{ id: 'tourbutton',
+              data: { controller: 'driverjs', action: 'click->driverjs#demo' } }
+              = assistive_icon('fas', 'question-circle', 'Tour this page',
+                classname: 'text-white')
           %button.navbar-toggler.border-0{ type: 'button', 'data-bs-toggle' => 'collapse',
             'data-bs-target' => '#navbar-content', 'aria-controls' => 'navbar-content',
             'aria-expanded' => 'false', 'aria-label' => 'Toggle navigation' }
@@ -66,14 +71,7 @@
               %li.nav-item#docs-nav= link_to 'Docs', 'https://asyncgo.com/docs', class: 'nav-link',
                 target: :_blank, rel: :noopener
     - container = current_user&.preference&.fluid_layout? ? 'container-fluid' : 'container'
-    - if controller.controller_name.in?(%w[topics home teams users])
-      .container-fluid
-        %button.ms-3.btn.btn-sm.btn-secondary{ id: 'tourbutton',
-          data: { controller: 'driverjs', action: 'click->driverjs#demo' } }
-          = assistive_icon('fas', 'question-circle', 'Tour this page', classname: 'text-white')
-    - else
-      .container-fluid.mt-5
-    %main.ps-3.mb-3{ role: 'main', class: container }
+    %main.ps-3.mb-3.mt-4{ role: 'main', class: container }
       - if flash.any?
         .mt-2
           - flash.each do |type, message|
