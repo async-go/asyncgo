@@ -60,11 +60,13 @@
               %li.nav-item= link_to 'Docs', 'https://asyncgo.com/docs', class: 'nav-link',
                 target: :_blank, rel: :noopener
     - container = current_user&.preference&.fluid_layout? ? 'container-fluid' : 'container'
-    %main.ps-3.mt-4.mb-3{ role: 'main', class: container }
-      %button.btn.btn-secondary{ data: { controller: 'driverjs', action: 'click->driverjs#demo' } }
-        Tour
-      #testelement
-        %span This is a test element not in the navbar
+    - if controller.controller_name == 'topics'
+      .container-fluid
+        %button.ms-3.btn.btn-sm.btn-secondary{ data: { controller: 'driverjs', action: 'click->driverjs#demo' } }
+          = assistive_icon('fas', 'question-circle', 'Tour this page', classname: 'text-white')
+    - else
+      .container-fluid.mt-5
+    %main.ps-3.mb-3{ role: 'main', class: container }
       - if flash.any?
         .mt-2
           - flash.each do |type, message|

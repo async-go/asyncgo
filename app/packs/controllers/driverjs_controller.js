@@ -8,19 +8,23 @@ export default class extends Controller {
 
   demo (event) {
     event.stopImmediatePropagation()
-    console.log('Hello demo')
     const driver = new Driver()
 
-    driver.highlight({
-      element: '#testelement',
-      popover: {
-        title: 'Notifications',
-        description: 'This box shows you any notifications you might have. You can click on it to see them.'
-      }
-    })
-    if (driver.isActivated) {
-      console.log('Driver is active')
+    const path = window.location.pathname
+    const page = path.split('/').pop()
+    console.log(page)
+
+    if (page === 'topics') {
+      driver.defineSteps([
+        popover: {
+      driver.highlight({
+        element: '#notifications',
+        popover: {
+          title: 'Notifications',
+          description:
+                        'This box shows you any notifications you might have. You can click on it to see them.'
+        }
+      })
     }
-    console.log(driver)
   }
 }
