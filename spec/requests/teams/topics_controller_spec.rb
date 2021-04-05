@@ -379,4 +379,69 @@ RSpec.describe Teams::TopicsController, type: :request do
       let(:subscribed) { '0' }
     end
   end
+
+  describe 'PATCH pin' do
+    subject(:patch_pin) do
+      patch "/teams/#{topic.team.id}/topics/#{topic.id}/pin",
+            params: { topic: params }
+    end
+
+    let(:topic) { FactoryBot.create(:topic) }
+
+    context 'when user is authorized' do
+      let(:user) { FactoryBot.create(:user, team: topic.team) }
+
+      before do
+        sign_in(user)
+      end
+
+      context 'when topic is pinned' do
+        let(:params) { { pinned: '0' } }
+
+        before do
+          topic.update!(pinned: true)
+        end
+
+        it 'unpins the topic' do
+          expect { patch_pin }.to change { topic.reload.pinned }.from(true).to(false)
+        end
+
+        it 'sets the flash' do
+          patch_pin
+
+          expect(controller.flash[:success]).to eq('Topic was successfully pinned / unpinned.')
+        end
+
+        it 'redirects to topic' do
+          expect(patch_pin).to redirect_to(team_topic_path(topic.team, topic))
+        end
+      end
+
+      context 'when topic is unpinned' do
+        let(:params) { { pinned: '1' } }
+
+        before do
+          topic.update!(pinned: false)
+        end
+
+        it 'pins the topic' do
+          expect { patch_pin }.to change { topic.reload.pinned }.from(false).to(true)
+        end
+
+        it 'sets the flash' do
+          patch_pin
+
+          expect(controller.flash[:success]).to eq('Topic was successfully pinned / unpinned.')
+        end
+
+        it 'redirects to topic' do
+          expect(patch_pin).to redirect_to(team_topic_path(topic.team, topic))
+        end
+      end
+    end
+
+    include_examples 'unauthorized user examples' do
+      let(:params) { { pinned: '0' } }
+    end
+  end
 end
