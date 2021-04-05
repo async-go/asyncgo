@@ -36,17 +36,22 @@
               - if current_user
                 - if current_user.team
                   %li
-                    %span.badge.bg-secondary.fs-6.mt-2.me-4 Active Team: #{current_user.team.name}
-                  %li.nav-item= active_link_to 'Topics', team_topics_path(current_user.team),
+                    %span.badge.bg-secondary.fs-6.mt-2.me-4#activeteam Active Team: #{current_user.team.name}
+                  %li.nav-item#topics-nav= active_link_to 'Topics',
+                    team_topics_path(current_user.team),
                     'nav-link'
-                  %li.nav-item= active_link_to 'Admin', edit_team_path(current_user.team_id),
+                  %li.nav-item#admin-nav= active_link_to 'Admin',
+                    edit_team_path(current_user.team_id),
                     'nav-link'
                 - else
-                  %li.nav-item= active_link_to 'Create Team', new_team_path, 'nav-link'
-                %li.nav-item= active_link_to 'Profile', edit_user_path(current_user), 'nav-link'
-                %li.nav-item= link_to 'Sign out', sign_out_path, method: :delete, class: 'nav-link'
+                  %li.nav-item#createteam-nav= active_link_to 'Create Team',
+                    new_team_path, 'nav-link'
+                %li.nav-item#profile-nav= active_link_to 'Profile',
+                  edit_user_path(current_user), 'nav-link'
+                %li.nav-item#signout-nav= link_to 'Sign out', sign_out_path,
+                  method: :delete, class: 'nav-link'
               - else
-                %li.nav-item.dropdown
+                %li.nav-item.dropdown#signin-nav
                   %a.nav-link.dropdown-toggle{ href: '#', id: 'signinDropdown', role: 'button',
                     'data-bs-toggle': 'dropdown', 'aria-haspopup': 'true',
                     'aria-expanded': 'false' } Sign in
@@ -57,12 +62,13 @@
                       'data-turbo': false, class: 'dropdown-item'
                     %li= button_to 'Slack', '/auth/slack',
                       'data-turbo': false, class: 'dropdown-item'
-              %li.nav-item= link_to 'Docs', 'https://asyncgo.com/docs', class: 'nav-link',
+              %li.nav-item#docs-nav= link_to 'Docs', 'https://asyncgo.com/docs', class: 'nav-link',
                 target: :_blank, rel: :noopener
     - container = current_user&.preference&.fluid_layout? ? 'container-fluid' : 'container'
     - if controller.controller_name == 'topics'
       .container-fluid
-        %button.ms-3.btn.btn-sm.btn-secondary{ data: { controller: 'driverjs', action: 'click->driverjs#demo' } }
+        %button.ms-3.btn.btn-sm.btn-secondary{ id: 'tourbutton',
+          data: { controller: 'driverjs', action: 'click->driverjs#demo' } }
           = assistive_icon('fas', 'question-circle', 'Tour this page', classname: 'text-white')
     - else
       .container-fluid.mt-5
