@@ -36,7 +36,8 @@
               - if current_user
                 - if current_user.team
                   %li
-                    %span.badge.bg-secondary.fs-6.mt-2.me-4#activeteam Active Team: #{current_user.team.name}
+                    %span.badge.bg-secondary.fs-6.mt-2.me-4#activeteam
+                      Active Team: #{current_user.team.name}
                   %li.nav-item#topics-nav= active_link_to 'Topics',
                     team_topics_path(current_user.team),
                     'nav-link'
@@ -65,7 +66,7 @@
               %li.nav-item#docs-nav= link_to 'Docs', 'https://asyncgo.com/docs', class: 'nav-link',
                 target: :_blank, rel: :noopener
     - container = current_user&.preference&.fluid_layout? ? 'container-fluid' : 'container'
-    - if controller.controller_name.in?(['topics', 'home', 'teams', 'users'])
+    - if controller.controller_name.in?(%w[topics home teams users])
       .container-fluid
         %button.ms-3.btn.btn-sm.btn-secondary{ id: 'tourbutton',
           data: { controller: 'driverjs', action: 'click->driverjs#demo' } }
