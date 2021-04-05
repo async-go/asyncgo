@@ -19,7 +19,7 @@ export default class extends Controller {
       }
     })
     if (driver.isActivated) {
-      console.log('Driver is active');
+      console.log('Driver is active')
     }
     console.log(driver)
   }
