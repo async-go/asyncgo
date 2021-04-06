@@ -68,5 +68,5 @@
       %span.fs-5 Labels:
     .col-lg-11
       %ul.list-group.list-group-horizontal.gap-2
-        - topic.label_list.each do |label|
+        - topic.labels.each do |label|
           %li.list-group-item.badge.rounded-pill.bg-success.fs-6= label

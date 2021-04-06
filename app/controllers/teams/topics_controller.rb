@@ -26,7 +26,6 @@ module Teams
     def show
       @topic = topic
       authorize(@topic)
-      ActiveRecord::Associations::Preloader.new.preload(@topic, :subscribed_users)
 
       @pagy, @topic_comments = pagy(
         @topic.comments.order(created_at: :asc)
@@ -133,7 +132,7 @@ module Teams
     end
 
     def preload_topics(scope)
-      scope.includes(:user, :subscribed_users)
+      scope.includes(:user, :subscribed_users, :labels)
     end
 
     def update_topic(topic, topic_params)
