@@ -14,10 +14,10 @@ Open Notifications
 \
 Recently Resolved Topics
 \
-- if @recentlyresolved.blank?
+- if @recently_resolved_topics.blank?
   None
 - else
-  - @recentlyresolved.each do |topic|
+  - @recently_resolved_topics.each do |topic|
     = topic.title
     = team_topic_url(topic.team, topic)
 \

@@ -14,11 +14,11 @@
 
 %h3 Recently Resolved Topics
 %p
-  - if @recentlyresolved.blank?
+  - if @recently_resolved_topics.blank?
     None
   - else
     %ul
-      - @recentlyresolved.each do |topic|
+      - @recently_resolved_topics.each do |topic|
         %li= link_to topic.title, team_topic_url(topic.team, topic)
 
 %hr

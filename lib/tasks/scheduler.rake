@@ -4,16 +4,20 @@ desc 'Sends a digest email containing active notifications to all users'
 task send_digest_emails: :environment do
   puts 'Starting send_digest_emails'
   Team.find_each do |team|
-    recentlyresolved = team.topics.where(updated_at: (Time.zone.now - 24.hours)..Time.zone.now, status: :resolved)
     team.users.includes(:preference).find_each do |user|
       next unless user.preference.digest_enabled?
 
+      recently_resolved_topics = team.topics.where(
+        updated_at: (Time.zone.now - 24.hours)..Time.zone.now, status: :resolved
+      )
       notifications = user.notifications.where(read_at: nil)
-      next if user.notifications.empty? && recentlyresolved.empty?
+      next if user.notifications.empty? && recently_resolved_topics.empty?
 
       puts "Sending #{notifications.count} notifications for #{user.email}"
-      DigestMailer.with(user: user, notifications: notifications,
-                        recentlyresolved: recentlyresolved).digest_email.deliver_now
+      DigestMailer.with(
+        user: user, notifications: notifications,
+        recently_resolved_topics: recently_resolved_topics
+      ).digest_email.deliver_now
     end
   end
 end
