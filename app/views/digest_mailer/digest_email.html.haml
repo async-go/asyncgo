@@ -4,22 +4,31 @@
 
 %h3 Open Notifications
 %p
-  %ul
-    - @notifications.each do |notification|
-      %li= link_to notification_text(notification),
-        user_notification_url(@user, notification)
+  - if @notifications.nil? || @notifications.empty?
+    None
+  - else
+    %ul
+      - @notifications.each do |notification|
+        %li= link_to notification_text(notification),
+          user_notification_url(@user, notification)
 
 %h3 Recently Opened Topics
 %p
-  %ul
-    - @recentlyopened.each do |topic|
-      %li= link_to topic.name, topic.url
+  - if @recentlyopened.nil? || @recentlyopened.empty?
+    None
+  - else
+    %ul
+      - @recentlyopened.each do |topic|
+        %li= link_to topic.name, topic_path(topic)
 
 %h3 Recently Resolved Topics
 %p
-  %ul
-    - @recentlyresolved.each do |topic|
-      %li= link_to topic.name, topic.url
+  - if @recentlyresolved.nil? || @recentlyresolved.empty?
+    None
+  - else
+    %ul
+      - @recentlyresolved.each do |topic|
+        %li= link_to topic.name, topic_path(topic)
 
 %hr
 

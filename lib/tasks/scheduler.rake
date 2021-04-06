@@ -10,7 +10,7 @@ task send_digest_emails: :environment do
       next unless user.preference.digest_enabled?
 
       notifications = user.notifications.where(read_at: nil)
-      next if notifications.empty?
+      next if user.notifications.empty? && recentlyopened.empty? && recentlyresolved.empty?
 
       puts "Sending #{notifications.count} notifications for #{user.email}"
       DigestMailer.with(user: user, notifications: notifications,

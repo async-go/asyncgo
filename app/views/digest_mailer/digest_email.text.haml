@@ -3,18 +3,27 @@ Here's your AsyncGo Digest
 
 This email contains what's happening in your AsyncGo team.
 
-- @notifications.each do |notification|
-  = notification_text(notification)
-  = user_notification_url(@user, notification)
+Open Notifications
+- if @notifications.nil? || @notifications.empty?
+  None
+- else
+  - @notifications.each do |notification|
+    = notification_text(notification)
+    = user_notification_url(@user, notification)
 
 Recently Opened Topics
-- @recentlyopened.each do |topic|
-  = link_to topic.name, topic.url
+- if @recentlyopened.nil? || @recentlyopened.empty?
+  None
+- else
+  - @recentlyopened.each do |topic|
+    = link_to topic.name, topic.url
 
 Recently Resolved Topics
-
-- @recentlyresolved.each do |topic|
-  = link_to topic.name, topic.url
+- if @recentlyresolved.nil? || @recentlyresolved.empty?
+  None
+- else
+  - @recentlyresolved.each do |topic|
+    = link_to topic.name, topic.url
 
 \---
 
