@@ -43,12 +43,9 @@ $primary: #203864;
 }
 
 .topic-label {
+  background: $success;
   font-size: small;
-  height: 1.5rem;
-  padding-bottom: 4px;
-  padding-top: 4px;
-  padding-left: 4px;
-  padding-right: 4px;
+  padding: 0.5rem;
   border-radius: .25rem !important;
 }
 

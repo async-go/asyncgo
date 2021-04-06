@@ -14,7 +14,7 @@
           .col-lg-2.mb-1
             %ul.list-group.list-group-horizontal.gap-2.flex-wrap
               - topic.labels.each do |label|
-                %li.list-group-item.badge.rounded-pill.bg-success.topic-label= label
+                %li.list-group-item.badge.topic-label= label
           .col-lg-2.mb-1
             = link_to image_tag("#{topic.user.gravatar_url}?s=20&d=retro",
               class: 'gravatar-img mb-1',
