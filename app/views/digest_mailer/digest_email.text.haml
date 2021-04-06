@@ -4,7 +4,8 @@ Here's your AsyncGo Digest
 This email contains what's happening in your AsyncGo team.
 
 Open Notifications
-- if @notifications.nil? || @notifications.empty?
+
+- if @notifications.blank?
   None
 - else
   - @notifications.each do |notification|
@@ -12,14 +13,16 @@ Open Notifications
     = user_notification_url(@user, notification)
 
 Recently Opened Topics
-- if @recentlyopened.nil? || @recentlyopened.empty?
+
+- if @recentlyopened.blank?
   None
 - else
   - @recentlyopened.each do |topic|
     = link_to topic.name, topic.url
 
 Recently Resolved Topics
-- if @recentlyresolved.nil? || @recentlyresolved.empty?
+
+- if @recentlyresolved.blank?
   None
 - else
   - @recentlyresolved.each do |topic|

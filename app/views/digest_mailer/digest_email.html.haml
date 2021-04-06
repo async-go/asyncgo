@@ -4,7 +4,7 @@
 
 %h3 Open Notifications
 %p
-  - if @notifications.nil? || @notifications.empty?
+  - if @notifications.blank?
     None
   - else
     %ul
@@ -14,7 +14,7 @@
 
 %h3 Recently Opened Topics
 %p
-  - if @recentlyopened.nil? || @recentlyopened.empty?
+  - if @recentlyopened.blank?
     None
   - else
     %ul
@@ -23,7 +23,7 @@
 
 %h3 Recently Resolved Topics
 %p
-  - if @recentlyresolved.nil? || @recentlyresolved.empty?
+  - if @recentlyresolved.blank?
     None
   - else
     %ul
