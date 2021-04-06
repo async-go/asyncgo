@@ -5,14 +5,11 @@
     %meta{ content: 'text/html; charset=UTF-8', 'http-equiv': 'Content-Type' }
     %meta{ charset: 'utf-8' }
     %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1, shrink-to-fit=no' }
-    %meta{ name: 'color-scheme', content: 'light dark' }
 
     = csrf_meta_tags
     = csp_meta_tag
     = Gon::Base.render_data(camel_case: true)
     = stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload'
-    = stylesheet_link_tag 'dark', media: '(prefers-color-scheme: dark)',
-      'data-turbo-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbo-track': 'reload', defer: true
     = favicon_link_tag image_path('logo.svg')
   %body
