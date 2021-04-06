@@ -1,11 +1,28 @@
 %h1 Here's your AsyncGo Digest
 %p
-  This email contains a list of your open notifications in AsyncGo.
+  This email contains what's happening in your AsyncGo team.
+
+%h3 Open Notifications
 %p
   %ul
     - @notifications.each do |notification|
       %li= link_to notification_text(notification),
         user_notification_url(@user, notification)
+
+%h3 Recently Opened Topics
+%p
+  %ul
+    - @recentlyopened.each do |topic|
+      %li= link_to topic.name, topic.url
+
+%h3 Recently Resolved Topics
+%p
+  %ul
+    - @recentlyresolved.each do |topic|
+      %li= link_to topic.name, topic.url
+
+%hr
+
 %p
   You can change your preference about receiving digests on your user
   profile page.
