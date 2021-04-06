@@ -67,5 +67,6 @@
     .col-lg-1.d-flex.align-items-center
       %span.fs-5 Labels:
     .col-lg-11
-      - topic.label_list.each do |label|
-        %kbd.bg-success.mb-1= label
+      %ul.list-group.list-group-horizontal.gap-2
+        - topic.label_list.each do |label|
+          %li.list-group-item.badge.rounded-pill.bg-success.fs-6= label
