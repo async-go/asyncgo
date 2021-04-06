@@ -19,7 +19,7 @@
   - else
     %ul
       - @recentlyresolved.each do |topic|
-        %li= link_to topic.name, topic_path(topic)
+        %li= link_to topic.title, team_topic_url(topic.team, topic)
 
 %hr
 

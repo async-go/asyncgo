@@ -18,8 +18,8 @@ Recently Resolved Topics
   None
 - else
   - @recentlyresolved.each do |topic|
-    = topic.name
-    = topic_path(topic)
+    = topic.title
+    = team_topic_url(topic.team, topic)
 \
 \---
 \
