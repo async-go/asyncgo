@@ -42,6 +42,13 @@ $primary: #203864;
   border: 1px solid #333;
 }
 
+.topic-label {
+  font-size: small;
+  height: 1.5rem;
+  padding-bottom: 4px;
+  padding-top: 4px;
+}
+
 .notification-dropdown .dropdown-menu {
   max-height: 20rem;
 }
