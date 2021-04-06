@@ -12,15 +12,6 @@
         %li= link_to notification_text(notification),
           user_notification_url(@user, notification)
 
-%h3 Recently Opened Topics
-%p
-  - if @recentlyopened.blank?
-    None
-  - else
-    %ul
-      - @recentlyopened.each do |topic|
-        %li= link_to topic.name, topic_path(topic)
-
 %h3 Recently Resolved Topics
 %p
   - if @recentlyresolved.blank?

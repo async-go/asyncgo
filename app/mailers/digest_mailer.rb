@@ -10,7 +10,8 @@ class DigestMailer < ApplicationMailer
     end
 
     @user = params[:user]
+    @recentlyresolved = params[:recentlyresolved]
 
-    mail(to: @user.email, subject: 'Your AsyncGo Digest', notifications: @notifications)
+    mail(to: @user.email, subject: 'Your AsyncGo Digest', notifications: @notifications, recentlyresolved: @recentlyresolved)
   end
 end
