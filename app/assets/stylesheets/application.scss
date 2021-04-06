@@ -42,6 +42,13 @@ $primary: #203864;
   border: 1px solid #333;
 }
 
+.topic-label {
+  background: $success;
+  font-size: small;
+  padding: 0.5rem;
+  border-radius: .25rem !important;
+}
+
 .notification-dropdown .dropdown-menu {
   max-height: 20rem;
 }

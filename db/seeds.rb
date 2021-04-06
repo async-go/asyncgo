@@ -45,7 +45,8 @@ end
 # Topic
 topic = Topic.create!(
   user: alice, team: asyncgo, title: '☑️ Daily standup', due_date: Time.zone.today,
-  description: '- Hello', description_html: '<ul><li>Hello</li></ul>'
+  description: '- Hello', description_html: '<ul><li>Hello</li></ul>',
+  label_list: 'standup'
 )
 
 # Topic Votes
@@ -76,14 +77,15 @@ Notification.create!(user: matija, actor: alice, action: :updated, target: topic
 # Topics
 topic = Topic.create!(user: bob, title: '📰 Lets discuss our next marketing campaign',
                       description: '- Hello', description_html: '<ul><li>Hello</li></ul>',
-                      team: asyncgo, due_date: Time.zone.today + 5)
+                      team: asyncgo, due_date: Time.zone.today + 5, label_list: 'marketing')
 Subscription.create!(topic: topic, user: jason)
 Subscription.create!(topic: topic, user: bob)
 
 topic = Topic.create!(user: bob, title: '📈 Competitive analysis vs. our top competitor',
                       description: '- Hello', description_html: '<ul><li>Hello</li></ul>',
                       outcome: 'We are the best', outcome_html: '<p>We are the best</p>',
-                      team: asyncgo, due_date: Time.zone.today - 2)
+                      team: asyncgo, due_date: Time.zone.today - 2, pinned: true,
+                      label_list: 'important competitive-analysis')
 Subscription.create!(topic: topic, user: carol)
 Subscription.create!(topic: topic, user: david)
 
