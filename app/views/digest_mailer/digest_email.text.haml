@@ -18,7 +18,8 @@ Recently Opened Topics
   None
 - else
   - @recentlyopened.each do |topic|
-    = link_to topic.name, topic.url
+    = topic.name
+    = topic_path(topic)
 \
 Recently Resolved Topics
 \
@@ -26,7 +27,8 @@ Recently Resolved Topics
   None
 - else
   - @recentlyresolved.each do |topic|
-    = link_to topic.name, topic.url
+    = topic.name
+    = topic_path(topic)
 \
 \---
 \
