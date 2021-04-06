@@ -1,34 +1,34 @@
 Here's your AsyncGo Digest
 ===============================================
-
+\
 This email contains what's happening in your AsyncGo team.
-
+\
 Open Notifications
-
+\
 - if @notifications.blank?
   None
 - else
   - @notifications.each do |notification|
     = notification_text(notification)
     = user_notification_url(@user, notification)
-
+\
 Recently Opened Topics
-
+\
 - if @recentlyopened.blank?
   None
 - else
   - @recentlyopened.each do |topic|
     = link_to topic.name, topic.url
-
+\
 Recently Resolved Topics
-
+\
 - if @recentlyresolved.blank?
   None
 - else
   - @recentlyresolved.each do |topic|
     = link_to topic.name, topic.url
-
+\
 \---
-
+\
 You can change your preference about receiving digests on your user
 profile page.
