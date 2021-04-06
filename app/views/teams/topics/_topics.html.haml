@@ -3,7 +3,7 @@
     - topic_collection.each do |topic|
       %li.list-group-item
         .row
-          .col-lg-5.mb-1
+          .col-lg-4.mb-1
             = link_to topic.title, team_topic_path(current_user.team, topic)
             - if user_subscribed?(topic)
               = assistive_icon('fas', 'star', 'Is Watched', classname: 'ms-1 text-faded')
@@ -11,7 +11,7 @@
               = assistive_icon('fas', 'thumbtack', 'Is Pinned', classname: 'ms-1 text-info')
             - if topic_has_notification?(unique_unread_notifications, topic)
               = assistive_icon('fas', 'bell', 'Has Notification', classname: 'ms-1 text-warning')
-          .col-lg-3.mb-1
+          .col-lg-2.mb-1
             %ul.list-group.list-group-horizontal.gap-2.flex-wrap
               - topic.labels.each do |label|
                 %li.list-group-item.badge.rounded-pill.bg-success.topic-label= label
@@ -26,9 +26,9 @@
                 title: participant.printable_name,
                 class: 'gravatar-img mb-1', alt: participant.printable_name),
                   "mailto:#{participant.email}"
-          .col-lg-1.mb-1
+          .col-lg-2.mb-1
             = topic_due_date_span(topic)
-          .col-lg-1.mb-1
+          .col-lg-2.mb-1
             %span Created #{topic.created_at.strftime('%b %e')}
   - else
     %li.list-group-item
