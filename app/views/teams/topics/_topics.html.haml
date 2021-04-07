@@ -1,15 +1,15 @@
 %ul.list-group.list-group-flush
   - if topic_collection.present?
     %li.list-group-item.border-0.mt-0
-    .row
-      .col-lg-5.text-secondary
-        %p.fs-6 Title
-      .col-lg-3.text-secondary
-        Labels
-      .col-lg-2.text-secondary
-        Participants
-      .col-lg-2.text-secondary
-        Due
+      .row
+        .col-lg-5.text-secondary
+          %p.fs-6 Title
+        .col-lg-3.text-secondary
+          Labels
+        .col-lg-2.text-secondary
+          Participants
+        .col-lg-2.text-secondary
+          Due
     - topic_collection.each do |topic|
       %li.list-group-item
         .row.mb-3
