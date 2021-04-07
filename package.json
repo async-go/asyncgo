@@ -2,6 +2,7 @@
   "name": "asyncgo",
   "private": true,
   "dependencies": {
+    "@github/hotkey": "^1.4.4",
     "@github/markdown-toolbar-element": "^1.4.0",
     "@hotwired/turbo-rails": "^7.0.0-beta.5",
     "@popperjs/core": "^2.8.6",

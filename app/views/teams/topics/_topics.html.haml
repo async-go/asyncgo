@@ -1,10 +1,13 @@
 %ul.list-group.list-group-flush
   - if topic_collection.present?
+    - topic_count = 0
     - topic_collection.each do |topic|
+      - topic_count += 1
       %li.list-group-item
         .row
           .col-lg-5.mb-1
-            = link_to topic.title, team_topic_path(current_user.team, topic)
+            = link_to topic.title, team_topic_path(current_user.team, topic),
+              data: { controller: 'hotkey', hotkey: topic_count }
             - if user_subscribed?(topic)
               = assistive_icon('fas', 'star', 'Is Watched', classname: 'ms-1 text-faded')
             - if topic.pinned?
