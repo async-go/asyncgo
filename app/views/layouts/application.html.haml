@@ -16,7 +16,8 @@
     %header.px-2.border-bottom.shadow-sm.mb-2
       %nav.navbar.navbar-light.navbar-expand-lg
         .container-fluid
-          = link_to root_path, class: 'navbar-brand pe-4 border-2' do
+          = link_to root_path, class: 'navbar-brand pe-4 border-2',
+            data: { controller: 'hotkey', hotkey: 'h' } do
             = image_tag('logo.svg', alt: 'AsyncGo logo', class: 'img-fluid')
             %span AsyncGo
           - if current_user&.team
