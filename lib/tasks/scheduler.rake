@@ -29,7 +29,7 @@ task create_notification_due: :environment do
     puts "Creating due notifications for #{topic.id} (due #{topic.due_date})"
     topic.subscribed_users.find_each do |user|
       puts "Creating notification for #{user.email}"
-      topic.notifications.create!(actor: user, user_id: user.id, action: :expiring)
+      topic.notifications.create!(actor_id: topic.user_id, user: user, action: :expiring)
     end
     puts '----'
   end
