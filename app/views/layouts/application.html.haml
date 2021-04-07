@@ -24,11 +24,7 @@
               = link_to user_notifications_path(current_user), class: 'text-decoration-none' do
                 = assistive_icon('fas', 'bell', 'Has notification', classname: 'text-warning')
                 %span.text-white= unique_unread_notifications.count
-          - if controller.controller_name.in?(%w[topics home teams users])
-            %button.ms-3.btn.btn-sm.btn-secondary.me-3.d-none.d-lg-block{ id: 'tour-button',
-              data: { controller: 'driverjs', action: 'click->driverjs#demo' } }
-              = assistive_icon('fas', 'question-circle', 'Tour this page',
-                classname: 'text-white')
+          = yield :extra_nav_items
           %button.navbar-toggler.border-0{ type: 'button', 'data-bs-toggle' => 'collapse',
             'data-bs-target' => '#navbar-content', 'aria-controls' => 'navbar-content',
             'aria-expanded' => 'false', 'aria-label' => 'Toggle navigation' }

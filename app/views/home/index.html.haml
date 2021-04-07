@@ -1,3 +1,8 @@
+= content_for :extra_nav_items do
+  %button.ms-3.btn.btn-sm.btn-secondary.me-3.d-none.d-lg-block{ id: 'tour-button',
+    data: { controller: 'driverjs', action: 'click->driverjs#demoHome' } }
+    = assistive_icon('fas', 'question-circle', 'Tour this page', classname: 'text-white')
+
 %h1 Welcome to AsyncGo
 
 - if current_user
