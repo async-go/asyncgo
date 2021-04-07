@@ -1974,6 +1974,7 @@ __metadata:
     "@rails/webpacker": 6.0.0-beta.6
     "@webpack-cli/serve": ^1.3.0
     bootstrap: ^5.0.0-beta2
+    driver.js: ^0.9.8
     eslint: ^7.21.0
     markdownlint-cli: ^0.26.0
     prettier: ^2.2.1
@@ -2923,6 +2924,13 @@ __metadata:
   dependencies:
     esutils: ^2.0.2
   checksum: 2eae469bd2889ceee9892083a67340b3622568fe5290edce620e5d5ddab23d644b2a780e9a7c68ad9c8a62716a70c5e484402ac93a398fa78b54b7505592aa7f
+  languageName: node
+  linkType: hard
+
+"driver.js@npm:^0.9.8":
+  version: 0.9.8
+  resolution: "driver.js@npm:0.9.8"
+  checksum: 77cf03b7ddfadc5672bbdd788e638c23407d5e5a738a563e56ea18fe6bf6cdb43ac137c879676f287f929e77b246dc3cee9e486cec500fa3b538bfe78bb025a7
   languageName: node
   linkType: hard
 
