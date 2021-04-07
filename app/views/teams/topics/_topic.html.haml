@@ -67,8 +67,8 @@
         != topic.outcome_html || 'Content has not been started yet'
   .row.mt-2
     .col-lg-1.d-flex.align-items-center
-      %span.badge.bg-primary.fs-5#topic-labellist Labels
+      %span.fs-5#topic-labellist Labels:
     .col-lg-11
-      %ul.list-group.list-group-horizontal
-        - topic.label_list.each do |label|
-          %li.list-group-item= label
+      %ul.list-group.list-group-horizontal.gap-2.flex-wrap
+        - topic.labels.each do |label|
+          %li.list-group-item.badge.topic-label= label
