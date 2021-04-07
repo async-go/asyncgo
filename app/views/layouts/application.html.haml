@@ -25,7 +25,7 @@
                 = assistive_icon('fas', 'bell', 'Has notification', classname: 'text-warning')
                 %span.text-white= unique_unread_notifications.count
           - if controller.controller_name.in?(%w[topics home teams users])
-            %button.ms-3.btn.btn-sm.btn-secondary.me-3.d-none.d-lg-block{ id: 'tourbutton',
+            %button.ms-3.btn.btn-sm.btn-secondary.me-3.d-none.d-lg-block{ id: 'tour-button',
               data: { controller: 'driverjs', action: 'click->driverjs#demo' } }
               = assistive_icon('fas', 'question-circle', 'Tour this page',
                 classname: 'text-white')
@@ -38,27 +38,25 @@
               - if current_user
                 - if current_user.team
                   %li
-                    %span.badge.bg-secondary.fs-6.mt-2.me-4#activeteam
+                    %span.badge.bg-secondary.fs-6.mt-2.me-4#active-team
                       Active Team: #{current_user.team.name}
-                  %li.nav-item#topics-nav= active_link_to 'Topics',
-                    team_topics_path(current_user.team),
-                    'nav-link'
-                  %li.nav-item#admin-nav= active_link_to 'Admin',
-                    edit_team_path(current_user.team_id),
-                    'nav-link'
+                  %li.nav-item#topics-nav
+                    = active_link_to 'Topics', team_topics_path(current_user.team), 'nav-link'
+                  %li.nav-item#admin-nav
+                    = active_link_to 'Admin', edit_team_path(current_user.team_id), 'nav-link'
                 - else
-                  %li.nav-item#createteam-nav= active_link_to 'Create Team',
-                    new_team_path, 'nav-link'
-                %li.nav-item#profile-nav= active_link_to 'Profile',
-                  edit_user_path(current_user), 'nav-link'
-                %li.nav-item#signout-nav= link_to 'Sign out', sign_out_path,
-                  method: :delete, class: 'nav-link'
+                  %li.nav-item#create-team-nav
+                    = active_link_to 'Create Team', new_team_path, 'nav-link'
+                %li.nav-item#profile-nav
+                  = active_link_to 'Profile', edit_user_path(current_user), 'nav-link'
+                %li.nav-item#sign-out-nav
+                  = link_to 'Sign out', sign_out_path, method: :delete, class: 'nav-link'
               - else
-                %li.nav-item.dropdown#signin-nav
-                  %a.nav-link.dropdown-toggle{ href: '#', id: 'signinDropdown', role: 'button',
+                %li.nav-item.dropdown#sign-in-nav
+                  %a.nav-link.dropdown-toggle{ href: '#', id: 'sign-in-dropdown', role: 'button',
                     'data-bs-toggle': 'dropdown', 'aria-haspopup': 'true',
                     'aria-expanded': 'false' } Sign in
-                  %ul.dropdown-menu{ 'aria-labelledby': 'signinDropdown' }
+                  %ul.dropdown-menu{ 'aria-labelledby': 'sign-in-dropdown' }
                     %li= button_to 'Google', '/auth/google_oauth2',
                       'data-turbo': false, class: 'dropdown-item'
                     %li= button_to 'GitHub', '/auth/github',

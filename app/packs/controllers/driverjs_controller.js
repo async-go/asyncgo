@@ -20,14 +20,14 @@ export default class extends Controller {
         }
       },
       {
-        element: '#activeteam',
+        element: '#active-team',
         popover: {
           title: 'Active Team',
           description: 'This is the team that you are looking at right now. In the future it will be possible to switch between teams.'
         }
       },
       {
-        element: '#createteam-nav',
+        element: '#create-team-nav',
         popover: {
           title: 'Create Team Page',
           position: 'left-top',
@@ -59,7 +59,7 @@ export default class extends Controller {
         }
       },
       {
-        element: '#signin-nav',
+        element: '#sign-in-nav',
         popover: {
           title: 'Sign In Button',
           position: 'left-top',
@@ -67,7 +67,7 @@ export default class extends Controller {
         }
       },
       {
-        element: '#signout-nav',
+        element: '#sign-out-nav',
         popover: {
           title: 'Sign Out Button',
           position: 'left-top',
@@ -140,7 +140,7 @@ export default class extends Controller {
     if (page === '') {
       driver.defineSteps([
         {
-          element: '#tourbutton',
+          element: '#tour-button',
           popover: {
             title: 'Welcome to AsyncGo!',
             description: 'Thanks for visiting AsyncGo! Most pages have this tour button in the top left, which will take you through the contents of the page and help you get started.'
@@ -154,35 +154,35 @@ export default class extends Controller {
     if (page === 'edit' && context === 'teams') {
       driver.defineSteps([
         {
-          element: '#tourbutton',
+          element: '#tour-button',
           popover: {
             title: 'Team Admin',
             description: 'The team admin page lets you change various settings about how your team works, and what information is shown/available to team members.'
           }
         },
         {
-          element: '#teamname',
+          element: '#team-name',
           popover: {
             title: 'Team Name',
             description: 'You can always change your team name from here.'
           }
         },
         {
-          element: '#teammessage',
+          element: '#team-message',
           popover: {
             title: 'Team Message',
             description: 'The team message is a great way to get the word out about important priorities or other updates on your team. Whatever message you set here will be visible from the topic list.'
           }
         },
         {
-          element: '#inviteusers',
+          element: '#invite-users',
           popover: {
             title: 'Invite Users',
             description: 'To add users to your team enter their email address here. Note that the email address they use will need to be associated with a valid authorization method (for example, they need to be able to log in using Google with that email address).'
           }
         },
         {
-          element: '#usersinteam',
+          element: '#users-in-team',
           popover: {
             title: 'User List',
             description: 'This section contains the list of users in your team. You can remove anyone by clicking on their name.'
@@ -196,7 +196,7 @@ export default class extends Controller {
           }
         },
         {
-          element: '#supportform',
+          element: '#support-form',
           popover: {
             title: 'Support Form',
             description: 'You can always use the support form to let us know about issues, but we also encourage you to use it to share feedback on anything you would like to see in the product. We would love to hear from you!'
@@ -210,7 +210,7 @@ export default class extends Controller {
     if (page === 'edit' && context === 'users') {
       driver.defineSteps([
         {
-          element: '#tourbutton',
+          element: '#tour-button',
           popover: {
             title: 'User Profile',
             description: 'The user profile page is where your personal settings are. In the future this will include a personal profile that you can share with others.'
@@ -245,7 +245,7 @@ export default class extends Controller {
     if (page === 'new' && context === 'teams') {
       driver.defineSteps([
         {
-          element: '#tourbutton',
+          element: '#tour-button',
           popover: {
             title: 'New Topic',
             description: 'Creating a new topic is an important step in starting a discussion. You can use the structure here to think through how you want the conversation to go and what kinds of results you expect. The more clear you can make your topic, the better results you will get.'
@@ -259,7 +259,7 @@ export default class extends Controller {
     if (page > 0 && context === 'teams') {
       driver.defineSteps([
         {
-          element: '#tourbutton',
+          element: '#tour-button',
           popover: {
             title: 'Participating in Topics',
             description: 'Topics are at the heart of AsyncGo. Whether creating, editing, or commenting, this is where the action happens and how you get to good async results. Topics themselves can have emojis applied to them from this page.'
@@ -308,28 +308,28 @@ export default class extends Controller {
     if (page === 'topics') {
       driver.defineSteps([
         {
-          element: '#tourbutton',
+          element: '#tour-button',
           popover: {
             title: 'Topics Page',
             description: 'This is the topics page and it contains all the active discussions happening within your team at a given time. It is designed for working async, so everything is ordered (by default) by the due date, descending. This helps you decide which topics you want to engage with.'
           }
         },
         {
-          element: '#activetopics',
+          element: '#active-topics',
           popover: {
             title: 'Active Topics',
             description: 'The active topics list contains everything your team is currently discussing. You can see the title of the topic, the list of active participants, when it is coming due, and when it was created. Topics can be pinned (from within the edit topic page) in order to keep them on the top of the list.'
           }
         },
         {
-          element: '#teammessage',
+          element: '#team-message',
           popover: {
             title: 'Team Message',
             description: 'You can set a team message from the admin page; this can be useful to share important updates for the team that everyone should see that can impact how or which topics everyone should engage with.'
           }
         },
         {
-          element: '#closedtopics',
+          element: '#closed-topics',
           popover: {
             title: 'Closed Topics',
             description: 'The closed topics list is similar to the active topics list, but contains items that were already discussed and resolved. They contain a nicely summarized outcome so you can easily see what was decided or done, and read through the comments to see how the team got there.'
