@@ -1,10 +1,20 @@
 %ul.list-group.list-group-flush
   - if topic_collection.present?
-    - topic_count = 0
+    %li.list-group-item.border-0.mt-0
+      .row
+        .col-lg-5.text-secondary
+          Title
+        .col-lg-3.text-secondary
+          Labels
+        .col-lg-2.text-secondary
+          Participants
+        .col-lg-2.text-secondary
+          Due
+    - topic_count = 0          
     - topic_collection.each do |topic|
       - topic_count += 1
       %li.list-group-item
-        .row
+        .row.mb-3
           .col-lg-5.mb-1
             - if new_form
               = link_to topic.title, team_topic_path(current_user.team, topic),
@@ -33,10 +43,7 @@
                 class: 'gravatar-img mb-1', alt: participant.printable_name),
                   "mailto:#{participant.email}"
           .col-lg-2.mb-1
-            .row
-              %span Created #{topic.created_at.strftime('%b %e')}
-            .row
-              = topic_due_date_span(topic)
+            = topic_due_date_span(topic)
   - else
     %li.list-group-item
       %p= empty_state_text
