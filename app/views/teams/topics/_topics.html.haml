@@ -14,7 +14,7 @@
       %li.list-group-item
         .row.mb-3
           .col-lg-5.mb-1
-            - if new_form
+            - if topic_hotkeys
               = link_to topic.title, team_topic_path(current_user.team, topic),
                 data: { controller: 'hotkey', hotkey: topic_index }
             - else
