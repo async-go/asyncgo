@@ -56,6 +56,8 @@ class TeamsController < Teams::ApplicationController
   private
 
   def team_params
-    params.require(:team).permit(:name, :message)
+    params.require(:team).permit(:name, :message).tap do |params|
+      params[:message] = params[:message].presence
+    end
   end
 end
