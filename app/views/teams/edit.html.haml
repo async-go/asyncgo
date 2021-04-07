@@ -23,7 +23,7 @@
       for the team to see.
     = form_with(model: @team) do |form|
       .input-group.mb-3
-        = form.text_area :message, required: true, class: 'form-control'
+        = form.text_area :message, class: 'form-control'
       = form.submit 'Save Message', class: 'btn btn-primary'
 
 %hr

@@ -69,6 +69,22 @@ RSpec.describe 'Teams', type: :system do
     expect(page).to have_text('New team message')
   end
 
+  it 'allows the user to clear the message' do
+    team = FactoryBot.create(:team, message: 'hello world')
+    user = FactoryBot.create(:user, team: team)
+
+    visit '/'
+    sign_in_user(user)
+    click_link 'Admin'
+
+    fill_in 'team[message]', with: ''
+    click_button 'Save Message'
+
+    click_link 'Topics'
+
+    expect(page).not_to have_text('hello world')
+  end
+
   it 'allows the user to send a support email' do
     visit '/'
     sign_in_user(FactoryBot.create(:user, :team))
