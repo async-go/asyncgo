@@ -1,7 +1,11 @@
 %h1.visually-hidden Topics
 
-.row
-  %h2#activetopics Active Topics
+- if @team.message.present?
+  .row.bg-light.text-dark.border
+    .p-3.fs-6= @team.message
+
+.row.mt-3
+  %h2#active-topics Active Topics
   = render partial: 'topics', locals: { topic_collection: @active_topics,
     new_form: true,
     empty_state_text: 'Active topics will appear here. Try creating a new topic to get started.' }
@@ -10,11 +14,7 @@
     != pagy_bootstrap_nav(@pagy_active_topics)
 
 .row.mt-3
-  %h2#teammessage Team Message
-  .p-3= @team.message || 'No message is set for the team right now.'
-
-.row.mt-3
-  %h2#closedtopics Closed Topics
+  %h2#closed-topics Closed Topics
   = render partial: 'topics', locals: { topic_collection: @closed_topics,
     new_form: false,
     empty_state_text: 'Once you have closed some topics they will appear here.' }
