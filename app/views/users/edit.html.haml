@@ -1,8 +1,13 @@
+= content_for :extra_nav_items do
+  %button.ms-3.btn.btn-sm.btn-secondary.me-3.d-none.d-lg-block{ id: 'tour-button',
+    data: { controller: 'driverjs', action: 'click->driverjs#demoUserProfile' } }
+    = assistive_icon('fas', 'question-circle', 'Tour this page', classname: 'text-white')
+
 %h1.visually-hidden= @user.printable_name
 
 .row
   .col-lg-12.mb-3
-    %h3 Digest Notifications
+    %h3#digests Digest Notifications
     %p.lead
       Would you like to receive a daily digest email about open notifications?
     - current_toggle_value = current_user.preference.digest_enabled?
@@ -14,7 +19,7 @@
         = toggle_digests_form.submit 'Toggle notification status', class: 'btn btn-primary'
 .row
   .col-lg-12.mb-3
-    %h3 Fluid Layout
+    %h3#layout Fluid Layout
     %p.lead
       Choose between fixed (max. 960px) and fluid (100%) application layout.
     - current_toggle_value = current_user.preference.fluid_layout?
@@ -26,7 +31,7 @@
         = toggle_fluid_layout_form.submit 'Toggle layout preference', class: 'btn btn-primary'
   .row
     .col-lg-12.mb-3
-      %h3 About AsyncGo
+      %h3#about About AsyncGo
       %p &copy;2021 AsyncGo
       %p= link_to 'Terms of Use / Privacy Policy', 'https://asyncgo.com/policies.html',
         target: :_blank, rel: :noopener

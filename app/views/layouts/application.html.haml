@@ -21,10 +21,11 @@
             = image_tag('logo.svg', alt: 'AsyncGo logo', class: 'img-fluid')
             %span AsyncGo
           - if current_user&.team
-            %span.badge.bg-secondary.fs-6.ms-auto.me-3
+            %span.badge.bg-secondary.fs-6.ms-auto.me-3#notifications
               = link_to user_notifications_path(current_user), class: 'text-decoration-none' do
                 = assistive_icon('fas', 'bell', 'Has notification', classname: 'text-warning')
                 %span.text-white= unique_unread_notifications.count
+          = yield :extra_nav_items
           %button.navbar-toggler.border-0{ type: 'button', 'data-bs-toggle' => 'collapse',
             'data-bs-target' => '#navbar-content', 'aria-controls' => 'navbar-content',
             'aria-expanded' => 'false', 'aria-label' => 'Toggle navigation' }
@@ -34,31 +35,35 @@
               - if current_user
                 - if current_user.team
                   %li
-                    %span.badge.bg-secondary.fs-6.mt-2.me-4 Active Team: #{current_user.team.name}
-                  %li.nav-item= active_link_to 'Topics', team_topics_path(current_user.team),
-                    'nav-link'
-                  %li.nav-item= active_link_to 'Admin', edit_team_path(current_user.team_id),
-                    'nav-link'
+                    %span.badge.bg-secondary.fs-6.mt-2.me-4#active-team
+                      Active Team: #{current_user.team.name}
+                  %li.nav-item#topics-nav
+                    = active_link_to 'Topics', team_topics_path(current_user.team), 'nav-link'
+                  %li.nav-item#admin-nav
+                    = active_link_to 'Admin', edit_team_path(current_user.team_id), 'nav-link'
                 - else
-                  %li.nav-item= active_link_to 'Create Team', new_team_path, 'nav-link'
-                %li.nav-item= active_link_to 'Profile', edit_user_path(current_user), 'nav-link'
-                %li.nav-item= link_to 'Sign out', sign_out_path, method: :delete, class: 'nav-link'
+                  %li.nav-item#create-team-nav
+                    = active_link_to 'Create Team', new_team_path, 'nav-link'
+                %li.nav-item#profile-nav
+                  = active_link_to 'Profile', edit_user_path(current_user), 'nav-link'
+                %li.nav-item#sign-out-nav
+                  = link_to 'Sign out', sign_out_path, method: :delete, class: 'nav-link'
               - else
-                %li.nav-item.dropdown
-                  %a.nav-link.dropdown-toggle{ href: '#', id: 'signinDropdown', role: 'button',
+                %li.nav-item.dropdown#sign-in-nav
+                  %a.nav-link.dropdown-toggle{ href: '#', id: 'sign-in-dropdown', role: 'button',
                     'data-bs-toggle': 'dropdown', 'aria-haspopup': 'true',
                     'aria-expanded': 'false' } Sign in
-                  %ul.dropdown-menu{ 'aria-labelledby': 'signinDropdown' }
+                  %ul.dropdown-menu{ 'aria-labelledby': 'sign-in-dropdown' }
                     %li= button_to 'Google', '/auth/google_oauth2',
                       'data-turbo': false, class: 'dropdown-item'
                     %li= button_to 'GitHub', '/auth/github',
                       'data-turbo': false, class: 'dropdown-item'
                     %li= button_to 'Slack', '/auth/slack',
                       'data-turbo': false, class: 'dropdown-item'
-              %li.nav-item= link_to 'Docs', 'https://asyncgo.com/docs', class: 'nav-link',
+              %li.nav-item#docs-nav= link_to 'Docs', 'https://asyncgo.com/docs', class: 'nav-link',
                 target: :_blank, rel: :noopener
     - container = current_user&.preference&.fluid_layout? ? 'container-fluid' : 'container'
-    %main.ps-3.mt-4.mb-3{ role: 'main', class: container }
+    %main.ps-3.mb-3.mt-4{ role: 'main', class: container }
       - if flash.any?
         .mt-2
           - flash.each do |type, message|
