@@ -1,6 +1,6 @@
 %h1.visually-hidden Topics
 
-- unless @team.message.present?
+- if @team.message.present?
   .row.bg-light.text-dark.border
     .p-3.fs-6= @team.message
 
