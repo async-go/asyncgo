@@ -10,15 +10,13 @@
           Participants
         .col-lg-2.text-secondary
           Due
-    - topic_count = 0
-    - topic_collection.each do |topic|
-      - topic_count += 1
+    - topic_collection.each_with_index do |topic, topic_index|
       %li.list-group-item
         .row.mb-3
           .col-lg-5.mb-1
             - if new_form
               = link_to topic.title, team_topic_path(current_user.team, topic),
-                data: { controller: 'hotkey', hotkey: topic_count }
+                data: { controller: 'hotkey', hotkey: topic_index }
             - else
               = link_to topic.title, team_topic_path(current_user.team, topic)
             - if user_subscribed?(topic)
