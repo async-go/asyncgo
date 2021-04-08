@@ -12,7 +12,7 @@
 .row.mt-3
   %h2#active-topics Active Topics
   = render partial: 'topics', locals: { topic_collection: @active_topics,
-    new_form: true, topic_hotkeys: false,
+    new_form: true, topic_hotkeys: true,
     empty_state_text: 'Active topics will appear here. Try creating a new topic to get started.' }
 - if @pagy_active_topics.pages > 1
   .row.mt-3
