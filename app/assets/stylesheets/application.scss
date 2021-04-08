@@ -44,7 +44,8 @@ $primary: #203864;
 }
 
 .topic-label {
-  background: $success;
+  background: lightgray;
+  color: #555;
   font-size: small;
   padding: 0.5rem;
   border-radius: .25rem !important;
