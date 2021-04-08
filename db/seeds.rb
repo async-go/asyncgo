@@ -89,24 +89,25 @@ topic = Topic.create!(user: bob, title: '📈 Competitive analysis vs. our top c
 Subscription.create!(topic: topic, user: carol)
 Subscription.create!(topic: topic, user: david)
 
-topic = Topic.create!(user: bob, title: '🏗️  Discuss possible next big features',
+topic = Topic.create!(user: bob, title: '🏗️  Discuss next big feature',
                       description: '- Hello', description_html: '<ul><li>Hello</li></ul>',
-                      team: asyncgo, due_date: Time.zone.today + 4)
+                      team: asyncgo, due_date: Time.zone.today + 4, label_list: 'product')
 Subscription.create!(topic: topic, user: matija)
 Subscription.create!(topic: topic, user: jason)
 Subscription.create!(topic: topic, user: bob)
 
-topic = Topic.create!(user: alice, title: '👩 Feedback on our latest demo',
+topic = Topic.create!(user: alice, title: '👶 Plan baby shower for Alice',
                       description: '- Hello', description_html: '<ul><li>Hello</li></ul>',
                       outcome: 'Action items', outcome_html: '<p>Action items</p>',
-                      team: asyncgo, due_date: Time.zone.today)
+                      label_list: 'fun', team: asyncgo, due_date: Time.zone.today,
+                      status: :closed)
 Subscription.create!(topic: topic, user: bob)
 Subscription.create!(topic: topic, user: alice)
 Subscription.create!(topic: topic, user: carol)
 
-topic = Topic.create!(user: alice, title: '🛍️  Review general customer feedback so far',
+topic = Topic.create!(user: alice, title: '🎉 Agenda for 100 customers party ',
                       description: '- Hello', description_html: '<ul><li>Hello</li></ul>',
                       outcome: 'All good so far', outcome_html: '<p>All good so far</p>',
-                      team: asyncgo, due_date: nil)
+                      label_list: 'fun', team: asyncgo, due_date: nil)
 Subscription.create!(topic: topic, user: carol)
 Subscription.create!(topic: topic, user: david)
