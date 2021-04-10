@@ -18,6 +18,25 @@ RSpec.describe 'Topics', type: :system do
     end
   end
 
+  it 'allows the user to filter topics by label' do
+    user = FactoryBot.create(:user, :team)
+    target_topic = FactoryBot.create(:topic, team: user.team, label_list: 'hello')
+    other_topic = FactoryBot.create(:topic, team: user.team, label_list: 'world')
+
+    visit '/'
+    sign_in_user(user)
+    click_link 'Topics'
+
+    [target_topic, other_topic].each do |topic|
+      expect(page).to have_link(topic.title)
+    end
+
+    fill_in :labels, with: 'hello'
+    click_button 'Filter'
+    expect(page).to have_link(target_topic.title)
+    expect(page).not_to have_link(other_topic.title)
+  end
+
   it 'allows the user to create a topic using markdown' do
     visit '/'
     sign_in_user(FactoryBot.create(:user, :team))

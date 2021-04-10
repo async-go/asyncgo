@@ -10,6 +10,19 @@
     .p-3.fs-6= @team.message
 
 .row.mt-3
+  = form_with(url: team_topics_path(current_user.team), method: :get) do |form|
+    .row
+      .col-lg-8
+        .input-group
+          = form.text_field :labels, value: params[:labels], placeholder: 'Search by labels',
+            class: 'bg-light form-control'
+          .input-group-append
+            = link_to 'Clear Search', team_topics_path(current_user.team),
+              class: 'btn btn-outline-secondary'
+      .col-lg-4
+        = form.submit 'Filter', class: 'btn btn btn-secondary', name: nil
+
+.row.mt-3
   %h2#active-topics Active Topics
   = render partial: 'topics', locals: { topic_collection: @active_topics,
     new_form: true, topic_hotkeys: true,

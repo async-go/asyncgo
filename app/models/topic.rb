@@ -33,6 +33,11 @@ class Topic < ApplicationRecord
 
   acts_as_taggable_on :labels
 
+  scope :by_due_date, lambda {
+    order(Topic.arel_table[:due_date].eq(nil))
+      .order(Topic.arel_table[:due_date].asc)
+  }
+
   private
 
   def validate_description_checksum
