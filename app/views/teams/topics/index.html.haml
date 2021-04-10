@@ -10,13 +10,17 @@
     .p-3.fs-6= @team.message
 
 .row.mt-3
-  - if @filter_applied
-    = link_to "Clear '#{@filter_applied}' Filter", team_topics_path
-  - else
-    = form_with(url: team_topics_path, method: 'get') do |form|
-      = form.text_field :filter, placeholder: 'Enter label name', required: true,
-        type: 'text', class: 'bg-light form-control-sm'
-      = form.submit 'Filter', submit: nil, class: 'btn btn-sm btn-secondary'
+  = form_with(url: team_topics_path(current_user.team), method: :get) do |form|
+    .row
+      .col-lg-8
+        .input-group
+          = form.text_field :labels, value: params[:labels], placeholder: 'Search by labels',
+            class: 'bg-light form-control'
+          .input-group-append
+            = link_to 'Clear Search', team_topics_path(current_user.team),
+              class: 'btn btn-outline-secondary'
+      .col-lg-4
+        = form.submit 'Filter', class: 'btn btn btn-secondary', name: nil
 
 .row.mt-3
   %h2#active-topics Active Topics
