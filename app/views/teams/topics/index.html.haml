@@ -11,11 +11,12 @@
 
 .row.mt-3
   - if @filter_applied
-    =link_to "Clear '#{@filter_applied}' Filter", team_topics_path
+    = link_to "Clear '#{@filter_applied}' Filter", team_topics_path
   - else
-    =form_with(url: team_topics_path, method: 'get') do |form|
-      =form.text_field :filter, placeholder: 'Enter label name', required: true, type: 'text', class: 'bg-light form-control-sm'
-      =form.submit "Filter", submit: nil, class: 'btn btn-sm btn-secondary'
+    = form_with(url: team_topics_path, method: 'get') do |form|
+      = form.text_field :filter, placeholder: 'Enter label name', required: true,
+        type: 'text', class: 'bg-light form-control-sm'
+      = form.submit 'Filter', submit: nil, class: 'btn btn-sm btn-secondary'
 
 .row.mt-3
   %h2#active-topics Active Topics
