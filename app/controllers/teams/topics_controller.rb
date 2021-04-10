@@ -7,11 +7,21 @@ module Teams
     def index
       authorize(team, policy_class: TopicPolicy)
 
+      if index_params[:filter].blank?
+        @filter_applied = nil
+        active_topics = order_topics(team.topics.active)
+        closed_topics = order_topics(team.topics.closed)
+      else
+        @filter_applied = index_params[:filter]
+        active_topics = order_topics(filter_topics(team.topics.active, index_params[:filter]))
+        closed_topics = order_topics(filter_topics(team.topics.closed, index_params[:filter]))
+      end
+
       @pagy_active_topics, @active_topics = pagy(
-        order_topics(team.topics.active), page_param: 'active_page'
+        active_topics, page_param: 'active_page'
       )
       @pagy_closed_topics, @closed_topics = pagy(
-        order_topics(team.topics.closed), page_param: 'closed_page'
+        closed_topics, page_param: 'closed_page'
       )
       @active_topics = preload_topics(@active_topics)
       @closed_topics = preload_topics(@closed_topics)
@@ -106,12 +116,16 @@ module Teams
       params.require(:topic).permit(
         :title, :description, :outcome, :due_date, :status,
         :description_checksum, :outcome_checksum, :pinned,
-        :label_list
+        :label_list, :filter
       )
     end
 
     def create_params
       topic_params.merge(user: current_user)
+    end
+
+    def index_params
+      params.permit(:filter)
     end
 
     def update_user_subscription(topic)
@@ -122,6 +136,11 @@ module Teams
       elsif params[:subscribed] == '0' && subscription.persisted?
         subscription.destroy
       end
+    end
+
+    def filter_topics(scope, filter)
+      scope
+        .tagged_with(filter)
     end
 
     def order_topics(scope)
