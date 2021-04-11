@@ -44,9 +44,13 @@ module Teams
 
     def active_topic_due_date_text(topic)
       if topic_overdue?(topic)
-        "Due #{distance_of_time_in_words(topic.due_date.end_of_day, Time.now.utc)} ago"
+        "Due #{pluralize((topic.due_date..Time.now.utc).count - 1, 'day')} ago"
+      elsif ((Time.now.utc.to_date..topic.due_date).count - 1).zero?
+        'Due today'
+      elsif (Time.now.utc.to_date..topic.due_date).count - 1 == 1
+        'Due tomorrow'
       else
-        "Due in #{distance_of_time_in_words(Time.now.utc, topic.due_date.end_of_day)}"
+        "Due in #{pluralize((Time.now.utc.to_date..topic.due_date).count - 1, 'day')}"
       end
     end
 
