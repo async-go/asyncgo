@@ -3,7 +3,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.0.0'
+ruby '3.0.1'
 
 # Core
 gem 'bootsnap', '~> 1.7.2', require: false # Reduces boot times through caching; required in config/boot.rb
