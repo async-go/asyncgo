@@ -53,20 +53,20 @@ RSpec.describe Teams::TopicsHelper, type: :helper do
           travel_back
         end
 
-        it { is_expected.to have_text('Due less than a minute ago') }
+        it { is_expected.to have_text('Due 1 day ago') }
         it { is_expected.to match(/class="bg-warning text-black"/) }
       end
 
       context 'when topic is not overdue' do
         before do
-          travel_to(Time.utc(2019, 12, 30))
+          travel_to(Time.utc(2019, 12, 31))
         end
 
         after do
           travel_back
         end
 
-        it { is_expected.to have_text('Due in 3 days') }
+        it { is_expected.to have_text('Due in 1 day') }
         it { is_expected.not_to match(/class/) }
       end
     end
