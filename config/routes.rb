@@ -1,5 +1,14 @@
 # frozen_string_literal: true
 
+require 'sidekiq/web'
+
+class AuthConstraint
+  def self.admin?(request)
+    user = User.find_by(id: request.session[:user_id])
+    user&.email&.ends_with?('@asyncgo.com')
+  end
+end
+
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root to: 'home#index'
@@ -11,7 +20,10 @@ Rails.application.routes.draw do
   get 'auth/failure', to: redirect('/')
   delete :sign_out, to: 'sessions#destroy'
 
-  mount Blazer::Engine, at: 'blazer'
+  constraints ->(request) { AuthConstraint.admin?(request) } do
+    mount Sidekiq::Web, at: 'sidekiq'
+    mount Blazer::Engine, at: 'blazer'
+  end
 
   resources :users, only: :edit do
     scope module: :users do
