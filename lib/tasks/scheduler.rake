@@ -8,7 +8,7 @@ task send_digest_emails: :environment do
       next unless user.preference.digest_enabled?
 
       recently_resolved_topics = team.topics.where(
-        updated_at: (Time.zone.now - 24.hours)..Time.zone.now, status: :resolved
+        updated_at: (Time.zone.now - 24.hours)..Time.zone.now, status: :closed
       )
       notifications = user.notifications.where(read_at: nil)
       next if user.notifications.empty? && recently_resolved_topics.empty?
