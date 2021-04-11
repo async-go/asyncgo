@@ -28,9 +28,14 @@ module Teams
       user = team.users.find(params[:id])
       authorize([:teams, user])
 
-      team.users.delete(user)
-      redirect_to edit_team_path(team),
-                  flash: { success: 'User was successfully removed from the team.' }
+      user_flash = if team.users.count > 1
+                     team.users.delete(user)
+                     { success: 'User was successfully removed from the team.' }
+                   else
+                     { danger: 'User could not be removed from the team because he is the last user in it.' }
+                   end
+
+      redirect_to edit_team_path(team), flash: user_flash
     end
 
     private

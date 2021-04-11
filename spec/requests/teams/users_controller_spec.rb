@@ -170,7 +170,7 @@ RSpec.describe Teams::UsersController, type: :request do
         sign_in(browsing_user)
       end
 
-      context 'when not removing self' do
+      context 'when there are multiple team members' do
         it 'removes the user from the team' do
           expect { delete_destroy }.to change { user.reload.team_id }.from(team.id).to(nil)
         end
@@ -188,23 +188,25 @@ RSpec.describe Teams::UsersController, type: :request do
         end
       end
 
-      context 'when removing self' do
-        let(:user) { browsing_user }
+      context 'when user is last team member' do
+        let(:browsing_user) { user }
 
-        it 'does not remove self from team' do
+        it 'does not remove the user from the team' do
           expect { delete_destroy }.not_to change { user.reload.team_id }.from(team.id)
         end
 
         it 'sets the flash' do
           delete_destroy
 
-          expect(controller.flash[:warning]).to eq('You are not authorized.')
+          expect(controller.flash[:danger]).to eq(
+            'User could not be removed from the team because he is the last user in it.'
+          )
         end
 
-        it 'redirects back (to root)' do
+        it 'redirects back' do
           delete_destroy
 
-          expect(response).to redirect_to(root_path)
+          expect(response).to redirect_to(edit_team_path(team))
         end
       end
     end

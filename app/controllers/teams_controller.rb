@@ -8,7 +8,7 @@ class TeamsController < Teams::ApplicationController
     authorize(@team)
 
     @pagy, @team_members = pagy(
-      team.users.where.not(email: current_user.email).order(:created_at)
+      team.users.order(:created_at)
     )
   end
 
