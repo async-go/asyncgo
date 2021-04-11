@@ -66,7 +66,7 @@ RSpec.describe Teams::TopicsHelper, type: :helper do
           travel_back
         end
 
-        it { is_expected.to have_text('Due tomorrow') }
+        it { is_expected.to have_text('Due in 1 day') }
         it { is_expected.not_to match(/class/) }
       end
     end
