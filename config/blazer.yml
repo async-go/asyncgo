@@ -48,7 +48,7 @@ user_method: current_user
 user_name: printable_name
 
 # custom before_action to use for auth
-before_action_method: authorize_blazer!
+# before_action_method: authorize_blazer!
 
 # email to send checks from
 from_email: blazer@app.asyncgo.com
