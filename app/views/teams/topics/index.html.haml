@@ -12,14 +12,14 @@
 .row.mt-3
   = form_with(url: team_topics_path(current_user.team), method: :get) do |form|
     .row
-      .col-lg-8
+      .col-lg-8.mt-2
         .input-group
           = form.text_field :labels, value: params[:labels], placeholder: 'Search by labels',
             class: 'bg-light form-control'
           .input-group-append
             = link_to 'Clear Search', team_topics_path(current_user.team),
               class: 'btn btn-outline-secondary'
-      .col-lg-4
+      .col-lg-4.mt-2
         = form.submit 'Filter', class: 'btn btn btn-secondary', name: nil
 
 .row.mt-3
