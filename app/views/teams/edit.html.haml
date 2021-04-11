@@ -1,8 +1,13 @@
+= content_for :extra_nav_items do
+  %button.ms-3.btn.btn-sm.btn-secondary.me-3.d-none.d-lg-block{ id: 'tour-button',
+    data: { controller: 'driverjs', action: 'click->driverjs#demoTeamAdmin' } }
+    = assistive_icon('fas', 'question-circle', 'Tour this page', classname: 'text-white')
+
 %h1.visually-hidden Configuration for #{@team.name}
 
 .row.mt-3
   .col-lg-12
-    %h3 Name
+    %h3#team-name Name
     %p.lead
       This is the name that will be shown for your team.
     = form_with(model: @team, class: 'g-3') do |form|
@@ -16,21 +21,21 @@
 
 .row.mt-3
   .col-lg-12
-    %h3 Message
+    %h3#team-message Message
     %p.lead
       Set a message that your team will see on the topics page. This can be used
       to share priorities, important updates, or other notes that are important
       for the team to see.
     = form_with(model: @team) do |form|
       .input-group.mb-3
-        = form.text_area :message, required: true, class: 'form-control'
+        = form.text_area :message, class: 'form-control'
       = form.submit 'Save Message', class: 'btn btn-primary'
 
 %hr
 
 .row
   .col.lg-12
-    %h3 Invite users
+    %h3#invite-users Invite users
     %p.lead Invite users to join your team.
     = form_with(model: User, url: [@team, :users], class: 'g-3') do |invite_user_form|
       .row
@@ -47,7 +52,7 @@
 
 .row
   .col-lg-12
-    %h3 Users in Team
+    %h3#users-in-team Users in Team
     %p.lead
       Click to remove. If you want to remove yourself, have a team member
       do it for you or contact support below.
@@ -65,7 +70,7 @@
 
 .row
   .col-lg-12
-    %h3 Billing
+    %h3#billing Billing
     %p
       Current tier: Free
     %p
@@ -76,7 +81,7 @@
 
 .row
   .col-lg-12
-    %h3 Support/Feedback Form
+    %h3#support-form Support/Feedback Form
     %p.lead Use this form to contact support and/or provide product feedback.
     = form_with(url: team_support_path(@team)) do |support_form|
       .input-group.mb-3

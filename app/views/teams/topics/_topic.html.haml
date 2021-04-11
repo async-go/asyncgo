@@ -1,42 +1,51 @@
 = turbo_frame_tag dom_id(topic) do
   .row
     .col-lg-7.mt-2
-      %h2= topic.title
+      %h2#topic-title= topic.title
     .col-lg-1.mt-2
       - if topic.active?
         = link_to 'Edit', edit_team_topic_path(topic.team, topic),
-          class: 'btn btn-secondary'
+          class: 'btn btn-secondary', id: 'topic-edit',
+          data: { controller: 'hotkey', hotkey: 'e' }
     .col-lg-1.mt-2
       = form_with(url: team_topic_subscribe_path(topic.team, topic)) do |subscription_form|
         - if user_subscribed?(topic)
           = subscription_form.hidden_field :subscribed, value: 0
-          = subscription_form.submit 'Unwatch', class: 'btn btn-secondary'
+          = subscription_form.submit 'Unwatch', class: 'btn btn-secondary',
+            data: { controller: 'hotkey', hotkey: 'w' },
+            id: 'topic-watch'
         - else
           = subscription_form.hidden_field :subscribed, value: 1
-          = subscription_form.submit 'Watch', class: 'btn btn-secondary'
+          = subscription_form.submit 'Watch', class: 'btn btn-secondary',
+            data: { controller: 'hotkey', hotkey: 'w' },
+            id: 'topic-watch'
     .col-lg-1.mt-2
       = form_with(model: topic, url: team_topic_pin_path(topic.team, topic),
         data: { 'turbo-frame': '_top' }) do |form|
         - if topic.pinned?
           = form.hidden_field :pinned, value: 0
-          = form.submit 'Unpin', class: 'btn btn-secondary'
+          = form.submit 'Unpin', class: 'btn btn-secondary', id: 'topic-pin',
+            data: { controller: 'hotkey', hotkey: 'p' }
         - else
           = form.hidden_field :pinned, value: 1
-          = form.submit 'Pin', class: 'btn btn-secondary'
+          = form.submit 'Pin', class: 'btn btn-secondary', id: 'topic-pin',
+            data: { controller: 'hotkey', hotkey: 'p' }
     .col-lg-1.mt-2
       = form_with(model: topic, url: team_topic_toggle_path(topic.team, topic),
         data: { 'turbo-frame': '_top' }) do |form|
         - if topic.active?
           = form.hidden_field :status, value: :closed
-          = form.submit 'Resolve', class: 'btn btn-success'
+          = form.submit 'Resolve', class: 'btn btn-success', id: 'topic-resolve',
+            data: { controller: 'hotkey', hotkey: 'r' }
         - else
           = form.hidden_field :status, value: :active
-          = form.submit 'Reopen', class: 'btn btn-primary'
+          = form.submit 'Reopen', class: 'btn btn-primary', id: 'topic-resolve',
+            data: { controller: 'hotkey', hotkey: 'r' }
     .col-lg-1.mt-2
       %ul.list-group.list-group-horizontal
         = render partial: 'teams/topics/vote_list_group', locals: { votable: topic }
   .row.mt-1
-    .col-lg-8
+    .col-lg-8#topic-participants
       = link_to image_tag("#{topic.user.gravatar_url}?s=20&d=retro",
         class: 'gravatar-img mb-1',
         title: "#{topic.user.printable_name} (Creator)",
@@ -48,16 +57,16 @@
           class: 'gravatar-img mb-1', alt: participant.name),
             "mailto:#{participant.email}"
     .col-lg-4
-      %p.text-secondary
+      %p.text-secondary#topic-duedate
         = topic_due_date_span(topic)
 
   .row
     .col-lg-8.border
-      %h6.mt-2.text-secondary.small Description
+      %h6.mt-2.text-secondary.small#topic-description Description
       .p-3!= topic.description_html
 
     .col-lg-4.border
-      %h6.mt-2.text-secondary.small
+      %h6.mt-2.text-secondary.small#topic-outcome
         Outcome
         - if topic.active?
           (Work in Progress)
@@ -65,8 +74,8 @@
         != topic.outcome_html || 'Content has not been started yet'
   .row.mt-2
     .col-lg-1.d-flex.align-items-center
-      %span.badge.bg-primary.fs-5 Labels
+      %span.fs-5#topic-labellist Labels:
     .col-lg-11
-      %ul.list-group.list-group-horizontal
-        - topic.label_list.each do |label|
-          %li.list-group-item= label
+      %ul.list-group.list-group-horizontal.gap-2.flex-wrap
+        - topic.labels.each do |label|
+          %li.list-group-item.badge.topic-label= label

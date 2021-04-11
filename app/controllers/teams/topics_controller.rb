@@ -7,15 +7,15 @@ module Teams
     def index
       authorize(team, policy_class: TopicPolicy)
 
+      @team = team
+      team_topics = team.topics.order(pinned: :desc)
+                        .by_due_date.includes(:user, :subscribed_users, :labels)
       @pagy_active_topics, @active_topics = pagy(
-        order_topics(team.topics.active), page_param: 'active_page'
+        filtered_topics(team_topics.active), page_param: 'active_page'
       )
       @pagy_closed_topics, @closed_topics = pagy(
-        order_topics(team.topics.closed), page_param: 'closed_page'
+        filtered_topics(team_topics.closed), page_param: 'closed_page'
       )
-      @active_topics = preload_topics(@active_topics)
-      @closed_topics = preload_topics(@closed_topics)
-      @team = team
     end
 
     def new
@@ -26,7 +26,6 @@ module Teams
     def show
       @topic = topic
       authorize(@topic)
-      ActiveRecord::Associations::Preloader.new.preload(@topic, :subscribed_users)
 
       @pagy, @topic_comments = pagy(
         @topic.comments.order(created_at: :asc)
@@ -125,15 +124,14 @@ module Teams
       end
     end
 
-    def order_topics(scope)
-      scope
-        .order(Topic.arel_table[:pinned].desc)
-        .order(Topic.arel_table[:due_date].eq(nil))
-        .order(Topic.arel_table[:due_date].asc)
+    def filtered_topics(scope)
+      return scope if params[:labels].blank?
+
+      scope.tagged_with(params[:labels])
     end
 
     def preload_topics(scope)
-      scope.includes(:user, :subscribed_users)
+      scope.includes(:user, :subscribed_users, :labels)
     end
 
     def update_topic(topic, topic_params)
