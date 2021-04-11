@@ -25,9 +25,13 @@
         data: { controller: 'attach-tribute', action: 'focus->attach-tribute#attach:once' } } }
   .row
     .col-lg-7
-      .input-group
-        .input-group-text= form.label :label_list, id: 'topic-labellist'
-        = form.text_field :label_list, class: 'form-control'
+      .row.mt-2
+        .input-group
+          .input-group-text= form.label :label_list, id: 'topic-labellist'
+          = form.text_field :label_list, class: 'form-control'
+      .row.mt-2
+        %p.ms-1.small
+          Multiple labels can be separated with a space.
     .col-lg-4.mb-2
       .input-group
         .input-group-text= form.label :due_date, id: 'topic-duedate'
