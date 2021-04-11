@@ -17,7 +17,7 @@ task send_digest_emails: :environment do
       DigestMailer.with(
         user: user, notifications: notifications,
         recently_resolved_topics: recently_resolved_topics
-      ).digest_email.deliver_now
+      ).digest_email.deliver_later
     end
   end
 end
