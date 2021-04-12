@@ -4,7 +4,7 @@ RSpec.describe DigestMailer, type: :mailer do
   let(:notification) { FactoryBot.create(:notification) }
 
   describe '#digest_email' do
-    subject(:digest_email) { described_class.with(user: notification.user, notifications: [notification]).digest_email }
+    subject(:digest_email) { described_class.with(user: notification.user).digest_email }
 
     it 'renders the headers' do
       expect(digest_email).to have_attributes(

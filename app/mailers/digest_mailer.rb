@@ -5,17 +5,28 @@ class DigestMailer < ApplicationMailer
   default from: 'notifications@asyncgo.com'
 
   def digest_email
-    @notifications = params[:notifications].uniq do |notification|
+    @user = params[:user]
+    @unread_notifications = unread_notifications
+    @recently_resolved_topics = recently_resolved_topics
+
+    mail(to: @user.email, subject: 'Your AsyncGo Digest')
+  end
+
+  private
+
+  def user
+    params[:user]
+  end
+
+  def unread_notifications
+    user.notifications.where(read_at: nil).uniq do |notification|
       notification.values_at(:target_id, :actor_id, :user_id, :action)
     end
+  end
 
-    @user = params[:user]
-    @recently_resolved_topics = params[:recently_resolved_topics]
-
-    mail(
-      to: @user.email, subject: 'Your AsyncGo Digest',
-      notifications: @notifications,
-      recently_resolved_topics: @recently_resolved_topics
+  def recently_resolved_topics
+    user.team.topics.where(
+      updated_at: (Time.zone.now - 24.hours)..Time.zone.now, status: :closed
     )
   end
 end
