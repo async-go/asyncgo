@@ -103,6 +103,13 @@ export default class extends Controller {
           title: 'Closed Topics',
           description: 'The closed topics list is similar to the active topics list, but contains items that were already discussed and resolved. They contain a nicely summarized outcome so you can easily see what was decided or done, and read through the comments to see how the team got there.'
         }
+      },
+      {
+        element: '#labels',
+        popover: {
+          title: 'Label Filters',
+          description: 'You can filter labels here. When editing a topic you can apply lables for different sub-groups, projects, priorities, or whatever you need, and then from here you can filter down your view to only the labels you care about.'
+        }
       }
     ])
   }
