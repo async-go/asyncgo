@@ -2,7 +2,6 @@ import { Controller } from 'stimulus'
 import Driver from 'driver.js'
 
 export default class extends Controller {
-
   topicSteps = [
     {
       element: '#topic-title',
