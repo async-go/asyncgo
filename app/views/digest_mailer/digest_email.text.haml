@@ -5,10 +5,10 @@ This email contains what's happening in your AsyncGo team.
 \
 Open Notifications
 \
-- if @notifications.blank?
+- if @unread_notifications.blank?
   None
 - else
-  - @notifications.each do |notification|
+  - @unread_notifications.each do |notification|
     = notification_text(notification)
     = user_notification_url(@user, notification)
 \
