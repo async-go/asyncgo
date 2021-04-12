@@ -14,7 +14,8 @@
     .row.justify-content-lg-end
       .col-lg-4.mt-2
         .input-group
-          = form.text_field :labels, value: params[:labels], placeholder: 'Separate multiple labels with a space',
+          = form.text_field :labels, value: params[:labels],
+            placeholder: 'Separate multiple labels with a space',
             class: 'bg-light form-control'
           .input-group-append
             = link_to 'Clear', team_topics_path(current_user.team),
