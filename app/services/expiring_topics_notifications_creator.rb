@@ -2,14 +2,13 @@
 
 class ExpiringTopicsNotificationsCreator < ApplicationService
   def call
-    puts 'Starting create_notification_due'
+    Rails.logger.info 'Starting expiring topics notifications creation'
     expiring_topics.find_each do |topic|
-      puts "Creating due notifications for #{topic.id} (due #{topic.due_date})"
+      Rails.logger.info "Creating expiring notifications for Topic #{topic.id}"
       topic.subscribed_users.find_each do |user|
-        puts "Creating notification for #{user.email}"
+        Rails.logger.info "Creating expiring notification for #{user.email}"
         topic.notifications.create!(actor_id: topic.user_id, user: user, action: :expiring)
       end
-      puts '----'
     end
   end
 

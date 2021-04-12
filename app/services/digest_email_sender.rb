@@ -2,7 +2,7 @@
 
 class DigestEmailSender < ApplicationService
   def call
-    puts 'Starting send_digest_emails'
+    Rails.logger.info 'Starting digest creation'
     User.includes(:preference).find_each do |user|
       next unless user.preference.digest_enabled?
 
@@ -10,7 +10,7 @@ class DigestEmailSender < ApplicationService
       recently_resolved_topics = recently_resolved_topics_for(user)
       next if unread_notifications.empty? && recently_resolved_topics.empty?
 
-      puts "Sending #{notifications.count} notifications for #{user.email}"
+      Rails.logger.info "Sending digest to #{user.email}"
       send_digest(user, unread_notifications, recently_resolved_topics)
     end
   end
