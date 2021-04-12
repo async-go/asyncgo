@@ -2,78 +2,6 @@ import { Controller } from 'stimulus'
 import Driver from 'driver.js'
 
 export default class extends Controller {
-  baseSteps = [
-    {
-      element: '#notifications',
-      popover: {
-        title: 'Notifications',
-        description: 'If you have any notifications they will appear here; you can click on the notification bell to see the list. Other people can notify you by @ mentioning you in a topic, and you will also receive updates for topics you are watching.'
-      }
-    },
-    {
-      element: '#active-team',
-      popover: {
-        title: 'Active Team',
-        description: 'This is the team that you are looking at right now. In the future it will be possible to switch between teams.'
-      }
-    },
-    {
-      element: '#create-team-nav',
-      popover: {
-        title: 'Create Team Page',
-        position: 'left-top',
-        description: 'The first step to do if you are a new user of AsyncGo is to create a team. Once you have done so, the rest of the app will open up. If you are expecting to be a member of a team already because you were invited, then check with the owner of the team.'
-      }
-    },
-    {
-      element: '#topics-nav',
-      popover: {
-        title: 'Topics Page',
-        position: 'left-top',
-        description: 'The topics list contains all the active topics that your team is discussing, as well as any important team-level messages, and the list of closed topics. Clicking on this link will take you there.'
-      }
-    },
-    {
-      element: '#admin-nav',
-      popover: {
-        title: 'Team Admin Page',
-        position: 'left-top',
-        description: 'This link will take you to the team administration page, where you can set different configuration options for the team including inviting other members, changing billing, contacting support/giving feedback, or setting the team message.'
-      }
-    },
-    {
-      element: '#profile-nav',
-      popover: {
-        title: 'Profile Page',
-        position: 'left-top',
-        description: 'The personal profile page contains settings related to your own personal preferences. In the future we will be adding per-user profiles, and those will also be updated here.'
-      }
-    },
-    {
-      element: '#sign-in-nav',
-      popover: {
-        title: 'Sign In Button',
-        position: 'left-top',
-        description: 'Click here to sign in to AsyncGo. We provide several options for you to choose from to authenticate. You can also click directly on the sign in buttons for each provider in the middle of this page.'
-      }
-    },
-    {
-      element: '#sign-out-nav',
-      popover: {
-        title: 'Sign Out Button',
-        position: 'left-top',
-        description: 'If you would like to sign out of AsyncGo you can click on this button to do so.'
-      }
-    },
-    {
-      element: '#docs-nav',
-      popover: {
-        title: 'Documentation Link',
-        position: 'left-top',
-        description: 'Clicking this link will take you to our complete documentation site.'
-      }
-    }
-  ]
 
   topicSteps = [
     {
@@ -144,7 +72,7 @@ export default class extends Controller {
           description: 'Thanks for visiting AsyncGo! Most pages have this tour button in the top left, which will take you through the contents of the page and help you get started.'
         }
       }
-    ].concat(this.baseSteps))
+    ])
   }
 
   demoTopicIndex (event) {
@@ -177,7 +105,7 @@ export default class extends Controller {
           description: 'The closed topics list is similar to the active topics list, but contains items that were already discussed and resolved. They contain a nicely summarized outcome so you can easily see what was decided or done, and read through the comments to see how the team got there.'
         }
       }
-    ].concat(this.baseSteps))
+    ])
   }
 
   demoTopicNew (event) {
@@ -189,7 +117,7 @@ export default class extends Controller {
           description: 'Creating a new topic is an important step in starting a discussion. You can use the structure here to think through how you want the conversation to go and what kinds of results you expect. The more clear you can make your topic, the better results you will get.'
         }
       }
-    ].concat(this.topicSteps).concat(this.baseSteps))
+    ].concat(this.topicSteps))
   }
 
   demoTopicShow (event) {
@@ -237,7 +165,7 @@ export default class extends Controller {
           description: 'Commenting on topics is how you can be heard. Everyones comments can have emojis applied to help gather feedback, or as a form of voting.'
         }
       }
-    ]).concat(this.baseSteps))
+    ]))
   }
 
   demoTeamAdmin (event) {
@@ -291,7 +219,7 @@ export default class extends Controller {
           description: 'You can always use the support form to let us know about issues, but we also encourage you to use it to share feedback on anything you would like to see in the product. We would love to hear from you!'
         }
       }
-    ].concat(this.baseSteps))
+    ])
   }
 
   demoUserProfile (event) {
@@ -324,6 +252,6 @@ export default class extends Controller {
           description: 'Important information about the terms and conditions of your use of AsyncGo can be found here.'
         }
       }
-    ].concat(this.baseSteps))
+    ])
   }
 }
