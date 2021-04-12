@@ -3,9 +3,7 @@
 class ExpiringTopicsNotificationsCreator < ApplicationService
   def call
     puts 'Starting create_notification_due'
-    Topic.where(
-      status: :active, due_date: Time.zone.today..Time.zone.tomorrow
-    ).find_each do |topic|
+    expiring_topics.find_each do |topic|
       puts "Creating due notifications for #{topic.id} (due #{topic.due_date})"
       topic.subscribed_users.find_each do |user|
         puts "Creating notification for #{user.email}"
@@ -13,5 +11,11 @@ class ExpiringTopicsNotificationsCreator < ApplicationService
       end
       puts '----'
     end
+  end
+
+  private
+
+  def expiring_topics
+    Topic.where(status: :active, due_date: Time.zone.today..Time.zone.tomorrow)
   end
 end
