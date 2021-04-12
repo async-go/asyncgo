@@ -7,7 +7,7 @@
     .mb-3
       .mb-1
         = form.label :title, id: 'topic-title'
-      = form.text_field :title, required: true, class: 'form-control'
+      = form.text_field :title, required: true, autocomplete: 'off', class: 'form-control'
   .row
     .col-lg-8
       .mb-1
@@ -21,7 +21,7 @@
       .mb-1
         = form.label :outcome, id: 'topic-outcome'
       = render partial: 'shared/markdown_text_area', locals: { form: form, name: :outcome,
-        options: { rows: '20', class: 'form-control',
+        options: { rows: '20', class: 'form-control', autocomplete: 'off',
         data: { controller: 'attach-tribute', action: 'focus->attach-tribute#attach:once' } } }
   .row
     .col-lg-7
