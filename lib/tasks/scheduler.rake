@@ -23,14 +23,6 @@ task send_digest_emails: :environment do
 end
 
 desc 'Creates a notification for topics with < 1 day remaining'
-task create_notification_due: :environment do
-  puts 'Starting create_notification_due'
-  Topic.where(status: :active).where(due_date: Time.zone.today..Time.zone.tomorrow).find_each do |topic|
-    puts "Creating due notifications for #{topic.id} (due #{topic.due_date})"
-    topic.subscribed_users.find_each do |user|
-      puts "Creating notification for #{user.email}"
-      topic.notifications.create!(actor_id: topic.user_id, user: user, action: :expiring)
-    end
-    puts '----'
-  end
+task create_expiring_topics_notifications: :environment do
+  ExpiringTopicsNotificationsCreator.new.call
 end
