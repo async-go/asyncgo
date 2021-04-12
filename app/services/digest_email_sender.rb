@@ -11,7 +11,7 @@ class DigestEmailSender < ApplicationService
       next if unread_notifications.empty? && recently_resolved_topics.empty?
 
       Rails.logger.info "Sending digest to #{user.email}"
-      send_digest(user, unread_notifications, recently_resolved_topics)
+      send_digest(user)
     end
   end
 
@@ -23,14 +23,11 @@ class DigestEmailSender < ApplicationService
 
   def recently_resolved_topics_for(user)
     user.team.topics.where(
-      updated_at: (Time.zone.now - 24.hours)..Time.zone.now, status: :closed
+      updated_at: 24.hours.ago..Time.zone.now, status: :closed
     )
   end
 
-  def send_digest(user, unread_notifications, recently_resolved_topics)
-    DigestMailer.with(
-      user: user, notifications: unread_notifications,
-      recently_resolved_topics: recently_resolved_topics
-    ).digest_email.deliver_later
+  def send_digest(user)
+    DigestMailer.with(user: user).digest_email.deliver_later
   end
 end
