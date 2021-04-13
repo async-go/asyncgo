@@ -41,6 +41,12 @@ RSpec.describe TopicUpdater, type: :service do
           expect { call }.to change { other_user.reload.notifications.count }.from(0).to(1)
         end
 
+        it 'creates created notifications' do
+          call
+
+          expect(Notification.all).to all(have_attributes(action: 'created'))
+        end
+
         context 'when outcome is not empty' do
           let(:params) { { description: '__bold__', outcome: '__bold__' } }
 
@@ -110,6 +116,12 @@ RSpec.describe TopicUpdater, type: :service do
           expect { call }.to change(Notification, :count).from(0).to(2)
         end
 
+        it 'creates updated notifications' do
+          call
+
+          expect(Notification.all).to all(have_attributes(action: 'updated'))
+        end
+
         it 'does not create a notification for update author' do
           expect { call }.not_to change { user.reload.notifications.count }.from(0)
         end
@@ -167,6 +179,72 @@ RSpec.describe TopicUpdater, type: :service do
         it 'does not create a notification' do
           expect { call }.not_to change(Notification, :count).from(0)
         end
+      end
+    end
+
+    context 'when topic is being resolved' do
+      let(:topic) { FactoryBot.create(:topic, team: user.team, status: :active) }
+      let(:params) { { status: 'closed' } }
+
+      before do
+        topic.subscribed_users << FactoryBot.create(:user)
+      end
+
+      it 'does not subscribe user to the topic' do
+        call
+
+        expect(user.subscribed_topics).to be_empty
+      end
+
+      it 'creates a notification' do
+        expect { call }.to change(Notification, :count).from(0).to(2)
+      end
+
+      it 'creates resolved notifications' do
+        call
+
+        expect(Notification.all).to all(have_attributes(action: 'resolved'))
+      end
+
+      it 'does not create a notification for update author' do
+        expect { call }.not_to change { user.reload.notifications.count }.from(0)
+      end
+
+      it 'does not create a notification for team members' do
+        expect { call }.not_to change { other_user.reload.notifications.count }.from(0)
+      end
+    end
+
+    context 'when topic is being reopend' do
+      let(:topic) { FactoryBot.create(:topic, team: user.team, status: :closed) }
+      let(:params) { { status: 'active' } }
+
+      before do
+        topic.subscribed_users << FactoryBot.create(:user)
+      end
+
+      it 'does not subscribe user to the topic' do
+        call
+
+        expect(user.subscribed_topics).to be_empty
+      end
+
+      it 'creates a notification' do
+        expect { call }.to change(Notification, :count).from(0).to(2)
+      end
+
+      it 'creates reopened notifications' do
+        call
+
+        expect(Notification.all).to all(have_attributes(action: 'reopened'))
+      end
+
+      it 'does not create a notification for update author' do
+        expect { call }.not_to change { user.reload.notifications.count }.from(0)
+      end
+
+      it 'does not create a notification for team members' do
+        expect { call }.not_to change { other_user.reload.notifications.count }.from(0)
       end
     end
   end
