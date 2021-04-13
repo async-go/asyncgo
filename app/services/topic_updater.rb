@@ -14,8 +14,7 @@ class TopicUpdater < ApplicationService
     @topic.update(processed_params).tap do |result|
       next unless result
 
-      users, action = new_topic ? [@topic.team.users, :created] : [@topic.subscribed_users, :updated]
-      notify_users!(users, action)
+      notify_users!(notification_users(new_topic), notification_action(new_topic, processed_params))
       next unless new_topic
 
       @topic.subscriptions.create(user: @user)
@@ -50,6 +49,25 @@ class TopicUpdater < ApplicationService
         params[:outcome_html] = MarkdownParser.new(@user, params[:outcome], @topic).call
       end
     end
+  end
+
+  def notification_update_action(params)
+    case params[:status]
+    when 'closed'
+      :resolved
+    when 'active'
+      :reopened
+    else
+      :updated
+    end
+  end
+
+  def notification_users(new_topic)
+    new_topic ? @topic.team.users : @topic.subscribed_users
+  end
+
+  def notification_action(new_topic, params)
+    new_topic ? :created : notification_update_action(params)
   end
 
   def notify_users!(users, action)

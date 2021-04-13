@@ -19,7 +19,7 @@ module Users
       case notification.action
       when 'expiring'
         "The topic #{notification.target.title} is due in less than one day."
-      when 'created', 'updated'
+      when 'created', 'updated', 'reopened', 'resolved'
         "#{notification.actor.printable_name} #{notification.action} the topic #{notification.target.title}"
       when 'mentioned'
         "#{notification.actor.printable_name} mentioned you in the topic #{notification.target.title}"
