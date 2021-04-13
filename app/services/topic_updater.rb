@@ -15,6 +15,10 @@ class TopicUpdater < ApplicationService
       next unless result
 
       users, action = new_topic ? [@topic.team.users, :created] : [@topic.subscribed_users, :updated]
+
+      action = :resolved if processed_params['status'] == 'closed'
+      action = :reopened if processed_params['status'] == 'active'
+
       notify_users!(users, action)
       next unless new_topic
 

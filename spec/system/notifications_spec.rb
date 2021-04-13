@@ -39,6 +39,61 @@ RSpec.describe 'Notifications', type: :system do
     expect(page).to have_link('Has notification 1')
   end
 
+  it 'creates a notification when a watched topic is resolved' do
+    user = FactoryBot.create(:user, :team)
+    actor = FactoryBot.create(:user, team: user.team)
+
+    visit '/'
+    sign_in_user(user)
+    expect(page).to have_link('Has notification 0')
+
+    click_link 'Topics'
+    click_link 'New Topic'
+    fill_in 'topic[title]', with: 'Sample topic'
+    fill_in 'topic[description]', with: 'Sample topic description'
+    click_button 'Create'
+
+    click_link 'Sign out'
+    sign_in_user(actor)
+
+    click_link 'Topics'
+    click_link 'Sample topic'
+
+    click_button 'Resolve'
+
+    click_link 'Sign out'
+    sign_in_user(user)
+    expect(page).to have_link('Has notification 1')
+  end
+
+  it 'creates a notification when a watched topic is reopened' do
+    user = FactoryBot.create(:user, :team)
+    actor = FactoryBot.create(:user, team: user.team)
+
+    visit '/'
+    sign_in_user(user)
+    expect(page).to have_link('Has notification 0')
+
+    click_link 'Topics'
+    click_link 'New Topic'
+    fill_in 'topic[title]', with: 'Sample topic'
+    fill_in 'topic[description]', with: 'Sample topic description'
+    click_button 'Create'
+
+    click_link 'Sign out'
+    sign_in_user(actor)
+
+    click_link 'Topics'
+    click_link 'Sample topic'
+
+    click_button 'Resolve'
+    click_button 'Reopen'
+
+    click_link 'Sign out'
+    sign_in_user(user)
+    expect(page).to have_link('Has notification 2')
+  end
+
   it 'creates a notification when other user comments on subscribed topic' do
     user = FactoryBot.create(:user, :team)
     actor = FactoryBot.create(:user, team: user.team)
