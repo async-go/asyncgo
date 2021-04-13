@@ -27,6 +27,11 @@ module Teams
       @topic = topic
       authorize(@topic)
 
+      @topic.notifications.where(read_at: nil,
+                                 user_id: current_user.id).each do |notification|
+        notification.update(read_at: Time.now.utc)
+      end
+
       @pagy, @topic_comments = pagy(
         @topic.comments.order(created_at: :asc)
         .includes(:user, topic: :team, votes: :user)

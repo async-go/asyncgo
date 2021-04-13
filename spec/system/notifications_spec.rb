@@ -86,6 +86,28 @@ RSpec.describe 'Notifications', type: :system do
     expect(page).to have_link('Has notification 2')
   end
 
+  it 'clears a notification when you visit a topic' do
+    user = FactoryBot.create(:user, :team)
+    actor = FactoryBot.create(:user, team: user.team)
+
+    visit '/'
+    sign_in_user(actor)
+
+    click_link 'Topics'
+    click_link 'New Topic'
+    fill_in 'topic[title]', with: 'Sample topic'
+    fill_in 'topic[description]', with: 'Sample topic description'
+    click_button 'Create'
+
+    click_link 'Sign out'
+    sign_in_user(user)
+
+    expect(page).to have_link('Has notification 1')
+
+    click_link 'Sample topic'
+    expect(page).to have_link('Has notification 0')
+  end
+
   it 'allows user to clear all notifications' do
     user = FactoryBot.create(:user, :team)
     FactoryBot.create(:notification, user: user)
