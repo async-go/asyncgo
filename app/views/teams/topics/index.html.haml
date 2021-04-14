@@ -15,13 +15,12 @@
       .col-lg-4.mt-2
         .input-group
           = form.text_field :labels, value: params[:labels],
-            placeholder: 'Separate multiple labels with a space',
-            class: 'bg-light form-control'
+            placeholder: 'Separate labels with space',
+            class: 'bg-light form-control', autocomplete: 'false'
           .input-group-append
             = link_to 'Clear', team_topics_path(current_user.team),
               class: 'btn btn-outline-secondary'
-      .col-lg-1.mt-2.me-3
-        = form.submit 'Filter Labels', class: 'btn btn btn-secondary', name: nil
+            = form.submit 'Filter', class: 'btn btn-secondary', name: nil
 
 .row.mt-3
   %h2#active-topics Active Topics
