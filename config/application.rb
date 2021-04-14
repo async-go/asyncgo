@@ -23,5 +23,12 @@ module Asyncgo
 
     # Add bootstrap scss to sass load path
     config.sass.load_paths << Rails.root.join('node_modules/bootstrap/scss')
+
+    # Sharing configuration
+    config.site_description = 'Smarter decisions, more alignment, and outsized
+      outcomes: AsyncGo helps your team collaborate better with fewer chat and
+      meeting interruptions.'
+    config.site_title = 'Sign In to AsyncGo'
+    config.site_image = 'pixelart-4.svg'
   end
 end

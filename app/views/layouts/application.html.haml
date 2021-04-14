@@ -5,6 +5,13 @@
     %meta{ content: 'text/html; charset=UTF-8', 'http-equiv': 'Content-Type' }
     %meta{ charset: 'utf-8' }
     %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1, shrink-to-fit=no' }
+    %meta{ property: 'og:description', content: Rails.application.config.site_description }
+    %meta{ property: 'og:title', content: Rails.application.config.site_title }
+    %meta{ property: 'og:image', content: image_url(Rails.application.config.site_image) }
+    %meta{ property: 'twitter:description', content: Rails.application.config.site_description }
+    %meta{ property: 'twitter:title', content: Rails.application.config.site_title }
+    %meta{ property: 'twitter:image', content: image_url(Rails.application.config.site_image) }
+    %meta{ property: 'twitter:card', content: 'summary' }
 
     = csrf_meta_tags
     = csp_meta_tag
