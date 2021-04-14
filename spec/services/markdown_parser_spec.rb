@@ -10,7 +10,7 @@ RSpec.describe MarkdownParser, type: :service do
     subject(:call) { described_class.new(user, text, target).call }
 
     it 'processes mentions' do
-      expect(call).to include("<a href=\"mailto:#{target_user.email}\">#{target_user.name}</a>")
+      expect(call).to include("<a href=\"mailto:#{target_user.email}\" target=\"_blank\">#{target_user.name}</a>")
     end
 
     it 'processes markdowns' do

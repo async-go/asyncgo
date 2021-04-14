@@ -29,7 +29,7 @@ class MarkdownParser < ApplicationService
   end
 
   def process_markdown(markdown)
-    doc = Nokogiri::HTML(CommonMarker.render_html(markdown, :DEFAULT, %i[tasklist tagfilter autolink]))
+    doc = Nokogiri::HTML.fragment(CommonMarker.render_html(markdown, :DEFAULT, %i[tasklist tagfilter autolink]))
     doc.css('a').each do |link|
       link['target'] = '_blank'
     end
