@@ -76,6 +76,6 @@
     .col-lg-1.d-flex.align-items-center
       %span.fs-5#topic-labellist Labels:
     .col-lg-11
-      %ul.list-group.list-group-horizontal.gap-2.flex-wrap
+      %ul.list-group.list-group-horizontal.flex-wrap
         - topic.labels.each do |label|
-          %li.list-group-item.badge.topic-label= label
+          %li.list-group-item.badge.topic-label.me-2= label
