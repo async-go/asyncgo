@@ -22,8 +22,11 @@ module Teams
         if update_comment(@comment, create_params)
           respond_to do |format|
             format.turbo_stream do
-              render turbo_stream: turbo_stream.append(:comments, partial: 'teams/topics/comments/comment',
-                                                                  locals: { comment: @comment })
+              render turbo_stream: turbo_stream.action(
+                turbo_stream_action, :comments,
+                partial: 'teams/topics/comments/comment',
+                locals: { comment: @comment }
+              )
             end
             format.html do
               redirect_to topic_path(@comment)
@@ -65,6 +68,14 @@ module Teams
 
       def comment
         @comment ||= topic.comments.find(params[:comment_id] || params[:id])
+      end
+
+      def turbo_stream_action
+        if current_user.preference.inverse_comment_order?
+          :prepend
+        else
+          :append
+        end
       end
 
       def update_comment(comment, comment_params)
