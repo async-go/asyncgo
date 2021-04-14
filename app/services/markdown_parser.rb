@@ -13,7 +13,8 @@ class MarkdownParser < ApplicationService
 
   def call
     result = process_mentions(@text)
-    process_markdown(result)
+    html_output = process_markdown(result)
+    process_links(html_output)
   end
 
   private
@@ -30,6 +31,15 @@ class MarkdownParser < ApplicationService
 
   def process_markdown(markdown)
     CommonMarker.render_html(markdown, :DEFAULT, %i[tasklist tagfilter autolink])
+  end
+
+  def process_links(html_output)
+    Nokogiri::HTML.fragment(html_output).tap do |doc|
+      doc.css('a').each do |link|
+        link['target'] = '_blank'
+        link['rel'] = 'noopener'
+      end
+    end.to_s
   end
 
   def notify_user!(target_user)
