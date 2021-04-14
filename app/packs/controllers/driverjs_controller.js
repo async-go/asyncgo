@@ -252,6 +252,13 @@ export default class extends Controller {
         }
       },
       {
+        element: '#commentorder',
+        popover: {
+          title: 'Comment Order',
+          description: 'If you prefer to see comments from newest to oldest, you can choose that setting here.'
+        }
+      },
+      {
         element: '#about',
         popover: {
           title: 'About Asyncgo',

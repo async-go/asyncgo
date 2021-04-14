@@ -31,7 +31,7 @@
         = toggle_fluid_layout_form.submit 'Toggle layout preference', class: 'btn btn-primary'
 .row
   .col-lg-12.mb-3
-    %h3#layout Comment Order
+    %h3#commentorder Comment Order
     %p.lead
       Do you prefer to see comments oldest to newest or newest to oldest?
     - current_toggle_value = current_user.preference.comment_order?
