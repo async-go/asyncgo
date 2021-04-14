@@ -41,8 +41,8 @@
                 title: participant.printable_name,
                 class: 'gravatar-img mb-1', alt: participant.printable_name),
                   "mailto:#{participant.email}"
-          .col-lg-2.mb-2
-            #{time_ago_in_words(topic.updated_at).capitalize} ago
+          .col-lg-2.mb-2.small
+            Updated #{time_ago_in_words(topic.updated_at)} ago
   - else
     %li.list-group-item
       %p= empty_state_text
