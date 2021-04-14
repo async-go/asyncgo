@@ -17,7 +17,7 @@ module Users
     private
 
     def preference_params
-      params.require(:user_preference).permit(:digest_enabled, :fluid_layout)
+      params.require(:user_preference).permit(:digest_enabled, :fluid_layout, :comment_order)
     end
   end
 end
