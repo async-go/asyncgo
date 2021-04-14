@@ -29,7 +29,11 @@ class MarkdownParser < ApplicationService
   end
 
   def process_markdown(markdown)
-    CommonMarker.render_html(markdown, :DEFAULT, %i[tasklist tagfilter autolink])
+    doc = Nokogiri::HTML(CommonMarker.render_html(markdown, :DEFAULT, %i[tasklist tagfilter autolink]))
+    doc.css('a').each do |link|
+      link['target'] = '_blank'
+    end
+    doc.to_s
   end
 
   def notify_user!(target_user)
