@@ -30,8 +30,10 @@ module Teams
       @topic.notifications.where(read_at: nil, user_id: current_user.id)
             .update(read_at: Time.now.utc)
 
+      comment_order = current_user.preference.inverse_comment_order ? :asc : :desc
+
       @pagy, @topic_comments = pagy(
-        @topic.comments.order(created_at: :asc)
+        @topic.comments.order(created_at: comment_order)
         .includes(:user, topic: :team, votes: :user)
       )
     end
