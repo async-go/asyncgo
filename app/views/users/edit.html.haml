@@ -35,7 +35,7 @@
     %p.lead
       Do you prefer to see comments oldest to newest or newest to oldest?
     - current_toggle_value = current_user.preference.inverse_comment_order?
-    - preference = current_toggle_value ? 'Oldest to Newest' : 'Newest to Oldest'
+    - preference = current_toggle_value ? 'Newest to Oldest' : 'Oldest to Newest'
     %p Current preference: #{preference}
     = form_with(model: @user.preference, url: [@user, :preference]) do |toggle_comment_order_form|
       = toggle_comment_order_form.hidden_field :inverse_comment_order, value: !current_toggle_value
