@@ -10,15 +10,12 @@
     You're signed in. The next step is to either get invited to a team or create one. =>
     = link_to 'Create New Team', new_team_path
 - else
-  %p.lead
-    AsyncGo is in early access, but you're welcome to sign in and check out what
-    we're building.
   %p
     Documentation is available on our #{link_to('docs site', 'https://asyncgo.com/docs')}
     and general product information can be found on our
     #{link_to('home page', 'https://asyncgo.com')}.
   %p
-    You can sign in using one of the following account types:
+    You can sign in or create an account using one of the following account types:
   .row
     .col-lg-1.mt-3.mx-3
       = button_to 'Google', '/auth/google_oauth2',
