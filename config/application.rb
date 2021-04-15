@@ -29,6 +29,6 @@ module Asyncgo
       outcomes: AsyncGo helps your team collaborate better with fewer chat and
       meeting interruptions.'
     config.site_title = 'Sign In to AsyncGo'
-    config.site_image = 'pixelart-4.svg'
+    config.site_image = 'social.png'
   end
 end

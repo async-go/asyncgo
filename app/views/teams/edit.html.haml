@@ -8,11 +8,11 @@
 .row.mt-3
   .col-lg-12
     %h3#team-name Name
-    %p.lead
+    %p
       This is the name that will be shown for your team.
     = form_with(model: @team, class: 'g-3') do |form|
       .row
-        .col-lg-8
+        .col-lg-8.mb-3
           = form.text_field :name, required: true, class: 'form-control'
         .col-lg-2
           = form.submit 'Save Name', class: 'btn btn-primary'
@@ -22,7 +22,7 @@
 .row.mt-3
   .col-lg-12
     %h3#team-message Message
-    %p.lead
+    %p
       Set a message that your team will see on the topics page. This can be used
       to share priorities, important updates, or other notes that are important
       for the team to see.
@@ -36,7 +36,7 @@
 .row
   .col.lg-12
     %h3#invite-users Invite users
-    %p.lead Invite users to join your team.
+    %p Invite users to join your team.
     = form_with(model: User, url: [@team, :users], class: 'g-3') do |invite_user_form|
       .row
         .col-lg-10
@@ -53,7 +53,7 @@
 .row
   .col-lg-12
     %h3#users-in-team Users in Team
-    %p.lead
+    %p
       Click to remove. If you want to remove yourself, have a team member
       do it for you or contact support below.
     .row
@@ -82,7 +82,7 @@
 .row
   .col-lg-12
     %h3#support-form Support/Feedback Form
-    %p.lead Use this form to contact support and/or provide product feedback.
+    %p Use this form to contact support and/or provide product feedback.
     = form_with(url: team_support_path(@team)) do |support_form|
       .input-group.mb-3
         = support_form.text_area :body, rows: 4, class: 'form-control'

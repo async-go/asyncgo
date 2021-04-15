@@ -11,6 +11,11 @@ class OmniauthCallbacksController < ApplicationController
     handle_auth(response['email'], response['name'])
   end
 
+  def microsoft_graph
+    response = request.env['omniauth.auth'].info
+    handle_auth(response['email'], "#{response['first_name']} #{response['last_name']}")
+  end
+
   def slack
     response = request.env['omniauth.strategy'].access_token
     access_token = OmniAuth::Slack.build_access_token(

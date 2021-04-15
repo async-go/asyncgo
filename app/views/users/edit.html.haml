@@ -8,7 +8,7 @@
 .row
   .col-lg-12.mb-3
     %h3#digests Digest Notifications
-    %p.lead
+    %p
       Would you like to receive a daily digest email about open notifications?
     - current_toggle_value = current_user.preference.digest_enabled?
     - preference = current_toggle_value ? 'Yes' : 'No'
@@ -20,7 +20,7 @@
 .row
   .col-lg-12.mb-3
     %h3#layout Fluid Layout
-    %p.lead
+    %p
       Choose between fixed (max. 960px) and fluid (100%) application layout.
     - current_toggle_value = current_user.preference.fluid_layout?
     - preference = current_toggle_value ? 'Fluid' : 'Fixed'
@@ -32,7 +32,7 @@
 .row
   .col-lg-12.mb-3
     %h3#commentorder Comment Order
-    %p.lead
+    %p
       Do you prefer to see comments oldest to newest or newest to oldest?
     - current_toggle_value = current_user.preference.inverse_comment_order?
     - preference = current_toggle_value ? 'Newest to Oldest' : 'Oldest to Newest'
