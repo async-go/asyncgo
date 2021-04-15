@@ -13,7 +13,7 @@ class OmniauthCallbacksController < ApplicationController
 
   def microsoft_graph
     response = request.env['omniauth.auth'].info
-    handle_auth(response['email'], "#{response['first_name']} #{response['last_name']}")
+    handle_auth(response['email'], "#{response['first_name']} #{response['last_name']}".presence)
   end
 
   def slack
