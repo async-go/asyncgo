@@ -19,8 +19,6 @@
                 data: { controller: 'hotkey', hotkey: topic_index }
             - else
               = link_to topic.title, team_topic_path(current_user.team, topic)
-            - if user_subscribed?(topic)
-              = assistive_icon('fas', 'star', 'Is Watched', classname: 'ms-1 text-faded')
             - if topic.pinned?
               = assistive_icon('fas', 'thumbtack', 'Is Pinned', classname: 'ms-1 text-info')
             - if topic_has_notification?(unique_unread_notifications, topic)
