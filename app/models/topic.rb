@@ -38,6 +38,14 @@ class Topic < ApplicationRecord
       .order(Topic.arel_table[:due_date].asc)
   }
 
+  def last_interacted
+    if comments.empty?
+      updated_at
+    else
+      updated_at > comments.last.updated_at ? updated_at : comments.last.updated_at
+    end
+  end
+
   private
 
   def validate_description_checksum
