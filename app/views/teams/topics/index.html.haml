@@ -13,15 +13,16 @@
   = form_with(url: team_topics_path(current_user.team), method: :get) do |form|
     .row.mt-2.justify-content-end
       .col-lg-4
-        .input-group
+
+        .input-group.me-2
           = form.text_field :labels, value: params[:labels],
             placeholder: 'Separate labels with space',
             class: 'bg-light form-control', autocomplete: 'false'
-          .input-group-append
+          .input-group-append.me-2
             = link_to 'Clear', team_topics_path(current_user.team),
               class: 'btn btn-outline-secondary'
-      .col-lg-1
-        = form.submit 'Filter', class: 'btn btn-secondary', name: nil
+          .input-group-append
+            = form.submit 'Filter', class: 'btn btn-secondary', name: nil
 
 .row.mt-3
   %h2#active-topics Active Topics
