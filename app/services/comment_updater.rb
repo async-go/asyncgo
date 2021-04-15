@@ -12,6 +12,7 @@ class CommentUpdater < ApplicationService
   def call
     new_comment = @comment.new_record?
     @comment.update(processed_params).tap do |result|
+      @comment.topic.touch
       next unless result && new_comment
 
       notify_users!
