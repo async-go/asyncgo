@@ -28,6 +28,7 @@ gem 'ginjo-omniauth-slack', '~> 2.5', require: 'omniauth-slack'
 gem 'hamlit', '~> 2.14.1' # Templating language
 gem 'omniauth-github', '~> 2.0.0'
 gem 'omniauth-google-oauth2', '~> 0.8.0'
+gem 'omniauth-microsoft_graph', '~> 0.2.1'
 gem 'omniauth-rails_csrf_protection', '~> 1.0.0'
 gem 'pagy', '~> 3.11.0' # pagination
 
@@ -78,5 +79,3 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
-
-gem 'omniauth-microsoft_graph', '~> 0.2.1'
