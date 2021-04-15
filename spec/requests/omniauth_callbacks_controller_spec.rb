@@ -148,6 +148,81 @@ RSpec.describe OmniauthCallbacksController, type: :request do
     end
   end
 
+  describe 'POST microsoft_graph' do
+    subject(:post_microsoft_graph) do
+      post '/auth/microsoft_graph'
+      follow_redirect!
+    end
+
+    let(:auth_hash) do
+      {
+        provider: 'microsoft_graph',
+        info: {
+          email: 'john@example.com',
+          first_name: 'John',
+          last_name: 'Sample',
+          nickname: 'john'
+        }
+      }
+    end
+
+    before do
+      OmniAuth.config.add_mock(:microsoft_graph, auth_hash)
+    end
+
+    context 'when user does not exist' do
+      it 'creates the user' do
+        expect { post_microsoft_graph }.to change(User, :count).from(0).to(1)
+      end
+
+      it 'signs the user in' do
+        post_microsoft_graph
+
+        expect(controller.send(:current_user)).not_to eq(nil)
+      end
+
+      it 'updates the users name' do
+        post_microsoft_graph
+
+        expect(User.last.name).to eq('John Sample')
+      end
+
+      it 'sets the flash' do
+        post_microsoft_graph
+
+        expect(controller.flash[:success]).to eq('User was successfully authenticated.')
+      end
+
+      it 'redirects to redirect_uri' do
+        expect(post_microsoft_graph).to redirect_to(root_path)
+      end
+    end
+
+    context 'when the user exists' do
+      let!(:user) { FactoryBot.create(:user, email: 'john@example.com') }
+
+      it 'signs the user in' do
+        post_microsoft_graph
+
+        expect(controller.send(:current_user)).not_to eq(nil)
+      end
+
+      it 'updates the users name' do
+        expect { post_microsoft_graph }.to change { user.reload.name }.from(nil).to('John Sample')
+      end
+
+      it 'sets the flash' do
+        post_microsoft_graph
+
+        expect(controller.flash[:success]).to eq('User was successfully authenticated.')
+      end
+
+      it 'redirects to redirect_uri' do
+        expect(post_microsoft_graph).to redirect_to(root_path)
+      end
+    end
+  end
+
   describe 'POST slack' do
     subject(:post_slack) do
       post '/auth/slack'
