@@ -105,13 +105,6 @@ module Teams
       )
     end
 
-    def touch
-      authorize(topic)
-
-      topic.updated_at = Time.utc.now
-      topic.save
-    end
-
     private
 
     def topic_params
