@@ -133,10 +133,10 @@ RSpec.describe 'Topics', type: :system do
     sign_in_user(user)
     click_link 'Topics'
     click_link topic.title
-    click_button 'Resolve'
-    click_button 'Reopen'
+    click_button 'Resolve this topic'
+    click_button 'Reopen this topic'
 
-    expect(page).to have_button('Resolve')
+    expect(page).to have_button('Resolve this topic')
   end
 
   it 'allows the user to pin and unpin the topic' do
@@ -147,10 +147,10 @@ RSpec.describe 'Topics', type: :system do
     sign_in_user(user)
     click_link 'Topics'
     click_link topic.title
-    click_button 'Pin'
-    click_button 'Unpin'
+    click_button 'Pin this topic'
+    click_button 'Unpin this topic'
 
-    expect(page).to have_button('Pin')
+    expect(page).to have_button('Pin this topic')
   end
 
   it 'allows the user to subscribe and unsubscribe from the topic' do
@@ -162,11 +162,11 @@ RSpec.describe 'Topics', type: :system do
     click_link 'Topics'
     click_link topic.title
 
-    expect(page).to have_button('Watch')
-    click_button 'Watch'
-    expect(page).to have_button('Unwatch')
-    click_button 'Unwatch'
-    expect(page).to have_button('Watch')
+    expect(page).to have_button('Watch this topic')
+    click_button 'Watch this topic'
+    expect(page).to have_button('Unwatch this topic')
+    click_button 'Unwatch this topic'
+    expect(page).to have_button('Watch this topic')
   end
 
   it 'allows the user to vote on a topic' do
