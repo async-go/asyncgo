@@ -2,12 +2,12 @@
   .row
     .col-lg-7.mt-2.mb-3
       %h2#topic-title= topic.title
-    .col-2.col-lg-1.my-2
+    .col-3.col-lg-1.my-2
       - if topic.active?
         = link_to 'Edit', edit_team_topic_path(topic.team, topic),
           class: 'btn btn-primary', id: 'topic-edit',
           data: { controller: 'hotkey', hotkey: 'e' }
-    .col-2.col-lg-1.my-2
+    .col-4.col-lg-1.my-2
       = form_with(url: team_topic_subscribe_path(topic.team, topic)) do |subscription_form|
         - if user_subscribed?(topic)
           = subscription_form.hidden_field :subscribed, value: 0
@@ -19,7 +19,7 @@
           = subscription_form.submit 'Watch', class: 'btn btn-secondary',
             data: { controller: 'hotkey', hotkey: 'w' },
             id: 'topic-watch'
-    .col-2.col-lg-1.my-2
+    .col-3.col-lg-1.my-2
       = form_with(model: topic, url: team_topic_pin_path(topic.team, topic),
         data: { 'turbo-frame': '_top' }) do |form|
         - if topic.pinned?
@@ -30,7 +30,7 @@
           = form.hidden_field :pinned, value: 1
           = form.submit 'Pin', class: 'btn btn-secondary', id: 'topic-pin',
             data: { controller: 'hotkey', hotkey: 'p' }
-    .col-2.col-lg-1.my-2
+    .col-4.col-lg-1.my-2
       = form_with(model: topic, url: team_topic_toggle_path(topic.team, topic),
         data: { 'turbo-frame': '_top' }) do |form|
         - if topic.active?
@@ -41,7 +41,7 @@
           = form.hidden_field :status, value: :active
           = form.submit 'Reopen', class: 'btn btn-primary', id: 'topic-resolve',
             data: { controller: 'hotkey', hotkey: 'r' }
-    .col-2.col-lg-1.my-2
+    .col-4.col-lg-1.my-2
       %ul.list-group.list-group-horizontal
         = render partial: 'teams/topics/vote_list_group', locals: { votable: topic }
   .row.mt-1
