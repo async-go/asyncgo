@@ -26,7 +26,7 @@
             %p.mb-0.mt-2.small
               = topic_due_date_span(topic)
           .col-4.col-lg-2.mb-2.small
-            Updated #{time_ago_in_words(topic.updated_at)} ago
+            Updated #{time_ago_in_words(topic.last_interacted)} ago
           .col-8.col-lg-3.mb-2
             - topic.labels.each do |label|
               %span.topic-label.me-2= label
