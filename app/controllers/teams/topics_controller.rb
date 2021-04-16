@@ -75,7 +75,7 @@ module Teams
       authorize(target_topic)
 
       toggle_flash = if update_topic(target_topic, topic_params)
-                       { success: 'Topic status was successfully changed.' }
+                       { success: "Topic status was successfully changed to #{target_topic.status}." }
                      else
                        { danger: 'Topic status could not be changed.' }
                      end
