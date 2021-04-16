@@ -86,4 +86,34 @@ RSpec.describe Topic, type: :model do
   end
 
   it { is_expected.to define_enum_for(:status).with_values(%i[active closed]) }
+
+  describe '#last_interacted' do
+    subject(:last_interacted) { topic.last_interacted }
+
+    let(:topic) { FactoryBot.create(:topic) }
+
+    context 'when topic has no comments' do
+      it { is_expected.to eq(topic.updated_at) }
+    end
+
+    context 'when topic has comments' do
+      let(:comments) { FactoryBot.create_list(:comment, 2, topic: topic) }
+
+      context 'when topic was updated after last comment' do
+        before do
+          topic.update!(updated_at: comments.second.updated_at.tomorrow)
+        end
+
+        it { is_expected.to eq(topic.updated_at) }
+      end
+
+      context 'when topic was updated before last comment' do
+        before do
+          comments.last.update!(updated_at: topic.updated_at.tomorrow)
+        end
+
+        it { is_expected.to eq(comments.last.updated_at) }
+      end
+    end
+  end
 end
