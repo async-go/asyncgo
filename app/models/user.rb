@@ -37,8 +37,8 @@ class User < ApplicationRecord
   end
 
   def clear_topic_notifications(topic)
-    notifications.joins(:comment).where(read_at: nil, target: topic)
-                 .or(notifications.where(read_at: nil, comment: { topic: topic }))
+    notifications.joins(:comment).where(read_at: nil, target_type: 'Topic', target: topic)
+      .or(notifications.where(read_at: nil, comment: { topic: topic }))
                  .update(read_at: Time.now.utc)
   end
 
