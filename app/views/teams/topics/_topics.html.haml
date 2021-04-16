@@ -20,7 +20,7 @@
             - else
               = link_to topic.title, team_topic_path(current_user.team, topic)
             - if topic.pinned?
-              = assistive_icon('fas', 'thumbtack', 'Is Pinned', classname: 'ms-1 text-info')
+              = assistive_icon('fas', 'bookmark', 'Is Pinned', classname: 'ms-1 text-info')
             - if topic_has_notification?(unique_unread_notifications, topic)
               = assistive_icon('fas', 'bell', 'Has Notification', classname: 'ms-1 text-warning')
             %p.mb-0.mt-2.small

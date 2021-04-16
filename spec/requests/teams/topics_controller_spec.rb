@@ -299,7 +299,7 @@ RSpec.describe Teams::TopicsController, type: :request do
         it 'sets the flash' do
           patch_toggle
 
-          expect(controller.flash[:success]).to eq('Topic status was successfully changed.')
+          expect(controller.flash[:success]).to eq('Topic status was successfully changed to closed.')
         end
 
         it 'redirects to topic' do
@@ -321,7 +321,7 @@ RSpec.describe Teams::TopicsController, type: :request do
         it 'sets the flash' do
           patch_toggle
 
-          expect(controller.flash[:success]).to eq('Topic status was successfully changed.')
+          expect(controller.flash[:success]).to eq('Topic status was successfully changed to active.')
         end
 
         it 'redirects to topic' do
