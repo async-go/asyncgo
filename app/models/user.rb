@@ -36,6 +36,12 @@ class User < ApplicationRecord
     name || email
   end
 
+  def clear_topic_notifications(topic)
+    notifications.joins(:comment).where(read_at: nil, target: topic)
+                 .or(notifications.where(read_at: nil, comment: { topic: topic }))
+                 .update(read_at: Time.now.utc)
+  end
+
   private
 
   def email_hash

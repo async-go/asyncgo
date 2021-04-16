@@ -38,13 +38,6 @@ class Topic < ApplicationRecord
       .order(Topic.arel_table[:due_date].asc)
   }
 
-  def clear_user_notifications(user)
-    notifications.where(read_at: nil, user_id: user.id).update(read_at: Time.now.utc)
-    comments.each do |comment|
-      comment.notifications.where(read_at: nil, user_id: user.id).update(read_at: Time.now.utc)
-    end
-  end
-
   private
 
   def validate_description_checksum

@@ -27,7 +27,7 @@ module Teams
       @topic = topic
       authorize(@topic)
 
-      @topic.clear_user_notifications(current_user)
+      current_user.clear_topic_notifications(@topic)
 
       comment_order = current_user.preference.inverse_comment_order ? :desc : :asc
 
