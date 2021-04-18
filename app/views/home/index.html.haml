@@ -14,22 +14,30 @@
     Documentation is available on our #{link_to('docs site', 'https://asyncgo.com/docs')}
     and general product information can be found on our
     #{link_to('home page', 'https://asyncgo.com')}.
-  %p
-    You can sign in or create an account using one of the following account types:
+  %p.mt-5.fw-bold
+    Sign in/create an account with:
   .row
-    .col-lg-1.mt-3.mx-3
-      = button_to 'Google', '/auth/google_oauth2',
-        'data-turbo': false, class: 'btn btn-primary mb-3'
-    .col-lg-1.mt-3.mx-3
-      = button_to 'GitHub', '/auth/github',
-        'data-turbo': false, class: 'btn btn-primary mb-3'
-    .col-lg-1.mt-3.mx-3
-      = button_to 'Microsoft', '/auth/microsoft_graph',
-        'data-turbo': false, class: 'btn btn-primary mb-3'
-    .col-lg-1.mt-3.mx-3
-      = button_to 'Slack', '/auth/slack',
-        'data-turbo': false, class: 'btn btn-primary mb-3'
+    .col-lg-2.mt-3.mx-3
+      = button_to '/auth/google_oauth2',
+        'data-turbo': false, class: 'btn btn-google mb-3' do
+        = assistive_icon('fab', 'google', 'Google', classname: 'me-2 text-white')
+        Google
+    .col-lg-2.mt-3.mx-3
+      = button_to '/auth/github',
+        'data-turbo': false, class: 'btn btn-github mb-3' do
+        = assistive_icon('fab', 'github', 'GitHub', classname: 'me-2 text-white')
+        GitHub
+    .col-lg-2.mt-3.mx-3
+      = button_to '/auth/microsoft_graph',
+        'data-turbo': false, class: 'btn btn-microsoft mb-3' do
+        = assistive_icon('fab', 'microsoft', 'Microsoft', classname: 'me-2 text-white')
+        Microsoft
+    .col-lg-2.mt-3.mx-3.small
+      = button_to '/auth/slack',
+        'data-turbo': false, class: 'btn btn-slack mb-3' do
+        = assistive_icon('fab', 'slack', 'Slack', classname: 'me-2 text-white')
+        Slack
     .col-lg-10
 
 %p.mt-4
-  = image_tag('happy_users.png', alt: 'Hello!', class: 'img-fluid')
+  = image_tag('happy_users.png', alt: 'Hello!', class: 'img-fluid mt-4')
