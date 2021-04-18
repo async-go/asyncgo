@@ -141,7 +141,7 @@ RSpec.describe 'Notifications', type: :system do
     expect(page).to have_link('Has notification 2')
   end
 
-  it 'clears topic notifications when you visit a topic' do
+  it 'clears topic and comment notifications when you visit a topic' do
     user = FactoryBot.create(:user, :team)
     actor = FactoryBot.create(:user, team: user.team)
 
@@ -158,29 +158,10 @@ RSpec.describe 'Notifications', type: :system do
     sign_in_user(user)
 
     expect(page).to have_link('Has notification 1')
-
+    click_link 'Topics'
     click_link 'Sample topic'
     expect(page).to have_link('Has notification 0')
-  end
 
-  it 'clears comment notifications when you visit a topic' do
-    user = FactoryBot.create(:user, :team)
-    actor = FactoryBot.create(:user, team: user.team)
-
-    visit '/'
-    sign_in_user(actor)
-
-    click_link 'Topics'
-    click_link 'New Topic'
-    fill_in 'topic[title]', with: 'Sample topic'
-    fill_in 'topic[description]', with: 'Sample topic description'
-    click_button 'Create'
-
-    click_link 'Sign out'
-    sign_in_user(user)
-
-    click_link 'Topics'
-    click_link 'Sample topic'
     click_button 'topic-watch'
     click_link 'Sign out'
 
@@ -195,8 +176,7 @@ RSpec.describe 'Notifications', type: :system do
     click_link 'Sign out'
     sign_in_user(user)
 
-    expect(page).to have_link('Has notification 2')
-
+    expect(page).to have_link('Has notification 1')
     click_link 'Sample topic'
     expect(page).to have_link('Has notification 0')
   end
