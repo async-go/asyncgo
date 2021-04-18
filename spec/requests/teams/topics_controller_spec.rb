@@ -29,14 +29,28 @@ RSpec.describe Teams::TopicsController, type: :request do
     let(:topic) { FactoryBot.create(:topic) }
 
     context 'when user is authorized' do
+      let(:user) { FactoryBot.create(:user, team: topic.team) }
+
       before do
-        sign_in(FactoryBot.create(:user, team: topic.team))
+        sign_in(user)
       end
 
       it 'renders the show page' do
         get_show
 
         expect(response.body).to include(CGI.escapeHTML(topic.title))
+      end
+
+      context 'when there are notifications' do
+        before do
+          comment = FactoryBot.create(:comment, topic: topic)
+          FactoryBot.create(:notification, target: comment, user: user)
+          FactoryBot.create(:notification, target: topic, user: user)
+        end
+
+        it 'dismisses all topic notifications' do
+          expect { get_show }.to change { user.notifications.where(read_at: nil).count }.from(2).to(0)
+        end
       end
     end
 

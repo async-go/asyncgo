@@ -93,4 +93,21 @@ RSpec.describe User, type: :model do
 
     it { is_expected.to eq('https://www.gravatar.com/avatar/b642b4217b34b1e8d3bd915fc65c4452') }
   end
+
+  describe '#clear_topic_notifications' do
+    subject(:clear_topic_notifications) { user.clear_topic_notifications(topic) }
+
+    let(:user) { FactoryBot.create(:user) }
+    let(:topic) { FactoryBot.create(:topic) }
+
+    before do
+      comment = FactoryBot.create(:comment, topic: topic)
+      FactoryBot.create(:notification, target: comment, user: user)
+      FactoryBot.create(:notification, target: topic, user: user)
+    end
+
+    it 'clears topic and comment notifications' do
+      expect { clear_topic_notifications }.to change { user.notifications.where(read_at: nil).count }.from(2).to(0)
+    end
+  end
 end

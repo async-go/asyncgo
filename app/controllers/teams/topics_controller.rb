@@ -27,8 +27,7 @@ module Teams
       @topic = topic
       authorize(@topic)
 
-      @topic.notifications.where(read_at: nil, user_id: current_user.id)
-            .update(read_at: Time.now.utc)
+      current_user.clear_topic_notifications(@topic)
 
       comment_order = current_user.preference.inverse_comment_order ? :desc : :asc
 
