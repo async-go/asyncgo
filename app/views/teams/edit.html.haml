@@ -75,9 +75,12 @@
       Current tier: Free
     %p
       Upgrading will allow for more than five users in your team.
+    %p
+      Only the user that bought the subscription can manage it.
     %button{ data: { controller: 'billing', action: 'click->billing#demo' },
     class: 'btn btn-primary' }
       Buy Subscription
+    = link_to 'Manage Subscription', edit_team_billing_path(@team)
 %hr
 
 .row

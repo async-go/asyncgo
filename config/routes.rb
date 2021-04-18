@@ -57,6 +57,8 @@ Rails.application.routes.draw do
           resources :votes, only: %i[create destroy]
         end
       end
+
+      resource :billing, only: :edit
     end
   end
 end
