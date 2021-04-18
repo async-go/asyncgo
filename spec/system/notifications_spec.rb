@@ -10,11 +10,11 @@ RSpec.describe 'Notifications', type: :system do
     notification = FactoryBot.create(:notification, user: user)
 
     visit '/'
+
     sign_in_user(user)
-
     click_link 'Has notification 1'
-
     expect(page).to have_link('Has notification 1')
+
     click_link "#{notification.actor.printable_name} updated the topic #{notification.target.title}"
     expect(page).to have_link('Has notification 0')
     expect(page).to have_text(notification.target.title)
@@ -25,17 +25,16 @@ RSpec.describe 'Notifications', type: :system do
     actor = FactoryBot.create(:user, team: user.team)
 
     visit '/'
-    sign_in_user(actor)
 
+    sign_in_user(actor)
     click_link 'Topics'
     click_link 'New Topic'
     fill_in 'topic[title]', with: 'Sample topic'
     fill_in 'topic[description]', with: 'Sample topic description'
     click_button 'Create'
-
     click_link 'Sign out'
-    sign_in_user(user)
 
+    sign_in_user(user)
     expect(page).to have_link('Has notification 1')
   end
 
@@ -44,6 +43,7 @@ RSpec.describe 'Notifications', type: :system do
     actor = FactoryBot.create(:user, team: user.team)
 
     visit '/'
+
     sign_in_user(user)
     expect(page).to have_link('Has notification 0')
 
@@ -52,16 +52,14 @@ RSpec.describe 'Notifications', type: :system do
     fill_in 'topic[title]', with: 'Sample topic'
     fill_in 'topic[description]', with: 'Sample topic description'
     click_button 'Create'
-
     click_link 'Sign out'
-    sign_in_user(actor)
 
+    sign_in_user(actor)
     click_link 'Topics'
     click_link 'Sample topic'
-
     click_button 'Resolve'
-
     click_link 'Sign out'
+
     sign_in_user(user)
     expect(page).to have_link('Has notification 1')
   end
@@ -79,17 +77,15 @@ RSpec.describe 'Notifications', type: :system do
     fill_in 'topic[title]', with: 'Sample topic'
     fill_in 'topic[description]', with: 'Sample topic description'
     click_button 'Create'
-
     click_link 'Sign out'
-    sign_in_user(actor)
 
+    sign_in_user(actor)
     click_link 'Topics'
     click_link 'Sample topic'
-
     click_button 'Resolve'
     click_button 'Reopen'
-
     click_link 'Sign out'
+
     sign_in_user(user)
     expect(page).to have_link('Has notification 2')
   end
@@ -107,17 +103,15 @@ RSpec.describe 'Notifications', type: :system do
     fill_in 'topic[title]', with: 'Sample topic'
     fill_in 'topic[description]', with: 'Sample topic description'
     click_button 'Create'
-
     click_link 'Sign out'
-    sign_in_user(actor)
 
+    sign_in_user(actor)
     click_link 'Topics'
     click_link 'Sample topic'
-
     fill_in 'comment[body]', with: '__Sample content__'
     click_button 'Add Comment'
-
     click_link 'Sign out'
+
     sign_in_user(user)
     expect(page).to have_link('Has notification 1')
   end
@@ -134,10 +128,9 @@ RSpec.describe 'Notifications', type: :system do
     fill_in 'topic[title]', with: 'Sample topic'
     fill_in 'topic[description]', with: "This is a test mention for @#{user.email}"
     click_button 'Create'
-
     click_link 'Sign out'
-    sign_in_user(user)
 
+    sign_in_user(user)
     expect(page).to have_link('Has notification 2')
   end
 
@@ -153,11 +146,11 @@ RSpec.describe 'Notifications', type: :system do
     fill_in 'topic[title]', with: 'Sample topic'
     fill_in 'topic[description]', with: 'Sample topic description'
     click_button 'Create'
-
     click_link 'Sign out'
-    sign_in_user(user)
 
+    sign_in_user(user)
     expect(page).to have_link('Has notification 1')
+
     click_link 'Topics'
     click_link 'Sample topic'
     expect(page).to have_link('Has notification 0')
@@ -166,17 +159,15 @@ RSpec.describe 'Notifications', type: :system do
     click_link 'Sign out'
 
     sign_in_user(actor)
-
     click_link 'Topics'
     click_link 'Sample topic'
-
     fill_in 'comment[body]', with: '__Sample content__'
     click_button 'Add Comment'
-
     click_link 'Sign out'
-    sign_in_user(user)
 
+    sign_in_user(user)
     expect(page).to have_link('Has notification 1')
+
     click_link 'Sample topic'
     expect(page).to have_link('Has notification 0')
   end
@@ -186,11 +177,11 @@ RSpec.describe 'Notifications', type: :system do
     FactoryBot.create(:notification, user: user)
 
     visit '/'
+
     sign_in_user(user)
-
     click_link 'Has notification 1'
-
     expect(page).to have_link('Has notification 1')
+
     click_link 'Clear all notifications (all pages)'
     expect(page).to have_link('Has notification 0')
   end
