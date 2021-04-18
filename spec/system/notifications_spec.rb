@@ -154,13 +154,10 @@ RSpec.describe 'Notifications', type: :system do
     fill_in 'topic[description]', with: 'Sample topic description'
     click_button 'Create'
 
-    click_link 'Topics'
-    click_link 'Sample topic'
-
     click_link 'Sign out'
     sign_in_user(user)
 
-    expect(page).to have_link('Has notification 2')
+    expect(page).to have_link('Has notification 1')
 
     click_link 'Sample topic'
     expect(page).to have_link('Has notification 0')
