@@ -43,8 +43,12 @@ $primary: #203864;
   border: 1px solid #333;
 }
 
-.user-content ol, ul, ol ol, ul ul {
-  margin-bottom: 1rem;
+.user-content {
+  > {
+    ol, ul {
+      margin-bottom: 1rem;
+    }
+  }
 }
 
 .topic-label {
