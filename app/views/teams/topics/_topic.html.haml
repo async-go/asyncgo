@@ -72,12 +72,12 @@
   .row.mt-3
     .col-lg-8.border
       %h6.mt-2.text-secondary.small#topic-description Description
-      .p-3.user-content!= topic.description_html
+      .m-3.user-content!= topic.description_html
 
     .col-lg-4.border
       %h6.mt-2.text-secondary.small#topic-outcome
         Outcome
         - if topic.active?
           (Work in Progress)
-      .p-3.user-content
+      .m-3.user-content
         != topic.outcome_html || 'Content has not been started yet'

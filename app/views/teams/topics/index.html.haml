@@ -7,7 +7,7 @@
 
 - if @team.message.present?
   .row.bg-light.text-dark.border
-    .p-3.fs-6= @team.message
+    .m-3.fs-6= @team.message
 
 .row.mt-3
   = form_with(url: team_topics_path(current_user.team), method: :get) do |form|
