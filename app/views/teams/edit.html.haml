@@ -75,8 +75,7 @@
       Current tier: Free
     %p
       Upgrading will allow for more than five users in your team.
-    %button{ 'data-fsc-item-path-value': 'asyncgo-team', 'data-fsc-action': 'Add, Checkout',
-    class: 'btn btn-primary' }
+    %button{ onclick: 'fastspring.builder.checkout()', class: 'btn btn-primary' }
       Buy Subscription
 %hr
 
@@ -90,6 +89,18 @@
       = support_form.submit 'Send Email', class: 'btn btn-primary'
 
 -# This will be rendered at the end of the body tag
+:javascript
+  var fscSession = {
+    'reset': true,
+    'products' : [
+      {
+        'path': 'asyncgo-team',
+        'quantity': 1
+      }
+    ],
+    'tags': { 'brandId': "#{@team.id}" }
+  }
+
 %script{ id: 'fsc-api',
 type: 'text/javascript',
 src: 'https://d1f8f9xcsvx3ha.cloudfront.net/sbl/0.8.5/fastspring-builder.min.js',
