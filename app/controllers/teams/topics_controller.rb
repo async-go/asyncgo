@@ -14,7 +14,7 @@ module Teams
         filtered_topics(team_topics.active), page_param: 'active_page'
       )
       @pagy_closed_topics, @closed_topics = pagy(
-        filtered_topics(team_topics.closed), page_param: 'closed_page'
+        filtered_topics(team_topics.closed).reorder(updated_at: :desc), page_param: 'closed_page'
       )
     end
 
