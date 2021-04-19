@@ -1,7 +1,9 @@
+/* global fastspring */
+
 import { Controller } from 'stimulus'
 
 export default class extends Controller {
-  demo () {
+  buy () {
     const fscSession = {
       reset: true,
       products: [
