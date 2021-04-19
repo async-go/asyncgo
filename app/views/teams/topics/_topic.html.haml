@@ -10,14 +10,14 @@
             data: { controller: 'hotkey', hotkey: 'w' },
             id: 'topic-watch' do
             = assistive_icon('fas', 'bell', 'Unwatch this topic')
-            %span.text-dark.d-none.d-lg-block Unwatch
+            %span.text-dark.d-none.d-lg-block.small Unwatch
         - else
           = subscription_form.hidden_field :subscribed, value: 1
           = button_tag type: 'submit', class: 'btn btn-faded',
             data: { controller: 'hotkey', hotkey: 'w' },
             id: 'topic-watch' do
             = assistive_icon('far', 'bell', 'Watch this topic')
-            .text-dark.d-none.d-lg-block Watch
+            .text-dark.d-none.d-lg-block.small Watch
     .col-2.col-lg-1.my-2
       = form_with(model: topic, url: team_topic_pin_path(topic.team, topic),
         data: { 'turbo-frame': '_top' }) do |form|
@@ -26,13 +26,13 @@
           = button_tag type: 'submit', class: 'btn btn-faded text-info', id: 'topic-pin',
             data: { controller: 'hotkey', hotkey: 'p' } do
             = assistive_icon('fas', 'bookmark', 'Unpin this topic')
-            .text-dark.d-none.d-lg-block Unpin
+            .text-dark.d-none.d-lg-block.small Unpin
         - else
           = form.hidden_field :pinned, value: 1
           = button_tag type: 'submit', class: 'btn btn-faded', id: 'topic-pin',
             data: { controller: 'hotkey', hotkey: 'p' } do
             = assistive_icon('far', 'bookmark', 'Pin this topic')
-            .text-dark.d-none.d-lg-block Pin
+            .text-dark.d-none.d-lg-block.small Pin
     .col-3.col-lg-1.my-2
       - if topic.active?
         = link_to edit_team_topic_path(topic.team, topic),
