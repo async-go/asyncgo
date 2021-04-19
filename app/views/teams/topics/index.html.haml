@@ -15,8 +15,8 @@
       %span.btn.btn-primary New Topic
   .col-lg-10
     = form_with(url: team_topics_path(current_user.team), method: :get) do |form|
-      .row.mt-2.justify-content-end
-        .col-9.col-lg-4
+      .row.mt-2
+        .col-9.col-lg-4.ms-auto
           .input-group.me-2
             = form.text_field :labels, value: params[:labels],
               placeholder: 'Separate labels with space',
@@ -30,8 +30,7 @@
 
 .row.mt-3
   %h2#active-topics Active Topics
-  = render partial: 'topics', locals: { topic_collection: @active_topics,
-    topic_hotkeys: true,
+  = render partial: 'topics', locals: { topic_collection: @active_topics, topic_hotkeys: true,
     empty_state_text: 'Active topics will appear here. Try creating a new topic to get started.' }
 - if @pagy_active_topics.pages > 1
   .row.mt-3
@@ -39,8 +38,7 @@
 
 .row.mt-3
   %h2#closed-topics Closed Topics
-  = render partial: 'topics', locals: { topic_collection: @closed_topics,
-    new_form: false, topic_hotkeys: false,
+  = render partial: 'topics', locals: { topic_collection: @closed_topics, topic_hotkeys: false,
     empty_state_text: 'Once you have closed some topics they will appear here.' }
 - if @pagy_closed_topics.pages > 1
   .row.mt-3
