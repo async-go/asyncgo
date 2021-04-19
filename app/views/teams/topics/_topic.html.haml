@@ -10,12 +10,14 @@
             data: { controller: 'hotkey', hotkey: 'w' },
             id: 'topic-watch' do
             = assistive_icon('fas', 'bell', 'Unwatch this topic')
+            %span.text-dark.d-none.d-lg-block Unwatch
         - else
           = subscription_form.hidden_field :subscribed, value: 1
           = button_tag type: 'submit', class: 'btn btn-faded',
             data: { controller: 'hotkey', hotkey: 'w' },
             id: 'topic-watch' do
             = assistive_icon('far', 'bell', 'Watch this topic')
+            .text-dark.d-none.d-lg-block Watch
     .col-2.col-lg-1.my-2
       = form_with(model: topic, url: team_topic_pin_path(topic.team, topic),
         data: { 'turbo-frame': '_top' }) do |form|
@@ -24,17 +26,20 @@
           = button_tag type: 'submit', class: 'btn btn-faded text-info', id: 'topic-pin',
             data: { controller: 'hotkey', hotkey: 'p' } do
             = assistive_icon('fas', 'bookmark', 'Unpin this topic')
+            .text-dark.d-none.d-lg-block Unpin
         - else
           = form.hidden_field :pinned, value: 1
           = button_tag type: 'submit', class: 'btn btn-faded', id: 'topic-pin',
             data: { controller: 'hotkey', hotkey: 'p' } do
             = assistive_icon('far', 'bookmark', 'Pin this topic')
+            .text-dark.d-none.d-lg-block Pin
     .col-3.col-lg-1.my-2
       - if topic.active?
-        = link_to assistive_icon('fas', 'edit', 'Edit this topic'),
-          edit_team_topic_path(topic.team, topic),
+        = link_to edit_team_topic_path(topic.team, topic),
           class: 'btn btn-primary', id: 'topic-edit',
-          data: { controller: 'hotkey', hotkey: 'e' }
+          data: { controller: 'hotkey', hotkey: 'e' } do
+          = assistive_icon('fas', 'edit', 'Edit this topic')
+          .d-none.d-lg-block Edit
     .col-2.col-lg-1.my-2
       = form_with(model: topic, url: team_topic_toggle_path(topic.team, topic),
         data: { 'turbo-frame': '_top' }) do |form|
@@ -43,11 +48,13 @@
           = button_tag type: 'submit', class: 'btn btn-success', id: 'topic-resolve',
             data: { controller: 'hotkey', hotkey: 'r' } do
             = assistive_icon('fas', 'check', 'Resolve this topic')
+            .d-none.d-lg-block Resolve
         - else
           = form.hidden_field :status, value: :active
           = button_tag type: 'submit', class: 'btn btn-secondary', id: 'topic-resolve',
             data: { controller: 'hotkey', hotkey: 'r' } do
             = assistive_icon('fas', 'undo', 'Reopen this topic')
+            .d-none.d-lg-block Reopen
     .col-4.col-lg-1.my-2
       %ul.list-group.list-group-horizontal
         = render partial: 'teams/topics/vote_list_group', locals: { votable: topic }
