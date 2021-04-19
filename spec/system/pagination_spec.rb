@@ -30,11 +30,11 @@ RSpec.describe 'Pagination', type: :system do
     user = FactoryBot.create(:user, :team)
     FactoryBot.create_list(
       :topic, 20, user: user, team: user.team, status: :closed,
-                  due_date: Date.new(2020, 1, 1)
+                  updated_at: Date.new(2021, 1, 1)
     )
     FactoryBot.create(
       :topic, user: user, team: user.team, status: :closed,
-              due_date: Date.new(2021, 1, 1), title: 'thisisthelasttopic'
+              updated_at: Date.new(2020, 1, 1), title: 'thisisthelasttopic'
     )
 
     visit '/'
