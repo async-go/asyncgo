@@ -18,5 +18,4 @@ RSpec.describe ApplicationHelper, type: :helper do
 
     it { is_expected.to include('btn-outline-secondary', 'https://google.com') }
   end
-
 end

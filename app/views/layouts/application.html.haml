@@ -33,7 +33,7 @@
                 = assistive_icon('fas', 'bell', 'Has notification', classname: 'text-warning')
                 %span.ms-1.text-white= unique_unread_notifications.count
           = whatsnew_button 'https://asyncgo.com/blog/release/2021/04/20/asyncgo-april-update/',
-            DateTime.new(2021,04,20)
+            DateTime.new(2021, 4, 20)
           = yield :extra_nav_items
           %button.navbar-toggler.border-0{ type: 'button', 'data-bs-toggle' => 'collapse',
             'data-bs-target' => '#navbar-content', 'aria-controls' => 'navbar-content',
