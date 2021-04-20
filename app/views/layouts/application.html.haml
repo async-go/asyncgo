@@ -32,8 +32,13 @@
               = link_to user_notifications_path(current_user), class: 'text-decoration-none' do
                 = assistive_icon('fas', 'bell', 'Has notification', classname: 'text-warning')
                 %span.ms-1.text-white= unique_unread_notifications.count
-          - Date.today - Rails.application.config.release_date < 5 ? color = 'success' : color = 'secondary'
-          =link_to Rails.application.config.release_link,
+          :ruby
+            color = if Time.zone.today - Rails.application.config.release_date < 5
+                      'success'
+                    else
+                      'secondary'
+                    end
+          = link_to Rails.application.config.release_link,
             class: "button ms-3 btn btn-sm btn-outline-#{color} me-3 d-none d-lg-block" do
             = assistive_icon('fas', 'seedling', 'Latest Release', classname: '')
             = Rails.application.config.release_name
