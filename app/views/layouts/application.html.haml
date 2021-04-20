@@ -33,15 +33,15 @@
                 = assistive_icon('fas', 'bell', 'Has notification', classname: 'text-warning')
                 %span.ms-1.text-white= unique_unread_notifications.count
           :ruby
-            color = if Time.zone.today - Rails.application.config.release_date < 5
+            color = if Time.zone.today - Rails.application.config.update_date < 5
                       'success'
                     else
                       'secondary'
                     end
-          = link_to Rails.application.config.release_link, target: '_blank', rel: 'noopener',
+          = link_to Rails.application.config.update_link, target: '_blank', rel: 'noopener',
             class: "button ms-3 btn btn-sm btn-outline-#{color} me-3 d-none d-lg-block" do
-            = assistive_icon('fas', 'seedling', 'Latest Release', classname: '')
-            = Rails.application.config.release_name
+            = assistive_icon('fas', 'seedling', "What's New", classname: '')
+            What's New
           = yield :extra_nav_items
           %button.navbar-toggler.border-0{ type: 'button', 'data-bs-toggle' => 'collapse',
             'data-bs-target' => '#navbar-content', 'aria-controls' => 'navbar-content',

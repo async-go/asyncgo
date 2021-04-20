@@ -30,8 +30,7 @@ module Asyncgo
       meeting interruptions.'
     config.site_title = 'Sign In to AsyncGo'
     config.site_image = 'social.png'
-    config.release_date = DateTime.new(2021, 4, 20)
-    config.release_name = '1.2'
-    config.release_link = 'https://asyncgo.com/blog/release/2021/04/20/asyncgo-1.2/'
+    config.update_date = DateTime.new(2021, 4, 20)
+    config.update_link = 'https://asyncgo.com/blog/release/2021/04/20/asyncgo-april-update/'
   end
 end
