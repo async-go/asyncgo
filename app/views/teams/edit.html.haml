@@ -80,7 +80,8 @@
     %button{ data: { controller: 'subscription', action: 'click->subscription#buy' },
     class: 'btn btn-primary' }
       Buy Subscription
-    = link_to 'Manage Subscription', edit_team_subscription_path(@team), target: :_blank, rel: :noopener
+    = link_to 'Manage Subscription', edit_team_subscription_path(@team),
+      target: :_blank, rel: :noopener
 %hr
 
 .row

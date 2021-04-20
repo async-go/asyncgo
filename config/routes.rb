@@ -58,7 +58,9 @@ Rails.application.routes.draw do
         end
       end
 
-      resource :subscription, only: :edit
+      resource :subscription, only: :edit do
+        post :webhook
+      end
     end
   end
 end
