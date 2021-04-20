@@ -9,6 +9,8 @@ module Teams
     end
 
     def webhook
+      return head :unauthorized unless valid_payload?
+
       successful_events = []
 
       webhook_events.each do |webhook_event|
@@ -22,6 +24,17 @@ module Teams
 
     def webhook_events
       params.require(:events)
+    end
+
+    def valid_payload?
+      payload_hash = request.headers['X-FS-Signature']
+      computed_hash = Base64.encode64(
+        OpenSSL::HMAC.digest(
+          OpenSSL::Digest.new('sha256'), ENV['FASTSPRING_CRYPTO_KEY'], request.body
+        )
+      ).chomp
+
+      payload_hash == computed_hash
     end
 
     def process_webhook_event(webhook_event)
