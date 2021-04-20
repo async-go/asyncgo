@@ -27,20 +27,20 @@ module Teams
     def process_webhook_event(webhook_event)
       case webhook_event['type']
       when 'subscription.activated'
-        activate_subscription(webhook_event['tags']['brandId'])
+        activate_subscription(webhook_event['tags']['teamId'])
         webhook_event['id']
       when 'subscription.deactivated'
-        deactivate_subscription(webhook_event['tags']['brandId'])
+        deactivate_subscription(webhook_event['tags']['teamId'])
         webhook_event['id']
       end
     end
 
-    def activate_subscription(brand_id)
-      Subscription.find_or_initialize_by(brand_id: brand_id).update!(active: true)
+    def activate_subscription(team_id)
+      TeamSubscription.find_or_initialize_by(team_id: team_id).update!(active: true)
     end
 
-    def deactivate_subscription(brand_id)
-      Subscription.find_by(brand_id: brand_id).update!(active: false)
+    def deactivate_subscription(team_id)
+      TeamSubscription.find_by(team_id: team_id).update!(active: false)
     end
   end
 end

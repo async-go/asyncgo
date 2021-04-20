@@ -12,7 +12,7 @@ export default class extends Controller {
           quantity: 1
         }
       ],
-      tags: { brandId: `${window.gon.teamId}` }
+      tags: { teamId: `${window.gon.teamId}` }
     }
     fastspring.builder.push(fscSession)
     fastspring.builder.checkout()
