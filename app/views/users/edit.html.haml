@@ -1,7 +1,7 @@
 = content_for :extra_nav_items do
-  %button.ms-3.btn.btn-sm.btn-secondary.me-3.d-none.d-lg-block{ id: 'tour-button',
+  %button.ms-3.btn.btn-sm.btn-outline-secondary.me-3.d-none.d-lg-block{ id: 'tour-button',
     data: { controller: 'driverjs', action: 'click->driverjs#demoUserProfile' } }
-    = assistive_icon('fas', 'question-circle', 'Tour this page', classname: 'text-white')
+    = assistive_icon('fas', 'question-circle', 'Tour this page', classname: '')
 
 %h1.visually-hidden= @user.printable_name
 
