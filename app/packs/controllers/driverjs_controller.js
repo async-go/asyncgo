@@ -212,10 +212,10 @@ export default class extends Controller {
         }
       },
       {
-        element: '#billing',
+        element: '#subscription',
         popover: {
-          title: 'Billing Info',
-          description: 'You can check your current billing status in this area.'
+          title: 'Subscription Info',
+          description: 'You can check your current subscription status in this area.'
         }
       },
       {

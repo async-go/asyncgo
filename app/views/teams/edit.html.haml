@@ -70,17 +70,17 @@
 
 .row
   .col-lg-12
-    %h3#billing Billing
+    %h3#subscription Subscription
     %p
       Current tier: Free
     %p
       Upgrading will allow for more than five users in your team.
     %p
       Only the user that bought the subscription can manage it.
-    %button{ data: { controller: 'billing', action: 'click->billing#buy' },
+    %button{ data: { controller: 'subscription', action: 'click->subscription#buy' },
     class: 'btn btn-primary' }
       Buy Subscription
-    = link_to 'Manage Subscription', edit_team_billing_path(@team), target: :_blank, rel: :noopener
+    = link_to 'Manage Subscription', edit_team_subscription_path(@team), target: :_blank, rel: :noopener
 %hr
 
 .row

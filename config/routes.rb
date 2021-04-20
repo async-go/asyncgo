@@ -58,7 +58,7 @@ Rails.application.routes.draw do
         end
       end
 
-      resource :billing, only: :edit
+      resource :subscription, only: :edit
     end
   end
 end
