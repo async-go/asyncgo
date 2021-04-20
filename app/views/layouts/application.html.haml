@@ -33,8 +33,8 @@
                 = assistive_icon('fas', 'bell', 'Has notification', classname: 'text-warning')
                 %span.ms-1.text-white= unique_unread_notifications.count
           = link_to Rails.application.config.update_link, target: '_blank', rel: 'noopener',
-            class: "button ms-3 btn btn-sm btn-outline-green me-3 d-none d-lg-block" do
-            = assistive_icon('fas', 'seedling', "What's New", classname: '')
+            class: "button ms-3 btn btn-sm btn-outline-success me-3 d-none d-lg-block" do
+            = assistive_icon('fas', 'seedling', "What's New")
             What's New
           = yield :extra_nav_items
           %button.navbar-toggler.border-0{ type: 'button', 'data-bs-toggle' => 'collapse',
