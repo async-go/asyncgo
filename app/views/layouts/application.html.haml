@@ -32,7 +32,8 @@
               = link_to user_notifications_path(current_user), class: 'text-decoration-none' do
                 = assistive_icon('fas', 'bell', 'Has notification', classname: 'text-warning')
                 %span.ms-1.text-white= unique_unread_notifications.count
-          = link_to Rails.application.config.update_link, target: '_blank', rel: 'noopener',
+          = link_to 'https://asyncgo.com/blog/release/2021/04/20/asyncgo-april-update/',
+            target: '_blank', rel: 'noopener',
             class: "button ms-3 btn btn-sm btn-outline-success me-3 d-none d-lg-block" do
             = assistive_icon('fas', 'seedling', "What's New")
             What's New
