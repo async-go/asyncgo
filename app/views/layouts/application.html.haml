@@ -38,7 +38,7 @@
                     else
                       'secondary'
                     end
-          = link_to Rails.application.config.release_link,
+          = link_to Rails.application.config.release_link, target: '_blank', rel: 'noopener',
             class: "button ms-3 btn btn-sm btn-outline-#{color} me-3 d-none d-lg-block" do
             = assistive_icon('fas', 'seedling', 'Latest Release', classname: '')
             = Rails.application.config.release_name
