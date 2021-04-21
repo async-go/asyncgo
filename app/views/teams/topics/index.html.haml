@@ -5,41 +5,43 @@
 
 %h1.visually-hidden Topics
 
-- if @team.message.present?
-  .row.bg-light.text-dark.border
-    .m-3.fs-6= @team.message
+.container
+  - if @team.message.present?
+    .row.bg-light.text-dark.border
+      .col-lg-12
+        .p-2.fs-6= @team.message
 
-.row.mt-3
-  .col-lg-2
-    = link_to new_team_topic_path(current_user.team) do
-      %span.btn.btn-primary New Topic
-  .col-lg-10
-    = form_with(url: team_topics_path(current_user.team), method: :get) do |form|
-      .row.mt-2
-        .col-9.col-lg-4.ms-auto
-          .input-group.me-2
-            = form.text_field :labels, value: params[:labels],
-              placeholder: 'Separate labels with space',
-              class: 'bg-light form-control', autocomplete: 'false'
-            .input-group-append.me-2
-              = link_to 'Clear', team_topics_path(current_user.team),
-                class: 'btn btn-outline-secondary'
-        .col-3.col-lg-1
-          = form.submit 'Filter', class: 'btn btn-secondary', name: nil
-
-
-.row.mt-3
-  %h2#active-topics Active Topics
-  = render partial: 'topics', locals: { topic_collection: @active_topics, topic_hotkeys: true,
-    empty_state_text: 'Active topics will appear here. Try creating a new topic to get started.' }
-- if @pagy_active_topics.pages > 1
   .row.mt-3
-    != pagy_bootstrap_nav(@pagy_active_topics)
+    .col-lg-2
+      = link_to new_team_topic_path(current_user.team) do
+        %span.btn.btn-primary New Topic
+    .col-lg-10
+      = form_with(url: team_topics_path(current_user.team), method: :get) do |form|
+        .row.mt-2
+          .col-9.col-lg-4.ms-auto
+            .input-group.me-2
+              = form.text_field :labels, value: params[:labels],
+                placeholder: 'Separate labels with space',
+                class: 'bg-light form-control', autocomplete: 'false'
+              .input-group-append.me-2
+                = link_to 'Clear', team_topics_path(current_user.team),
+                  class: 'btn btn-outline-secondary'
+          .col-3.col-lg-1
+            = form.submit 'Filter', class: 'btn btn-secondary', name: nil
 
-.row.mt-3
-  %h2#closed-topics Closed Topics
-  = render partial: 'topics', locals: { topic_collection: @closed_topics, topic_hotkeys: false,
-    empty_state_text: 'Once you have closed some topics they will appear here.' }
-- if @pagy_closed_topics.pages > 1
+
   .row.mt-3
-    != pagy_bootstrap_nav(@pagy_closed_topics)
+    %h2#active-topics Active Topics
+    = render partial: 'topics', locals: { topic_collection: @active_topics, topic_hotkeys: true,
+      empty_state_text: 'Active topics will appear here. Try creating a new topic to get started.' }
+  - if @pagy_active_topics.pages > 1
+    .row.mt-3
+      != pagy_bootstrap_nav(@pagy_active_topics)
+
+  .row.mt-3
+    %h2#closed-topics Closed Topics
+    = render partial: 'topics', locals: { topic_collection: @closed_topics, topic_hotkeys: false,
+      empty_state_text: 'Once you have closed some topics they will appear here.' }
+  - if @pagy_closed_topics.pages > 1
+    .row.mt-3
+      != pagy_bootstrap_nav(@pagy_closed_topics)
