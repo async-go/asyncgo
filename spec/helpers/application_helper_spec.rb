@@ -7,15 +7,19 @@ RSpec.describe ApplicationHelper, type: :helper do
     it { is_expected.to eq("#{Emoji.find_by_alias('cat').raw} 2") } # rubocop:disable Rails/DynamicFindBy
   end
 
-  describe 'whatsnew_button (within 7 days ago)' do
-    subject(:whatsnew_button_within) { helper.whatsnew_button('https://google.com', Time.zone.today - 6) }
+  describe 'new_updates_button' do
+    subject(:new_updates_button) { helper.new_updates_button('https://google.com', date) }
 
-    it { is_expected.to include('btn-outline-success', 'https://google.com') }
-  end
+    context 'when 7 days have not passed since date' do
+      let(:date) { Time.zone.today - 6 }
 
-  describe 'whatsnew_button (beyond 7 days ago)' do
-    subject(:whatsnew_button_beyond) { helper.whatsnew_button('https://google.com', Time.zone.today - 7) }
+      it { is_expected.to include('btn-outline-success', 'https://google.com') }
+    end
 
-    it { is_expected.to include('btn-outline-secondary', 'https://google.com') }
+    context 'when 7 days have passed since date' do
+      let(:date) { Time.zone.today - 8 }
+
+      it { is_expected.to include('btn-outline-secondary', 'https://google.com') }
+    end
   end
 end

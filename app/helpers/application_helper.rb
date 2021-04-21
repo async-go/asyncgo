@@ -9,11 +9,11 @@ module ApplicationHelper
     icon(source, icon, class: classname, title: title) + tag.span(title, class: 'visually-hidden')
   end
 
-  def whatsnew_button(link, date)
+  def new_updates_button(link, date)
     color = Time.zone.today - date < 7 ? 'success' : 'secondary'
-    link_to link, target: '_blank', rel: 'noopener',
-                  class: "button ms-3 btn btn-sm btn-outline-#{color} me-3 d-none d-lg-block" do
-      assistive_icon('fas', 'seedling', "What's New", classname: 'me-1') + tag.span("What's New")
+    link_to link, class: "button btn btn-sm btn-outline-#{color} mx-3 d-none d-lg-inline-block",
+                  target: '_blank', rel: 'noopener' do
+      assistive_icon('fas', 'seedling', "What's New", classname: 'me-1')
     end
   end
 
