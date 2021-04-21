@@ -26,6 +26,8 @@ Rails.application.routes.draw do
     mount Blazer::Engine, at: 'blazer'
   end
 
+  post 'subscriptions_webhook', to: 'subscriptions#webhook', constraints: { format: 'json' }
+
   resources :users, only: :edit do
     scope module: :users do
       resource :preferences, only: :update
@@ -57,6 +59,8 @@ Rails.application.routes.draw do
           resources :votes, only: %i[create destroy]
         end
       end
+
+      resource :subscription, only: :edit
     end
   end
 end
