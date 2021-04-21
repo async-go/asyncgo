@@ -19,7 +19,7 @@ RSpec.describe DigestEmailSender, type: :service do
 
     it 'does not create digests for users that disabled it' do
       unread_notification
-      user.preference.update!(digest_enabled: false)
+      user.preferences.update!(digest_enabled: false)
 
       expect { call }.not_to have_enqueued_mail(DigestMailer, :digest_email)
     end

@@ -17,7 +17,7 @@ module Teams
       authorize(team, policy_class: Teams::UserPolicy)
 
       user = User.find_or_initialize_by(create_params).tap do |target_user|
-        target_user.preference ||= target_user.build_preference
+        target_user.preferences ||= target_user.build_preferences
       end
 
       user_flash = add_user_flash!(team, user)

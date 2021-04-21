@@ -3,8 +3,8 @@
 class DigestEmailSender < ApplicationService
   def call
     Rails.logger.info 'Starting digest creation'
-    User.includes(:preference).find_each do |user|
-      next unless user.preference.digest_enabled?
+    User.includes(:preferences).find_each do |user|
+      next unless user.preferences.digest_enabled?
 
       unread_notifications = unread_notifications_for(user)
       recently_resolved_topics = recently_resolved_topics_for(user)

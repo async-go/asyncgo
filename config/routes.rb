@@ -28,7 +28,7 @@ Rails.application.routes.draw do
 
   resources :users, only: :edit do
     scope module: :users do
-      resource :preference, only: :update
+      resource :preferences, only: :update
       resources :notifications, only: %i[show index] do
         collection do
           post :clear
