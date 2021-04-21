@@ -10,10 +10,10 @@
     %h3#digests Digest Notifications
     %p
       Would you like to receive a daily digest email about open notifications?
-    - current_toggle_value = current_user.preference.digest_enabled?
+    - current_toggle_value = current_user.preferences.digest_enabled?
     - preference = current_toggle_value ? 'Yes' : 'No'
     %p Currently subscribed: #{preference}
-    = form_with(model: @user.preference, url: [@user, :preference]) do |toggle_digests_form|
+    = form_with(model: @user.preferences, url: [@user, :preferences]) do |toggle_digests_form|
       = toggle_digests_form.hidden_field :digest_enabled, value: !current_toggle_value
       .input-group.mb-3
         = toggle_digests_form.submit 'Toggle notification status', class: 'btn btn-primary'
@@ -22,10 +22,10 @@
     %h3#layout Fluid Layout
     %p
       Choose between fixed (max. 960px) and fluid (100%) application layout.
-    - current_toggle_value = current_user.preference.fluid_layout?
+    - current_toggle_value = current_user.preferences.fluid_layout?
     - preference = current_toggle_value ? 'Fluid' : 'Fixed'
     %p Current preference: #{preference}
-    = form_with(model: @user.preference, url: [@user, :preference]) do |toggle_fluid_layout_form|
+    = form_with(model: @user.preferences, url: [@user, :preferences]) do |toggle_fluid_layout_form|
       = toggle_fluid_layout_form.hidden_field :fluid_layout, value: !current_toggle_value
       .input-group.mb-3
         = toggle_fluid_layout_form.submit 'Toggle layout preference', class: 'btn btn-primary'
@@ -34,10 +34,10 @@
     %h3#commentorder Comment Order
     %p
       Do you prefer to see comments oldest to newest or newest to oldest?
-    - current_toggle_value = current_user.preference.inverse_comment_order?
+    - current_toggle_value = current_user.preferences.inverse_comment_order?
     - preference = current_toggle_value ? 'Newest to Oldest' : 'Oldest to Newest'
     %p Current preference: #{preference}
-    = form_with(model: @user.preference, url: [@user, :preference]) do |toggle_comment_order_form|
+    = form_with(model: @user.preferences, url: [@user, :preferences]) do |toggle_comment_order_form|
       = toggle_comment_order_form.hidden_field :inverse_comment_order, value: !current_toggle_value
       .input-group.mb-3
         = toggle_comment_order_form.submit 'Toggle comment order', class: 'btn btn-primary'

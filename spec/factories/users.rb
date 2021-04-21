@@ -12,6 +12,6 @@ FactoryBot.define do
       name { Faker::Name.name }
     end
 
-    preference { User::Preference.new(user: instance) }
+    preferences { User::Preferences.new(user: instance) }
   end
 end

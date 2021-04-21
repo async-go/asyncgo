@@ -71,7 +71,7 @@
                       'data-turbo': false, class: 'dropdown-item btn btn-slack mt-2'
               %li.nav-item.me-3#docs-nav= link_to 'Docs', 'https://asyncgo.com/docs',
                 class: 'nav-link', target: :_blank, rel: :noopener
-    - container = current_user&.preference&.fluid_layout? ? 'container-fluid' : 'container'
+    - container = current_user&.preferences&.fluid_layout? ? 'container-fluid' : 'container'
     %main.ps-3.mb-3.mt-4{ role: 'main', class: container }
       - if flash.any?
         .mt-2

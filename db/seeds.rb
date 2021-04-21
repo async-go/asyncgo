@@ -13,32 +13,32 @@ asyncgo = Team.create!(name: 'AsyncGo')
 
 # Users
 jason = User.new(name: 'Jason Yavorska', email: 'jason@asyncgo.com', team: asyncgo).tap do |user_jason|
-  user_jason.preference = user_jason.build_preference
+  user_jason.preferences = user_jason.build_preferences
   user_jason.save!
 end
 
 matija = User.new(name: 'Matija Cupic', email: 'matija@asyncgo.com', team: asyncgo).tap do |user_matija|
-  user_matija.preference = user_matija.build_preference
+  user_matija.preferences = user_matija.build_preferences
   user_matija.save!
 end
 
 bob = User.new(name: 'Bob Tester', email: 'testdata-bob@asyncgo.com', team: asyncgo).tap do |user_bob|
-  user_bob.preference = user_bob.build_preference
+  user_bob.preferences = user_bob.build_preferences
   user_bob.save!
 end
 
 alice = User.new(name: 'Alice Samples', email: 'testdata-alice@asyncgo.com', team: asyncgo).tap do |user_alice|
-  user_alice.preference = user_alice.build_preference
+  user_alice.preferences = user_alice.build_preferences
   user_alice.save!
 end
 
 carol = User.new(name: 'Carol Demoer', email: 'testdata-carol@asyncgo.com', team: asyncgo).tap do |user_carol|
-  user_carol.preference = user_carol.build_preference
+  user_carol.preferences = user_carol.build_preferences
   user_carol.save!
 end
 
 david = User.new(name: 'David Samples', email: 'testdata-david@asyncgo.com', team: asyncgo).tap do |user_david|
-  user_david.preference = user_david.build_preference
+  user_david.preferences = user_david.build_preferences
   user_david.save!
 end
 

@@ -5,7 +5,7 @@ class User < ApplicationRecord
                     uniqueness: { case_sensitive: false }, length: { minimum: 4, maximum: 254 },
                     format: { with: /\A(.+)@(.+)\z/ }
   validates :name, presence: { allow_blank: false, allow_empty: false, allow_nil: true }
-  validates :preference, presence: true
+  validates :preferences, presence: true
 
   belongs_to :team, optional: true
 
@@ -18,11 +18,11 @@ class User < ApplicationRecord
   has_many :notifications, inverse_of: :user, dependent: :destroy
   has_many :votes, dependent: :destroy
 
-  has_one :preference, class_name: 'User::Preference', dependent: :destroy
+  has_one :preferences, class_name: 'User::Preferences', dependent: :destroy
 
   def self.from_omniauth(email, name)
     User.where(email: email).first_or_initialize.tap do |user|
-      user.preference ||= user.build_preference
+      user.preferences ||= user.build_preferences
       user.name = name
       user.save!
     end

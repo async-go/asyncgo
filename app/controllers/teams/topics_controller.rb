@@ -26,7 +26,7 @@ module Teams
 
       current_user.clear_topic_notifications(@topic)
 
-      comment_order = current_user.preference.inverse_comment_order ? :desc : :asc
+      comment_order = current_user.preferences.inverse_comment_order ? :desc : :asc
 
       @pagy, @topic_comments = pagy(
         @topic.comments.order(created_at: comment_order)

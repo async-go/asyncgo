@@ -71,7 +71,7 @@ module Teams
       end
 
       def turbo_stream_action
-        if current_user.preference.inverse_comment_order?
+        if current_user.preferences.inverse_comment_order?
           :prepend
         else
           :append
