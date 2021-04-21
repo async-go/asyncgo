@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-require './lib/fast_spring'
-
 module Teams
   class SubscriptionsController < Teams::ApplicationController
     def edit
-      redirect_to ::FastSpring.generate_account_management_link(current_user.email)
+      authorize(team)
+
+      redirect_to ::FastSpringAccountLinker.new(current_user.email).call
     end
 
     def webhook
@@ -30,7 +30,7 @@ module Teams
       payload_hash = request.headers['X-FS-Signature']
       computed_hash = Base64.encode64(
         OpenSSL::HMAC.digest(
-          OpenSSL::Digest.new('sha256'), ENV['FASTSPRING_CRYPTO_KEY'], request.body
+          OpenSSL::Digest.new('sha256'), ENV['FASTSPRING_CRYPTO_KEY'], request.body.string
         )
       ).chomp
 
