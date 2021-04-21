@@ -14,7 +14,7 @@ RSpec.describe ApplicationHelper, type: :helper do
   end
 
   describe 'whatsnew_button (beyond 7 days ago)' do
-    subject(:whatsnew_button_future) { helper.whatsnew_button('https://google.com', Time.zone.today - 7) }
+    subject(:whatsnew_button_beyond) { helper.whatsnew_button('https://google.com', Time.zone.today - 7) }
 
     it { is_expected.to include('btn-outline-secondary', 'https://google.com') }
   end
