@@ -42,10 +42,10 @@ class SubscriptionsController < Teams::ApplicationController
   end
 
   def activate_subscription(team_id)
-    TeamSubscription.find_or_initialize_by(team_id: team_id).update!(active: true)
+    Team::Subscription.find_or_initialize_by(team_id: team_id).update!(active: true)
   end
 
   def deactivate_subscription(team_id)
-    TeamSubscription.find_by(team_id: team_id).update!(active: false)
+    Team::Subscription.find_by(team_id: team_id).update!(active: false)
   end
 end

@@ -36,7 +36,7 @@ RSpec.describe SubscriptionsController, type: :request do
     end
 
     before do
-      other_team.create_team_subscription!(active: true)
+      other_team.create_subscription!(active: true)
 
       allow(ENV).to receive(:[])
       allow(ENV).to receive(:[]).with('FASTSPRING_CRYPTO_KEY').and_return(crypto_key)
@@ -64,12 +64,12 @@ RSpec.describe SubscriptionsController, type: :request do
       end
 
       it 'activates team subscriptions' do
-        expect { post_webhook }.to change { team.reload.team_subscription }
+        expect { post_webhook }.to change { team.reload.subscription }
           .from(nil).to(having_attributes(active: true))
       end
 
       it 'deactivates team subscriptions' do
-        expect { post_webhook }.to change { other_team.team_subscription.reload.active }.from(true).to(false)
+        expect { post_webhook }.to change { other_team.subscription.reload.active }.from(true).to(false)
       end
     end
 

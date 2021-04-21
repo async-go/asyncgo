@@ -106,7 +106,7 @@ RSpec.describe 'Teams', type: :system do
 
   it 'shows the manage subscription link for subscribed teams' do
     user = FactoryBot.create(:user, :team)
-    user.team.create_team_subscription(active: true)
+    user.team.create_subscription!(active: true)
 
     visit '/'
     sign_in_user(user)

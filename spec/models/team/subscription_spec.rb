@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe TeamSubscription, type: :model do
+RSpec.describe Team::Subscription, type: :model do
   describe 'Validations' do
     before do
       team = FactoryBot.create(:team)

@@ -71,7 +71,7 @@
 .row
   .col-lg-12
     %h3#subscription Subscription
-    - if @team&.team_subscription&.active?
+    - if @team&.subscription&.active?
       %p
         Only the user that bought the subscription can manage it.
       = link_to 'Manage Subscription', edit_team_subscription_path(@team),
