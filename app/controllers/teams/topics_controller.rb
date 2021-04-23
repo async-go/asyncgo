@@ -8,11 +8,8 @@ module Teams
       authorize(team, policy_class: TopicPolicy)
 
       @team = team
-      team_topics = team.topics.includes(:user, :subscribed_users, :labels)
-      active_topics = team_topics.active.order(pinned: :desc).by_due_date
-      resolved_topics = team_topics.resolved.order(pinned: :desc).order(updated_at: :desc)
-      @pagy_active_topics, @active_topics = pagy(filtered_topics(active_topics), page_param: 'active_page')
-      @pagy_resolved_topics, @resolved_topics = pagy(filtered_topics(resolved_topics), page_param: 'resolved_page')
+      @pagy_active_topics, @active_topics = pagy(team_active_topics(team), page_param: 'active_page')
+      @pagy_resolved_topics, @resolved_topics = pagy(team_resolved_topics(team), page_param: 'resolved_page')
     end
 
     def new
@@ -141,6 +138,18 @@ module Teams
 
     def topic_path(topic)
       team_topic_path(topic.team, topic)
+    end
+
+    def team_active_topics(team)
+      team_topics = team.topics.includes(:user, :subscribed_users, :labels)
+      active_topics = team_topics.active.order(pinned: :desc).by_due_date
+      filtered_topics(active_topics)
+    end
+
+    def team_resolved_topics(team)
+      team_topics = team.topics.includes(:user, :subscribed_users, :labels)
+      resolved_topics = team_topics.resolved.order(pinned: :desc).order(updated_at: :desc)
+      filtered_topics(resolved_topics)
     end
 
     def render_turbo_or_html(target_topic, success, flash_verb) # rubocop:disable Metrics/MethodLength
