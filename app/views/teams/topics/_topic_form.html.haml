@@ -21,9 +21,10 @@
     .col-lg-4
       .mb-1
         = form.label :outcome, id: 'topic-outcome'
-      = render partial: 'shared/markdown_text_area', locals: { form: form, name: :outcome,
+      = render partial: 'shared/tiptap_text_area', locals: { form: form, name: :outcome,
         options: { rows: '20', class: 'form-control', autocomplete: 'off',
-        data: { controller: 'attach-tribute', action: 'focus->attach-tribute#attach:once' } } }
+        data: { controller: 'attach-tribute attach-tiptap', action: 'focus->attach-tribute#attach:once' } } }
+      .editor.form-control#outcome{ data: { controller: 'attach-tiptap', 'attach-tiptap-target': 'textarea' } }
   .row
     .col-lg-7
       .input-group
