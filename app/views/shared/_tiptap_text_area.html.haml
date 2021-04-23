@@ -1,3 +1,3 @@
 .mb-2
-  = button_tag type: 'button', onclick: 'editor.chain().toggleBold().focus().run()', class: 'btn btn-outline-dark btn-sm' do
+  = button_tag type: 'button', onclick: "window.tiptap[\"#{name}\"].chain().toggleBold().focus().run()", class: 'btn btn-outline-dark btn-sm' do
     = assistive_icon 'fas', 'bold', 'Bold'
