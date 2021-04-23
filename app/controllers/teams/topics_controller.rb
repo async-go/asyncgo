@@ -9,8 +9,8 @@ module Teams
 
       @team = team
       topics = filtered_topics(team.topics.includes(:user, :subscribed_users, :labels))
-      @pagy_active_topics, @active_topics = pagy(active_topics(topics), page_param: 'active_page')
-      @pagy_resolved_topics, @resolved_topics = pagy(resolved_topics(topics), page_param: 'resolved_page')
+      @pagy_active_topics, @active_topics = pagy(ordered_active_topics(topics), page_param: 'active_page')
+      @pagy_resolved_topics, @resolved_topics = pagy(ordered_resolved_topics(topics), page_param: 'resolved_page')
     end
 
     def new
@@ -141,11 +141,11 @@ module Teams
       team_topic_path(topic.team, topic)
     end
 
-    def active_topics(topics)
+    def ordered_active_topics(topics)
       topics.active.order(pinned: :desc).by_due_date
     end
 
-    def resolved_topics(topics)
+    def ordered_resolved_topics(topics)
       topics.resolved.order(pinned: :desc).order(updated_at: :desc)
     end
 
