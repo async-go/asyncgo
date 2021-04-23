@@ -11,6 +11,5 @@ export default class extends Controller {
             extensions: defaultExtensions(),
             content: '<p>Hello world!</p>',
         })
-        console.log(editor);
     }
 }
