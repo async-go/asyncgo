@@ -2,6 +2,13 @@
 
 = render partial: 'shared/form_errors', locals: { model: @team }
 
+%p.lead
+  Creating a team is the first step to getting started with AsyncGo
+%p
+  If you were expecting to join a team that already exists, check that the email
+  associated with the account you logged in with matches your invitation, or
+  contact your team admin.
+
 = form_with(model: @team) do |form|
   .mb-3
     .input-group
@@ -10,3 +17,6 @@
       = form.text_field :name, class: 'form-control'
 
   = form.submit 'Create Team', class: 'btn btn-primary'
+
+%p.mt-5
+  = image_tag('happy_users.png', alt: 'Hello!', class: 'img-fluid')
