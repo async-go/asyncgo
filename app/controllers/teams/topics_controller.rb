@@ -142,7 +142,7 @@ module Teams
     end
 
     def active_topics(topics)
-      active_topics = topics.active.order(pinned: :desc).by_due_date
+      topics.active.order(pinned: :desc).by_due_date
     end
 
     def resolved_topics(topics)
