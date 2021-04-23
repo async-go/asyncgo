@@ -33,7 +33,6 @@ class OmniauthCallbacksController < ApplicationController
     user = User.from_omniauth(email, name)
 
     if user.persisted?
-      flash[:success] = 'User was successfully authenticated.'
       session[:user_id] = user.id
     else
       flash[:danger] = 'Could not authenticate user.'
