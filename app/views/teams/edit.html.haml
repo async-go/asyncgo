@@ -78,7 +78,12 @@
         target: :_blank, rel: :noopener
     - else
       %p
-        Upgrading will allow for more than five users in your team.
+        Upgrading from the Basic (free) to Pro (paid) plan will increase the
+        number of users possible for your team from five to fifty. Details on
+        pricing and features can be found on our
+        = link_to 'pricing page', 'https://asyncgo.com/pricing', target: '_blank;',
+          rel: 'noreferrer noopener'
+        \.
       %button{ data: { controller: 'subscription', action: 'click->subscription#buy' },
       class: 'btn btn-primary' }
         Buy Subscription
