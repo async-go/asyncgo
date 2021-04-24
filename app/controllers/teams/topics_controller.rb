@@ -8,11 +8,11 @@ module Teams
       authorize(team, policy_class: TopicPolicy)
 
       @team = team
-      team_topics = team.topics.includes(:user, :subscribed_users, :labels)
-      active_topics = team_topics.active.order(pinned: :desc).by_due_date
-      resolved_topics = team_topics.resolved.order(updated_at: :desc)
-      @pagy_active_topics, @active_topics = pagy(filtered_topics(active_topics), page_param: 'active_page')
-      @pagy_resolved_topics, @resolved_topics = pagy(filtered_topics(resolved_topics), page_param: 'resolved_page')
+      topics = filtered_topics(team.topics.includes(:user, :subscribed_users, :labels))
+      active_topics = topics.active.order(pinned: :desc).by_due_date
+      resolved_topics = topics.resolved.order(pinned: :desc, updated_at: :desc)
+      @pagy_active_topics, @active_topics = pagy(active_topics, page_param: 'active_page')
+      @pagy_resolved_topics, @resolved_topics = pagy(resolved_topics, page_param: 'resolved_page')
     end
 
     def new
