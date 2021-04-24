@@ -100,7 +100,7 @@ topic = Topic.create!(user: alice, title: '👶 Plan baby shower for Alice',
                       description: '- Hello', description_html: '<ul><li>Hello</li></ul>',
                       outcome: 'Action items', outcome_html: '<p>Action items</p>',
                       label_list: 'fun', team: asyncgo, due_date: Time.zone.today,
-                      status: :closed)
+                      status: :resolved)
 Subscription.create!(topic: topic, user: bob)
 Subscription.create!(topic: topic, user: alice)
 Subscription.create!(topic: topic, user: carol)

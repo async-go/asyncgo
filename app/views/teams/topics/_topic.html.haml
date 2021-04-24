@@ -44,7 +44,7 @@
       = form_with(model: topic, url: team_topic_toggle_path(topic.team, topic),
         data: { 'turbo-frame': '_top' }) do |form|
         - if topic.active?
-          = form.hidden_field :status, value: :closed
+          = form.hidden_field :status, value: :resolved
           = button_tag type: 'submit', class: 'btn btn-success', id: 'topic-resolve',
             data: { controller: 'hotkey', hotkey: 'r' } do
             = assistive_icon('fas', 'check', 'Resolve this topic')

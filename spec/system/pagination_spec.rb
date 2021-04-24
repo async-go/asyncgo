@@ -26,14 +26,14 @@ RSpec.describe 'Pagination', type: :system do
     expect(page).to have_text('thisisthelasttopic')
   end
 
-  it 'paginates closed topics' do
+  it 'paginates resolved topics' do
     user = FactoryBot.create(:user, :team)
     FactoryBot.create_list(
-      :topic, 20, user: user, team: user.team, status: :closed,
+      :topic, 20, user: user, team: user.team, status: :resolved,
                   updated_at: Date.new(2021, 1, 1)
     )
     FactoryBot.create(
-      :topic, user: user, team: user.team, status: :closed,
+      :topic, user: user, team: user.team, status: :resolved,
               updated_at: Date.new(2020, 1, 1), title: 'thisisthelasttopic'
     )
 

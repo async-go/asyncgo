@@ -53,7 +53,7 @@ class TopicUpdater < ApplicationService
 
   def notification_update_action(params)
     case params[:status]
-    when 'closed'
+    when 'resolved'
       :resolved
     when 'active'
       :reopened

@@ -98,10 +98,10 @@ export default class extends Controller {
         }
       },
       {
-        element: '#closed-topics',
+        element: '#resolved-topics',
         popover: {
-          title: 'Closed Topics',
-          description: 'The closed topics list is similar to the active topics list, but contains items that were already discussed and resolved. They contain a nicely summarized outcome so you can easily see what was decided or done, and read through the comments to see how the team got there.'
+          title: 'Resolved Topics',
+          description: 'The resolved topics list is similar to the active topics list, but contains items that were already discussed and resolved. They contain a nicely summarized outcome so you can easily see what was decided or done, and read through the comments to see how the team got there.'
         }
       },
       {
