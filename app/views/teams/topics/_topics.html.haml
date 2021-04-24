@@ -11,8 +11,9 @@
         .col-lg-2.text-secondary
           Participants
     - topic_collection.each_with_index do |topic, topic_index|
-      %li.list-group-item.mb-2.pb-0
-        .row.mb-3
+      - list_item_background = topic_index.odd? ? 'white' : 'offset'
+      %li.list-group-item.border-0.p-2.mb-1.pb-0{ class: list_item_background }
+        .row.my-2
           .col-8.col-lg-5.mb-2
             - if topic_hotkeys
               = link_to topic.title, team_topic_path(current_user.team, topic),
