@@ -38,12 +38,6 @@ RSpec.describe OmniauthCallbacksController, type: :request do
         expect(User.last.name).to eq('John Sample')
       end
 
-      it 'sets the flash' do
-        post_google_oauth2
-
-        expect(controller.flash[:success]).to eq('User was successfully authenticated.')
-      end
-
       it 'redirects to redirect_uri' do
         expect(post_google_oauth2).to redirect_to(root_path)
       end
@@ -60,12 +54,6 @@ RSpec.describe OmniauthCallbacksController, type: :request do
 
       it 'updates the users name' do
         expect { post_google_oauth2 }.to change { user.reload.name }.from(nil).to('John Sample')
-      end
-
-      it 'sets the flash' do
-        post_google_oauth2
-
-        expect(controller.flash[:success]).to eq('User was successfully authenticated.')
       end
 
       it 'redirects to redirect_uri' do
@@ -112,12 +100,6 @@ RSpec.describe OmniauthCallbacksController, type: :request do
         expect(User.last.name).to eq('John Sample')
       end
 
-      it 'sets the flash' do
-        post_github
-
-        expect(controller.flash[:success]).to eq('User was successfully authenticated.')
-      end
-
       it 'redirects to redirect_uri' do
         expect(post_github).to redirect_to(root_path)
       end
@@ -134,12 +116,6 @@ RSpec.describe OmniauthCallbacksController, type: :request do
 
       it 'updates the users name' do
         expect { post_github }.to change { user.reload.name }.from(nil).to('John Sample')
-      end
-
-      it 'sets the flash' do
-        post_github
-
-        expect(controller.flash[:success]).to eq('User was successfully authenticated.')
       end
 
       it 'redirects to redirect_uri' do
@@ -187,12 +163,6 @@ RSpec.describe OmniauthCallbacksController, type: :request do
         expect(User.last.name).to eq('John Sample')
       end
 
-      it 'sets the flash' do
-        post_microsoft_graph
-
-        expect(controller.flash[:success]).to eq('User was successfully authenticated.')
-      end
-
       it 'redirects to redirect_uri' do
         expect(post_microsoft_graph).to redirect_to(root_path)
       end
@@ -209,12 +179,6 @@ RSpec.describe OmniauthCallbacksController, type: :request do
 
       it 'updates the users name' do
         expect { post_microsoft_graph }.to change { user.reload.name }.from(nil).to('John Sample')
-      end
-
-      it 'sets the flash' do
-        post_microsoft_graph
-
-        expect(controller.flash[:success]).to eq('User was successfully authenticated.')
       end
 
       it 'redirects to redirect_uri' do
@@ -265,12 +229,6 @@ RSpec.describe OmniauthCallbacksController, type: :request do
         expect(User.last.name).to eq('John Sample')
       end
 
-      it 'sets the flash' do
-        post_slack
-
-        expect(controller.flash[:success]).to eq('User was successfully authenticated.')
-      end
-
       it 'redirects to redirect_uri' do
         expect(post_slack).to redirect_to(root_path)
       end
@@ -287,12 +245,6 @@ RSpec.describe OmniauthCallbacksController, type: :request do
 
       it 'updates the users name' do
         expect { post_slack }.to change { user.reload.name }.from(nil).to('John Sample')
-      end
-
-      it 'sets the flash' do
-        post_slack
-
-        expect(controller.flash[:success]).to eq('User was successfully authenticated.')
       end
 
       it 'redirects to redirect_uri' do
