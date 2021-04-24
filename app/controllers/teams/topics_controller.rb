@@ -9,8 +9,10 @@ module Teams
 
       @team = team
       topics = filtered_topics(team.topics.includes(:user, :subscribed_users, :labels))
-      @pagy_active_topics, @active_topics = pagy(ordered_active_topics(topics), page_param: 'active_page')
-      @pagy_resolved_topics, @resolved_topics = pagy(ordered_resolved_topics(topics), page_param: 'resolved_page')
+      active_topics = topics.active.order(pinned: :desc).by_due_date
+      resolved_topics = topics.resolved.order(pinned: :desc, updated_at: :desc)
+      @pagy_active_topics, @active_topics = pagy(active_topics, page_param: 'active_page')
+      @pagy_resolved_topics, @resolved_topics = pagy(resolved_topics, page_param: 'resolved_page')
     end
 
     def new
@@ -139,14 +141,6 @@ module Teams
 
     def topic_path(topic)
       team_topic_path(topic.team, topic)
-    end
-
-    def ordered_active_topics(topics)
-      topics.active.order(pinned: :desc).by_due_date
-    end
-
-    def ordered_resolved_topics(topics)
-      topics.resolved.order(pinned: :desc).order(updated_at: :desc)
     end
 
     def render_turbo_or_html(target_topic, success, flash_verb) # rubocop:disable Metrics/MethodLength
