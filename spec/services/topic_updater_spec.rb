@@ -184,7 +184,7 @@ RSpec.describe TopicUpdater, type: :service do
 
     context 'when topic is being resolved' do
       let(:topic) { FactoryBot.create(:topic, team: user.team, status: :active) }
-      let(:params) { { status: 'closed' } }
+      let(:params) { { status: 'resolved' } }
 
       before do
         topic.subscribed_users << FactoryBot.create(:user)
@@ -216,7 +216,7 @@ RSpec.describe TopicUpdater, type: :service do
     end
 
     context 'when topic is being reopend' do
-      let(:topic) { FactoryBot.create(:topic, team: user.team, status: :closed) }
+      let(:topic) { FactoryBot.create(:topic, team: user.team, status: :resolved) }
       let(:params) { { status: 'active' } }
 
       before do

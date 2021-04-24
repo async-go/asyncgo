@@ -3,11 +3,11 @@
 RSpec.describe DigestEmailSender, type: :service do
   let!(:user) { FactoryBot.create(:user, :team) }
 
-  let(:recently_closed_topic) do
-    FactoryBot.create(:topic, status: :closed, updated_at: 4.hours.ago, user: user, team: user.team)
+  let(:recently_resolved_topic) do
+    FactoryBot.create(:topic, status: :resolved, updated_at: 4.hours.ago, user: user, team: user.team)
   end
   let(:unread_notification) do
-    FactoryBot.create(:notification, user: user, actor: user, target: recently_closed_topic)
+    FactoryBot.create(:notification, user: user, actor: user, target: recently_resolved_topic)
   end
 
   before do
@@ -29,7 +29,7 @@ RSpec.describe DigestEmailSender, type: :service do
     end
 
     it 'creates digest when there are recently reseolved topics' do
-      recently_closed_topic
+      recently_resolved_topic
 
       expect { call }.to have_enqueued_mail(DigestMailer, :digest_email).with(
         a_hash_including(params: { user: user })
@@ -45,7 +45,7 @@ RSpec.describe DigestEmailSender, type: :service do
     end
 
     it 'creates digest when there are notifications and topics' do
-      recently_closed_topic
+      recently_resolved_topic
       unread_notification
 
       expect { call }.to have_enqueued_mail(DigestMailer, :digest_email).with(

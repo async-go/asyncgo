@@ -99,9 +99,9 @@ RSpec.describe Teams::TopicsController, type: :request do
         end
       end
 
-      context 'when topic is closed' do
+      context 'when topic is resolved' do
         before do
-          topic.update!(status: :closed)
+          topic.update!(status: :resolved)
         end
 
         it 'sets the alert flash' do
@@ -300,20 +300,20 @@ RSpec.describe Teams::TopicsController, type: :request do
       end
 
       context 'when topic is active' do
-        let(:params) { { status: 'closed' } }
+        let(:params) { { status: 'resolved' } }
 
         before do
           topic.update!(status: 'active')
         end
 
         it 'closes the topic' do
-          expect { patch_toggle }.to change { topic.reload.status }.from('active').to('closed')
+          expect { patch_toggle }.to change { topic.reload.status }.from('active').to('resolved')
         end
 
         it 'sets the flash' do
           patch_toggle
 
-          expect(controller.flash[:success]).to eq('Topic status was successfully changed to closed.')
+          expect(controller.flash[:success]).to eq('Topic status was successfully changed to resolved.')
         end
 
         it 'redirects to topic' do
@@ -321,15 +321,15 @@ RSpec.describe Teams::TopicsController, type: :request do
         end
       end
 
-      context 'when topic is closed' do
+      context 'when topic is resolved' do
         let(:params) { { status: 'active' } }
 
         before do
-          topic.update!(status: 'closed')
+          topic.update!(status: 'resolved')
         end
 
         it 'opens the topic' do
-          expect { patch_toggle }.to change { topic.reload.status }.from('closed').to('active')
+          expect { patch_toggle }.to change { topic.reload.status }.from('resolved').to('active')
         end
 
         it 'sets the flash' do
@@ -345,7 +345,7 @@ RSpec.describe Teams::TopicsController, type: :request do
     end
 
     include_examples 'unauthorized user examples' do
-      let(:params) { { status: 'closed' } }
+      let(:params) { { status: 'resolved' } }
     end
   end
 

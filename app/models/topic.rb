@@ -29,7 +29,7 @@ class Topic < ApplicationRecord
   has_many :notifications, as: :target, dependent: :destroy
   has_many :votes, as: :votable, dependent: :destroy
 
-  enum status: { active: 0, closed: 1 }
+  enum status: { active: 0, resolved: 1 }
 
   acts_as_taggable_on :labels
 

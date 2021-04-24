@@ -23,7 +23,7 @@ class DigestEmailSender < ApplicationService
 
   def recently_resolved_topics_for(user)
     user.team.topics.where(
-      updated_at: 24.hours.ago..Time.zone.now, status: :closed
+      updated_at: 24.hours.ago..Time.zone.now, status: :resolved
     )
   end
 

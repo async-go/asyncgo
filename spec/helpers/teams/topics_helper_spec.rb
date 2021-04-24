@@ -71,10 +71,10 @@ RSpec.describe Teams::TopicsHelper, type: :helper do
       end
     end
 
-    context 'when topic has due date and is closed' do
+    context 'when topic has due date and is resolved' do
       before do
         topic.due_date = Time.utc(2020, 1, 1)
-        topic.status = :closed
+        topic.status = :resolved
       end
 
       it { is_expected.to have_text('Due Jan 1') }

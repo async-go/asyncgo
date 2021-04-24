@@ -26,7 +26,7 @@ class DigestMailer < ApplicationMailer
 
   def recently_resolved_topics
     user.team.topics.where(
-      updated_at: (Time.zone.now - 24.hours)..Time.zone.now, status: :closed
+      updated_at: (Time.zone.now - 24.hours)..Time.zone.now, status: :resolved
     )
   end
 end

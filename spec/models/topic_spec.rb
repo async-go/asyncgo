@@ -85,7 +85,7 @@ RSpec.describe Topic, type: :model do
     it { is_expected.to have_many(:votes) }
   end
 
-  it { is_expected.to define_enum_for(:status).with_values(%i[active closed]) }
+  it { is_expected.to define_enum_for(:status).with_values(%i[active resolved]) }
 
   describe '#last_interacted' do
     subject(:last_interacted) { topic.last_interacted }
