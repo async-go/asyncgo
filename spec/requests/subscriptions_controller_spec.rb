@@ -19,17 +19,17 @@ RSpec.describe SubscriptionsController, type: :request do
           {
             'id' => '111',
             'type' => 'subscription.activated',
-            'tags' => { 'teamId' => team.id }
+            'data' => { 'tags' => { 'teamId' => team.id } }
           },
           {
             'id' => '222',
             'type' => 'subscription.deactivated',
-            'tags' => { 'teamId' => other_team.id }
+            'data' => { 'tags' => { 'teamId' => other_team.id } }
           },
           {
             'id' => '1234',
             'type' => 'invalid_type',
-            'tags' => { 'teamId' => team.id }
+            'data' => { 'tags' => { 'teamId' => team.id } }
           }
         ]
       }

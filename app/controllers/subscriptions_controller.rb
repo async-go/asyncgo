@@ -33,12 +33,13 @@ class SubscriptionsController < Teams::ApplicationController
   end
 
   def process_webhook_event(webhook_event)
+    team_id = webhook_event.dig('data', 'tags', 'teamId')
     case webhook_event['type']
     when 'subscription.activated'
-      activate_subscription(webhook_event['tags']['teamId'])
+      activate_subscription(team_id)
       webhook_event['id']
     when 'subscription.deactivated'
-      deactivate_subscription(webhook_event['tags']['teamId'])
+      deactivate_subscription(team_id)
       webhook_event['id']
     end
   end
