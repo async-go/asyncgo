@@ -20,7 +20,7 @@ module Teams
       authorize(@topic)
 
       @topic.description = ''
-      @topic.description += "Context: #{new_params[:context]}\n\n" if new_params[:context]
+      @topic.description += "Created from: #{new_params[:context]}\n\n" if new_params[:context]
       @topic.description += new_params[:selection].gsub("\n", "\n\n") if new_params[:selection]
     end
 
