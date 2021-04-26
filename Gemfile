@@ -21,6 +21,7 @@ gem 'webpacker', '6.0.0.beta.6 ' # Transpile app-like JavaScript. Read more: htt
 
 # Other
 gem 'acts-as-taggable-on', '~> 7.0.0' # Tags
+gem 'barnes', '~> 0.0.9' # heroku application metrics
 gem 'blazer', '~> 2.4.2' # Business Intelligence made easy
 gem 'commonmarker', '~> 0.21.0' # GitHub Flavored Markdown renderer
 gem 'font-awesome-sass', '~> 5.15.1'
