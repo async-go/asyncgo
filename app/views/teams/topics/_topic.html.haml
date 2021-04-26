@@ -34,12 +34,11 @@
             = assistive_icon('far', 'bookmark', 'Pin this topic')
             .text-dark.d-none.d-lg-inline.small Pin
     .col-3.col-lg-1.my-2
-      - if topic.active?
-        = link_to edit_team_topic_path(topic.team, topic),
-          class: 'btn btn-primary', id: 'topic-edit',
-          data: { controller: 'hotkey', hotkey: 'e' } do
-          = assistive_icon('fas', 'edit', 'Edit this topic')
-          .d-none.d-lg-inline Edit
+      = link_to edit_team_topic_path(topic.team, topic),
+        class: 'btn btn-primary', id: 'topic-edit',
+        data: { controller: 'hotkey', hotkey: 'e' } do
+        = assistive_icon('fas', 'edit', 'Edit this topic')
+        .d-none.d-lg-inline Edit
     .col-2.col-lg-2.my-2
       = form_with(model: topic, url: team_topic_toggle_path(topic.team, topic),
         data: { 'turbo-frame': '_top' }) do |form|
