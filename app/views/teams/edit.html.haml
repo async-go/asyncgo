@@ -64,11 +64,11 @@
     - if @team&.subscription&.active?
       %p
         You are on the Pro (paid) plan and can have up to fifty users on your
-        team. If you are the user who set up the subscription for this team, you
-        can update and cancel your subscription at
-        = link_to 'this link', edit_team_subscription_path(@team),
+        team. If you are the user who set up the subscription, you
+        can update and cancel your subscription via the
+        = link_to 'Manage Subscription', edit_team_subscription_path(@team),
           target: :_blank, rel: :noopener
-        \.
+        page.
       %p
         If you are not the subscription owner, you will need to contact them to
         make changes. If you are unsure who the subscription owner is, use the
