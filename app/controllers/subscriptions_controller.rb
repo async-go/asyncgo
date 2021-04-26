@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class SubscriptionsController < Teams::ApplicationController
+  skip_before_action :verify_authenticity_token
+
   def webhook
     return head :unauthorized unless valid_payload?
 
