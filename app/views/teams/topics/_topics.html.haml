@@ -47,7 +47,7 @@
                 = topic_due_date_span(topic)
             - if type == :resolved && topic.outcome
               %p.my-0.small.fst-italic
-                = raw preview_html(topic.outcome)
+                = preview_text(topic.outcome)
 
   - else
     %li.list-group-item

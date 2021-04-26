@@ -30,7 +30,7 @@ module Teams
       Digest::MD5.hexdigest(value.to_s)
     end
 
-    def preview_html(content)
+    def preview_text(content)
       if content.length > 300
         "#{content[0..300]}..."
       else
