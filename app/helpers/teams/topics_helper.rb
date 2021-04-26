@@ -30,6 +30,14 @@ module Teams
       Digest::MD5.hexdigest(value.to_s)
     end
 
+    def preview_html(content)
+      if content.length > 300
+        "#{content[0..300]}..."
+      else
+        content
+      end
+    end
+
     private
 
     def topic_due_date_text(topic)
