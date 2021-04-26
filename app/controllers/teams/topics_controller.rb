@@ -18,6 +18,10 @@ module Teams
     def new
       @topic = team.topics.build
       authorize(@topic)
+
+      @topic.description = ''
+      @topic.description += "Context: #{new_params[:context]}\n\n" if new_params[:context]
+      @topic.description += new_params[:selection].gsub("\n", "\n\n") if new_params[:selection]
     end
 
     def show
@@ -113,6 +117,10 @@ module Teams
 
     def create_params
       topic_params.merge(user: current_user)
+    end
+
+    def new_params
+      params.permit(:selection, :context)
     end
 
     def update_user_subscription(topic)
