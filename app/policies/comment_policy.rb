@@ -8,8 +8,7 @@ class CommentPolicy < ApplicationPolicy
 
   def edit?
     user &&
-      record.user == user &&
-      record.topic.active?
+      record.user == user
   end
 
   def create?
