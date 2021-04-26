@@ -12,7 +12,7 @@
         %li= link_to notification_text(notification),
           user_notification_url(@user, notification)
 
-%h3 Recently Resolved Topics
+%h3 Recently Resolved (and recently updated, but already resolved) Topics
 %p
   - if @recently_resolved_topics.blank?
     None
