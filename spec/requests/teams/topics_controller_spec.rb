@@ -104,15 +104,10 @@ RSpec.describe Teams::TopicsController, type: :request do
           topic.update!(status: :resolved)
         end
 
-        it 'sets the alert flash' do
+        it 'renders the edit page' do
           get_edit
-          follow_redirect!
 
-          expect(controller.flash[:warning]).to eq('You are not authorized.')
-        end
-
-        it 'redirects the user back (to root)' do
-          expect(get_edit).to redirect_to(root_path)
+          expect(response.body).to include('Update')
         end
       end
     end

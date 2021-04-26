@@ -18,8 +18,7 @@ class TopicPolicy < ApplicationPolicy
 
   def edit?
     user &&
-      record.team == user.team &&
-      record.active?
+      record.team == user.team
   end
 
   def create?
