@@ -22,7 +22,6 @@ module Teams
 
       @topic = team.topics.build(description: description)
       authorize(@topic)
-
     end
 
     def show
