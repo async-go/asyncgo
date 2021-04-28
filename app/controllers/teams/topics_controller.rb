@@ -16,12 +16,13 @@ module Teams
     end
 
     def new
-      @topic = team.topics.build
+      description = ''
+      description += "Created from: #{new_params[:context]}\n\n" if new_params[:context]
+      description += new_params[:selection].gsub("\n", "\n\n") if new_params[:selection]
+
+      @topic = team.topics.build(description: description)
       authorize(@topic)
 
-      @topic.description = ''
-      @topic.description += "Created from: #{new_params[:context]}\n\n" if new_params[:context]
-      @topic.description += new_params[:selection].gsub("\n", "\n\n") if new_params[:selection]
     end
 
     def show
