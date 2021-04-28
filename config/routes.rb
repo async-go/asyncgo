@@ -24,6 +24,8 @@ Rails.application.routes.draw do
     get :failure, to: redirect('/')
   end
 
+  get 'teams/:team_id/topic/new', to: "teams/topics#new"
+
   constraints ->(request) { AuthConstraint.admin?(request) } do
     mount Sidekiq::Web, at: :sidekiq
     mount Blazer::Engine, at: :blazer
