@@ -2,10 +2,7 @@
   .row
     .col-auto
       %h2#topic-title= topic.title
-  .row.mt-1
-    .col-auto.mt-1
-      %p.m-0.text-secondary#topic-duedate
-        = topic_due_date_span(topic)
+  .row.mt-1.justify-content-end
     .col-auto.mt-1#topic-participants
       = link_to image_tag("#{topic.user.gravatar_url}?s=20&d=retro",
         class: 'gravatar-img mb-1',
@@ -20,9 +17,33 @@
     .col-auto.mt-1
       - topic.labels.each do |label|
         %span.topic-label= label
+    .col-auto.mt-1
+      %p.m-0.text-secondary#topic-duedate
+        = topic_due_date_span(topic)
   .row.mt-1
     %hr
-  .row.justify-content-end.gap-3
+  .row
+    .col-auto.my-1
+      = link_to edit_team_topic_path(topic.team, topic),
+        class: 'btn btn-primary', id: 'topic-edit',
+        data: { controller: 'hotkey', hotkey: 'e' } do
+        = assistive_icon('fas', 'edit', 'Edit this topic')
+        .d-none.d-lg-inline.ms-1 Edit
+    .col-auto.my-1
+      = form_with(model: topic, url: team_topic_toggle_path(topic.team, topic),
+        data: { 'turbo-frame': '_top' }) do |form|
+        - if topic.active?
+          = form.hidden_field :status, value: :resolved
+          = button_tag type: 'submit', class: 'btn btn-success', id: 'topic-resolve',
+            data: { controller: 'hotkey', hotkey: 'r' } do
+            = assistive_icon('fas', 'check', 'Resolve this topic')
+            .d-none.d-lg-inline.ms-1 Resolve
+        - else
+          = form.hidden_field :status, value: :active
+          = button_tag type: 'submit', class: 'btn btn-secondary', id: 'topic-resolve',
+            data: { controller: 'hotkey', hotkey: 'r' } do
+            = assistive_icon('fas', 'undo', 'Reopen this topic')
+            .d-none.d-lg-inline Reopen
     .col-auto.my-1
       %ul.list-group.list-group-horizontal
         = render partial: 'teams/topics/vote_list_group', locals: { votable: topic }
@@ -57,27 +78,6 @@
             data: { controller: 'hotkey', hotkey: 'p' } do
             = assistive_icon('far', 'bookmark', 'Pin this topic')
             .text-dark.d-none.d-lg-inline.small.ms-1 Pin
-    .col-auto.my-1
-      = link_to edit_team_topic_path(topic.team, topic),
-        class: 'btn btn-primary', id: 'topic-edit',
-        data: { controller: 'hotkey', hotkey: 'e' } do
-        = assistive_icon('fas', 'edit', 'Edit this topic')
-        .d-none.d-lg-inline.ms-1 Edit
-    .col-auto.my-1
-      = form_with(model: topic, url: team_topic_toggle_path(topic.team, topic),
-        data: { 'turbo-frame': '_top' }) do |form|
-        - if topic.active?
-          = form.hidden_field :status, value: :resolved
-          = button_tag type: 'submit', class: 'btn btn-success', id: 'topic-resolve',
-            data: { controller: 'hotkey', hotkey: 'r' } do
-            = assistive_icon('fas', 'check', 'Resolve this topic')
-            .d-none.d-lg-inline.ms-1 Resolve
-        - else
-          = form.hidden_field :status, value: :active
-          = button_tag type: 'submit', class: 'btn btn-secondary', id: 'topic-resolve',
-            data: { controller: 'hotkey', hotkey: 'r' } do
-            = assistive_icon('fas', 'undo', 'Reopen this topic')
-            .d-none.d-lg-inline Reopen
   .row.mt-3
     .col-lg-8.border
       %h6.mt-2.text-secondary.small#topic-description Description
