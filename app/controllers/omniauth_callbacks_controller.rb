@@ -38,6 +38,6 @@ class OmniauthCallbacksController < ApplicationController
       flash[:danger] = 'Could not authenticate user.'
     end
 
-    redirect_to root_path, params: request.env['omniauth.params']
+    redirect_to root_path
   end
 end

@@ -35,6 +35,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get 'new/topic', to: 'new#topic'
+
   resources :users, only: :edit do
     scope module: :users do
       resource :preferences, only: :update
