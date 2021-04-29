@@ -64,16 +64,12 @@
                     'aria-expanded': 'false' } Sign in
                   %ul.dropdown-menu{ 'aria-labelledby': 'sign-in-dropdown' }
                     %li= button_to 'Sign in with Google', '/auth/google_oauth2',
-                      params: params.permit(:selection, :context),
                       'data-turbo': false, class: 'dropdown-item btn btn-google'
                     %li= button_to 'Sign in with GitHub', '/auth/github',
-                      params: params.permit(:selection, :context),
                       'data-turbo': false, class: 'dropdown-item btn btn-github mt-2'
                     %li= button_to 'Sign in with Microsoft', '/auth/microsoft_graph',
-                      params: params.permit(:selection, :context),
                       'data-turbo': false, class: 'dropdown-item btn btn-microsoft mt-2'
                     %li= button_to 'Sign in with Slack', '/auth/slack',
-                      params: params.permit(:selection, :context),
                       'data-turbo': false, class: 'dropdown-item btn btn-slack mt-2'
               %li.nav-item.me-3#docs-nav= link_to 'Docs', 'https://asyncgo.com/docs',
                 class: 'nav-link', target: :_blank, rel: :noopener
