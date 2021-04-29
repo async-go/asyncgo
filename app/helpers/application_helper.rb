@@ -20,4 +20,8 @@ module ApplicationHelper
   def emoji_group_text(emoji_name, count)
     "#{Emoji.find_by_alias(emoji_name).raw} #{count}" # rubocop:disable Rails/DynamicFindBy
   end
+
+  def fastspring_store_url
+    ENV['FASTSPRING_STORE_URL']
+  end
 end
