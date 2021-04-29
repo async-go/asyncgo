@@ -2,7 +2,7 @@
 
 class NewController < Teams::ApplicationController
   def topic
-    redirect_to new_team_topic_path(current_user.team.id), params: topic_params
+    redirect_to new_team_topic_path(current_user.team.id, params: topic_params)
   end
 
   private
