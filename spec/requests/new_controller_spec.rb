@@ -39,7 +39,7 @@ RSpec.describe NewController, type: :request do
       it 'redirects to the home page' do
         get_new_topic
 
-        expect(response.body).to redirect_to('/')
+        expect(response.body).to redirect_to(root_path)
       end
     end
   end
