@@ -14,5 +14,4 @@ class NewController < Teams::ApplicationController
   def topic_params
     params.permit(:selection, :context)
   end
-
 end
