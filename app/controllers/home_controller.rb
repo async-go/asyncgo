@@ -24,5 +24,4 @@ class HomeController < ApplicationController
   def do_params
     params.permit(:selection, :context)
   end
-
 end
