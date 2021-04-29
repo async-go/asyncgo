@@ -45,9 +45,6 @@
             = assistive_icon('fas', 'undo', 'Reopen this topic')
             .d-none.d-lg-inline Reopen
     .col-auto.my-1
-      %ul.list-group.list-group-horizontal
-        = render partial: 'teams/topics/vote_list_group', locals: { votable: topic }
-    .col-auto.my-1
       = form_with(url: team_topic_subscribe_path(topic.team, topic)) do |subscription_form|
         - if user_subscribed?(topic)
           = subscription_form.hidden_field :subscribed, value: 0
@@ -78,6 +75,9 @@
             data: { controller: 'hotkey', hotkey: 'p' } do
             = assistive_icon('far', 'bookmark', 'Pin this topic')
             .text-dark.d-none.d-lg-inline.small.ms-1 Pin
+    .col-auto.my-1
+      %ul.list-group.list-group-horizontal
+        = render partial: 'teams/topics/vote_list_group', locals: { votable: topic }
   .row.mt-3
     .col-lg-8.border
       %h6.mt-2.text-secondary.small#topic-description Description
