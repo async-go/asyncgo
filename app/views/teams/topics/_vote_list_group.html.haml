@@ -19,11 +19,11 @@
 
   %ul.list-group.list-group-horizontal.gap-2
     - vote_groups.each do |emoji_name, votes|
-      - content = emoji_group_text(emoji_name, votes.count)
-      - vote_names = votes.collect { |vote| vote.user.name }.join(', ')
-      - user_vote = votes.find { |vote| vote.user == current_user }
-
       :ruby
+        content = emoji_group_text(emoji_name, votes.count)
+        vote_names = votes.collect { |vote| vote.user.name }.join(', ')
+        user_vote = votes.find { |vote| vote.user == current_user }
+
         form_path = case votable
                     when Topic
                       [votable.team, votable]
