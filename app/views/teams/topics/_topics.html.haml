@@ -24,6 +24,8 @@
               = assistive_icon('fas', 'bookmark', 'Is Pinned', classname: 'ms-1 text-info')
             - if topic_has_notification?(unique_unread_notifications, topic)
               = assistive_icon('fas', 'bell', 'Has Notification', classname: 'ms-1 text-warning')
+              %span.text-secondary.small
+                = current_user.topic_notifications(topic).count
             %p.mb-0.mt-2.small
               = topic_due_date_span(topic)
           .col-4.col-lg-2.mb-2.small
