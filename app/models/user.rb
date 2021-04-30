@@ -36,10 +36,13 @@ class User < ApplicationRecord
     name || email
   end
 
-  def clear_topic_notifications(topic)
+  def topic_notifications(topic)
     notifications.where(read_at: nil, target: topic.comments)
                  .or(notifications.where(read_at: nil, target: topic))
-                 .update(read_at: Time.now.utc)
+  end
+
+  def clear_topic_notifications(topic)
+    topic_notifications(topic).update(read_at: Time.now.utc)
   end
 
   private
