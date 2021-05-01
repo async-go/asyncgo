@@ -16,11 +16,7 @@ module Teams
     end
 
     def new
-      description = ''
-      description += "Created from: #{new_params[:context]}\n\n" if new_params[:context]
-      description += new_params[:selection].gsub("\n", "\n\n") if new_params[:selection]
-
-      @topic = team.topics.build(description: description)
+      @topic = team.topics.build(new_params)
       authorize(@topic)
     end
 
@@ -120,7 +116,14 @@ module Teams
     end
 
     def new_params
-      params.permit(:selection, :context)
+      return unless params[:context] && params[:selection]
+
+      {
+        description: <<~DESCRIPTION
+          Created from: #{params[:context]}
+          #{params[:selection]}
+        DESCRIPTION
+      }
     end
 
     def update_user_subscription(topic)
