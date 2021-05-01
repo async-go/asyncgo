@@ -3,9 +3,9 @@
 require './spec/support/unauthorized_user_examples'
 
 RSpec.describe SubscriptionsController, type: :request do
-  describe 'POST webhook' do
-    subject(:post_webhook) do
-      post '/subscriptions_webhook',
+  describe 'POST update' do
+    subject(:post_update) do
+      post '/subscriptions',
            params: payload, as: :json, headers: { 'X-FS-Signature' => payload_hash }
     end
 
@@ -52,24 +52,24 @@ RSpec.describe SubscriptionsController, type: :request do
       end
 
       it 'returns accepted' do
-        post_webhook
+        post_update
 
         expect(response).to have_http_status(:accepted)
       end
 
       it 'processed only valid event' do
-        post_webhook
+        post_update
 
         expect(response.body).to eq('111\n222')
       end
 
       it 'activates team subscriptions' do
-        expect { post_webhook }.to change { team.reload.subscription }
+        expect { post_update }.to change { team.reload.subscription }
           .from(nil).to(having_attributes(active: true))
       end
 
       it 'deactivates team subscriptions' do
-        expect { post_webhook }.to change { other_team.subscription.reload.active }.from(true).to(false)
+        expect { post_update }.to change { other_team.subscription.reload.active }.from(true).to(false)
       end
     end
 
@@ -77,7 +77,7 @@ RSpec.describe SubscriptionsController, type: :request do
       let(:payload_hash) { 'invalid-hash' }
 
       it 'returns unauthorized' do
-        post_webhook
+        post_update
 
         expect(response).to have_http_status(:unauthorized)
       end
@@ -93,7 +93,7 @@ RSpec.describe SubscriptionsController, type: :request do
       end
 
       it 'returns unauthorized' do
-        post_webhook
+        post_update
 
         expect(response).to have_http_status(:unauthorized)
       end
