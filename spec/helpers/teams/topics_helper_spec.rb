@@ -128,4 +128,30 @@ RSpec.describe Teams::TopicsHelper, type: :helper do
       end
     end
   end
+
+  describe '#vote_groups' do
+    subject(:vote_groups) { helper.vote_groups(topic) }
+
+    let(:topic) { FactoryBot.create(:topic) }
+    let!(:upvote) { FactoryBot.create(:vote, emoji: 'thumbsup', votable: topic) }
+    let!(:downvote) { FactoryBot.create(:vote, emoji: 'thumbsdown', votable: topic) }
+
+    it { is_expected.to eq('thumbsup' => [upvote], 'thumbsdown' => [downvote]) }
+  end
+
+  describe '#votable_path' do
+    subject(:votable_path) { helper.votable_path(votable) }
+
+    context 'when votable is topic' do
+      let(:votable) { FactoryBot.create(:topic) }
+
+      it { is_expected.to eq([votable.team, votable]) }
+    end
+
+    context 'when votable is comment' do
+      let(:votable) { FactoryBot.create(:comment) }
+
+      it { is_expected.to eq([votable.topic.team, votable.topic, votable]) }
+    end
+  end
 end

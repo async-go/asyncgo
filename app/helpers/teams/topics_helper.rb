@@ -30,6 +30,22 @@ module Teams
       Digest::MD5.hexdigest(value.to_s)
     end
 
+    def vote_groups(votable)
+      thumbsup = votable.votes.select { |vote| vote.emoji == 'thumbsup' }
+      thumbsdown = votable.votes.select { |vote| vote.emoji == 'thumbsdown' }
+
+      { 'thumbsup' => thumbsup, 'thumbsdown' => thumbsdown }
+    end
+
+    def votable_path(votable)
+      case votable
+      when Topic
+        [votable.team, votable]
+      when Comment
+        [votable.topic.team, votable.topic, votable]
+      end
+    end
+
     private
 
     def topic_due_date_text(topic)
