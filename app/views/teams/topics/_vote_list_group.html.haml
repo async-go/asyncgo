@@ -1,45 +1,18 @@
 .list-group.list-group-horizontal.gap-2
-  :ruby
-    thumbsup = []
-    thumbsdown = []
-
-    votable.votes.each do |vote|
-      case vote.emoji
-      when 'thumbsup'
-        thumbsup << vote
-      when 'thumbsdown'
-        thumbsdown << vote
-      end
-    end
-
-    vote_groups = {
-      'thumbsup' => thumbsup,
-      'thumbsdown' => thumbsdown
-    }
-
   %ul.list-group.list-group-horizontal.gap-2
-    - vote_groups.each do |emoji_name, votes|
-      :ruby
-        content = emoji_group_text(emoji_name, votes.count)
-        vote_names = votes.collect { |vote| vote.user.name }.join(', ')
-        user_vote = votes.find { |vote| vote.user == current_user }
+    - vote_groups(votable).each do |emoji_name, votes|
+      - content = emoji_group_text(emoji_name, votes.count)
+      - vote_names = votes.collect { |vote| vote.user.name }.join(', ')
 
-        form_path = case votable
-                    when Topic
-                      [votable.team, votable]
-                    when Comment
-                      [votable.topic.team, votable.topic, votable]
-                    end
-
-      - if user_vote
-        = form_with(model: user_vote, url: form_path + [user_vote],
+      - if (user_vote = votes.find { |vote| vote.user == current_user })
+        = form_with(model: user_vote, url: votable_path(votable) + [user_vote],
           method: :delete) do |remove_vote_form|
           = remove_vote_form.hidden_field :id
           = remove_vote_form.submit content,
             class: 'list-group-item list-group-item-action active p-1',
-            title: vote_names
+            'data-bs-toggle' => 'tooltip', title: vote_names
       - else
-        = form_with(model: Vote, url: form_path + [:votes]) do |add_vote_form|
+        = form_with(model: Vote, url: votable_path(votable) + [:votes]) do |add_vote_form|
           = add_vote_form.hidden_field :emoji, value: emoji_name
           = add_vote_form.submit content, class: 'list-group-item list-group-item-action p-1',
-            title: vote_names
+            'data-bs-toggle' => 'tooltip', title: vote_names
