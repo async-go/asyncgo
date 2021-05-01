@@ -11,22 +11,29 @@ end
 
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  root to: 'home#index'
+  root controller: :home, action: :index
+  delete :sign_out, controller: :sessions, action: :destroy
 
   # OmniAuth routing
-  get 'auth/github/callback', to: 'omniauth_callbacks#github'
-  get 'auth/google_oauth2/callback', to: 'omniauth_callbacks#google_oauth2'
-  get 'auth/microsoft_graph/callback', to: 'omniauth_callbacks#microsoft_graph'
-  get 'auth/slack/callback', to: 'omniauth_callbacks#slack'
-  get 'auth/failure', to: redirect('/')
-  delete :sign_out, to: 'sessions#destroy'
+  scope :auth, controller: :omniauth_callbacks do
+    get 'github/callback', action: :github
+    get 'google_oauth2/callback', action: :google_oauth2
+    get 'microsoft_graph/callback', action: :microsoft_graph
+    get 'slack/callback', action: :slack
 
-  constraints ->(request) { AuthConstraint.admin?(request) } do
-    mount Sidekiq::Web, at: 'sidekiq'
-    mount Blazer::Engine, at: 'blazer'
+    get :failure, to: redirect('/')
   end
 
-  post 'subscriptions_webhook', to: 'subscriptions#webhook', constraints: { format: 'json' }
+  constraints ->(request) { AuthConstraint.admin?(request) } do
+    mount Sidekiq::Web, at: :sidekiq
+    mount Blazer::Engine, at: :blazer
+  end
+
+  resources :subscriptions, only: [], constraints: { format: :json } do
+    collection do
+      post :update
+    end
+  end
 
   resources :users, only: :edit do
     scope module: :users do
