@@ -72,6 +72,20 @@ RSpec.describe Teams::TopicsController, type: :request do
 
         expect(response.body).to include('Create')
       end
+
+      context 'when extension parameters are passed' do
+        subject(:post_new_topic) do
+          post '/extension/new_topic', params: { selection: 'Hello', context: 'https://www.google.com' }, as: :json
+        end
+
+        it 'includes the passed parameters' do
+          post_new_topic
+
+          follow_redirect!
+          puts response.body
+          expect(response.body).to include('Hello', 'https://www.google.com')
+        end
+      end
     end
 
     include_examples 'unauthorized user examples'
