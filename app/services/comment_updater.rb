@@ -11,12 +11,20 @@ class CommentUpdater < ApplicationService
 
   def call
     new_comment = @comment.new_record?
-    @comment.update(@update_params).tap do |result|
+    @comment.update(processed_params).tap do |result|
       next unless result
       next unless new_comment
 
       notify_users!
       @comment.topic.subscriptions.create(user: @user)
+    end
+  end
+
+  def processed_params
+    @update_params.dup.tap do |params|
+      next if params[:content].nil?
+
+      params[:content] = ::MentionsParser.new(@user, params[:content], @comment).call
     end
   end
 
