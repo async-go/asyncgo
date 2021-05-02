@@ -2,8 +2,7 @@
 
 FactoryBot.define do
   factory :comment do
-    body { Faker::Lorem.paragraph }
-    body_html { CommonMarker.render_html(body) }
+    content { Faker::Lorem.paragraph }
 
     association :user, :team
     topic { association :topic, team: user.team }
