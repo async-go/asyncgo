@@ -4,7 +4,7 @@ class ActsAsTaggableOnMigration < ActiveRecord::Migration[6.1]
   TAGS_TABLE = ActsAsTaggableOn.tags_table
   TAGGINGS_TABLE = ActsAsTaggableOn.taggings_table
 
-  def self.up
+  def change
     create_table TAGS_TABLE do |t|
       t.string :name, index: { unique: true }
       t.integer :taggings_count, default: 0
@@ -33,4 +33,10 @@ class ActsAsTaggableOnMigration < ActiveRecord::Migration[6.1]
       t.index %i[tagger_id tagger_type]
     end
   end
+
+  # 20210502124111_add_missing_unique_indices.acts_as_taggable_on_engine.rb from acts_as_taggable_on_engine
+  # 20210502124112_add_taggings_counter_cache_to_tags.acts_as_taggable_on_engine.rb from acts_as_taggable_on_engine
+  # 20210502124113_add_missing_taggable_index.acts_as_taggable_on_engine.rb from acts_as_taggable_on_engine
+  # 20210502124114_change_collation_for_tag_names.acts_as_taggable_on_engine.rb from acts_as_taggable_on_engine
+  # 20210502124115_add_missing_indexes_on_taggings.acts_as_taggable_on_engine.rb from acts_as_taggable_on_engine
 end
