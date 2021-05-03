@@ -14,7 +14,13 @@
  *= require_self
  */
 
-$primary: #203864;
+$primary: #244173;
+$secondary: #e3dac9;
+$info: #2a9d8f;
+
+$success: #2a9d8f;
+$danger: #e76f51;
+$warning: #e9c46a;
 
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import 'bootstrap/scss/bootstrap';

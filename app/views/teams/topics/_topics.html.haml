@@ -2,16 +2,16 @@
   - if topic_collection.present?
     %li.list-group-item.border-0.mt-0.d-none.d-lg-block
       .row
-        .col-lg-5.text-secondary
+        .col-lg-5.small
           Title
-        .col-lg-2.text-secondary
+        .col-lg-2.small
           Last Updated
-        .col-lg-3.text-secondary
+        .col-lg-3.small
           Labels
-        .col-lg-2.text-secondary
+        .col-lg-2.small
           Participants
     - topic_collection.each_with_index do |topic, topic_index|
-      - list_item_background = topic_index.odd? ? 'bg-white' : 'bg-offset'
+      - list_item_background = topic_index.odd? ? 'bg-white' : 'bg-offset rounded'
       %li.list-group-item.border-0.p-2.mb-1.pb-0{ class: list_item_background }
         .row.my-2
           .col-8.col-lg-5.mb-2
