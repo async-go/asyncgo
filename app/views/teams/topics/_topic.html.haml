@@ -2,7 +2,7 @@
   .row
     .col-auto
       %h2#topic-title= topic.title
-  .row.mt-1.justify-content-end
+  .row.mt-1.justify-content-between
     .col-auto.mt-1#topic-participants
       = link_to image_tag("#{topic.user.gravatar_url}?s=20&d=retro",
         class: 'gravatar-img mb-1',
@@ -20,8 +20,8 @@
     .col-auto.mt-1
       %p.m-0.text-secondary#topic-duedate
         = topic_due_date_span(topic)
-    %hr
-  .row
+    %hr.my-2
+  .row.justify-content-between
     .col-auto.my-1
       = link_to edit_team_topic_path(topic.team, topic),
         class: 'btn btn-primary', id: 'topic-edit',
