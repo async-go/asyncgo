@@ -17,3 +17,13 @@ import 'bootstrap'
 
 Rails.start()
 ActiveStorage.start()
+
+// Open all external links in a new window
+addEventListener('click', function (event) {
+  const target = event.target
+  const el = target.closest('a')
+  if (el && !el.isContentEditable && el.host !== window.location.host) {
+    el.setAttribute('target', '_blank')
+    el.setAttribute('rel', 'noopener noreferrer')
+  }
+}, true)
