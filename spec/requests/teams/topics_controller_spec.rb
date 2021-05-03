@@ -58,7 +58,7 @@ RSpec.describe Teams::TopicsController, type: :request do
   end
 
   describe 'GET new' do
-    subject(:get_new) { get "/teams/#{team.id}/topics/new" }
+    subject(:get_new) { get "/teams/#{team.id}/topics/new", params: params }
 
     let(:team) { FactoryBot.create(:team) }
 
@@ -67,28 +67,36 @@ RSpec.describe Teams::TopicsController, type: :request do
         sign_in(FactoryBot.create(:user, team: team))
       end
 
-      it 'renders the show page' do
-        get_new
+      context 'when no parameters are passed' do
+        let(:params) { nil }
 
-        expect(response.body).to include('Create')
+        it 'renders the new page' do
+          get_new
+
+          expect(response.body).to include('Create')
+        end
       end
 
       context 'when extension parameters are passed' do
-        subject(:post_new_topic) do
-          post '/extension/new_topic', params: { selection: 'Hello', context: 'https://www.google.com' }, as: :json
+        let(:params) { { selection: 'Hello', context: 'https://www.google.com' } }
+
+        it 'renders the new page' do
+          get_new
+
+          expect(response.body).to include('Create')
         end
 
         it 'includes the passed parameters' do
-          post_new_topic
+          get_new
 
-          follow_redirect!
-          puts response.body
-          expect(response.body).to include('Hello', 'https://www.google.com')
+          expect(response.body).to include('Created from: https://www.google.com', 'Hello')
         end
       end
     end
 
-    include_examples 'unauthorized user examples'
+    include_examples 'unauthorized user examples' do
+      let(:params) { nil }
+    end
   end
 
   describe 'GET edit' do

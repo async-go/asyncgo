@@ -8,11 +8,15 @@ RSpec.describe ExtensionController, type: :request do
       post '/extension/new_topic', params: { selection: 'Hello', context: 'https://www.google.com' }, as: :json
     end
 
-    let(:user) { FactoryBot.create(:user, :team) }
+    let(:user) { FactoryBot.create(:user) }
+
+    before do
+      sign_in(user)
+    end
 
     context 'when user is authorized' do
       before do
-        sign_in(user)
+        user.update!(team: FactoryBot.create(:team))
       end
 
       it 'persists the selection and context query parameters' do

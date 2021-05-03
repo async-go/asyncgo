@@ -116,7 +116,7 @@ module Teams
     end
 
     def new_params
-      return unless params[:context] && params[:selection]
+      return unless params[:context].present? && params[:selection].present?
 
       {
         description: <<~DESCRIPTION
