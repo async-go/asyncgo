@@ -14,10 +14,10 @@ RSpec.describe 'Comments', type: :system do
     click_link 'Topics'
     click_link topic.title
 
-    fill_in 'comment[body]', with: '__Sample content__'
+    find('trix-editor[id=comment_content]').send_keys('Sample comment content.')
     click_button 'Add Comment'
 
-    expect(page).to have_selector('strong', text: 'Sample content')
+    expect(page).to have_text('Sample comment content')
   end
 
   it 'allows the user to update a comment' do
@@ -33,7 +33,7 @@ RSpec.describe 'Comments', type: :system do
     edit_comment_path = team_topic_comment_path(comment.topic.team, comment.topic, comment)
     edit_comment_form = find("form[action='#{edit_comment_path}']", match: :first)
     within(edit_comment_form) do
-      fill_in 'comment[body]', with: 'This is updated content'
+      find('trix-editor[id=comment_content]').send_keys('This is updated content')
       click_button 'Update'
     end
 

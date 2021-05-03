@@ -45,7 +45,7 @@ RSpec.describe Teams::Topics::CommentsController, type: :request do
 
   describe 'POST create' do
     subject(:post_create) do
-      post "/teams/#{topic.team.id}/topics/#{topic.id}/comments", params: { comment: { body: body } }
+      post "/teams/#{topic.team.id}/topics/#{topic.id}/comments", params: { comment: { content: content } }
     end
 
     context 'when user is authorized' do
@@ -56,7 +56,7 @@ RSpec.describe Teams::Topics::CommentsController, type: :request do
       end
 
       context 'when comment is valid' do
-        let(:body) { 'Comment body.' }
+        let(:content) { 'Sample comment.' }
 
         it 'creates the comment' do
           expect { post_create }.to change(Comment, :count).from(0).to(1)
@@ -76,7 +76,7 @@ RSpec.describe Teams::Topics::CommentsController, type: :request do
       end
 
       context 'when comment is not valid' do
-        let(:body) { '' }
+        let(:content) { '' }
 
         it 'does not create the comment' do
           expect { post_create }.not_to change(Comment, :count).from(0)
@@ -91,17 +91,20 @@ RSpec.describe Teams::Topics::CommentsController, type: :request do
         it 'renders the errors' do
           post_create
 
-          expect(response.body).to include('Body can&#39;t be blank')
+          expect(response.body).to include('Content can&#39;t be blank')
         end
       end
     end
 
-    include_examples 'unauthorized user examples'
+    include_examples 'unauthorized user examples' do
+      let(:content) { 'Sample comment.' }
+    end
   end
 
   describe 'PATCH update' do
     subject(:patch_update) do
-      patch "/teams/#{topic.team.id}/topics/#{topic.id}/comments/#{comment.id}", params: { comment: { body: body } }
+      patch "/teams/#{topic.team.id}/topics/#{topic.id}/comments/#{comment.id}",
+            params: { comment: { content: content } }
     end
 
     let(:comment) { FactoryBot.create(:comment, topic: topic) }
@@ -112,10 +115,10 @@ RSpec.describe Teams::Topics::CommentsController, type: :request do
       end
 
       context 'when comment is valid' do
-        let(:body) { 'Updated body.' }
+        let(:content) { 'Updated comment.' }
 
         it 'updates the comment' do
-          expect { patch_update }.to change { comment.reload.body }.to('Updated body.')
+          expect { patch_update }.to change { comment.reload.content.to_plain_text }.to('Updated comment.')
         end
 
         it 'sets the flash' do
@@ -138,16 +141,16 @@ RSpec.describe Teams::Topics::CommentsController, type: :request do
       end
 
       context 'when comment is not valid' do
-        let(:body) { '' }
+        let(:content) { '' }
 
         it 'does not update the comment' do
-          expect { patch_update }.not_to(change { comment.reload.body })
+          expect { patch_update }.not_to(change { comment.reload.content })
         end
 
         it 'shows the error' do
           patch_update
 
-          expect(response.body).to include('Body can&#39;t be blank')
+          expect(response.body).to include('Content can&#39;t be blank')
         end
 
         it 'does not subscribe user to the topic' do
@@ -158,6 +161,8 @@ RSpec.describe Teams::Topics::CommentsController, type: :request do
       end
     end
 
-    include_examples 'unauthorized user examples'
+    include_examples 'unauthorized user examples' do
+      let(:content) { 'Sample comment.' }
+    end
   end
 end

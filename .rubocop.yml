@@ -20,6 +20,10 @@ Metrics/MethodLength:
   Exclude:
     - 'db/migrate/*'
 
+Rails/ApplicationRecord:
+  Exclude:
+    - 'db/**/*'
+
 RSpec/ExampleLength:
   Exclude:
     - 'spec/system/**/*'
