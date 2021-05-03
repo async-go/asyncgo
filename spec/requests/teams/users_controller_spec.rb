@@ -35,6 +35,67 @@ RSpec.describe Teams::UsersController, type: :request do
         sign_in(FactoryBot.create(:user, team: team))
       end
 
+      context 'when team has 5 users' do
+        let(:user) { FactoryBot.create(:user) }
+        let(:email) { user.email }
+
+        before do
+          FactoryBot.create_list(:user, 4, team: team)
+        end
+
+        context 'when team has active subscription' do
+          before do
+            team.create_subscription!(active: true)
+          end
+
+          it 'adds the user to the team' do
+            expect { post_create }.to change { user.reload.team_id }.from(nil).to(team.id)
+          end
+
+          it 'sets the flash' do
+            post_create
+
+            expect(controller.flash[:success]).to eq('User was successfully added to the team.')
+          end
+
+          it 'enqueues welcome email' do
+            expect { post_create }.to have_enqueued_mail(UserMailer, :welcome_email).with(
+              a_hash_including(params: { user: user })
+            ).on_queue(:default)
+          end
+
+          it 'redirects to edit team path' do
+            post_create
+
+            expect(response).to redirect_to(edit_team_path(team))
+          end
+        end
+
+        context 'when team does not have active subscription' do
+          it 'does not add user to the team' do
+            expect { post_create }.not_to(change { user.reload.team_id })
+          end
+
+          it 'sets the flash' do
+            post_create
+
+            expect(controller.flash[:danger]).to eq('You have reached the maximum 5 users on the free plan.')
+          end
+
+          it 'does not enqueue welcome email' do
+            expect { post_create }.not_to have_enqueued_mail(UserMailer, :welcome_email).with(
+              a_hash_including(params: { user: user })
+            ).on_queue(:default)
+          end
+
+          it 'redirects to edit team path' do
+            post_create
+
+            expect(response).to redirect_to(edit_team_path(team))
+          end
+        end
+      end
+
       context 'when user is registered' do
         let(:user) { FactoryBot.create(:user) }
         let(:email) { user.email }
