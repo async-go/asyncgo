@@ -11,7 +11,6 @@ export default class extends Controller {
       height: 'auto',
       initialValue: this.contentTarget.value,
     });
-    console.log(this.viewerTarget.style)
     this.viewerTarget.classList.remove("d-none")
   }
 }
