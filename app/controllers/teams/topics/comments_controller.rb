@@ -59,7 +59,7 @@ module Teams
       private
 
       def comment_params
-        params.require(:comment).permit(:content)
+        params.require(:comment).permit(:body)
       end
 
       def create_params

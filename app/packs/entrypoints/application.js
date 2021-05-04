@@ -9,11 +9,8 @@ import * as ActiveStorage from '@rails/activestorage'
 import 'channels'
 import 'controllers'
 
-import 'trix'
-import '@rails/actiontext'
-
-import '@github/markdown-toolbar-element'
 import 'bootstrap'
+import '@github/markdown-toolbar-element'
 
 Rails.start()
 ActiveStorage.start()

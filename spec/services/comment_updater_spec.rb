@@ -16,7 +16,7 @@ RSpec.describe CommentUpdater, type: :service do
       let(:comment) { FactoryBot.build(:comment, topic: topic, user: user) }
 
       context 'when parameters are valid' do
-        let(:params) { { content: 'Sample comment.' } }
+        let(:params) { { body: '__bold__' } }
 
         it 'creates a comment' do
           expect { call }.to change(Comment, :count).from(0).to(1)
@@ -26,6 +26,10 @@ RSpec.describe CommentUpdater, type: :service do
           call
 
           expect(comment).to be_persisted
+        end
+
+        it 'parses the body markdown' do
+          expect { call }.to change(comment, :body_html).to("<p><strong>bold</strong></p>\n")
         end
 
         it 'subscribes the user to the topic' do
@@ -44,7 +48,7 @@ RSpec.describe CommentUpdater, type: :service do
       end
 
       context 'when parameters are not valid' do
-        let(:params) { { content: nil } }
+        let(:params) { { body: nil } }
 
         it 'does not create the comment' do
           call
@@ -68,7 +72,11 @@ RSpec.describe CommentUpdater, type: :service do
       let(:comment) { FactoryBot.create(:comment, topic: topic, user: user) }
 
       context 'when parameters are valid' do
-        let(:params) { { content: 'Sample comment.' } }
+        let(:params) { { body: '__bold__' } }
+
+        it 'parses the body markdown' do
+          expect { call }.to change(comment, :body_html).to("<p><strong>bold</strong></p>\n")
+        end
 
         it 'does not subscribe user to the topic' do
           call
@@ -86,10 +94,10 @@ RSpec.describe CommentUpdater, type: :service do
       end
 
       context 'when parameters are not valid' do
-        let(:params) { { content: nil } }
+        let(:params) { { body: nil } }
 
         it 'does not update the comment' do
-          expect { call }.not_to change(comment, :content)
+          expect { call }.not_to change(comment, :body_html)
         end
 
         it 'does not subscribe user to the topic' do

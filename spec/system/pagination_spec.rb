@@ -54,7 +54,7 @@ RSpec.describe 'Pagination', type: :system do
       :comment, 20, topic: topic, user: user, created_at: Date.new(2020, 1, 1)
     )
     FactoryBot.create(
-      :comment, topic: topic, user: user, content: 'thisisthelastcomment',
+      :comment, topic: topic, user: user, body: 'thisisthelastcomment',
                 created_at: Date.new(2021, 1, 1)
     )
 

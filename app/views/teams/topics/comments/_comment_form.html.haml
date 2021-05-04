@@ -3,8 +3,9 @@
   data: { controller: 'reset-form', action: 'turbo:submit-end->reset-form#reset' }) do |form|
   = render partial: 'shared/form_errors', locals: { model: comment }
   .mb-1.visually-hidden
-    = form.label :content
+    = form.label :body
   .mb-3
-    = form.rich_text_area :content,
-      data: { controller: 'attach-tribute', action: 'focus->attach-tribute#attach:once' }
+    = render partial: 'shared/markdown_text_area', locals: { form: form, name: :body,
+      options: { rows: '5', required: true, class: 'form-control',
+      data: { controller: 'attach-tribute', action: 'focus->attach-tribute#attach:once' } } }
   = form.submit submit_action, class: 'btn btn-primary'

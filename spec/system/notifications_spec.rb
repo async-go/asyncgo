@@ -108,7 +108,7 @@ RSpec.describe 'Notifications', type: :system do
     sign_in_user(actor)
     click_link 'Topics'
     click_link 'Sample topic'
-    find('trix-editor[id=comment_content]').send_keys('Sample content')
+    fill_in 'comment[body]', with: '__Sample content__'
     click_button 'Add Comment'
     click_link 'Sign out'
 
@@ -161,7 +161,7 @@ RSpec.describe 'Notifications', type: :system do
     sign_in_user(actor)
     click_link 'Topics'
     click_link 'Sample topic'
-    find('trix-editor[id=comment_content]').send_keys('Sample content')
+    fill_in 'comment[body]', with: '__Sample content__'
     click_button 'Add Comment'
     click_link 'Sign out'
 
