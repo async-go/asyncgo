@@ -14,5 +14,5 @@
           edit_team_topic_comment_path(comment.topic.team, comment.topic, comment),
           class: 'btn btn-outline-secondary btn-sm'
   .row.mt-3{ data: { controller: 'toastui-viewer' } }
-    %div.d-none{data: { 'toastui-viewer-target': 'viewer' } }
-      .user-content{ data: { 'toastui-viewer-target': 'content' } }!= comment.body_html
+    %div{data: { 'toastui-viewer-target': 'viewer' } }
+    %div.d-none{ data: { 'toastui-viewer-target': 'content' } }!= comment.body

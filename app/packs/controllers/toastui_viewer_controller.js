@@ -9,8 +9,7 @@ export default class extends Controller {
       el: this.viewerTarget,
       viewer: true,
       height: 'auto',
-      initialValue: this.contentTarget.value,
+      initialValue: this.contentTarget.firstChild.data,
     });
-    this.viewerTarget.classList.remove("d-none")
   }
 }
