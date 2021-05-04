@@ -1,9 +1,9 @@
 import { Controller } from 'stimulus'
 import Tribute from 'tributejs'
-import Editor from '@toast-ui/editor';
+import Editor from '@toast-ui/editor'
 
 export default class extends Controller {
-  static targets = [ "form", "editor", "textarea", "submit" ]
+  static targets = ['form', 'editor', 'textarea', 'submit']
   static values = { users: Array }
 
   initialize () {
@@ -25,7 +25,7 @@ export default class extends Controller {
       initialEditType: 'wysiwyg',
       initialValue: this.textareaTarget.value,
       previewStyle: 'tab'
-    });
+    })
 
     const tribute = new Tribute({
       values: this.usersValue
@@ -33,7 +33,7 @@ export default class extends Controller {
     tribute.attach(this.element.querySelectorAll('.tui-editor-contents'))
 
     editor.toUpdate = this.textareaTarget
-    this.submitTarget.onclick = function(){
+    this.submitTarget.onclick = function () {
       editor.toUpdate.value = editor.getMarkdown()
       editor.reset()
     }

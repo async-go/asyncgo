@@ -1,15 +1,15 @@
 import { Controller } from 'stimulus'
-import Editor from '@toast-ui/editor';
+import Editor from '@toast-ui/editor'
 
 export default class extends Controller {
-  static targets = [ "viewer", "content" ]
+  static targets = ['viewer', 'content']
 
   connect () {
     const viewer = Editor.factory({
       el: this.viewerTarget,
       viewer: true,
       height: 'auto',
-      initialValue: this.contentTarget.firstChild.data,
-    });
+      initialValue: this.contentTarget.firstChild.data
+    })
   }
 }
