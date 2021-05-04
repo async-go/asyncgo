@@ -24,6 +24,9 @@ $primary: #203864;
 @import 'tributejs/src/tribute';
 @import 'driver.js/src/driver';
 
+@import 'codemirror/lib/codemirror.css';
+@import '@toast-ui/editor/dist/toastui-editor.css';
+
 .navbar-brand img {
   width: 3rem;
 }
