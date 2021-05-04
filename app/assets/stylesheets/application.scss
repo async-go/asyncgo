@@ -27,6 +27,10 @@ $primary: #203864;
 @import 'codemirror/lib/codemirror.css';
 @import '@toast-ui/editor/dist/toastui-editor.css';
 
+.tui-editor-contents {
+  font-size: 1rem;
+}
+
 .navbar-brand img {
   width: 3rem;
 }
