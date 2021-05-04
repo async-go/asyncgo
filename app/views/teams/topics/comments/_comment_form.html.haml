@@ -5,8 +5,8 @@
   .mb-1.visually-hidden
     = form.label :body
   .mb-3
-    %div{ data: { 'toastui-editor-target': 'editor' } }
+    %div{ data: { 'toastui-editor-target': 'editor', controller: 'attach-tribute', action: 'focus->attach-tribute#attach:once' } }
     = render partial: 'shared/markdown_text_area', locals: { form: form, name: :body,
       options: { rows: '5', hidden: true, class: 'form-control',
-      data: { 'toastui-editor-target': 'textarea', controller: 'attach-tribute', action: 'focus->attach-tribute#attach:once' } } }
+      data: { 'toastui-editor-target': 'textarea'} } }
   = form.submit submit_action, class: 'btn btn-primary', data: { 'toastui-editor-target': 'submit' }

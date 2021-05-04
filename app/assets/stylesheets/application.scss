@@ -31,6 +31,15 @@ $primary: #203864;
   font-size: 1rem;
 }
 
+.tui-editor-contents h1, h2, h3, h4, h5, h6 {
+  margin-top: 1.5rem !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.tui-editor-contents h6 {
+  font-size: 1rem;
+}
+
 .navbar-brand img {
   width: 3rem;
 }
