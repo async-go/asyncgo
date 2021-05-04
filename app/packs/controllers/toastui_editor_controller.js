@@ -6,31 +6,31 @@ export default class extends Controller {
   static targets = ['form', 'editor', 'textarea', 'submit']
   static values = { users: Array }
 
-  initialize () {
-    const controller = this
-
-    const host = window.location.protocol + '//' + window.location.host
-    const url = `${host}/teams/${window.gon.teamId}/users.json`
-    window.fetch(url)
-      .then(response => response.json())
-      .then(function (data) {
-        controller.usersValue = data
-      })
-  }
-
   connect () {
     const editor = new Editor({
       el: this.editorTarget,
       height: 'auto',
       initialEditType: 'wysiwyg',
       initialValue: this.textareaTarget.value,
-      previewStyle: 'tab'
+      previewStyle: 'tab',
+      extendedAutolinks: false
     })
 
     const tribute = new Tribute({
-      values: this.usersValue
+      values: [],
+      selectTemplate: function (item) {
+        return '<span class="tribute-mention">' + item.original.value + '</span>';
+      }
     })
     tribute.attach(this.element.querySelectorAll('.tui-editor-contents'))
+
+    const host = window.location.protocol + '//' + window.location.host
+    const url = `${host}/teams/${window.gon.teamId}/users.json`
+    window.fetch(url)
+      .then(response => response.json())
+      .then(function (data) {
+        tribute.append(0, data)
+      })
 
     editor.toUpdate = this.textareaTarget
     this.submitTarget.onclick = function () {
