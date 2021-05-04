@@ -1,8 +1,22 @@
 import { Controller } from 'stimulus'
+import Tribute from 'tributejs'
 import Editor from '@toast-ui/editor';
 
 export default class extends Controller {
   static targets = [ "editor", "textarea", "submit" ]
+  static values = { users: Array }
+
+  initialize () {
+    const controller = this
+
+    const host = window.location.protocol + '//' + window.location.host
+    const url = `${host}/teams/${window.gon.teamId}/users.json`
+    window.fetch(url)
+      .then(response => response.json())
+      .then(function (data) {
+        controller.usersValue = data
+      })
+  }
 
   connect () {
     const editor = new Editor({
@@ -12,6 +26,12 @@ export default class extends Controller {
       initialValue: this.textareaTarget.value,
       previewStyle: 'tab'
     });
+
+    const tribute = new Tribute({
+      values: this.usersValue
+    })
+    tribute.attach(this.element)
+
     editor.toUpdate = this.textareaTarget
     this.submitTarget.onclick = function(){
       editor.toUpdate.value = editor.getMarkdown()
