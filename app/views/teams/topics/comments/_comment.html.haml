@@ -1,18 +1,18 @@
 = turbo_frame_tag dom_id(comment) do
-  .row.justify-content-start
-    .col-4.mt-2
+  .row.justify-content-start.bg-light.p-1
+    .col-4.pt-1
       = image_tag "#{comment.user.gravatar_url}?s=20&d=retro",
         class: 'me-1 gravatar-img', alt: ''
       = link_to comment.user.printable_name, "mailto:#{comment.user.email}"
-    .col-3.mt-2
+    .col-3.pt-1
       %span= comment.created_at.strftime('%b %e')
-    .col-3.mt-2
+    .col-3
       = render partial: 'teams/topics/vote_list_group', locals: { votable: comment }
-    .col-2.mt-2
+    .col-2.pt-1
       - if policy(comment).edit?
         = link_to 'Edit',
           edit_team_topic_comment_path(comment.topic.team, comment.topic, comment),
           class: 'btn btn-outline-secondary btn-sm'
-  .row.mt-3{ data: { controller: 'toastui-viewer' } }
+  .row.mt-2{ data: { controller: 'toastui-viewer' } }
     .user-content{data: { 'toastui-viewer-target': 'viewer' } }
     .d-none{ data: { 'toastui-viewer-target': 'content' } }!= comment.body
