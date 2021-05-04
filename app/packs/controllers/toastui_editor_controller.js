@@ -3,7 +3,7 @@ import Tribute from 'tributejs'
 import Editor from '@toast-ui/editor';
 
 export default class extends Controller {
-  static targets = [ "editor", "textarea", "submit" ]
+  static targets = [ "form", "editor", "textarea", "submit" ]
   static values = { users: Array }
 
   initialize () {
@@ -30,7 +30,7 @@ export default class extends Controller {
     const tribute = new Tribute({
       values: this.usersValue
     })
-    tribute.attach(this.element)
+    tribute.attach(this.element.querySelectorAll('.tui-editor-contents'))
 
     editor.toUpdate = this.textareaTarget
     this.submitTarget.onclick = function(){
