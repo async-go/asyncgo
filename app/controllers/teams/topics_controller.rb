@@ -31,7 +31,6 @@ module Teams
       @pagy, @topic_comments = pagy(
         @topic.comments.order(created_at: comment_order)
         .includes(:user, topic: :team, votes: :user)
-        .with_rich_text_content
       )
     end
 

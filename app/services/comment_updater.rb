@@ -12,23 +12,28 @@ class CommentUpdater < ApplicationService
   def call
     new_comment = @comment.new_record?
     @comment.update(processed_params).tap do |result|
-      next unless result
-      next unless new_comment
+      next unless result && new_comment
 
       notify_users!
       @comment.topic.subscriptions.create(user: @user)
     end
   end
 
-  def processed_params
-    @update_params.dup.tap do |params|
-      next if params[:content].nil?
+  private
 
-      params[:content] = ::MentionsParser.new(@user, params[:content], @comment).call
+  def processed_params
+    @update_params.tap do |params|
+      process_body(params)
     end
   end
 
-  private
+  def process_body(original_params)
+    original_params.tap do |params|
+      next if params[:body].nil?
+
+      params[:body_html] = MarkdownParser.new(@user, params[:body], @comment).call
+    end
+  end
 
   def notify_users!
     subscriber_ids = @comment.topic.subscribed_users.pluck(:id)

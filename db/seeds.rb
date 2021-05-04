@@ -54,7 +54,7 @@ Vote.create!(user: bob, votable: topic, emoji: 'thumbsup')
 
 # Comment
 comment = Comment.create!(
-  user: bob, topic: topic, content: 'No update from me today'
+  user: bob, topic: topic, body: 'No update from me today', body_html: 'No update from me today'
 )
 
 # Comment Votes
