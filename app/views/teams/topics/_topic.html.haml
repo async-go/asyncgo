@@ -80,7 +80,7 @@
   .row.mt-3
     .col-lg-8.border{ data: { controller: 'toastui-viewer' } }
       %h6.mt-2.text-secondary.small#topic-description Description
-      .user-content{data: { 'toastui-viewer-target': 'viewer' } }
+      .user-content{ data: { 'toastui-viewer-target': 'viewer' } }
       .d-none{ data: { 'toastui-viewer-target': 'content' } }!= topic.description
 
     .col-lg-4.border{ data: { controller: 'toastui-viewer' } }
@@ -88,5 +88,5 @@
         Outcome
         - if topic.active?
           (Work in Progress)
-      .user-content{data: { 'toastui-viewer-target': 'viewer' } }
-      .d-none{ data: { 'toastui-viewer-target': 'content' } }!= topic.outcome || 'Content has not been started yet'
+      .user-content{ data: { 'toastui-viewer-target': 'viewer' } }
+      .d-none{ data: { 'toastui-viewer-target': 'content' } }!= topic.outcome
