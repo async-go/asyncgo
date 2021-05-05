@@ -12,6 +12,7 @@ export default class extends Controller {
     commentbox.value += 'On ' + date + ' ' + author + ' wrote:\n'
     lines.forEach(element => commentbox.value += '> ' + element + '\n')
     commentbox.value += '\n'
+    document.getElementById('comment_submit').focus()
     document.getElementById('comment_body').focus()
   }
 }

@@ -8,4 +8,4 @@
     = render partial: 'shared/markdown_text_area', locals: { form: form, name: :body,
       options: { rows: '5', required: true, class: 'form-control',
       data: { controller: 'attach-tribute', action: 'focus->attach-tribute#attach:once' } } }
-  = form.submit submit_action, class: 'btn btn-primary'
+  = form.submit submit_action, class: 'btn btn-primary', id: 'comment_submit'
