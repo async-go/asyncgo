@@ -11,7 +11,7 @@
         .col-lg-2.text-secondary
           Participants
     - topic_collection.each_with_index do |topic, topic_index|
-      - list_item_background = topic_index.odd? ? 'bg-white' : 'bg-offset'
+      - list_item_background = topic_index.odd? ? 'bg-white' : 'bg-light'
       %li.list-group-item.border-0.p-2.mb-1.pb-0{ class: list_item_background }
         .row.my-2
           .col-8.col-lg-5.mb-2
