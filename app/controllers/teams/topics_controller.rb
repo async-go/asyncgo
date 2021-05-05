@@ -16,7 +16,7 @@ module Teams
     end
 
     def new
-      @topic = team.topics.build
+      @topic = team.topics.build(new_params)
       authorize(@topic)
     end
 
@@ -113,6 +113,17 @@ module Teams
 
     def create_params
       topic_params.merge(user: current_user)
+    end
+
+    def new_params
+      return unless params[:context].present? && params[:selection].present?
+
+      {
+        description: <<~DESCRIPTION
+          Created from: #{params[:context]}
+          #{params[:selection]}
+        DESCRIPTION
+      }
     end
 
     def update_user_subscription(topic)
