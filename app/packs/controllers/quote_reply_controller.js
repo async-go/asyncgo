@@ -7,12 +7,10 @@ export default class extends Controller {
     const content = this.contentTarget.innerText
     const date = this.dateTarget.innerText
     const author = this.authorTarget.innerText
-    const commentbox = document.getElementById('comment_body')
-    const lines = content.split('\n')
-    commentbox.value += 'On ' + date + ' ' + author + ' wrote:\n'
-    lines.forEach(element => { commentbox.value += '> ' + element + '\n' })
-    commentbox.value += '\n'
-    document.getElementById('comment_submit').focus()
+
+    const quotedReply = content.split('\n').map(line => `> ${line}`).join('\n')
+    document.getElementById('comment_body').value = `On ${date} ${author} wrote\n${quotedReply}\n\n`
+
     document.getElementById('comment_body').focus()
   }
 }
