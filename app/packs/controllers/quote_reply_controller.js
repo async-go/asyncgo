@@ -10,7 +10,7 @@ export default class extends Controller {
     const commentbox = document.getElementById('comment_body')
     const lines = content.split('\n')
     commentbox.value += 'On ' + date + ' ' + author + ' wrote:\n'
-    lines.forEach(element => commentbox.value += '> ' + element + '\n')
+    lines.forEach(element => { commentbox.value += '> ' + element + '\n' })
     commentbox.value += '\n'
     document.getElementById('comment_submit').focus()
     document.getElementById('comment_body').focus()
