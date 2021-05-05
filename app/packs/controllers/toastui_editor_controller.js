@@ -19,7 +19,7 @@ export default class extends Controller {
     const tribute = new Tribute({
       values: [],
       selectTemplate: function (item) {
-        return '<span class="tribute-mention">' + item.original.value + '</span>';
+        return '@' + item.original.value
       }
     })
     tribute.attach(this.element.querySelectorAll('.tui-editor-contents'))
