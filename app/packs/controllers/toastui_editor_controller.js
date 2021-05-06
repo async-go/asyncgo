@@ -30,11 +30,11 @@ export default class extends Controller {
           'ul',
           'ol',
           'task',
-          //'indent',
-          //'outdent',
+          // 'indent',
+          // 'outdent',
           'divider',
           'table',
-          //'image',
+          // 'image',
           'link',
           'divider',
           'code',
@@ -48,10 +48,10 @@ export default class extends Controller {
 
       // Set accessibility titles
       const toolbar = editors[index].getUI().getToolbar()
-      var buttons = toolbar.getItems().length
+      const buttons = toolbar.getItems().length
       let buttonindex = 0
       while (buttonindex < buttons) {
-        var item = toolbar.getItem(buttonindex)
+        const item = toolbar.getItem(buttonindex)
         item.el.title = item.getName()
         buttonindex++
       }
