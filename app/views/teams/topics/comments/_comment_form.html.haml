@@ -1,6 +1,7 @@
 - submit_action = comment.persisted? ? 'Update' : 'Add Comment'
 = form_with(model: comment, url: [comment.topic.team, comment.topic, comment],
-  data: { controller: 'reset-form toastui-editor', action: 'turbo:submit-end->reset-form#reset' }) do |form|
+  data: { controller: 'reset-form toastui-editor',
+  action: 'turbo:submit-end->reset-form#reset' }) do |form|
   = render partial: 'shared/form_errors', locals: { model: comment }
   .mb-1.visually-hidden
     = form.label :body

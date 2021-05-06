@@ -1,5 +1,6 @@
 - submit_action = topic.persisted? ? 'Update' : 'Create'
-= form_with(model: topic, url: [topic.team, topic], data: { controller: 'toastui-editor' }) do |form|
+= form_with(model: topic, url: [topic.team, topic],
+  data: { controller: 'toastui-editor' }) do |form|
   = render partial: 'shared/form_errors', locals: { model: topic }
   = form.hidden_field :description_checksum, value: string_checksum(topic.description)
   = form.hidden_field :outcome_checksum, value: string_checksum(topic.outcome)
@@ -37,4 +38,5 @@
         .input-group-text= form.label :due_date, id: 'topic-duedate'
         = form.date_field :due_date, class: 'form-control'
     .col-lg-1
-      = form.submit submit_action, class: 'btn btn-primary', data: { 'toastui-editor-target': 'submit' }
+      = form.submit submit_action, class: 'btn btn-primary',
+        data: { 'toastui-editor-target': 'submit' }

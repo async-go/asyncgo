@@ -7,7 +7,7 @@ export default class extends Controller {
   static values = { users: Array }
 
   connect () {
-    var index = 0
+    let index = 0
     const editors = []
 
     while (index < this.editorTargets.length) {
@@ -25,7 +25,7 @@ export default class extends Controller {
     }
 
     this.submitTarget.onclick = function () {
-      var index = 0
+      let index = 0
       while (index < editors.length) {
         editors[index].toUpdate.value = editors[index].getMarkdown()
         editors[index].reset()
@@ -50,4 +50,3 @@ export default class extends Controller {
       })
   }
 }
-
