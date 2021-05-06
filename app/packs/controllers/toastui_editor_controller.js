@@ -2,6 +2,7 @@ import { Controller } from 'stimulus'
 import Tribute from 'tributejs'
 import { Editor } from '@tiptap/core'
 import { defaultExtensions } from '@tiptap/starter-kit'
+import TurndownService from 'turndown'
 
 export default class extends Controller {
   static targets = ['editor', 'textarea', 'submit']
@@ -10,6 +11,8 @@ export default class extends Controller {
   connect () {
     let index = 0
     const editors = []
+
+    var td = new TurndownService()
 
     while (index < this.editorTargets.length) {
       editors[index] = new Editor({
@@ -30,8 +33,8 @@ export default class extends Controller {
     this.submitTarget.onclick = function () {
       let index = 0
       while (index < editors.length) {
-        editors[index].toUpdate.value = editors[index].content
-        editors[index].content = ''
+        editors[index].toUpdate.value = td.turndown(editors[index].getHTML())
+        editors[index].commands.clearContent()
         index++
       }
     }
