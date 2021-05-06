@@ -11,10 +11,6 @@ export default class extends Controller {
     const editors = []
 
     while (index < this.editorTargets.length) {
-      console.log(index)
-      console.log(this.editorTargets[index])
-      console.log(this.textareaTargets[index])
-
       editors[index] = new Editor({
         el: this.editorTargets[index],
         height: 'auto',
@@ -29,7 +25,6 @@ export default class extends Controller {
     }
 
     this.submitTarget.onclick = function () {
-      console.log(editors)
       var index = 0
       while (index < editors.length) {
         editors[index].toUpdate.value = editors[index].getMarkdown()
