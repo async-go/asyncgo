@@ -3,18 +3,40 @@ import Tribute from 'tributejs'
 import Editor from '@toast-ui/editor'
 
 export default class extends Controller {
-  static targets = ['form', 'editor', 'textarea', 'submit']
+  static targets = ['editor', 'textarea', 'submit']
   static values = { users: Array }
 
   connect () {
-    const editor = new Editor({
-      el: this.editorTarget,
-      height: 'auto',
-      initialEditType: 'wysiwyg',
-      initialValue: this.textareaTarget.value,
-      previewStyle: 'tab',
-      extendedAutolinks: false
-    })
+    var index = 0
+    const editors = []
+
+    while (index < this.editorTargets.length) {
+      console.log(index)
+      console.log(this.editorTargets[index])
+      console.log(this.textareaTargets[index])
+
+      editors[index] = new Editor({
+        el: this.editorTargets[index],
+        height: 'auto',
+        initialEditType: 'wysiwyg',
+        initialValue: this.textareaTargets[index].value,
+        previewStyle: 'tab',
+        extendedAutolinks: false
+      })
+
+      editors[index].toUpdate = this.textareaTargets[index]
+      index++
+    }
+
+    this.submitTarget.onclick = function () {
+      console.log(editors)
+      var index = 0
+      while (index < editors.length) {
+        editors[index].toUpdate.value = editors[index].getMarkdown()
+        editors[index].reset()
+        index++
+      }
+    }
 
     const tribute = new Tribute({
       values: [],
@@ -31,11 +53,6 @@ export default class extends Controller {
       .then(function (data) {
         tribute.append(0, data)
       })
-
-    editor.toUpdate = this.textareaTarget
-    this.submitTarget.onclick = function () {
-      editor.toUpdate.value = editor.getMarkdown()
-      editor.reset()
-    }
   }
 }
+
