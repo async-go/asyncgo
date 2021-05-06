@@ -54,7 +54,7 @@ RSpec.describe Teams::TopicsHelper, type: :helper do
         end
 
         it { is_expected.to have_text('Due 1 day ago') }
-        it { is_expected.to match(/class="bg-warning text-black"/) }
+        it { is_expected.to match(/class="bg-warning text-dark"/) }
       end
 
       context 'when topic is not overdue' do
