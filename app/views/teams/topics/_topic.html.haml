@@ -80,11 +80,11 @@
   .row.mt-3
     .col-lg-8.border
       %h6.mt-2.text-secondary.small#topic-description Description
-      .user-content.tui-editor-contents!= topic.description_html
+      .tui-editor-contents!= topic.description_html
 
     .col-lg-4.border
       %h6.mt-2.text-secondary.small#topic-outcome
         Outcome
         - if topic.active?
           (Work in Progress)
-      .user-content.tui-editor-contents!= topic.outcome_html
+      .tui-editor-contents!= topic.outcome_html
