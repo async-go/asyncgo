@@ -9,8 +9,8 @@ export default class extends Controller {
     const author = this.authorTarget.innerText
 
     const quotedReply = content.split('\n').map(line => `> ${line}`).join('\n')
-    document.getElementById('comment_body').value = `On ${date} ${author} wrote\n${quotedReply}\n\n`
+    document.querySelectorAll('.tui-editor-contents').value = `On ${date} ${author} wrote\n${quotedReply}\n\n`
 
-    document.getElementById('comment_body').focus()
+    document.querySelectorAll('.tui-editor-contents').focus()
   }
 }

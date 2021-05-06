@@ -4,9 +4,10 @@
       .col-auto.pt-1
         = image_tag "#{comment.user.gravatar_url}?s=20&d=retro",
           class: 'me-1 gravatar-img', alt: ''
-        = link_to comment.user.printable_name, "mailto:#{comment.user.email}"
+        = link_to comment.user.printable_name, "mailto:#{comment.user.email}",
+          data: { 'quote-reply-target' => 'author' }
       .col-auto.pt-1
-        %span= comment.created_at.strftime('%b %e')
+        %span{ data: { 'quote-reply-target' => 'date' } }= comment.created_at.strftime('%b %e')
       .col-auto
         = render partial: 'teams/topics/vote_list_group', locals: { votable: comment }
       .col-auto
@@ -18,4 +19,4 @@
         %button.btn.btn-outline-secondary.btn-sm{ data: { action: 'click->quote-reply#quote' } }
           Quote
     .row.mt-2
-      .user-content.tui-editor-contents!= comment.body_html
+      .user-content.tui-editor-contents{ data: { 'quote-reply-target' => 'content' } }!= comment.body_html
