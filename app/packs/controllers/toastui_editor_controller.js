@@ -1,6 +1,7 @@
 import { Controller } from 'stimulus'
 import Tribute from 'tributejs'
-import Editor from '@toast-ui/editor'
+import { Editor } from '@tiptap/core'
+import { defaultExtensions } from '@tiptap/starter-kit'
 
 export default class extends Controller {
   static targets = ['editor', 'textarea', 'submit']
@@ -12,12 +13,14 @@ export default class extends Controller {
 
     while (index < this.editorTargets.length) {
       editors[index] = new Editor({
-        el: this.editorTargets[index],
-        height: 'auto',
-        initialEditType: 'wysiwyg',
-        initialValue: this.textareaTargets[index].value,
-        previewStyle: 'tab',
-        extendedAutolinks: false
+        element: this.editorTargets[index],
+        extensions: defaultExtensions(),
+        content: this.textareaTargets[index].value
+//        height: 'auto',
+//        initialEditType: 'wysiwyg',
+//        initialValue: this.textareaTargets[index].value,
+//        previewStyle: 'tab',
+//        extendedAutolinks: false
       })
 
       editors[index].toUpdate = this.textareaTargets[index]
@@ -27,8 +30,8 @@ export default class extends Controller {
     this.submitTarget.onclick = function () {
       let index = 0
       while (index < editors.length) {
-        editors[index].toUpdate.value = editors[index].getMarkdown()
-        editors[index].reset()
+        editors[index].toUpdate.value = editors[index].content
+        editors[index].content = ''
         index++
       }
     }
