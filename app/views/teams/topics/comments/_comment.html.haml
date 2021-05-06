@@ -1,17 +1,21 @@
 = turbo_frame_tag dom_id(comment) do
-  .row.justify-content-start.bg-light.p-1
-    .col-auto.pt-1
-      = image_tag "#{comment.user.gravatar_url}?s=20&d=retro",
-        class: 'me-1 gravatar-img', alt: ''
-      = link_to comment.user.printable_name, "mailto:#{comment.user.email}"
-    .col-auto.pt-1
-      %span= comment.created_at.strftime('%b %e')
-    .col-auto
-      = render partial: 'teams/topics/vote_list_group', locals: { votable: comment }
-    .col-auto
-      - if policy(comment).edit?
-        = link_to 'Edit',
-          edit_team_topic_comment_path(comment.topic.team, comment.topic, comment),
-          class: 'btn btn-outline-secondary btn-sm'
-  .row.mt-2
-    .user-content.tui-editor-contents!= comment.body_html
+  %div{ data: { controller: 'quote-reply' } }
+    .row.justify-content-start.bg-light.p-1
+      .col-auto.pt-1
+        = image_tag "#{comment.user.gravatar_url}?s=20&d=retro",
+          class: 'me-1 gravatar-img', alt: ''
+        = link_to comment.user.printable_name, "mailto:#{comment.user.email}"
+      .col-auto.pt-1
+        %span= comment.created_at.strftime('%b %e')
+      .col-auto
+        = render partial: 'teams/topics/vote_list_group', locals: { votable: comment }
+      .col-auto
+        - if policy(comment).edit?
+          = link_to 'Edit',
+            edit_team_topic_comment_path(comment.topic.team, comment.topic, comment),
+            class: 'btn btn-outline-secondary btn-sm'
+      .col-auto
+        %button.btn.btn-outline-secondary.btn-sm{ data: { action: 'click->quote-reply#quote' } }
+          Quote
+    .row.mt-2
+      .user-content.tui-editor-contents!= comment.body_html

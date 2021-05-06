@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ExtensionController < ApplicationController
+  skip_before_action :verify_authenticity_token
+
   def new_topic
     authorize(current_user, policy_class: ExtensionPolicy)
 
