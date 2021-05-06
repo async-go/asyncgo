@@ -1984,6 +1984,7 @@ __metadata:
     bootstrap: ^5.0.0-beta2
     driver.js: ^0.9.8
     eslint: ^7.21.0
+    he: ^1.2.0
     markdownlint-cli: ^0.26.0
     prettier: ^2.2.1
     standard: ^16.0.2
@@ -4148,6 +4149,15 @@ fsevents@^1.2.7:
   dependencies:
     function-bind: ^1.1.1
   checksum: c686e15300d41364486c099a9259d9c418022c294244843dcd712c4c286ff839d4f23a25413baa28c4d2c1e828afc2aaab70f685400b391533980223c71fa1ca
+  languageName: node
+  linkType: hard
+
+"he@npm:^1.2.0":
+  version: 1.2.0
+  resolution: "he@npm:1.2.0"
+  bin:
+    he: bin/he
+  checksum: 212122003c20c8c17ac0c83a419b4c8e835411ff6ab9195d053ea6e4a0597cc005b5b8eabcbd57b0b0c0fe676f0049e09315845fff4e051198845491cbba260e
   languageName: node
   linkType: hard
 
