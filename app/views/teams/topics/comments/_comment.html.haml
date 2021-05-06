@@ -20,4 +20,4 @@
           Quote
     .row.mt-3
       .user-content!= comment.body_html
-      .d-none{ data: { 'quote-reply-target' => 'content' } }!= comment.body
+      .d-none{ data: { 'quote-reply-target' => 'content' } }!= h(comment.body)

@@ -1,10 +1,16 @@
 import { Controller } from 'stimulus'
 
+function decodeHtml(html) {
+    var txt = document.createElement("textarea");
+    txt.innerHTML = html;
+    return txt.value;
+}
+
 export default class extends Controller {
   static targets = ['content', 'author', 'date']
 
   quote () {
-    const content = this.contentTarget.innerText
+    const content = decodeHtml(this.contentTarget.innerText)
     const date = this.dateTarget.innerText
     const author = this.authorTarget.innerText
 
