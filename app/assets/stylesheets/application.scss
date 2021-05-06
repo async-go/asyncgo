@@ -56,6 +56,18 @@ $primary: #203864;
   }
 }
 
+// accessibility fixes for editor
+.te-mode-switch {
+  > {
+    .markdown {
+      color: #333;
+    }
+    .wysiwyg {
+      color: #333;
+    }
+  }
+}
+
 .navbar-brand img {
   width: 3rem;
 }

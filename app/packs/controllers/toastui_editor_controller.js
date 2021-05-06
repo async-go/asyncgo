@@ -10,6 +10,7 @@ export default class extends Controller {
     let index = 0
     const editors = []
 
+    // Create editors
     while (index < this.editorTargets.length) {
       editors[index] = new Editor({
         el: this.editorTargets[index],
@@ -17,13 +18,48 @@ export default class extends Controller {
         initialEditType: 'wysiwyg',
         initialValue: this.textareaTargets[index].value,
         previewStyle: 'tab',
-        extendedAutolinks: false
+        toolbarItems: [
+          'heading',
+          'bold',
+          'italic',
+          'strike',
+          'divider',
+          'hr',
+          'quote',
+          'divider',
+          'ul',
+          'ol',
+          'task',
+          //'indent',
+          //'outdent',
+          'divider',
+          'table',
+          //'image',
+          'link',
+          'divider',
+          'code',
+          'codeblock',
+          'divider'
+        ]
       })
 
+      // Store target inside of editor so we can get it later
       editors[index].toUpdate = this.textareaTargets[index]
+
+      // Set accessibility titles
+      const toolbar = editors[index].getUI().getToolbar()
+      var buttons = toolbar.getItems().length
+      let buttonindex = 0
+      while (buttonindex < buttons) {
+        var item = toolbar.getItem(buttonindex)
+        item.el.title = item.getName()
+        buttonindex++
+      }
+
       index++
     }
 
+    // Update submit button to copy content into hidden textareas
     this.submitTarget.onclick = function () {
       let index = 0
       while (index < editors.length) {
@@ -33,6 +69,7 @@ export default class extends Controller {
       }
     }
 
+    // Create and attach tribute to all editors
     const tribute = new Tribute({
       values: [],
       selectTemplate: function (item) {
@@ -41,6 +78,7 @@ export default class extends Controller {
     })
     tribute.attach(this.element.querySelectorAll('.tui-editor-contents'))
 
+    // Fetch users.json and update tribute
     const host = window.location.protocol + '//' + window.location.host
     const url = `${host}/teams/${window.gon.teamId}/users.json`
     window.fetch(url)
