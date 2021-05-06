@@ -78,15 +78,13 @@
       %ul.list-group.list-group-horizontal
         = render partial: 'teams/topics/vote_list_group', locals: { votable: topic }
   .row.mt-3
-    .col-lg-8.border{ data: { controller: 'toastui-viewer' } }
+    .col-lg-8.border
       %h6.mt-2.text-secondary.small#topic-description Description
-      .user-content{ data: { 'toastui-viewer-target': 'viewer' } }
-      .d-none{ data: { 'toastui-viewer-target': 'content' } }!= topic.description
+      .user-content.tui-editor-contents!= topic.description_html
 
-    .col-lg-4.border{ data: { controller: 'toastui-viewer' } }
+    .col-lg-4.border
       %h6.mt-2.text-secondary.small#topic-outcome
         Outcome
         - if topic.active?
           (Work in Progress)
-      .user-content{ data: { 'toastui-viewer-target': 'viewer' } }
-      .d-none{ data: { 'toastui-viewer-target': 'content' } }!= topic.outcome || 'Not yet started'
+      .user-content.tui-editor-contents!= topic.outcome_html
