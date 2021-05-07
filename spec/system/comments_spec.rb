@@ -40,6 +40,21 @@ RSpec.describe 'Comments', type: :system do
     expect(page).to have_text('This is updated content')
   end
 
+  it 'prevents uploading image data' do
+    user = FactoryBot.create(:user, :team)
+    topic = FactoryBot.create(:topic, team: user.team)
+
+    visit '/'
+    sign_in_user(user)
+    click_link 'Topics'
+    click_link topic.title
+
+    fill_in 'comment[body]', with: '![image.png](data:image/png;base64,abcdefg)'
+    click_button 'Add Comment'
+
+    expect(page).to have_css("img[src='']")
+  end
+
   it 'allows the user to vote on comments' do
     user = FactoryBot.create(:user, :team)
     comment = FactoryBot.create(:comment, user: user)
