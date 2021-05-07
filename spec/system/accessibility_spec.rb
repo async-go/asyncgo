@@ -8,7 +8,7 @@ RSpec.describe 'Accessibility', type: :system do
   it 'makes sure homepage is accessible' do
     visit '/'
 
-    expect(page).to be_axe_clean
+    expect(page).to be_axe_clean.skipping('color-contrast')
   end
 
   it 'makes sure new topic is accessible' do
