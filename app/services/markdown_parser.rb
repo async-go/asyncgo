@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class MarkdownParser < ApplicationService
-  MENTION_REGEX = /@\[?([\w.\-_]+)?\w+@[\w\-_]+(\.\w+)+(\]\(mailto:\w+@[\w\-_]+(\.\w+)+\))*/
+  MENTION_REGEX = /@\[?([\w.\-_]+)?\w+@[\w\-_]+(\.\w+)+(\]\(mailto:\w+@[\w\-_]+(\.\w+)+\))?/
 
   def initialize(user, text, notification_target)
     super()
