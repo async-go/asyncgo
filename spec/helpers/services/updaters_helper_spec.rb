@@ -2,7 +2,6 @@
 
 RSpec.describe Services::UpdatersHelper, type: :helper do
   describe 'remove_imagedata' do
-
     context 'when image data is present' do
       subject(:remove_imagedata) { helper.remove_imagedata('(data:image/png;base64,iVBORw0K)') }
 
