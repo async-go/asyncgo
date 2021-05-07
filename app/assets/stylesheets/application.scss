@@ -36,15 +36,6 @@ $primary: #203864;
       margin-bottom: 1rem;
     }
 
-    blockquote {
-      background: #f9f9f9;
-      color: #444;
-      padding: 0.25rem 1.25rem;
-      font-size: 1rem;
-      margin: 0 0 20px;
-      border-left: 5px solid #ccc;
-    }
-
     h1, h2, h3, h4, h5, h6 {
       margin-top: 1.5rem !important;
       margin-bottom: 0.5rem !important;
@@ -85,6 +76,14 @@ $primary: #203864;
   width: 1.5rem;
   border-radius: .25rem;
   border: 1px solid #333;
+}
+
+blockquote {
+  background: #f9f9f9;
+  padding: 0.25rem 1.25rem;
+  font-size: 1rem;
+  margin: 0 0 20px;
+  border-left: 5px solid #ccc;
 }
 
 .topic-label {

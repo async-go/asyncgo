@@ -19,4 +19,5 @@
         %button.btn.btn-outline-secondary.btn-sm{ data: { action: 'click->quote-reply#quote' } }
           Quote
     .row.mt-2
-      .tui-editor-contents{ data: { 'quote-reply-target' => 'content' } }!= comment.body_html
+      .tui-editor-contents!= comment.body_html
+      .d-none{ data: { 'quote-reply-target' => 'content' } }= comment.body
