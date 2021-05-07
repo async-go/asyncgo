@@ -7,7 +7,7 @@
 
 %p
   Sign in or create an account
-.row
+.row.bg-white
   .col-lg-2.mt-3.mx-3
     = button_to '/auth/google_oauth2',
       'data-turbo': false, class: 'btn btn-google mb-3' do
@@ -23,7 +23,7 @@
       'data-turbo': false, class: 'btn btn-microsoft mb-3' do
       = assistive_icon('fab', 'microsoft', 'Microsoft', classname: 'me-2')
       Microsoft
-  .col-lg-2.mt-3.mx-3.small
+  .col-lg-2.mt-3.mx-3
     = button_to '/auth/slack',
       'data-turbo': false, class: 'btn btn-slack mb-3' do
       = assistive_icon('fab', 'slack', 'Slack', classname: 'me-2')
