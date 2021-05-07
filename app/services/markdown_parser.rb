@@ -22,6 +22,7 @@ class MarkdownParser < ApplicationService
   def process_mentions(text)
     text.gsub(MENTION_REGEX) do |mention|
       email = mention.slice(1..-1)
+      email = email.gsub(/^\[/, '')
       target_user = User.find_by(email: email)
       notify_user!(target_user)
 

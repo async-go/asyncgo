@@ -156,7 +156,7 @@ RSpec.describe 'Notifications', type: :system do
     click_link 'Sign out'
 
     sign_in_user(user)
-    expect(page).to have_link('Has notification 2')
+    expect(page).to have_link('Has notification 1')
   end
 
   it 'clears topic and comment notifications when you visit a topic' do
