@@ -10,7 +10,7 @@ export default class extends Controller {
     let index = 0
     const editors = []
 
-    window['tuieditors'] = {}
+    window.tuieditors = {}
 
     // Create editors
     while (index < this.editorTargets.length) {
@@ -49,7 +49,7 @@ export default class extends Controller {
       editors[index].toUpdate = this.textareaTargets[index]
 
       // Store reference to each editor for tests and query replier
-      this.editorTargets[index]['editorObj'] = editors[index]
+      this.editorTargets[index].editorObj = editors[index]
 
       // Set accessibility titles
       const toolbar = editors[index].getUI().getToolbar()
