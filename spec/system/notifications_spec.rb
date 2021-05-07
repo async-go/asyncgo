@@ -140,6 +140,25 @@ RSpec.describe 'Notifications', type: :system do
     expect(page).to have_link('Has notification 2')
   end
 
+  it 'creates a notification when user gets mentioned inside link' do
+    user = FactoryBot.create(:user, :team)
+    actor = FactoryBot.create(:user, team: user.team)
+
+    visit '/'
+    sign_in_user(actor)
+
+    click_link 'Topics'
+    click_link 'New Topic'
+    fill_in 'topic[title]', with: 'Sample topic'
+    expect(page).to have_selector('#editor_description')
+    tuieditor_setcontent('editor_description', "This is a test mention for @[#{user.email}](mailto:#{user.email})")
+    click_button 'Create'
+    click_link 'Sign out'
+
+    sign_in_user(user)
+    expect(page).to have_link('Has notification 2')
+  end
+
   it 'clears topic and comment notifications when you visit a topic' do
     user = FactoryBot.create(:user, :team)
     actor = FactoryBot.create(:user, team: user.team)

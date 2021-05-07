@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class MarkdownParser < ApplicationService
+  require 'redcarpet'
+  require 'redcarpet/render_strip'
+
   MENTION_REGEX = /(?<=\s)@([\w.\-_]+)?\w+@[\w\-_]+(\.\w+)+\b/
 
   def initialize(user, text, notification_target)
@@ -19,7 +22,9 @@ class MarkdownParser < ApplicationService
 
   private
 
-  def process_mentions(text)
+  def process_mentions(markdown)
+    redcarpet = Redcarpet::Markdown.new(Redcarpet::Render::StripDown)
+    text = redcarpet.render(markdown)
     text.gsub(MENTION_REGEX) do |mention|
       email = mention.slice(1..-1)
       target_user = User.find_by(email: email)
@@ -27,6 +32,7 @@ class MarkdownParser < ApplicationService
 
       "[#{target_user.printable_name}](mailto:#{email})"
     end
+    markdown
   end
 
   def process_markdown(markdown)
