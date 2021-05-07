@@ -10,8 +10,6 @@ export default class extends Controller {
     let index = 0
     const editors = []
 
-    window.tuieditors = {}
-
     // Create editors
     while (index < this.editorTargets.length) {
       editors[index] = new Editor({
