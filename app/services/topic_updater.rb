@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class TopicUpdater < ApplicationService
+  include Services::UpdatersHelper
+
   def initialize(user, topic, update_params)
     super()
 

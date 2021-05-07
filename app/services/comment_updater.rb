@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class CommentUpdater < ApplicationService
+  include Services::UpdatersHelper
+
   def initialize(user, comment, update_params)
     super()
 
@@ -31,6 +33,7 @@ class CommentUpdater < ApplicationService
     original_params.tap do |params|
       next if params[:body].nil?
 
+      params[:body] = remove_imagedata(params[:body])
       params[:body_html] = MarkdownParser.new(@user, params[:body], @comment).call
     end
   end
