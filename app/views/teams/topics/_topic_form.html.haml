@@ -15,14 +15,14 @@
         = form.label :description, id: 'topic-description'
         = link_to '[Templates]', 'https://asyncgo.com/docs/templates', id: 'topic-templates',
           target: :_blank, rel: :noopener
-      %div{ data: { 'toastui-editor-target': 'editor' } }
+      %div{ id: 'editor_description', data: { 'toastui-editor-target': 'editor' } }
       = render partial: 'shared/markdown_text_area', locals: { form: form, name: :description,
         options: { rows: '20', hidden: true, class: 'form-control',
         data: { 'toastui-editor-target': 'textarea' } } }
     .col-lg-5
       .mb-1
         = form.label :outcome, id: 'topic-outcome'
-      %div{ data: { 'toastui-editor-target': 'editor' } }
+      %div{ id: 'editor_outcome', data: { 'toastui-editor-target': 'editor' } }
       = render partial: 'shared/markdown_text_area', locals: { form: form, name: :outcome,
         options: { rows: '20', hidden: true, class: 'form-control', autocomplete: 'off',
         data: { 'toastui-editor-target': 'textarea' } } }

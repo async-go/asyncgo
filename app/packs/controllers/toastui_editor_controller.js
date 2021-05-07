@@ -3,12 +3,14 @@ import Tribute from 'tributejs'
 import Editor from '@toast-ui/editor'
 
 export default class extends Controller {
-  static targets = ['editor', 'textarea', 'submit']
+  static targets = ['editor', 'textarea', 'submit', 'name']
   static values = { users: Array }
 
   connect () {
     let index = 0
     const editors = []
+
+    window['tuieditors'] = {}
 
     // Create editors
     while (index < this.editorTargets.length) {
@@ -45,6 +47,9 @@ export default class extends Controller {
 
       // Store target inside of editor so we can get it later
       editors[index].toUpdate = this.textareaTargets[index]
+
+      // Store reference to each editor for tests and query replier
+      this.editorTargets[index]['editorObj'] = editors[index]
 
       // Set accessibility titles
       const toolbar = editors[index].getUI().getToolbar()

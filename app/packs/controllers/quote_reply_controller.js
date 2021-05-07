@@ -9,8 +9,12 @@ export default class extends Controller {
     const author = this.authorTarget.innerText
 
     const quotedReply = content.split('\n').map(line => `> ${line}`).join('\n')
-    document.querySelectorAll('.tui-editor-contents').value = `On ${date} ${author} wrote\n${quotedReply}\n\n`
 
-    document.querySelectorAll('.tui-editor-contents').focus()
+    const editor = document.getElementById('editor_comment_new')['editorObj']
+
+    editor.setMarkdown("On " + date + " " + author + " wrote:\n" + quotedReply + "\n\n")
+    window.scrollTo(0, document.body.scrollHeight);
+    editor.focus()
+    editor.moveCursorToEnd()
   }
 }
