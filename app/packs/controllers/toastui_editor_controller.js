@@ -3,7 +3,7 @@ import Tribute from 'tributejs'
 import Editor from '@toast-ui/editor'
 
 export default class extends Controller {
-  static targets = ['editor', 'textarea', 'submit', 'name']
+  static targets = ['editor', 'textarea', 'submit']
   static values = { users: Array }
 
   connect () {
