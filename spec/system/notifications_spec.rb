@@ -3,7 +3,7 @@
 require './spec/support/sign_in_out_system_helpers'
 
 RSpec.describe 'Notifications', type: :system do
-  include SignInOutSystemHelpers
+  include SignInOutSystemHelpers, TuiEditorSystemHelpers
 
   it 'allows user to read a notification' do
     user = FactoryBot.create(:user, :team)
@@ -30,7 +30,8 @@ RSpec.describe 'Notifications', type: :system do
     click_link 'Topics'
     click_link 'New Topic'
     fill_in 'topic[title]', with: 'Sample topic'
-    fill_in 'topic[description]', with: 'Sample topic description'
+    expect(page).to have_selector('#editor_description')
+    tuieditor_setcontent('editor_description', 'Sample topic description')
     click_button 'Create'
     click_link 'Sign out'
 
@@ -50,7 +51,8 @@ RSpec.describe 'Notifications', type: :system do
     click_link 'Topics'
     click_link 'New Topic'
     fill_in 'topic[title]', with: 'Sample topic'
-    fill_in 'topic[description]', with: 'Sample topic description'
+    expect(page).to have_selector('#editor_description')
+    tuieditor_setcontent('editor_description', 'Sample topic description')
     click_button 'Create'
     click_link 'Sign out'
 
@@ -75,7 +77,8 @@ RSpec.describe 'Notifications', type: :system do
     click_link 'Topics'
     click_link 'New Topic'
     fill_in 'topic[title]', with: 'Sample topic'
-    fill_in 'topic[description]', with: 'Sample topic description'
+    expect(page).to have_selector('#editor_description')
+    tuieditor_setcontent('editor_description', 'Sample topic description')
     click_button 'Create'
     click_link 'Sign out'
 
@@ -101,14 +104,16 @@ RSpec.describe 'Notifications', type: :system do
     click_link 'Topics'
     click_link 'New Topic'
     fill_in 'topic[title]', with: 'Sample topic'
-    fill_in 'topic[description]', with: 'Sample topic description'
+    expect(page).to have_selector('#editor_description')
+    tuieditor_setcontent('editor_description', 'Sample topic description')
     click_button 'Create'
     click_link 'Sign out'
 
     sign_in_user(actor)
     click_link 'Topics'
     click_link 'Sample topic'
-    fill_in 'comment[body]', with: '__Sample content__'
+    expect(page).to have_selector('#editor_comment_new')
+    tuieditor_setcontent('editor_comment_new', '__Sample content__')
     click_button 'Add Comment'
     click_link 'Sign out'
 
@@ -126,7 +131,8 @@ RSpec.describe 'Notifications', type: :system do
     click_link 'Topics'
     click_link 'New Topic'
     fill_in 'topic[title]', with: 'Sample topic'
-    fill_in 'topic[description]', with: "This is a test mention for @#{user.email}"
+    expect(page).to have_selector('#editor_description')
+    tuieditor_setcontent('editor_description', "This is a test mention for @#{user.email}")
     click_button 'Create'
     click_link 'Sign out'
 
@@ -144,7 +150,8 @@ RSpec.describe 'Notifications', type: :system do
     click_link 'Topics'
     click_link 'New Topic'
     fill_in 'topic[title]', with: 'Sample topic'
-    fill_in 'topic[description]', with: 'Sample topic description'
+    expect(page).to have_selector('#editor_description')
+    tuieditor_setcontent('editor_description', 'Sample topic description')
     click_button 'Create'
     click_link 'Sign out'
 
@@ -161,7 +168,8 @@ RSpec.describe 'Notifications', type: :system do
     sign_in_user(actor)
     click_link 'Topics'
     click_link 'Sample topic'
-    fill_in 'comment[body]', with: '__Sample content__'
+    expect(page).to have_selector('#editor_comment_new')
+    tuieditor_setcontent('editor_comment_new', '__Sample content__')
     click_button 'Add Comment'
     click_link 'Sign out'
 

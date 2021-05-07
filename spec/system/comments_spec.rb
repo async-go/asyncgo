@@ -3,7 +3,7 @@
 require './spec/support/sign_in_out_system_helpers'
 
 RSpec.describe 'Comments', type: :system do
-  include SignInOutSystemHelpers
+  include SignInOutSystemHelpers, TuiEditorSystemHelpers
 
   it 'allows the user to leave comments using markdown' do
     user = FactoryBot.create(:user, :team)
@@ -14,7 +14,9 @@ RSpec.describe 'Comments', type: :system do
     click_link 'Topics'
     click_link topic.title
 
-    fill_in 'comment[body]', with: '__Sample content__'
+    expect(page).to have_selector('#editor_comment_new')
+    tuieditor_setcontent('editor_comment_new', '__Sample content__')
+
     click_button 'Add Comment'
 
     expect(page).to have_selector('strong', text: 'Sample content')
@@ -33,7 +35,8 @@ RSpec.describe 'Comments', type: :system do
     edit_comment_path = team_topic_comment_path(comment.topic.team, comment.topic, comment)
     edit_comment_form = find("form[action='#{edit_comment_path}']", match: :first)
     within(edit_comment_form) do
-      fill_in 'comment[body]', with: 'This is updated content'
+      expect(page).to have_selector("#editor_comment_#{comment.id}")
+      tuieditor_setcontent("editor_comment_#{comment.id}", 'This is updated content')
       click_button 'Update'
     end
 

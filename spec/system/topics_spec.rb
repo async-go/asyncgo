@@ -3,7 +3,7 @@
 require './spec/support/sign_in_out_system_helpers'
 
 RSpec.describe 'Topics', type: :system do
-  include SignInOutSystemHelpers
+  include SignInOutSystemHelpers, TuiEditorSystemHelpers
 
   it 'shows all topics' do
     user = FactoryBot.create(:user, :team)
@@ -44,7 +44,8 @@ RSpec.describe 'Topics', type: :system do
     click_link 'New Topic'
 
     fill_in 'topic[title]', with: 'Sample title'
-    fill_in 'topic[description]', with: '__Sample topic content__'
+    expect(page).to have_selector('#editor_description')
+    tuieditor_setcontent('editor_description', '__Sample topic content__')
     click_button 'Create'
 
     expect(page).to have_text('Sample title')
@@ -61,7 +62,8 @@ RSpec.describe 'Topics', type: :system do
     click_link topic.title
     click_link 'Edit'
 
-    fill_in 'topic[description]', with: 'This is an update'
+    expect(page).to have_selector('#editor_description')
+    tuieditor_setcontent('editor_description', 'This is an update')
     click_button 'Update'
 
     expect(page).to have_text('This is an update')
@@ -79,7 +81,8 @@ RSpec.describe 'Topics', type: :system do
 
     update_topic_path = team_topic_path(topic.team, topic)
     expect(page).to have_selector("form[action='#{update_topic_path}']")
-    fill_in 'topic[description]', with: 'This is an update'
+    expect(page).to have_selector('#editor_description')
+    tuieditor_setcontent('editor_description', 'Sample topic description')
     topic.update!(description: 'This is an external update',
                   description_html: '<p>This is an external update',
                   description_checksum: Digest::MD5.hexdigest(topic.description))
@@ -100,7 +103,8 @@ RSpec.describe 'Topics', type: :system do
 
     update_topic_path = team_topic_path(topic.team, topic)
     expect(page).to have_selector("form[action='#{update_topic_path}']")
-    fill_in 'topic[outcome]', with: 'This is an update'
+    expect(page).to have_selector('#editor_description')
+    tuieditor_setcontent('editor_description', 'Sample topic description')
     topic.update!(outcome: 'This is an external update',
                   outcome_html: '<p>This is an external update</p>',
                   outcome_checksum: Digest::MD5.hexdigest(''))
@@ -119,7 +123,8 @@ RSpec.describe 'Topics', type: :system do
     click_link topic.title
     click_link 'Edit'
 
-    fill_in 'topic[outcome]', with: '__Sample outcome__'
+    expect(page).to have_selector('#editor_description')
+    tuieditor_setcontent('editor_description', '__Sample outcome__')
     click_button 'Update'
 
     expect(page).to have_selector('strong', text: 'Sample outcome')
