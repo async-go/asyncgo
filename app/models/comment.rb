@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Comment < ApplicationRecord
-  validates :body, presence: { allow_blank: false }
+  validates :body, presence: { allow_blank: false }, image_data: true
   validates :body_html, presence: true
 
   belongs_to :user

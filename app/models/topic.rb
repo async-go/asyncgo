@@ -8,9 +8,9 @@ class Topic < ApplicationRecord
   ERROR_TEXT
 
   validates :title, presence: { allow_blank: false }
-  validates :description, presence: { allow_blank: false }
+  validates :description, presence: { allow_blank: false }, image_data: true
   validates :description_html, presence: true
-  validates :outcome, presence: { allow_blank: false, allow_empty: false, allow_nil: true }
+  validates :outcome, presence: { allow_blank: false, allow_empty: false, allow_nil: true }, image_data: true
   validates :outcome_html, presence: { if: :outcome? }
 
   attr_accessor :description_checksum, :outcome_checksum
