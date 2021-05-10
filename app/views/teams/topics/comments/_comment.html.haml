@@ -4,8 +4,9 @@
       .col-auto.pt-1
         = image_tag "#{comment.user.gravatar_url}?s=20&d=retro",
           class: 'me-1 gravatar-img', alt: ''
-        = link_to comment.user.printable_name, "mailto:#{comment.user.email}",
-          data: { 'quote-reply-target' => 'author' }
+        = link_to comment.user.printable_name, "mailto:#{comment.user.email}"
+        .d-none{ data: { 'quote-reply-target' => 'authoremail' } }
+          #{comment.user.email}
       .col-auto.pt-1
         %span{ data: { 'quote-reply-target' => 'date' } }= comment.created_at.strftime('%b %e')
       .col-auto
