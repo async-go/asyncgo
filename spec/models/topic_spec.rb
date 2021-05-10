@@ -77,20 +77,16 @@ RSpec.describe Topic, type: :model do
     describe '#description_imagedata' do
       subject(:valid?) { topic.valid? }
 
-      let(:topic) { FactoryBot.build(:topic) }
+      let(:topic) { FactoryBot.build(:topic, description: description) }
 
       context 'when description does not have image data' do
-        before do
-          topic.description = 'hello world'
-        end
+        let(:description) { 'hello world' }
 
         it { is_expected.to eq(true) }
       end
 
       context 'when description has image data' do
-        before do
-          topic.description = '![image.png](data:image/png;base64,abcdefg)'
-        end
+        let(:description) { '![image.png](data:image/png;base64,abcdefg)' }
 
         it { is_expected.to eq(false) }
 
@@ -105,20 +101,16 @@ RSpec.describe Topic, type: :model do
     describe '#outcome_imagedata' do
       subject(:valid?) { topic.valid? }
 
-      let(:topic) { FactoryBot.build(:topic) }
+      let(:topic) { FactoryBot.build(:topic, outcome: outcome) }
 
       context 'when outcome does not have image data' do
-        before do
-          topic.outcome = 'hello world'
-        end
+        let(:outcome) { 'hello world' }
 
         it { is_expected.to eq(true) }
       end
 
       context 'when outcome has image data' do
-        before do
-          topic.outcome = '![image.png](data:image/png;base64,abcdefg)'
-        end
+        let(:outcome) { '![image.png](data:image/png;base64,abcdefg)' }
 
         it { is_expected.to eq(false) }
 

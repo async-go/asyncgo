@@ -8,20 +8,16 @@ RSpec.describe Comment, type: :model do
     describe '#body_imagedata' do
       subject(:valid?) { comment.valid? }
 
-      let(:comment) { FactoryBot.build(:comment) }
+      let(:comment) { FactoryBot.build(:comment, body: body) }
 
       context 'when body does not have image data' do
-        before do
-          comment.body = 'hello world'
-        end
+        let(:body) { 'hello world' }
 
         it { is_expected.to eq(true) }
       end
 
       context 'when body has image data' do
-        before do
-          comment.body = '![image.png](data:image/png;base64,abcdefg)'
-        end
+        let(:body) { '![image.png](data:image/png;base64,abcdefg)' }
 
         it { is_expected.to eq(false) }
 
