@@ -6,6 +6,7 @@ class Topic < ApplicationRecord
     topic in a new tab and merge your changes manually (do not refresh or
     navigate away from this page or your changes will be lost.)
   ERROR_TEXT
+  IMAGEDATA_REGEX = %r{\(data:image/\w+;base64,[^\s)]+\)}i
 
   validates :title, presence: { allow_blank: false }
   validates :description, presence: { allow_blank: false }
@@ -17,6 +18,7 @@ class Topic < ApplicationRecord
 
   validate :validate_description_checksum, on: :update, if: :description_changed?
   validate :validate_outcome_checksum, on: :update, if: :outcome_changed?
+  validate :description_imagedata, :outcome_imagedata
 
   belongs_to :user
   belongs_to :team
@@ -58,5 +60,13 @@ class Topic < ApplicationRecord
     return if Digest::MD5.hexdigest(outcome_was.to_s) == outcome_checksum
 
     errors.add(:outcome, CHECKSUM_ERROR_MESSAGE)
+  end
+
+  def description_imagedata
+    errors.add(:description, "can't contain base64 image data") if IMAGEDATA_REGEX.match?(description)
+  end
+
+  def outcome_imagedata
+    errors.add(:outcome, "can't contain base64 image data") if IMAGEDATA_REGEX.match?(outcome)
   end
 end

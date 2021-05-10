@@ -73,6 +73,62 @@ RSpec.describe Topic, type: :model do
         it { is_expected.to eq(false) }
       end
     end
+
+    describe '#description_imagedata' do
+      subject(:valid?) { topic.valid? }
+
+      let(:topic) { FactoryBot.build(:topic) }
+
+      context 'when description does not have image data' do
+        before do
+          topic.description = 'hello world'
+        end
+
+        it { is_expected.to eq(true) }
+      end
+
+      context 'when description has image data' do
+        before do
+          topic.description = '![image.png](data:image/png;base64,abcdefg)'
+        end
+
+        it { is_expected.to eq(false) }
+
+        it 'adds an image data error to description' do
+          topic.valid?
+
+          expect(topic.errors.first).to have_attributes(attribute: :description)
+        end
+      end
+    end
+
+    describe '#outcome_imagedata' do
+      subject(:valid?) { topic.valid? }
+
+      let(:topic) { FactoryBot.build(:topic) }
+
+      context 'when outcome does not have image data' do
+        before do
+          topic.outcome = 'hello world'
+        end
+
+        it { is_expected.to eq(true) }
+      end
+
+      context 'when outcome has image data' do
+        before do
+          topic.outcome = '![image.png](data:image/png;base64,abcdefg)'
+        end
+
+        it { is_expected.to eq(false) }
+
+        it 'adds an image data error to outcome' do
+          topic.valid?
+
+          expect(topic.errors.first).to have_attributes(attribute: :outcome)
+        end
+      end
+    end
   end
 
   describe 'Relations' do
