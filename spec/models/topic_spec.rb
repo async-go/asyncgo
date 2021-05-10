@@ -74,7 +74,7 @@ RSpec.describe Topic, type: :model do
       end
     end
 
-    describe '#description_imagedata' do
+    describe 'description image data' do
       subject(:valid?) { topic.valid? }
 
       let(:topic) { FactoryBot.build(:topic, description: description) }
@@ -98,7 +98,7 @@ RSpec.describe Topic, type: :model do
       end
     end
 
-    describe '#outcome_imagedata' do
+    describe 'outcome image data' do
       subject(:valid?) { topic.valid? }
 
       let(:topic) { FactoryBot.build(:topic, outcome: outcome) }

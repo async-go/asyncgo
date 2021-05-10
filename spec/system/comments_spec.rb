@@ -52,7 +52,7 @@ RSpec.describe 'Comments', type: :system do
     fill_in 'comment[body]', with: '![image.png](data:image/png;base64,abcdefg)'
     click_button 'Add Comment'
 
-    expect(page).to have_text("Body can't contain base64 image data")
+    expect(page).to have_text("Body can't contain embedded markdown images")
   end
 
   it 'allows the user to vote on comments' do

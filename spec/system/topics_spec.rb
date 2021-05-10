@@ -79,7 +79,7 @@ RSpec.describe 'Topics', type: :system do
 
     fill_in 'topic[description]', with: '![image.png](data:image/png;base64,abcdefg)'
     click_button 'Update'
-    expect(page).to have_text("Description can't contain base64 image data")
+    expect(page).to have_text("Description can't contain embedded markdown images")
   end
 
   it 'prevents uploading image data to outcome' do
@@ -95,7 +95,7 @@ RSpec.describe 'Topics', type: :system do
     fill_in 'topic[description]', with: 'Topic description'
     fill_in 'topic[outcome]', with: '![image.png](data:image/png;base64,abcdefg)'
     click_button 'Update'
-    expect(page).to have_text("Outcome can't contain base64 image data")
+    expect(page).to have_text("Outcome can't contain embedded markdown images")
   end
 
   it 'prevents overwriting topic updates for description' do

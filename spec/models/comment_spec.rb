@@ -5,7 +5,7 @@ RSpec.describe Comment, type: :model do
     it { is_expected.to validate_presence_of(:body) }
     it { is_expected.to validate_presence_of(:body_html) }
 
-    describe '#body_imagedata' do
+    describe 'body image data' do
       subject(:valid?) { comment.valid? }
 
       let(:comment) { FactoryBot.build(:comment, body: body) }
