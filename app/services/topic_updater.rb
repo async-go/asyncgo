@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class TopicUpdater < ApplicationService
-  include Services::UpdatersHelper
-
   def initialize(user, topic, update_params)
     super()
 
@@ -36,7 +34,6 @@ class TopicUpdater < ApplicationService
     original_params.tap do |params|
       next if params[:description].nil?
 
-      params[:description] = remove_imagedata(params[:description])
       params[:description_html] = MarkdownParser.new(@user, params[:description], @topic).call
     end
   end
@@ -49,7 +46,6 @@ class TopicUpdater < ApplicationService
         params[:outcome] = nil
         params[:outcome_html] = nil
       elsif params[:outcome].present?
-        params[:outcome] = remove_imagedata(params[:outcome])
         params[:outcome_html] = MarkdownParser.new(@user, params[:outcome], @topic).call
       end
     end
