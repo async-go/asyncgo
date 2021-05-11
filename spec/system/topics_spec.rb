@@ -69,6 +69,37 @@ RSpec.describe 'Topics', type: :system do
     expect(page).to have_text('This is an update')
   end
 
+  it 'prevents uploading image data to description' do
+    user = FactoryBot.create(:user, :team)
+    topic = FactoryBot.create(:topic, team: user.team)
+
+    visit '/'
+    sign_in_user(user)
+    click_link 'Topics'
+    click_link topic.title
+    click_link 'Edit'
+
+    fill_in 'topic[description]', with: '![image.png](data:image/png;base64,abcdefg)'
+    click_button 'Update'
+    expect(page).to have_text("Description can't contain embedded markdown images")
+  end
+
+  it 'prevents uploading image data to outcome' do
+    user = FactoryBot.create(:user, :team)
+    topic = FactoryBot.create(:topic, team: user.team)
+
+    visit '/'
+    sign_in_user(user)
+    click_link 'Topics'
+    click_link topic.title
+    click_link 'Edit'
+
+    fill_in 'topic[description]', with: 'Topic description'
+    fill_in 'topic[outcome]', with: '![image.png](data:image/png;base64,abcdefg)'
+    click_button 'Update'
+    expect(page).to have_text("Outcome can't contain embedded markdown images")
+  end
+
   it 'prevents overwriting topic updates for description' do
     user = FactoryBot.create(:user, :team)
     topic = FactoryBot.create(:topic, team: user.team)
