@@ -52,7 +52,8 @@ RSpec.describe 'Comments', type: :system do
     click_link 'Topics'
     click_link topic.title
 
-    fill_in 'comment[body]', with: '![image.png](data:image/png;base64,abcdefg)'
+    expect(page).to have_selector("#editor_comment_new")
+    tuieditor_setcontent("editor_comment_new", '![image.png](data:image/png;base64,abcdefg)')
     click_button 'Add Comment'
 
     expect(page).to have_text("Body can't contain embedded markdown images")

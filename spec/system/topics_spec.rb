@@ -79,7 +79,8 @@ RSpec.describe 'Topics', type: :system do
     click_link topic.title
     click_link 'Edit'
 
-    fill_in 'topic[description]', with: '![image.png](data:image/png;base64,abcdefg)'
+    expect(page).to have_selector('#editor_description')
+    tuieditor_setcontent('editor_description', '![image.png](data:image/png;base64,abcdefg)')
     click_button 'Update'
     expect(page).to have_text("Description can't contain embedded markdown images")
   end
@@ -94,8 +95,10 @@ RSpec.describe 'Topics', type: :system do
     click_link topic.title
     click_link 'Edit'
 
-    fill_in 'topic[description]', with: 'Topic description'
-    fill_in 'topic[outcome]', with: '![image.png](data:image/png;base64,abcdefg)'
+    expect(page).to have_selector('#editor_description')
+    tuieditor_setcontent('editor_description', 'Topic description')
+    expect(page).to have_selector('#editor_outcome')
+    tuieditor_setcontent('editor_outcome', '![image.png](data:image/png;base64,abcdefg)')
     click_button 'Update'
     expect(page).to have_text("Outcome can't contain embedded markdown images")
   end
