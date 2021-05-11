@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-# config/initializers/webpacker_patch.rb
-# revert of https://github.com/rails/webpacker/commit/3760588534c54527d21c684c2cb5ca30cafc0901
+# Revert of https://github.com/rails/webpacker/commit/3760588534c54527d21c684c2cb5ca30cafc0901
 module WebpackerChdirPatch
   def watched_files_digest
     unless watched_paths.empty?
