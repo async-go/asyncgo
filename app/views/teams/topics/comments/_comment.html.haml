@@ -1,5 +1,5 @@
 = turbo_frame_tag dom_id(comment) do
-  %div{ data: { controller: 'quote-reply' } }
+  %li.list-group-item.mt-1{ data: { controller: 'quote-reply' } }
     .row.justify-content-start.bg-light.p-1
       .col-auto.pt-1
         = image_tag "#{comment.user.gravatar_url}?s=20&d=retro",
