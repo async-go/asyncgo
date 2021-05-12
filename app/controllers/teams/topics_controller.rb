@@ -28,10 +28,8 @@ module Teams
 
       comment_order = current_user.preferences.inverse_comment_order ? :desc : :asc
 
-      @pagy, @topic_comments = pagy(
-        @topic.comments.order(created_at: comment_order)
-        .includes(:user, topic: :team, votes: :user)
-      )
+      @topic_comments = @topic.comments.order(created_at: comment_order)
+                              .includes(:user, topic: :team, votes: :user)
     end
 
     def edit
