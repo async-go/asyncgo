@@ -76,6 +76,7 @@ RSpec.describe Teams::TopicsController, type: :request do
           expect(response.body).to include('Create')
         end
       end
+    end
 
     include_examples 'unauthorized user examples' do
       let(:params) { nil }
