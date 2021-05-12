@@ -52,6 +52,21 @@ RSpec.describe 'Topics', type: :system do
     expect(page).to have_selector('strong', text: 'Sample topic content')
   end
 
+  it 'allows the user to create a topic using query parameters' do
+    user = FactoryBot.create(:user, :team)
+    visit '/'
+    sign_in_user(user)
+
+    visit "/teams/#{user.team.id}/topics/new?context=hello&selection=goodbye"
+    fill_in 'topic[title]', with: 'Sample title'
+
+    expect(page).to have_selector('#editor_description')
+    click_button 'Create'
+
+    expect(page).to have_text('hello')
+    expect(page).to have_text('goodbye')
+  end
+
   it 'allows the user to edit a topic' do
     user = FactoryBot.create(:user, :team)
     topic = FactoryBot.create(:topic, team: user.team)

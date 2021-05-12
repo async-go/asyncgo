@@ -77,23 +77,6 @@ RSpec.describe Teams::TopicsController, type: :request do
         end
       end
 
-      context 'when extension parameters are passed' do
-        let(:params) { { selection: 'Hello', context: 'https://www.google.com' } }
-
-        it 'renders the new page' do
-          get_new
-
-          expect(response.body).to include('Create')
-        end
-
-        it 'includes the passed parameters' do
-          get_new
-
-          expect(response.body).to include('Created from: https://www.google.com', 'Hello')
-        end
-      end
-    end
-
     include_examples 'unauthorized user examples' do
       let(:params) { nil }
     end
