@@ -19,9 +19,6 @@
   %ul.list-group.list-group#comments
     - @topic_comments.each do |comment|
       = render partial: 'teams/topics/comments/comment', locals: { comment: comment }
-  - if @pagy.pages > 1
-    .row
-      != pagy_bootstrap_nav(@pagy)
 
 - unless current_user.preferences.inverse_comment_order?
   = render partial: 'teams/topics/comments/comment_box', locals: { topic: @topic }
