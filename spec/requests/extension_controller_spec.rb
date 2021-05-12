@@ -3,9 +3,9 @@
 require './spec/support/unauthorized_user_examples'
 
 RSpec.describe ExtensionController, type: :request do
-  describe 'POST new_topic' do
-    subject(:post_new_topic) do
-      post '/extension/new_topic', params: { selection: 'Hello', context: 'https://www.google.com' }, as: :json
+  describe 'GET new_topic' do
+    subject(:get_new_topic) do
+      get '/extension/new_topic', params: { selection: 'Hello', context: 'https://www.google.com' }
     end
 
     let(:user) { FactoryBot.create(:user) }
@@ -20,7 +20,7 @@ RSpec.describe ExtensionController, type: :request do
       end
 
       it 'persists the selection and context query parameters' do
-        post_new_topic
+        get_new_topic
 
         expect(response).to redirect_to(
           new_team_topic_path(user.team, params: { selection: 'Hello', context: 'https://www.google.com' })

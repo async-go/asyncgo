@@ -29,8 +29,8 @@ Rails.application.routes.draw do
     mount Blazer::Engine, at: :blazer
   end
 
-  scope :extension, controller: :extension, constraints: { format: :json } do
-    post :new_topic
+  scope :extension, controller: :extension do
+    get :new_topic
   end
 
   resources :subscriptions, only: [], constraints: { format: :json } do
