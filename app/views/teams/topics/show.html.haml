@@ -18,8 +18,7 @@
 .row.mb-2
   %ul.list-group.list-group#comments
     - @topic_comments.each do |comment|
-      %li.list-group-item.my-2
-        = render partial: 'teams/topics/comments/comment', locals: { comment: comment }
+      = render partial: 'teams/topics/comments/comment', locals: { comment: comment }
   - if @pagy.pages > 1
     .row
       != pagy_bootstrap_nav(@pagy)
