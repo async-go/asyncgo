@@ -5,8 +5,15 @@
 
 = render @topic
 
+- if current_user.preferences.inverse_comment_order?
+  = render partial: 'teams/topics/comments/comment_box', locals: { topic: @topic }
+
 - if @topic_comments.present?
-  %h5.mt-4#topic-comments Comments
+  %h5.mt-4#topic-comments
+    - if current_user.preferences.inverse_comment_order?
+      Comments (Newest to Oldest)
+    - else
+      Comments (Oldest to Newest)
 
 .row.mb-2
   %ul.list-group.list-group#comments
@@ -17,7 +24,5 @@
     .row
       != pagy_bootstrap_nav(@pagy)
 
-.row.mt-2
-  .col-12
-    %h5.mt-4 Add Comment
-    = turbo_frame_tag 'new_comment', src: new_team_topic_comment_path(@topic.team, @topic)
+- unless current_user.preferences.inverse_comment_order?
+  = render partial: 'teams/topics/comments/comment_box', locals: { topic: @topic }
