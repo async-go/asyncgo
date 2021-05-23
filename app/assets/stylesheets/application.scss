@@ -14,7 +14,8 @@
  *= require_self
  */
 
-$primary: #203864;
+$primary: #3d5a80;
+$info: #98c1d9;
 
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import 'bootstrap/scss/bootstrap';
@@ -101,4 +102,35 @@ blockquote {
 .btn-slack, .btn-slack:hover {
   color: #fff;
   background-color: #007a5a;
+}
+
+body {
+  overflow-y: scroll;
+}
+
+/* Theme colors: https://coolors.co/3d5a80-98c1d9-e0fbfc-ee6c4d-293241 */
+
+.theme-primary {
+  background-color: #3d5a80;
+  color: #fff;
+}
+
+.theme-secondary {
+  background-color: #98c1d9;
+  color: #000;
+}
+
+.theme-light {
+  background-color: #e0fbfc;
+  color: #000;
+}
+
+.theme-dark {
+  background-color: #293241;
+  color: #fff;
+}
+
+.theme-info {
+  background-color: #ee6c4d;
+  color: #fff;
 }
