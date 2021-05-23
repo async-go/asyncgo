@@ -12,7 +12,7 @@
 
 .row.mt-1
   = render partial: 'topics', locals: { topic_collection: @active_topics, topic_hotkeys: true,
-    empty_state_text: 'Active topics will appear here. Try creating a new topic to get started.',
+    empty_state_text: 'Once you have created some topics they will appear here. Try creating a new topic using the blue button above to get started.',
     list_heading: :active }
 - if @pagy_active_topics.pages > 1
   .row.mt-3
@@ -20,7 +20,7 @@
 
 .row.mt-3
   = render partial: 'topics', locals: { topic_collection: @resolved_topics, topic_hotkeys: false,
-    empty_state_text: 'Once you have resolved some topics they will appear here.',
+    empty_state_text: '',
     list_heading: :resolved }
 - if @pagy_resolved_topics.pages > 1
   .row.mt-3

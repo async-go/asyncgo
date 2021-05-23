@@ -2,7 +2,7 @@
 %ul.list-group.list-group-flush
   - if topic_collection.present?
     %li.list-group-item.border-0.mt-0.d-none.d-lg-block.p-2
-      .row
+      .row.pb-1.border-bottom
         .col-lg-5.fw-bold{ id: "#{list_heading}-topics" }
           #{list_heading.capitalize} Topics
         .col-lg-2.small
@@ -12,7 +12,7 @@
         .col-lg-2.small
           Participants
     - topic_collection.each_with_index do |topic, topic_index|
-      - list_item_style = topic.active? ? 'bg-white border-bottom' : 'bg-light border'
+      - list_item_style = topic.active? ? 'bg-white' : 'bg-light border'
       %li.list-group-item.p-2.mb-1.pb-0{ class: list_item_style }
         .row.my-2
           .col-8.col-lg-5.mb-2
