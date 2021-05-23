@@ -143,7 +143,7 @@ export default class extends Controller {
           description: 'Click this link any time to sign out of the app.',
           position: 'left'
         }
-      },
+      }
     ])
   }
 
