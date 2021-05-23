@@ -11,7 +11,7 @@
       .m-2.text-break.fs-6= @team.message
 
 :ruby
-  empty_state_text = if params[:labels].empty?
+  empty_state_text = if params[:labels].present?
                       'No match found for this label filter.'
                      else
                       'Once you have created some topics they will appear here.
