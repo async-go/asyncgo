@@ -5,7 +5,7 @@
     %header.px-2.border-bottom.shadow-sm.mb-2
       %nav.navbar.navbar-light.navbar-expand-lg
         .container-fluid
-          = link_to root_path, class: 'navbar-brand me-4 border-2',
+          = link_to root_path, class: 'navbar-brand me-4 border-2', title: "Topics",
             data: { controller: 'hotkey', hotkey: 'h' } do
             = image_tag('logo.svg', alt: 'AsyncGo logo', class: 'img-fluid mt-1')
             %span.ms-1.me-5 AsyncGo
@@ -33,7 +33,7 @@
                         .input-group.mt-1
                           = form.text_field :labels, value: params[:labels],
                             placeholder: 'Separate labels with space',
-                            class: 'bg-light form-control form-control-sm', autocomplete: 'false'
+                            class: 'bg-light form-control form-control-sm', autocomplete: 'off'
                           - if params[:labels].present?
                             .input-group-append
                               = link_to team_topics_path(current_user.team),
@@ -46,18 +46,18 @@
                                 = assistive_icon('fas', 'filter', 'Filter')
                   %li.nav-item.pe-3#admin-nav
                     = link_to edit_team_path(current_user.team_id) do
-                      = assistive_icon('fas', 'cog', 'Team Settings',
+                      = assistive_icon('fas', 'cog', 'Admin',
                         classname: 'btn btn-outline-secondary mt-1')
                 - else
                   %li.nav-item.pe-3#create-team-nav
-                    = link_to 'Create Team', new_team_path, 'nav-link'
+                    = link_to 'Create Team', new_team_path
                 %li.nav-item.pe-3#profile-nav
                   = link_to edit_user_path(current_user) do
-                    = assistive_icon('fas', 'user-cog', 'User Settings',
+                    = assistive_icon('fas', 'user-cog', 'Profile',
                       classname: 'btn btn-outline-secondary mt-1')
                 %li.nav-item.pe-3#sign-out-nav
-                  = link_to sign_out_path, method: :delete do
-                    = assistive_icon('fas', 'sign-out-alt', 'Sign Out',
+                  = link_to sign_out_path, method: :delete, title: 'Sign out' do
+                    = assistive_icon('fas', 'sign-out-alt', 'Sign out',
                       classname: 'btn btn-outline-secondary mt-1')
               - else
                 %li.nav-item.dropdown#sign-in-nav
