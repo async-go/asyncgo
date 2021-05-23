@@ -11,12 +11,12 @@
       .m-2.text-break.fs-6= @team.message
 
 :ruby
-  if params[:labels].present?
-    empty_state_text = 'No match found for this label filter.'
-  else
-    empty_state_text = 'Once you have created some topics they will appear here.
-                        Try creating a new topic using the blue button above to get started.'
-  end
+  empty_state_text = if params[:labels].empty?
+                      'No match found for this label filter.'
+                     else
+                      'Once you have created some topics they will appear here.
+                       Try creating a new topic using the blue button above to get started.'
+                     end
 .row.mt-1
   = render partial: 'topics', locals: { topic_collection: @active_topics, topic_hotkeys: true,
     empty_state_text: empty_state_text, list_heading: :active }
