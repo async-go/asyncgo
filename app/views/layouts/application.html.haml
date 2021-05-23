@@ -59,25 +59,11 @@
                     .btn.btn-outline-secondary.btn-block.w-100.mb-2
                       = assistive_icon('fas', 'user-cog', 'Profile')
                       .d-lg-none Profile
-                %li.nav-item.pe-3.mt-1#sign-out-nav
-                  = link_to sign_out_path, method: :delete, title: 'Sign out' do
-                    .btn.btn-outline-secondary.btn-block.w-100.mb-2
-                      = assistive_icon('fas', 'sign-out-alt', 'Sign out')
-                      .d-lg-none Sign out
-              - else
-                %li.nav-item.dropdown#sign-in-nav
-                  %a.nav-link.dropdown-toggle.mt-1.me-5{ href: '#', id: 'sign-in-dropdown', role: 'button',
-                    'data-bs-toggle': 'dropdown', 'aria-haspopup': 'true',
-                    'aria-expanded': 'false' } Sign in
-                  %ul.dropdown-menu{ 'aria-labelledby': 'sign-in-dropdown' }
-                    %li= button_to 'Sign in with Google', '/auth/google_oauth2',
-                      'data-turbo': false, class: 'dropdown-item btn btn-google'
-                    %li= button_to 'Sign in with GitHub', '/auth/github',
-                      'data-turbo': false, class: 'dropdown-item btn btn-github mt-1'
-                    %li= button_to 'Sign in with Microsoft', '/auth/microsoft_graph',
-                      'data-turbo': false, class: 'dropdown-item btn btn-microsoft mt-1'
-                    %li= button_to 'Sign in with Slack', '/auth/slack',
-                      'data-turbo': false, class: 'dropdown-item btn btn-slack mt-1'
+              %li.nav-item.pe-3.mt-1#sign-out-nav
+                = link_to sign_out_path, method: :delete, title: 'Sign out' do
+                  .btn.btn-outline-secondary.btn-block.w-100.mb-2
+                    = assistive_icon('fas', 'sign-out-alt', 'Sign out')
+                    .d-lg-none Sign out
               %li.mt-1
                 = yield :extra_nav_items
     - container = current_user&.preferences&.fluid_layout? ? 'container-fluid' : 'container'
