@@ -68,6 +68,7 @@ blockquote {
   background: lightgray;
   color: #333;
   font-size: small;
+  font-weight: normal;
   height: 1.5rem;
   border: 1px solid #777;
   padding: .25rem;
@@ -117,12 +118,12 @@ body {
 
 .theme-secondary {
   background-color: #98c1d9;
-  color: #000;
+  color: #333;
 }
 
 .theme-light {
   background-color: #e0fbfc;
-  color: #000;
+  color: #666;
 }
 
 .theme-dark {
