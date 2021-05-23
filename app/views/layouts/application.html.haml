@@ -10,12 +10,7 @@
             = image_tag('logo.svg', alt: 'AsyncGo logo', class: 'img-fluid mt-1')
             %span.ms-1.me-5 AsyncGo
           - if current_user&.team
-            %span.mt-1
-              = link_to new_team_topic_path(current_user.team) do
-                .btn.btn-primary.btn-sm
-                  = assistive_icon('fas', 'file-medical', 'New Topic', classname: 'px-1 me-1')
-                  New Topic
-            %span.mt-1.ms-3.me-3.btn.btn-sm.btn-secondary#notifications
+            %span.ms-auto.me-3.mt-1.btn.btn-secondary#notifications
               = link_to user_notifications_path(current_user), class: 'text-decoration-none' do
                 = assistive_icon('fas', 'bell', 'Has notification', classname: 'text-warning')
                 %span.ms-1.text-white= unique_unread_notifications.count
@@ -27,41 +22,51 @@
             %ul.navbar-nav.ms-auto
               - if current_user
                 - if current_user.team
+                  %li.nav-item.pe-3.mt-1
+                    %span
+                      = link_to new_team_topic_path(current_user.team) do
+                        .btn.btn-primary.btn-block.w-100.mb-2#new-topic-button
+                          = assistive_icon('fas', 'file-medical', 'New Topic')
+                          .d-lg-none
+                            New Topic
                   %li.pe-3
                     %span.mt-4
                       = form_with(url: team_topics_path(current_user.team), method: :get) do |form|
-                        .input-group.mt-1
+                        .input-group.mt-1.mb-2
                           = form.text_field :labels, value: params[:labels],
                             placeholder: 'Separate labels with space',
-                            class: 'bg-light form-control form-control-sm', autocomplete: 'off'
+                            class: 'bg-light form-control', autocomplete: 'off'
                           - if params[:labels].present?
                             .input-group-append
                               = link_to team_topics_path(current_user.team),
-                                class: 'btn btn-sm btn-outline-secondary' do
+                                class: 'btn btn-outline-secondary' do
                                 = assistive_icon('fas', 'ban', 'Clear Filter')
                           - else
                             .input-group-append
-                              = form.button class: 'btn btn-sm btn-secondary', type: 'submit',
+                              = form.button class: 'btn btn-secondary', type: 'submit',
                                 name: nil do
-                                = assistive_icon('fas', 'filter', 'Filter')
-                  %li.nav-item.pe-3#admin-nav
+                                = assistive_icon('fas', 'search', 'Filter')
+                  %li.nav-item.pe-3.mt-1#admin-nav
                     = link_to edit_team_path(current_user.team_id) do
-                      = assistive_icon('fas', 'cog', 'Admin',
-                        classname: 'btn btn-outline-secondary mt-1')
+                      .btn.btn-outline-secondary.btn-block.w-100.mb-2
+                        = assistive_icon('fas', 'cog', 'Admin')
+                        .d-lg-none Admin
                 - else
-                  %li.nav-item.pe-3#create-team-nav
+                  %li.nav-item.pe-3.mt-1#create-team-nav
                     = link_to 'Create Team', new_team_path
-                %li.nav-item.pe-3#profile-nav
+                %li.nav-item.pe-3.mt-1#profile-nav
                   = link_to edit_user_path(current_user) do
-                    = assistive_icon('fas', 'user-cog', 'Profile',
-                      classname: 'btn btn-outline-secondary mt-1')
-                %li.nav-item.pe-3#sign-out-nav
+                    .btn.btn-outline-secondary.btn-block.w-100.mb-2
+                      = assistive_icon('fas', 'user-cog', 'Profile')
+                      .d-lg-none Profile
+                %li.nav-item.pe-3.mt-1#sign-out-nav
                   = link_to sign_out_path, method: :delete, title: 'Sign out' do
-                    = assistive_icon('fas', 'sign-out-alt', 'Sign out',
-                      classname: 'btn btn-outline-secondary mt-1')
+                    .btn.btn-outline-secondary.btn-block.w-100.mb-2
+                      = assistive_icon('fas', 'sign-out-alt', 'Sign out')
+                      .d-lg-none Sign out
               - else
                 %li.nav-item.dropdown#sign-in-nav
-                  %a.nav-link.dropdown-toggle{ href: '#', id: 'sign-in-dropdown', role: 'button',
+                  %a.nav-link.dropdown-toggle.mt-1.me-5{ href: '#', id: 'sign-in-dropdown', role: 'button',
                     'data-bs-toggle': 'dropdown', 'aria-haspopup': 'true',
                     'aria-expanded': 'false' } Sign in
                   %ul.dropdown-menu{ 'aria-labelledby': 'sign-in-dropdown' }
@@ -73,11 +78,6 @@
                       'data-turbo': false, class: 'dropdown-item btn btn-microsoft mt-1'
                     %li= button_to 'Sign in with Slack', '/auth/slack',
                       'data-turbo': false, class: 'dropdown-item btn btn-slack mt-1'
-              %li.mt-1
-                = link_to 'https://asyncgo.com/docs', target: '_blank',
-                  rel: 'noopener' do
-                  = assistive_icon('fas', 'book', 'Documentation',
-                    classname: 'btn btn-outline-secondary')
               %li.mt-1
                 = yield :extra_nav_items
     - container = current_user&.preferences&.fluid_layout? ? 'container-fluid' : 'container'

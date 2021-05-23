@@ -68,7 +68,8 @@ export default class extends Controller {
         element: '#tour-button',
         popover: {
           title: 'Welcome to AsyncGo!',
-          description: 'Thanks for visiting AsyncGo! Most pages have this tour button in the top left, which will take you through the contents of the page and help you get started.'
+          description: 'Thanks for visiting AsyncGo! Most pages have this tour button in the top left, which will take you through the contents of the page and help you get started.',
+          position: 'left'
         }
       }
     ])
@@ -80,7 +81,15 @@ export default class extends Controller {
         element: '#tour-button',
         popover: {
           title: 'Topics Page',
-          description: 'This is the topics page and it contains all the active discussions happening within your team at a given time. It is designed for working async, so everything is ordered (by default) by the due date, descending. This helps you decide which topics you want to engage with.'
+          description: 'This is the topics page and it contains all the active discussions happening within your team at a given time. It is designed for working async, so everything is ordered (by default) by the due date, descending. This helps you decide which topics you want to engage with.',
+          position: 'left'
+        }
+      },
+      {
+        element: '#new-topic-button',
+        popover: {
+          title: 'New Topic Button',
+          description: 'To create a new topic, simply click on this button and it will bring you to the new topic page.'
         }
       },
       {
@@ -110,7 +119,31 @@ export default class extends Controller {
           title: 'Label Filters',
           description: 'You can filter labels here. When editing a topic you can apply lables for different sub-groups, projects, priorities, or whatever you need, and then from here you can filter down your view to only the labels you care about.'
         }
-      }
+      },
+      {
+        element: '#admin-nav',
+        popover: {
+          title: 'Team Admin Page',
+          description: 'From the Team Admin Page you can set various options that control how your project behaves for everyone. You can also set up billing from here.',
+          position: 'left'
+        }
+      },
+      {
+        element: '#profile-nav',
+        popover: {
+          title: 'User Profile Page',
+          description: 'The User Profile Page allows you to configure settings that are just for yourself, such as appearance preferences.',
+          position: 'left'
+        }
+      },
+      {
+        element: '#sign-out-nav',
+        popover: {
+          title: 'Sign Out Button',
+          description: 'Click this link any time to sign out of the app.',
+          position: 'left'
+        }
+      },
     ])
   }
 
@@ -132,7 +165,8 @@ export default class extends Controller {
         element: '#tour-button',
         popover: {
           title: 'Participating in Topics',
-          description: 'Topics are at the heart of AsyncGo. Whether creating, editing, or commenting, this is where the action happens and how you get to good async results. Topics themselves can have emojis applied to them from this page.'
+          description: 'Topics are at the heart of AsyncGo. Whether creating, editing, or commenting, this is where the action happens and how you get to good async results. Topics themselves can have emojis applied to them from this page.',
+          position: 'left'
         }
       }
     ].concat(this.topicSteps).concat([
@@ -180,7 +214,8 @@ export default class extends Controller {
         element: '#tour-button',
         popover: {
           title: 'Team Admin',
-          description: 'The team admin page lets you change various settings about how your team works, and what information is shown/available to team members.'
+          description: 'The team admin page lets you change various settings about how your team works, and what information is shown/available to team members.',
+          position: 'left'
         }
       },
       {
@@ -234,7 +269,8 @@ export default class extends Controller {
         element: '#tour-button',
         popover: {
           title: 'User Profile',
-          description: 'The user profile page is where your personal settings are. In the future this will include a personal profile that you can share with others.'
+          description: 'The user profile page is where your personal settings are. In the future this will include a personal profile that you can share with others.',
+          position: 'left'
         }
       },
       {
