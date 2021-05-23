@@ -51,19 +51,16 @@
                       .btn.btn-outline-secondary.btn-block.w-100.mb-2
                         = assistive_icon('fas', 'cog', 'Admin')
                         .d-lg-none Admin
-                - else
-                  %li.nav-item.pe-3.mt-1#create-team-nav
-                    = link_to 'Create Team', new_team_path
                 %li.nav-item.pe-3.mt-1#profile-nav
                   = link_to edit_user_path(current_user) do
                     .btn.btn-outline-secondary.btn-block.w-100.mb-2
                       = assistive_icon('fas', 'user-cog', 'Profile')
                       .d-lg-none Profile
-              %li.nav-item.pe-3.mt-1#sign-out-nav
-                = link_to sign_out_path, method: :delete, title: 'Sign out' do
-                  .btn.btn-outline-secondary.btn-block.w-100.mb-2
-                    = assistive_icon('fas', 'sign-out-alt', 'Sign out')
-                    .d-lg-none Sign out
+                %li.nav-item.pe-3.mt-1#sign-out-nav
+                  = link_to sign_out_path, method: :delete, title: 'Sign out' do
+                    .btn.btn-outline-secondary.btn-block.w-100.mb-2
+                      = assistive_icon('fas', 'sign-out-alt', 'Sign out')
+                      .d-lg-none Sign out
               %li.mt-1
                 = yield :extra_nav_items
     - container = current_user&.preferences&.fluid_layout? ? 'container-fluid' : 'container'
