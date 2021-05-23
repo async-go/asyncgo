@@ -27,8 +27,9 @@
               = assistive_icon('fas', 'bell', 'Has Notification', classname: 'ms-2 text-warning')
               %span.text-secondary.small
                 = current_user.topic_notifications(topic).count
-            %p.mb-0.mt-2.small.text-secondary
-              = topic_due_date_span(topic)
+            - if topic.active?
+              %p.mb-0.mt-2.small.text-secondary
+                = topic_due_date_span(topic)
           .col-4.col-lg-2.mb-2.small
             Updated #{time_ago_in_words(topic.last_interacted)} ago
           .col-8.col-lg-3.mb-2
