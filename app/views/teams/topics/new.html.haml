@@ -3,10 +3,11 @@
     data: { controller: 'driverjs', action: 'click->driverjs#demoTopicNew' } }
     = assistive_icon('fas', 'question-circle', 'Tour this page')
 
-.row.my-5
+.row
   %h1.visually-hidden New Topic
 
-  = link_to 'Back to All Topics', team_topics_path(@topic.team)
+  = link_to 'Back to All Topics', team_topics_path(@topic.team), class: 'mb-2'
 
+.row.shadow-sm.bg-white.border.rounded.p-1
   = render partial: 'shared/form_errors', locals: { model: @topic }
   = render partial: 'topic_form', locals: { topic: @topic }

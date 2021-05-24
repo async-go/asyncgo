@@ -3,7 +3,8 @@
     data: { controller: 'driverjs', action: 'click->driverjs#demoTopicShow' } }
     = assistive_icon('fas', 'question-circle', 'Tour this page')
 
-= render @topic
+.row.shadow-sm.bg-white.border.rounded
+  = render @topic
 
 - if current_user.preferences.inverse_comment_order?
   = render partial: 'teams/topics/comments/comment_box', locals: { topic: @topic }
