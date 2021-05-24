@@ -10,10 +10,11 @@
             = image_tag('logo.svg', alt: 'AsyncGo logo', class: 'img-fluid mt-1')
             %span.ms-1.me-5 AsyncGo
           - if current_user&.team
-            %span.ms-auto.me-3.mt-1.btn.btn-secondary#notifications
-              = link_to user_notifications_path(current_user), class: 'text-decoration-none' do
-                = assistive_icon('fas', 'bell', 'Has notification', classname: 'text-warning')
-                %span.ms-1.text-white= unique_unread_notifications.count
+            = link_to user_notifications_path(current_user),
+              class: 'btn btn-secondary ms-auto me-3 mt-1 text-decoration-none',
+              id: 'notifications' do
+              = assistive_icon('fas', 'bell', 'Has notification', classname: 'text-warning')
+              %span.ms-1.text-white= unique_unread_notifications.count
           %button.navbar-toggler.border-0{ type: 'button', 'data-bs-toggle' => 'collapse',
             'data-bs-target' => '#navbar-content', 'aria-controls' => 'navbar-content',
             'aria-expanded' => 'false', 'aria-label' => 'Toggle navigation' }
