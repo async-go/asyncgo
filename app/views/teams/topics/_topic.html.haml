@@ -17,7 +17,7 @@
               "mailto:#{participant.email}"
       .col-auto.mt-1
         - topic.labels.each do |label|
-          %span.topic-label.theme-secondary= label
+          %span.topic-label.theme-light= label
       .col-auto.mt-1
         %p.m-0.text-secondary#topic-duedate
           = topic_due_date_span(topic)
