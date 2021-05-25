@@ -1,9 +1,9 @@
 = turbo_frame_tag dom_id(topic) do
-  .row.bg-light.border
+  .row.bg-white
     .row
       .col-auto
         %h2.mt-1#topic-title= topic.title
-    .row.bg-light.mb-1
+    .row.mb-1
       .col-auto.mt-1#topic-participants
         = link_to image_tag("#{topic.user.gravatar_url}?s=20&d=retro",
           class: 'gravatar-img mb-1',
@@ -17,14 +17,14 @@
               "mailto:#{participant.email}"
       .col-auto.mt-1
         - topic.labels.each do |label|
-          %span.topic-label= label
+          %span.topic-label.theme-light= label
       .col-auto.mt-1
         %p.m-0.text-secondary#topic-duedate
           = topic_due_date_span(topic)
   .row.mt-2
     .col-auto.my-1
       = link_to edit_team_topic_path(topic.team, topic),
-        class: 'btn btn-primary', id: 'topic-edit',
+        class: 'btn btn-primary btn-sm', id: 'topic-edit',
         data: { controller: 'hotkey', hotkey: 'e' } do
         = assistive_icon('fas', 'edit', 'Edit this topic')
         .d-none.d-lg-inline.ms-1 Edit
@@ -33,13 +33,13 @@
         data: { 'turbo-frame': '_top' }) do |form|
         - if topic.active?
           = form.hidden_field :status, value: :resolved
-          = button_tag type: 'submit', class: 'btn btn-success', id: 'topic-resolve',
+          = button_tag type: 'submit', class: 'btn btn-success btn-sm', id: 'topic-resolve',
             data: { controller: 'hotkey', hotkey: 'r' } do
             = assistive_icon('fas', 'check', 'Resolve this topic')
             .d-none.d-lg-inline.ms-1 Resolve
         - else
           = form.hidden_field :status, value: :active
-          = button_tag type: 'submit', class: 'btn btn-secondary', id: 'topic-resolve',
+          = button_tag type: 'submit', class: 'btn btn-secondary btn-sm', id: 'topic-resolve',
             data: { controller: 'hotkey', hotkey: 'r' } do
             = assistive_icon('fas', 'undo', 'Reopen this topic')
             .d-none.d-lg-inline Reopen
@@ -64,7 +64,7 @@
         data: { 'turbo-frame': '_top' }) do |form|
         - if topic.pinned?
           = form.hidden_field :pinned, value: 0
-          = button_tag type: 'submit', class: 'btn btn-faded text-info', id: 'topic-pin',
+          = button_tag type: 'submit', class: 'btn btn-faded text-secondary', id: 'topic-pin',
             data: { controller: 'hotkey', hotkey: 'p' } do
             = assistive_icon('fas', 'bookmark', 'Unpin this topic')
             .text-dark.d-none.d-lg-inline.small.ms-1 Unpin

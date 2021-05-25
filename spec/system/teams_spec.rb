@@ -9,8 +9,6 @@ RSpec.describe 'Teams', type: :system do
     visit '/'
     sign_in_user
 
-    click_link 'Create Team'
-
     fill_in 'team[name]', with: 'Team name'
     click_button 'Create Team'
 

@@ -1,38 +1,41 @@
+%h2
 %ul.list-group.list-group-flush
   - if topic_collection.present?
-    %li.list-group-item.border-0.mt-0.d-none.d-lg-block
-      .row
-        .col-lg-5.text-secondary
-          Title
-        .col-lg-2.text-secondary
-          Last Updated
-        .col-lg-3.text-secondary
+    %li.list-group-item.border-0.mt-0.d-none.d-lg-block.p-2.pt-0
+      .row.pb-1.border-bottom
+        .col-lg-5.fw-bold{ id: "#{list_heading}-topics" }
+          #{list_heading.capitalize} Topics
+        .col-lg-2.small
+          Activity
+        .col-lg-3.small
           Labels
-        .col-lg-2.text-secondary
+        .col-lg-2.small
           Participants
     - topic_collection.each_with_index do |topic, topic_index|
-      - list_item_background = topic_index.odd? ? 'bg-white' : 'bg-light'
-      %li.list-group-item.border-0.p-2.mb-1.pb-0{ class: list_item_background }
+      - list_item_style = topic.active? ? 'text-dark' : 'text-secondary'
+      %li.list-group-item.p-2.mb-1.pb-0{ class: list_item_style }
         .row.my-2
           .col-8.col-lg-5.mb-2
             - if topic_hotkeys
               = link_to topic.title, team_topic_path(current_user.team, topic),
                 data: { controller: 'hotkey', hotkey: topic_index }
             - else
-              = link_to topic.title, team_topic_path(current_user.team, topic)
+              = link_to topic.title, team_topic_path(current_user.team, topic),
+                class: list_item_style
             - if topic.pinned?
-              = assistive_icon('fas', 'bookmark', 'Is Pinned', classname: 'ms-1 text-info')
+              = assistive_icon('fas', 'bookmark', 'Is Pinned', classname: 'ms-2 text-secondary')
             - if topic_has_notification?(unique_unread_notifications, topic)
-              = assistive_icon('fas', 'bell', 'Has Notification', classname: 'ms-1 text-warning')
+              = assistive_icon('fas', 'bell', 'Has Notification', classname: 'ms-2 text-warning')
               %span.text-secondary.small
                 = current_user.topic_notifications(topic).count
-            %p.mb-0.mt-2.small
-              = topic_due_date_span(topic)
+            - if topic.active?
+              %p.mb-0.mt-2.small.text-secondary
+                = topic_due_date_span(topic)
           .col-4.col-lg-2.mb-2.small
             Updated #{time_ago_in_words(topic.last_interacted)} ago
           .col-8.col-lg-3.mb-2
             - topic.labels.each do |label|
-              %span.topic-label.me-2= label
+              %span.topic-label.badge.theme-light= label
           .col-4.col-lg-2.mb-2
             = link_to image_tag("#{topic.user.gravatar_url}?s=20&d=retro",
               class: 'gravatar-img mb-1',
