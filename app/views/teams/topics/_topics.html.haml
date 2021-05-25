@@ -1,19 +1,22 @@
 %h5.ms-2.d-lg-none #{list_heading.capitalize} Topics
 %ul.list-group.list-group-flush
   - if topic_collection.present?
-    %li.list-group-item.border-0.mt-0.d-none.d-lg-block.p-2.pt-0
+    %li.list-group-item.border-0.my-0.d-none.d-lg-block.p-2.py-0.px-3
       .row.pb-1.border-bottom
         .col-lg-5.fw-bold{ id: "#{list_heading}-topics" }
           #{list_heading.capitalize} Topics
         .col-lg-2.small
-          Activity
+          - if list_heading == :active
+            Due
+          - else
+            Last Activity
         .col-lg-3.small
           Labels
         .col-lg-2.small
           Participants
     - topic_collection.each_with_index do |topic, topic_index|
       - list_item_style = topic.active? ? 'text-dark' : 'text-secondary'
-      %li.list-group-item.p-2.mb-1.pb-0{ class: list_item_style }
+      %li.list-group-item.p-2.mb-1.pb-0.px-3{ class: list_item_style }
         .row.my-2
           .col-8.col-lg-5.mb-2
             - if topic_hotkeys
@@ -28,11 +31,12 @@
               = assistive_icon('fas', 'bell', 'Has Notification', classname: 'ms-2 text-warning')
               %span.text-secondary.small
                 = current_user.topic_notifications(topic).count
-            - if topic.active?
-              %p.mb-0.mt-2.small.text-secondary
-                = topic_due_date_span(topic)
           .col-4.col-lg-2.mb-2.small
-            Updated #{time_ago_in_words(topic.last_interacted)} ago
+            %p.mb-0
+              - if list_heading == :active
+                = topic_due_date_span(topic)
+              - else
+                Updated #{time_ago_in_words(topic.last_interacted)} ago
           .col-8.col-lg-3.mb-2
             - topic.labels.each do |label|
               %span.topic-label.badge.bg-info= label
