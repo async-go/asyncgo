@@ -15,7 +15,7 @@
  */
 
 $primary: #3d5a80;
-$info: #98c1d9;
+$info: #ee6c4d;
 
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import 'bootstrap/scss/bootstrap';
@@ -65,7 +65,6 @@ blockquote {
 
 
 .topic-label {
-  background: lightgray;
   color: #333;
   font-size: small;
   font-weight: normal;
@@ -121,6 +120,10 @@ body {
   color: #333;
 }
 
+.border-theme-secondary {
+  border-color: #98c1d9 !important;
+}
+
 .theme-light {
   background-color: #e0fbfc;
   color: #666;
@@ -134,8 +137,4 @@ body {
 .theme-info {
   background-color: #ee6c4d;
   color: #fff;
-}
-
-.border-theme-info {
-  border-color: #ee6c4d !important;
 }
