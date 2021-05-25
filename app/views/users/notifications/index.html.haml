@@ -6,7 +6,7 @@
       - if @notifications.present?
         - @notifications.each do |notification|
           = link_to user_notification_path(current_user.id, notification),
-            class: 'list-group-item list-group-item-action' do
+            class: 'list-group-item list-group-item-action mb-2 shadow-sm' do
             = notification_text(notification)
             | Created #{notification.created_at.strftime('%b %e')}
       - else
@@ -16,7 +16,7 @@
   .row.my-3
     != pagy_bootstrap_nav(@pagy)
 
-.row
+.row.mt-2
   = link_to clear_user_notifications_path(current_user), method: :post do
     = icon('fas', 'check-double', 'aria-hidden': 'true')
     %span Clear all notifications (all pages)
