@@ -4,7 +4,6 @@ require './spec/support/sign_in_out_system_helpers'
 
 RSpec.describe 'Topics', type: :system do
   include SignInOutSystemHelpers
-
   it 'shows all topics' do
     user = FactoryBot.create(:user, :team)
     topics = FactoryBot.create_list(:topic, 2, team: user.team)
@@ -31,8 +30,10 @@ RSpec.describe 'Topics', type: :system do
       expect(page).to have_link(topic.title)
     end
 
+    expect(page).to have_field(:labels, disabled: false)
     fill_in :labels, with: 'hello'
     click_button 'Filter'
+    expect(page).to have_field(:labels, disabled: true)
     expect(page).to have_link(target_topic.title)
     expect(page).not_to have_link(other_topic.title)
   end
