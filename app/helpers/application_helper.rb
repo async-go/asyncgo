@@ -10,6 +10,6 @@ module ApplicationHelper
   end
 
   def fastspring_store_url
-    ENV['FASTSPRING_STORE_URL']
+    Rails.application.config.x.fastspring.store_url
   end
 end
