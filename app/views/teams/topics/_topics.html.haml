@@ -1,7 +1,7 @@
 %h5.ms-2.d-lg-none #{list_heading.capitalize} Topics
 %ul.list-group.list-group-flush
   - if topic_collection.present?
-    %li.list-group-item.border-0.my-0.d-none.d-lg-block.p-2.py-0
+    %li.list-group-item.border-0.my-0.d-none.d-lg-block.p-2.py-0.px-3
       .row.pb-1.border-bottom
         .col-lg-5.fw-bold{ id: "#{list_heading}-topics" }
           #{list_heading.capitalize} Topics
@@ -16,7 +16,7 @@
           Participants
     - topic_collection.each_with_index do |topic, topic_index|
       - list_item_style = topic.active? ? 'text-dark' : 'text-secondary'
-      %li.list-group-item.p-2.mb-1.pb-0{ class: list_item_style }
+      %li.list-group-item.p-2.mb-1.pb-0.px-3{ class: list_item_style }
         .row.my-2
           .col-8.col-lg-5.mb-2
             - if topic_hotkeys
