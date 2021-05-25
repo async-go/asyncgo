@@ -6,7 +6,10 @@
         .col-lg-5.fw-bold{ id: "#{list_heading}-topics" }
           #{list_heading.capitalize} Topics
         .col-lg-2.small
-          Due
+          - if list_heading == :active
+            Due
+          - else
+            Last Activity
         .col-lg-3.small
           Labels
         .col-lg-2.small
@@ -18,8 +21,7 @@
           .col-8.col-lg-5.mb-2
             - if topic_hotkeys
               = link_to topic.title, team_topic_path(current_user.team, topic),
-                data: { controller: 'hotkey', hotkey: topic_index },
-                title: "Last updated #{time_ago_in_words(topic.last_interacted)} ago"
+                data: { controller: 'hotkey', hotkey: topic_index }
             - else
               = link_to topic.title, team_topic_path(current_user.team, topic),
                 class: list_item_style
@@ -30,9 +32,11 @@
               %span.text-secondary.small
                 = current_user.topic_notifications(topic).count
           .col-4.col-lg-2.mb-2.small
-            - if topic.active?
-              %p.mb-0
+            %p.mb-0
+              - if list_heading == :active
                 = topic_due_date_span(topic)
+              - else
+                Updated #{time_ago_in_words(topic.last_interacted)} ago
           .col-8.col-lg-3.mb-2
             - topic.labels.each do |label|
               %span.topic-label.badge.bg-info= label
