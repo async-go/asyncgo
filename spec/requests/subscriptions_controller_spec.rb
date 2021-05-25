@@ -38,8 +38,7 @@ RSpec.describe SubscriptionsController, type: :request do
     before do
       other_team.create_subscription!(active: true)
 
-      allow(ENV).to receive(:[])
-      allow(ENV).to receive(:[]).with('FASTSPRING_CRYPTO_KEY').and_return(crypto_key)
+      allow(Rails.application.config.x.fastspring).to receive(:crypto_key).and_return(crypto_key)
     end
 
     context 'when payload is valid' do

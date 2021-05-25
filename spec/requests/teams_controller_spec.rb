@@ -108,7 +108,7 @@ RSpec.describe TeamsController, type: :request do
       end
 
       context 'when team is not valid' do
-        let(:title) { '' }
+        let(:name) { '' }
 
         it 'does not create the team' do
           expect { post_create }.not_to change(Team, :count).from(0)
@@ -122,7 +122,9 @@ RSpec.describe TeamsController, type: :request do
       end
     end
 
-    include_examples 'unauthenticated user examples'
+    include_examples 'unauthenticated user examples' do
+      let(:name) { 'Sample team' }
+    end
   end
 
   describe 'POST support' do
