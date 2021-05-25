@@ -36,7 +36,8 @@
                         .input-group.mt-1.mb-2
                           = form.text_field :labels, value: params[:labels],
                             placeholder: 'Separate labels with space',
-                            class: 'bg-light form-control', autocomplete: 'off'
+                            class: 'bg-light form-control', autocomplete: 'off',
+                            disabled: params[:labels].present?
                           - if params[:labels].present?
                             .input-group-append
                               = link_to team_topics_path(current_user.team),
