@@ -68,7 +68,7 @@ export default class extends Controller {
         element: '#tour-button',
         popover: {
           title: 'Welcome to AsyncGo!',
-          description: 'Thanks for visiting AsyncGo! Most pages have this tour button in the top left, which will take you through the contents of the page and help you get started.',
+          description: 'Thanks for visiting AsyncGo! Most pages have this tour button in the top left, which will take you through the contents of the page and help you get started. You can also read our complete documentation at <a href="https://asyncgo.com/docs/">this link</a>.',
           position: 'left'
         }
       }
@@ -81,7 +81,7 @@ export default class extends Controller {
         element: '#tour-button',
         popover: {
           title: 'Topics Page',
-          description: 'This is the topics page and it contains all the active discussions happening within your team at a given time. It is designed for working async, so everything is ordered (by default) by the due date, descending. This helps you decide which topics you want to engage with.',
+          description: 'This is the topics page and it contains all the active discussions happening within your team at a given time. It is designed for working async, so everything is ordered (by default) by the due date, descending. This helps you decide which topics you want to engage with. You can also read our complete documentation for topics at <a href="https://asyncgo.com/docs/topics/">this link</a>.',
           position: 'left'
         }
       },
@@ -153,7 +153,7 @@ export default class extends Controller {
         element: '#tour-button',
         popover: {
           title: 'New Topic',
-          description: 'Creating a new topic is an important step in starting a discussion. You can use the structure here to think through how you want the conversation to go and what kinds of results you expect. The more clear you can make your topic, the better results you will get.'
+          description: 'Creating a new topic is an important step in starting a discussion. You can use the structure here to think through how you want the conversation to go and what kinds of results you expect. The more clear you can make your topic, the better results you will get. You can also read our complete documentation for topics at <a href="https://asyncgo.com/docs/topics/">this link</a>.'
         }
       }
     ].concat(this.topicSteps))
@@ -165,7 +165,7 @@ export default class extends Controller {
         element: '#tour-button',
         popover: {
           title: 'Participating in Topics',
-          description: 'Topics are at the heart of AsyncGo. Whether creating, editing, or commenting, this is where the action happens and how you get to good async results. Topics themselves can have emojis applied to them from this page.',
+          description: 'Topics are at the heart of AsyncGo. Whether creating, editing, or commenting, this is where the action happens and how you get to good async results. Topics themselves can have emojis applied to them from this page. You can also read our complete documentation for topics at <a href="https://asyncgo.com/docs/topics/">this link</a>.',
           position: 'left'
         }
       }
@@ -214,7 +214,7 @@ export default class extends Controller {
         element: '#tour-button',
         popover: {
           title: 'Team Admin',
-          description: 'The team admin page lets you change various settings about how your team works, and what information is shown/available to team members.',
+          description: 'The team admin page lets you change various settings about how your team works, and what information is shown/available to team members. You can also read our complete documentation for teams at <a href="https://asyncgo.com/docs/teams/">this link</a>.',
           position: 'left'
         }
       },
@@ -269,7 +269,7 @@ export default class extends Controller {
         element: '#tour-button',
         popover: {
           title: 'User Profile',
-          description: 'The user profile page is where your personal settings are. In the future this will include a personal profile that you can share with others.',
+          description: 'The user profile page is where your personal settings are. In the future this will include a personal profile that you can share with others. You can also read our complete documentation for user settings at <a href="https://asyncgo.com/docs/usersettings/">this link</a>.',
           position: 'left'
         }
       },
