@@ -11,7 +11,7 @@ gem 'faraday', '~> 1.3.0' # http client
 gem 'gon', '~> 6.4.0' # Pass variables from Rails to JS
 gem 'hotwire-rails', '~> 0.1.3' # HTML over the wire. Read more: https://hotwire.dev/
 gem 'pg', '~> 1.2.3' # Use pg as the database for Active Record
-gem 'puma', '~> 5.2.1' # Use Puma as the app server
+gem 'puma', '~> 5.3.2' # Use Puma as the app server
 gem 'pundit', '~> 2.1.0' # Authorization via OO and plain Ruby classes
 gem 'rails', '~> 6.1.3'
 gem 'redis', '~> 4.2.5' # Use Redis adapter to run Action Cable in production
@@ -27,12 +27,12 @@ gem 'commonmarker', '~> 0.21.0' # GitHub Flavored Markdown renderer
 gem 'font-awesome-sass', '~> 5.15.1'
 gem 'gemoji', '~> 3.0.1' # emoji helpers
 gem 'ginjo-omniauth-slack', '~> 2.5', require: 'omniauth-slack'
-gem 'hamlit', '~> 2.14.1' # Templating language
+gem 'hamlit', '~> 2.15.0' # Templating language
 gem 'omniauth-github', '~> 2.0.0'
-gem 'omniauth-google-oauth2', '~> 0.8.0'
+gem 'omniauth-google-oauth2', '~> 1.0.0'
 gem 'omniauth-microsoft_graph', '~> 0.2.1'
 gem 'omniauth-rails_csrf_protection', '~> 1.0.0'
-gem 'pagy', '~> 3.11.0' # pagination
+gem 'pagy', '~> 4.7.1' # pagination
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.7'
@@ -45,16 +45,16 @@ gem 'pagy', '~> 3.11.0' # pagination
 group :development, :test do
   # Linters
   ## Ruby linter
-  gem 'rubocop', '~> 1.10.0', require: false
-  gem 'rubocop-performance', '~> 1.9.0', require: false
-  gem 'rubocop-rails', '~> 2.9.0', require: false
-  gem 'rubocop-rspec', '~> 2.2.0', require: false
+  gem 'rubocop', '~> 1.15.0', require: false
+  gem 'rubocop-performance', '~> 1.11.3', require: false
+  gem 'rubocop-rails', '~> 2.10.1', require: false
+  gem 'rubocop-rspec', '~> 2.3.0', require: false
   ## Haml linter
   gem 'haml_lint', '~> 0.37.0', require: false
   # Other
   gem 'byebug', platforms: %i[mri mingw x64_mingw] # Debugger console by calling 'byebug' anywhere in code
   gem 'dotenv-rails', '~> 2.7.6'
-  gem 'rspec-rails', '~> 4.0.1' # rspec testing
+  gem 'rspec-rails', '~> 5.0.1' # rspec testing
   gem 'spring', '~> 2.1.1' # Speeds up development by keeping application running in the background - https://github.com/rails/spring
 end
 
@@ -68,11 +68,11 @@ group :development do
 end
 
 group :test do
-  gem 'axe-core-rspec', '~> 4.1.0' # rspec accessibility matcher
+  gem 'axe-core-rspec', '~> 4.2.0' # rspec accessibility matcher
   gem 'brakeman', '~> 5.0.0'
   gem 'capybara', '>= 3.26' # Support for Capybara system testing
-  gem 'factory_bot_rails', '~> 6.1.0' # Factories for generating AR objects in specs
-  gem 'faker', '~> 2.16.0' # Fake data for use in specs
+  gem 'factory_bot_rails', '~> 6.2.0' # Factories for generating AR objects in specs
+  gem 'faker', '~> 2.18.0' # Fake data for use in specs
   gem 'rspec-retry', '~> 0.6.2' # retry rspec tests
   gem 'selenium-webdriver'
   gem 'shoulda-matchers', '~> 4.5.0' # Additional rspec matchers
