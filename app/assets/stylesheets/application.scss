@@ -18,9 +18,24 @@
 $primary: #3d5a80;
 $secondary: #6c757d;
 $info: #e0fbfc;
-$danger: #ee6c4d;
+$accent: #ee6c4d;
 $light: #f8f9fa;
 $dark: #293241;
+$success: #198754;
+$warning: #ffc107;
+$danger: #dc3545;
+
+$theme-colors: (
+  "primary":    $primary,
+  "secondary":  $secondary,
+  "accent":     $accent,
+  "success":    $success,
+  "info":       $info,
+  "warning":    $warning,
+  "danger":     $danger,
+  "light":      $light,
+  "dark":       $dark
+);
 
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import 'bootstrap/scss/bootstrap';
