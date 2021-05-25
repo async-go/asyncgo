@@ -14,7 +14,8 @@
  *= require_self
  */
 
-$primary: #203864;
+$primary: #3d5a80;
+$info: #ee6c4d;
 
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import 'bootstrap/scss/bootstrap';
@@ -88,11 +89,11 @@ blockquote {
 }
 
 .topic-label {
-  background: lightgray;
   color: #333;
   font-size: small;
+  font-weight: normal;
   height: 1.5rem;
-  border: 1px solid #333;
+  border: 1px solid #777;
   padding: .25rem;
   border-radius: .25rem !important;
 }
@@ -125,4 +126,39 @@ blockquote {
 .btn-slack, .btn-slack:hover {
   color: #fff;
   background-color: #007a5a;
+}
+
+body {
+  overflow-y: scroll;
+}
+
+/* Theme colors: https://coolors.co/3d5a80-98c1d9-e0fbfc-ee6c4d-293241 */
+
+.theme-primary {
+  background-color: #3d5a80;
+  color: #fff;
+}
+
+.theme-secondary {
+  background-color: #98c1d9;
+  color: #333;
+}
+
+.border-theme-secondary {
+  border-color: #98c1d9 !important;
+}
+
+.theme-light {
+  background-color: #e0fbfc;
+  color: #666;
+}
+
+.theme-dark {
+  background-color: #293241;
+  color: #fff;
+}
+
+.theme-info {
+  background-color: #ee6c4d;
+  color: #fff;
 }

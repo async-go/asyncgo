@@ -1,46 +1,34 @@
 = content_for :extra_nav_items do
-  %button.ms-3.btn.btn-sm.btn-outline-secondary.me-3.d-none.d-lg-block{ id: 'tour-button',
+  %button.btn.btn-outline-secondary.me-3.d-none.d-lg-block{ id: 'tour-button',
     data: { controller: 'driverjs', action: 'click->driverjs#demoTopicIndex' } }
     = assistive_icon('fas', 'question-circle', 'Tour this page')
 
 %h1.visually-hidden Topics
 
 - if @team.message.present?
-  .row.bg-light.text-dark.border
+  .row.bg-white.border.shadow-sm.border-theme-secondary.border-1.rounded.mb-3.p-2
     .col-12
-      .m-2.text-break.fs-6= @team.message
+      .text-break.fs-6= @team.message
 
-.row.mt-3
-  .col-lg-2
-    = link_to new_team_topic_path(current_user.team) do
-      %span.btn.btn-primary New Topic
-  .col-lg-10
-    = form_with(url: team_topics_path(current_user.team), method: :get) do |form|
-      .row.mt-2
-        .col-9.col-lg-4.ms-auto
-          .input-group.me-2
-            = form.text_field :labels, value: params[:labels],
-              placeholder: 'Separate labels with space',
-              class: 'bg-light form-control', autocomplete: 'false'
-            .input-group-append.me-2
-              = link_to 'Clear', team_topics_path(current_user.team),
-                class: 'btn btn-outline-secondary'
-        .col-3.col-lg-1
-          = form.submit 'Filter', class: 'btn btn-secondary', name: nil
-
-
-.row.mt-3
-  %h2#active-topics Active Topics
+:ruby
+  empty_state_text = if params[:labels].present?
+                      'No match found for this label filter.'
+                     else
+                      'Once you have created some topics they will appear here.
+                       Try creating a new topic using the orange button above to get started.'
+                     end
+.row.mt-2.border.bg-white.rounded.shadow-sm.p-2
   = render partial: 'topics', locals: { topic_collection: @active_topics, topic_hotkeys: true,
-    empty_state_text: 'Active topics will appear here. Try creating a new topic to get started.' }
+    empty_state_text: empty_state_text, list_heading: :active }
 - if @pagy_active_topics.pages > 1
   .row.mt-3
     != pagy_bootstrap_nav(@pagy_active_topics)
 
-.row.mt-3
-  %h2#resolved-topics Resolved Topics
-  = render partial: 'topics', locals: { topic_collection: @resolved_topics, topic_hotkeys: false,
-    empty_state_text: 'Once you have resolved some topics they will appear here.' }
-- if @pagy_resolved_topics.pages > 1
-  .row.mt-3
-    != pagy_bootstrap_nav(@pagy_resolved_topics)
+- if @resolved_topics.present?
+  .row.mt-3.border.bg-white.rounded.shadow-sm.p-2
+    = render partial: 'topics', locals: { topic_collection: @resolved_topics, topic_hotkeys: false,
+      empty_state_text: '',
+      list_heading: :resolved }
+  - if @pagy_resolved_topics.pages > 1
+    .row.mt-3
+      != pagy_bootstrap_nav(@pagy_resolved_topics)

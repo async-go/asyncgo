@@ -6,8 +6,7 @@ module SignInOutSystemHelpers
       OmniAuth.config.add_mock(:google_oauth2,
                                info: { email: active_user.email,
                                        name: active_user.name })
-      click_link('Sign in', class: 'nav-link')
-      click_button('Google', class: 'dropdown-item')
+      click_button('Google')
     end
   end
 end
