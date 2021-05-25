@@ -19,8 +19,8 @@ class OmniauthCallbacksController < ApplicationController
   def slack
     response = request.env['omniauth.strategy'].access_token
     access_token = OmniAuth::Slack.build_access_token(
-      ENV['SLACK_CLIENT_ID'],
-      ENV['SLACK_CLIENT_SECRET'],
+      slack_client_id,
+      slack_client_secret,
       response.authed_user.token
     )
     response = access_token.get('/api/users.identity').parsed['user']
@@ -39,5 +39,13 @@ class OmniauthCallbacksController < ApplicationController
     end
 
     redirect_to root_path
+  end
+
+  def slack_client_id
+    @slack_client_id ||= Rails.application.config.x.slack.client_id
+  end
+
+  def slack_client_secret
+    @slack_client_secret ||= Rails.application.config.x.slack.client_secret
   end
 end

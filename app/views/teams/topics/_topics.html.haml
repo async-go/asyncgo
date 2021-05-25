@@ -1,5 +1,4 @@
-%h2
-%h5.ps-2.d-lg-none #{list_heading.capitalize} Topics
+%h5.ms-2.d-lg-none #{list_heading.capitalize} Topics
 %ul.list-group.list-group-flush
   - if topic_collection.present?
     %li.list-group-item.border-0.mt-0.d-none.d-lg-block.p-2.pt-0
@@ -36,7 +35,7 @@
             Updated #{time_ago_in_words(topic.last_interacted)} ago
           .col-8.col-lg-3.mb-2
             - topic.labels.each do |label|
-              %span.topic-label.badge.theme-light= label
+              %span.topic-label.badge.bg-info= label
           .col-4.col-lg-2.mb-2
             = link_to image_tag("#{topic.user.gravatar_url}?s=20&d=retro",
               class: 'gravatar-img mb-1',
