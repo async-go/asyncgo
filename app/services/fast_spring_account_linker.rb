@@ -24,7 +24,15 @@ class FastSpringAccountLinker < ApplicationService
 
   def send_request(endpoint, params = nil)
     Faraday.new(url: BASE_URL) do |connection|
-      connection.basic_auth(ENV['FASTSPRING_USERNAME'], ENV['FASTSPRING_PASSWORD'])
+      connection.basic_auth(username, password)
     end.get(endpoint, params)
+  end
+
+  def username
+    @username ||= Rails.application.config.x.fastspring.username
+  end
+
+  def password
+    @password ||= Rails.application.config.x.fastspring.password
   end
 end

@@ -25,7 +25,7 @@ class SubscriptionsController < Teams::ApplicationController
     payload_hash = request.headers['X-FS-Signature']
     computed_hash = Base64.encode64(
       OpenSSL::HMAC.digest(
-        OpenSSL::Digest.new('sha256'), ENV['FASTSPRING_CRYPTO_KEY'], request.body.string
+        OpenSSL::Digest.new('sha256'), crypto_key, request.body.string
       )
     ).chomp
 
@@ -50,5 +50,9 @@ class SubscriptionsController < Teams::ApplicationController
 
   def deactivate_subscription(team_id)
     Team::Subscription.find_by(team_id: team_id).update!(active: false)
+  end
+
+  def crypto_key
+    @crypto_key ||= Rails.application.config.x.fastspring.crypto_key
   end
 end
