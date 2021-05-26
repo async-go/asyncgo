@@ -67,7 +67,9 @@ export default class extends Controller {
       let index = 0
       while (index < editors.length) {
         editors[index].toUpdate.value = editors[index].getMarkdown()
-        editors[index].reset()
+        if (editors[index].toUpdate.id == 'comment_body') {
+          editors[index].reset()
+        }
         index++
       }
     }
