@@ -8,6 +8,7 @@ class DigestMailer < ApplicationMailer
     @user = params[:user]
     @unread_notifications = unread_notifications
     @recently_resolved_topics = recently_resolved_topics
+    @upcoming_due_topics = upcoming_due_topics
 
     mail(to: @user.email, subject: 'Your AsyncGo Digest')
   end
@@ -29,4 +30,11 @@ class DigestMailer < ApplicationMailer
       updated_at: (Time.zone.now - 24.hours)..Time.zone.now, status: :resolved
     )
   end
+
+  def upcoming_due_topics
+    user.team.topics.where(
+      due_date: Time.zone.now..(Time.zone.now + 24.hours), status: :active
+    )
+  end
+
 end
