@@ -3,7 +3,7 @@ Here's your AsyncGo Digest
 \
 This email contains what's happening in your AsyncGo team.
 \
-Open Notifications
+Open notifications
 \
 - if @unread_notifications.blank?
   None
@@ -12,7 +12,16 @@ Open Notifications
     = notification_text(notification)
     = user_notification_url(@user, notification)
 \
-Recently Resolved (and recently updated, but already resolved) Topics
+Topics due today
+\
+- if @upcoming_due_topics.blank?
+  None
+- else
+  - @upcoming_due_topics.each do |topic|
+    = topic.title
+    = team_topic_url(topic.team, topic)
+\
+Recently Resolved (or already resolved but updated) Topics
 \
 - if @recently_resolved_topics.blank?
   None

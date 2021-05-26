@@ -2,7 +2,7 @@
 %p
   This email contains what's happening in your AsyncGo team.
 
-%h3 Open Notifications
+%h3 Open notifications
 %p
   - if @unread_notifications.blank?
     None
@@ -12,7 +12,16 @@
         %li= link_to notification_text(notification),
           user_notification_url(@user, notification)
 
-%h3 Recently Resolved (and recently updated, but already resolved) Topics
+%h3 Topics due today
+%p
+  - if @upcoming_due_topics.blank?
+    None
+  - else
+    %ul
+      - @upcoming_due_topics.each do |topic|
+        %li= link_to topic.title, team_topic_url(topic.team, topic)
+
+%h3 Recently resolved (or already resolved but updated) topics
 %p
   - if @recently_resolved_topics.blank?
     None
