@@ -36,5 +36,4 @@ class DigestMailer < ApplicationMailer
       due_date: Time.zone.now..(Time.zone.now + 24.hours), status: :active
     )
   end
-
 end
