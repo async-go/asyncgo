@@ -114,12 +114,12 @@ module Teams
     end
 
     def new_params
-      return unless params[:context].present? && params[:selection].present?
+      return if params[:context].blank?
 
       {
         description: <<~DESCRIPTION
           Created from: #{params[:context]}
-          #{params[:selection]}
+          #{"#{params[:selection].gsub(/^/m, '> ')}\n" if params[:selection].present?}
         DESCRIPTION
       }
     end
