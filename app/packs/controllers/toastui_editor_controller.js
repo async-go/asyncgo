@@ -1,5 +1,4 @@
 import { Controller } from 'stimulus'
-// import Tribute from 'tributejs'
 import Editor from '@toast-ui/editor'
 
 export default class extends Controller {
@@ -40,7 +39,7 @@ export default class extends Controller {
 
   connect () {
     this.editorTargets.forEach(editorTarget => {
-      let editor = this._editor(editorTarget)
+      editorTarget.editorObj = this._editor(editorTarget)
 
       editorTarget.closest('form').addEventListener('submit', (event) => {
         event.target.elements.namedItem(editorTarget.dataset.target).value = editor.getMarkdown()

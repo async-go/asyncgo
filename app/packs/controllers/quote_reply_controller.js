@@ -10,7 +10,7 @@ export default class extends Controller {
 
     const quotedReply = content.split('\n').map(line => `> ${line}`).join('\n')
 
-    const editor = document.getElementById('editor_comment_new').editorObj
+    const editor = document.querySelectorAll('[data-target="comment_body"]:last-of-type')[0].editorObj
     editor.setMarkdown(`On ${date} @${authorEmail} wrote:\n${quotedReply}\n\n`)
     editor.focus()
     editor.moveCursorToEnd()
