@@ -14,13 +14,11 @@
         = form.label :description, id: 'topic-description'
         = link_to '[Templates]', 'https://asyncgo.com/docs/templates', id: 'topic-templates',
           target: :_blank, rel: :noopener
-      %div{ data: { controller: 'toastui-editor attach-tribute', 'toastui-editor-target': 'editor', target: :topic_description, action: 'input->attach-tribute#attach:once' } }= topic.description
-      = form.hidden_field :description
+      = render partial: 'shared/markdown_text_area', locals: { form: form, name: :description }
     .col-lg-5
       .mb-1
         = form.label :outcome, id: 'topic-outcome'
-      %div{ data: { controller: 'toastui-editor attach-tribute', 'toastui-editor-target': 'editor', target: :topic_outcome, action: 'input->attach-tribute#attach:once' } }= topic.outcome
-      = form.hidden_field :outcome
+      = render partial: 'shared/markdown_text_area', locals: { form: form, name: :outcome }
   .row
     .col-lg-7
       .input-group

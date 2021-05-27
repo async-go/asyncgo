@@ -1,2 +1,2 @@
-.mb-2
-  = form.text_area name, **options
+%div{ data: { controller: 'toastui-editor attach-tribute', 'toastui-editor-target': 'editor', target: :"#{dom_class(form.object)}_#{name}", action: 'input->attach-tribute#attach:once' } }= form.object.send(name)
+= form.hidden_field name
