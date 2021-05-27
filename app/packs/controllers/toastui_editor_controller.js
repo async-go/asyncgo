@@ -39,7 +39,8 @@ export default class extends Controller {
 
   connect () {
     this.editorTargets.forEach(editorTarget => {
-      editorTarget.editorObj = this._editor(editorTarget)
+      const editor = this._editor(editorTarget)
+      editorTarget.editorObj = editor
 
       editorTarget.closest('form').addEventListener('submit', (event) => {
         event.target.elements.namedItem(editorTarget.dataset.target).value = editor.getMarkdown()
