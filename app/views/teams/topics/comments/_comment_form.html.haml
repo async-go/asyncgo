@@ -1,12 +1,10 @@
 - submit_action = comment.persisted? ? 'Update' : 'Add Comment'
 = form_with(model: comment, url: [comment.topic.team, comment.topic, comment],
-  data: { controller: 'reset-form toastui-editor',
-  action: 'turbo:submit-end->reset-form#reset' }) do |form|
+  data: { controller: 'reset-form', action: 'turbo:submit-end->reset-form#reset' }) do |form|
   = render partial: 'shared/form_errors', locals: { model: comment }
   .mb-1.visually-hidden
     = form.label :body
   .mb-3
-    %div{ id: "editor_comment_#{comment.id || 'new'}", data: { 'toastui-editor-target': 'editor' } }
-    = render partial: 'shared/markdown_text_area', locals: { form: form, name: :body,
-      options: { hidden: true, data: { 'toastui-editor-target': 'textarea' } } }
-  = form.submit submit_action, class: 'btn btn-primary', data: { 'toastui-editor-target': 'submit' }
+    %div{ data: { controller: 'toastui-editor attach-tribute', 'toastui-editor-target': 'editor', action: 'input->attach-tribute#attach:once' } }= comment.body
+    = form.hidden_field :body
+  = form.submit submit_action, class: 'btn btn-primary'

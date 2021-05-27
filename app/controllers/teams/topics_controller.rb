@@ -116,12 +116,12 @@ module Teams
     def new_params
       return unless params[:context].present? && params[:selection].present?
 
-      description = "Source: [#{params[:context]}](#{params[:context]})\n"
-      params[:selection].split("\n").each do |line|
-        description += "> #{line}\n"
-      end
-
-      { description: description }
+      {
+        description: <<~DESCRIPTION
+          Created from: #{params[:context]}
+          #{params[:selection]}
+        DESCRIPTION
+      }
     end
 
     def update_user_subscription(topic)

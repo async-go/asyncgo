@@ -11,8 +11,7 @@ export default class extends Controller {
     const quotedReply = content.split('\n').map(line => `> ${line}`).join('\n')
 
     const editor = document.getElementById('editor_comment_new').editorObj
-    editor.setMarkdown('On ' + date + ' @' + authorEmail + ' wrote:\n' + quotedReply + '\n\n')
-    window.scrollTo(0, document.body.scrollHeight)
+    editor.setMarkdown(`On ${date} @${authorEmail} wrote:\n${quotedReply}\n\n`)
     editor.focus()
     editor.moveCursorToEnd()
   }

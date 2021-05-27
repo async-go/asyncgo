@@ -63,14 +63,10 @@ $theme-colors: (
       margin-top: 1.5rem !important;
       margin-bottom: 0.5rem !important;
     }
-
-    h6 {
-      font-size: 1rem;
-    }
   }
 }
 
-// accessibility fixes for editor
+// Accessibility fixes for editor
 .te-mode-switch {
   > {
     .markdown {
