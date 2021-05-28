@@ -5,7 +5,5 @@
   .mb-1.visually-hidden
     = form.label :body
   .mb-3
-    = render partial: 'shared/markdown_text_area', locals: { form: form, name: :body,
-      options: { rows: '5', required: true, class: 'form-control',
-      data: { controller: 'attach-tribute', action: 'focus->attach-tribute#attach:once' } } }
-  = form.submit submit_action, class: 'btn btn-primary', id: 'comment-submit'
+    = render partial: 'shared/markdown_text_area', locals: { form: form, name: :body }
+  = form.submit submit_action, class: 'btn btn-primary'

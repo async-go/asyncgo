@@ -9,8 +9,10 @@ export default class extends Controller {
     const authorEmail = this.authoremailTarget.innerText.trim()
 
     const quotedReply = content.split('\n').map(line => `> ${line}`).join('\n')
-    document.getElementById('comment_body').value = `On ${date} @${authorEmail} wrote:\n${quotedReply}\n\n`
 
-    document.getElementById('comment_body').focus()
+    const editor = document.querySelectorAll('[data-target="comment_body"]:last-of-type')[0].editorObj
+    editor.setMarkdown(`On ${date} @${authorEmail} wrote:\n${quotedReply}\n\n`)
+    editor.focus()
+    editor.moveCursorToEnd()
   }
 }

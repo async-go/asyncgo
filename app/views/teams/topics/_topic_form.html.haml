@@ -9,21 +9,17 @@
         = form.label :title, id: 'topic-title'
       = form.text_field :title, required: true, autocomplete: 'off', class: 'form-control'
   .row
-    .col-lg-8
+    .col-lg-7
       .mb-1
         = form.label :description, id: 'topic-description'
         = link_to '[Templates]', 'https://asyncgo.com/docs/templates', id: 'topic-templates',
           target: :_blank, rel: :noopener
-      = render partial: 'shared/markdown_text_area', locals: { form: form, name: :description,
-        options: { rows: '20', required: true, class: 'form-control',
-        data: { controller: 'attach-tribute', action: 'focus->attach-tribute#attach:once' } } }
-    .col-lg-4
+      = render partial: 'shared/markdown_text_area', locals: { form: form, name: :description }
+    .col-lg-5
       .mb-1
         = form.label :outcome, id: 'topic-outcome'
-      = render partial: 'shared/markdown_text_area', locals: { form: form, name: :outcome,
-        options: { rows: '20', class: 'form-control', autocomplete: 'off',
-        data: { controller: 'attach-tribute', action: 'focus->attach-tribute#attach:once' } } }
-  .row
+      = render partial: 'shared/markdown_text_area', locals: { form: form, name: :outcome }
+  .row.mt-3
     .col-lg-7
       .input-group
         .input-group-text= form.label :label_list, id: 'topic-labellist'

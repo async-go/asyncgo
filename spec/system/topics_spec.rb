@@ -45,11 +45,28 @@ RSpec.describe 'Topics', type: :system do
     click_link 'New Topic'
 
     fill_in 'topic[title]', with: 'Sample title'
-    fill_in 'topic[description]', with: '__Sample topic content__'
+    within('[data-target="topic_description"]') do
+      click_button 'Markdown'
+      find('.CodeMirror').click
+      page.send_keys('__Sample topic content__')
+    end
     click_button 'Create'
 
     expect(page).to have_text('Sample title')
     expect(page).to have_selector('strong', text: 'Sample topic content')
+  end
+
+  it 'allows the user to create a topic using query parameters' do
+    user = FactoryBot.create(:user, :team)
+    visit '/'
+    sign_in_user(user)
+
+    visit "/teams/#{user.team.id}/topics/new?context=hello&selection=goodbye"
+    fill_in 'topic[title]', with: 'Sample title'
+    click_button 'Create'
+
+    expect(page).to have_text('Created from: hello')
+    expect(page).to have_text('goodbye')
   end
 
   it 'allows the user to edit a topic' do
@@ -62,7 +79,9 @@ RSpec.describe 'Topics', type: :system do
     click_link topic.title
     click_link 'Edit'
 
-    fill_in 'topic[description]', with: 'This is an update'
+    within('[data-target="topic_description"]') do
+      find('.tui-editor-contents').set('This is an update')
+    end
     click_button 'Update'
 
     expect(page).to have_text('This is an update')
@@ -78,7 +97,11 @@ RSpec.describe 'Topics', type: :system do
     click_link topic.title
     click_link 'Edit'
 
-    fill_in 'topic[description]', with: '![image.png](data:image/png;base64,abcdefg)'
+    within('[data-target="topic_description"]') do
+      click_button 'Markdown'
+      find('.CodeMirror').click
+      page.send_keys('![image.png](data:image/png;base64,abcdefg)')
+    end
     click_button 'Update'
     expect(page).to have_text("Description can't contain embedded markdown images")
   end
@@ -93,8 +116,11 @@ RSpec.describe 'Topics', type: :system do
     click_link topic.title
     click_link 'Edit'
 
-    fill_in 'topic[description]', with: 'Topic description'
-    fill_in 'topic[outcome]', with: '![image.png](data:image/png;base64,abcdefg)'
+    within('[data-target="topic_outcome"]') do
+      click_button 'Markdown'
+      find('.CodeMirror').click
+      page.send_keys('![image.png](data:image/png;base64,abcdefg)')
+    end
     click_button 'Update'
     expect(page).to have_text("Outcome can't contain embedded markdown images")
   end
@@ -111,7 +137,9 @@ RSpec.describe 'Topics', type: :system do
 
     update_topic_path = team_topic_path(topic.team, topic)
     expect(page).to have_selector("form[action='#{update_topic_path}']")
-    fill_in 'topic[description]', with: 'This is an update'
+    within('[data-target="topic_description"]') do
+      find('.tui-editor-contents').set('Sample topic description')
+    end
     topic.update!(description: 'This is an external update',
                   description_html: '<p>This is an external update',
                   description_checksum: Digest::MD5.hexdigest(topic.description))
@@ -132,7 +160,9 @@ RSpec.describe 'Topics', type: :system do
 
     update_topic_path = team_topic_path(topic.team, topic)
     expect(page).to have_selector("form[action='#{update_topic_path}']")
-    fill_in 'topic[outcome]', with: 'This is an update'
+    within('[data-target="topic_outcome"]') do
+      find('.tui-editor-contents').set('Sample topic outcome')
+    end
     topic.update!(outcome: 'This is an external update',
                   outcome_html: '<p>This is an external update</p>',
                   outcome_checksum: Digest::MD5.hexdigest(''))
@@ -151,7 +181,11 @@ RSpec.describe 'Topics', type: :system do
     click_link topic.title
     click_link 'Edit'
 
-    fill_in 'topic[outcome]', with: '__Sample outcome__'
+    within('[data-target="topic_outcome"]') do
+      click_button 'Markdown'
+      find('.CodeMirror').click
+      page.send_keys('__Sample outcome__')
+    end
     click_button 'Update'
 
     expect(page).to have_selector('strong', text: 'Sample outcome')

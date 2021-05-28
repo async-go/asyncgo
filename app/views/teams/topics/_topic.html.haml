@@ -78,14 +78,13 @@
       %ul.list-group.list-group-horizontal
         = render partial: 'teams/topics/vote_list_group', locals: { votable: topic }
   .row.mt-3
-    .col-lg-8.border
+    .col-lg-7.border
       %h6.mt-2.text-secondary.small#topic-description Description
-      .user-content!= topic.description_html
+      .tui-editor-contents!= topic.description_html
 
-    .col-lg-4.border
+    .col-lg-5.border
       %h6.mt-2.text-secondary.small#topic-outcome
         Outcome
         - if topic.active?
           (Work in Progress)
-      .user-content
-        != topic.outcome_html || 'Content has not been started yet'
+      .tui-editor-contents!= topic.outcome_html

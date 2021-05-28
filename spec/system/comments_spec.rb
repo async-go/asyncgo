@@ -14,7 +14,12 @@ RSpec.describe 'Comments', type: :system do
     click_link 'Topics'
     click_link topic.title
 
-    fill_in 'comment[body]', with: '__Sample content__'
+    within('[data-target="comment_body"]') do
+      click_button 'Markdown'
+      find('.CodeMirror').click
+      page.send_keys('__Sample content__')
+    end
+
     click_button 'Add Comment'
 
     expect(page).to have_selector('strong', text: 'Sample content')
@@ -33,7 +38,9 @@ RSpec.describe 'Comments', type: :system do
     edit_comment_path = team_topic_comment_path(comment.topic.team, comment.topic, comment)
     edit_comment_form = find("form[action='#{edit_comment_path}']", match: :first)
     within(edit_comment_form) do
-      fill_in 'comment[body]', with: 'This is updated content'
+      within('[data-target="comment_body"]') do
+        find('.tui-editor-contents').set('This is updated content')
+      end
       click_button 'Update'
     end
 
@@ -49,7 +56,11 @@ RSpec.describe 'Comments', type: :system do
     click_link 'Topics'
     click_link topic.title
 
-    fill_in 'comment[body]', with: '![image.png](data:image/png;base64,abcdefg)'
+    within('[data-target="comment_body"]') do
+      click_button 'Markdown'
+      find('.CodeMirror').click
+      page.send_keys('![image.png](data:image/png;base64,abcdefg)')
+    end
     click_button 'Add Comment'
 
     expect(page).to have_text("Body can't contain embedded markdown images")

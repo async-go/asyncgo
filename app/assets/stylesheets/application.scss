@@ -47,6 +47,37 @@ $theme-colors: (
 @import 'tributejs/src/tribute';
 @import 'driver.js/src/driver';
 
+@import 'codemirror/lib/codemirror.css';
+@import '@toast-ui/editor/dist/toastui-editor.css';
+
+.tui-editor-contents {
+  font-size: 1rem;
+  word-wrap: break-word;
+
+  > {
+    ol, ul {
+      margin-bottom: 1rem;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.5rem !important;
+      margin-bottom: 0.5rem !important;
+    }
+  }
+}
+
+// Accessibility fixes for editor
+.te-mode-switch {
+  > {
+    .markdown {
+      color: #333;
+    }
+    .wysiwyg {
+      color: #333;
+    }
+  }
+}
+
 .navbar-brand img {
   width: 3rem;
 }
@@ -66,16 +97,6 @@ $theme-colors: (
   border: 1px solid #333;
 }
 
-.user-content {
-  word-wrap: break-word;
-
-  > {
-    ol, ul {
-      margin-bottom: 1rem;
-    }
-  }
-}
-
 blockquote {
   background: #f9f9f9;
   color: #333;
@@ -84,7 +105,6 @@ blockquote {
   margin: 0 0 20px;
   border-left: 5px solid #ccc;
 }
-
 
 .topic-label {
   color: #333;
