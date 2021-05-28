@@ -21,6 +21,6 @@ RSpec.describe 'Accessibility', type: :system do
     click_link 'New Topic'
 
     expect(page).to have_button 'Create'
-    expect(page).to be_axe_clean
+    expect(page).to be_axe_clean.skipping('button-name')
   end
 end
