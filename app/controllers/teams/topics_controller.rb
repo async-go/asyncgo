@@ -9,10 +9,55 @@ module Teams
 
       @team = team
       topics = filtered_topics(team.topics.includes(:user, :subscribed_users, :labels))
-      active_topics = topics.active.order(pinned: :desc).by_due_date
-      resolved_topics = topics.resolved.order(pinned: :desc, updated_at: :desc)
+
+      active_topics, resolved_topics = sorted_topics(topics, params[:sort], permitted_order(params[:order]))
+
       @pagy_active_topics, @active_topics = pagy(active_topics, page_param: 'active_page')
       @pagy_resolved_topics, @resolved_topics = pagy(resolved_topics, page_param: 'resolved_page')
+    end
+
+    def sorted_topics(topics, sort, order)
+      [sorted_active_topics(topics, sort, order), sorted_resolved_topics(topics, sort, order)]
+    end
+
+    def sorted_active_topics(topics, sort, order)
+      case sort
+      when 'title'
+        topics.active.order(pinned: :desc, title: order)
+      else
+        if order == :asc
+          topics.active.order(pinned: :desc).by_due_date_asc
+        else
+          topics.active.order(pinned: :desc).by_due_date_desc
+        end
+      end
+    end
+
+    def sorted_resolved_topics(topics, sort, order)
+      case sort
+      when 'title'
+        topics.resolved.order(pinned: :desc, title: order)
+      else
+        topics.resolved.order(pinned: :desc, updated_at: inverse_order(order))
+      end
+    end
+
+    def permitted_order(order)
+      case order
+      when 'desc'
+        :desc
+      else
+        :asc
+      end
+    end
+
+    def inverse_order(order)
+      case order
+      when :desc
+        :asc
+      else
+        :desc
+      end
     end
 
     def new
@@ -105,7 +150,7 @@ module Teams
       params.require(:topic).permit(
         :title, :description, :outcome, :due_date, :status,
         :description_checksum, :outcome_checksum, :pinned,
-        :label_list
+        :label_list, :sort, :order
       )
     end
 

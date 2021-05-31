@@ -33,9 +33,14 @@ class Topic < ApplicationRecord
 
   acts_as_taggable_on :labels
 
-  scope :by_due_date, lambda {
+  scope :by_due_date_asc, lambda {
     order(Topic.arel_table[:due_date].eq(nil))
       .order(Topic.arel_table[:due_date].asc)
+  }
+
+  scope :by_due_date_desc, lambda {
+    order(Topic.arel_table[:due_date].eq(nil))
+      .order(Topic.arel_table[:due_date].desc)
   }
 
   def last_interacted
