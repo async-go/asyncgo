@@ -44,6 +44,7 @@ export default class extends Controller {
 
       editorTarget.closest('form').addEventListener('submit', (event) => {
         event.target.elements.namedItem(editorTarget.dataset.target).value = editor.getMarkdown()
+        editor.reset()
       }, false)
     })
   }
