@@ -43,7 +43,10 @@ export default class extends Controller {
       editorTarget.editorObj = editor
 
       editorTarget.closest('form').addEventListener('submit', (event) => {
-        event.target.elements.namedItem(editorTarget.dataset.target).value = editor.getMarkdown()
+        event.target.closest('form').querySelectorAll('btn-submit').disabled = true;
+        event.target.elements.namedItem(editorTarget.dataset.target).value = editor.getMarkdown();
+        editor.reset();
+        event.target.closest('form').querySelectorAll('btn-submit').disabled = false;
       }, false)
     })
   }
