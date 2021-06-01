@@ -26,7 +26,7 @@ export default class extends Controller {
         // 'indent',
         // 'outdent',
         'divider',
-        'table',
+        // 'table',
         // 'image',
         'link',
         'divider',
