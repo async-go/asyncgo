@@ -42,6 +42,9 @@ export default class extends Controller {
       const editor = this._editor(editorTarget)
       editorTarget.editorObj = editor
 
+      editor.changeMode('markdown', true)
+      editor.changeMode('wysiwyg', true)
+
       editorTarget.closest('form').addEventListener('submit', (event) => {
         event.target.elements.namedItem(editorTarget.dataset.target).value = editor.getMarkdown()
       }, false)
