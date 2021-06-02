@@ -20,4 +20,9 @@ class CommentPolicy < ApplicationPolicy
     user &&
       record.user == user
   end
+
+  def destroy?
+    user &&
+      record.user == user
+  end
 end

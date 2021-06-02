@@ -15,6 +15,15 @@ module Teams
         authorize(@comment)
       end
 
+      def destroy
+        @comment = comment
+        authorize(@comment)
+
+        @comment.destroy
+
+        redirect_to topic_path
+      end
+
       def create # rubocop:disable Metrics/MethodLength
         @comment = topic.comments.build
         authorize(@comment)

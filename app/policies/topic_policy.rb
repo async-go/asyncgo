@@ -45,4 +45,9 @@ class TopicPolicy < ApplicationPolicy
     user &&
       record.team == user.team
   end
+
+  def destroy?
+    user &&
+      record.team == user.team
+  end
 end

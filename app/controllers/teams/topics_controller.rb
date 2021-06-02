@@ -18,6 +18,7 @@ module Teams
     def new
       @topic = team.topics.build(new_params)
       authorize(@topic)
+
     end
 
     def show
@@ -35,6 +36,14 @@ module Teams
     def edit
       @topic = topic
       authorize(@topic)
+    end
+
+    def destroy
+      @topic = topic
+      authorize(@topic)
+      @topic.destroy
+
+      redirect_to root_path
     end
 
     def create
