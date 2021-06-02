@@ -10,6 +10,7 @@ export default class extends Controller {
       el: target,
       height: 'auto',
       initialEditType: 'wysiwyg',
+      initialValue: target.textContent,
       previewStyle: 'tab',
       toolbarItems: [
         'heading',
