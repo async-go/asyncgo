@@ -18,7 +18,6 @@ module Teams
       def destroy
         @comment = comment
         authorize(@comment)
-
         @comment.destroy
 
         redirect_to team_topic_path(topic.team, topic), flash: { success: 'Comment was successfully deleted.' }

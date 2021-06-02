@@ -49,7 +49,6 @@
         data: { confirm: 'Are you sure you want to permanently delete this topic?' } do
         = assistive_icon('fas', 'trash', 'Delete this topic')
         .d-none.d-lg-inline.ms-1 Delete
-
     .col-auto.my-1
       = form_with(url: team_topic_subscribe_path(topic.team, topic)) do |subscription_form|
         - if user_subscribed?(topic)
