@@ -30,7 +30,7 @@ class MarkdownParser < ApplicationService
   end
 
   def process_markdown(markdown)
-    CommonMarker.render_html(markdown, :DEFAULT, %i[tasklist tagfilter autolink])
+    CommonMarker.render_html(markdown, :DEFAULT, %i[tasklist tagfilter autolink table])
   end
 
   def process_links(html_output)
