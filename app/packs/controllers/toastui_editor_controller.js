@@ -10,6 +10,7 @@ export default class extends Controller {
       el: target,
       height: 'auto',
       initialEditType: 'wysiwyg',
+      initialValue: target.textContent,
       previewStyle: 'tab',
       toolbarItems: [
         'heading',
@@ -42,12 +43,8 @@ export default class extends Controller {
       const editor = this._editor(editorTarget)
       editorTarget.editorObj = editor
 
-      editor.changeMode('markdown', true)
-      editor.changeMode('wysiwyg', true)
-
       editorTarget.closest('form').addEventListener('submit', (event) => {
         event.target.elements.namedItem(editorTarget.dataset.target).value = editor.getMarkdown()
-        editor.reset()
       }, false)
     })
   }
