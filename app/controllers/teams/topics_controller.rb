@@ -18,7 +18,6 @@ module Teams
     def new
       @topic = team.topics.build(new_params)
       authorize(@topic)
-
     end
 
     def show

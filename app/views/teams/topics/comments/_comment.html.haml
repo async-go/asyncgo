@@ -20,8 +20,8 @@
         %button.btn.btn-outline-secondary.btn-sm{ data: { action: 'click->quote-reply#quote' } }
           Quote
       .col-auto
-        -if comment.user == current_user
-          =link_to 'Delete',
+        - if comment.user == current_user
+          = link_to 'Delete',
             team_topic_comment_path(comment.topic.team, comment.topic, comment),
             method: 'delete', class: 'btn btn-outline-secondary btn-sm',
             data: { confirm: 'Are you sure you want to permanently delete this comment?' }
