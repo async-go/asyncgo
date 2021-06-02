@@ -69,6 +69,21 @@ RSpec.describe 'Topics', type: :system do
     expect(page).to have_text('goodbye')
   end
 
+  it 'allows the user to delete a topic' do
+    user = FactoryBot.create(:user, :team)
+    topic = FactoryBot.create(:topic, team: user.team)
+
+    visit '/'
+    sign_in_user(user)
+    click_link 'Topics'
+    click_link topic.title
+    expect(page).to have_text(topic.title)
+    accept_alert do
+      click_link 'Delete', href: team_topic_path(topic.team, topic)
+    end
+    expect(page).not_to have_text(topic.title)
+  end
+
   it 'allows the user to edit a topic' do
     user = FactoryBot.create(:user, :team)
     topic = FactoryBot.create(:topic, team: user.team)
