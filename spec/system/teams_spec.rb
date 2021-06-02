@@ -34,7 +34,9 @@ RSpec.describe 'Teams', type: :system do
     sign_in_user(user)
     click_link 'Admin'
 
-    click_link other_user.email
+    accept_alert do
+      click_link other_user.email
+    end
 
     expect(page).not_to have_link(other_user.email)
   end
