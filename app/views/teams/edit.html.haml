@@ -53,7 +53,8 @@
         - @team_members.each do |user|
           .col-lg-3
             = link_to user.email, team_user_path(@team, user),
-              method: :delete, class: 'list-group-item list-group-item-action text-center'
+              method: :delete, class: 'list-group-item list-group-item-action text-center',
+              data: { confirm: "Are you sure you want to remove #{user.printable_name} from the team?" }
     - if @pagy.pages > 1
       .row.mt-3
         != pagy_bootstrap_nav(@pagy)
