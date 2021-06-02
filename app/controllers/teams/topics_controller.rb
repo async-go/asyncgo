@@ -42,7 +42,7 @@ module Teams
       authorize(@topic)
       @topic.destroy
 
-      redirect_to root_path
+      redirect_to root_path, flash: { success: 'Topic was successfully deleted.' }
     end
 
     def create

@@ -57,6 +57,34 @@ RSpec.describe Teams::TopicsController, type: :request do
     include_examples 'unauthorized user examples'
   end
 
+  describe 'DELETE destroy' do
+    subject(:delete_destroy) { delete "/teams/#{topic.team.id}/topics/#{topic.id}" }
+
+    let(:topic) { FactoryBot.create(:topic) }
+
+    context 'when user is authorized' do
+      before do
+        sign_in(topic.user)
+      end
+
+      it 'removes the comment' do
+        expect { delete_destroy }.to change { Topic.find_by(id: topic.id) }.from(topic).to(nil)
+      end
+
+      it 'sets the flash' do
+        delete_destroy
+
+        expect(controller.flash[:success]).to eq('Topic was successfully deleted.')
+      end
+
+      it 'redirects to root path' do
+        expect(delete_destroy).to redirect_to(root_path)
+      end
+    end
+
+    include_examples 'unauthorized user examples'
+  end
+
   describe 'GET new' do
     subject(:get_new) { get "/teams/#{team.id}/topics/new", params: params }
 

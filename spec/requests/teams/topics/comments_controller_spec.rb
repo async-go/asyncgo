@@ -23,6 +23,34 @@ RSpec.describe Teams::Topics::CommentsController, type: :request do
     include_examples 'unauthorized user examples'
   end
 
+  describe 'DELETE destroy' do
+    subject(:delete_destroy) { delete "/teams/#{topic.team.id}/topics/#{topic.id}/comments/#{comment.id}" }
+
+    let(:comment) { FactoryBot.create(:comment, topic: topic) }
+
+    context 'when user is authorized' do
+      before do
+        sign_in(comment.user)
+      end
+
+      it 'removes the comment' do
+        expect { delete_destroy }.to change { Comment.find_by(id: comment.id) }.from(comment).to(nil)
+      end
+
+      it 'sets the flash' do
+        delete_destroy
+
+        expect(controller.flash[:success]).to eq('Comment was successfully deleted.')
+      end
+
+      it 'redirects to topic page' do
+        expect(delete_destroy).to redirect_to(team_topic_path(topic.team, topic))
+      end
+    end
+
+    include_examples 'unauthorized user examples'
+  end
+
   describe 'GET edit' do
     subject(:get_edit) { get "/teams/#{topic.team.id}/topics/#{topic.id}/comments/#{comment.id}/edit" }
 

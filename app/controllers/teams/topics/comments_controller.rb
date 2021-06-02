@@ -21,7 +21,7 @@ module Teams
 
         @comment.destroy
 
-        redirect_to topic_path
+        redirect_to team_topic_path(topic.team, topic), flash: { success: 'Comment was successfully deleted.' }
       end
 
       def create # rubocop:disable Metrics/MethodLength
