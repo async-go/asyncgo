@@ -15,9 +15,9 @@
         - if policy(comment).edit?
           = link_to 'Edit',
             edit_team_topic_comment_path(comment.topic.team, comment.topic, comment),
-            class: 'btn btn-outline-secondary'
+            class: 'btn btn-sm btn-outline-secondary'
       .col-auto
-        %button.btn.btn-outline-secondary{ data: { action: 'click->quote-reply#quote' } }
+        %button.btn.btn-sm.btn-outline-secondary{ data: { action: 'click->quote-reply#quote' } }
           Quote
     .row.mt-3.px-2
       .tui-editor-contents!= comment.body_html
