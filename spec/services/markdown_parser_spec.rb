@@ -42,7 +42,7 @@ RSpec.describe MarkdownParser, type: :service do
       end
     end
 
-    context 'when mention is autolinked' do
+    context 'when mention is already autolinked by the editor' do
       let(:text) do
         <<~MESSAGE
           This is a __bold__ test for @[#{target.printable_name}](#{target.email}),
