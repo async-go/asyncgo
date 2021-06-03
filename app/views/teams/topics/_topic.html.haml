@@ -51,8 +51,8 @@
         data: { 'turbo-frame': '_top' }) do |form|
         - if topic.pinned?
           = form.hidden_field :pinned, value: 0
-          = button_tag type: 'submit', class: 'btn btn-sm btn-outline-secondary text-secondary', id: 'topic-pin',
-            data: { controller: 'hotkey', hotkey: 'p' } do
+          = button_tag type: 'submit', class: 'btn btn-sm btn-outline-secondary text-secondary',
+            id: 'topic-pin', data: { controller: 'hotkey', hotkey: 'p' } do
             = assistive_icon('fas', 'bookmark', 'Unpin this topic')
             .text-dark.d-none.d-lg-inline.ms-1 Unpin
         - else
