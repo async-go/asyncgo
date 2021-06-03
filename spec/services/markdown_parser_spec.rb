@@ -15,6 +15,16 @@ RSpec.describe MarkdownParser, type: :service do
       )
     end
 
+    context 'when mention is autolinked' do
+      let(:text) { "This is for [#{target_user.printable_name}](#{target_user.email})." }
+
+      it 'processes autolinked mentions' do
+        expect(call).to include(
+          "<a href=\"#{target_user.email}\" target=\"_blank\" rel=\"noopener\">#{target_user.printable_name}</a>"
+        )
+      end
+    end
+
     it 'processes markdowns' do
       expect(call).to include('<strong>bold</strong>')
     end
