@@ -38,7 +38,7 @@ RSpec.describe 'Topics', type: :system do
     expect(page).not_to have_link(other_topic.title)
   end
 
-  it 'allows the user to create a topic using markdown' do
+  it 'allows the user to create a topic using text' do
     visit '/'
     sign_in_user(FactoryBot.create(:user, :team))
     click_link 'Topics'
@@ -46,14 +46,13 @@ RSpec.describe 'Topics', type: :system do
 
     fill_in 'topic[title]', with: 'Sample title'
     within('[data-target="topic_description"]') do
-      click_button 'Markdown'
-      find('.CodeMirror').click
-      page.send_keys('__Sample topic content__')
+      find('.tui-editor-contents').click
+      page.send_keys('Sample topic content')
     end
     click_button 'Create'
 
     expect(page).to have_text('Sample title')
-    expect(page).to have_selector('strong', text: 'Sample topic content')
+    expect(page).to have_text('Sample topic content')
   end
 
   it 'allows the user to create a topic using query parameters' do
@@ -98,8 +97,7 @@ RSpec.describe 'Topics', type: :system do
     click_link 'Edit'
 
     within('[data-target="topic_description"]') do
-      click_button 'Markdown'
-      find('.CodeMirror').click
+      find('.tui-editor-contents').click
       page.send_keys('![image.png](data:image/png;base64,abcdefg)')
     end
     click_button 'Update'
@@ -117,8 +115,7 @@ RSpec.describe 'Topics', type: :system do
     click_link 'Edit'
 
     within('[data-target="topic_outcome"]') do
-      click_button 'Markdown'
-      find('.CodeMirror').click
+      find('.tui-editor-contents').click
       page.send_keys('![image.png](data:image/png;base64,abcdefg)')
     end
     click_button 'Update'
@@ -182,13 +179,12 @@ RSpec.describe 'Topics', type: :system do
     click_link 'Edit'
 
     within('[data-target="topic_outcome"]') do
-      click_button 'Markdown'
-      find('.CodeMirror').click
-      page.send_keys('__Sample outcome__')
+      find('.tui-editor-contents').click
+      page.send_keys('Sample outcome')
     end
     click_button 'Update'
 
-    expect(page).to have_selector('strong', text: 'Sample outcome')
+    expect(page).to have_text('Sample outcome')
   end
 
   it 'allows the user to close and open the topic' do
