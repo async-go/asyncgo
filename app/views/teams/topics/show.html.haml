@@ -9,7 +9,7 @@
   - if current_user.preferences.inverse_comment_order?
     = render partial: 'teams/topics/comments/comment_box', locals: { topic: @topic }
 
-  %ul.list-group.list-group.pe-0#comments
+  %ul.list-group.list-group.pe-0.mt-3#comments
     - @topic_comments.each do |comment|
       = render partial: 'teams/topics/comments/comment', locals: { comment: comment }
 

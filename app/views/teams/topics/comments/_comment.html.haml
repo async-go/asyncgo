@@ -1,5 +1,5 @@
 = turbo_frame_tag dom_id(comment) do
-  %li.list-group-item.mt-2.border-0.border-top{ data: { controller: 'quote-reply' } }
+  %li.list-group-item.border-0.border-top{ data: { controller: 'quote-reply' } }
     .row.justify-content-start.p-0
       .col-auto.pt-1
         = image_tag "#{comment.user.gravatar_url}?s=20&d=retro",
@@ -19,6 +19,6 @@
       .col-auto
         %button.btn.btn-sm.btn-outline-secondary{ data: { action: 'click->quote-reply#quote' } }
           Quote
-    .row.mt-3.px-2
+    .row.px-2
       .tui-editor-contents!= comment.body_html
       .d-none{ data: { 'quote-reply-target' => 'content' } }= comment.body
