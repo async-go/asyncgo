@@ -9,10 +9,10 @@
           method: :delete) do |remove_vote_form|
           = remove_vote_form.hidden_field :id
           = remove_vote_form.submit content,
-            class: 'small list-group-item list-group-item-action active p-1',
+            class: 'btn btn-outline-secondary border-0 btn-sm active p-1',
             'data-bs-toggle' => 'tooltip', title: vote_names
       - else
         = form_with(model: Vote, url: votable_path(votable) + [:votes]) do |add_vote_form|
           = add_vote_form.hidden_field :emoji, value: emoji_name
-          = add_vote_form.submit content, class: 'small list-group-item list-group-item-action p-1',
+          = add_vote_form.submit content, class: 'btn btn-outline-secondary btn-sm p-1',
             'data-bs-toggle' => 'tooltip', title: vote_names
