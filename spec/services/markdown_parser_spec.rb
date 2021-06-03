@@ -196,6 +196,5 @@ RSpec.describe MarkdownParser, type: :service do
         expect(call).to include('<hr>')
       end
     end
-
   end
 end
