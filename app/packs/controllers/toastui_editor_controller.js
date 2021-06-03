@@ -12,6 +12,7 @@ export default class extends Controller {
       initialEditType: 'wysiwyg',
       initialValue: target.textContent,
       previewStyle: 'tab',
+      hideModeSwitch: true,
       toolbarItems: [
         'heading',
         'bold',
