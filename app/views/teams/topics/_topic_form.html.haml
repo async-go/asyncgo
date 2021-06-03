@@ -12,8 +12,6 @@
     .col-lg-7
       .mb-1
         = form.label :description, id: 'topic-description'
-        = link_to '[Templates]', 'https://asyncgo.com/docs/templates', id: 'topic-templates',
-          target: :_blank, rel: :noopener
       = render partial: 'shared/markdown_text_area', locals: { form: form, name: :description }
     .col-lg-5
       .mb-1
