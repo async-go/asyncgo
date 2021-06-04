@@ -14,8 +14,8 @@
   empty_state_text = if params[:labels].present?
                       'No match found for this label filter.'
                      else
-                      'Once you have created some topics they will appear here.
-                       Try creating a new topic using the orange button above to get started.'
+                       "You don't have any active topics. Try starting a discussion
+                       by creating one using the orange button above."
                      end
 .row.mt-2.border.bg-white.rounded.shadow-sm.pt-2
   = render partial: 'topics', locals: { topic_collection: @active_topics, topic_hotkeys: true,
