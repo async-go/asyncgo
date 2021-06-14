@@ -8,56 +8,13 @@ module Teams
       authorize(team, policy_class: TopicPolicy)
 
       @team = team
-      topics = filtered_topics(team.topics.includes(:user, :subscribed_users, :labels))
+      includes = %i[user subscribed_users labels]
 
-      active_topics, resolved_topics = sorted_topics(topics, params[:sort], permitted_order(params[:order]))
+      active_topics = TopicsFinder.new(team, includes, status: 'active', **sort_and_order_params).call
+      resolved_topics = TopicsFinder.new(team, includes, status: 'resolved', **sort_and_order_params).call
 
       @pagy_active_topics, @active_topics = pagy(active_topics, page_param: 'active_page')
       @pagy_resolved_topics, @resolved_topics = pagy(resolved_topics, page_param: 'resolved_page')
-    end
-
-    def sorted_topics(topics, sort, order)
-      [sorted_active_topics(topics, sort, order), sorted_resolved_topics(topics, sort, order)]
-    end
-
-    def sorted_active_topics(topics, sort, order)
-      case sort
-      when 'title'
-        topics.active.order(pinned: :desc, title: order)
-      else
-        if order == :asc
-          topics.active.order(pinned: :desc).by_due_date_asc
-        else
-          topics.active.order(pinned: :desc).by_due_date_desc
-        end
-      end
-    end
-
-    def sorted_resolved_topics(topics, sort, order)
-      case sort
-      when 'title'
-        topics.resolved.order(pinned: :desc, title: order)
-      else
-        topics.resolved.order(pinned: :desc, updated_at: inverse_order(order))
-      end
-    end
-
-    def permitted_order(order)
-      case order
-      when 'desc'
-        :desc
-      else
-        :asc
-      end
-    end
-
-    def inverse_order(order)
-      case order
-      when :desc
-        :asc
-      else
-        :desc
-      end
     end
 
     def new
@@ -167,6 +124,10 @@ module Teams
           #{"#{params[:selection].gsub(/^/m, '> ')}\n" if params[:selection].present?}
         DESCRIPTION
       }
+    end
+
+    def sort_and_order_params
+      params.permit(:sort, :order)
     end
 
     def update_user_subscription(topic)
