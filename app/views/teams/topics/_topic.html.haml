@@ -2,29 +2,16 @@
   .row.bg-white
     .row
       .col-auto
-        %h2.mt-1#topic-title= topic.title
-    .row.mb-1
-      .col-auto.mt-1#topic-participants
-        = link_to image_tag("#{topic.user.gravatar_url}?s=20&d=retro",
-          class: 'gravatar-img mb-1',
-          title: "#{topic.user.printable_name} (Creator)",
-          alt: "#{topic.user.printable_name} (Creator)"),
-            "mailto:#{topic.user.email}"
-        - topic.subscribed_users.where.not(id: topic.user.id).each do |participant|
-          = link_to image_tag("#{participant.gravatar_url}?s=20&d=retro",
-            title: participant.name,
-            class: 'gravatar-img mb-1', alt: participant.name),
-              "mailto:#{participant.email}"
-      .col-auto.mt-1
-        - topic.labels.each do |label|
-          %span.topic-label.bg-info= label
-      .col-auto.mt-1
-        %p.m-0.text-secondary#topic-duedate
-          = topic_due_date_span(topic)
+        .row
+          .col-auto
+            %h3.mt-2#topic-title= topic.title
+          .col-auto
+            %h6.mt-3.text-secondary#topic-duedate
+              = topic_due_date_span(topic)
   .row.mt-2
     .col-auto.my-1
       = link_to edit_team_topic_path(topic.team, topic),
-        class: 'btn btn-primary btn-sm', id: 'topic-edit',
+        class: 'btn btn-sm btn-primary', id: 'topic-edit',
         data: { controller: 'hotkey', hotkey: 'e' } do
         = assistive_icon('fas', 'edit', 'Edit this topic')
         .d-none.d-lg-inline.ms-1 Edit
@@ -33,13 +20,13 @@
         data: { 'turbo-frame': '_top' }) do |form|
         - if topic.active?
           = form.hidden_field :status, value: :resolved
-          = button_tag type: 'submit', class: 'btn btn-success btn-sm', id: 'topic-resolve',
+          = button_tag type: 'submit', class: 'btn btn-sm btn-success', id: 'topic-resolve',
             data: { controller: 'hotkey', hotkey: 'r' } do
             = assistive_icon('fas', 'check', 'Resolve this topic')
             .d-none.d-lg-inline.ms-1 Resolve
         - else
           = form.hidden_field :status, value: :active
-          = button_tag type: 'submit', class: 'btn btn-secondary btn-sm', id: 'topic-resolve',
+          = button_tag type: 'submit', class: 'btn btn-sm btn-secondary', id: 'topic-resolve',
             data: { controller: 'hotkey', hotkey: 'r' } do
             = assistive_icon('fas', 'undo', 'Reopen this topic')
             .d-none.d-lg-inline Reopen
@@ -53,44 +40,59 @@
       = form_with(url: team_topic_subscribe_path(topic.team, topic)) do |subscription_form|
         - if user_subscribed?(topic)
           = subscription_form.hidden_field :subscribed, value: 0
-          = button_tag type: 'submit', class: 'btn btn-faded text-warning d-block ms-auto',
+          = button_tag type: 'submit', class: 'btn btn-sm btn-outline-secondary text-warning',
             data: { controller: 'hotkey', hotkey: 'w' },
             id: 'topic-watch' do
             = assistive_icon('fas', 'bell', 'Unwatch this topic')
-            %span.text-dark.d-none.d-lg-inline.small.ms-1 Unwatch
+            %span.text-dark.d-none.d-lg-inline.ms-1 Unwatch
         - else
           = subscription_form.hidden_field :subscribed, value: 1
-          = button_tag type: 'submit', class: 'btn btn-faded d-block ms-auto',
+          = button_tag type: 'submit', class: 'btn btn-sm btn-outline-secondary',
             data: { controller: 'hotkey', hotkey: 'w' },
             id: 'topic-watch' do
             = assistive_icon('far', 'bell', 'Watch this topic')
-            .text-dark.d-none.d-lg-inline.small.ms-1 Watch
+            .text-dark.d-none.d-lg-inline.ms-1 Watch
     .col-auto.my-1
       = form_with(model: topic, url: team_topic_pin_path(topic.team, topic),
         data: { 'turbo-frame': '_top' }) do |form|
         - if topic.pinned?
           = form.hidden_field :pinned, value: 0
-          = button_tag type: 'submit', class: 'btn btn-faded text-secondary', id: 'topic-pin',
-            data: { controller: 'hotkey', hotkey: 'p' } do
+          = button_tag type: 'submit', class: 'btn btn-sm btn-outline-secondary text-secondary',
+            id: 'topic-pin', data: { controller: 'hotkey', hotkey: 'p' } do
             = assistive_icon('fas', 'bookmark', 'Unpin this topic')
-            .text-dark.d-none.d-lg-inline.small.ms-1 Unpin
+            .text-dark.d-none.d-lg-inline.ms-1 Unpin
         - else
           = form.hidden_field :pinned, value: 1
-          = button_tag type: 'submit', class: 'btn btn-faded', id: 'topic-pin',
+          = button_tag type: 'submit', class: 'btn btn-sm btn-outline-secondary', id: 'topic-pin',
             data: { controller: 'hotkey', hotkey: 'p' } do
             = assistive_icon('far', 'bookmark', 'Pin this topic')
-            .text-dark.d-none.d-lg-inline.small.ms-1 Pin
-    .col-auto.my-1.pt-1
+            .text-dark.d-none.d-lg-inline.ms-1 Pin
+    .col-auto.my-1
       %ul.list-group.list-group-horizontal
         = render partial: 'teams/topics/vote_list_group', locals: { votable: topic }
-  .row.mt-3
-    .col-lg-7.border
-      %h6.mt-2.text-secondary.small#topic-description Description
+  .row.mt-2
+    .col-lg-7
+      %h6.bg-secondary.p-1.mt-2.text-white.small#topic-description Description
       .tui-editor-contents!= topic.description_html
 
-    .col-lg-5.border
-      %h6.mt-2.text-secondary.small#topic-outcome
+    .col-lg-5.mb-2
+      %h6.bg-accent.p-1.mt-2.text-white.small#topic-outcome
         Outcome
         - if topic.active?
           (Work in Progress)
       .tui-editor-contents!= topic.outcome_html
+    .row
+      .col-auto.my-2#topic-participants
+        = link_to image_tag("#{topic.user.gravatar_url}?s=20&d=retro",
+          class: 'gravatar-img mb-1',
+          title: "#{topic.user.printable_name} (Creator)",
+          alt: "#{topic.user.printable_name} (Creator)"),
+            "mailto:#{topic.user.email}"
+        - topic.subscribed_users.where.not(id: topic.user.id).each do |participant|
+          = link_to image_tag("#{participant.gravatar_url}?s=20&d=retro",
+            title: participant.name,
+            class: 'gravatar-img mb-1', alt: participant.name),
+              "mailto:#{participant.email}"
+      .col-auto.my-2
+        - topic.labels.each do |label|
+          %span.topic-label.bg-info= label
