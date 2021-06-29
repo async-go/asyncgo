@@ -44,7 +44,7 @@
             = assistive_icon('fas', 'undo', 'Reopen this topic')
             .d-none.d-lg-inline Reopen
     .col-auto.my-1
-      = link_to team_topic_path(topic.team, topic), method: 'Delete',
+      = link_to team_topic_archive_path(topic.team, topic),
         class: 'btn btn-secondary btn-sm',
         data: { confirm: 'Are you sure you want to permanently delete this topic?' } do
         = assistive_icon('fas', 'trash', 'Delete this topic')

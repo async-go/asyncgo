@@ -79,7 +79,7 @@ RSpec.describe 'Topics', type: :system do
     click_link topic.title
     expect(page).to have_text(topic.title)
     accept_alert do
-      click_link 'Delete', href: team_topic_path(topic.team, topic)
+      click_link 'Delete', href: team_topic_archive_path(topic.team, topic)
     end
     expect(page).not_to have_text(topic.title)
   end

@@ -57,8 +57,8 @@ RSpec.describe Teams::TopicsController, type: :request do
     include_examples 'unauthorized user examples'
   end
 
-  describe 'DELETE destroy' do
-    subject(:delete_destroy) { delete "/teams/#{topic.team.id}/topics/#{topic.id}" }
+  describe 'GET archive' do
+    subject(:get_archive) { get "/teams/#{topic.team.id}/topics/#{topic.id}/archive" }
 
     let(:topic) { FactoryBot.create(:topic) }
 
@@ -68,17 +68,17 @@ RSpec.describe Teams::TopicsController, type: :request do
       end
 
       it 'removes the comment' do
-        expect { delete_destroy }.to change { Topic.find_by(id: topic.id) }.from(topic).to(nil)
+        expect { get_archive }.to change { Topic.find_by(id: topic.id).is_archived }.from(false).to(true)
       end
 
       it 'sets the flash' do
-        delete_destroy
+        get_archive
 
         expect(controller.flash[:success]).to eq('Topic was successfully deleted.')
       end
 
       it 'redirects to root path' do
-        expect(delete_destroy).to redirect_to(root_path)
+        expect(get_archive).to redirect_to(root_path)
       end
     end
 

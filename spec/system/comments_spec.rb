@@ -57,7 +57,7 @@ RSpec.describe 'Comments', type: :system do
     click_link comment.topic.title
     expect(page).to have_text(comment.body)
     accept_alert do
-      click_link 'Delete', href: team_topic_comment_path(comment.topic.team, comment.topic, comment)
+      click_link 'Delete', href: team_topic_comment_archive_path(comment.topic.team, comment.topic, comment)
     end
     expect(page).not_to have_text(comment.body)
   end

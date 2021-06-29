@@ -22,8 +22,8 @@
       .col-auto
         - if comment.user == current_user
           = link_to 'Delete',
-            team_topic_comment_path(comment.topic.team, comment.topic, comment),
-            method: 'delete', class: 'btn btn-outline-secondary btn-sm',
+            team_topic_comment_archive_path(comment.topic.team, comment.topic, comment),
+            class: 'btn btn-outline-secondary btn-sm',
             data: { confirm: 'Are you sure you want to permanently delete this comment?' }
     .row.mt-3.px-2
       .tui-editor-contents!= comment.body_html

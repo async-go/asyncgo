@@ -15,10 +15,11 @@ module Teams
         authorize(@comment)
       end
 
-      def destroy
+      def archive
         @comment = comment
         authorize(@comment)
-        @comment.destroy
+        @comment.is_archived = true
+        @comment.save
 
         redirect_to team_topic_path(topic.team, topic), flash: { success: 'Comment was successfully deleted.' }
       end

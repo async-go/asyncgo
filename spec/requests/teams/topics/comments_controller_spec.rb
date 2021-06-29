@@ -23,8 +23,8 @@ RSpec.describe Teams::Topics::CommentsController, type: :request do
     include_examples 'unauthorized user examples'
   end
 
-  describe 'DELETE destroy' do
-    subject(:delete_destroy) { delete "/teams/#{topic.team.id}/topics/#{topic.id}/comments/#{comment.id}" }
+  describe 'GET archive' do
+    subject(:get_archive) { get "/teams/#{topic.team.id}/topics/#{topic.id}/comments/#{comment.id}/archive" }
 
     let(:comment) { FactoryBot.create(:comment, topic: topic) }
 
@@ -34,17 +34,17 @@ RSpec.describe Teams::Topics::CommentsController, type: :request do
       end
 
       it 'removes the comment' do
-        expect { delete_destroy }.to change { Comment.find_by(id: comment.id) }.from(comment).to(nil)
+        expect { get_archive }.to change { Comment.find_by(id: comment.id).is_archived }.from(false).to(true)
       end
 
       it 'sets the flash' do
-        delete_destroy
+        get_archive
 
         expect(controller.flash[:success]).to eq('Comment was successfully deleted.')
       end
 
       it 'redirects to topic page' do
-        expect(delete_destroy).to redirect_to(team_topic_path(topic.team, topic))
+        expect(get_archive).to redirect_to(team_topic_path(topic.team, topic))
       end
     end
 

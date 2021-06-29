@@ -8,7 +8,7 @@ module Teams
       authorize(team, policy_class: TopicPolicy)
 
       @team = team
-      topics = filtered_topics(team.topics.includes(:user, :subscribed_users, :labels))
+      topics = filtered_topics(team.topics.where(is_archived: false).includes(:user, :subscribed_users, :labels))
       active_topics = topics.active.order(pinned: :desc).by_due_date
       resolved_topics = topics.resolved.order(pinned: :desc, updated_at: :desc)
       @pagy_active_topics, @active_topics = pagy(active_topics, page_param: 'active_page')
@@ -28,7 +28,8 @@ module Teams
 
       comment_order = current_user.preferences.inverse_comment_order ? :desc : :asc
 
-      @topic_comments = @topic.comments.order(created_at: comment_order)
+      @topic_comments = @topic.comments.where(is_archived: false)
+                              .order(created_at: comment_order)
                               .includes(:user, topic: :team, votes: :user)
     end
 
@@ -37,10 +38,11 @@ module Teams
       authorize(@topic)
     end
 
-    def destroy
+    def archive
       @topic = topic
       authorize(@topic)
-      @topic.destroy
+      @topic.is_archived = true
+      @topic.save
 
       redirect_to root_path, flash: { success: 'Topic was successfully deleted.' }
     end

@@ -8,7 +8,8 @@ class TopicPolicy < ApplicationPolicy
 
   def show?
     user &&
-      record.team == user.team
+      record.team == user.team &&
+      record.is_archived == false
   end
 
   def new?
@@ -18,7 +19,8 @@ class TopicPolicy < ApplicationPolicy
 
   def edit?
     user &&
-      record.team == user.team
+      record.team == user.team &&
+      record.is_archived == false
   end
 
   def create?
@@ -28,26 +30,31 @@ class TopicPolicy < ApplicationPolicy
 
   def update?
     user &&
-      record.team == user.team
+      record.team == user.team &&
+      record.is_archived == false
   end
 
   def toggle?
     user &&
-      record.team == user.team
+      record.team == user.team &&
+      record.is_archived == false
   end
 
   def subscribe?
     user &&
-      record.team == user.team
+      record.team == user.team &&
+      record.is_archived == false
   end
 
   def pin?
     user &&
-      record.team == user.team
+      record.team == user.team &&
+      record.is_archived == false
   end
 
-  def destroy?
+  def archive?
     user &&
-      record.team == user.team
+      record.team == user.team &&
+      record.is_archived == false
   end
 end

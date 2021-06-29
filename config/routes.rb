@@ -55,13 +55,15 @@ Rails.application.routes.draw do
 
     scope module: :teams do
       resources :users, only: %i[index create destroy]
-      resources :topics, only: %i[index show new edit create update destroy] do
+      resources :topics, only: %i[index show new edit create update] do
         patch :toggle
         post :subscribe
         patch :pin
+        get :archive
 
         scope module: :topics do
-          resources :comments, only: %i[new create edit update destroy] do
+          resources :comments, only: %i[new create edit update] do
+            get :archive
             scope module: :comments do
               resources :votes, only: %i[create destroy]
             end

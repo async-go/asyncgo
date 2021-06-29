@@ -13,6 +13,8 @@ class Topic < ApplicationRecord
   validates :outcome, presence: { allow_blank: false, allow_empty: false, allow_nil: true }, image_data: true
   validates :outcome_html, presence: { if: :outcome? }
 
+  validates :is_archived, inclusion: [true, false]
+
   attr_accessor :description_checksum, :outcome_checksum
 
   validate :validate_description_checksum, on: :update, if: :description_changed?
