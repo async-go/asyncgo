@@ -3,10 +3,10 @@
   You have been invited to join team "#{@user.team.name}" on AsyncGo.
 %p
   To sign in, just follow
-  %a{ href: 'https://app.asyncgo.com' } this link
+  = link_to 'this link', root_url
   and use an OAuth account connected with #{@user.email}.
   Documentation is available on our
-  %a{ href: 'https://app.asyncgo.com' } docs site
+  = link_to 'docs site', 'https://asyncgo.com/docs/'
   \.
 %p
   Thanks for joining and have a great day! If you have any issues you can always reach us at

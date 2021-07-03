@@ -5,7 +5,7 @@ class DigestMailer < ApplicationMailer
   default from: 'notifications@asyncgo.com'
 
   def digest_email
-    @user = params[:user]
+    @user = user
     @unread_notifications = unread_notifications
     @recently_resolved_topics = recently_resolved_topics
     @upcoming_due_topics = upcoming_due_topics
