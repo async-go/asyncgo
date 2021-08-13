@@ -3,7 +3,7 @@ on: push
 jobs:
   rspec:
     runs-on: ubuntu-latest
-    container: matteeyah/ruby-yarn:3.0.1-1.22.5
+    container: matteeyah/ruby-yarn:3.0.2-1.22.5
     services:
       postgres:
         image: postgres:13-alpine
@@ -45,7 +45,7 @@ jobs:
           DATABASE_URL: postgres://postgres:postgres@postgres/asyncgo_test
   rspec-system:
     runs-on: ubuntu-latest
-    container: matteeyah/ruby-yarn-chromium:3.0.1-1.22.5-88.0.4324.146
+    container: matteeyah/ruby-yarn-chromium:3.0.2-1.22.5-90.0.4430.212
     services:
       postgres:
         image: postgres:13-alpine
@@ -87,7 +87,7 @@ jobs:
           DATABASE_URL: postgres://postgres:postgres@postgres/asyncgo_test
   brakeman:
     runs-on: ubuntu-latest
-    container: ruby:3.0.1
+    container: ruby:3.0.2
     steps:
       - uses: actions/checkout@v2
       - uses: actions/cache@v2
@@ -103,7 +103,7 @@ jobs:
         run: bundle exec brakeman
   rubocop:
     runs-on: ubuntu-latest
-    container: ruby:3.0.1
+    container: ruby:3.0.2
     steps:
       - uses: actions/checkout@v2
       - uses: actions/cache@v2
@@ -119,7 +119,7 @@ jobs:
         run: bundle exec rubocop
   haml-lint:
     runs-on: ubuntu-latest
-    container: ruby:3.0.1
+    container: ruby:3.0.2
     steps:
       - uses: actions/checkout@v2
       - uses: actions/cache@v2
