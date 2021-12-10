@@ -10,7 +10,8 @@
 ## Set up the development database
 
 1. Install PostgreSQL 13 (for example, on Ubuntu:
-   `sudo apt install postgresql-13 postgresql-client-13 libpq-dev && sudo pg_ctlcluster 13 main start`)
+   `sudo apt install postgresql-13 postgresql-client-13 libpq-dev`
+   `sudo pg_ctlcluster 13 main start`
 1. Create a passwordless postgresql superuser with a username that matches your
    system user (if it doesn't exist already):
    `sudo -u postgres createuser -s $USERNAME`
