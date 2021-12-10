@@ -9,17 +9,19 @@
 
 ## Set up the development database
 
-1. Install PostgreSQL 13
+1. Install PostgreSQL 13 (for example, on Ubuntu:
+   `sudo apt install postgresql-13 postgresql-client-13 libpq-dev && sudo pg_ctlcluster 13 main start`)
 1. Create a passwordless postgresql superuser with a username that matches your
-system user (if it doesn't exist already)
+   system user (if it doesn't exist already):
+   `sudo -u postgres createuser -s $USERNAME`
 
 ## Start the development server
 
 1. Run `bundle install`
 1. Run `bin/yarn install`
 1. Run `bin/rails db:create`
-1. Run `bin/rails db:migrate` (you can also use `bin/rails db:seed` if you
-  want sample data loaded.)
+1. Run `bin/rails db:migrate` (you can also use `bin/rails db:seed` if you want
+   sample data loaded.)
 1. Run `bin/rails server`
 
 ## Configuring local auth
@@ -50,7 +52,8 @@ this.
 
 ### GitHub
 
-1. Go to [GitHub Application](https://github.com/organizations/async-go/settings/applications)
+1. Go to
+   [GitHub Application](https://github.com/organizations/async-go/settings/applications)
 2. Click on the AsyncGo OAuth app
 3. Copy the Client ID
 4. Obtain the Client Secret
