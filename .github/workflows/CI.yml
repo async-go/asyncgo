@@ -85,22 +85,6 @@ jobs:
         run: bundle exec rspec --tag type:system
         env:
           DATABASE_URL: postgres://postgres:postgres@postgres/asyncgo_test
-  brakeman:
-    runs-on: ubuntu-latest
-    container: ruby:3.1.0
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/cache@v2
-        name: Cache bundler dependencies
-        with:
-          path: vendor/bundle
-          key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-gem-
-      - name: Install bundler dependencies
-        run: bundle install --without development production --jobs 4 --retry 3 --path vendor/bundle
-      - name: Run brakeman
-        run: bundle exec brakeman
   rubocop:
     runs-on: ubuntu-latest
     container: ruby:3.1.0
