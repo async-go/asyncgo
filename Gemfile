@@ -6,33 +6,33 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '3.1.0'
 
 # Core
-gem 'bootsnap', '~> 1.7.2', require: false # Reduces boot times through caching; required in config/boot.rb
-gem 'faraday', '~> 1.7.0' # http client
+gem 'bootsnap', '~> 1.9.3', require: false # Reduces boot times through caching; required in config/boot.rb
+gem 'faraday', '~> 1.8.0' # http client
 gem 'gon', '~> 6.4.0' # Pass variables from Rails to JS
 gem 'hotwire-rails', '~> 0.1.3' # HTML over the wire. Read more: https://hotwire.dev/
 gem 'pg', '~> 1.2.3' # Use pg as the database for Active Record
-gem 'puma', '~> 5.4.0' # Use Puma as the app server
+gem 'puma', '~> 5.5.2' # Use Puma as the app server
 gem 'pundit', '~> 2.1.0' # Authorization via OO and plain Ruby classes
 gem 'rails', '~> 6.1.3'
-gem 'redis', '~> 4.4.0' # Use Redis adapter to run Action Cable in production
+gem 'redis', '~> 4.5.1' # Use Redis adapter to run Action Cable in production
 gem 'sass-rails', '>= 6' # Use SCSS for stylesheets
-gem 'sidekiq', '~> 6.2.0' # ActiveJob backend
-gem 'webpacker', '6.0.0.beta.7 ' # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
+gem 'sidekiq', '~> 6.3.1' # ActiveJob backend
+gem 'webpacker', '6.0.0.rc.6 ' # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 
 # Other
 gem 'acts-as-taggable-on', '~> 8.1.0' # Tags
 gem 'barnes', '~> 0.0.9' # heroku application metrics
 gem 'blazer', '~> 2.4.2' # Business Intelligence made easy
-gem 'commonmarker', '~> 0.22.0' # GitHub Flavored Markdown renderer
+gem 'commonmarker', '~> 0.23.2' # GitHub Flavored Markdown renderer
 gem 'font-awesome-sass', '~> 5.15.1'
 gem 'gemoji', '~> 3.0.1' # emoji helpers
 gem 'ginjo-omniauth-slack', '~> 2.5', require: 'omniauth-slack'
 gem 'hamlit', '~> 2.15.0' # Templating language
 gem 'omniauth-github', '~> 2.0.0'
 gem 'omniauth-google-oauth2', '~> 1.0.0'
-gem 'omniauth-microsoft_graph', '~> 0.2.1'
+gem 'omniauth-microsoft_graph', '~> 1.0.0'
 gem 'omniauth-rails_csrf_protection', '~> 1.0.0'
-gem 'pagy', '~> 4.10.1' # pagination
+gem 'pagy', '~> 5.6.9' # pagination
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.7'
@@ -45,17 +45,17 @@ gem 'pagy', '~> 4.10.1' # pagination
 group :development, :test do
   # Linters
   ## Ruby linter
-  gem 'rubocop', '~> 1.19.0', require: false
-  gem 'rubocop-performance', '~> 1.11.3', require: false
-  gem 'rubocop-rails', '~> 2.11.3', require: false
-  gem 'rubocop-rspec', '~> 2.4.0', require: false
+  gem 'rubocop', '~> 1.24.1', require: false
+  gem 'rubocop-performance', '~> 1.13.1', require: false
+  gem 'rubocop-rails', '~> 2.13.0', require: false
+  gem 'rubocop-rspec', '~> 2.7.0', require: false
   ## Haml linter
   gem 'haml_lint', '~> 0.37.0', require: false
   # Other
   gem 'byebug', platforms: %i[mri mingw x64_mingw] # Debugger console by calling 'byebug' anywhere in code
   gem 'dotenv-rails', '~> 2.7.6'
   gem 'rspec-rails', '~> 5.0.1' # rspec testing
-  gem 'spring', '~> 2.1.1' # Speeds up development by keeping application running in the background - https://github.com/rails/spring
+  gem 'spring', '~> 4.0.0' # Speeds up development by keeping application running in the background - https://github.com/rails/spring
 end
 
 group :development do
@@ -68,14 +68,14 @@ group :development do
 end
 
 group :test do
-  gem 'axe-core-rspec', '~> 4.2.0' # rspec accessibility matcher
-  gem 'brakeman', '~> 5.1.1'
+  gem 'axe-core-rspec', '~> 4.3.2' # rspec accessibility matcher
+  gem 'brakeman', '~> 5.2.0'
   gem 'capybara', '>= 3.26' # Support for Capybara system testing
   gem 'factory_bot_rails', '~> 6.2.0' # Factories for generating AR objects in specs
-  gem 'faker', '~> 2.18.0' # Fake data for use in specs
+  gem 'faker', '~> 2.19.0' # Fake data for use in specs
   gem 'rspec-retry', '~> 0.6.2' # retry rspec tests
   gem 'selenium-webdriver'
-  gem 'shoulda-matchers', '~> 5.0.0' # Additional rspec matchers
+  gem 'shoulda-matchers', '~> 5.1.0' # Additional rspec matchers
   gem 'webdrivers' # Easy installation and use of web drivers for system tests
 end
 
