@@ -8,23 +8,23 @@
 %p.my-4
   Sign in using your external account:
 
-.row
-  .col-auto{:"data-turbo" => "false"}
+.row{:"data-turbo" => "false"}
+  .col-auto
     = button_to '/auth/google_oauth2',
       class: 'btn btn-google mb-3' do
       = assistive_icon('fab', 'google', 'Google', classname: 'me-2 text-white')
       Google
-  .col-auto{:"data-turbo" => "false"}
+  .col-auto
     = button_to '/auth/github',
       class: 'btn btn-github mb-3' do
       = assistive_icon('fab', 'github', 'GitHub', classname: 'me-2 text-white')
       GitHub
-  .col-auto{:"data-turbo" => "false"}
+  .col-auto
     = button_to '/auth/microsoft_graph',
       class: 'btn btn-microsoft mb-3' do
       = assistive_icon('fab', 'microsoft', 'Microsoft', classname: 'me-2 text-white')
       Microsoft
-  .col-auto{:"data-turbo" => "false"}
+  .col-auto
     = button_to '/auth/slack',
       class: 'btn btn-slack mb-3' do
       = assistive_icon('fab', 'slack', 'Slack', classname: 'me-2 text-white')
