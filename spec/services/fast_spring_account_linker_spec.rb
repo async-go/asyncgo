@@ -8,12 +8,12 @@ RSpec.describe FastSpringAccountLinker, type: :service do
     let(:service) { described_class.new(email) }
 
     before do
-      accounts_response = OpenStruct.new(body: { accounts: [{ id: '123' }] }.to_json)
+      accounts_response = Struct.new(:body).new(body: { accounts: [{ id: '123' }] }.to_json)
       allow(service).to receive(:send_request).with(
-        '/accounts', hash_including(email: email)
+        '/accounts', hash_including(email:)
       ).and_return(accounts_response)
 
-      authenticate_response = OpenStruct.new(body: { accounts: [{ url: 'helloworld' }] }.to_json)
+      authenticate_response = Struct.new(:body).new(body: { accounts: [{ url: 'helloworld' }] }.to_json)
       allow(service).to receive(:send_request).with('/accounts/123/authenticate').and_return(authenticate_response)
     end
 

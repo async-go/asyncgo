@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe DigestMailer, type: :mailer do
-  let(:notification) { FactoryBot.create(:notification) }
+  let(:notification) { create(:notification) }
 
   describe '#digest_email' do
     subject(:digest_email) { described_class.with(user: notification.user).digest_email }

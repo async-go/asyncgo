@@ -3,17 +3,17 @@
 require './spec/support/unauthorized_user_examples'
 
 RSpec.describe Teams::Topics::Comments::VotesController, type: :request do
-  let(:comment) { FactoryBot.create(:comment) }
+  let(:comment) { create(:comment) }
 
   describe 'POST create' do
     subject(:post_create) do
       post "/teams/#{comment.topic.team.id}/topics/#{comment.topic.id}/comments/#{comment.id}/votes",
-           params: { vote: { emoji: emoji } }
+           params: { vote: { emoji: } }
     end
 
     context 'when user is authorized' do
       before do
-        sign_in(FactoryBot.create(:user, team: comment.topic.team))
+        sign_in(create(:user, team: comment.topic.team))
       end
 
       context 'when vote is valid' do
@@ -26,7 +26,7 @@ RSpec.describe Teams::Topics::Comments::VotesController, type: :request do
         it 'adds the vote' do
           post_create
 
-          expect(Vote.last).to have_attributes(votable_id: comment.id, emoji: emoji)
+          expect(Vote.last).to have_attributes(votable_id: comment.id, emoji:)
         end
 
         it 'sets the flash' do
@@ -69,7 +69,7 @@ RSpec.describe Teams::Topics::Comments::VotesController, type: :request do
       delete "/teams/#{comment.topic.team.id}/topics/#{comment.topic.id}/comments/#{comment.id}/votes/#{vote.id}"
     end
 
-    let(:vote) { FactoryBot.create(:vote, votable: comment) }
+    let(:vote) { create(:vote, votable: comment) }
 
     context 'when user is authorized' do
       before do

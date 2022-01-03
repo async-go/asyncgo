@@ -44,7 +44,7 @@ RSpec.describe OmniauthCallbacksController, type: :request do
     end
 
     context 'when the user exists' do
-      let!(:user) { FactoryBot.create(:user, email: 'john@example.com') }
+      let!(:user) { create(:user, email: 'john@example.com') }
 
       it 'signs the user in' do
         post_google_oauth2
@@ -106,7 +106,7 @@ RSpec.describe OmniauthCallbacksController, type: :request do
     end
 
     context 'when the user exists' do
-      let!(:user) { FactoryBot.create(:user, email: 'john@example.com') }
+      let!(:user) { create(:user, email: 'john@example.com') }
 
       it 'signs the user in' do
         post_github
@@ -169,7 +169,7 @@ RSpec.describe OmniauthCallbacksController, type: :request do
     end
 
     context 'when the user exists' do
-      let!(:user) { FactoryBot.create(:user, email: 'john@example.com') }
+      let!(:user) { create(:user, email: 'john@example.com') }
 
       it 'signs the user in' do
         post_microsoft_graph
@@ -200,7 +200,7 @@ RSpec.describe OmniauthCallbacksController, type: :request do
     before do
       strategy_double = instance_double(
         OmniAuth::Slack::OAuth2::AccessToken,
-        authed_user: OpenStruct.new({ token: 'test' })
+        authed_user: Struct.new(:token).new(token: 'test')
       )
       allow_any_instance_of(OmniAuth::Strategies::Slack).to receive(:access_token).and_return(strategy_double) # rubocop:disable RSpec/AnyInstance
 
@@ -235,7 +235,7 @@ RSpec.describe OmniauthCallbacksController, type: :request do
     end
 
     context 'when the user exists' do
-      let!(:user) { FactoryBot.create(:user, email: 'john@example.com') }
+      let!(:user) { create(:user, email: 'john@example.com') }
 
       it 'signs the user in' do
         post_slack

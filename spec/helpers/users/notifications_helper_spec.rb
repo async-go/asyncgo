@@ -4,11 +4,11 @@ RSpec.describe Users::NotificationsHelper, type: :helper do
   describe '#notification_text' do
     subject(:notification_text) { helper.notification_text(notification) }
 
-    let(:notification) { FactoryBot.create(:notification) }
+    let(:notification) { create(:notification) }
 
     context 'when target is topic' do
       before do
-        notification.update!(target: FactoryBot.create(:topic))
+        notification.update!(target: create(:topic))
       end
 
       context 'when action is updated' do
@@ -50,7 +50,7 @@ RSpec.describe Users::NotificationsHelper, type: :helper do
 
     context 'when target is comment' do
       before do
-        notification.update!(target: FactoryBot.create(:comment))
+        notification.update!(target: create(:comment))
       end
 
       context 'when action is created' do

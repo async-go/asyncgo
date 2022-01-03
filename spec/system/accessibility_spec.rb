@@ -12,8 +12,8 @@ RSpec.describe 'Accessibility', type: :system do
   end
 
   it 'makes sure new topic is accessible' do
-    team = FactoryBot.create(:team)
-    user = FactoryBot.create(:user, team: team)
+    team = create(:team)
+    user = create(:user, team:)
 
     visit '/'
     sign_in_user(user)
