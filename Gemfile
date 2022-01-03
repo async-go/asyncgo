@@ -28,6 +28,7 @@ gem 'font-awesome-sass', '~> 5.15.1'
 gem 'gemoji', '~> 3.0.1' # emoji helpers
 gem 'ginjo-omniauth-slack', '~> 2.5', require: 'omniauth-slack'
 gem 'hamlit', '~> 2.15.0' # Templating language
+gem 'net-smtp', '~> 0.3.1' # this is required
 gem 'omniauth-github', '~> 2.0.0'
 gem 'omniauth-google-oauth2', '~> 1.0.0'
 gem 'omniauth-microsoft_graph', '~> 1.0.0'
