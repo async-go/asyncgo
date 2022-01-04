@@ -36,11 +36,11 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
       - name: Install bundler dependencies
-        run: bundle install --without development production --jobs 4 --retry 3 --path vendor/bundle
+        run: bundle config set without 'development production' && bundle config set path 'vendor/bundle' && bundle install --jobs 4 --retry 3
       - name: Install node dependencies
         run: bin/yarn install
       - name: Run rspec
-        run: bundle config set path 'vendor/bundle' && bundle exec rspec --tag ~type:system
+        run: bundle exec rspec --tag ~type:system
         env:
           DATABASE_URL: postgres://postgres:postgres@postgres/asyncgo_test
   rspec-system:
@@ -78,11 +78,11 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
       - name: Install bundler dependencies
-        run: bundle install --without development production --jobs 4 --retry 3 --path vendor/bundle
+        run: bundle config set without 'development production' && bundle config set path 'vendor/bundle' && bundle install --jobs 4 --retry 3
       - name: Install node dependencies
         run: bin/yarn install
       - name: Run rspec system specs
-        run: bundle config set path 'vendor/bundle' && bundle exec rspec --tag type:system
+        run: bundle exec rspec --tag type:system
         env:
           DATABASE_URL: postgres://postgres:postgres@postgres/asyncgo_test
   rubocop:
@@ -98,9 +98,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gem-
       - name: Install bundler dependencies
-        run: bundle install --without development production --jobs 4 --retry 3 --path vendor/bundle
+        run: bundle config set without 'development production' && bundle config set path 'vendor/bundle' && bundle install --jobs 4 --retry 3
       - name: Run rubocop
-        run: bundle config set path 'vendor/bundle' && bundle exec rubocop
+        run: bundle exec rubocop
   haml-lint:
     runs-on: ubuntu-latest
     container: ruby:3.1.0
@@ -114,9 +114,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gem-
       - name: Install bundler dependencies
-        run: bundle install --without development production --jobs 4 --retry 3 --path vendor/bundle
+        run: bundle config set without 'development production' && bundle config set path 'vendor/bundle' && bundle install --jobs 4 --retry 3
       - name: Run haml-lint
-        run: bundle config set path 'vendor/bundle' && bundle exec haml-lint
+        run: bundle exec haml-lint
   standard:
     runs-on: ubuntu-latest
     container: node:current-buster
