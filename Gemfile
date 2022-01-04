@@ -72,7 +72,7 @@ group :test do
   gem 'brakeman', '~> 5.1.1'
   gem 'capybara', '>= 3.26' # Support for Capybara system testing
   gem 'factory_bot_rails', '~> 6.2.0' # Factories for generating AR objects in specs
-  gem 'faker', '~> 2.18.0' # Fake data for use in specs
+  gem 'faker', '~> 2.19.0' # Fake data for use in specs
   gem 'rspec-retry', '~> 0.6.2' # retry rspec tests
   gem 'selenium-webdriver'
   gem 'shoulda-matchers', '~> 5.1.0' # Additional rspec matchers
