@@ -7,12 +7,6 @@ updates:
     schedule:
       interval: "daily"
 
-  # Maintain dependencies for npm
-  - package-ecosystem: "npm"
-    directory: "/"
-    schedule:
-      interval: "daily"
-
   # Maintain dependencies for Bundler
   - package-ecosystem: "bundler"
     directory: "/"
