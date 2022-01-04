@@ -406,6 +406,7 @@ GEM
 
 PLATFORMS
   x86_64-darwin-21
+  x86_64-linux
 
 DEPENDENCIES
   acts-as-taggable-on (~> 8.1.0)
