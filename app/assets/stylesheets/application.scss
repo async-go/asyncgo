@@ -45,10 +45,9 @@ $theme-colors: (
 @import 'tributejs/src/tribute';
 @import 'driver.js/src/driver';
 
-@import 'codemirror/lib/codemirror';
 @import '@toast-ui/editor/dist/toastui-editor';
 
-.tui-editor-contents {
+.toastui-editor-contents {
   font-size: 1rem;
   word-wrap: break-word;
 

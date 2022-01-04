@@ -16,7 +16,7 @@ RSpec.describe 'Comments', type: :system do
 
     within('[data-target="comment_body"]') do
       click_button 'Markdown'
-      find('.CodeMirror').click
+      find('.ProseMirror').click
       page.send_keys('__Sample content__')
     end
 
@@ -39,7 +39,7 @@ RSpec.describe 'Comments', type: :system do
     edit_comment_form = find("form[action='#{edit_comment_path}']", match: :first)
     within(edit_comment_form) do
       within('[data-target="comment_body"]') do
-        find('.tui-editor-contents').set('This is updated content')
+        find('.toastui-editor-contents').set('This is updated content')
       end
       click_button 'Update'
     end
@@ -58,7 +58,7 @@ RSpec.describe 'Comments', type: :system do
 
     within('[data-target="comment_body"]') do
       click_button 'Markdown'
-      find('.CodeMirror').click
+      find('.ProseMirror').click
       page.send_keys('![image.png](data:image/png;base64,abcdefg)')
     end
     click_button 'Add Comment'

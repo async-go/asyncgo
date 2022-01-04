@@ -13,27 +13,11 @@ export default class extends Controller {
       initialValue: target.textContent,
       previewStyle: 'tab',
       toolbarItems: [
-        'heading',
-        'bold',
-        'italic',
-        'strike',
-        'divider',
-        'hr',
-        'quote',
-        'divider',
-        'ul',
-        'ol',
-        'task',
-        // 'indent',
-        // 'outdent',
-        'divider',
-        'table',
-        // 'image',
-        'link',
-        'divider',
-        'code',
-        'codeblock',
-        'divider'
+        [ 'heading', 'bold', 'italic', 'strike' ],
+        [ 'hr', 'quote' ],
+        [ 'ul', 'ol', 'task' ],
+        [ 'table', 'link' ],
+        [ 'code', 'codeblock' ]
       ]
     })
   }
