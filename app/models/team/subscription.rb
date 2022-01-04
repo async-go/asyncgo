@@ -2,7 +2,7 @@
 
 class Team
   class Subscription < ApplicationRecord
-    validates :team_id, uniqueness: true
+    validates :team_id, uniqueness: true, presence: true
 
     belongs_to :team
   end
