@@ -48,7 +48,7 @@ group :development, :test do
   gem 'rubocop', '~> 1.19.0', require: false
   gem 'rubocop-performance', '~> 1.11.3', require: false
   gem 'rubocop-rails', '~> 2.11.3', require: false
-  gem 'rubocop-rspec', '~> 2.4.0', require: false
+  gem 'rubocop-rspec', '~> 2.7.0', require: false
   ## Haml linter
   gem 'haml_lint', '~> 0.37.0', require: false
   # Other
