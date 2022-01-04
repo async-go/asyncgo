@@ -9,7 +9,7 @@ FactoryBot.define do
     pinned { false }
 
     team
-    user { association :user, team: team }
+    user { association :user, team: }
 
     subscribed_users { [user] }
   end

@@ -9,8 +9,8 @@ RSpec.describe SubscriptionsController, type: :request do
            params: payload, as: :json, headers: { 'X-FS-Signature' => payload_hash }
     end
 
-    let(:team) { FactoryBot.create(:team) }
-    let(:other_team) { FactoryBot.create(:team) }
+    let(:team) { create(:team) }
+    let(:other_team) { create(:team) }
     let(:crypto_key) { '1234' }
 
     let(:payload) do

@@ -3,8 +3,8 @@
 RSpec.describe Team::Subscription, type: :model do
   describe 'Validations' do
     before do
-      team = FactoryBot.create(:team)
-      described_class.create!(team: team)
+      team = create(:team)
+      described_class.create!(team:)
     end
 
     it { is_expected.to validate_presence_of(:team_id) }

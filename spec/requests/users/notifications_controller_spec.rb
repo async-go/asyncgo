@@ -6,7 +6,7 @@ RSpec.describe Users::NotificationsController, type: :request do
   describe 'GET index' do
     subject(:get_index) { get "/users/#{user.id}/notifications" }
 
-    let(:user) { FactoryBot.create(:user) }
+    let(:user) { create(:user) }
 
     context 'when user is authorized' do
       before do
@@ -26,7 +26,7 @@ RSpec.describe Users::NotificationsController, type: :request do
   describe 'GET show' do
     subject(:get_show) { get "/users/#{notification.user.id}/notifications/#{notification.id}" }
 
-    let(:notification) { FactoryBot.create(:notification) }
+    let(:notification) { create(:notification) }
 
     context 'when user is authorized' do
       before do
@@ -35,7 +35,7 @@ RSpec.describe Users::NotificationsController, type: :request do
 
       context 'when target is topic' do
         before do
-          notification.update!(target: FactoryBot.create(:topic, team: notification.user.team))
+          notification.update!(target: create(:topic, team: notification.user.team))
         end
 
         context 'when there are no duplicate notifications' do
@@ -52,7 +52,7 @@ RSpec.describe Users::NotificationsController, type: :request do
 
         context 'when there are duplicate notifications' do
           let(:duplicate_notification) do
-            FactoryBot.create(:notification, notification.slice(:user, :actor, :action, :target))
+            create(:notification, notification.slice(:user, :actor, :action, :target))
           end
 
           it 'redirects to target topic' do
@@ -73,7 +73,7 @@ RSpec.describe Users::NotificationsController, type: :request do
 
       context 'when target is comment' do
         before do
-          notification.update!(target: FactoryBot.create(:comment, user: notification.user))
+          notification.update!(target: create(:comment, user: notification.user))
         end
 
         context 'when there are no duplicate notifications' do
@@ -90,7 +90,7 @@ RSpec.describe Users::NotificationsController, type: :request do
 
         context 'when there are duplicate notifications' do
           let(:duplicate_notification) do
-            FactoryBot.create(:notification, notification.slice(:user, :actor, :action, :target))
+            create(:notification, notification.slice(:user, :actor, :action, :target))
           end
 
           it 'redirects to target comment topic' do
@@ -116,10 +116,10 @@ RSpec.describe Users::NotificationsController, type: :request do
   describe 'POST clear' do
     subject(:post_clear) { post "/users/#{user.id}/notifications/clear" }
 
-    let(:user) { FactoryBot.create(:user, :team) }
+    let(:user) { create(:user, :team) }
 
     before do
-      FactoryBot.create(:notification, user: user)
+      create(:notification, user:)
     end
 
     context 'when user is authorized' do

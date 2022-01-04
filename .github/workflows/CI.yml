@@ -3,7 +3,7 @@ on: push
 jobs:
   rspec:
     runs-on: ubuntu-latest
-    container: matteeyah/ruby-yarn:3.0.1-1.22.5
+    container: matteeyah/ruby-yarn:3.1.0-1.22.5
     services:
       postgres:
         image: postgres:13-alpine
@@ -36,7 +36,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
       - name: Install bundler dependencies
-        run: bundle install --without development production --jobs 4 --retry 3 --path vendor/bundle
+        run: bundle config set without 'development production' && bundle config set path 'vendor/bundle' && bundle install --jobs 4 --retry 3
       - name: Install node dependencies
         run: bin/yarn install
       - name: Run rspec
@@ -45,7 +45,7 @@ jobs:
           DATABASE_URL: postgres://postgres:postgres@postgres/asyncgo_test
   rspec-system:
     runs-on: ubuntu-latest
-    container: matteeyah/ruby-yarn-chromium:3.0.1-1.22.5-88.0.4324.146
+    container: matteeyah/ruby-yarn-chromium:3.1.0-1.22.5-90.0.4430.212
     services:
       postgres:
         image: postgres:13-alpine
@@ -78,32 +78,16 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
       - name: Install bundler dependencies
-        run: bundle install --without development production --jobs 4 --retry 3 --path vendor/bundle
+        run: bundle config set without 'development production' && bundle config set path 'vendor/bundle' && bundle install --jobs 4 --retry 3
       - name: Install node dependencies
         run: bin/yarn install
       - name: Run rspec system specs
         run: bundle exec rspec --tag type:system
         env:
           DATABASE_URL: postgres://postgres:postgres@postgres/asyncgo_test
-  brakeman:
-    runs-on: ubuntu-latest
-    container: ruby:3.0.1
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/cache@v2
-        name: Cache bundler dependencies
-        with:
-          path: vendor/bundle
-          key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-gem-
-      - name: Install bundler dependencies
-        run: bundle install --without development production --jobs 4 --retry 3 --path vendor/bundle
-      - name: Run brakeman
-        run: bundle exec brakeman
   rubocop:
     runs-on: ubuntu-latest
-    container: ruby:3.0.1
+    container: ruby:3.1.0
     steps:
       - uses: actions/checkout@v2
       - uses: actions/cache@v2
@@ -114,12 +98,12 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gem-
       - name: Install bundler dependencies
-        run: bundle install --without development production --jobs 4 --retry 3 --path vendor/bundle
+        run: bundle config set without 'development production' && bundle config set path 'vendor/bundle' && bundle install --jobs 4 --retry 3
       - name: Run rubocop
         run: bundle exec rubocop
   haml-lint:
     runs-on: ubuntu-latest
-    container: ruby:3.0.1
+    container: ruby:3.1.0
     steps:
       - uses: actions/checkout@v2
       - uses: actions/cache@v2
@@ -130,7 +114,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gem-
       - name: Install bundler dependencies
-        run: bundle install --without development production --jobs 4 --retry 3 --path vendor/bundle
+        run: bundle config set without 'development production' && bundle config set path 'vendor/bundle' && bundle install --jobs 4 --retry 3
       - name: Run haml-lint
         run: bundle exec haml-lint
   standard:

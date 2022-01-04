@@ -24,7 +24,7 @@ class MarkdownParser < ApplicationService
       email = mention.slice(1..-1)
       email = email.gsub(/^\[/, '')
       email = email.gsub(/\].*/, '')
-      target_user = User.find_by(email: email)
+      target_user = User.find_by(email:)
       notify_user!(target_user)
 
       "[#{target_user.printable_name}](mailto:#{email})"

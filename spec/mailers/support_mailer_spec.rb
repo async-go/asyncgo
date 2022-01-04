@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 RSpec.describe SupportMailer, type: :mailer do
-  let(:user) { FactoryBot.create(:user, :team) }
+  let(:user) { create(:user, :team) }
   let(:body) { 'Sample body contents' }
 
   describe '#support_email' do
-    subject(:support_email) { described_class.with(user: user, body: body).support_email }
+    subject(:support_email) { described_class.with(user:, body:).support_email }
 
     it 'renders the headers' do
       expect(support_email).to have_attributes(

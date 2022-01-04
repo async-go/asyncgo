@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
 RSpec.describe TopicUpdater, type: :service do
-  let(:user) { FactoryBot.create(:user, :team) }
-  let(:other_user) { FactoryBot.create(:user, team: user.team) }
+  let(:user) { create(:user, :team) }
+  let(:other_user) { create(:user, team: user.team) }
 
   describe '#call' do
     subject(:call) { described_class.new(user, topic, params).call }
 
     context 'when topic is being created' do
-      let(:topic) { FactoryBot.build(:topic, user: user, team: user.team) }
+      let(:topic) { build(:topic, user:, team: user.team) }
 
       context 'when parameters are valid' do
         let(:params) { { description: '__bold__' } }
@@ -90,10 +90,10 @@ RSpec.describe TopicUpdater, type: :service do
     end
 
     context 'when topic is being updated' do
-      let(:topic) { FactoryBot.create(:topic, team: user.team) }
+      let(:topic) { create(:topic, team: user.team) }
 
       before do
-        topic.subscribed_users << FactoryBot.create(:user)
+        topic.subscribed_users << create(:user)
       end
 
       context 'when parameters are valid' do
@@ -183,11 +183,11 @@ RSpec.describe TopicUpdater, type: :service do
     end
 
     context 'when topic is being resolved' do
-      let(:topic) { FactoryBot.create(:topic, team: user.team, status: :active) }
+      let(:topic) { create(:topic, team: user.team, status: :active) }
       let(:params) { { status: 'resolved' } }
 
       before do
-        topic.subscribed_users << FactoryBot.create(:user)
+        topic.subscribed_users << create(:user)
       end
 
       it 'does not subscribe user to the topic' do
@@ -216,11 +216,11 @@ RSpec.describe TopicUpdater, type: :service do
     end
 
     context 'when topic is being reopend' do
-      let(:topic) { FactoryBot.create(:topic, team: user.team, status: :resolved) }
+      let(:topic) { create(:topic, team: user.team, status: :resolved) }
       let(:params) { { status: 'active' } }
 
       before do
-        topic.subscribed_users << FactoryBot.create(:user)
+        topic.subscribed_users << create(:user)
       end
 
       it 'does not subscribe user to the topic' do
