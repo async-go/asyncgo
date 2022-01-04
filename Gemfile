@@ -7,7 +7,7 @@ ruby '3.0.2'
 
 # Core
 gem 'bootsnap', '~> 1.7.2', require: false # Reduces boot times through caching; required in config/boot.rb
-gem 'faraday', '~> 1.7.0' # http client
+gem 'faraday', '~> 1.8.0' # http client
 gem 'gon', '~> 6.4.0' # Pass variables from Rails to JS
 gem 'hotwire-rails', '~> 0.1.3' # HTML over the wire. Read more: https://hotwire.dev/
 gem 'pg', '~> 1.2.3' # Use pg as the database for Active Record
