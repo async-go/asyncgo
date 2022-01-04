@@ -3,7 +3,7 @@
 RSpec.describe User, type: :model do
   describe 'Validations' do
     before do
-      FactoryBot.create(:user)
+      create(:user)
     end
 
     it { is_expected.to validate_presence_of(:email) }
@@ -34,7 +34,7 @@ RSpec.describe User, type: :model do
     let(:name) { 'John Sample' }
 
     context 'when a user exists' do
-      let!(:user) { FactoryBot.create(:user, email: 'john@example.com') }
+      let!(:user) { create(:user, email: 'john@example.com') }
 
       it 'does not create user' do
         expect { from_omniauth }.not_to change(described_class, :count).from(1)
@@ -71,7 +71,7 @@ RSpec.describe User, type: :model do
   describe '#printable_name' do
     subject(:printable_name) { user.printable_name }
 
-    let(:user) { FactoryBot.build(:user) }
+    let(:user) { build(:user) }
 
     context 'when user does not have name' do
       it { is_expected.to eq(user.email) }
@@ -89,7 +89,7 @@ RSpec.describe User, type: :model do
   describe '#gravatar_url' do
     subject(:gravatar_url) { user.gravatar_url }
 
-    let(:user) { FactoryBot.build(:user, email: 'test@test.com') }
+    let(:user) { build(:user, email: 'test@test.com') }
 
     it { is_expected.to eq('https://www.gravatar.com/avatar/b642b4217b34b1e8d3bd915fc65c4452') }
   end
@@ -97,13 +97,13 @@ RSpec.describe User, type: :model do
   describe '#clear_topic_notifications' do
     subject(:clear_topic_notifications) { user.clear_topic_notifications(topic) }
 
-    let(:user) { FactoryBot.create(:user) }
-    let(:topic) { FactoryBot.create(:topic) }
+    let(:user) { create(:user) }
+    let(:topic) { create(:topic) }
 
     before do
-      comment = FactoryBot.create(:comment, topic: topic)
-      FactoryBot.create(:notification, target: comment, user: user)
-      FactoryBot.create(:notification, target: topic, user: user)
+      comment = create(:comment, topic:)
+      create(:notification, target: comment, user:)
+      create(:notification, target: topic, user:)
     end
 
     it 'clears topic and comment notifications' do

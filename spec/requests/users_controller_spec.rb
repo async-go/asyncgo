@@ -6,7 +6,7 @@ RSpec.describe UsersController, type: :request do
   describe 'GET edit' do
     subject(:get_edit) { get "/users/#{user.id}/edit" }
 
-    let(:user) { FactoryBot.create(:user) }
+    let(:user) { create(:user) }
 
     context 'when user is authorized' do
       before do

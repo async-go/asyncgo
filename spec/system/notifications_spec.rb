@@ -6,8 +6,8 @@ RSpec.describe 'Notifications', type: :system do
   include SignInOutSystemHelpers
 
   it 'allows user to read a notification' do
-    user = FactoryBot.create(:user, :team)
-    notification = FactoryBot.create(:notification, user: user)
+    user = create(:user, :team)
+    notification = create(:notification, user:)
 
     visit '/'
 
@@ -21,8 +21,8 @@ RSpec.describe 'Notifications', type: :system do
   end
 
   it 'creates a notification when someone in team creates a topic' do
-    user = FactoryBot.create(:user, :team)
-    actor = FactoryBot.create(:user, team: user.team)
+    user = create(:user, :team)
+    actor = create(:user, team: user.team)
 
     visit '/'
 
@@ -41,8 +41,8 @@ RSpec.describe 'Notifications', type: :system do
   end
 
   it 'creates a notification when a watched topic is resolved' do
-    user = FactoryBot.create(:user, :team)
-    actor = FactoryBot.create(:user, team: user.team)
+    user = create(:user, :team)
+    actor = create(:user, team: user.team)
 
     visit '/'
 
@@ -69,8 +69,8 @@ RSpec.describe 'Notifications', type: :system do
   end
 
   it 'creates a notification when a watched topic is reopened' do
-    user = FactoryBot.create(:user, :team)
-    actor = FactoryBot.create(:user, team: user.team)
+    user = create(:user, :team)
+    actor = create(:user, team: user.team)
 
     visit '/'
     sign_in_user(user)
@@ -97,8 +97,8 @@ RSpec.describe 'Notifications', type: :system do
   end
 
   it 'creates a notification when other user comments on subscribed topic' do
-    user = FactoryBot.create(:user, :team)
-    actor = FactoryBot.create(:user, team: user.team)
+    user = create(:user, :team)
+    actor = create(:user, team: user.team)
 
     visit '/'
     sign_in_user(user)
@@ -128,8 +128,8 @@ RSpec.describe 'Notifications', type: :system do
   end
 
   it 'creates a notification when user gets mentioned' do
-    user = FactoryBot.create(:user, :team)
-    actor = FactoryBot.create(:user, team: user.team)
+    user = create(:user, :team)
+    actor = create(:user, team: user.team)
 
     visit '/'
     sign_in_user(actor)
@@ -148,8 +148,8 @@ RSpec.describe 'Notifications', type: :system do
   end
 
   it 'clears topic and comment notifications when you visit a topic' do
-    user = FactoryBot.create(:user, :team)
-    actor = FactoryBot.create(:user, team: user.team)
+    user = create(:user, :team)
+    actor = create(:user, team: user.team)
 
     visit '/'
     sign_in_user(actor)
@@ -190,8 +190,8 @@ RSpec.describe 'Notifications', type: :system do
   end
 
   it 'allows user to clear all notifications' do
-    user = FactoryBot.create(:user, :team)
-    FactoryBot.create(:notification, user: user)
+    user = create(:user, :team)
+    create(:notification, user:)
 
     visit '/'
 

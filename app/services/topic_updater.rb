@@ -74,7 +74,7 @@ class TopicUpdater < ApplicationService
     users.pluck(:id).each do |target_user_id|
       next if target_user_id == @user.id
 
-      @topic.notifications.create(actor: @user, user_id: target_user_id, action: action)
+      @topic.notifications.create(actor: @user, user_id: target_user_id, action:)
     end
   end
 end

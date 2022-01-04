@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 RSpec.describe MarkdownParser, type: :service do
-  let(:user) { FactoryBot.create(:user, :team) }
-  let(:topic) { FactoryBot.create(:topic, team: user.team) }
-  let(:target) { FactoryBot.create(:user, team: user.team) }
-  let(:non_target) { FactoryBot.create(:user, team: user.team) }
+  let(:user) { create(:user, :team) }
+  let(:topic) { create(:topic, team: user.team) }
+  let(:target) { create(:user, team: user.team) }
+  let(:non_target) { create(:user, team: user.team) }
 
   describe '#call' do
     subject(:call) { described_class.new(user, text, target).call }

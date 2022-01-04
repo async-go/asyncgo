@@ -21,7 +21,7 @@ class User < ApplicationRecord
   has_one :preferences, class_name: 'User::Preferences', dependent: :destroy
 
   def self.from_omniauth(email, name)
-    User.where(email: email).first_or_initialize.tap do |user|
+    User.where(email:).first_or_initialize.tap do |user|
       user.preferences ||= user.build_preferences
       user.name = name
       user.save!

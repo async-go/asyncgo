@@ -45,7 +45,7 @@ module Teams
     end
 
     def send_welcome_email(user)
-      UserMailer.with(user: user).welcome_email.deliver_later
+      UserMailer.with(user:).welcome_email.deliver_later
     end
 
     def add_user_flash!(team, user)

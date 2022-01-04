@@ -6,13 +6,13 @@ RSpec.describe 'Pagination', type: :system do
   include SignInOutSystemHelpers
 
   it 'paginates active topics' do
-    user = FactoryBot.create(:user, :team)
-    FactoryBot.create_list(
-      :topic, 20, user: user, team: user.team, status: :active,
+    user = create(:user, :team)
+    create_list(
+      :topic, 20, user:, team: user.team, status: :active,
                   due_date: Date.new(2020, 1, 1)
     )
-    FactoryBot.create(
-      :topic, user: user, team: user.team, status: :active,
+    create(
+      :topic, user:, team: user.team, status: :active,
               due_date: Date.new(2021, 1, 1), title: 'thisisthelasttopic'
     )
 
@@ -27,13 +27,13 @@ RSpec.describe 'Pagination', type: :system do
   end
 
   it 'paginates resolved topics' do
-    user = FactoryBot.create(:user, :team)
-    FactoryBot.create_list(
-      :topic, 20, user: user, team: user.team, status: :resolved,
+    user = create(:user, :team)
+    create_list(
+      :topic, 20, user:, team: user.team, status: :resolved,
                   updated_at: Date.new(2021, 1, 1)
     )
-    FactoryBot.create(
-      :topic, user: user, team: user.team, status: :resolved,
+    create(
+      :topic, user:, team: user.team, status: :resolved,
               updated_at: Date.new(2020, 1, 1), title: 'thisisthelasttopic'
     )
 
@@ -48,9 +48,9 @@ RSpec.describe 'Pagination', type: :system do
   end
 
   it 'paginates notifications' do
-    user = FactoryBot.create(:user, :team)
-    FactoryBot.create_list(:notification, 20, user: user, action: :updated)
-    notification = FactoryBot.create(:notification, user: user, action: :created)
+    user = create(:user, :team)
+    create_list(:notification, 20, user:, action: :updated)
+    notification = create(:notification, user:, action: :created)
 
     visit '/'
     sign_in_user(user)
@@ -63,11 +63,11 @@ RSpec.describe 'Pagination', type: :system do
   end
 
   it 'paginates user members' do
-    user = FactoryBot.create(:user, :team)
-    FactoryBot.create_list(
+    user = create(:user, :team)
+    create_list(
       :user, 20, team: user.team, created_at: Date.new(2020, 1, 1)
     )
-    FactoryBot.create(
+    create(
       :user, team: user.team, email: 'thisisthelastuser@example.com',
              created_at: Date.new(2021, 1, 1)
     )

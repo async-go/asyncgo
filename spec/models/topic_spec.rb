@@ -9,7 +9,7 @@ RSpec.describe Topic, type: :model do
     describe '#validate_description_checksum' do
       subject(:valid?) { topic.valid? }
 
-      let(:topic) { FactoryBot.create(:topic, description: 'old') }
+      let(:topic) { create(:topic, description: 'old') }
 
       before do
         topic.description = 'new'
@@ -43,7 +43,7 @@ RSpec.describe Topic, type: :model do
     describe '#validate_outcome_checksum' do
       subject(:valid?) { topic.valid? }
 
-      let(:topic) { FactoryBot.create(:topic, outcome: 'old') }
+      let(:topic) { create(:topic, outcome: 'old') }
 
       before do
         topic.outcome = 'new'
@@ -77,7 +77,7 @@ RSpec.describe Topic, type: :model do
     describe 'description image data' do
       subject(:valid?) { topic.valid? }
 
-      let(:topic) { FactoryBot.build(:topic, description: description) }
+      let(:topic) { build(:topic, description:) }
 
       context 'when description does not have image data' do
         let(:description) { 'hello world' }
@@ -101,7 +101,7 @@ RSpec.describe Topic, type: :model do
     describe 'outcome image data' do
       subject(:valid?) { topic.valid? }
 
-      let(:topic) { FactoryBot.build(:topic, outcome: outcome) }
+      let(:topic) { build(:topic, outcome:) }
 
       context 'when outcome does not have image data' do
         let(:outcome) { 'hello world' }
@@ -138,14 +138,14 @@ RSpec.describe Topic, type: :model do
   describe '#last_interacted' do
     subject(:last_interacted) { topic.last_interacted }
 
-    let(:topic) { FactoryBot.create(:topic) }
+    let(:topic) { create(:topic) }
 
     context 'when topic has no comments' do
       it { is_expected.to eq(topic.updated_at) }
     end
 
     context 'when topic has comments' do
-      let(:comments) { FactoryBot.create_list(:comment, 2, topic: topic) }
+      let(:comments) { create_list(:comment, 2, topic:) }
 
       context 'when topic was updated after last comment' do
         before do

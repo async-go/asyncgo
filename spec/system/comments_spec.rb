@@ -6,8 +6,8 @@ RSpec.describe 'Comments', type: :system do
   include SignInOutSystemHelpers
 
   it 'allows the user to leave comments using markdown' do
-    user = FactoryBot.create(:user, :team)
-    topic = FactoryBot.create(:topic, team: user.team)
+    user = create(:user, :team)
+    topic = create(:topic, team: user.team)
 
     visit '/'
     sign_in_user(user)
@@ -26,8 +26,8 @@ RSpec.describe 'Comments', type: :system do
   end
 
   it 'allows the user to update a comment' do
-    user = FactoryBot.create(:user, :team)
-    comment = FactoryBot.create(:comment, user: user)
+    user = create(:user, :team)
+    comment = create(:comment, user:)
 
     visit '/'
     sign_in_user(user)
@@ -48,8 +48,8 @@ RSpec.describe 'Comments', type: :system do
   end
 
   it 'prevents uploading image data' do
-    user = FactoryBot.create(:user, :team)
-    topic = FactoryBot.create(:topic, team: user.team)
+    user = create(:user, :team)
+    topic = create(:topic, team: user.team)
 
     visit '/'
     sign_in_user(user)
@@ -67,8 +67,8 @@ RSpec.describe 'Comments', type: :system do
   end
 
   it 'allows the user to vote on comments' do
-    user = FactoryBot.create(:user, :team)
-    comment = FactoryBot.create(:comment, user: user)
+    user = create(:user, :team)
+    comment = create(:comment, user:)
 
     visit '/'
     sign_in_user(user)

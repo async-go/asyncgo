@@ -3,16 +3,16 @@
 require './spec/support/unauthorized_user_examples'
 
 RSpec.describe Teams::Topics::VotesController, type: :request do
-  let(:topic) { FactoryBot.create(:topic) }
+  let(:topic) { create(:topic) }
 
   describe 'POST create' do
     subject(:post_create) do
-      post "/teams/#{topic.team.id}/topics/#{topic.id}/votes", params: { vote: { emoji: emoji } }
+      post "/teams/#{topic.team.id}/topics/#{topic.id}/votes", params: { vote: { emoji: } }
     end
 
     context 'when user is authorized' do
       before do
-        sign_in(FactoryBot.create(:user, team: topic.team))
+        sign_in(create(:user, team: topic.team))
       end
 
       context 'when vote is valid' do
@@ -25,7 +25,7 @@ RSpec.describe Teams::Topics::VotesController, type: :request do
         it 'adds the vote' do
           post_create
 
-          expect(Vote.last).to have_attributes(votable_id: topic.id, emoji: emoji)
+          expect(Vote.last).to have_attributes(votable_id: topic.id, emoji:)
         end
 
         it 'sets the flash' do
@@ -66,7 +66,7 @@ RSpec.describe Teams::Topics::VotesController, type: :request do
   describe 'DELETE destroy' do
     subject(:delete_destroy) { delete "/teams/#{topic.team.id}/topics/#{topic.id}/votes/#{vote.id}" }
 
-    let(:vote) { FactoryBot.create(:vote, votable: topic) }
+    let(:vote) { create(:vote, votable: topic) }
 
     context 'when user is authorized' do
       before do

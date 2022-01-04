@@ -17,7 +17,7 @@ RSpec.describe 'Teams', type: :system do
 
   it 'allows the user to invite users to the team' do
     visit '/'
-    sign_in_user(FactoryBot.create(:user, :team))
+    sign_in_user(create(:user, :team))
     click_link 'Admin'
 
     fill_in 'user[email]', with: 'test@example.com'
@@ -27,8 +27,8 @@ RSpec.describe 'Teams', type: :system do
   end
 
   it 'allows the user to remove users from the team' do
-    user = FactoryBot.create(:user, :team)
-    other_user = FactoryBot.create(:user, team: user.team)
+    user = create(:user, :team)
+    other_user = create(:user, team: user.team)
 
     visit '/'
     sign_in_user(user)
@@ -42,7 +42,7 @@ RSpec.describe 'Teams', type: :system do
   end
 
   it 'allows the user to change the name' do
-    user = FactoryBot.create(:user, :team)
+    user = create(:user, :team)
 
     visit '/'
     sign_in_user(user)
@@ -55,7 +55,7 @@ RSpec.describe 'Teams', type: :system do
   end
 
   it 'allows the user to set a message' do
-    user = FactoryBot.create(:user, :team)
+    user = create(:user, :team)
 
     visit '/'
     sign_in_user(user)
@@ -70,8 +70,8 @@ RSpec.describe 'Teams', type: :system do
   end
 
   it 'allows the user to clear the message' do
-    team = FactoryBot.create(:team, message: 'hello world')
-    user = FactoryBot.create(:user, team: team)
+    team = create(:team, message: 'hello world')
+    user = create(:user, team:)
 
     visit '/'
     sign_in_user(user)
@@ -87,7 +87,7 @@ RSpec.describe 'Teams', type: :system do
 
   it 'allows the user to send a support email' do
     visit '/'
-    sign_in_user(FactoryBot.create(:user, :team))
+    sign_in_user(create(:user, :team))
     click_link 'Admin'
 
     fill_in 'body', with: 'Hello world'
@@ -98,14 +98,14 @@ RSpec.describe 'Teams', type: :system do
 
   it 'shows the buy subscription button for unsubscribed teams' do
     visit '/'
-    sign_in_user(FactoryBot.create(:user, :team))
+    sign_in_user(create(:user, :team))
     click_link 'Admin'
 
     expect(page).to have_button('Buy Subscription')
   end
 
   it 'shows the manage subscription link for subscribed teams' do
-    user = FactoryBot.create(:user, :team)
+    user = create(:user, :team)
     user.team.create_subscription!(active: true)
 
     visit '/'

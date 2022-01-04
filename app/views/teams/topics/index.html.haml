@@ -19,7 +19,7 @@
                      end
 .row.mt-2.border.bg-white.rounded.shadow-sm.pt-2
   = render partial: 'topics', locals: { topic_collection: @active_topics, topic_hotkeys: true,
-    empty_state_text: empty_state_text, list_heading: :active }
+    empty_state_text:, list_heading: :active }
 - if @pagy_active_topics.pages > 1
   .row.mt-3
     != pagy_bootstrap_nav(@pagy_active_topics)

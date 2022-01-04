@@ -19,17 +19,17 @@ class DigestMailerPreview < ActionMailer::Preview
   def seed_data
     team = Team.create!(id: 1001, name: 'sample team')
 
-    user = User.new(id: 1001, email: 'digestmailer-user@preview.com', name: 'Bob Test', team: team)
-    user.update!(preferences: User::Preferences.new(user: user))
+    user = User.new(id: 1001, email: 'digestmailer-user@preview.com', name: 'Bob Test', team:)
+    user.update!(preferences: User::Preferences.new(user:))
 
-    actor = User.new(id: 2001, email: 'digestmailer-actor@preview.com', name: 'Actor Sample', team: team)
+    actor = User.new(id: 2001, email: 'digestmailer-actor@preview.com', name: 'Actor Sample', team:)
     actor.update!(preferences: User::Preferences.new(user: actor))
 
-    topic = Topic.create!(id: 1001, title: 'Test Topic', team: team, user: user, status: :resolved,
+    topic = Topic.create!(id: 1001, title: 'Test Topic', team:, user:, status: :resolved,
                           description: 'Hello', description_html: '<p>Hello</p>')
 
-    Notification.create!(id: 1001, user: user, actor: actor, target: topic, action: 'created')
-    Topic.create!(id: 2001, title: 'Due Topic', team: team, user: user, status: :active, due_date: Time.zone.today,
+    Notification.create!(id: 1001, user:, actor:, target: topic, action: 'created')
+    Topic.create!(id: 2001, title: 'Due Topic', team:, user:, status: :active, due_date: Time.zone.today,
                   description: 'Hello', description_html: '<p>Hello</p>')
   end
 end

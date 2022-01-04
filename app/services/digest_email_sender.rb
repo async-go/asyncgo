@@ -28,6 +28,6 @@ class DigestEmailSender < ApplicationService
   end
 
   def send_digest(user)
-    DigestMailer.with(user: user).digest_email.deliver_later
+    DigestMailer.with(user:).digest_email.deliver_later
   end
 end
