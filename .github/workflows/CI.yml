@@ -18,13 +18,29 @@ jobs:
           --health-retries 5
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/cache@v2
+        name: Cache bundler dependencies
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gem-
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
         run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
+      - uses: actions/cache@v2
+        id: yarn-cache
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+      - name: Install bundler dependencies
+        run: bundle install --without development production --jobs 4 --retry 3 --path vendor/bundle
       - name: Install node dependencies
         run: bin/yarn install
       - name: Run rspec
-        run: bundle install && bundle exec rspec --tag ~type:system
+        run: bundle config set path 'vendor/bundle' && bundle exec rspec --tag ~type:system
         env:
           DATABASE_URL: postgres://postgres:postgres@postgres/asyncgo_test
   rspec-system:
@@ -44,13 +60,29 @@ jobs:
           --health-retries 5
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/cache@v2
+        name: Cache bundler dependencies
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gem-
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
         run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
+      - uses: actions/cache@v2
+        id: yarn-cache
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+      - name: Install bundler dependencies
+        run: bundle install --without development production --jobs 4 --retry 3 --path vendor/bundle
       - name: Install node dependencies
         run: bin/yarn install
       - name: Run rspec system specs
-        run: bundle install && bundle exec rspec --tag type:system
+        run: bundle config set path 'vendor/bundle' && bundle exec rspec --tag type:system
         env:
           DATABASE_URL: postgres://postgres:postgres@postgres/asyncgo_test
   rubocop:
@@ -68,7 +100,7 @@ jobs:
       - name: Install bundler dependencies
         run: bundle install --without development production --jobs 4 --retry 3 --path vendor/bundle
       - name: Run rubocop
-        run: bundle exec rubocop
+        run: bundle config set path 'vendor/bundle' && bundle exec rubocop
   haml-lint:
     runs-on: ubuntu-latest
     container: ruby:3.1.0
@@ -84,7 +116,7 @@ jobs:
       - name: Install bundler dependencies
         run: bundle install --without development production --jobs 4 --retry 3 --path vendor/bundle
       - name: Run haml-lint
-        run: bundle exec haml-lint
+        run: bundle config set path 'vendor/bundle' && bundle exec haml-lint
   standard:
     runs-on: ubuntu-latest
     container: node:current-buster
