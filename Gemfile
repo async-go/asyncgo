@@ -16,7 +16,7 @@ gem 'pundit', '~> 2.1.0' # Authorization via OO and plain Ruby classes
 gem 'rails', '~> 6.1.3'
 gem 'redis', '~> 4.4.0' # Use Redis adapter to run Action Cable in production
 gem 'sass-rails', '>= 6' # Use SCSS for stylesheets
-gem 'sidekiq', '~> 6.2.0' # ActiveJob backend
+gem 'sidekiq', '~> 6.3.1' # ActiveJob backend
 gem 'webpacker', '6.0.0.beta.7 ' # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 
 # Other
