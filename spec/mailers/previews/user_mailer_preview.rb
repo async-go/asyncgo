@@ -5,6 +5,6 @@ class UserMailerPreview < ActionMailer::Preview
     user = User.new(email: 'test@example.com')
     user.team = Team.new(name: 'example team')
 
-    UserMailer.with(user: user).welcome_email
+    UserMailer.with(user:).welcome_email
   end
 end

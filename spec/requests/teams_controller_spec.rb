@@ -6,11 +6,11 @@ RSpec.describe TeamsController, type: :request do
   describe 'GET edit' do
     subject(:get_edit) { get "/teams/#{team.id}/edit" }
 
-    let(:team) { FactoryBot.create(:team) }
+    let(:team) { create(:team) }
 
     context 'when user is authorized' do
       before do
-        sign_in(FactoryBot.create(:user, team: team))
+        sign_in(create(:user, team:))
       end
 
       it 'renders the edit page' do
@@ -28,11 +28,11 @@ RSpec.describe TeamsController, type: :request do
       patch "/teams/#{team.id}", params: { team: params }
     end
 
-    let(:team) { FactoryBot.create(:team) }
+    let(:team) { create(:team) }
 
     context 'when user is authorized' do
       before do
-        sign_in(FactoryBot.create(:user, team: team))
+        sign_in(create(:user, team:))
       end
 
       context 'when params are provided' do
@@ -64,7 +64,7 @@ RSpec.describe TeamsController, type: :request do
 
     context 'when user is authenticated' do
       before do
-        sign_in(FactoryBot.create(:user))
+        sign_in(create(:user))
       end
 
       it 'renders the new page' do
@@ -79,12 +79,12 @@ RSpec.describe TeamsController, type: :request do
 
   describe 'POST create' do
     subject(:post_create) do
-      post '/teams', params: { team: { name: name } }
+      post '/teams', params: { team: { name: } }
     end
 
     context 'when user is authenticated' do
       before do
-        sign_in(FactoryBot.create(:user))
+        sign_in(create(:user))
       end
 
       context 'when team is valid' do
@@ -132,10 +132,10 @@ RSpec.describe TeamsController, type: :request do
       post "/teams/#{team.id}/support", params: { body: 'test' }
     end
 
-    let(:team) { FactoryBot.create(:team) }
+    let(:team) { create(:team) }
 
     context 'when user is authorized' do
-      let(:user) { FactoryBot.create(:user, team: team) }
+      let(:user) { create(:user, team:) }
 
       before do
         sign_in(user)
@@ -143,7 +143,7 @@ RSpec.describe TeamsController, type: :request do
 
       it 'enqueues support email' do
         expect { post_support }.to have_enqueued_mail(SupportMailer, :support_email).with(
-          a_hash_including(params: { user: user, body: 'test' })
+          a_hash_including(params: { user:, body: 'test' })
         ).on_queue(:default)
       end
 

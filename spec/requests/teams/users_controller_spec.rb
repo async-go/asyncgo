@@ -3,13 +3,13 @@
 require './spec/support/unauthorized_user_examples'
 
 RSpec.describe Teams::UsersController, type: :request do
-  let(:team) { FactoryBot.create(:team) }
+  let(:team) { create(:team) }
 
   describe 'GET index' do
     subject(:get_index) { get "/teams/#{team.id}/users.json" }
 
     context 'when user is authorized' do
-      let(:user) { FactoryBot.create(:user, team: team) }
+      let(:user) { create(:user, team:) }
 
       before do
         sign_in(user)
@@ -28,19 +28,19 @@ RSpec.describe Teams::UsersController, type: :request do
   end
 
   describe 'POST create' do
-    subject(:post_create) { post "/teams/#{team.id}/users", params: { user: { email: email } } }
+    subject(:post_create) { post "/teams/#{team.id}/users", params: { user: { email: } } }
 
     context 'when user is authorized' do
       before do
-        sign_in(FactoryBot.create(:user, team: team))
+        sign_in(create(:user, team:))
       end
 
       context 'when team has 5 users' do
-        let(:user) { FactoryBot.create(:user) }
+        let(:user) { create(:user) }
         let(:email) { user.email }
 
         before do
-          FactoryBot.create_list(:user, 4, team: team)
+          create_list(:user, 4, team:)
         end
 
         context 'when team has active subscription' do
@@ -60,7 +60,7 @@ RSpec.describe Teams::UsersController, type: :request do
 
           it 'enqueues welcome email' do
             expect { post_create }.to have_enqueued_mail(UserMailer, :welcome_email).with(
-              a_hash_including(params: { user: user })
+              a_hash_including(params: { user: })
             ).on_queue(:default)
           end
 
@@ -84,7 +84,7 @@ RSpec.describe Teams::UsersController, type: :request do
 
           it 'does not enqueue welcome email' do
             expect { post_create }.not_to have_enqueued_mail(UserMailer, :welcome_email).with(
-              a_hash_including(params: { user: user })
+              a_hash_including(params: { user: })
             ).on_queue(:default)
           end
 
@@ -97,7 +97,7 @@ RSpec.describe Teams::UsersController, type: :request do
       end
 
       context 'when user is registered' do
-        let(:user) { FactoryBot.create(:user) }
+        let(:user) { create(:user) }
         let(:email) { user.email }
 
         context 'when user does not belong to a team' do
@@ -107,7 +107,7 @@ RSpec.describe Teams::UsersController, type: :request do
 
           it 'enqueues welcome email' do
             expect { post_create }.to have_enqueued_mail(UserMailer, :welcome_email).with(
-              a_hash_including(params: { user: user })
+              a_hash_including(params: { user: })
             ).on_queue(:default)
           end
 
@@ -126,7 +126,7 @@ RSpec.describe Teams::UsersController, type: :request do
 
         context 'when user belongs to a team' do
           before do
-            user.update!(team: FactoryBot.create(:team))
+            user.update!(team: create(:team))
           end
 
           it 'does not add user to the team' do
@@ -135,7 +135,7 @@ RSpec.describe Teams::UsersController, type: :request do
 
           it 'does not enqueue welcome email' do
             expect { post_create }.not_to have_enqueued_mail(UserMailer, :welcome_email).with(
-              a_hash_including(params: { user: user })
+              a_hash_including(params: { user: })
             ).on_queue(:default)
           end
 
@@ -222,10 +222,10 @@ RSpec.describe Teams::UsersController, type: :request do
   describe 'DELETE destroy' do
     subject(:delete_destroy) { delete "/teams/#{team.id}/users/#{user.id}" }
 
-    let(:user) { FactoryBot.create(:user, team: team) }
+    let(:user) { create(:user, team:) }
 
     context 'when user is authorized' do
-      let(:browsing_user) { FactoryBot.create(:user, team: team) }
+      let(:browsing_user) { create(:user, team:) }
 
       before do
         sign_in(browsing_user)

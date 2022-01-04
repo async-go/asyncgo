@@ -2,18 +2,18 @@
 
 RSpec.describe CommentUpdater, type: :service do
   let(:service) { described_class.new(user, comment, params) }
-  let(:user) { FactoryBot.create(:user) }
-  let(:topic) { FactoryBot.create(:topic) }
+  let(:user) { create(:user) }
+  let(:topic) { create(:topic) }
 
   before do
-    topic.subscribed_users << FactoryBot.create(:user)
+    topic.subscribed_users << create(:user)
   end
 
   describe '#call' do
     subject(:call) { service.call }
 
     context 'when comment is being created' do
-      let(:comment) { FactoryBot.build(:comment, topic: topic, user: user) }
+      let(:comment) { build(:comment, topic:, user:) }
 
       context 'when parameters are valid' do
         let(:params) { { body: '__bold__' } }
@@ -69,7 +69,7 @@ RSpec.describe CommentUpdater, type: :service do
     end
 
     context 'when comment is being updated' do
-      let(:comment) { FactoryBot.create(:comment, topic: topic, user: user) }
+      let(:comment) { create(:comment, topic:, user:) }
 
       context 'when parameters are valid' do
         let(:params) { { body: '__bold__' } }

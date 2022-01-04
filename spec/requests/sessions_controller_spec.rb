@@ -8,7 +8,7 @@ RSpec.describe SessionsController, type: :request do
   describe 'DELETE destroy' do
     subject(:delete_destroy) { delete '/sign_out' }
 
-    let(:user) { FactoryBot.create(:user) }
+    let(:user) { create(:user) }
 
     context 'when user is signed in' do
       before do

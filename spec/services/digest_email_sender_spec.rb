@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
 RSpec.describe DigestEmailSender, type: :service do
-  let!(:user) { FactoryBot.create(:user, :team) }
+  let!(:user) { create(:user, :team) }
 
   let(:recently_resolved_topic) do
-    FactoryBot.create(:topic, status: :resolved, updated_at: 4.hours.ago, user: user, team: user.team)
+    create(:topic, status: :resolved, updated_at: 4.hours.ago, user:, team: user.team)
   end
   let(:unread_notification) do
-    FactoryBot.create(:notification, user: user, actor: user, target: recently_resolved_topic)
+    create(:notification, user:, actor: user, target: recently_resolved_topic)
   end
 
   before do
@@ -32,7 +32,7 @@ RSpec.describe DigestEmailSender, type: :service do
       recently_resolved_topic
 
       expect { call }.to have_enqueued_mail(DigestMailer, :digest_email).with(
-        a_hash_including(params: { user: user })
+        a_hash_including(params: { user: })
       )
     end
 
@@ -40,7 +40,7 @@ RSpec.describe DigestEmailSender, type: :service do
       unread_notification
 
       expect { call }.to have_enqueued_mail(DigestMailer, :digest_email).with(
-        a_hash_including(params: { user: user })
+        a_hash_including(params: { user: })
       )
     end
 
@@ -49,7 +49,7 @@ RSpec.describe DigestEmailSender, type: :service do
       unread_notification
 
       expect { call }.to have_enqueued_mail(DigestMailer, :digest_email).with(
-        a_hash_including(params: { user: user })
+        a_hash_including(params: { user: })
       )
     end
   end
