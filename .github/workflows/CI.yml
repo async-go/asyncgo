@@ -22,9 +22,9 @@ jobs:
         name: Cache bundler dependencies
         with:
           path: vendor/bundle
-          key: rspec-${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
+          key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
           restore-keys: |
-            rspec-${{ runner.os }}-gem-
+            ${{ runner.os }}-gem-
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
         run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
@@ -64,9 +64,9 @@ jobs:
         name: Cache bundler dependencies
         with:
           path: vendor/bundle
-          key: rspec-${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
+          key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
           restore-keys: |
-            rspec-${{ runner.os }}-gem-
+            ${{ runner.os }}-gem-
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
         run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
