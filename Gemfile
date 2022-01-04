@@ -75,7 +75,7 @@ group :test do
   gem 'faker', '~> 2.18.0' # Fake data for use in specs
   gem 'rspec-retry', '~> 0.6.2' # retry rspec tests
   gem 'selenium-webdriver'
-  gem 'shoulda-matchers', '~> 5.0.0' # Additional rspec matchers
+  gem 'shoulda-matchers', '~> 5.1.0' # Additional rspec matchers
   gem 'webdrivers' # Easy installation and use of web drivers for system tests
 end
 
