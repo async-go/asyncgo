@@ -22,7 +22,7 @@ jobs:
         name: Cache bundler dependencies
         with:
           path: vendor/bundle
-          key: bundler-${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
+          key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
           restore-keys: |
             ${{ runner.os }}-gem-
       - name: Get yarn cache directory path
@@ -32,11 +32,11 @@ jobs:
         id: yarn-cache
         with:
           path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: yarn-${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
       - name: Install bundler dependencies
-        run: bundle install --without development production --jobs 4 --retry 3 --path vendor/bundle
+        run: bundle install --jobs 4 --retry 3 --path vendor/bundle
       - name: Install node dependencies
         run: bin/yarn install
       - name: Run rspec
@@ -64,7 +64,7 @@ jobs:
         name: Cache bundler dependencies
         with:
           path: vendor/bundle
-          key: bundler-${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
+          key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
           restore-keys: |
             ${{ runner.os }}-gem-
       - name: Get yarn cache directory path
@@ -74,11 +74,11 @@ jobs:
         id: yarn-cache
         with:
           path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: yarn-${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
       - name: Install bundler dependencies
-        run: bundle install --without development production --jobs 4 --retry 3 --path vendor/bundle
+        run: bundle install --jobs 4 --retry 3 --path vendor/bundle
       - name: Install node dependencies
         run: bin/yarn install
       - name: Run rspec system specs
@@ -94,11 +94,11 @@ jobs:
         name: Cache bundler dependencies
         with:
           path: vendor/bundle
-          key: bundler-${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
+          key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
           restore-keys: |
             ${{ runner.os }}-gem-
       - name: Install bundler dependencies
-        run: bundle install --without development production --jobs 4 --retry 3 --path vendor/bundle
+        run: bundle install --jobs 4 --retry 3 --path vendor/bundle
       - name: Run rubocop
         run: bundle exec rubocop
   haml-lint:
@@ -110,11 +110,11 @@ jobs:
         name: Cache bundler dependencies
         with:
           path: vendor/bundle
-          key: bundler-${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
+          key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
           restore-keys: |
             ${{ runner.os }}-gem-
       - name: Install bundler dependencies
-        run: bundle install --without development production --jobs 4 --retry 3 --path vendor/bundle
+        run: bundle install --jobs 4 --retry 3 --path vendor/bundle
       - name: Run haml-lint
         run: bundle exec haml-lint
   standard:
@@ -129,7 +129,7 @@ jobs:
         id: yarn-cache
         with:
           path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: yarn-${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
       - name: Install node dependencies
@@ -148,7 +148,7 @@ jobs:
         id: yarn-cache
         with:
           path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: yarn-${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
       - name: Install node dependencies
