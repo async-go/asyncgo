@@ -6,10 +6,10 @@ RSpec.describe Teams::SubscriptionsController, type: :request do
   describe 'GET edit' do
     subject(:get_edit) { get "/teams/#{team.id}/subscription/edit" }
 
-    let(:team) { FactoryBot.create(:team) }
+    let(:team) { create(:team) }
 
     context 'when user is authorized' do
-      let(:user) { FactoryBot.create(:user, team: team) }
+      let(:user) { create(:user, team:) }
 
       before do
         sign_in(user)

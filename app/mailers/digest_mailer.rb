@@ -27,13 +27,13 @@ class DigestMailer < ApplicationMailer
 
   def recently_resolved_topics
     user.team.topics.where(
-      updated_at: (Time.zone.now - 24.hours)..Time.zone.now, status: :resolved
+      updated_at: (24.hours.ago)..Time.zone.now, status: :resolved
     )
   end
 
   def upcoming_due_topics
     user.team.topics.where(
-      due_date: Time.zone.now..(Time.zone.now + 24.hours), status: :active
+      due_date: Time.zone.now..(24.hours.from_now), status: :active
     )
   end
 end

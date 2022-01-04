@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 RSpec.describe UserMailer, type: :mailer do
-  let(:user) { FactoryBot.create(:user, :team) }
+  let(:user) { create(:user, :team) }
 
   describe '#welcome_email' do
-    subject(:welcome_email) { described_class.with(user: user).welcome_email }
+    subject(:welcome_email) { described_class.with(user:).welcome_email }
 
     it 'renders the headers' do
       expect(welcome_email).to have_attributes(

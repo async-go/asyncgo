@@ -3,7 +3,7 @@
 RSpec.describe User::Preferences, type: :model do
   describe 'Validations' do
     before do
-      FactoryBot.create(:user)
+      create(:user)
     end
 
     it { is_expected.to validate_presence_of(:user_id) }

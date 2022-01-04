@@ -5,8 +5,8 @@ require './spec/support/sign_in_out_system_helpers'
 RSpec.describe 'Topics', type: :system do
   include SignInOutSystemHelpers
   it 'shows all topics' do
-    user = FactoryBot.create(:user, :team)
-    topics = FactoryBot.create_list(:topic, 2, team: user.team)
+    user = create(:user, :team)
+    topics = create_list(:topic, 2, team: user.team)
 
     visit '/'
     sign_in_user(user)
@@ -18,9 +18,9 @@ RSpec.describe 'Topics', type: :system do
   end
 
   it 'allows the user to filter topics by label' do
-    user = FactoryBot.create(:user, :team)
-    target_topic = FactoryBot.create(:topic, team: user.team, label_list: 'hello')
-    other_topic = FactoryBot.create(:topic, team: user.team, label_list: 'world')
+    user = create(:user, :team)
+    target_topic = create(:topic, team: user.team, label_list: 'hello')
+    other_topic = create(:topic, team: user.team, label_list: 'world')
 
     visit '/'
     sign_in_user(user)
@@ -40,7 +40,7 @@ RSpec.describe 'Topics', type: :system do
 
   it 'allows the user to create a topic using markdown' do
     visit '/'
-    sign_in_user(FactoryBot.create(:user, :team))
+    sign_in_user(create(:user, :team))
     click_link 'Topics'
     click_link 'New Topic'
 
@@ -57,7 +57,7 @@ RSpec.describe 'Topics', type: :system do
   end
 
   it 'allows the user to create a topic using query parameters' do
-    user = FactoryBot.create(:user, :team)
+    user = create(:user, :team)
     visit '/'
     sign_in_user(user)
 
@@ -70,8 +70,8 @@ RSpec.describe 'Topics', type: :system do
   end
 
   it 'allows the user to edit a topic' do
-    user = FactoryBot.create(:user, :team)
-    topic = FactoryBot.create(:topic, team: user.team)
+    user = create(:user, :team)
+    topic = create(:topic, team: user.team)
 
     visit '/'
     sign_in_user(user)
@@ -88,8 +88,8 @@ RSpec.describe 'Topics', type: :system do
   end
 
   it 'prevents uploading image data to description' do
-    user = FactoryBot.create(:user, :team)
-    topic = FactoryBot.create(:topic, team: user.team)
+    user = create(:user, :team)
+    topic = create(:topic, team: user.team)
 
     visit '/'
     sign_in_user(user)
@@ -107,8 +107,8 @@ RSpec.describe 'Topics', type: :system do
   end
 
   it 'prevents uploading image data to outcome' do
-    user = FactoryBot.create(:user, :team)
-    topic = FactoryBot.create(:topic, team: user.team)
+    user = create(:user, :team)
+    topic = create(:topic, team: user.team)
 
     visit '/'
     sign_in_user(user)
@@ -126,8 +126,8 @@ RSpec.describe 'Topics', type: :system do
   end
 
   it 'prevents overwriting topic updates for description' do
-    user = FactoryBot.create(:user, :team)
-    topic = FactoryBot.create(:topic, team: user.team)
+    user = create(:user, :team)
+    topic = create(:topic, team: user.team)
 
     visit '/'
     sign_in_user(user)
@@ -149,8 +149,8 @@ RSpec.describe 'Topics', type: :system do
   end
 
   it 'prevents overwriting topic updates for outcome' do
-    user = FactoryBot.create(:user, :team)
-    topic = FactoryBot.create(:topic, team: user.team)
+    user = create(:user, :team)
+    topic = create(:topic, team: user.team)
 
     visit '/'
     sign_in_user(user)
@@ -172,8 +172,8 @@ RSpec.describe 'Topics', type: :system do
   end
 
   it 'allows the user to summarize an outcome using markdown' do
-    user = FactoryBot.create(:user, :team)
-    topic = FactoryBot.create(:topic, team: user.team)
+    user = create(:user, :team)
+    topic = create(:topic, team: user.team)
 
     visit '/'
     sign_in_user(user)
@@ -192,8 +192,8 @@ RSpec.describe 'Topics', type: :system do
   end
 
   it 'allows the user to close and open the topic' do
-    user = FactoryBot.create(:user, :team)
-    topic = FactoryBot.create(:topic, team: user.team)
+    user = create(:user, :team)
+    topic = create(:topic, team: user.team)
 
     visit '/'
     sign_in_user(user)
@@ -206,8 +206,8 @@ RSpec.describe 'Topics', type: :system do
   end
 
   it 'allows the user to pin and unpin the topic' do
-    user = FactoryBot.create(:user, :team)
-    topic = FactoryBot.create(:topic, team: user.team)
+    user = create(:user, :team)
+    topic = create(:topic, team: user.team)
 
     visit '/'
     sign_in_user(user)
@@ -220,8 +220,8 @@ RSpec.describe 'Topics', type: :system do
   end
 
   it 'allows the user to subscribe and unsubscribe from the topic' do
-    user = FactoryBot.create(:user, :team)
-    topic = FactoryBot.create(:topic, team: user.team)
+    user = create(:user, :team)
+    topic = create(:topic, team: user.team)
 
     visit '/'
     sign_in_user(user)
@@ -236,8 +236,8 @@ RSpec.describe 'Topics', type: :system do
   end
 
   it 'allows the user to vote on a topic' do
-    user = FactoryBot.create(:user, :team)
-    topic = FactoryBot.create(:topic, team: user.team)
+    user = create(:user, :team)
+    topic = create(:topic, team: user.team)
 
     visit '/'
     sign_in_user(user)
