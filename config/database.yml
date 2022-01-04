@@ -84,3 +84,9 @@ production:
   database: asyncgo_production
   username: asyncgo
   password: <%= ENV['ASYNCGO_DATABASE_PASSWORD'] %>
+
+staging:
+  <<: *default
+  database: asyncgo_production
+  username: asyncgo
+  password: <%= ENV['ASYNCGO_DATABASE_PASSWORD'] %>

@@ -3,7 +3,7 @@
 require './spec/support/unauthorized_user_examples'
 
 RSpec.describe Teams::Topics::CommentsController, type: :request do
-  let(:topic) { FactoryBot.create(:topic) }
+  let(:topic) { create(:topic) }
 
   describe 'GET new' do
     subject(:get_new) { get "/teams/#{topic.team.id}/topics/#{topic.id}/comments/new" }
@@ -26,7 +26,7 @@ RSpec.describe Teams::Topics::CommentsController, type: :request do
   describe 'GET edit' do
     subject(:get_edit) { get "/teams/#{topic.team.id}/topics/#{topic.id}/comments/#{comment.id}/edit" }
 
-    let(:comment) { FactoryBot.create(:comment, topic: topic) }
+    let(:comment) { create(:comment, topic:) }
 
     context 'when user is authorized' do
       before do
@@ -45,11 +45,11 @@ RSpec.describe Teams::Topics::CommentsController, type: :request do
 
   describe 'POST create' do
     subject(:post_create) do
-      post "/teams/#{topic.team.id}/topics/#{topic.id}/comments", params: { comment: { body: body } }
+      post "/teams/#{topic.team.id}/topics/#{topic.id}/comments", params: { comment: { body: } }
     end
 
     context 'when user is authorized' do
-      let(:user) { FactoryBot.create(:user, team: topic.team) }
+      let(:user) { create(:user, team: topic.team) }
 
       before do
         sign_in(user)
@@ -101,10 +101,10 @@ RSpec.describe Teams::Topics::CommentsController, type: :request do
 
   describe 'PATCH update' do
     subject(:patch_update) do
-      patch "/teams/#{topic.team.id}/topics/#{topic.id}/comments/#{comment.id}", params: { comment: { body: body } }
+      patch "/teams/#{topic.team.id}/topics/#{topic.id}/comments/#{comment.id}", params: { comment: { body: } }
     end
 
-    let(:comment) { FactoryBot.create(:comment, topic: topic) }
+    let(:comment) { create(:comment, topic:) }
 
     context 'when user is authorized' do
       before do

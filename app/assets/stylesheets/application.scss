@@ -18,13 +18,12 @@
 $primary: #3d5a80;
 $secondary: #6c757d;
 $info: #e0fbfc;
-$accent: #ee6c4d;
+$accent: #da3b15;
 $light: #f8f9fa;
 $dark: #293241;
 $success: #198754;
 $warning: #ffc107;
 $danger: #dc3545;
-$risk: #ffffcc;
 
 $theme-colors: (
   "primary":    $primary,
@@ -34,7 +33,6 @@ $theme-colors: (
   "info":       $info,
   "warning":    $warning,
   "danger":     $danger,
-  "risk":       $risk,
   "light":      $light,
   "dark":       $dark
 );

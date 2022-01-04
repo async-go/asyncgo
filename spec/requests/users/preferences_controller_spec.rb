@@ -8,7 +8,7 @@ RSpec.describe Users::PreferencesController, type: :request do
       patch "/users/#{user.id}/preferences", params: { user_preferences: preferences_params }
     end
 
-    let(:user) { FactoryBot.create(:user) }
+    let(:user) { create(:user) }
 
     context 'when user is authorized' do
       before do

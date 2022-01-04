@@ -10,7 +10,7 @@ module Teams
 
         respond_to do |format|
           format.turbo_stream do
-            render turbo_stream: turbo_stream.replace(topic, partial: 'teams/topics/topic', locals: { topic: topic })
+            render turbo_stream: turbo_stream.replace(topic, partial: 'teams/topics/topic', locals: { topic: })
           end
           format.html do
             vote_flash = if success

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class MarkdownParser < ApplicationService
-  MENTION_REGEX = /(?<=\s)@([\w.\-_]+)?\w+@[\w\-_]+(\.\w+)+\b/
+  MENTION_REGEX = /@\[?([\w.\-_]+)?\w+@[\w\-_]+(\.\w+)+(\]\(mailto:\w+@[\w\-_]+(\.\w+)+\))?/
 
   def initialize(user, text, notification_target)
     super()
@@ -22,7 +22,9 @@ class MarkdownParser < ApplicationService
   def process_mentions(text)
     text.gsub(MENTION_REGEX) do |mention|
       email = mention.slice(1..-1)
-      target_user = User.find_by(email: email)
+      email = email.gsub(/^\[/, '')
+      email = email.gsub(/\].*/, '')
+      target_user = User.find_by(email:)
       notify_user!(target_user)
 
       "[#{target_user.printable_name}](mailto:#{email})"
@@ -30,7 +32,7 @@ class MarkdownParser < ApplicationService
   end
 
   def process_markdown(markdown)
-    CommonMarker.render_html(markdown, :DEFAULT, %i[tasklist tagfilter autolink])
+    CommonMarker.render_html(markdown, :DEFAULT, %i[strikethrough table tasklist tagfilter autolink])
   end
 
   def process_links(html_output)

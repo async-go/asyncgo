@@ -8,7 +8,7 @@ RSpec.describe Comment, type: :model do
     describe 'body image data' do
       subject(:valid?) { comment.valid? }
 
-      let(:comment) { FactoryBot.build(:comment, body: body) }
+      let(:comment) { build(:comment, body:) }
 
       context 'when body does not have image data' do
         let(:body) { 'hello world' }

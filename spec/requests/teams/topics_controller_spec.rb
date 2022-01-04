@@ -6,11 +6,11 @@ RSpec.describe Teams::TopicsController, type: :request do
   describe 'GET index' do
     subject(:get_index) { get "/teams/#{team.id}/topics" }
 
-    let(:team) { FactoryBot.create(:team) }
+    let(:team) { create(:team) }
 
     context 'when user is authorized' do
       before do
-        sign_in(FactoryBot.create(:user, team: team))
+        sign_in(create(:user, team:))
       end
 
       it 'renders the index page' do
@@ -26,10 +26,10 @@ RSpec.describe Teams::TopicsController, type: :request do
   describe 'GET show' do
     subject(:get_show) { get "/teams/#{topic.team.id}/topics/#{topic.id}" }
 
-    let(:topic) { FactoryBot.create(:topic) }
+    let(:topic) { create(:topic) }
 
     context 'when user is authorized' do
-      let(:user) { FactoryBot.create(:user, team: topic.team) }
+      let(:user) { create(:user, team: topic.team) }
 
       before do
         sign_in(user)
@@ -43,9 +43,9 @@ RSpec.describe Teams::TopicsController, type: :request do
 
       context 'when there are notifications' do
         before do
-          comment = FactoryBot.create(:comment, topic: topic)
-          FactoryBot.create(:notification, target: comment, user: user)
-          FactoryBot.create(:notification, target: topic, user: user)
+          comment = create(:comment, topic:)
+          create(:notification, target: comment, user:)
+          create(:notification, target: topic, user:)
         end
 
         it 'dismisses all topic notifications' do
@@ -58,13 +58,13 @@ RSpec.describe Teams::TopicsController, type: :request do
   end
 
   describe 'GET new' do
-    subject(:get_new) { get "/teams/#{team.id}/topics/new", params: params }
+    subject(:get_new) { get "/teams/#{team.id}/topics/new", params: }
 
-    let(:team) { FactoryBot.create(:team) }
+    let(:team) { create(:team) }
 
     context 'when user is authorized' do
       before do
-        sign_in(FactoryBot.create(:user, team: team))
+        sign_in(create(:user, team:))
       end
 
       context 'when no parameters are passed' do
@@ -102,11 +102,11 @@ RSpec.describe Teams::TopicsController, type: :request do
   describe 'GET edit' do
     subject(:get_edit) { get "/teams/#{topic.team.id}/topics/#{topic.id}/edit" }
 
-    let(:topic) { FactoryBot.create(:topic) }
+    let(:topic) { create(:topic) }
 
     context 'when user is authorized' do
       before do
-        sign_in(FactoryBot.create(:user, team: topic.team))
+        sign_in(create(:user, team: topic.team))
       end
 
       context 'when topic is active' do
@@ -139,13 +139,13 @@ RSpec.describe Teams::TopicsController, type: :request do
 
   describe 'POST create' do
     subject(:post_create) do
-      post "/teams/#{team.id}/topics", params: { topic: { title: title, description: 'Test topic.' } }
+      post "/teams/#{team.id}/topics", params: { topic: { title:, description: 'Test topic.' } }
     end
 
-    let(:team) { FactoryBot.create(:team) }
+    let(:team) { create(:team) }
 
     context 'when user is authorized' do
-      let(:user) { FactoryBot.create(:user, team: team) }
+      let(:user) { create(:user, team:) }
 
       before do
         sign_in(user)
@@ -209,10 +209,10 @@ RSpec.describe Teams::TopicsController, type: :request do
             params: { topic: params }
     end
 
-    let(:topic) { FactoryBot.create(:topic) }
+    let(:topic) { create(:topic) }
 
     context 'when user is authorized' do
-      let(:user) { FactoryBot.create(:user, team: topic.team) }
+      let(:user) { create(:user, team: topic.team) }
 
       before do
         sign_in(user)
@@ -307,10 +307,10 @@ RSpec.describe Teams::TopicsController, type: :request do
             params: { topic: params }
     end
 
-    let(:topic) { FactoryBot.create(:topic) }
+    let(:topic) { create(:topic) }
 
     context 'when user is authorized' do
-      let(:user) { FactoryBot.create(:user, team: topic.team) }
+      let(:user) { create(:user, team: topic.team) }
 
       before do
         sign_in(user)
@@ -369,13 +369,13 @@ RSpec.describe Teams::TopicsController, type: :request do
   describe 'POST subscribe' do
     subject(:post_subscribe) do
       post "/teams/#{topic.team.id}/topics/#{topic.id}/subscribe",
-           params: { subscribed: subscribed }
+           params: { subscribed: }
     end
 
-    let(:topic) { FactoryBot.create(:topic) }
+    let(:topic) { create(:topic) }
 
     context 'when user is authorized' do
-      let(:user) { FactoryBot.create(:user, team: topic.team) }
+      let(:user) { create(:user, team: topic.team) }
 
       before do
         sign_in(user)
@@ -417,10 +417,10 @@ RSpec.describe Teams::TopicsController, type: :request do
             params: { topic: params }
     end
 
-    let(:topic) { FactoryBot.create(:topic) }
+    let(:topic) { create(:topic) }
 
     context 'when user is authorized' do
-      let(:user) { FactoryBot.create(:user, team: topic.team) }
+      let(:user) { create(:user, team: topic.team) }
 
       before do
         sign_in(user)

@@ -171,7 +171,7 @@ module Teams
                   else
                     { danger: "Topic could not be #{flash_verb}." }
                   end
-          redirect_to topic_path(target_topic), flash: flash
+          redirect_to topic_path(target_topic), flash:
         end
       end
     end

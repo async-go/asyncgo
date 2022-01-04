@@ -6,8 +6,8 @@ RSpec.describe Teams::TopicsHelper, type: :helper do
   describe '#user_subscribed?' do
     subject(:user_subscribed?) { helper.user_subscribed?(topic) }
 
-    let(:topic) { FactoryBot.create(:topic) }
-    let(:current_user) { FactoryBot.create(:user, team: topic.team) }
+    let(:topic) { create(:topic) }
+    let(:current_user) { create(:user, team: topic.team) }
 
     before do
       without_partial_double_verification do
@@ -31,7 +31,7 @@ RSpec.describe Teams::TopicsHelper, type: :helper do
   describe '#topic_due_date_span' do
     subject(:topic_due_date_span) { helper.topic_due_date_span(topic) }
 
-    let(:topic) { FactoryBot.build(:topic) }
+    let(:topic) { build(:topic) }
 
     context 'when topic does not have due date' do
       it { is_expected.to have_text('No due date') }
@@ -49,21 +49,13 @@ RSpec.describe Teams::TopicsHelper, type: :helper do
           travel_to(Time.utc(2020, 1, 2))
         end
 
-        after do
-          travel_back
-        end
-
         it { is_expected.to have_text('Due 1 day ago') }
-        it { is_expected.to match(/class="bg-risk"/) }
+        it { is_expected.to match(/class="text-accent"/) }
       end
 
       context 'when topic is not overdue' do
         before do
           travel_to(Time.utc(2019, 12, 31))
-        end
-
-        after do
-          travel_back
         end
 
         it { is_expected.to have_text('Due in 1 day') }
@@ -85,11 +77,11 @@ RSpec.describe Teams::TopicsHelper, type: :helper do
   describe 'topic_has_notification?' do
     subject(:topic_has_notification?) { helper.topic_has_notification?(notifications, target) }
 
-    let(:user) { FactoryBot.create(:user, :team) }
-    let(:unrelated_notification) { FactoryBot.create(:notification, user: user) }
+    let(:user) { create(:user, :team) }
+    let(:unrelated_notification) { create(:notification, user:) }
 
     context 'when target is topic' do
-      let(:target) { FactoryBot.create(:topic, user: user, team: user.team) }
+      let(:target) { create(:topic, user:, team: user.team) }
 
       context 'when there are no notifications' do
         let(:notifications) { Notification.where(id: unrelated_notification.id) }
@@ -100,7 +92,7 @@ RSpec.describe Teams::TopicsHelper, type: :helper do
       context 'when there are notifications' do
         let(:notifications) do
           Notification.where(
-            id: [unrelated_notification.id, FactoryBot.create(:notification, user: user, target: target).id]
+            id: [unrelated_notification.id, create(:notification, user:, target:).id]
           )
         end
 
@@ -109,7 +101,7 @@ RSpec.describe Teams::TopicsHelper, type: :helper do
     end
 
     context 'when target is comment' do
-      let(:target) { FactoryBot.create(:comment, user: user) }
+      let(:target) { create(:comment, user:) }
 
       context 'when there are no notifications' do
         let(:notifications) { Notification.where(id: unrelated_notification.id) }
@@ -120,7 +112,7 @@ RSpec.describe Teams::TopicsHelper, type: :helper do
       context 'when there are notifications' do
         let(:notifications) do
           Notification.where(
-            id: [unrelated_notification.id, FactoryBot.create(:notification, user: user, target: target).id]
+            id: [unrelated_notification.id, create(:notification, user:, target:).id]
           )
         end
 
@@ -132,9 +124,9 @@ RSpec.describe Teams::TopicsHelper, type: :helper do
   describe '#vote_groups' do
     subject(:vote_groups) { helper.vote_groups(topic) }
 
-    let(:topic) { FactoryBot.create(:topic) }
-    let!(:upvote) { FactoryBot.create(:vote, emoji: 'thumbsup', votable: topic) }
-    let!(:downvote) { FactoryBot.create(:vote, emoji: 'thumbsdown', votable: topic) }
+    let(:topic) { create(:topic) }
+    let!(:upvote) { create(:vote, emoji: 'thumbsup', votable: topic) }
+    let!(:downvote) { create(:vote, emoji: 'thumbsdown', votable: topic) }
 
     it { is_expected.to eq('thumbsup' => [upvote], 'thumbsdown' => [downvote]) }
   end
@@ -143,13 +135,13 @@ RSpec.describe Teams::TopicsHelper, type: :helper do
     subject(:votable_path) { helper.votable_path(votable) }
 
     context 'when votable is topic' do
-      let(:votable) { FactoryBot.create(:topic) }
+      let(:votable) { create(:topic) }
 
       it { is_expected.to eq([votable.team, votable]) }
     end
 
     context 'when votable is comment' do
-      let(:votable) { FactoryBot.create(:comment) }
+      let(:votable) { create(:comment) }
 
       it { is_expected.to eq([votable.topic.team, votable.topic, votable]) }
     end
