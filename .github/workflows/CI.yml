@@ -36,7 +36,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
       - name: Install bundler dependencies
-        run: bundle install --jobs 4 --retry 3 --path vendor/bundle
+        run: bundle install --without development production --jobs 4 --retry 3 --path vendor/bundle
       - name: Install node dependencies
         run: bin/yarn install
       - name: Run rspec
@@ -78,7 +78,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
       - name: Install bundler dependencies
-        run: bundle install --jobs 4 --retry 3 --path vendor/bundle
+        run: bundle install --without development production --jobs 4 --retry 3 --path vendor/bundle
       - name: Install node dependencies
         run: bin/yarn install
       - name: Run rspec system specs
@@ -98,7 +98,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gem-
       - name: Install bundler dependencies
-        run: bundle install --jobs 4 --retry 3 --path vendor/bundle
+        run: bundle install --without development production --jobs 4 --retry 3 --path vendor/bundle
       - name: Run rubocop
         run: bundle exec rubocop
   haml-lint:
@@ -114,7 +114,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gem-
       - name: Install bundler dependencies
-        run: bundle install --jobs 4 --retry 3 --path vendor/bundle
+        run: bundle install --without development production --jobs 4 --retry 3 --path vendor/bundle
       - name: Run haml-lint
         run: bundle exec haml-lint
   standard:
