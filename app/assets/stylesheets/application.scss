@@ -64,15 +64,8 @@ $theme-colors: (
 }
 
 // Accessibility fixes for editor
-.te-mode-switch {
-  > {
-    .markdown {
-      color: #333;
-    }
-    .wysiwyg {
-      color: #333;
-    }
-  }
+.toastui-editor-mode-switch .tab-item {
+  color: #333 !important;
 }
 
 .navbar-brand img {

@@ -46,7 +46,7 @@ RSpec.describe 'Topics', type: :system do
 
     fill_in 'topic[title]', with: 'Sample title'
     within('[data-target="topic_description"]') do
-      click_link 'Markdown'
+      find('.tab-item', match: :first).click
       find('.ProseMirror').click
       page.send_keys('__Sample topic content__')
     end
@@ -98,7 +98,7 @@ RSpec.describe 'Topics', type: :system do
     click_link 'Edit'
 
     within('[data-target="topic_description"]') do
-      click_button 'Markdown'
+      find('.tab-item', match: :first).click
       find('.ProseMirror').click
       page.send_keys('![image.png](data:image/png;base64,abcdefg)')
     end
@@ -117,7 +117,7 @@ RSpec.describe 'Topics', type: :system do
     click_link 'Edit'
 
     within('[data-target="topic_outcome"]') do
-      click_button 'Markdown'
+      find('.tab-item', match: :first).click
       find('.ProseMirror').click
       page.send_keys('![image.png](data:image/png;base64,abcdefg)')
     end
@@ -182,7 +182,7 @@ RSpec.describe 'Topics', type: :system do
     click_link 'Edit'
 
     within('[data-target="topic_outcome"]') do
-      click_button 'Markdown'
+      find('.tab-item', match: :first).click
       find('.ProseMirror').click
       page.send_keys('__Sample outcome__')
     end

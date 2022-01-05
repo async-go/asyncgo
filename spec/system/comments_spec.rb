@@ -15,7 +15,7 @@ RSpec.describe 'Comments', type: :system do
     click_link topic.title
 
     within('[data-target="comment_body"]') do
-      click_button 'Markdown'
+      find('.tab-item', match: :first).click
       find('.ProseMirror').click
       page.send_keys('__Sample content__')
     end
@@ -57,7 +57,7 @@ RSpec.describe 'Comments', type: :system do
     click_link topic.title
 
     within('[data-target="comment_body"]') do
-      click_button 'Markdown'
+      find('.tab-item', match: :first).click
       find('.ProseMirror').click
       page.send_keys('![image.png](data:image/png;base64,abcdefg)')
     end
