@@ -1293,13 +1293,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@github/markdown-toolbar-element@npm:1.5.1":
-  version: 1.5.1
-  resolution: "@github/markdown-toolbar-element@npm:1.5.1"
-  checksum: 419ac8664f5cf8535e80b7c7c0abe5ebbcc73f9e9ada1b943bf0c43ffeac4250f8c5b03558612bcbac2f1d9a8394360381f5c22b63400c28eb1a72633854d846
-  languageName: node
-  linkType: hard
-
 "@hotwired/turbo-rails@npm:7.0.0-beta.5":
   version: 7.0.0-beta.5
   resolution: "@hotwired/turbo-rails@npm:7.0.0-beta.5"
@@ -2096,7 +2089,6 @@ __metadata:
     "@babel/core": 7.14.3
     "@babel/eslint-parser": 7.14.3
     "@github/hotkey": 1.4.4
-    "@github/markdown-toolbar-element": 1.5.1
     "@hotwired/turbo-rails": 7.0.0-beta.5
     "@popperjs/core": 2.9.2
     "@rails/actioncable": 6.1.3
