@@ -27,7 +27,7 @@ gem 'commonmarker', '~> 0.23.2' # GitHub Flavored Markdown renderer
 gem 'font-awesome-sass', '~> 5.15.1'
 gem 'gemoji', '~> 3.0.1' # emoji helpers
 gem 'ginjo-omniauth-slack', '~> 2.5', require: 'omniauth-slack'
-gem 'hamlit', '~> 2.15.0' # Templating language
+gem 'hamlit', '~> 2.15.2' # Templating language
 gem 'net-imap', '~> 0.2.2' # this is required
 gem 'net-pop', '~> 0.1.1' # this is required
 gem 'net-smtp', '~> 0.3.1' # this is required
