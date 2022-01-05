@@ -1293,10 +1293,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@github/markdown-toolbar-element@npm:^1.4.0":
-  version: 1.5.1
-  resolution: "@github/markdown-toolbar-element@npm:1.5.1"
-  checksum: 419ac8664f5cf8535e80b7c7c0abe5ebbcc73f9e9ada1b943bf0c43ffeac4250f8c5b03558612bcbac2f1d9a8394360381f5c22b63400c28eb1a72633854d846
+"@github/markdown-toolbar-element@npm:1.5.3":
+  version: 1.5.3
+  resolution: "@github/markdown-toolbar-element@npm:1.5.3"
+  checksum: fb12112bec389c8f10f904954345e29f70998d7069dc261d7da91f31e4b1e42e0e34b5ded40d72bff4b6863e31a43ec1386864ed3519d231cef4fdabbf341a1d
   languageName: node
   linkType: hard
 
@@ -2096,7 +2096,7 @@ __metadata:
     "@babel/core": ^7.13.8
     "@babel/eslint-parser": ^7.13.8
     "@github/hotkey": ^1.4.4
-    "@github/markdown-toolbar-element": ^1.4.0
+    "@github/markdown-toolbar-element": 1.5.3
     "@hotwired/turbo-rails": ^7.0.0-beta.5
     "@popperjs/core": ^2.8.6
     "@rails/actioncable": ^6.1.3
