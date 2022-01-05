@@ -10,7 +10,6 @@ import 'channels'
 import 'controllers'
 
 import 'bootstrap'
-import '@github/markdown-toolbar-element'
 
 Rails.start()
 ActiveStorage.start()

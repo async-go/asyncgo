@@ -30,7 +30,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/core@npm:7.14.3, @babel/core@npm:^7.12.9, @babel/core@npm:^7.13.8":
+"@babel/core@npm:7.14.3, @babel/core@npm:^7.12.9":
   version: 7.14.3
   resolution: "@babel/core@npm:7.14.3"
   dependencies:
@@ -53,7 +53,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/eslint-parser@npm:^7.13.8":
+"@babel/eslint-parser@npm:7.14.3":
   version: 7.14.3
   resolution: "@babel/eslint-parser@npm:7.14.3"
   dependencies:
@@ -1286,21 +1286,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@github/hotkey@npm:^1.4.4":
+"@github/hotkey@npm:1.4.4":
   version: 1.4.4
   resolution: "@github/hotkey@npm:1.4.4"
   checksum: 17076d1cc7dc09c98356c494b96f285ccfa9b0feac21d863b519caf2173cffad85ce14ac8709aa78489476dd5db3e06c38b671c18afe1e752f58df3f4a0db7f8
   languageName: node
   linkType: hard
 
-"@github/markdown-toolbar-element@npm:^1.4.0":
-  version: 1.5.1
-  resolution: "@github/markdown-toolbar-element@npm:1.5.1"
-  checksum: 419ac8664f5cf8535e80b7c7c0abe5ebbcc73f9e9ada1b943bf0c43ffeac4250f8c5b03558612bcbac2f1d9a8394360381f5c22b63400c28eb1a72633854d846
-  languageName: node
-  linkType: hard
-
-"@hotwired/turbo-rails@npm:^7.0.0-beta.5":
+"@hotwired/turbo-rails@npm:7.0.0-beta.5":
   version: 7.0.0-beta.5
   resolution: "@hotwired/turbo-rails@npm:7.0.0-beta.5"
   dependencies:
@@ -1327,21 +1320,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@popperjs/core@npm:^2.8.6":
+"@popperjs/core@npm:2.9.2":
   version: 2.9.2
   resolution: "@popperjs/core@npm:2.9.2"
   checksum: cc4de8b46fc190805619224f1c683bee6a162276430af3728d35087099ad83a80da3c11c4eac7cb2b5aa2fa59d4c7c689e211a3e955136588ed6dedb5bff32c5
   languageName: node
   linkType: hard
 
-"@rails/actioncable@npm:^6.1.0, @rails/actioncable@npm:^6.1.3":
+"@rails/actioncable@npm:6.1.3, @rails/actioncable@npm:^6.1.0":
   version: 6.1.3
   resolution: "@rails/actioncable@npm:6.1.3"
   checksum: 519463b2bcc8862ae74723397d7b6e43b95e53edf57614fc18d2d579f48b425d0545e243f770cb92533f9d9ca476fa4b45043ead0e611fa680769720c026edbc
   languageName: node
   linkType: hard
 
-"@rails/activestorage@npm:^6.1.3":
+"@rails/activestorage@npm:6.1.3":
   version: 6.1.3
   resolution: "@rails/activestorage@npm:6.1.3"
   dependencies:
@@ -1350,7 +1343,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rails/ujs@npm:^6.1.3":
+"@rails/ujs@npm:6.1.3":
   version: 6.1.3
   resolution: "@rails/ujs@npm:6.1.3"
   checksum: 62be570822307c411ffcfbec5c103048d4d60624cdab42b9f60fc5e79626d5975e220fda09ef52f584ee7ca1024ca22757602d1ee25658ec46dba0ea96b67f47
@@ -1418,7 +1411,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@toast-ui/editor@npm:^2.5.2":
+"@toast-ui/editor@npm:2.5.2":
   version: 2.5.2
   resolution: "@toast-ui/editor@npm:2.5.2"
   dependencies:
@@ -1697,7 +1690,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@webpack-cli/serve@npm:^1.3.0, @webpack-cli/serve@npm:^1.4.0":
+"@webpack-cli/serve@npm:1.4.0, @webpack-cli/serve@npm:^1.4.0":
   version: 1.4.0
   resolution: "@webpack-cli/serve@npm:1.4.0"
   peerDependencies:
@@ -2093,30 +2086,29 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "asyncgo@workspace:."
   dependencies:
-    "@babel/core": ^7.13.8
-    "@babel/eslint-parser": ^7.13.8
-    "@github/hotkey": ^1.4.4
-    "@github/markdown-toolbar-element": ^1.4.0
-    "@hotwired/turbo-rails": ^7.0.0-beta.5
-    "@popperjs/core": ^2.8.6
-    "@rails/actioncable": ^6.1.3
-    "@rails/activestorage": ^6.1.3
-    "@rails/ujs": ^6.1.3
+    "@babel/core": 7.14.3
+    "@babel/eslint-parser": 7.14.3
+    "@github/hotkey": 1.4.4
+    "@hotwired/turbo-rails": 7.0.0-beta.5
+    "@popperjs/core": 2.9.2
+    "@rails/actioncable": 6.1.3
+    "@rails/activestorage": 6.1.3
+    "@rails/ujs": 6.1.3
     "@rails/webpacker": 6.0.0-beta.6
-    "@toast-ui/editor": ^2.5.2
-    "@webpack-cli/serve": ^1.3.0
-    bootstrap: ^5.0.0-beta2
-    codemirror: ^5.61.0
-    driver.js: ^0.9.8
-    eslint: ^7.21.0
-    markdownlint-cli: ^0.26.0
-    prettier: ^2.2.1
-    standard: ^16.0.2
-    stimulus: ^2.0.0
-    tributejs: ^5.1.3
-    webpack: ^5.11.0
-    webpack-cli: ^4.2.0
-    webpack-dev-server: ^3.11.2
+    "@toast-ui/editor": 2.5.2
+    "@webpack-cli/serve": 1.4.0
+    bootstrap: 5.0.1
+    codemirror: 5.61.1
+    driver.js: 0.9.8
+    eslint: 7.27.0
+    markdownlint-cli: 0.26.0
+    prettier: 2.3.0
+    standard: 16.0.3
+    stimulus: 2.0.0
+    tributejs: 5.1.3
+    webpack: 5.38.1
+    webpack-cli: 4.7.0
+    webpack-dev-server: 3.11.2
   languageName: unknown
   linkType: soft
 
@@ -2284,7 +2276,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"bootstrap@npm:^5.0.0-beta2":
+"bootstrap@npm:5.0.1":
   version: 5.0.1
   resolution: "bootstrap@npm:5.0.1"
   peerDependencies:
@@ -2550,7 +2542,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"codemirror@npm:^5.48.4, codemirror@npm:^5.61.0":
+"codemirror@npm:5.61.1, codemirror@npm:^5.48.4":
   version: 5.61.1
   resolution: "codemirror@npm:5.61.1"
   checksum: 4303451a8230742af2e4993e1606652d6056bd0b67d071d8d161fd5a5de42db9e893577854e1e2addf8ba8e1c1144be7b5b7e6c8f15e6a6e518930197d4c4812
@@ -3035,7 +3027,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"driver.js@npm:^0.9.8":
+"driver.js@npm:0.9.8":
   version: 0.9.8
   resolution: "driver.js@npm:0.9.8"
   checksum: 77cf03b7ddfadc5672bbdd788e638c23407d5e5a738a563e56ea18fe6bf6cdb43ac137c879676f287f929e77b246dc3cee9e486cec500fa3b538bfe78bb025a7
@@ -3395,7 +3387,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint@npm:^7.21.0":
+"eslint@npm:7.27.0":
   version: 7.27.0
   resolution: "eslint@npm:7.27.0"
   dependencies:
@@ -5288,7 +5280,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"markdownlint-cli@npm:^0.26.0":
+"markdownlint-cli@npm:0.26.0":
   version: 0.26.0
   resolution: "markdownlint-cli@npm:0.26.0"
   dependencies:
@@ -6291,7 +6283,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"prettier@npm:^2.2.1":
+"prettier@npm:2.3.0":
   version: 2.3.0
   resolution: "prettier@npm:2.3.0"
   bin:
@@ -7313,7 +7305,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"standard@npm:^16.0.2":
+"standard@npm:16.0.3":
   version: 16.0.3
   resolution: "standard@npm:16.0.3"
   dependencies:
@@ -7348,7 +7340,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"stimulus@npm:^2.0.0":
+"stimulus@npm:2.0.0":
   version: 2.0.0
   resolution: "stimulus@npm:2.0.0"
   dependencies:
@@ -7688,7 +7680,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"tributejs@npm:^5.1.3":
+"tributejs@npm:5.1.3":
   version: 5.1.3
   resolution: "tributejs@npm:5.1.3"
   checksum: 58e521a80ab456e63124c38d6b8085ede059cfd62fee724a47b5e7744f820ecf6d7efee2dd3c929cf75f7a4cff7ccfc19c7fac47a8f3613e6178a742c90465e4
@@ -7987,7 +7979,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"webpack-cli@npm:^4.2.0":
+"webpack-cli@npm:4.7.0, webpack-cli@npm:^4.2.0":
   version: 4.7.0
   resolution: "webpack-cli@npm:4.7.0"
   dependencies:
@@ -8036,7 +8028,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"webpack-dev-server@npm:^3.11.2":
+"webpack-dev-server@npm:3.11.2":
   version: 3.11.2
   resolution: "webpack-dev-server@npm:3.11.2"
   dependencies:
@@ -8114,7 +8106,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"webpack@npm:^5.11.0":
+"webpack@npm:5.38.1, webpack@npm:^5.11.0":
   version: 5.38.1
   resolution: "webpack@npm:5.38.1"
   dependencies:
