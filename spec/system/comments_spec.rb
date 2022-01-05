@@ -48,8 +48,8 @@ RSpec.describe 'Comments', type: :system do
   end
 
   it 'allows the user to delete a comment' do
-    user = FactoryBot.create(:user, :team)
-    comment = FactoryBot.create(:comment, user: user)
+    user = create(:user, :team)
+    comment = create(:comment, user:)
 
     visit '/'
     sign_in_user(user)

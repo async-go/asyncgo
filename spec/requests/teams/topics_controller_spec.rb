@@ -60,7 +60,7 @@ RSpec.describe Teams::TopicsController, type: :request do
   describe 'GET archive' do
     subject(:get_archive) { get "/teams/#{topic.team.id}/topics/#{topic.id}/archive" }
 
-    let(:topic) { FactoryBot.create(:topic) }
+    let(:topic) { create(:topic) }
 
     context 'when user is authorized' do
       before do

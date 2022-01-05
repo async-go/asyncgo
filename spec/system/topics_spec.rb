@@ -70,8 +70,8 @@ RSpec.describe 'Topics', type: :system do
   end
 
   it 'allows the user to delete a topic' do
-    user = FactoryBot.create(:user, :team)
-    topic = FactoryBot.create(:topic, team: user.team)
+    user = create(:user, :team)
+    topic = create(:topic, team: user.team)
 
     visit '/'
     sign_in_user(user)

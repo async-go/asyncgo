@@ -26,7 +26,7 @@ RSpec.describe Teams::Topics::CommentsController, type: :request do
   describe 'GET archive' do
     subject(:get_archive) { get "/teams/#{topic.team.id}/topics/#{topic.id}/comments/#{comment.id}/archive" }
 
-    let(:comment) { FactoryBot.create(:comment, topic: topic) }
+    let(:comment) { create(:comment, topic:) }
 
     context 'when user is authorized' do
       before do
