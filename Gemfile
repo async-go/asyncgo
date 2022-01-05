@@ -20,7 +20,7 @@ gem 'sidekiq', '~> 6.3.1' # ActiveJob backend
 gem 'webpacker', '6.0.0.rc.6 ' # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 
 # Other
-gem 'acts-as-taggable-on', '~> 8.1.0' # Tags
+gem 'acts-as-taggable-on', '~> 9.0.0' # Tags
 gem 'barnes', '~> 0.0.9' # heroku application metrics
 gem 'blazer', '~> 2.4.2' # Business Intelligence made easy
 gem 'commonmarker', '~> 0.23.2' # GitHub Flavored Markdown renderer
