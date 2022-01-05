@@ -1418,13 +1418,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@toast-ui/editor@npm:2.5.2":
-  version: 2.5.2
-  resolution: "@toast-ui/editor@npm:2.5.2"
+"@toast-ui/editor@npm:2.5.4":
+  version: 2.5.4
+  resolution: "@toast-ui/editor@npm:2.5.4"
   dependencies:
     "@types/codemirror": 0.0.71
     codemirror: ^5.48.4
-  checksum: 9c370c454c7bdaa75b4756015ae273ad77165cdef4ae0a32bfcff7236a83f43c94b80ebaa5a3eee327ef7793a08c22a43189e55025430caa8515a1d4240a99b1
+  checksum: 2829a0821030091b8bfb186565b544fdb73ffb8ccb8fa634c1dd767f8697f8fcb0a82f88f2d407ba2232f175b7abb77431187ab8cd057db6a4c7897b32264d05
   languageName: node
   linkType: hard
 
@@ -2102,7 +2102,7 @@ __metadata:
     "@rails/activestorage": 6.1.4
     "@rails/ujs": 6.1.4
     "@rails/webpacker": 6.0.0-beta.6
-    "@toast-ui/editor": 2.5.2
+    "@toast-ui/editor": 2.5.4
     "@webpack-cli/serve": 1.4.0
     bootstrap: 5.0.1
     codemirror: 5.61.1

@@ -9,7 +9,7 @@
     "@rails/activestorage": "6.1.4",
     "@rails/ujs": "6.1.4",
     "@rails/webpacker": "6.0.0-beta.6",
-    "@toast-ui/editor": "2.5.2",
+    "@toast-ui/editor": "2.5.4",
     "bootstrap": "5.0.1",
     "codemirror": "5.61.1",
     "driver.js": "0.9.8",
