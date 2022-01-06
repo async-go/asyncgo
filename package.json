@@ -26,7 +26,7 @@
     "@webpack-cli/serve": "1.4.0",
     "eslint": "7.27.0",
     "markdownlint-cli": "0.26.0",
-    "standard": "16.0.3",
+    "standard": "16.0.4",
     "webpack-dev-server": "3.11.2"
   },
   "standard": {
