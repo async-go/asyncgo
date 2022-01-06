@@ -13,7 +13,7 @@ gem 'hotwire-rails', '~> 0.1.3' # HTML over the wire. Read more: https://hotwire
 gem 'pg', '~> 1.2.3' # Use pg as the database for Active Record
 gem 'puma', '~> 5.5.2' # Use Puma as the app server
 gem 'pundit', '~> 2.1.0' # Authorization via OO and plain Ruby classes
-gem 'rails', '~> 6.1.3'
+gem 'rails', '~> 7.0.1'
 gem 'redis', '~> 4.5.1' # Use Redis adapter to run Action Cable in production
 gem 'sass-rails', '>= 6' # Use SCSS for stylesheets
 gem 'sidekiq', '~> 6.3.1' # ActiveJob backend
