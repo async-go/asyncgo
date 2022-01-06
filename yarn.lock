@@ -1286,10 +1286,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@github/hotkey@npm:1.4.4":
-  version: 1.4.4
-  resolution: "@github/hotkey@npm:1.4.4"
-  checksum: 17076d1cc7dc09c98356c494b96f285ccfa9b0feac21d863b519caf2173cffad85ce14ac8709aa78489476dd5db3e06c38b671c18afe1e752f58df3f4a0db7f8
+"@github/hotkey@npm:1.6.1":
+  version: 1.6.1
+  resolution: "@github/hotkey@npm:1.6.1"
+  checksum: 1995a4bf095ec531e0b595d1a3a384611c737d0e5c7c72cb2cd5cb108243d5ef974fa9c550226cfcd484ca5d7000b33e2a2dfc83015af934813eb4ba8d211bf3
   languageName: node
   linkType: hard
 
@@ -2107,7 +2107,7 @@ __metadata:
   dependencies:
     "@babel/core": 7.14.3
     "@babel/eslint-parser": 7.14.3
-    "@github/hotkey": 1.4.4
+    "@github/hotkey": 1.6.1
     "@hotwired/turbo-rails": 7.0.0-beta.5
     "@popperjs/core": 2.9.2
     "@rails/actioncable": 6.1.4
