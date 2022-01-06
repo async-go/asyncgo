@@ -1293,20 +1293,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hotwired/turbo-rails@npm:7.0.0-beta.5":
-  version: 7.0.0-beta.5
-  resolution: "@hotwired/turbo-rails@npm:7.0.0-beta.5"
+"@hotwired/turbo-rails@npm:7.1.0":
+  version: 7.1.0
+  resolution: "@hotwired/turbo-rails@npm:7.1.0"
   dependencies:
-    "@hotwired/turbo": ^7.0.0-beta.4
-    "@rails/actioncable": ^6.1.0
-  checksum: 6419a67ded2453af9090fe08a88a468e44fe7230b92c0e812084f80b7a1e4090587cbde278aedb68a874787a0c882992a425fe6b15c87b74b1025c24413f7765
+    "@hotwired/turbo": ^7.1.0
+    "@rails/actioncable": ^6.0.0
+  checksum: 2a22f36c2e1b34d369f9d2253b7e3d490c0f18aa7f0cd32fd4a5fcb2568e67e0275452ce878942d15072f58c7bc4713d39bed6525a3e9e3ba614b60bb1b0f100
   languageName: node
   linkType: hard
 
-"@hotwired/turbo@npm:^7.0.0-beta.4":
-  version: 7.0.0-beta.5
-  resolution: "@hotwired/turbo@npm:7.0.0-beta.5"
-  checksum: 424a77249393373ce6f3d0b273c6ba8fa9c84854b2add33628b7b66da268abbdead2eead1afd76fa63012ec6ee271d7d6716a51e5eb58a5f72977eb5a83be6fb
+"@hotwired/turbo@npm:^7.1.0":
+  version: 7.1.0
+  resolution: "@hotwired/turbo@npm:7.1.0"
+  checksum: 4a0b80aa3ef922a012919cffe4ecb28214810e50d074aa39adc2e49c552058d6bd10e193194dba6ab217f9ca8147e911dc326c98163af4dc0a09defc90231051
   languageName: node
   linkType: hard
 
@@ -1327,17 +1327,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rails/actioncable@npm:6.1.4":
+"@rails/actioncable@npm:6.1.4, @rails/actioncable@npm:^6.0.0":
   version: 6.1.4
   resolution: "@rails/actioncable@npm:6.1.4"
   checksum: 2039c4ae831225ad2d370b7bed6d590be6b46366911dd40f5cea409114471e70b4d2610379aed1443bc3b327ee3c746b5e5c43f730968e78c7d19335bfe932de
-  languageName: node
-  linkType: hard
-
-"@rails/actioncable@npm:^6.1.0":
-  version: 6.1.3
-  resolution: "@rails/actioncable@npm:6.1.3"
-  checksum: 519463b2bcc8862ae74723397d7b6e43b95e53edf57614fc18d2d579f48b425d0545e243f770cb92533f9d9ca476fa4b45043ead0e611fa680769720c026edbc
   languageName: node
   linkType: hard
 
@@ -2108,7 +2101,7 @@ __metadata:
     "@babel/core": 7.14.3
     "@babel/eslint-parser": 7.14.3
     "@github/hotkey": 1.6.1
-    "@hotwired/turbo-rails": 7.0.0-beta.5
+    "@hotwired/turbo-rails": 7.1.0
     "@popperjs/core": 2.11.2
     "@rails/actioncable": 6.1.4
     "@rails/activestorage": 6.1.4
