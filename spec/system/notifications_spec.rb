@@ -31,7 +31,7 @@ RSpec.describe 'Notifications', type: :system do
     click_link 'New Topic'
     fill_in 'topic[title]', with: 'Sample topic'
     within('[data-target="topic_description"]') do
-      find('.tui-editor-contents').set('Sample topic description')
+      find('.toastui-editor-contents').set('Sample topic description')
     end
     click_button 'Create'
     click_link 'Sign out'
@@ -53,7 +53,7 @@ RSpec.describe 'Notifications', type: :system do
     click_link 'New Topic'
     fill_in 'topic[title]', with: 'Sample topic'
     within('[data-target="topic_description"]') do
-      find('.tui-editor-contents').set('Sample topic description')
+      find('.toastui-editor-contents').set('Sample topic description')
     end
     click_button 'Create'
     click_link 'Sign out'
@@ -80,7 +80,7 @@ RSpec.describe 'Notifications', type: :system do
     click_link 'New Topic'
     fill_in 'topic[title]', with: 'Sample topic'
     within('[data-target="topic_description"]') do
-      find('.tui-editor-contents').set('Sample topic description')
+      find('.toastui-editor-contents').set('Sample topic description')
     end
     click_button 'Create'
     click_link 'Sign out'
@@ -108,7 +108,7 @@ RSpec.describe 'Notifications', type: :system do
     click_link 'New Topic'
     fill_in 'topic[title]', with: 'Sample topic'
     within('[data-target="topic_description"]') do
-      find('.tui-editor-contents').set('Sample topic description')
+      find('.toastui-editor-contents').set('Sample topic description')
     end
     click_button 'Create'
     click_link 'Sign out'
@@ -118,7 +118,7 @@ RSpec.describe 'Notifications', type: :system do
     click_link 'Sample topic'
 
     within('[data-target="comment_body"]') do
-      find('.tui-editor-contents').set('Sample content')
+      find('.toastui-editor-contents').set('Sample content')
     end
     click_button 'Add Comment'
     click_link 'Sign out'
@@ -138,7 +138,7 @@ RSpec.describe 'Notifications', type: :system do
     click_link 'New Topic'
     fill_in 'topic[title]', with: 'Sample topic'
     within('[data-target="topic_description"]') do
-      find('.tui-editor-contents').set("This is a test mention for @#{user.email}")
+      find('.toastui-editor-contents').set("This is a test mention for @#{user.email}")
     end
     click_button 'Create'
     click_link 'Sign out'
@@ -158,7 +158,7 @@ RSpec.describe 'Notifications', type: :system do
     click_link 'New Topic'
     fill_in 'topic[title]', with: 'Sample topic'
     within('[data-target="topic_description"]') do
-      find('.tui-editor-contents').set('Sample topic description')
+      find('.toastui-editor-contents').set('Sample topic description')
     end
     click_button 'Create'
     click_link 'Sign out'
@@ -177,7 +177,7 @@ RSpec.describe 'Notifications', type: :system do
     click_link 'Topics'
     click_link 'Sample topic'
     within('[data-target="comment_body"]') do
-      find('.tui-editor-contents').set('Sample comment body')
+      find('.toastui-editor-contents').set('Sample comment body')
     end
     click_button 'Add Comment'
     click_link 'Sign out'
