@@ -20,5 +20,5 @@
         %button.btn.btn-sm.btn-outline-secondary{ data: { action: 'click->quote-reply#quote' } }
           Quote
     .row.ps-2
-      .tui-editor-contents.px-2!= comment.body_html
+      .toastui-editor-contents.px-2!= comment.body_html
       .d-none{ data: { 'quote-reply-target' => 'content' } }= comment.body

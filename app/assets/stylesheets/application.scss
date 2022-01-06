@@ -48,7 +48,7 @@ $theme-colors: (
 @import 'codemirror/lib/codemirror';
 @import '@toast-ui/editor/dist/toastui-editor';
 
-.tui-editor-contents {
+.toastui-editor-contents {
   font-size: 1rem;
   word-wrap: break-word;
 
@@ -65,15 +65,8 @@ $theme-colors: (
 }
 
 // Accessibility fixes for editor
-.te-mode-switch {
-  > {
-    .markdown {
-      color: #333;
-    }
-    .wysiwyg {
-      color: #333;
-    }
-  }
+.toastui-editor-mode-switch .tab-item {
+  color: #333 !important;
 }
 
 .navbar-brand img {

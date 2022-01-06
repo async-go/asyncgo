@@ -20,6 +20,6 @@ export default class extends Controller {
     const tribute = new Tribute({
       values: this.usersValue
     })
-    tribute.attach(this.element.getElementsByClassName('tui-editor-contents'))
+    tribute.attach(this.element.getElementsByClassName('toastui-editor-contents'))
   }
 }
