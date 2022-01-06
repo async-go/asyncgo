@@ -1411,10 +1411,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rails/ujs@npm:6.1.4":
-  version: 6.1.4
-  resolution: "@rails/ujs@npm:6.1.4"
-  checksum: 5cc92030ff456615bb34ef7d8e594d33aa9d0f981115f8f335aaa47f926ec0d133f36ac30c43940169dace1fb591e47dcb6efd4396ae6a4f8caa63f215e998a4
+"@rails/ujs@npm:7.0.1":
+  version: 7.0.1
+  resolution: "@rails/ujs@npm:7.0.1"
+  checksum: 511fa6e361bddd6da6c04eb67d671527a476c39ba690c7045382dadd3b86cae33145fe088b13dae464d399cb744d2d81192145c199a469f8cce407d30d3ed62e
   languageName: node
   linkType: hard
 
@@ -2164,11 +2164,11 @@ __metadata:
     "@popperjs/core": 2.11.2
     "@rails/actioncable": 7.0.1
     "@rails/activestorage": 7.0.1
-    "@rails/ujs": 6.1.4
+    "@rails/ujs": 7.0.1
     "@rails/webpacker": 6.0.0-rc.6
     "@toast-ui/editor": 3.1.2
     "@webpack-cli/serve": 1.6.0
-    babel-plugin-macros: ^3.1.0
+    babel-plugin-macros: 3.1.0
     bootstrap: 5.1.3
     codemirror: 5.65.0
     driver.js: 0.9.8
@@ -2217,7 +2217,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"babel-plugin-macros@npm:^3.1.0":
+"babel-plugin-macros@npm:3.1.0":
   version: 3.1.0
   resolution: "babel-plugin-macros@npm:3.1.0"
   dependencies:

@@ -82,14 +82,13 @@ Shoulda::Matchers.configure do |config|
   end
 end
 
-
 # Monkey patch to fix compatibility of RSpec with Rails 7
 # TODO: Remove once this gets fixed in RSpec
 module RSpec
   module Rails
     module Matchers
       class HaveEnqueuedMail < ActiveJob::HaveEnqueuedJob
-        def legacy_mail?(job)
+        def legacy_mail?(_job)
           false
         end
 
