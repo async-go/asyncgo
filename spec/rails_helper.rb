@@ -81,3 +81,22 @@ Shoulda::Matchers.configure do |config|
     with.library :rails
   end
 end
+
+
+# Monkey patch to fix compatibility of RSpec with Rails 7
+# TODO: Remove once this gets fixed in RSpec
+module RSpec
+  module Rails
+    module Matchers
+      class HaveEnqueuedMail < ActiveJob::HaveEnqueuedJob
+        def legacy_mail?(job)
+          false
+        end
+
+        def parameterized_mail?(job)
+          RSpec::Rails::FeatureCheck.has_action_mailer_parameterized? && job[:job] <= ActionMailer::MailDeliveryJob
+        end
+      end
+    end
+  end
+end
