@@ -2122,7 +2122,6 @@ __metadata:
     "@toast-ui/editor": 2.5.4
     "@webpack-cli/serve": 1.6.0
     bootstrap: 5.0.1
-    codemirror: 5.65.0
     driver.js: 0.9.8
     eslint: 7.27.0
     markdownlint-cli: 0.26.0
@@ -2563,13 +2562,6 @@ __metadata:
   version: 1.1.0
   resolution: "code-point-at@npm:1.1.0"
   checksum: 7d9837296e0f1c00239c88542f5a3e0bad11e45d3d0e8d9d097901fe54722dd5d2c006969077a287be8648a202c43f74e096f17552cbd897568308fba7b87ac0
-  languageName: node
-  linkType: hard
-
-"codemirror@npm:5.65.0":
-  version: 5.65.0
-  resolution: "codemirror@npm:5.65.0"
-  checksum: fbd925b2548e019fbffc798047431831fa4bac7106613b04dc78773a945760f43c3733069925e9058d2016dbbe345d70d618c9d3a67b233d14aa6ef121d24e46
   languageName: node
   linkType: hard
 
