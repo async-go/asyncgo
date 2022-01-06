@@ -1320,10 +1320,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@popperjs/core@npm:2.9.2":
-  version: 2.9.2
-  resolution: "@popperjs/core@npm:2.9.2"
-  checksum: cc4de8b46fc190805619224f1c683bee6a162276430af3728d35087099ad83a80da3c11c4eac7cb2b5aa2fa59d4c7c689e211a3e955136588ed6dedb5bff32c5
+"@popperjs/core@npm:2.11.2":
+  version: 2.11.2
+  resolution: "@popperjs/core@npm:2.11.2"
+  checksum: 6e89d94f6bec0116ea191b3cd3bb830a6b6670141c45373f2b242a4780cce1564cd8ff7a584f2f4017dc9a4f67ed899f99bcc5f07de1da1c0f8f2c6804fc45fe
   languageName: node
   linkType: hard
 
@@ -2097,7 +2097,7 @@ __metadata:
     "@babel/eslint-parser": 7.14.3
     "@github/hotkey": 1.4.4
     "@hotwired/turbo-rails": 7.0.0-beta.5
-    "@popperjs/core": 2.9.2
+    "@popperjs/core": 2.11.2
     "@rails/actioncable": 6.1.4
     "@rails/activestorage": 6.1.4
     "@rails/ujs": 6.1.4
