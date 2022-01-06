@@ -22,7 +22,7 @@ gem 'webpacker', '6.0.0.rc.6 ' # Transpile app-like JavaScript. Read more: https
 # Other
 gem 'acts-as-taggable-on', '~> 8.1.0' # Tags
 gem 'barnes', '~> 0.0.9' # heroku application metrics
-gem 'blazer', '~> 2.4.2' # Business Intelligence made easy
+gem 'blazer', '~> 2.5.0' # Business Intelligence made easy
 gem 'commonmarker', '~> 0.23.2' # GitHub Flavored Markdown renderer
 gem 'font-awesome-sass', '~> 5.15.1'
 gem 'gemoji', '~> 3.0.1' # emoji helpers
