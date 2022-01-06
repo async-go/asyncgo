@@ -1690,7 +1690,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@webpack-cli/serve@npm:1.4.0, @webpack-cli/serve@npm:^1.4.0":
+"@webpack-cli/serve@npm:1.6.0":
+  version: 1.6.0
+  resolution: "@webpack-cli/serve@npm:1.6.0"
+  peerDependencies:
+    webpack-cli: 4.x.x
+  peerDependenciesMeta:
+    webpack-dev-server:
+      optional: true
+  checksum: c998bf09cfaa413a5f0beaaeaec6f03f7c0d4780e4b088c99ed5d949b8cfd0570c8ff404f8ce6a922f896a4809fce3011e3d8d33849f385a5bec5e9cfc6b47a7
+  languageName: node
+  linkType: hard
+
+"@webpack-cli/serve@npm:^1.4.0":
   version: 1.4.0
   resolution: "@webpack-cli/serve@npm:1.4.0"
   peerDependencies:
@@ -2108,7 +2120,7 @@ __metadata:
     "@rails/ujs": 6.1.4
     "@rails/webpacker": 6.0.0-beta.6
     "@toast-ui/editor": 2.5.4
-    "@webpack-cli/serve": 1.4.0
+    "@webpack-cli/serve": 1.6.0
     bootstrap: 5.0.1
     codemirror: 5.61.1
     driver.js: 0.9.8
