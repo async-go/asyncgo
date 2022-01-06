@@ -20,22 +20,22 @@ gem 'sidekiq', '~> 6.3.1' # ActiveJob backend
 gem 'webpacker', '6.0.0.rc.6 ' # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 
 # Other
-gem 'acts-as-taggable-on', '~> 8.1.0' # Tags
+gem 'acts-as-taggable-on', '~> 9.0.0' # Tags
 gem 'barnes', '~> 0.0.9' # heroku application metrics
 gem 'blazer', '~> 2.5.0' # Business Intelligence made easy
 gem 'commonmarker', '~> 0.23.2' # GitHub Flavored Markdown renderer
 gem 'font-awesome-sass', '~> 5.15.1'
 gem 'gemoji', '~> 3.0.1' # emoji helpers
 gem 'ginjo-omniauth-slack', '~> 2.5', require: 'omniauth-slack'
-gem 'hamlit', '~> 2.15.0' # Templating language
-gem 'net-imap', '~> 0.2.2' # this is required
+gem 'hamlit', '~> 2.15.2' # Templating language
+gem 'net-imap', '~> 0.2.3' # this is required
 gem 'net-pop', '~> 0.1.1' # this is required
 gem 'net-smtp', '~> 0.3.1' # this is required
 gem 'omniauth-github', '~> 2.0.0'
 gem 'omniauth-google-oauth2', '~> 1.0.0'
 gem 'omniauth-microsoft_graph', '~> 1.0.0'
 gem 'omniauth-rails_csrf_protection', '~> 1.0.0'
-gem 'pagy', '~> 5.6.9' # pagination
+gem 'pagy', '~> 5.6.10' # pagination
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.7'
