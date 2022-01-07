@@ -60,8 +60,8 @@ GEM
       minitest (>= 5.1)
       tzinfo (~> 2.0)
       zeitwerk (~> 2.3)
-    acts-as-taggable-on (8.1.0)
-      activerecord (>= 5.0, < 6.2)
+    acts-as-taggable-on (9.0.0)
+      activerecord (>= 6.0, < 7.1)
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
     ast (2.4.2)
@@ -422,7 +422,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  acts-as-taggable-on (~> 8.1.0)
+  acts-as-taggable-on (~> 9.0.0)
   axe-core-rspec (~> 4.3.2)
   barnes (~> 0.0.9)
   blazer (~> 2.5.0)
