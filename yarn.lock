@@ -1388,26 +1388,33 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rails/actioncable@npm:6.1.4, @rails/actioncable@npm:^6.0.0":
+"@rails/actioncable@npm:7.0.1":
+  version: 7.0.1
+  resolution: "@rails/actioncable@npm:7.0.1"
+  checksum: e4c1c0a32a32699318e893b1fde9f650f918ab3af38143e81e6344ba7b42db10a4404c148227be7ea263256de3286d7e36756524a2111b98d1daa6c03e60a25a
+  languageName: node
+  linkType: hard
+
+"@rails/actioncable@npm:^6.0.0":
   version: 6.1.4
   resolution: "@rails/actioncable@npm:6.1.4"
   checksum: 2039c4ae831225ad2d370b7bed6d590be6b46366911dd40f5cea409114471e70b4d2610379aed1443bc3b327ee3c746b5e5c43f730968e78c7d19335bfe932de
   languageName: node
   linkType: hard
 
-"@rails/activestorage@npm:6.1.4":
-  version: 6.1.4
-  resolution: "@rails/activestorage@npm:6.1.4"
+"@rails/activestorage@npm:7.0.1":
+  version: 7.0.1
+  resolution: "@rails/activestorage@npm:7.0.1"
   dependencies:
-    spark-md5: ^3.0.0
-  checksum: 15e0ccc9bc8b302019daef02f189f861dbe0845cf53e295a45e0c78cacc9c3b8d3c2049d3622ab5cb14d1535e7dfd85d5451caaa7d1e3a0ceb536ba227d32468
+    spark-md5: ^3.0.1
+  checksum: d92ed29a67ec03b215343c55f7fa24810ee0b5b0e8416617b86ba809c7ce42b3ee8b006a8aebfb2070451743fb70317c6fa892f84665108354d1915aaaae1f6d
   languageName: node
   linkType: hard
 
-"@rails/ujs@npm:6.1.4":
-  version: 6.1.4
-  resolution: "@rails/ujs@npm:6.1.4"
-  checksum: 5cc92030ff456615bb34ef7d8e594d33aa9d0f981115f8f335aaa47f926ec0d133f36ac30c43940169dace1fb591e47dcb6efd4396ae6a4f8caa63f215e998a4
+"@rails/ujs@npm:7.0.1":
+  version: 7.0.1
+  resolution: "@rails/ujs@npm:7.0.1"
+  checksum: 511fa6e361bddd6da6c04eb67d671527a476c39ba690c7045382dadd3b86cae33145fe088b13dae464d399cb744d2d81192145c199a469f8cce407d30d3ed62e
   languageName: node
   linkType: hard
 
@@ -2155,13 +2162,13 @@ __metadata:
     "@github/hotkey": 1.6.1
     "@hotwired/turbo-rails": 7.1.0
     "@popperjs/core": 2.11.2
-    "@rails/actioncable": 6.1.4
-    "@rails/activestorage": 6.1.4
-    "@rails/ujs": 6.1.4
+    "@rails/actioncable": 7.0.1
+    "@rails/activestorage": 7.0.1
+    "@rails/ujs": 7.0.1
     "@rails/webpacker": 6.0.0-rc.6
     "@toast-ui/editor": 3.1.2
     "@webpack-cli/serve": 1.6.0
-    babel-plugin-macros: ^3.1.0
+    babel-plugin-macros: 3.1.0
     bootstrap: 5.1.3
     codemirror: 5.65.0
     driver.js: 0.9.8
@@ -2210,7 +2217,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"babel-plugin-macros@npm:^3.1.0":
+"babel-plugin-macros@npm:3.1.0":
   version: 3.1.0
   resolution: "babel-plugin-macros@npm:3.1.0"
   dependencies:
@@ -7359,7 +7366,7 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"spark-md5@npm:^3.0.0":
+"spark-md5@npm:^3.0.1":
   version: 3.0.2
   resolution: "spark-md5@npm:3.0.2"
   checksum: f36020b068e82800b240a4aed779a11e4a31ff21a0da14a75ca37ec856b6238e5c397c07d4ce99cd23a2113fea2855cf177b024ae2612cb47003e786768680b0
