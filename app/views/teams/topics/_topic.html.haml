@@ -33,7 +33,8 @@
     .col-auto.my-1
       = link_to team_topic_archive_path(topic.team, topic),
         class: 'btn btn-secondary btn-sm',
-        data: { turbo: false, confirm: 'Are you sure you want to permanently delete this topic?' } do
+        data: { turbo: false,
+          confirm: 'Are you sure you want to permanently delete this topic?' } do
         = assistive_icon('fas', 'trash', 'Delete this topic')
         .d-none.d-lg-inline.ms-1 Delete
     .col-auto.my-1
