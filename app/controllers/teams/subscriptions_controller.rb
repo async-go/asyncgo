@@ -5,7 +5,7 @@ module Teams
     def edit
       authorize(team)
 
-      redirect_to ::FastSpringAccountLinker.new(current_user.email).call
+      redirect_to ::FastSpringAccountLinker.new(current_user.email).call, allow_other_host: true
     end
   end
 end

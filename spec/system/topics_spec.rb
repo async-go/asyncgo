@@ -46,8 +46,8 @@ RSpec.describe 'Topics', type: :system do
 
     fill_in 'topic[title]', with: 'Sample title'
     within('[data-target="topic_description"]') do
-      click_button 'Markdown'
-      find('.CodeMirror').click
+      find('.tab-item', match: :first).click
+      find('.ProseMirror').click
       page.send_keys('__Sample topic content__')
     end
     click_button 'Create'
@@ -95,7 +95,7 @@ RSpec.describe 'Topics', type: :system do
     click_link 'Edit'
 
     within('[data-target="topic_description"]') do
-      find('.tui-editor-contents').set('This is an update')
+      find('.toastui-editor-contents').set('This is an update')
     end
     click_button 'Update'
 
@@ -113,8 +113,8 @@ RSpec.describe 'Topics', type: :system do
     click_link 'Edit'
 
     within('[data-target="topic_description"]') do
-      click_button 'Markdown'
-      find('.CodeMirror').click
+      find('.tab-item', match: :first).click
+      find('.ProseMirror').click
       page.send_keys('![image.png](data:image/png;base64,abcdefg)')
     end
     click_button 'Update'
@@ -132,8 +132,8 @@ RSpec.describe 'Topics', type: :system do
     click_link 'Edit'
 
     within('[data-target="topic_outcome"]') do
-      click_button 'Markdown'
-      find('.CodeMirror').click
+      find('.tab-item', match: :first).click
+      find('.ProseMirror').click
       page.send_keys('![image.png](data:image/png;base64,abcdefg)')
     end
     click_button 'Update'
@@ -153,7 +153,7 @@ RSpec.describe 'Topics', type: :system do
     update_topic_path = team_topic_path(topic.team, topic)
     expect(page).to have_selector("form[action='#{update_topic_path}']")
     within('[data-target="topic_description"]') do
-      find('.tui-editor-contents').set('Sample topic description')
+      find('.toastui-editor-contents').set('Sample topic description')
     end
     topic.update!(description: 'This is an external update',
                   description_html: '<p>This is an external update',
@@ -176,7 +176,7 @@ RSpec.describe 'Topics', type: :system do
     update_topic_path = team_topic_path(topic.team, topic)
     expect(page).to have_selector("form[action='#{update_topic_path}']")
     within('[data-target="topic_outcome"]') do
-      find('.tui-editor-contents').set('Sample topic outcome')
+      find('.toastui-editor-contents').set('Sample topic outcome')
     end
     topic.update!(outcome: 'This is an external update',
                   outcome_html: '<p>This is an external update</p>',
@@ -197,8 +197,8 @@ RSpec.describe 'Topics', type: :system do
     click_link 'Edit'
 
     within('[data-target="topic_outcome"]') do
-      click_button 'Markdown'
-      find('.CodeMirror').click
+      find('.tab-item', match: :first).click
+      find('.ProseMirror').click
       page.send_keys('__Sample outcome__')
     end
     click_button 'Update'

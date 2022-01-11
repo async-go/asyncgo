@@ -73,14 +73,14 @@
   .row.mt-2
     .col-lg-7
       %h6.bg-secondary.p-1.mt-2.text-white.small#topic-description Description
-      .tui-editor-contents!= topic.description_html
+      .toastui-editor-contents!= topic.description_html
 
     .col-lg-5.mb-2
       %h6.bg-accent.p-1.mt-2.text-white.small#topic-outcome
         Outcome
         - if topic.active?
           (Work in Progress)
-      .tui-editor-contents!= topic.outcome_html
+      .toastui-editor-contents!= topic.outcome_html
     .row
       .col-auto.my-2#topic-participants
         = link_to image_tag("#{topic.user.gravatar_url}?s=20&d=retro",
