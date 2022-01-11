@@ -8,7 +8,7 @@
           = link_to root_path, class: 'navbar-brand me-4 border-2', title: 'Topics',
             data: { controller: 'hotkey', hotkey: 'h' } do
             = image_tag('logo.svg', alt: 'AsyncGo logo', class: 'img-fluid mt-1')
-            %span.text-nowrap
+            %span.text-nowrap.d-none.d-sm-inline
               %span.ms-1> Async
               %span.text-accent.me-3 Go
           - if current_user&.team
@@ -17,6 +17,9 @@
               id: 'notifications' do
               = assistive_icon('fas', 'bell', 'Has notification', classname: 'text-warning')
               %span.ms-1.text-white= unique_unread_notifications.count
+            = link_to new_team_topic_path(current_user.team) do
+              .btn.btn-accent.text-white.ms-auto.me-3.mt-1.text-decoration-none#new-topic-button
+                = assistive_icon('fas', 'file-medical', 'New Topic')
           %button.navbar-toggler.border-0{ type: 'button', 'data-bs-toggle' => 'collapse',
             'data-bs-target' => '#navbar-content', 'aria-controls' => 'navbar-content',
             'aria-expanded' => 'false', 'aria-label' => 'Toggle navigation' }
@@ -25,13 +28,6 @@
             %ul.navbar-nav.ms-auto
               - if current_user
                 - if current_user.team
-                  %li.nav-item.pe-3.mt-1
-                    %span
-                      = link_to new_team_topic_path(current_user.team) do
-                        .btn.btn-accent.text-white.btn-block.w-100.mb-2#new-topic-button
-                          = assistive_icon('fas', 'file-medical', 'New Topic')
-                          .d-lg-none
-                            New Topic
                   %li.pe-3
                     %span.mt-4
                       = form_with(url: team_topics_path(current_user.team), method: :get) do |form|
