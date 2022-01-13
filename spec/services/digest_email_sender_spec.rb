@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe DigestEmailSender, type: :service do
-  let!(:user) { create(:user, :team) }
+  let!(:user) { create(:user, :team, :name) }
 
   let(:recently_resolved_topic) do
     create(:topic, status: :resolved, updated_at: 4.hours.ago, user:, team: user.team)
@@ -20,6 +20,13 @@ RSpec.describe DigestEmailSender, type: :service do
     it 'does not create digests for users that disabled it' do
       unread_notification
       user.preferences.update!(digest_enabled: false)
+
+      expect { call }.not_to have_enqueued_mail(DigestMailer, :digest_email)
+    end
+
+    it 'does not create digests for users who have never logged in' do
+      unread_notification
+      user.update!(name: nil)
 
       expect { call }.not_to have_enqueued_mail(DigestMailer, :digest_email)
     end
