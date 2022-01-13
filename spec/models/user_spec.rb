@@ -54,8 +54,7 @@ RSpec.describe User, type: :model do
 
       it 'sets the last login time' do
         expect(from_omniauth.last_login).not_to equal(nil)
-      end      
-
+      end
     end
 
     context 'when user does not exist' do
@@ -73,8 +72,7 @@ RSpec.describe User, type: :model do
 
       it 'sets the last login time' do
         expect(from_omniauth.last_login).not_to equal(nil)
-      end      
-      
+      end
     end
   end
 

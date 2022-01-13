@@ -25,7 +25,7 @@ class User < ApplicationRecord
     User.where(email:).first_or_initialize.tap do |user|
       user.preferences ||= user.build_preferences
       user.name = name
-      user.last_login = Time.now
+      user.last_login = Time.zone.now
       user.save!
     end
   end
