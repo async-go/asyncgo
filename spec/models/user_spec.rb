@@ -51,6 +51,11 @@ RSpec.describe User, type: :model do
       it 'updates user name' do
         expect { from_omniauth }.to change { user.reload.name }.from(nil).to('John Sample')
       end
+
+      it 'sets the last login time' do
+        expect(from_omniauth.last_login).not_to equal(nil)
+      end      
+
     end
 
     context 'when user does not exist' do
@@ -65,6 +70,11 @@ RSpec.describe User, type: :model do
       it 'returns new user' do
         expect(from_omniauth).to have_attributes(email: 'john@example.com', name: 'John Sample')
       end
+
+      it 'sets the last login time' do
+        expect(from_omniauth.last_login).not_to equal(nil)
+      end      
+      
     end
   end
 

@@ -6,6 +6,7 @@ class User < ApplicationRecord
                     format: { with: /\A(.+)@(.+)\z/ }
   validates :name, presence: { allow_blank: false, allow_empty: false, allow_nil: true }
   validates :preferences, presence: true
+  validates :last_login, presence: { allow_blank: false, allow_empty: false, allow_nil: true }
 
   belongs_to :team, optional: true
 
@@ -24,6 +25,7 @@ class User < ApplicationRecord
     User.where(email:).first_or_initialize.tap do |user|
       user.preferences ||= user.build_preferences
       user.name = name
+      user.last_login = Time.now
       user.save!
     end
   end
