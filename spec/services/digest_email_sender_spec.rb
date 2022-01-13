@@ -18,7 +18,7 @@ RSpec.describe DigestEmailSender, type: :service do
     subject(:call) { described_class.new.call }
 
     describe 'when users have never logged in before' do
-      it 'does never creates digests' do
+      it 'never creates digests' do
         unread_notification
 
         expect { call }.not_to have_enqueued_mail(DigestMailer, :digest_email)
