@@ -1,4 +1,4 @@
-import { Controller } from 'stimulus'
+import { Controller } from '@hotwired/stimulus'
 import Editor from '@toast-ui/editor'
 
 export default class extends Controller {

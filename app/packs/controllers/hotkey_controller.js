@@ -1,4 +1,4 @@
-import { Controller } from 'stimulus'
+import { Controller } from '@hotwired/stimulus'
 import { install, uninstall } from '@github/hotkey'
 
 export default class extends Controller {
