@@ -1317,7 +1317,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hotwired/stimulus-webpack-helpers@npm:^1.0.1":
+"@hotwired/stimulus-webpack-helpers@npm:1.0.1":
   version: 1.0.1
   resolution: "@hotwired/stimulus-webpack-helpers@npm:1.0.1"
   peerDependencies:
@@ -2200,7 +2200,7 @@ __metadata:
     "@babel/eslint-parser": 7.16.5
     "@github/hotkey": 1.6.1
     "@hotwired/stimulus": 3.0.1
-    "@hotwired/stimulus-webpack-helpers": ^1.0.1
+    "@hotwired/stimulus-webpack-helpers": 1.0.1
     "@hotwired/turbo-rails": 7.1.0
     "@popperjs/core": 2.11.2
     "@rails/actioncable": 7.0.1
