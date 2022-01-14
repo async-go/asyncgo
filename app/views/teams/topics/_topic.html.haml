@@ -31,6 +31,13 @@
             = assistive_icon('fas', 'undo', 'Reopen this topic')
             .d-none.d-lg-inline Reopen
     .col-auto.my-1
+      = link_to team_topic_archive_path(topic.team, topic),
+        class: 'btn btn-secondary btn-sm',
+        data: { turbo: false,
+          confirm: 'This will permanently hide it. Are you sure?' } do
+        = assistive_icon('fas', 'trash', 'Archive this topic')
+        .d-none.d-lg-inline.ms-1 Archive
+    .col-auto.my-1
       = form_with(url: team_topic_subscribe_path(topic.team, topic)) do |subscription_form|
         - if user_subscribed?(topic)
           = subscription_form.hidden_field :subscribed, value: 0

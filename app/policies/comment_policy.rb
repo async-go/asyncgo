@@ -8,7 +8,8 @@ class CommentPolicy < ApplicationPolicy
 
   def edit?
     user &&
-      record.user == user
+      record.user == user &&
+      record.is_archived == false
   end
 
   def create?
@@ -18,6 +19,13 @@ class CommentPolicy < ApplicationPolicy
 
   def update?
     user &&
-      record.user == user
+      record.user == user &&
+      record.is_archived == false
+  end
+
+  def archive?
+    user &&
+      record.user == user &&
+      record.is_archived == false
   end
 end

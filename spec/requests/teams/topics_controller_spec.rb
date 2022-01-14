@@ -57,6 +57,34 @@ RSpec.describe Teams::TopicsController, type: :request do
     include_examples 'unauthorized user examples'
   end
 
+  describe 'GET archive' do
+    subject(:get_archive) { get "/teams/#{topic.team.id}/topics/#{topic.id}/archive" }
+
+    let(:topic) { create(:topic) }
+
+    context 'when user is authorized' do
+      before do
+        sign_in(topic.user)
+      end
+
+      it 'removes the comment' do
+        expect { get_archive }.to change { Topic.find_by(id: topic.id).is_archived }.from(false).to(true)
+      end
+
+      it 'sets the flash' do
+        get_archive
+
+        expect(controller.flash[:success]).to eq('Topic was successfully archived.')
+      end
+
+      it 'redirects to root path' do
+        expect(get_archive).to redirect_to(root_path)
+      end
+    end
+
+    include_examples 'unauthorized user examples'
+  end
+
   describe 'GET new' do
     subject(:get_new) { get "/teams/#{team.id}/topics/new", params: }
 

@@ -15,6 +15,15 @@ module Teams
         authorize(@comment)
       end
 
+      def archive
+        @comment = comment
+        authorize(@comment)
+        @comment.is_archived = true
+        @comment.save
+
+        redirect_to team_topic_path(topic.team, topic), flash: { success: 'Comment was successfully archived.' }
+      end
+
       def create # rubocop:disable Metrics/MethodLength
         @comment = topic.comments.build
         authorize(@comment)

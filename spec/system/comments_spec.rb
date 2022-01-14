@@ -47,6 +47,21 @@ RSpec.describe 'Comments', type: :system do
     expect(page).to have_text('This is updated content')
   end
 
+  it 'allows the user to archive a comment' do
+    user = create(:user, :team)
+    comment = create(:comment, user:)
+
+    visit '/'
+    sign_in_user(user)
+    click_link 'Topics'
+    click_link comment.topic.title
+    expect(page).to have_text(comment.body)
+    accept_alert do
+      click_link 'Archive', href: team_topic_comment_archive_path(comment.topic.team, comment.topic, comment)
+    end
+    expect(page).not_to have_text(comment.body)
+  end
+
   it 'prevents uploading image data' do
     user = create(:user, :team)
     topic = create(:topic, team: user.team)
