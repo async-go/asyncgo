@@ -1317,6 +1317,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@hotwired/stimulus-webpack-helpers@npm:1.0.1":
+  version: 1.0.1
+  resolution: "@hotwired/stimulus-webpack-helpers@npm:1.0.1"
+  peerDependencies:
+    "@hotwired/stimulus": ">= 3.0"
+  checksum: 4241f935dd43f128dc84c33bba334d50894de52022d292f16e80cf1c05fa80c92f92200d03a65b10bc8c1c8b4a20758ca705ee24cca29b9478a8fa17f3932859
+  languageName: node
+  linkType: hard
+
+"@hotwired/stimulus@npm:3.0.1":
+  version: 3.0.1
+  resolution: "@hotwired/stimulus@npm:3.0.1"
+  checksum: 2c7a36dedb4935aa31924d0b467e5376ba16d18834c36f3199c447b7e2131d9c40fb9b4428d37354fe7c2c19969b32cde0fa08dc0e885c9ad776ed81172cf5e1
+  languageName: node
+  linkType: hard
+
 "@hotwired/turbo-rails@npm:7.1.0":
   version: 7.1.0
   resolution: "@hotwired/turbo-rails@npm:7.1.0"
@@ -1458,38 +1474,6 @@ __metadata:
     webpack-merge: ^5.8.0
     webpack-sources: ^3.2.1
   checksum: 16db66b597cb1c5201fe9fb366d204ccc22298ad2efc5f80afa981fcc197d972238e5737be8e0a8032d66643b13b4ee71a368d705dcd82f745e9b8ae57825554
-  languageName: node
-  linkType: hard
-
-"@stimulus/core@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "@stimulus/core@npm:2.0.0"
-  dependencies:
-    "@stimulus/mutation-observers": ^2.0.0
-  checksum: b06659e55ea456e9624eb233d090a97b8ae24becb5bca6c8405a490899dc69141d7943d8eae066fa71f117395a348c35b1a407070654cdd03cf4d4afb1e9618b
-  languageName: node
-  linkType: hard
-
-"@stimulus/multimap@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "@stimulus/multimap@npm:2.0.0"
-  checksum: 99b1a429764a586f9ef329a52b6f9c0f5d4710540c37b8fbd41c8b093335eab113a616b08ba8678965847ac70e8b552109187e2a5bb60493bdcd93879cc3837d
-  languageName: node
-  linkType: hard
-
-"@stimulus/mutation-observers@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "@stimulus/mutation-observers@npm:2.0.0"
-  dependencies:
-    "@stimulus/multimap": ^2.0.0
-  checksum: 577ea4d03d9cdcae31cc4ec47ab84cea936f05651772578663804aa6c9c72b077535e5c2e55ee097225ac42539a3640b568af84266387822559afc9360b67ae4
-  languageName: node
-  linkType: hard
-
-"@stimulus/webpack-helpers@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "@stimulus/webpack-helpers@npm:2.0.0"
-  checksum: 5298a20b1e18168a424e7ac894509f0d15ab762233abf2000e89769a6c9b087371fdc224e5c9edc5d236bd703ac147c022e04e3bf961675c47df37d64528aead
   languageName: node
   linkType: hard
 
@@ -2215,6 +2199,8 @@ __metadata:
     "@babel/core": 7.16.7
     "@babel/eslint-parser": 7.16.5
     "@github/hotkey": 1.6.1
+    "@hotwired/stimulus": 3.0.1
+    "@hotwired/stimulus-webpack-helpers": 1.0.1
     "@hotwired/turbo-rails": 7.1.0
     "@popperjs/core": 2.11.2
     "@rails/actioncable": 7.0.1
@@ -2231,11 +2217,10 @@ __metadata:
     markdownlint-cli: 0.30.0
     prettier: 2.5.1
     standard: 16.0.4
-    stimulus: 2.0.0
     tributejs: 5.1.3
     webpack: 5.65.0
     webpack-cli: 4.9.1
-    webpack-dev-server: 4.7.2
+    webpack-dev-server: 4.7.3
   languageName: unknown
   linkType: soft
 
@@ -5227,10 +5212,10 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
-"node-forge@npm:^0.10.0":
-  version: 0.10.0
-  resolution: "node-forge@npm:0.10.0"
-  checksum: c7a729933a0391e4f434d4455705e869340bf91c3cc6b51b3844a91a5ac9db6f8697f600ab1e62e25f990382b2c1592d93d31fd831bb1a0b1e66ce28d9d6d124
+"node-forge@npm:^1.2.0":
+  version: 1.2.0
+  resolution: "node-forge@npm:1.2.0"
+  checksum: a0a8a66fc1cf0cb7d619addd654188808cb773c28821889e32eef4f81abab460fb6bcb93b9a28d9b2762708f1c60e972ec65a50d1d7e16c9a8ec46c7fae4092c
   languageName: node
   linkType: hard
 
@@ -6286,12 +6271,12 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"selfsigned@npm:^1.10.11":
-  version: 1.10.11
-  resolution: "selfsigned@npm:1.10.11"
+"selfsigned@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "selfsigned@npm:2.0.0"
   dependencies:
-    node-forge: ^0.10.0
-  checksum: d07a97842bf90bcafe3e212f83e226f86c19eab1ea9342b7cdeffb0607a62f114dd7e8722c8223e8868d2a5a4f15808d3df3718877c5d33823220a18263b220e
+    node-forge: ^1.2.0
+  checksum: 7d1c411006f8809c90a28bc9e685a556ab3f05d5c09818876f7731385c7eae828164ea273926e45a40bf498d59cfd67c491ba36947efcd25b05d809280cd359c
   languageName: node
   linkType: hard
 
@@ -6660,16 +6645,6 @@ resolve@^2.0.0-next.3:
   version: 1.5.0
   resolution: "statuses@npm:1.5.0"
   checksum: 57735269bf231176a60deb80f6d60214cb4a87663b0937e79497afe9aebe2597f8377fd28893f4d1776205f18dd0b927774a26b72051411ac5108e9e2dfc77d2
-  languageName: node
-  linkType: hard
-
-"stimulus@npm:2.0.0":
-  version: 2.0.0
-  resolution: "stimulus@npm:2.0.0"
-  dependencies:
-    "@stimulus/core": ^2.0.0
-    "@stimulus/webpack-helpers": ^2.0.0
-  checksum: 30e9a874b4ff4285664ca0c3bba579819c67b6546ee08c513b134c00d7907d15da6cc71c038a27081251506e8a88e81149bcef000d5e883e0737c5fe0aaa0fe3
   languageName: node
   linkType: hard
 
@@ -7213,9 +7188,9 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"webpack-dev-server@npm:4.7.2":
-  version: 4.7.2
-  resolution: "webpack-dev-server@npm:4.7.2"
+"webpack-dev-server@npm:4.7.3":
+  version: 4.7.3
+  resolution: "webpack-dev-server@npm:4.7.3"
   dependencies:
     "@types/bonjour": ^3.5.9
     "@types/connect-history-api-fallback": ^1.3.5
@@ -7239,7 +7214,7 @@ resolve@^2.0.0-next.3:
     p-retry: ^4.5.0
     portfinder: ^1.0.28
     schema-utils: ^4.0.0
-    selfsigned: ^1.10.11
+    selfsigned: ^2.0.0
     serve-index: ^1.9.1
     sockjs: ^0.3.21
     spdy: ^4.0.2
@@ -7253,7 +7228,7 @@ resolve@^2.0.0-next.3:
       optional: true
   bin:
     webpack-dev-server: bin/webpack-dev-server.js
-  checksum: 1c32f8d6affe3cae1156b4031dca3096c0e707737c3cd2c7d6ab81b5cef02694afd03025052e56b1b94639b8169464bd4b2f7d1abf4937b4012baabc80b5ef6f
+  checksum: 573e15853db95d43f9b1bc7f41dc8c277a3a8a3c7dc92fd42235b57ceffadf3fe336c5800578c7e5214cd58dffbfb5731db3c20b29ab1aa9c1295048a9bda7a4
   languageName: node
   linkType: hard
 

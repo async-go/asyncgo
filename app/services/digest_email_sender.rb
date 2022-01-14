@@ -6,6 +6,8 @@ class DigestEmailSender < ApplicationService
     User.includes(:preferences).find_each do |user|
       next unless user.preferences.digest_enabled?
 
+      next unless user.last_login
+
       unread_notifications = unread_notifications_for(user)
       recently_resolved_topics = recently_resolved_topics_for(user)
       next if unread_notifications.empty? && recently_resolved_topics.empty?

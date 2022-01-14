@@ -17,40 +17,54 @@ RSpec.describe DigestEmailSender, type: :service do
   describe '#call' do
     subject(:call) { described_class.new.call }
 
-    it 'does not create digests for users that disabled it' do
-      unread_notification
-      user.preferences.update!(digest_enabled: false)
+    describe 'when users have never logged in before' do
+      it 'never creates digests' do
+        unread_notification
 
-      expect { call }.not_to have_enqueued_mail(DigestMailer, :digest_email)
+        expect { call }.not_to have_enqueued_mail(DigestMailer, :digest_email)
+      end
     end
 
-    it 'does not create digest when there are no notifications or topics' do
-      expect { call }.not_to have_enqueued_mail(DigestMailer, :digest_email)
-    end
+    describe 'when users have logged in before' do
+      before do
+        user.update!(last_login: Time.zone.now)
+      end
 
-    it 'creates digest when there are recently reseolved topics' do
-      recently_resolved_topic
+      it 'does not create digests for users that disabled it' do
+        unread_notification
+        user.preferences.update!(digest_enabled: false)
 
-      expect { call }.to have_enqueued_mail(DigestMailer, :digest_email).with(
-        a_hash_including(params: { user: })
-      )
-    end
+        expect { call }.not_to have_enqueued_mail(DigestMailer, :digest_email)
+      end
 
-    it 'creates digest when there are unread notifications' do
-      unread_notification
+      it 'does not create digest when there are no notifications or topics' do
+        expect { call }.not_to have_enqueued_mail(DigestMailer, :digest_email)
+      end
 
-      expect { call }.to have_enqueued_mail(DigestMailer, :digest_email).with(
-        a_hash_including(params: { user: })
-      )
-    end
+      it 'creates digest when there are recently resolved topics' do
+        recently_resolved_topic
 
-    it 'creates digest when there are notifications and topics' do
-      recently_resolved_topic
-      unread_notification
+        expect { call }.to have_enqueued_mail(DigestMailer, :digest_email).with(
+          a_hash_including(params: { user: })
+        )
+      end
 
-      expect { call }.to have_enqueued_mail(DigestMailer, :digest_email).with(
-        a_hash_including(params: { user: })
-      )
+      it 'creates digest when there are unread notifications' do
+        unread_notification
+
+        expect { call }.to have_enqueued_mail(DigestMailer, :digest_email).with(
+          a_hash_including(params: { user: })
+        )
+      end
+
+      it 'creates digest when there are notifications and topics' do
+        recently_resolved_topic
+        unread_notification
+
+        expect { call }.to have_enqueued_mail(DigestMailer, :digest_email).with(
+          a_hash_including(params: { user: })
+        )
+      end
     end
   end
 end
