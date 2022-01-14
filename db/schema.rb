@@ -78,7 +78,6 @@ ActiveRecord::Schema.define(version: 2022_01_13_140839) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "is_archived", default: false
     t.index ["topic_id"], name: "index_comments_on_topic_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
@@ -161,7 +160,6 @@ ActiveRecord::Schema.define(version: 2022_01_13_140839) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "pinned", default: false, null: false
-    t.boolean "is_archived", default: false
     t.index ["team_id"], name: "index_topics_on_team_id"
     t.index ["user_id"], name: "index_topics_on_user_id"
   end
