@@ -69,6 +69,11 @@ $theme-colors: (
   color: #333 !important;
 }
 
+// Remove unclickable white area inside of editor
+.toastui-editor {
+  min-height: 0px !important;
+}
+
 .navbar-brand img {
   width: 3rem;
 }
