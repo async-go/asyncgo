@@ -40,7 +40,7 @@ RSpec.describe Teams::Topics::CommentsController, type: :request do
       it 'sets the flash' do
         get_archive
 
-        expect(controller.flash[:success]).to eq('Comment was successfully deleted.')
+        expect(controller.flash[:success]).to eq('Comment was successfully archived.')
       end
 
       it 'redirects to topic page' do

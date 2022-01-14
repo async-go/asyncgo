@@ -21,7 +21,7 @@ module Teams
         @comment.is_archived = true
         @comment.save
 
-        redirect_to team_topic_path(topic.team, topic), flash: { success: 'Comment was successfully deleted.' }
+        redirect_to team_topic_path(topic.team, topic), flash: { success: 'Comment was successfully archived.' }
       end
 
       def create # rubocop:disable Metrics/MethodLength

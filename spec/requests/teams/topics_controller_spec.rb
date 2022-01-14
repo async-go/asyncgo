@@ -74,7 +74,7 @@ RSpec.describe Teams::TopicsController, type: :request do
       it 'sets the flash' do
         get_archive
 
-        expect(controller.flash[:success]).to eq('Topic was successfully deleted.')
+        expect(controller.flash[:success]).to eq('Topic was successfully archived.')
       end
 
       it 'redirects to root path' do

@@ -69,7 +69,7 @@ RSpec.describe 'Topics', type: :system do
     expect(page).to have_text('goodbye')
   end
 
-  it 'allows the user to delete a topic' do
+  it 'allows the user to archive a topic' do
     user = create(:user, :team)
     topic = create(:topic, team: user.team)
 
@@ -79,7 +79,7 @@ RSpec.describe 'Topics', type: :system do
     click_link topic.title
     expect(page).to have_text(topic.title)
     accept_alert do
-      click_link 'Delete', href: team_topic_archive_path(topic.team, topic)
+      click_link 'Archive', href: team_topic_archive_path(topic.team, topic)
     end
     expect(page).not_to have_text(topic.title)
   end

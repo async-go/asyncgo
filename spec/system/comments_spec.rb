@@ -47,7 +47,7 @@ RSpec.describe 'Comments', type: :system do
     expect(page).to have_text('This is updated content')
   end
 
-  it 'allows the user to delete a comment' do
+  it 'allows the user to archive a comment' do
     user = create(:user, :team)
     comment = create(:comment, user:)
 
@@ -57,7 +57,7 @@ RSpec.describe 'Comments', type: :system do
     click_link comment.topic.title
     expect(page).to have_text(comment.body)
     accept_alert do
-      click_link 'Delete', href: team_topic_comment_archive_path(comment.topic.team, comment.topic, comment)
+      click_link 'Archive', href: team_topic_comment_archive_path(comment.topic.team, comment.topic, comment)
     end
     expect(page).not_to have_text(comment.body)
   end

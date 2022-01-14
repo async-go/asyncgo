@@ -34,9 +34,9 @@
       = link_to team_topic_archive_path(topic.team, topic),
         class: 'btn btn-secondary btn-sm',
         data: { turbo: false,
-          confirm: 'Are you sure you want to permanently delete this topic?' } do
-        = assistive_icon('fas', 'trash', 'Delete this topic')
-        .d-none.d-lg-inline.ms-1 Delete
+          confirm: 'Are you sure you want to permanently archive this topic? It will no longer be visible to anyone in your project and only support can recover it for you.' } do
+        = assistive_icon('fas', 'trash', 'Archive this topic')
+        .d-none.d-lg-inline.ms-1 Archive
     .col-auto.my-1
       = form_with(url: team_topic_subscribe_path(topic.team, topic)) do |subscription_form|
         - if user_subscribed?(topic)
