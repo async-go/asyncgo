@@ -198,10 +198,9 @@ RSpec.describe OmniauthCallbacksController, type: :request do
     end
 
     before do
-      authed_user = Struct.new(:token)
       strategy_double = instance_double(
         OmniAuth::Slack::OAuth2::AccessToken,
-        authed_user: authed_user.new({ token: 'test' })
+        authed_user: Struct.new(:token).new({ token: 'test' })
       )
       allow_any_instance_of(OmniAuth::Strategies::Slack).to receive(:access_token).and_return(strategy_double) # rubocop:disable RSpec/AnyInstance
 
