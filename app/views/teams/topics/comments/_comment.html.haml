@@ -24,7 +24,7 @@
           = link_to 'Archive',
             team_topic_comment_archive_path(comment.topic.team, comment.topic, comment),
             class: 'btn btn-outline-secondary btn-sm',
-            data: { confirm: 'This will permanently remove it. Are you sure?' }
+            data: { confirm: 'This will permanently hide it. Are you sure?' }
     .row.ps-2
       .toastui-editor-contents.px-2!= comment.body_html
       .d-none{ data: { 'quote-reply-target' => 'content' } }= comment.body
