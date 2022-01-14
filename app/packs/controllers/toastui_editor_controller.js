@@ -18,7 +18,8 @@ export default class extends Controller {
         ['ul', 'ol', 'task'],
         ['table', 'link'],
         ['code', 'codeblock']
-      ]
+      ],
+      autofocus: false
     })
   }
 
