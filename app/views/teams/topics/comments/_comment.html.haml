@@ -23,7 +23,7 @@
         - if comment.user == current_user
           = link_to 'Archive',
             team_topic_comment_archive_path(comment.topic.team, comment.topic, comment),
-            class: 'btn btn-outline-secondary btn-sm',
+            class: 'btn btn-outline-secondary btn-sm', method: :put,
             data: { confirm: 'This will permanently hide it. Are you sure?' }
     .row.ps-2
       .toastui-editor-contents.px-2!= comment.body_html

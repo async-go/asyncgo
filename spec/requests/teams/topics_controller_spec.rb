@@ -57,8 +57,8 @@ RSpec.describe Teams::TopicsController, type: :request do
     include_examples 'unauthorized user examples'
   end
 
-  describe 'GET archive' do
-    subject(:get_archive) { get "/teams/#{topic.team.id}/topics/#{topic.id}/archive" }
+  describe 'PUT archive' do
+    subject(:put_archive) { put "/teams/#{topic.team.id}/topics/#{topic.id}/archive" }
 
     let(:topic) { create(:topic) }
 
@@ -68,17 +68,17 @@ RSpec.describe Teams::TopicsController, type: :request do
       end
 
       it 'removes the comment' do
-        expect { get_archive }.to change { Topic.find_by(id: topic.id).is_archived }.from(false).to(true)
+        expect { put_archive }.to change { Topic.find_by(id: topic.id).is_archived }.from(false).to(true)
       end
 
       it 'sets the flash' do
-        get_archive
+        put_archive
 
         expect(controller.flash[:success]).to eq('Topic was successfully archived.')
       end
 
       it 'redirects to root path' do
-        expect(get_archive).to redirect_to(root_path)
+        expect(put_archive).to redirect_to(root_path)
       end
     end
 
