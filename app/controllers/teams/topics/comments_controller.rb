@@ -18,8 +18,7 @@ module Teams
       def archive
         @comment = comment
         authorize(@comment)
-        @comment.is_archived = true
-        @comment.save
+        @comment.update(is_archived: true)
 
         redirect_to team_topic_path(topic.team, topic), flash: { success: 'Comment was successfully archived.' }
       end

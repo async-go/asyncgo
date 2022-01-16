@@ -23,8 +23,8 @@ RSpec.describe Teams::Topics::CommentsController, type: :request do
     include_examples 'unauthorized user examples'
   end
 
-  describe 'GET archive' do
-    subject(:get_archive) { get "/teams/#{topic.team.id}/topics/#{topic.id}/comments/#{comment.id}/archive" }
+  describe 'PUT archive' do
+    subject(:put_archive) { put "/teams/#{topic.team.id}/topics/#{topic.id}/comments/#{comment.id}/archive" }
 
     let(:comment) { create(:comment, topic:) }
 
@@ -34,17 +34,17 @@ RSpec.describe Teams::Topics::CommentsController, type: :request do
       end
 
       it 'removes the comment' do
-        expect { get_archive }.to change { Comment.find_by(id: comment.id).is_archived }.from(false).to(true)
+        expect { put_archive }.to change { Comment.find_by(id: comment.id).is_archived }.from(false).to(true)
       end
 
       it 'sets the flash' do
-        get_archive
+        put_archive
 
         expect(controller.flash[:success]).to eq('Comment was successfully archived.')
       end
 
       it 'redirects to topic page' do
-        expect(get_archive).to redirect_to(team_topic_path(topic.team, topic))
+        expect(put_archive).to redirect_to(team_topic_path(topic.team, topic))
       end
     end
 

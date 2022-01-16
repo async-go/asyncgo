@@ -41,8 +41,7 @@ module Teams
     def archive
       @topic = topic
       authorize(@topic)
-      @topic.is_archived = true
-      @topic.save
+      @topic.update(is_archived: true)
 
       redirect_to root_path, flash: { success: 'Topic was successfully archived.' }
     end
