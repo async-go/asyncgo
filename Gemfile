@@ -6,7 +6,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '3.1.0'
 
 # Core
-gem 'bootsnap', '~> 1.9.3', require: false # Reduces boot times through caching; required in config/boot.rb
+gem 'bootsnap', '~> 1.10.0', require: false # Reduces boot times through caching; required in config/boot.rb
 gem 'faraday', '~> 1.9.0' # http client
 gem 'gon', '~> 6.4.0' # Pass variables from Rails to JS
 gem 'hotwire-rails', '~> 0.1.3' # HTML over the wire. Read more: https://hotwire.dev/
