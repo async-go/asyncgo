@@ -10,7 +10,7 @@ RSpec.shared_examples 'unauthorized user examples' do
 
   context 'when user is authenticated but not authorized' do
     before do
-      sign_in(FactoryBot.create(:user))
+      sign_in(create(:user))
     end
 
     it 'sets the alert flash' do
