@@ -35,7 +35,7 @@ gem 'omniauth-github', '~> 2.0.0'
 gem 'omniauth-google-oauth2', '~> 1.0.0'
 gem 'omniauth-microsoft_graph', '~> 1.0.0'
 gem 'omniauth-rails_csrf_protection', '~> 1.0.0'
-gem 'pagy', '~> 5.8.0' # pagination
+gem 'pagy', '~> 5.9.0' # pagination
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.7'
