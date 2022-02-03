@@ -1310,10 +1310,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@github/hotkey@npm:1.6.1":
-  version: 1.6.1
-  resolution: "@github/hotkey@npm:1.6.1"
-  checksum: 1995a4bf095ec531e0b595d1a3a384611c737d0e5c7c72cb2cd5cb108243d5ef974fa9c550226cfcd484ca5d7000b33e2a2dfc83015af934813eb4ba8d211bf3
+"@github/hotkey@npm:2.0.0":
+  version: 2.0.0
+  resolution: "@github/hotkey@npm:2.0.0"
+  checksum: e431bc1693b9d416bced152bd03954743ac9ac810eb9f0cccd8ad1033ea283a2d3f9ccd002486619841c0ebffb20e8cd3612cd447d577147613be93f7b2b4b42
   languageName: node
   linkType: hard
 
@@ -2203,7 +2203,7 @@ __metadata:
   dependencies:
     "@babel/core": 7.16.7
     "@babel/eslint-parser": 7.16.5
-    "@github/hotkey": 1.6.1
+    "@github/hotkey": 2.0.0
     "@hotwired/stimulus": 3.0.1
     "@hotwired/stimulus-webpack-helpers": 1.0.1
     "@hotwired/turbo-rails": 7.1.1
