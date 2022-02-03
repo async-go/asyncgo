@@ -14,7 +14,7 @@ gem 'pg', '~> 1.3.0' # Use pg as the database for Active Record
 gem 'puma', '~> 5.6.0' # Use Puma as the app server
 gem 'pundit', '~> 2.1.0' # Authorization via OO and plain Ruby classes
 gem 'rails', '~> 7.0.1'
-gem 'redis', '~> 4.5.1' # Use Redis adapter to run Action Cable in production
+gem 'redis', '~> 4.6.0' # Use Redis adapter to run Action Cable in production
 gem 'sass-rails', '>= 6' # Use SCSS for stylesheets
 gem 'sidekiq', '~> 6.4.0' # ActiveJob backend
 gem 'webpacker', '6.0.0.rc.6 ' # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
