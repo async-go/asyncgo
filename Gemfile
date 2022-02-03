@@ -57,7 +57,7 @@ group :development, :test do
   # Other
   gem 'byebug', platforms: %i[mri mingw x64_mingw] # Debugger console by calling 'byebug' anywhere in code
   gem 'dotenv-rails', '~> 2.7.6'
-  gem 'rspec-rails', '~> 5.0.1' # rspec testing
+  gem 'rspec-rails', '~> 5.1.0' # rspec testing
   gem 'spring', '~> 4.0.0' # Speeds up development by keeping application running in the background - https://github.com/rails/spring
 end
 
