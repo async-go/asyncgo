@@ -175,7 +175,7 @@ GEM
       rainbow
       rubocop (>= 0.50.0)
       sysexits (~> 1.1)
-    hamlit (2.15.2)
+    hamlit (2.16.0)
       temple (>= 0.8.2)
       thor
       tilt
@@ -446,7 +446,7 @@ DEPENDENCIES
   ginjo-omniauth-slack (~> 2.5)
   gon (~> 6.4.0)
   haml_lint (~> 0.37.0)
-  hamlit (~> 2.15.2)
+  hamlit (~> 2.16.0)
   hotwire-rails (~> 0.1.3)
   listen (~> 3.3)
   net-imap (~> 0.2.3)
