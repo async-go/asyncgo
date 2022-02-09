@@ -1422,7 +1422,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rails/actioncable@npm:7.0.1, @rails/actioncable@npm:^7.0":
+"@rails/actioncable@npm:7.0.2":
+  version: 7.0.2
+  resolution: "@rails/actioncable@npm:7.0.2"
+  checksum: f38136c0663947375dd0cbd40d42b9287ac49298a885e137759f884d5d99bebf344959f78dabaca5f7ba45b1338156184a07395d843e4ab503a6de91720a399d
+  languageName: node
+  linkType: hard
+
+"@rails/actioncable@npm:^7.0":
   version: 7.0.1
   resolution: "@rails/actioncable@npm:7.0.1"
   checksum: e4c1c0a32a32699318e893b1fde9f650f918ab3af38143e81e6344ba7b42db10a4404c148227be7ea263256de3286d7e36756524a2111b98d1daa6c03e60a25a
@@ -2208,7 +2215,7 @@ __metadata:
     "@hotwired/stimulus-webpack-helpers": 1.0.1
     "@hotwired/turbo-rails": 7.1.1
     "@popperjs/core": 2.11.2
-    "@rails/actioncable": 7.0.1
+    "@rails/actioncable": 7.0.2
     "@rails/activestorage": 7.0.1
     "@rails/ujs": 7.0.1
     "@rails/webpacker": 6.0.0-rc.6
