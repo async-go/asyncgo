@@ -1429,12 +1429,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rails/activestorage@npm:7.0.1":
-  version: 7.0.1
-  resolution: "@rails/activestorage@npm:7.0.1"
+"@rails/activestorage@npm:7.0.2":
+  version: 7.0.2
+  resolution: "@rails/activestorage@npm:7.0.2"
   dependencies:
     spark-md5: ^3.0.1
-  checksum: d92ed29a67ec03b215343c55f7fa24810ee0b5b0e8416617b86ba809c7ce42b3ee8b006a8aebfb2070451743fb70317c6fa892f84665108354d1915aaaae1f6d
+  checksum: 0f687eb3e24daa790fdc58e28b0e7720ad43c497d1e677f0bb66cd476398f94675fc03c6828f7e841d0f27412fc6aac09447bc78a806aef7da2437ca53d0a517
   languageName: node
   linkType: hard
 
@@ -2209,7 +2209,7 @@ __metadata:
     "@hotwired/turbo-rails": 7.1.1
     "@popperjs/core": 2.11.2
     "@rails/actioncable": 7.0.1
-    "@rails/activestorage": 7.0.1
+    "@rails/activestorage": 7.0.2
     "@rails/ujs": 7.0.1
     "@rails/webpacker": 6.0.0-rc.6
     "@toast-ui/editor": 3.1.2
