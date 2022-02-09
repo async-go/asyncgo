@@ -1438,10 +1438,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rails/ujs@npm:7.0.1":
-  version: 7.0.1
-  resolution: "@rails/ujs@npm:7.0.1"
-  checksum: 511fa6e361bddd6da6c04eb67d671527a476c39ba690c7045382dadd3b86cae33145fe088b13dae464d399cb744d2d81192145c199a469f8cce407d30d3ed62e
+"@rails/ujs@npm:7.0.2":
+  version: 7.0.2
+  resolution: "@rails/ujs@npm:7.0.2"
+  checksum: df34fd004443d8f77c21e7621ef4aac7c608f5858dd5a0afba11b86ad631be7a23c74d3a8db7b3542588ddc5a2ff3cb5ba12dfb9740674a0e6fd1306cc0aca70
   languageName: node
   linkType: hard
 
@@ -2210,7 +2210,7 @@ __metadata:
     "@popperjs/core": 2.11.2
     "@rails/actioncable": 7.0.1
     "@rails/activestorage": 7.0.1
-    "@rails/ujs": 7.0.1
+    "@rails/ujs": 7.0.2
     "@rails/webpacker": 6.0.0-rc.6
     "@toast-ui/editor": 3.1.2
     "@webpack-cli/serve": 1.6.1
