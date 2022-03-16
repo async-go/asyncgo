@@ -62,6 +62,8 @@ module Teams
       due_date_day_diff = (topic.due_date - Time.now.utc.to_date).to_i
       if topic_overdue?(topic)
         "Due #{pluralize(due_date_day_diff.abs, 'day')} ago"
+      elsif topic.due_date == Date.today
+        "Due today"
       else
         "Due in #{pluralize(due_date_day_diff, 'day')}"
       end
