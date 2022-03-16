@@ -53,6 +53,15 @@ RSpec.describe Teams::TopicsHelper, type: :helper do
         it { is_expected.to match(/class="text-accent"/) }
       end
 
+      context 'when topic is due today' do
+        before do
+          travel_to(Time.utc(2020, 1, 1))
+        end
+
+        it { is_expected.to have_text('Due today') }
+        it { is_expected.not_to match(/class/) }
+      end
+
       context 'when topic is not overdue' do
         before do
           travel_to(Time.utc(2019, 12, 31))
