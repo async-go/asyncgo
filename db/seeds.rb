@@ -44,7 +44,7 @@ end
 
 # Topic
 topic = Topic.create!(
-  user: alice, team: asyncgo, title: '☑️ Daily standup', due_date: Time.zone.today,
+  user: alice, team: asyncgo, title: '☑️ Release retrospective', due_date: Time.zone.today,
   description: '- Hello', description_html: '<ul><li>Hello</li></ul>',
   label_list: 'standup'
 )
@@ -54,7 +54,7 @@ Vote.create!(user: bob, votable: topic, emoji: 'thumbsup')
 
 # Comment
 comment = Comment.create!(
-  user: bob, topic:, body: 'No update from me today', body_html: 'No update from me today'
+  user: bob, topic:, body: 'I thought things went really well last time.', body_html: 'I thought things went really well last time.'
 )
 
 # Comment Votes
@@ -75,37 +75,37 @@ Notification.create!(user: matija, actor: bob, action: :updated, target: topic)
 Notification.create!(user: matija, actor: alice, action: :updated, target: topic)
 
 # Topics
-topic = Topic.create!(user: bob, title: '📰 Lets discuss our next marketing campaign',
+topic = Topic.create!(user: bob, title: '📰 It feels like we are having too many meetings',
                       description: '- Hello', description_html: '<ul><li>Hello</li></ul>',
-                      team: asyncgo, due_date: Time.zone.today + 5, label_list: 'marketing')
+                      team: asyncgo, due_date: Time.zone.today + 5, label_list: 'meetings')
 Subscription.create!(topic:, user: jason)
 Subscription.create!(topic:, user: bob)
 
-topic = Topic.create!(user: bob, title: '📈 Competitive analysis vs. our top competitor',
+topic = Topic.create!(user: bob, title: '📈 Idea for improving how we track the impact of new features',
                       description: '- Hello', description_html: '<ul><li>Hello</li></ul>',
                       outcome: 'We are the best', outcome_html: '<p>We are the best</p>',
                       team: asyncgo, due_date: Time.zone.today - 2, pinned: true,
-                      label_list: 'important competitive-analysis')
+                      label_list: 'urgent analytics')
 Subscription.create!(topic:, user: carol)
 Subscription.create!(topic:, user: david)
 
-topic = Topic.create!(user: bob, title: '🏗️  Discuss next big feature',
+topic = Topic.create!(user: bob, title: '🏗️ Is there a better way to run retrospectives?',
                       description: '- Hello', description_html: '<ul><li>Hello</li></ul>',
-                      team: asyncgo, due_date: Time.zone.today + 4, label_list: 'product')
+                      team: asyncgo, due_date: Time.zone.today + 4, label_list: 'retrospectives')
 Subscription.create!(topic:, user: matija)
 Subscription.create!(topic:, user: jason)
 Subscription.create!(topic:, user: bob)
 
-topic = Topic.create!(user: alice, title: '👶 Plan baby shower for Alice',
+topic = Topic.create!(user: alice, title: '👶 Welcoming new team members with better onboarding',
                       description: '- Hello', description_html: '<ul><li>Hello</li></ul>',
                       outcome: 'Action items', outcome_html: '<p>Action items</p>',
-                      label_list: 'fun', team: asyncgo, due_date: Time.zone.today,
+                      label_list: 'onboarding', team: asyncgo, due_date: Time.zone.today,
                       status: :resolved)
 Subscription.create!(topic:, user: bob)
 Subscription.create!(topic:, user: alice)
 Subscription.create!(topic:, user: carol)
 
-topic = Topic.create!(user: alice, title: '🎉 Agenda for 100 customers party ',
+topic = Topic.create!(user: alice, title: '🎉 Lets celebrate product launches more!',
                       description: '- Hello', description_html: '<ul><li>Hello</li></ul>',
                       outcome: 'All good so far', outcome_html: '<p>All good so far</p>',
                       label_list: 'fun', team: asyncgo, due_date: nil)
