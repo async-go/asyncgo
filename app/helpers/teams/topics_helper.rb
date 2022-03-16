@@ -63,7 +63,7 @@ module Teams
       if topic_overdue?(topic)
         "Due #{pluralize(due_date_day_diff.abs, 'day')} ago"
       elsif topic.due_date == Date.today
-        "Due today"
+        'Due today'
       else
         "Due in #{pluralize(due_date_day_diff, 'day')}"
       end
