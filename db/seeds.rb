@@ -54,7 +54,8 @@ Vote.create!(user: bob, votable: topic, emoji: 'thumbsup')
 
 # Comment
 comment = Comment.create!(
-  user: bob, topic:, body: 'I thought things went really well last time.', body_html: 'I thought things went really well last time.'
+  user: bob, topic:, body: 'I thought things went really well last time.',
+  body_html: 'I thought things went really well last time.'
 )
 
 # Comment Votes
