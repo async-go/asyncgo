@@ -60,7 +60,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/core@npm:7.17.7, @babel/core@npm:^7.17.7":
+"@babel/core@npm:7.17.7":
   version: 7.17.7
   resolution: "@babel/core@npm:7.17.7"
   dependencies:
@@ -83,7 +83,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/eslint-parser@npm:^7.17.0":
+"@babel/eslint-parser@npm:7.17.0":
   version: 7.17.0
   resolution: "@babel/eslint-parser@npm:7.17.0"
   dependencies:
@@ -708,7 +708,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/plugin-syntax-dynamic-import@npm:^7.8.3":
+"@babel/plugin-syntax-dynamic-import@npm:7.8.3, @babel/plugin-syntax-dynamic-import@npm:^7.8.3":
   version: 7.8.3
   resolution: "@babel/plugin-syntax-dynamic-import@npm:7.8.3"
   dependencies:
@@ -901,6 +901,17 @@ __metadata:
   peerDependencies:
     "@babel/core": ^7.0.0-0
   checksum: b752d217f9c289114844c82a9d006457852ef6308688fa76bdf3cadd02e2b7bd83afe5a7e0f5112c20c6f1fd8f7bcfe74ee7e225b59c3915e3989ddbc425ea63
+  languageName: node
+  linkType: hard
+
+"@babel/plugin-transform-destructuring@npm:7.17.7":
+  version: 7.17.7
+  resolution: "@babel/plugin-transform-destructuring@npm:7.17.7"
+  dependencies:
+    "@babel/helper-plugin-utils": ^7.16.7
+  peerDependencies:
+    "@babel/core": ^7.0.0-0
+  checksum: 575b7dcf770e0b1869c13f4ffabd5e507f66cf735cf2d100f64bce01150051da86a24229d424560da87646f3ff1e54907d382547639eb65238c258aba00b16fe
   languageName: node
   linkType: hard
 
@@ -2400,9 +2411,10 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "asyncgo@workspace:."
   dependencies:
-    "@babel/core": ^7.17.7
-    "@babel/eslint-parser": ^7.17.0
+    "@babel/core": 7.17.7
+    "@babel/eslint-parser": 7.17.0
     "@babel/plugin-syntax-dynamic-import": 7.8.3
+    "@babel/plugin-transform-destructuring": 7.17.7
     "@github/hotkey": 2.0.0
     "@hotwired/stimulus": 3.0.1
     "@hotwired/stimulus-webpack-helpers": 1.0.1
@@ -2423,8 +2435,8 @@ __metadata:
     prettier: 2.5.1
     standard: 16.0.4
     tributejs: 5.1.3
-    webpack: ^5.70.0
-    webpack-cli: ^4.9.2
+    webpack: 5.70.0
+    webpack-cli: 4.9.2
     webpack-dev-server: 4.7.4
   languageName: unknown
   linkType: soft
@@ -7343,6 +7355,39 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
+"webpack-cli@npm:4.9.2":
+  version: 4.9.2
+  resolution: "webpack-cli@npm:4.9.2"
+  dependencies:
+    "@discoveryjs/json-ext": ^0.5.0
+    "@webpack-cli/configtest": ^1.1.1
+    "@webpack-cli/info": ^1.4.1
+    "@webpack-cli/serve": ^1.6.1
+    colorette: ^2.0.14
+    commander: ^7.0.0
+    execa: ^5.0.0
+    fastest-levenshtein: ^1.0.12
+    import-local: ^3.0.2
+    interpret: ^2.2.0
+    rechoir: ^0.7.0
+    webpack-merge: ^5.7.3
+  peerDependencies:
+    webpack: 4.x.x || 5.x.x
+  peerDependenciesMeta:
+    "@webpack-cli/generators":
+      optional: true
+    "@webpack-cli/migrate":
+      optional: true
+    webpack-bundle-analyzer:
+      optional: true
+    webpack-dev-server:
+      optional: true
+  bin:
+    webpack-cli: bin/cli.js
+  checksum: efcb9aab27f0b5ed836e240a5ba56eaf87bd7d5092070845b286177110a6a2c28aa404dd877f5a876a3ae888aeb9d38c199c2a90d725dc96a2727334bf979da5
+  languageName: node
+  linkType: hard
+
 "webpack-cli@npm:^4.8.0":
   version: 4.9.1
   resolution: "webpack-cli@npm:4.9.1"
@@ -7373,39 +7418,6 @@ resolve@^2.0.0-next.3:
   bin:
     webpack-cli: bin/cli.js
   checksum: ea0e539879ad2db3fe25dd2abebd54d2ae8ee6eace6499bec87f4a174c37124e54d19b419b46603bc5fe4679d6feef331b647b903d4ca8857a4c18a9d3c2b964
-  languageName: node
-  linkType: hard
-
-"webpack-cli@npm:^4.9.2":
-  version: 4.9.2
-  resolution: "webpack-cli@npm:4.9.2"
-  dependencies:
-    "@discoveryjs/json-ext": ^0.5.0
-    "@webpack-cli/configtest": ^1.1.1
-    "@webpack-cli/info": ^1.4.1
-    "@webpack-cli/serve": ^1.6.1
-    colorette: ^2.0.14
-    commander: ^7.0.0
-    execa: ^5.0.0
-    fastest-levenshtein: ^1.0.12
-    import-local: ^3.0.2
-    interpret: ^2.2.0
-    rechoir: ^0.7.0
-    webpack-merge: ^5.7.3
-  peerDependencies:
-    webpack: 4.x.x || 5.x.x
-  peerDependenciesMeta:
-    "@webpack-cli/generators":
-      optional: true
-    "@webpack-cli/migrate":
-      optional: true
-    webpack-bundle-analyzer:
-      optional: true
-    webpack-dev-server:
-      optional: true
-  bin:
-    webpack-cli: bin/cli.js
-  checksum: efcb9aab27f0b5ed836e240a5ba56eaf87bd7d5092070845b286177110a6a2c28aa404dd877f5a876a3ae888aeb9d38c199c2a90d725dc96a2727334bf979da5
   languageName: node
   linkType: hard
 
@@ -7493,6 +7505,43 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
+"webpack@npm:5.70.0":
+  version: 5.70.0
+  resolution: "webpack@npm:5.70.0"
+  dependencies:
+    "@types/eslint-scope": ^3.7.3
+    "@types/estree": ^0.0.51
+    "@webassemblyjs/ast": 1.11.1
+    "@webassemblyjs/wasm-edit": 1.11.1
+    "@webassemblyjs/wasm-parser": 1.11.1
+    acorn: ^8.4.1
+    acorn-import-assertions: ^1.7.6
+    browserslist: ^4.14.5
+    chrome-trace-event: ^1.0.2
+    enhanced-resolve: ^5.9.2
+    es-module-lexer: ^0.9.0
+    eslint-scope: 5.1.1
+    events: ^3.2.0
+    glob-to-regexp: ^0.4.1
+    graceful-fs: ^4.2.9
+    json-parse-better-errors: ^1.0.2
+    loader-runner: ^4.2.0
+    mime-types: ^2.1.27
+    neo-async: ^2.6.2
+    schema-utils: ^3.1.0
+    tapable: ^2.1.1
+    terser-webpack-plugin: ^5.1.3
+    watchpack: ^2.3.1
+    webpack-sources: ^3.2.3
+  peerDependenciesMeta:
+    webpack-cli:
+      optional: true
+  bin:
+    webpack: bin/webpack.js
+  checksum: cc36eac95909430aec9c3031dda9d7905f3dcf9e5874a079921e5c190f9948ed6f5c1d46e5ce7998b28d5787da3f766ff9cf484cf0217d62177ad300e3a12d23
+  languageName: node
+  linkType: hard
+
 "webpack@npm:^5.53.0":
   version: 5.65.0
   resolution: "webpack@npm:5.65.0"
@@ -7527,43 +7576,6 @@ resolve@^2.0.0-next.3:
   bin:
     webpack: bin/webpack.js
   checksum: 05ac9c09b152d78bcdb466533277bcd42968b33b6ee5059ac789cd359ded5d9c4d6344eb2fcbbc62d3cbaaf36102e74379ec1d1e47a9255a2aa99ca0ea0e6704
-  languageName: node
-  linkType: hard
-
-"webpack@npm:^5.70.0":
-  version: 5.70.0
-  resolution: "webpack@npm:5.70.0"
-  dependencies:
-    "@types/eslint-scope": ^3.7.3
-    "@types/estree": ^0.0.51
-    "@webassemblyjs/ast": 1.11.1
-    "@webassemblyjs/wasm-edit": 1.11.1
-    "@webassemblyjs/wasm-parser": 1.11.1
-    acorn: ^8.4.1
-    acorn-import-assertions: ^1.7.6
-    browserslist: ^4.14.5
-    chrome-trace-event: ^1.0.2
-    enhanced-resolve: ^5.9.2
-    es-module-lexer: ^0.9.0
-    eslint-scope: 5.1.1
-    events: ^3.2.0
-    glob-to-regexp: ^0.4.1
-    graceful-fs: ^4.2.9
-    json-parse-better-errors: ^1.0.2
-    loader-runner: ^4.2.0
-    mime-types: ^2.1.27
-    neo-async: ^2.6.2
-    schema-utils: ^3.1.0
-    tapable: ^2.1.1
-    terser-webpack-plugin: ^5.1.3
-    watchpack: ^2.3.1
-    webpack-sources: ^3.2.3
-  peerDependenciesMeta:
-    webpack-cli:
-      optional: true
-  bin:
-    webpack: bin/webpack.js
-  checksum: cc36eac95909430aec9c3031dda9d7905f3dcf9e5874a079921e5c190f9948ed6f5c1d46e5ce7998b28d5787da3f766ff9cf484cf0217d62177ad300e3a12d23
   languageName: node
   linkType: hard
 

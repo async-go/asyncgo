@@ -2,7 +2,6 @@
   "name": "asyncgo",
   "private": true,
   "dependencies": {
-    "@babel/plugin-syntax-dynamic-import": "7.8.3",
     "@github/hotkey": "2.0.0",
     "@hotwired/stimulus": "3.0.1",
     "@hotwired/stimulus-webpack-helpers": "1.0.1",
@@ -19,13 +18,15 @@
     "driver.js": "0.9.8",
     "prettier": "2.5.1",
     "tributejs": "5.1.3",
-    "webpack": "^5.70.0",
-    "webpack-cli": "^4.9.2"
+    "webpack": "5.70.0",
+    "webpack-cli": "4.9.2"
   },
   "version": "0.1.0",
   "devDependencies": {
-    "@babel/core": "^7.17.7",
-    "@babel/eslint-parser": "^7.17.0",
+    "@babel/core": "7.17.7",
+    "@babel/eslint-parser": "7.17.0",
+    "@babel/plugin-syntax-dynamic-import": "7.8.3",
+    "@babel/plugin-transform-destructuring": "7.17.7",
     "@webpack-cli/serve": "1.6.1",
     "eslint": "8.11.0",
     "markdownlint-cli": "0.31.1",
