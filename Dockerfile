@@ -1,4 +1,4 @@
-FROM ruby:3.1.0
+FROM ruby:3.1.1
 
 RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash -
 RUN apt update && apt install --yes --quiet nodejs
