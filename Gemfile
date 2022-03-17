@@ -74,7 +74,7 @@ group :test do
   gem 'axe-core-rspec', '~> 4.4.0' # rspec accessibility matcher
   gem 'capybara', '>= 3.26' # Support for Capybara system testing
   gem 'factory_bot_rails', '~> 6.2.0' # Factories for generating AR objects in specs
-  gem 'faker', '~> 2.19.0' # Fake data for use in specs
+  gem 'faker', '~> 2.20.0' # Fake data for use in specs
   gem 'rspec-retry', '~> 0.6.2' # retry rspec tests
   gem 'selenium-webdriver'
   gem 'shoulda-matchers', '~> 5.1.0' # Additional rspec matchers
