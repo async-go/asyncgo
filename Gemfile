@@ -7,7 +7,7 @@ ruby '3.1.0'
 
 # Core
 gem 'bootsnap', '~> 1.10.0', require: false # Reduces boot times through caching; required in config/boot.rb
-gem 'faraday', '~> 1.10.0' # http client
+gem 'faraday', '~> 2.2.0' # http client
 gem 'gon', '~> 6.4.0' # Pass variables from Rails to JS
 gem 'hotwire-rails', '~> 0.1.3' # HTML over the wire. Read more: https://hotwire.dev/
 gem 'pg', '~> 1.3.0' # Use pg as the database for Active Record
@@ -53,7 +53,7 @@ group :development, :test do
   gem 'rubocop-rails', '~> 2.13.0', require: false
   gem 'rubocop-rspec', '~> 2.9.0', require: false
   ## Haml linter
-  gem 'haml_lint', '~> 0.37.0', require: false
+  gem 'haml_lint', '~> 0.40.0', require: false
   # Other
   gem 'byebug', platforms: %i[mri mingw x64_mingw] # Debugger console by calling 'byebug' anywhere in code
   gem 'dotenv-rails', '~> 2.7.6'
@@ -71,7 +71,7 @@ group :development do
 end
 
 group :test do
-  gem 'axe-core-rspec', '~> 4.3.2' # rspec accessibility matcher
+  gem 'axe-core-rspec', '~> 4.4.0' # rspec accessibility matcher
   gem 'capybara', '>= 3.26' # Support for Capybara system testing
   gem 'factory_bot_rails', '~> 6.2.0' # Factories for generating AR objects in specs
   gem 'faker', '~> 2.19.0' # Fake data for use in specs
