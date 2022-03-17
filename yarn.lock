@@ -30,7 +30,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/compat-data@npm:^7.17.7":
+"@babel/compat-data@npm:^7.17.0, @babel/compat-data@npm:^7.17.7":
   version: 7.17.7
   resolution: "@babel/compat-data@npm:7.17.7"
   checksum: 876273d21ee2aa51ca69678f4b1ac55fa4ce88fb840c1bd933a39b42e856b3f929eac7ac5c3e07316821ba07c8c4a4e7df55ec2f3fccae4582025495d9a7d24c
@@ -594,6 +594,21 @@ __metadata:
   peerDependencies:
     "@babel/core": ^7.0.0-0
   checksum: 63cbbad59a02c1e0dea4fc8174305af2a0505d5ac293df5e6ea93c1ceeed47e945f8497b02020f02c03bef6197a9a9d45d5426b02ee0d2706df0d5ed31c3749e
+  languageName: node
+  linkType: hard
+
+"@babel/plugin-proposal-object-rest-spread@npm:7.17.3":
+  version: 7.17.3
+  resolution: "@babel/plugin-proposal-object-rest-spread@npm:7.17.3"
+  dependencies:
+    "@babel/compat-data": ^7.17.0
+    "@babel/helper-compilation-targets": ^7.16.7
+    "@babel/helper-plugin-utils": ^7.16.7
+    "@babel/plugin-syntax-object-rest-spread": ^7.8.3
+    "@babel/plugin-transform-parameters": ^7.16.7
+  peerDependencies:
+    "@babel/core": ^7.0.0-0
+  checksum: f9887a83992ba020e41643ca6977571766e1a2af2cd731157aefa6f9682b7475d9e2b0e615a2654cc243ecf7e1da33aa26441d885129874668b85612dd4d8e70
   languageName: node
   linkType: hard
 
@@ -2414,6 +2429,7 @@ __metadata:
     "@babel/core": 7.17.7
     "@babel/eslint-parser": 7.17.0
     "@babel/plugin-proposal-class-properties": 7.16.7
+    "@babel/plugin-proposal-object-rest-spread": 7.17.3
     "@babel/plugin-syntax-dynamic-import": 7.8.3
     "@babel/plugin-transform-destructuring": 7.17.7
     "@github/hotkey": 2.0.0
