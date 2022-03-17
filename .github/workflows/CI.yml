@@ -12,9 +12,7 @@ jobs:
           POSTGRES_PASSWORD: postgres
           POSTGRES_DB: asyncgo_test
         options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
+          --health-cmd pg_isready --health-interval 10s --health-timeout 5s
           --health-retries 5
     steps:
       - uses: actions/checkout@v2
@@ -36,7 +34,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
       - name: Install bundler dependencies
-        run: bundle config set without 'development production' && bundle config set path 'vendor/bundle' && bundle install --jobs 4 --retry 3
+        run:
+          bundle config set without 'development production' && bundle config
+          set path 'vendor/bundle' && bundle install --jobs 4 --retry 3
       - name: Install node dependencies
         run: bin/yarn install
       - name: Run rspec
@@ -54,9 +54,7 @@ jobs:
           POSTGRES_PASSWORD: postgres
           POSTGRES_DB: asyncgo_test
         options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
+          --health-cmd pg_isready --health-interval 10s --health-timeout 5s
           --health-retries 5
     steps:
       - uses: actions/checkout@v2
@@ -78,7 +76,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
       - name: Install bundler dependencies
-        run: bundle config set without 'development production' && bundle config set path 'vendor/bundle' && bundle install --jobs 4 --retry 3
+        run:
+          bundle config set without 'development production' && bundle config
+          set path 'vendor/bundle' && bundle install --jobs 4 --retry 3
       - name: Install node dependencies
         run: bin/yarn install
       - name: Run rspec system specs
@@ -87,7 +87,7 @@ jobs:
           DATABASE_URL: postgres://postgres:postgres@postgres/asyncgo_test
   rubocop:
     runs-on: ubuntu-latest
-    container: ruby:3.1.0
+    container: ruby:3.1.1
     steps:
       - uses: actions/checkout@v2
       - uses: actions/cache@v2
@@ -98,12 +98,14 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gem-
       - name: Install bundler dependencies
-        run: bundle config set without 'development production' && bundle config set path 'vendor/bundle' && bundle install --jobs 4 --retry 3
+        run:
+          bundle config set without 'development production' && bundle config
+          set path 'vendor/bundle' && bundle install --jobs 4 --retry 3
       - name: Run rubocop
         run: bundle exec rubocop
   haml-lint:
     runs-on: ubuntu-latest
-    container: ruby:3.1.0
+    container: ruby:3.1.1
     steps:
       - uses: actions/checkout@v2
       - uses: actions/cache@v2
@@ -114,7 +116,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gem-
       - name: Install bundler dependencies
-        run: bundle config set without 'development production' && bundle config set path 'vendor/bundle' && bundle install --jobs 4 --retry 3
+        run:
+          bundle config set without 'development production' && bundle config
+          set path 'vendor/bundle' && bundle install --jobs 4 --retry 3
       - name: Run haml-lint
         run: bundle exec haml-lint
   standard:
