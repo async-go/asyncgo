@@ -53,7 +53,7 @@ group :development, :test do
   gem 'rubocop-rails', '~> 2.13.0', require: false
   gem 'rubocop-rspec', '~> 2.8.0', require: false
   ## Haml linter
-  gem 'haml_lint', '~> 0.37.0', require: false
+  gem 'haml_lint', '~> 0.40.0', require: false
   # Other
   gem 'byebug', platforms: %i[mri mingw x64_mingw] # Debugger console by calling 'byebug' anywhere in code
   gem 'dotenv-rails', '~> 2.7.6'
