@@ -17,6 +17,28 @@ module Teams
 
     def new
       @topic = team.topics.build(new_params)
+      if (!defined?new_params[:description])
+        @topic.description = '## Decision needed
+Clearly describe the problem or improvement and what decision(s) need to be made.
+
+## Why is it important
+Explain why it is important now to have this discussion and make a decision.
+
+## Background
+Include any additional background details or context that would be helpful.'
+      end
+      if (!defined?new_params[:outcome])
+        @topic.outcome = '## Decisions made
+- [ ] TBD
+- [ ] TBD
+
+## Action items
+- [ ] TBD
+- [ ] TBD
+
+## Other important discussion notes
+To be determined'
+      end
       authorize(@topic)
     end
 
