@@ -23,8 +23,8 @@
   },
   "version": "0.1.0",
   "devDependencies": {
-    "@babel/core": "7.16.7",
-    "@babel/eslint-parser": "7.16.5",
+    "@babel/core": "7.17.7",
+    "@babel/eslint-parser": "7.17.0",
     "@webpack-cli/serve": "1.6.1",
     "eslint": "8.11.0",
     "markdownlint-cli": "0.31.1",
