@@ -25,6 +25,7 @@
   "devDependencies": {
     "@babel/core": "7.17.7",
     "@babel/eslint-parser": "7.17.0",
+    "@babel/plugin-proposal-class-properties": "7.16.7",
     "@babel/plugin-syntax-dynamic-import": "7.8.3",
     "@babel/plugin-transform-destructuring": "7.17.7",
     "@webpack-cli/serve": "1.6.1",
