@@ -29,7 +29,7 @@ RSpec.describe OmniauthCallbacksController, type: :request do
       it 'signs the user in' do
         post_google_oauth2
 
-        expect(controller.send(:current_user)).not_to eq(nil)
+        expect(controller.send(:current_user)).not_to be_nil
       end
 
       it 'updates the users name' do
@@ -91,7 +91,7 @@ RSpec.describe OmniauthCallbacksController, type: :request do
       it 'signs the user in' do
         post_github
 
-        expect(controller.send(:current_user)).not_to eq(nil)
+        expect(controller.send(:current_user)).not_to be_nil
       end
 
       it 'updates the users name' do
@@ -111,7 +111,7 @@ RSpec.describe OmniauthCallbacksController, type: :request do
       it 'signs the user in' do
         post_github
 
-        expect(controller.send(:current_user)).not_to eq(nil)
+        expect(controller.send(:current_user)).not_to be_nil
       end
 
       it 'updates the users name' do
@@ -154,7 +154,7 @@ RSpec.describe OmniauthCallbacksController, type: :request do
       it 'signs the user in' do
         post_microsoft_graph
 
-        expect(controller.send(:current_user)).not_to eq(nil)
+        expect(controller.send(:current_user)).not_to be_nil
       end
 
       it 'updates the users name' do
@@ -174,7 +174,7 @@ RSpec.describe OmniauthCallbacksController, type: :request do
       it 'signs the user in' do
         post_microsoft_graph
 
-        expect(controller.send(:current_user)).not_to eq(nil)
+        expect(controller.send(:current_user)).not_to be_nil
       end
 
       it 'updates the users name' do
@@ -220,7 +220,7 @@ RSpec.describe OmniauthCallbacksController, type: :request do
       it 'signs the user in' do
         post_slack
 
-        expect(controller.send(:current_user)).not_to eq(nil)
+        expect(controller.send(:current_user)).not_to be_nil
       end
 
       it 'updates the users name' do
