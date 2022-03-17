@@ -71,7 +71,7 @@ group :development do
 end
 
 group :test do
-  gem 'axe-core-rspec', '~> 4.3.2' # rspec accessibility matcher
+  gem 'axe-core-rspec', '~> 4.4.0' # rspec accessibility matcher
   gem 'capybara', '>= 3.26' # Support for Capybara system testing
   gem 'factory_bot_rails', '~> 6.2.0' # Factories for generating AR objects in specs
   gem 'faker', '~> 2.19.0' # Fake data for use in specs
