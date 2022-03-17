@@ -13,13 +13,13 @@ RSpec.describe Comment, type: :model do
       context 'when body does not have image data' do
         let(:body) { 'hello world' }
 
-        it { is_expected.to eq(true) }
+        it { is_expected.to be(true) }
       end
 
       context 'when body has image data' do
         let(:body) { '![image.png](data:image/png;base64,abcdefg)' }
 
-        it { is_expected.to eq(false) }
+        it { is_expected.to be(false) }
 
         it 'adds an image data error to body' do
           comment.valid?

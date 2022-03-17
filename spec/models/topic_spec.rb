@@ -20,7 +20,7 @@ RSpec.describe Topic, type: :model do
           topic.description_checksum = nil
         end
 
-        it { is_expected.to eq(false) }
+        it { is_expected.to be(false) }
       end
 
       context 'when description checksum is valid' do
@@ -28,7 +28,7 @@ RSpec.describe Topic, type: :model do
           topic.description_checksum = Digest::MD5.hexdigest('old')
         end
 
-        it { is_expected.to eq(true) }
+        it { is_expected.to be(true) }
       end
 
       context 'when description checksum is not valid' do
@@ -36,7 +36,7 @@ RSpec.describe Topic, type: :model do
           topic.description_checksum = Digest::MD5.hexdigest('notvalid')
         end
 
-        it { is_expected.to eq(false) }
+        it { is_expected.to be(false) }
       end
     end
 
@@ -54,7 +54,7 @@ RSpec.describe Topic, type: :model do
           topic.outcome_checksum = nil
         end
 
-        it { is_expected.to eq(false) }
+        it { is_expected.to be(false) }
       end
 
       context 'when description checksum is valid' do
@@ -62,7 +62,7 @@ RSpec.describe Topic, type: :model do
           topic.outcome_checksum = Digest::MD5.hexdigest('old')
         end
 
-        it { is_expected.to eq(true) }
+        it { is_expected.to be(true) }
       end
 
       context 'when description checksum is not valid' do
@@ -70,7 +70,7 @@ RSpec.describe Topic, type: :model do
           topic.outcome_checksum = Digest::MD5.hexdigest('notvalid')
         end
 
-        it { is_expected.to eq(false) }
+        it { is_expected.to be(false) }
       end
     end
 
@@ -82,13 +82,13 @@ RSpec.describe Topic, type: :model do
       context 'when description does not have image data' do
         let(:description) { 'hello world' }
 
-        it { is_expected.to eq(true) }
+        it { is_expected.to be(true) }
       end
 
       context 'when description has image data' do
         let(:description) { '![image.png](data:image/png;base64,abcdefg)' }
 
-        it { is_expected.to eq(false) }
+        it { is_expected.to be(false) }
 
         it 'adds an image data error to description' do
           topic.valid?
@@ -106,13 +106,13 @@ RSpec.describe Topic, type: :model do
       context 'when outcome does not have image data' do
         let(:outcome) { 'hello world' }
 
-        it { is_expected.to eq(true) }
+        it { is_expected.to be(true) }
       end
 
       context 'when outcome has image data' do
         let(:outcome) { '![image.png](data:image/png;base64,abcdefg)' }
 
-        it { is_expected.to eq(false) }
+        it { is_expected.to be(false) }
 
         it 'adds an image data error to outcome' do
           topic.valid?

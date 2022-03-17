@@ -20,11 +20,11 @@ RSpec.describe Teams::TopicsHelper, type: :helper do
         topic.subscribed_users << current_user
       end
 
-      it { is_expected.to eq(true) }
+      it { is_expected.to be(true) }
     end
 
     context 'when user is not subscribed' do
-      it { is_expected.to eq(false) }
+      it { is_expected.to be(false) }
     end
   end
 
@@ -86,7 +86,7 @@ RSpec.describe Teams::TopicsHelper, type: :helper do
       context 'when there are no notifications' do
         let(:notifications) { Notification.where(id: unrelated_notification.id) }
 
-        it { is_expected.to eq(false) }
+        it { is_expected.to be(false) }
       end
 
       context 'when there are notifications' do
@@ -96,7 +96,7 @@ RSpec.describe Teams::TopicsHelper, type: :helper do
           )
         end
 
-        it { is_expected.to eq(true) }
+        it { is_expected.to be(true) }
       end
     end
 
@@ -106,7 +106,7 @@ RSpec.describe Teams::TopicsHelper, type: :helper do
       context 'when there are no notifications' do
         let(:notifications) { Notification.where(id: unrelated_notification.id) }
 
-        it { is_expected.to eq(false) }
+        it { is_expected.to be(false) }
       end
 
       context 'when there are notifications' do
@@ -116,7 +116,7 @@ RSpec.describe Teams::TopicsHelper, type: :helper do
           )
         end
 
-        it { is_expected.to eq(true) }
+        it { is_expected.to be(true) }
       end
     end
   end
