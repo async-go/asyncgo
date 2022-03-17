@@ -4,6 +4,24 @@ module Teams
   class TopicsController < Teams::Topics::ApplicationController # rubocop:disable Metrics/ClassLength
     include Pagy::Backend
 
+    DESCRIPTION_TEMPLATE = '## Decisions needed
+Clearly describe the problem or improvement and what decision(s) need to be made.
+
+## Why is it important
+Explain why it is important now to have this discussion and make a decision.
+
+## Background
+Include any additional background details or context that would be helpful.'
+
+    OUTCOME_TEMPLATE = '## Decisions made
+- [ ] TBD
+
+## Action items
+- [ ] TBD
+
+## Other important discussion notes
+To be determined'
+
     def index
       authorize(team, policy_class: TopicPolicy)
 
@@ -17,6 +35,8 @@ module Teams
 
     def new
       @topic = team.topics.build(new_params)
+      @topic.description = DESCRIPTION_TEMPLATE unless defined? new_params[:description]
+      @topic.outcome = OUTCOME_TEMPLATE unless defined? new_params[:outcome]
       authorize(@topic)
     end
 

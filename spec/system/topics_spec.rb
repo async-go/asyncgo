@@ -69,6 +69,24 @@ RSpec.describe 'Topics', type: :system do
     expect(page).to have_text('goodbye')
   end
 
+  it 'includes the template description when creating a new topic' do
+    visit '/'
+    sign_in_user(create(:user, :team))
+    click_link 'Topics'
+    click_link 'New Topic'
+
+    expect(page).to have_text('Decisions needed')
+  end
+
+  it 'includes the template outcome when creating a new topic' do
+    visit '/'
+    sign_in_user(create(:user, :team))
+    click_link 'Topics'
+    click_link 'New Topic'
+
+    expect(page).to have_text('Decisions made')
+  end
+
   it 'allows the user to archive a topic' do
     user = create(:user, :team)
     topic = create(:topic, team: user.team)
