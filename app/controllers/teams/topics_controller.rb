@@ -12,7 +12,7 @@ Explain why it is important now to have this discussion and make a decision.
 
 ## Background
 Include any additional background details or context that would be helpful.'
-  
+
     OUTCOME_TEMPLATE = '## Decisions made
 - [ ] TBD
 
@@ -21,7 +21,6 @@ Include any additional background details or context that would be helpful.'
 
 ## Other important discussion notes
 To be determined'
-  
 
     def index
       authorize(team, policy_class: TopicPolicy)

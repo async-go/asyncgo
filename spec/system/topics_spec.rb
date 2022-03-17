@@ -84,7 +84,7 @@ RSpec.describe 'Topics', type: :system do
     click_link 'Topics'
     click_link 'New Topic'
 
-    expect(page).to have_text('Decisions made')    
+    expect(page).to have_text('Decisions made')
   end
 
   it 'allows the user to archive a topic' do
