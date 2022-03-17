@@ -1415,10 +1415,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@popperjs/core@npm:2.11.2":
-  version: 2.11.2
-  resolution: "@popperjs/core@npm:2.11.2"
-  checksum: 6e89d94f6bec0116ea191b3cd3bb830a6b6670141c45373f2b242a4780cce1564cd8ff7a584f2f4017dc9a4f67ed899f99bcc5f07de1da1c0f8f2c6804fc45fe
+"@popperjs/core@npm:2.11.4":
+  version: 2.11.4
+  resolution: "@popperjs/core@npm:2.11.4"
+  checksum: d5260a0351fed58367e79193acc5cb91f7f1fa7a189d09a507eef85435107b901527bea28680a1c5ead73e64aa3ea8ab3d44795eca8de23f6101de7b7d17f5c4
   languageName: node
   linkType: hard
 
@@ -2207,7 +2207,7 @@ __metadata:
     "@hotwired/stimulus": 3.0.1
     "@hotwired/stimulus-webpack-helpers": 1.0.1
     "@hotwired/turbo-rails": 7.1.1
-    "@popperjs/core": 2.11.2
+    "@popperjs/core": 2.11.4
     "@rails/actioncable": 7.0.1
     "@rails/activestorage": 7.0.1
     "@rails/ujs": 7.0.1
