@@ -80,5 +80,8 @@ with `@asyncgo.com`.
 Dockerfiles are in the root of this repo. If you update the versions, update the
 versions in the container label.
 
-- `docker build -t j4yav/ruby-yarn:3.1.0-1.22.18-1 . -f Dockerfile`
-- `docker build -t j4yav/ruby-yarn-chromium:3.1.0-1.22.18-1-99.0.4844.51-1 . -f Dockerfile.system`
+If you are using an M1 Mac you need to
+[build for Linux](https://blog.jaimyn.dev/how-to-build-multi-architecture-docker-images-on-an-m1-mac/)
+
+- `docker buildx build --platform linux/amd64 --push -t j4yav/ruby-yarn:3.1.0-1.22.18-1 . -f Dockerfile`
+- `docker buildx build --platform linux/amd64 --push -t j4yav/ruby-yarn-chromium:3.1.0-1.22.18-1-99.0.4844.51-1 . -f Dockerfile.system`
