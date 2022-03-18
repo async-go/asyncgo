@@ -75,7 +75,7 @@ GITHUB_CLIENT_SECRET=[REDACTED]
 Blazer uses hard-coded user authentication. It checks if the user email ends
 with `@asyncgo.com`.
 
-# Container builds
+## Container builds
 
 Dockerfiles are in the root of this repo. If you update the versions, update the
 versions in the container label.
