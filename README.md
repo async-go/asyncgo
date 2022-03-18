@@ -85,10 +85,8 @@ If you are using an M1 Mac you need to
 
 ```bash
 docker buildx build --platform linux/amd64 --push -t\
-j4yav/ruby-yarn:3.1.0-1.22.18-1 . -f Dockerfile
-```
+j4yav/ruby-yarn:3.1.1-1.22.18-1 . -f Dockerfile
 
-```bash
 docker buildx build --platform linux/amd64 --push -t\
-j4yav/ruby-yarn-chromium:3.1.0-1.22.18-1-99.0.4844.51-1 . -f Dockerfile.system
+j4yav/ruby-yarn-chromium:3.1.1-1.22.18-1-99.0.4844.51-1 . -f Dockerfile.system
 ```

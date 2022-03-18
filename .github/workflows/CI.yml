@@ -3,7 +3,7 @@ on: push
 jobs:
   rspec:
     runs-on: ubuntu-latest
-    container: j4yav/ruby-yarn:3.1.0-1.22.18-1
+    container: j4yav/ruby-yarn:3.1.1-1.22.18-1
     services:
       postgres:
         image: postgres:13-alpine
@@ -45,7 +45,7 @@ jobs:
           DATABASE_URL: postgres://postgres:postgres@postgres/asyncgo_test
   rspec-system:
     runs-on: ubuntu-latest
-    container: j4yav/ruby-yarn-chromium:3.1.0-1.22.18-1-99.0.4844.51-1
+    container: j4yav/ruby-yarn-chromium:3.1.1-1.22.18-1-99.0.4844.51-1
     services:
       postgres:
         image: postgres:13-alpine
