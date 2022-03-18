@@ -10,7 +10,7 @@ class DigestMailer < ApplicationMailer
     @recently_resolved_topics = recently_resolved_topics
     @upcoming_due_topics = upcoming_due_topics
 
-    mail(to: @user.email, subject: 'Your AsyncGo Digest')
+    mail(to: @user.email, subject: I18n.t(:your_asyncgo_digest))
   end
 
   private

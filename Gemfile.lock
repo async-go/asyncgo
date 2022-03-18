@@ -325,7 +325,7 @@ GEM
     rubocop-performance (1.13.1)
       rubocop (>= 1.7.0, < 2.0)
       rubocop-ast (>= 0.4.0)
-    rubocop-rails (2.13.0)
+    rubocop-rails (2.14.1)
       activesupport (>= 4.2.0)
       rack (>= 1.1)
       rubocop (>= 1.7.0, < 2.0)
@@ -450,7 +450,7 @@ DEPENDENCIES
   rspec-retry (~> 0.6.2)
   rubocop (~> 1.26.0)
   rubocop-performance (~> 1.13.1)
-  rubocop-rails (~> 2.13.0)
+  rubocop-rails (~> 2.14.0)
   rubocop-rspec (~> 2.9.0)
   sass-rails (>= 6)
   selenium-webdriver
