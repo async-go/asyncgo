@@ -23,14 +23,12 @@ jobs:
           key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
           restore-keys: |
             ${{ runner.os }}-gem-
-      - name: Install node
-        run: apt update && apt install --yes --quiet nodejs
-      - name: Install yarn
+      - name: Install node & yarn
         run:
           curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - &&
           echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee
           /etc/apt/sources.list.d/yarn.list && apt update && apt install --yes
-          --quiet yarn=1.22.18-1
+          --quiet nodejs yarn
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
         run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
@@ -73,16 +71,12 @@ jobs:
           key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
           restore-keys: |
             ${{ runner.os }}-gem-
-      - name: Install node
-        run: apt update && apt install --yes --quiet nodejs
-      - name: Install yarn
+      - name: Install node, yarn, & chromium
         run:
           curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - &&
           echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee
           /etc/apt/sources.list.d/yarn.list && apt update && apt install --yes
-          --quiet yarn=1.22.18-1
-      - name: Install j4yav/ruby-yarn-chromium:3.1.0-1.22.18-1-99.0.4844.51-1
-        run: apt install --yes --quiet chromium=99.0.4844.51-1~deb11u1
+          --quiet nodejs yarn chromium
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
         run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
