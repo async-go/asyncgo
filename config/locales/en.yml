@@ -30,4 +30,7 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  you_are_not_authorized: "You are not authorized."
+  could_not_authenticate_user: "Could not authenticate user."
+  your_asyncgo_digest: "Your AsyncGo Digest"
+  welcome_to_asyncgo: "Welcome to AsyncGo"
