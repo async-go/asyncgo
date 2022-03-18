@@ -3,7 +3,7 @@ on: push
 jobs:
   rspec:
     runs-on: ubuntu-latest
-    container: matteeyah/ruby-yarn:3.1.0-1.22.5
+    container: j4yav/ruby-yarn:3.1.0-1.22.18-1
     services:
       postgres:
         image: postgres:13-alpine
@@ -12,9 +12,7 @@ jobs:
           POSTGRES_PASSWORD: postgres
           POSTGRES_DB: asyncgo_test
         options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
+          --health-cmd pg_isready --health-interval 10s --health-timeout 5s
           --health-retries 5
     steps:
       - uses: actions/checkout@v3
@@ -36,7 +34,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
       - name: Install bundler dependencies
-        run: bundle config set without 'development production' && bundle config set path 'vendor/bundle' && bundle install --jobs 4 --retry 3
+        run:
+          bundle config set without 'development production' && bundle config
+          set path 'vendor/bundle' && bundle install --jobs 4 --retry 3
       - name: Install node dependencies
         run: bin/yarn install
       - name: Run rspec
@@ -45,7 +45,7 @@ jobs:
           DATABASE_URL: postgres://postgres:postgres@postgres/asyncgo_test
   rspec-system:
     runs-on: ubuntu-latest
-    container: matteeyah/ruby-yarn-chromium:3.1.0-1.22.5-90.0.4430.212
+    container: j4yav/ruby-yarn-chromium:3.1.0-1.22.18-1-99.0.4844.51-1
     services:
       postgres:
         image: postgres:13-alpine
@@ -54,9 +54,7 @@ jobs:
           POSTGRES_PASSWORD: postgres
           POSTGRES_DB: asyncgo_test
         options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
+          --health-cmd pg_isready --health-interval 10s --health-timeout 5s
           --health-retries 5
     steps:
       - uses: actions/checkout@v3
@@ -78,7 +76,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
       - name: Install bundler dependencies
-        run: bundle config set without 'development production' && bundle config set path 'vendor/bundle' && bundle install --jobs 4 --retry 3
+        run:
+          bundle config set without 'development production' && bundle config
+          set path 'vendor/bundle' && bundle install --jobs 4 --retry 3
       - name: Install node dependencies
         run: bin/yarn install
       - name: Run rspec system specs
@@ -98,7 +98,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gem-
       - name: Install bundler dependencies
-        run: bundle config set without 'development production' && bundle config set path 'vendor/bundle' && bundle install --jobs 4 --retry 3
+        run:
+          bundle config set without 'development production' && bundle config
+          set path 'vendor/bundle' && bundle install --jobs 4 --retry 3
       - name: Run rubocop
         run: bundle exec rubocop
   haml-lint:
@@ -114,7 +116,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gem-
       - name: Install bundler dependencies
-        run: bundle config set without 'development production' && bundle config set path 'vendor/bundle' && bundle install --jobs 4 --retry 3
+        run:
+          bundle config set without 'development production' && bundle config
+          set path 'vendor/bundle' && bundle install --jobs 4 --retry 3
       - name: Run haml-lint
         run: bundle exec haml-lint
   standard:
