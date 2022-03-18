@@ -3,7 +3,7 @@ on: push
 jobs:
   rspec:
     runs-on: ubuntu-latest
-    container: matteeyah/ruby-yarn:3.1.0-1.22.5
+    container: j4yav/ruby-yarn:3.1.0-1.22.18-1
     services:
       postgres:
         image: postgres:13-alpine
@@ -15,7 +15,7 @@ jobs:
           --health-cmd pg_isready --health-interval 10s --health-timeout 5s
           --health-retries 5
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: actions/cache@v2
         name: Cache bundler dependencies
         with:
@@ -45,7 +45,7 @@ jobs:
           DATABASE_URL: postgres://postgres:postgres@postgres/asyncgo_test
   rspec-system:
     runs-on: ubuntu-latest
-    container: matteeyah/ruby-yarn-chromium:3.1.0-1.22.5-90.0.4430.212
+    container: j4yav/ruby-yarn-chromium:3.1.0-1.22.18-1-99.0.4844.51-1
     services:
       postgres:
         image: postgres:13-alpine
@@ -57,7 +57,7 @@ jobs:
           --health-cmd pg_isready --health-interval 10s --health-timeout 5s
           --health-retries 5
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: actions/cache@v2
         name: Cache bundler dependencies
         with:
@@ -89,7 +89,7 @@ jobs:
     runs-on: ubuntu-latest
     container: ruby:3.1.1
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: actions/cache@v2
         name: Cache bundler dependencies
         with:
@@ -107,7 +107,7 @@ jobs:
     runs-on: ubuntu-latest
     container: ruby:3.1.1
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: actions/cache@v2
         name: Cache bundler dependencies
         with:
@@ -125,7 +125,7 @@ jobs:
     runs-on: ubuntu-latest
     container: node:current-buster
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
         run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
@@ -144,7 +144,7 @@ jobs:
     runs-on: ubuntu-latest
     container: node:current-buster
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
         run: echo "::set-output name=dir::$(yarn config get cacheFolder)"

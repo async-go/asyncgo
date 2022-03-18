@@ -35,7 +35,7 @@ class OmniauthCallbacksController < ApplicationController
     if user.persisted?
       session[:user_id] = user.id
     else
-      flash[:danger] = 'Could not authenticate user.'
+      flash[:danger] = I18n.t(:could_not_authenticate_user)
     end
 
     redirect_to root_path
