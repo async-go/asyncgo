@@ -23,12 +23,14 @@ jobs:
           key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
           restore-keys: |
             ${{ runner.os }}-gem-
-      - name: Install node & yarn
+      - name: Configure apt (1/2)
+        run: curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+      - name: Configure apt (2/2)
         run:
-          curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - &&
-          echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee
-          /etc/apt/sources.list.d/yarn.list && apt update && apt install --yes
-          --quiet nodejs yarn
+          echo "deb https://dl.yarnpkg.com/debian/ stable main" >
+          /etc/apt/sources.list.d/yarn.list
+      - name: Install node & yarn
+        run: apt update && apt install --yes --quiet nodejs yarn
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
         run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
@@ -71,12 +73,14 @@ jobs:
           key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
           restore-keys: |
             ${{ runner.os }}-gem-
-      - name: Install node, yarn, & chromium
+      - name: Configure apt (1/2)
+        run: curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+      - name: Configure apt (2/2)
         run:
-          curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - &&
-          echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee
-          /etc/apt/sources.list.d/yarn.list && apt update && apt install --yes
-          --quiet nodejs yarn chromium
+          echo "deb https://dl.yarnpkg.com/debian/ stable main" >
+          /etc/apt/sources.list.d/yarn.list
+      - name: Install node & yarn & chromium
+        run: apt update && apt install --yes --quiet nodejs yarn chromium
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
         run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
