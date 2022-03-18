@@ -80,7 +80,5 @@ with `@asyncgo.com`.
 Dockerfiles are in the root of this repo. If you update the versions, update the
 versions in the container label.
 
-```
-docker build -t j4yav/ruby-yarn:3.1.0-1.22.18-1 . -f Dockerfile
-docker build -t j4yav/ruby-yarn-chromium:3.1.0-1.22.18-1-99.0.4844.51-1 . -f Dockerfile.system
-```
+- `docker build -t j4yav/ruby-yarn:3.1.0-1.22.18-1 . -f Dockerfile`
+- `docker build -t j4yav/ruby-yarn-chromium:3.1.0-1.22.18-1-99.0.4844.51-1 . -f Dockerfile.system`
