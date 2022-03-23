@@ -43,9 +43,12 @@ class TeamsController < Teams::ApplicationController
   end
 
   def update
-    authorize(team)
+    @team = team
+    @pagy, @team_members = pagy(@team.users.order(:created_at))
 
-    if team.update(team_params)
+    authorize(@team)
+
+    if @team.update(team_params)
       redirect_to edit_team_path(team),
                   flash: { success: 'Team was successfully updated.' }
     else

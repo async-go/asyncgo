@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Team < ApplicationRecord
-  validates :name, presence: { allow_blank: false, allow_empty: false }
+  validates :name, presence: { allow_blank: false, allow_empty: false }, format: { without: %r{[:\\/]} }
   validates :message, presence: { allow_blank: false, allow_empty: false, allow_nil: true }
 
   has_one :subscription, class_name: 'Team::Subscription', dependent: :destroy

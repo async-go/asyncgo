@@ -3,11 +3,11 @@
     data: { controller: 'driverjs', action: 'click->driverjs#demoTeamAdmin' } }
     = assistive_icon('fas', 'question-circle', 'Tour this page')
 %h1.visually-hidden Configuration for #{@team.name}
+.row.mt-3= render partial: 'shared/form_errors', locals: { model: @team }
 .row.mt-3
   .col-lg-12
     %h3#team-name Name
-    %p
-      This is the name that will be shown for your team.
+    %p This is the name that will be shown for your team.
     = form_with(model: @team, class: 'g-3') do |form|
       .row
         .col-lg-8.mb-3
