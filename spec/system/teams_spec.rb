@@ -114,4 +114,73 @@ RSpec.describe 'Teams', type: :system do
 
     expect(page).to have_link('Manage Subscription')
   end
+
+  it 'disallows creating team names with a :' do
+    visit '/'
+    sign_in_user
+
+    fill_in 'team[name]', with: 'Team name :'
+    click_button 'Create Team'
+
+    expect(page).not_to have_text('Team name :')
+  end
+
+  it 'disallows creating team names with a /' do
+    visit '/'
+    sign_in_user
+
+    fill_in 'team[name]', with: 'Team name /'
+    click_button 'Create Team'
+
+    expect(page).not_to have_text('Team name /')
+  end
+
+  it 'disallows creating team names with a \\' do
+    visit '/'
+    sign_in_user
+
+    fill_in 'team[name]', with: 'Team name \\'
+    click_button 'Create Team'
+
+    expect(page).not_to have_text('Team name \\')
+  end
+
+  it 'disallows the user to change the name to a name with a :' do
+    user = create(:user, :team)
+
+    visit '/'
+    sign_in_user(user)
+    click_link 'Admin'
+
+    fill_in 'team[name]', with: 'New team name :'
+    click_button 'Save Name'
+
+    expect(page).not_to have_text('New team name :')
+  end
+
+  it 'disallows the user to change the name to a name with a /' do
+    user = create(:user, :team)
+
+    visit '/'
+    sign_in_user(user)
+    click_link 'Admin'
+
+    fill_in 'team[name]', with: 'New team name /'
+    click_button 'Save Name'
+
+    expect(page).not_to have_text('New team name /')
+  end
+
+  it 'disallows the user to change the name to a name with a \\' do
+    user = create(:user, :team)
+
+    visit '/'
+    sign_in_user(user)
+    click_link 'Admin'
+
+    fill_in 'team[name]', with: 'New team name \\'
+    click_button 'Save Name'
+
+    expect(page).not_to have_text('New team name \\')
+  end
 end

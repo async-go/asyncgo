@@ -49,7 +49,9 @@ class TeamsController < Teams::ApplicationController
       redirect_to edit_team_path(team),
                   flash: { success: 'Team was successfully updated.' }
     else
-      render :edit, status: :unprocessable_entity
+      redirect_to edit_team_path(team),
+                  flash: { danger: 'Cannot use : \ / in team name.' }
+
     end
   end
 
