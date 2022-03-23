@@ -35,7 +35,7 @@ RSpec.describe TeamsController, type: :request do
         sign_in(create(:user, team:))
       end
 
-      context 'when params are provided' do
+      context 'when update params are valid' do
         let(:params) { { name: 'New team name', message: 'Hello' } }
 
         it 'updates the name' do
@@ -50,6 +50,20 @@ RSpec.describe TeamsController, type: :request do
           patch_update
 
           expect(controller.flash[:success]).to eq('Team was successfully updated.')
+        end
+      end
+
+      context 'when update params are not valid' do
+        let(:params) { { name: 'New team name :' } }
+
+        it 'does not update the team' do
+          expect { patch_update }.not_to change(team, :name)
+        end
+
+        it 'shows the error' do
+          patch_update
+
+          expect(response.body).to include('Name is invalid')
         end
       end
     end
