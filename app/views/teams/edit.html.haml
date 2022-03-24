@@ -7,7 +7,9 @@
 .row.mt-3
   .col-lg-12
     %h3#team-name Name
-    %p This is the name that will be shown for your team.
+    %p
+      This is the name that will be shown for your team. Your team name
+      can not include any #{Team::INVALID_CHARS} character.
     = form_with(model: @team, class: 'g-3') do |form|
       .row
         .col-lg-8.mb-3
@@ -20,8 +22,7 @@
     %h3#team-message Message
     %p
       Set a message that your team will see on the topics page. This can be used
-      to share priorities, important updates, or other notes that are important
-      for the team to see.
+      to share priorities, important updates, or other notes.
     = form_with(model: @team) do |form|
       .input-group.mb-3
         = form.text_area :message, class: 'form-control'
@@ -64,9 +65,8 @@
     %h3#subscription Subscription
     - if @team&.subscription&.active?
       %p
-        You are on the Pro (paid) plan and can have up to fifty users on your
-        team. If you are the user who set up the subscription, you
-        can update and cancel your subscription via the
+        You are on the Pro (paid) plan. If you are the user who set up the subscription,
+        you can update and cancel your subscription via the
         = link_to 'Manage Subscription', edit_team_subscription_path(@team),
           target: :_blank, rel: :noopener
         page.
@@ -77,7 +77,7 @@
     - else
       %p
         Upgrading from the Basic (free) to Pro (paid) plan will increase the
-        number of users possible for your team from five to fifty. Details on
+        number of users possible for your team. Details on
         pricing and features can be found on our
         = link_to 'pricing page', 'https://asyncgo.com/pricing', target: '_blank;',
           rel: 'noreferrer noopener'

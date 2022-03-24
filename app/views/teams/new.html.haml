@@ -8,6 +8,8 @@
   If you were expecting to join a team that already exists, check that the email
   associated with the account you logged in with matches your invitation, or
   contact your team admin.
+%p
+  Your team name can not include any #{Team::INVALID_CHARS} character.
 
 = form_with(model: @team) do |form|
   .mb-3
