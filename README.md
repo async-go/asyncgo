@@ -34,10 +34,10 @@ Client IDs and secrets are set up in the developer tooling for each service.
 
 1. Go to [Google Cloud Console](https://console.cloud.google.com/)
 2. Go to "APIs & Services" -> "Credentials"
-4. Copy or create the Client ID and Client Secret
-5. Open the `.env` file in the root of your local copy of the project
-6. Enter the Client ID as the `GOOGLE_CLIENT_ID`
-7. Enter the Client Secret as the `GOOGLE_CLIENT_SECRET`
+3. Copy or create the Client ID and Client Secret
+4. Open the `.env` file in the root of your local copy of the project
+5. Enter the Client ID as the `GOOGLE_CLIENT_ID`
+6. Enter the Client Secret as the `GOOGLE_CLIENT_SECRET`
 
 Here's what a `.env` file looks like
 
@@ -50,11 +50,11 @@ GOOGLE_CLIENT_SECRET=[REDACTED]
 
 1. Go to
    [GitHub Application](https://github.com/organizations/async-go/settings/applications)
-3. Copy or create a Client ID
-4. Obtain the Client Secret
-5. Open the `.env` file in the root of your local copy of the project
-6. Enter the Client ID as the `GITHUB_CLIENT_ID`
-7. Enter the Client Secret as the `GITHUB_CLIENT_SECRET`
+2. Copy or create a Client ID
+3. Obtain the Client Secret
+4. Open the `.env` file in the root of your local copy of the project
+5. Enter the Client ID as the `GITHUB_CLIENT_ID`
+6. Enter the Client Secret as the `GITHUB_CLIENT_SECRET`
 
 Here's what a `.env` file looks like
 
