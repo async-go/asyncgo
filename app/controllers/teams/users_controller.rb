@@ -49,9 +49,7 @@ module Teams
     end
 
     def add_user_flash!(team, user)
-      if (team.users.count >= 5) && !team.subscription&.active?
-        { danger: 'You have reached the maximum 5 users on the free plan.' }
-      elsif !user.valid?
+      if !user.valid?
         { danger: "There was a problem adding the user to the team. #{user.errors.full_messages.join(', ')}." }
       elsif user.team
         { danger: 'User already belongs to a team.' }

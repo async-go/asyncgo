@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_13_140839) do
+ActiveRecord::Schema.define(version: 2022_04_21_111001) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -133,14 +133,6 @@ ActiveRecord::Schema.define(version: 2022_01_13_140839) do
     t.index ["name"], name: "index_tags_on_name", unique: true
   end
 
-  create_table "team_subscriptions", force: :cascade do |t|
-    t.boolean "active", default: false, null: false
-    t.bigint "team_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["team_id"], name: "index_team_subscriptions_on_team_id", unique: true
-  end
-
   create_table "teams", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -205,7 +197,6 @@ ActiveRecord::Schema.define(version: 2022_01_13_140839) do
   add_foreign_key "subscriptions", "topics"
   add_foreign_key "subscriptions", "users"
   add_foreign_key "taggings", "tags"
-  add_foreign_key "team_subscriptions", "teams"
   add_foreign_key "topics", "teams"
   add_foreign_key "topics", "users"
   add_foreign_key "user_preferences", "users"

@@ -96,25 +96,6 @@ RSpec.describe 'Teams', type: :system do
     expect(page).to have_text('Support request was successfully sent.')
   end
 
-  it 'shows the buy subscription button for unsubscribed teams' do
-    visit '/'
-    sign_in_user(create(:user, :team))
-    click_link 'Admin'
-
-    expect(page).to have_button('Buy Subscription')
-  end
-
-  it 'shows the manage subscription link for subscribed teams' do
-    user = create(:user, :team)
-    user.team.create_subscription!(active: true)
-
-    visit '/'
-    sign_in_user(user)
-    click_link 'Admin'
-
-    expect(page).to have_link('Manage Subscription')
-  end
-
   it 'disallows creating team names with a :' do
     visit '/'
     sign_in_user

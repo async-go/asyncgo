@@ -33,12 +33,6 @@ Rails.application.routes.draw do
     get :new_topic
   end
 
-  resources :subscriptions, only: [], constraints: { format: :json } do
-    collection do
-      post :update
-    end
-  end
-
   resources :users, only: :edit do
     scope module: :users do
       resource :preferences, only: :update
@@ -72,8 +66,6 @@ Rails.application.routes.draw do
           resources :votes, only: %i[create destroy]
         end
       end
-
-      resource :subscription, only: :edit
     end
   end
 end
