@@ -22,21 +22,22 @@
    sample data loaded.)
 1. Run `bin/rails server`
 
-## Configuring local auth
+## Configuring auth
 
 The Client ID and Secret should be used instead of `[REDACTED]`. Please don't
 save the Client ID or Client Secret anywhere online or locally other than in the
 `.env` file.
 
+Client IDs and secrets are set up in the developer tooling for each service.
+
 ### Google
 
 1. Go to [Google Cloud Console](https://console.cloud.google.com/)
 2. Go to "APIs & Services" -> "Credentials"
-3. Click on the AsyncGo OAuth client
-4. Copy the Client ID and Client Secret
-5. Open the `.env` file in the root of your local copy of the project
-6. Enter the Client ID as the `GOOGLE_CLIENT_ID`
-7. Enter the Client Secret as the `GOOGLE_CLIENT_SECRET`
+3. Copy or create the Client ID and Client Secret
+4. Open the `.env` file in the root of your local copy of the project
+5. Enter the Client ID as the `GOOGLE_CLIENT_ID`
+6. Enter the Client Secret as the `GOOGLE_CLIENT_SECRET`
 
 Here's what a `.env` file looks like
 
@@ -45,19 +46,15 @@ GOOGLE_CLIENT_ID=[REDACTED]
 GOOGLE_CLIENT_SECRET=[REDACTED]
 ```
 
-You need to be a member of the AsyncGo Google Cloud project to be able to access
-this.
-
 ### GitHub
 
 1. Go to
    [GitHub Application](https://github.com/organizations/async-go/settings/applications)
-2. Click on the AsyncGo OAuth app
-3. Copy the Client ID
-4. Obtain the Client Secret
-5. Open the `.env` file in the root of your local copy of the project
-6. Enter the Client ID as the `GITHUB_CLIENT_ID`
-7. Enter the Client Secret as the `GITHUB_CLIENT_SECRET`
+2. Copy or create a Client ID
+3. Obtain the Client Secret
+4. Open the `.env` file in the root of your local copy of the project
+5. Enter the Client ID as the `GITHUB_CLIENT_ID`
+6. Enter the Client Secret as the `GITHUB_CLIENT_SECRET`
 
 Here's what a `.env` file looks like
 
@@ -73,7 +70,7 @@ GITHUB_CLIENT_SECRET=[REDACTED]
 ## Blazer authentication
 
 Blazer uses hard-coded user authentication. It checks if the user email ends
-with `@asyncgo.com`.
+with `@asyncgo.com`, but you can change this to meet your needs.
 
 ## Container builds
 
