@@ -274,14 +274,6 @@ export default class extends Controller {
         }
       },
       {
-        element: '#subscription',
-        popover: {
-          title: 'Subscription Info',
-          description:
-            'You can check your current subscription status in this area.'
-        }
-      },
-      {
         element: '#support-form',
         popover: {
           title: 'Support Form',

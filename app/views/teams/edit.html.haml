@@ -61,32 +61,6 @@
 %hr
 .row
   .col-lg-12
-    %h3#subscription Subscription
-    - if @team&.subscription&.active?
-      %p
-        You are on the Pro (paid) plan and can have up to fifty users on your
-        team. If you are the user who set up the subscription, you
-        can update and cancel your subscription via the
-        = link_to 'Manage Subscription', edit_team_subscription_path(@team),
-          target: :_blank, rel: :noopener
-        page.
-      %p
-        If you are not the subscription owner, you will need to contact them to
-        make changes. If you are unsure who the subscription owner is, use the
-        contact form below to ask us.
-    - else
-      %p
-        Upgrading from the Basic (free) to Pro (paid) plan will increase the
-        number of users possible for your team from five to fifty. Details on
-        pricing and features can be found on our
-        = link_to 'pricing page', 'https://asyncgo.com/pricing', target: '_blank;',
-          rel: 'noreferrer noopener'
-      %button{ data: { controller: 'subscription', action: 'click->subscription#buy' },
-      class: 'btn btn-primary' }
-        Buy Subscription
-%hr
-.row
-  .col-lg-12
     %h3#support-form Support/Feedback Form
     %p Use this form to contact support and/or provide product feedback.
     = form_with(url: team_support_path(@team)) do |support_form|
