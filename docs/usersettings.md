@@ -24,7 +24,7 @@ Fluid mode will expand the area for displaying content to fill up your whole
 screen. You can use it if you prefer to see as much of the content on screen at
 once as possible.
 
-![Fluid Mode](/assets/blog/releases/1.1/fluid.png)
+![Fluid Mode](./images/fluid.png)
 
 ## Comment Order
 

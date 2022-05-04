@@ -9,6 +9,8 @@ doesn't replace Zoom, Slack, Jira, or Google Docs, and so doesn't require you to
 go through yet another tools migration, but it provides a better place for
 conversations to happen to bring all of these together.
 
+![Topic](./images/asyncgo_topics.png)
+
 ## What is Async
 
 Async is a style of working where, instead of scheduling or expecting real-time
