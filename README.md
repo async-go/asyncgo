@@ -1,5 +1,12 @@
 # README
 
+AsyncGo: More mindful collaboration
+
+AsyncGo helps your team improve how you work, no meetings necessary.
+Simply raise a tension, have a discussion, and make a change.
+
+[User Documentation](./docs/index.md)
+
 ## Requirements
 
 - ruby 3.1.0 (see `.ruby-version`)
