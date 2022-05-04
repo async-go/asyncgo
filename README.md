@@ -7,6 +7,8 @@ Simply raise a tension, have a discussion, and make a change.
 
 [User Documentation](./docs/index.md)
 
+![Topic](./docs/images/asyncgo_topics.png)
+
 ## Requirements
 
 - ruby 3.1.0 (see `.ruby-version`)
