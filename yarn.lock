@@ -2227,7 +2227,7 @@ __metadata:
     driver.js: 0.9.8
     eslint: 8.11.0
     markdownlint-cli: 0.31.1
-    prettier: 2.6.0
+    prettier: 2.7.1
     standard: 16.0.4
     tributejs: 5.1.3
     webpack: 5.65.0
@@ -5720,12 +5720,12 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
-"prettier@npm:2.6.0":
-  version: 2.6.0
-  resolution: "prettier@npm:2.6.0"
+"prettier@npm:2.7.1":
+  version: 2.7.1
+  resolution: "prettier@npm:2.7.1"
   bin:
     prettier: bin-prettier.js
-  checksum: 51151f1b26850c3d219846b06a7653eb641b3d0f59001cfce67ab14db26a765b84c24c7e73e2de9d6d8a6930eb378edabe5bff112652a6272a07e68e98ced172
+  checksum: 74e646bf9416eaf01d2aaf3e63f0227bc956eae5901bc0701885e790ea28fba5a68216a4bc766b916b48a9c0637f6a48181d6c995a2e4173bdff90bcf64b6bcf
   languageName: node
   linkType: hard
 
