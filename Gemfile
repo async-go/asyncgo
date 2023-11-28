@@ -24,7 +24,7 @@ gem 'acts-as-taggable-on', '~> 9.0.0' # Tags
 gem 'barnes', '~> 0.0.9' # heroku application metrics
 gem 'blazer', '~> 2.5.0' # Business Intelligence made easy
 gem 'commonmarker', '~> 0.23.2' # GitHub Flavored Markdown renderer
-gem 'font-awesome-sass', '~> 5.15.1'
+gem 'font-awesome-sass', '~> 6.5.0'
 gem 'gemoji', '~> 3.0.1' # emoji helpers
 gem 'ginjo-omniauth-slack', '~> 2.5', require: 'omniauth-slack'
 gem 'hamlit', '~> 2.16.0' # Templating language
