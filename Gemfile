@@ -48,7 +48,7 @@ gem 'pagy', '~> 5.10.0' # pagination
 group :development, :test do
   # Linters
   ## Ruby linter
-  gem 'rubocop', '~> 1.26.0', require: false
+  gem 'rubocop', '~> 1.65.0', require: false
   gem 'rubocop-performance', '~> 1.13.1', require: false
   gem 'rubocop-rails', '~> 2.14.0', require: false
   gem 'rubocop-rspec', '~> 2.9.0', require: false
