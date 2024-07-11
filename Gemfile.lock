@@ -108,7 +108,7 @@ GEM
     childprocess (4.1.0)
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
-    commonmarker (0.23.2)
+    commonmarker (0.23.10)
     concurrent-ruby (1.1.9)
     connection_pool (2.2.5)
     crass (1.0.6)
