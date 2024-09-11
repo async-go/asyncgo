@@ -87,7 +87,7 @@ jobs:
           DATABASE_URL: postgres://postgres:postgres@postgres/asyncgo_test
   rubocop:
     runs-on: ubuntu-latest
-    container: ruby:3.1.0
+    container: ruby:3.3.5
     steps:
       - uses: actions/checkout@v3
       - uses: actions/cache@v2
@@ -105,7 +105,7 @@ jobs:
         run: bundle exec rubocop
   haml-lint:
     runs-on: ubuntu-latest
-    container: ruby:3.1.0
+    container: ruby:3.3.5
     steps:
       - uses: actions/checkout@v3
       - uses: actions/cache@v2
