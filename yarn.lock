@@ -2223,7 +2223,7 @@ __metadata:
     "@webpack-cli/serve": 1.6.1
     babel-plugin-macros: 3.1.0
     bootstrap: 5.1.3
-    codemirror: 5.65.2
+    codemirror: 5.65.18
     driver.js: 0.9.8
     eslint: 8.11.0
     markdownlint-cli: 0.31.1
@@ -2560,10 +2560,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"codemirror@npm:5.65.2":
-  version: 5.65.2
-  resolution: "codemirror@npm:5.65.2"
-  checksum: dc996040b4a2018a12b62bed2dd677cabfb1dd6484ba5a073884a0ea50e93bdb91362f607b59d86ac37e54d8fdb10056f674d0af2a88b97388794a04a9d59623
+"codemirror@npm:5.65.18":
+  version: 5.65.18
+  resolution: "codemirror@npm:5.65.18"
+  checksum: b0caa0370443876325042e36c106dfde4d302e44dfe23460db4ecbed4393818d97f2d22ec16d2f3d1193a4955b25d2992c3d484dec7191eb962a020186b32ac2
   languageName: node
   linkType: hard
 
